@@ -1,0 +1,4160 @@
+﻿1
+00:00:00,000 --> 00:00:00,080
+
+
+
+2
+00:00:00,080 --> 00:00:01,800
+The following content is provided
+提供以下内容
+
+3
+00:00:01,800 --> 00:00:04,040
+under a Creative Commons license.
+根据知识共享许可。 
+
+4
+00:00:04,040 --> 00:00:06,689
+Your support will help MIT OpenCourseWare continue
+您的支持将帮助MIT OpenCourseWare继续
+
+5
+00:00:06,889 --> 00:00:10,740
+to offer high quality educational resources for free.
+免费提供高质量的教育资源。 
+
+6
+00:00:10,740 --> 00:00:13,349
+To make a donation or view additional materials
+捐款或查看其他材料
+
+7
+00:00:13,349 --> 00:00:17,236
+from hundreds of MIT courses, visit MIT OpenCourseWare
+从数百门麻省理工学院的课程中，访问MIT OpenCourseWare 
+
+8
+00:00:17,236 --> 00:00:17,861
+at ocw.mit.edu.
+在ocw.mit.edu。 
+
+9
+00:00:17,861 --> 00:00:23,169
+
+
+
+10
+00:00:23,170 --> 00:00:25,960
+PROFESSOR: I hope you're all recovered from the quiz.
+教授：我希望你们都从测验中康复。 
+
+11
+00:00:25,960 --> 00:00:30,179
+Our apologies for hard questions,
+对于一些难题，我们深表歉意， 
+
+12
+00:00:30,379 --> 00:00:33,570
+but it's just the first quiz.
+但这只是第一次测验。 
+
+13
+00:00:33,570 --> 00:00:37,534
+We have a lot more fun things to do in 006.
+ 006我们要做很多有趣的事情。 
+
+14
+00:00:37,534 --> 00:00:41,229
+So today's lecture today's lecture is a light lecture,
+所以今天的演讲今天的演讲是一个简短的演讲
+
+15
+00:00:41,229 --> 00:00:43,719
+I would even call it a recreational mathematics
+我什至称它为休闲数学
+
+16
+00:00:43,719 --> 00:00:44,589
+lecture.
+演讲。 
+
+17
+00:00:44,590 --> 00:00:46,019
+And so, thanks for coming.
+因此，感谢您的光临。 
+
+18
+00:00:46,219 --> 00:00:49,339
+I'll make it worth your while, all right?
+我值得您花时间，好吗？ 
+
+19
+00:00:49,340 --> 00:00:51,990
+So we're going to talk about irrationals.
+因此，我们将讨论非理性。 
+
+20
+00:00:51,990 --> 00:00:55,250
+The motivation behind this is really that every
+背后的动机实际上是每个人
+
+21
+00:00:55,250 --> 00:00:59,659
+once in awhile we are going to have a situation where
+偶尔我们会有一种情况
+
+22
+00:00:59,659 --> 00:01:05,909
+we want to compute with numbers that are much longer than 64
+我们要使用远大于64的数字进行计算
+
+23
+00:01:05,909 --> 00:01:10,000
+bits, which is really the word length in standard computer
+位，实际上是标准计算机中的字长
+
+24
+00:01:10,000 --> 00:01:10,769
+these days.
+这些日子。 
+
+25
+00:01:10,769 --> 00:01:13,909
+It used to be 8 bits back in the day.
+过去是8位。 
+
+26
+00:01:13,909 --> 00:01:19,069
+For most of my adult life it was 32 bits.
+在我成年的大部分时间里，它都是32位。 
+
+27
+00:01:19,069 --> 00:01:23,319
+And recently Intel and AMD have gone to 64-bit processors.
+最近，英特尔和AMD已采用64位处理器。 
+
+28
+00:01:23,319 --> 00:01:27,169
+But 64 bits ain't near enough if you
+但是，如果您有64位，那还不够
+
+29
+00:01:27,170 --> 00:01:30,909
+want to do what's called high precision computation, you want
+想做所谓的高精度计算， 
+
+30
+00:01:30,909 --> 00:01:34,789
+to find precisely the weight of a neutrino,
+精确地找到中微子的重量
+
+31
+00:01:34,790 --> 00:01:36,879
+if you're a physicist, for example.
+例如，如果您是物理学家。 
+
+32
+00:01:37,079 --> 00:01:42,679
+And that, you're talking about literally a hundred
+那就是您所说的一百
+
+33
+00:01:42,680 --> 00:01:44,819
+decimal digits, which is obviously
+十进制数字，这显然是
+
+34
+00:01:45,019 --> 00:01:46,899
+much more than 64 bits.
+远远超过64位。 
+
+35
+00:01:46,900 --> 00:01:49,489
+And that's just one example.
+那只是一个例子。 
+
+36
+00:01:49,689 --> 00:01:54,819
+So what happens if you want to compute the square root of 2
+那么如果要计算2的平方根会发生什么
+
+37
+00:01:54,819 --> 00:02:00,369
+to a million digits, or pi to 10 million digits?
+到一百万个数字，或pi到一千万个数字？ 
+
+38
+00:02:00,370 --> 00:02:03,280
+How do you do that on a computer?
+您如何在计算机上执行此操作？ 
+
+39
+00:02:03,280 --> 00:02:06,280
+So that's what we're going to do for this module, which
+这就是我们要为该模块做的
+
+40
+00:02:06,280 --> 00:02:08,400
+is a short module on numerics.
+是数字的简短模块。 
+
+41
+00:02:08,400 --> 00:02:12,900
+We'll have a lecture today and another one on Tuesday
+我们今天要上课，星期二再上课
+
+42
+00:02:12,900 --> 00:02:16,219
+telling you about techniques that use, among other things,
+告诉您有关使用的技术， 
+
+43
+00:02:16,419 --> 00:02:21,739
+Newton's method to compute irrational numbers, as one
+牛顿计算无理数的方法
+
+44
+00:02:21,740 --> 00:02:27,560
+example, to arbitrary precision And for your problem set
+例如，以任意精度并针对您的问题集
+
+45
+00:02:27,560 --> 00:02:31,129
+you are you going to look at different application that
+你要去看看不同的应用程序
+
+46
+00:02:31,129 --> 00:02:35,210
+corresponds to encryption, RSA encryption,
+对应于加密，RSA加密， 
+
+47
+00:02:35,210 --> 00:02:37,849
+where you have to work with primes.
+您必须使用素数的地方。 
+
+48
+00:02:37,849 --> 00:02:40,759
+These are now integers, but you work with primes
+现在这些是整数，但是您可以使用质数
+
+49
+00:02:40,759 --> 00:02:43,899
+that are thousands of bits long, so again,
+几千位长，所以再次
+
+50
+00:02:43,900 --> 00:02:46,159
+much more than 64 bits.
+远远超过64位。 
+
+51
+00:02:46,159 --> 00:02:48,719
+And so you have to think about how you're
+因此，您必须考虑自己的状况
+
+52
+00:02:48,719 --> 00:02:50,909
+going to multiply numbers that are thousands of bits
+将要乘以数千位的数字
+
+53
+00:02:50,909 --> 00:02:53,367
+long, how you're going to divide numbers that are thousands
+长，如何划分成千上万的数字
+
+54
+00:02:53,367 --> 00:02:57,881
+of bits long, and that's really the purpose of this module.
+的长度，这才是本模块的目的。 
+
+55
+00:02:57,881 --> 00:02:59,879
+So let's start off by talking about irrationals.
+因此，让我们从谈论非理性开始。 
+
+56
+00:02:59,879 --> 00:03:04,969
+
+
+
+57
+00:03:04,969 --> 00:03:12,439
+And Pythagoras, whom I'm sure you've all heard of
+还有毕达哥拉斯，我相信你们都听说过
+
+58
+00:03:12,439 --> 00:03:19,740
+is credited with the discovery that a square's diagonal
+被认为是正方形的对角线
+
+59
+00:03:19,740 --> 00:03:23,210
+and its side are incommensurable.
+它的一面无与伦比。 
+
+60
+00:03:23,210 --> 00:03:29,310
+So you can't really express the ratio as a rational number,
+因此，您无法真正将比率表示为有理数， 
+
+61
+00:03:29,509 --> 00:03:32,159
+as a ratio of integers.
+作为整数的比率。 
+
+62
+00:03:32,159 --> 00:03:34,539
+Now it turns out that the Babylonians and the Indians
+现在事实证明，巴比伦人和印第安人
+
+63
+00:03:34,539 --> 00:03:37,739
+knew this way before Pythagoras, but he
+在毕达哥拉斯之前就知道这种方式，但是他
+
+64
+00:03:37,740 --> 00:03:40,030
+gets credit for the Pythagoras theorem.
+获得毕达哥拉斯定理的功劳。 
+
+65
+00:03:40,229 --> 00:03:43,716
+And there's also a Greek philosopher,
+还有一位希腊哲学家， 
+
+66
+00:03:43,717 --> 00:03:45,800
+in fact, maybe he was first a philosopher and then
+实际上，也许他首先是哲学家，然后
+
+67
+00:03:45,800 --> 00:03:51,210
+a mathematician, and he the espoused a philosophy
+数学家，他拥护一种哲学
+
+68
+00:03:51,409 --> 00:03:54,729
+that, I guess, is called Pythagorean mysticism, that
+我猜这就是毕达哥拉斯的神秘主义， 
+
+69
+00:03:54,729 --> 00:03:59,729
+said that all is number, so the world is about numbers.
+说一切都是数字，所以世界就是数字。 
+
+70
+00:03:59,729 --> 00:04:03,965
+And he worshipped numbers, his followers worshipped numbers.
+他崇拜数字，他的追随者也崇拜数字。 
+
+71
+00:04:03,965 --> 00:04:10,789
+
+
+
+72
+00:04:10,789 --> 00:04:16,740
+And the problem here was that he didn't really
+这里的问题是他并没有真正
+
+73
+00:04:16,740 --> 00:04:20,769
+like the square root of 2 because he couldn't express it
+像2的平方根一样，因为他无法表达
+
+74
+00:04:20,769 --> 00:04:25,329
+as a number, of what he thought of as a number, which was 1, 2,
+他认为数字是1、2 
+
+75
+00:04:25,329 --> 00:04:28,259
+3, et cetera, integers, whole numbers.
+ 3，等等，整数，整数。 
+
+76
+00:04:28,259 --> 00:04:35,050
+So he called this ratio speechless,
+所以他说这个比例无语， 
+
+77
+00:04:35,050 --> 00:04:36,800
+something that he really couldn't explain.
+他真的无法解释的事情。 
+
+78
+00:04:36,800 --> 00:04:39,480
+
+
+
+79
+00:04:39,480 --> 00:04:42,199
+And irrationals were actually considered a threat
+非理性的人实际上被认为是威胁
+
+80
+00:04:42,399 --> 00:04:44,519
+to the mystics because they couldn't really
+神秘主义者，因为他们不能真正
+
+81
+00:04:44,519 --> 00:04:47,029
+explain what square root of 2 was.
+解释2的平方根是多少。 
+
+82
+00:04:47,029 --> 00:04:49,289
+They'd try and measure it, and they would come up
+他们会尝试进行测量，然后他们会提出
+
+83
+00:04:49,290 --> 00:04:52,060
+with the right answer because the next time around it
+正确的答案，因为下次
+
+84
+00:04:52,060 --> 00:04:55,139
+would be a little bit different If they did things
+如果他们做事会有些不同
+
+85
+00:04:55,139 --> 00:04:58,379
+a little more precisely, or not so precisely.
+稍微精确一点，或者不那么精确。 
+
+86
+00:04:58,379 --> 00:05:00,680
+And it bothered them no end.
+这无休止地困扰着他们。 
+
+87
+00:05:00,680 --> 00:05:05,100
+And so they tried to find patterns in irrationals
+所以他们试图找到非理性的模式
+
+88
+00:05:05,100 --> 00:05:06,829
+because they considered them a threat.
+因为他们认为它们是威胁。 
+
+89
+00:05:07,029 --> 00:05:11,500
+And they obviously didn't find patterns,
+而且他们显然没有找到模式， 
+
+90
+00:05:11,500 --> 00:05:14,819
+but imagine if we could actually find patterns.
+但是想象一下我们是否真的可以找到模式。 
+
+91
+00:05:14,819 --> 00:05:17,909
+I mean, that would be a really big deal,
+我的意思是，那将是非常重要的， 
+
+92
+00:05:17,910 --> 00:05:21,709
+it would be better than p equals np, if you know what I mean.
+如果您知道我的意思，那将比p等于np好。 
+
+93
+00:05:21,908 --> 00:05:23,199
+If you don't it doesn't matter.
+如果不这样做，没关系。 
+
+94
+00:05:23,199 --> 00:05:26,629
+
+
+
+95
+00:05:26,629 --> 00:05:31,209
+So that's another of motivation for high precision arithmetic.
+因此，这是高精度算术的另一动力。 
+
+96
+00:05:31,209 --> 00:05:34,310
+Let's try and find patterns in irrationals
+让我们尝试找到非理性的模式
+
+97
+00:05:34,310 --> 00:05:36,420
+if you go to millions and trillions of digits,
+如果您达到数百万亿万位数， 
+
+98
+00:05:36,420 --> 00:05:41,329
+maybe it's just a matter of time before we discover that there's
+也许只是时间问题，我们才发现
+
+99
+00:05:41,529 --> 00:05:44,239
+no such thing as irrational numbers.
+没有非理性数字之类的东西。 
+
+100
+00:05:44,240 --> 00:05:45,370
+Who knows?
+谁知道？ 
+
+101
+00:05:45,370 --> 00:05:47,500
+So let's do that for the rest of this lecture.
+因此，在本讲座的其余部分中，请继续进行操作。 
+
+102
+00:05:47,500 --> 00:05:49,160
+Let's try and figure out how we're
+让我们尝试弄清楚我们如何
+
+103
+00:05:49,160 --> 00:05:52,490
+going to compute irrational numbers, or things
+要计算无理数或事物
+
+104
+00:05:52,490 --> 00:05:55,199
+like square root of 2, to arbitrary precision.
+像2的平方根一样，达到任意精度。 
+
+105
+00:05:55,199 --> 00:05:57,969
+So we can go play around, and we'll give you some code,
+这样我们就可以玩了，我们会给您一些代码， 
+
+106
+00:05:57,970 --> 00:05:59,819
+and you can play with it.
+你可以玩
+
+107
+00:06:00,019 --> 00:06:01,549
+So if you look at square root of 2--
+因此，如果您查看2--的平方根
+
+108
+00:06:01,550 --> 00:06:10,870
+I'll just put this up here-- so it's 1.414,
+我将其放在此处-就是1.414， 
+
+109
+00:06:10,870 --> 00:06:12,540
+you probably all know that.
+你们可能都知道。 
+
+110
+00:06:12,540 --> 00:06:28,300
+Then it's 213,562,373,095,048 et cetera.
+然后是213,562,373,095,048等。 
+
+111
+00:06:28,300 --> 00:06:29,800
+I mean, I don't see a pattern there.
+我的意思是，我在那里看不到任何模式。 
+
+112
+00:06:29,800 --> 00:06:34,730
+I see a zero, a couple of zeroes here.
+我在这里看到一个零，几个零。 
+
+113
+00:06:34,730 --> 00:06:36,680
+It's hard to imagine-- you'd probably
+很难想象-您可能会
+
+114
+00:06:36,680 --> 00:06:40,920
+want to think of a computer program that generates
+想想一个生成的计算机程序
+
+115
+00:06:40,920 --> 00:06:43,600
+square root of 2, and then maybe a different computer
+ 2的平方根，然后可能是另一台计算机
+
+116
+00:06:43,600 --> 00:06:45,910
+program that's looking for patterns.
+寻找模式的程序。 
+
+117
+00:06:45,910 --> 00:06:48,550
+
+
+
+118
+00:06:48,550 --> 00:06:51,860
+So let's not worry about the square root of 2.
+因此，不必担心2的平方根。 
+
+119
+00:06:51,860 --> 00:06:53,079
+I want to digress a little bit.
+我想讲一点点。 
+
+120
+00:06:53,279 --> 00:06:55,639
+I did say this was a bit of a recreational mathematics
+我确实说过这是一种娱乐数学
+
+121
+00:06:55,639 --> 00:06:57,339
+lecture.
+演讲。 
+
+122
+00:06:57,339 --> 00:07:00,089
+And let's talk about something completely different,
+让我们谈谈完全不同的东西， 
+
+123
+00:07:00,089 --> 00:07:01,879
+which are Catalan numbers.
+这是加泰罗尼亚语数字。 
+
+124
+00:07:01,879 --> 00:07:07,680
+So these are really my favorite numbers in the world.
+因此，这些确实是我在世界上最喜欢的数字。 
+
+125
+00:07:07,680 --> 00:07:11,870
+And people like primes, some people like irrationals,
+人们喜欢素数，有些人喜欢非理性， 
+
+126
+00:07:11,870 --> 00:07:13,980
+I like Catalan numbers.
+我喜欢加泰罗尼亚语数字。 
+
+127
+00:07:13,980 --> 00:07:18,410
+Catalan numbers are-- they show up all over the place.
+加泰罗尼亚语的数字遍布整个地方。 
+
+128
+00:07:18,410 --> 00:07:20,810
+
+
+
+129
+00:07:21,009 --> 00:07:23,149
+How many of you know what Catalan numbers are?
+你们当中有多少人知道加泰罗尼亚语数字是什么？ 
+
+130
+00:07:23,149 --> 00:07:23,889
+Oh good.
+很好
+
+131
+00:07:23,889 --> 00:07:25,289
+Excellent.
+优秀的。 
+
+132
+00:07:25,290 --> 00:07:31,319
+So Catalan numbers have a recursive definition.
+因此，加泰罗尼亚语数字具有递归定义。 
+
+133
+00:07:31,319 --> 00:07:36,990
+You can think of them as representing the cardinality
+您可以认为它们代表基数
+
+134
+00:07:36,990 --> 00:07:45,480
+of the set p of balanced parentheses strings.
+平衡括号串的集合p的值。 
+
+135
+00:07:45,480 --> 00:07:47,189
+And we're going to recursively define
+我们将递归定义
+
+136
+00:07:47,189 --> 00:07:49,605
+these strings as follows.
+这些字符串如下。 
+
+137
+00:07:49,605 --> 00:07:51,829
+We're going to have lambda belonging
+我们将拥有lambda 
+
+138
+00:07:52,029 --> 00:07:55,209
+to p where lambda is the empty string.
+到p，其中lambda是空字符串。 
+
+139
+00:07:55,209 --> 00:08:02,009
+
+
+
+140
+00:08:02,009 --> 00:08:06,250
+And that's rule one.
+那是规则之一。 
+
+141
+00:08:06,250 --> 00:08:13,290
+Rule two is if alpha and beta belong
+规则二是alpha和beta是否属于
+
+142
+00:08:13,290 --> 00:08:20,129
+to p then I'm going to put a paren, open paren, alpha,
+ p然后我要放一个括号，打开括号，alpha， 
+
+143
+00:08:20,129 --> 00:08:22,730
+close paren, and then beta.
+关闭paren，然后是beta。 
+
+144
+00:08:22,730 --> 00:08:25,310
+And that belongs to p.
+那属于p。 
+
+145
+00:08:25,310 --> 00:08:30,519
+So you iteratively or recursively apply this rule
+因此，您可以迭代或递归地应用此规则
+
+146
+00:08:30,519 --> 00:08:34,439
+over and over, and you start getting
+一遍又一遍，你开始
+
+147
+00:08:34,440 --> 00:08:36,330
+strings that are balanced.
+平衡的弦。 
+
+148
+00:08:36,330 --> 00:08:38,199
+So this is balanced.
+因此，这是平衡的。 
+
+149
+00:08:38,399 --> 00:08:41,759
+Now that's not balanced, this is not
+现在不平衡，这不是
+
+150
+00:08:41,759 --> 00:08:46,870
+balanced, and so on and so forth.
+平衡等等。 
+
+151
+00:08:46,870 --> 00:08:49,179
+Obviously things get more complicated
+显然事情变得更加复杂
+
+152
+00:08:49,179 --> 00:08:55,659
+in terms of the parentheses if when you have more brackets
+用括号括起来，如果有更多括号
+
+153
+00:08:55,659 --> 00:08:56,769
+or parentheses.
+或括号。 
+
+154
+00:08:56,769 --> 00:08:59,590
+And so, the nice thing about this definition
+因此，关于此定义的好处
+
+155
+00:08:59,590 --> 00:09:12,769
+is that you can get every non-empty balanced paren
+就是你可以得到所有非空的平衡货币
+
+156
+00:09:12,769 --> 00:09:30,500
+string, via rule two, from a unique alpha, beta pair.
+通过规则二从唯一的alpha，beta对中输入字符串。 
+
+157
+00:09:30,500 --> 00:09:33,129
+So as an example, suppose you want
+例如，假设您要
+
+158
+00:09:33,129 --> 00:09:36,254
+to generate the string that looks like this--
+生成看起来像这样的字符串- 
+
+159
+00:09:36,254 --> 00:09:38,219
+So that's a little more complicated than the strings
+所以这比字符串要复杂一些
+
+160
+00:09:38,419 --> 00:09:41,199
+that we have looked at so far-- then you
+到目前为止我们已经看过了-那么您
+
+161
+00:09:41,200 --> 00:09:52,600
+obtain that by having alpha be this simple string.
+通过使alpha为该简单字符串来获得该值。 
+
+162
+00:09:52,600 --> 00:09:55,379
+And then you put the brackets around that, and then
+然后将括号放在该位置，然后
+
+163
+00:09:55,379 --> 00:09:59,559
+your beta corresponds to this.
+您的Beta与此对应。 
+
+164
+00:09:59,559 --> 00:10:03,429
+So now alpha and beta were previously generated,
+所以现在已经生成了alpha和beta， 
+
+165
+00:10:03,429 --> 00:10:07,569
+so if you applied rule two to the empty string,
+因此，如果您将规则2应用于空字符串， 
+
+166
+00:10:07,570 --> 00:10:09,000
+with alpha being the empty string
+其中alpha是空字符串
+
+167
+00:10:09,000 --> 00:10:13,860
+and beta being the empty string, then you get this thing here.
+和beta是空字符串，那么您在这里得到了这个东西。 
+
+168
+00:10:13,860 --> 00:10:18,979
+And obviously you could get beta by setting
+显然，您可以通过设置
+
+169
+00:10:19,179 --> 00:10:22,989
+alpha to be the empty string and beta to be this string that you
+ alpha为空字符串，beta为该字符串
+
+170
+00:10:22,990 --> 00:10:25,370
+just generated, and so on and so forth.
+刚刚生成的，依此类推。 
+
+171
+00:10:25,370 --> 00:10:28,740
+So you just keep going and the strings get longer and longer.
+因此，只要继续前进，弦线就会越来越长。 
+
+172
+00:10:28,740 --> 00:10:31,549
+The cardinality of the set gets bigger and bigger.
+集合的基数越来越大。 
+
+173
+00:10:31,549 --> 00:10:33,639
+And those of the Catalan numbers.
+还有那些加泰罗尼亚语的数字。 
+
+174
+00:10:33,639 --> 00:10:35,210
+OK
+好
+
+175
+00:10:35,210 --> 00:10:40,359
+And so, this is a non-trivial question,
+因此，这是一个不平凡的问题， 
+
+176
+00:10:40,559 --> 00:10:45,429
+which is I'd like to enumerate the Catalan numbers,
+我想列举加泰罗尼亚语的数字， 
+
+177
+00:10:45,429 --> 00:10:48,239
+and compute, and get an analytical form
+并计算，并获得分析表格
+
+178
+00:10:48,240 --> 00:10:51,019
+for the cardinality of the set.
+集合的基数。 
+
+179
+00:10:51,019 --> 00:10:52,980
+And that's really what the Catalan number is.
+这就是加泰罗尼亚语的数字。 
+
+180
+00:10:52,980 --> 00:10:54,979
+It's a cardinality of the set.
+这是集合的基数。 
+
+181
+00:10:55,179 --> 00:11:08,729
+And so cn is the number of balanced parentheses strings
+所以cn是平衡括号字符串的数量
+
+182
+00:11:08,730 --> 00:11:16,129
+with exactly n pairs of parentheses.
+正好有n对括号。 
+
+183
+00:11:16,129 --> 00:11:22,100
+
+
+
+184
+00:11:22,100 --> 00:11:26,735
+And I have c0 equals 1, which is my base case.
+我的c0等于1，这是我的基本情况。 
+
+185
+00:11:26,735 --> 00:11:30,229
+
+
+
+186
+00:11:30,429 --> 00:11:32,699
+And that's just setting-- it's an empty string.
+这只是设置-这是一个空字符串。 
+
+187
+00:11:32,700 --> 00:11:37,190
+I'm going to say that empty string is a string,
+我要说的是空字符串是一个字符串， 
+
+188
+00:11:37,190 --> 00:11:40,190
+and that's just setting up the base case.
+这只是设置基本情况。 
+
+189
+00:11:40,190 --> 00:11:45,325
+And now I want an equation for cn plus 1.
+现在我想要一个cn加1的方程。 
+
+190
+00:11:45,325 --> 00:11:48,629
+
+
+
+191
+00:11:48,629 --> 00:11:50,700
+And I need to use the fact that I
+我需要利用我
+
+192
+00:11:50,700 --> 00:11:55,589
+can get cn plus 1, a particular strain that belongs
+可以得到cn加1，属于
+
+193
+00:11:55,789 --> 00:12:02,929
+to this set, where I have n plus 1 parenthesis in a unique way
+在这个集合中，我以独特的方式有n加1个括号
+
+194
+00:12:02,929 --> 00:12:06,069
+from a string I've previously generated that was part
+从我之前生成的字符串中
+
+195
+00:12:06,070 --> 00:12:12,830
+of either the set that had n parentheses--
+有n个括号的集合中的一个- 
+
+196
+00:12:12,830 --> 00:12:17,729
+or it was combined using strings, where alpha was
+或使用字符串组合，其中alpha为
+
+197
+00:12:17,929 --> 00:12:21,329
+in some set that was maybe generated awhile
+在某些情况下可能会产生一段时间
+
+198
+00:12:21,330 --> 00:12:24,089
+back with a small n, or something
+返回一个小n或其他东西
+
+199
+00:12:24,289 --> 00:12:27,639
+significantly smaller than n, and another thing that
+明显小于n，另一件事是
+
+200
+00:12:27,639 --> 00:12:30,659
+was generated, beta, that was generated later,
+生成了Beta，后来又生成了
+
+201
+00:12:30,659 --> 00:12:33,139
+or maybe at the same time, et cetera.
+或同时，等等。 
+
+202
+00:12:33,139 --> 00:12:40,049
+So can someone tell me what an equation would be for cn plus 1
+有人可以告诉我cn加1的方程是什么
+
+203
+00:12:40,049 --> 00:12:43,819
+based on the cis that are less than n?
+基于小于n的顺式？ 
+
+204
+00:12:43,820 --> 00:12:53,970
+
+
+
+205
+00:12:53,970 --> 00:12:55,470
+So what about c1?
+那么c1呢？ 
+
+206
+00:12:55,470 --> 00:12:59,186
+Maybe I'll ask-- what about c1?
+也许我会问-关于c1呢？ 
+
+207
+00:12:59,186 --> 00:13:01,495
+What's c1?
+什么是c1？ 
+
+208
+00:13:01,495 --> 00:13:03,000
+1.
+ 1。 
+
+209
+00:13:03,000 --> 00:13:09,450
+c1 is 1 because all I have is this string, that's
+ c1是1，因为我只有这个字符串，那是
+
+210
+00:13:09,450 --> 00:13:12,750
+the only balanced string.
+唯一的平衡弦。 
+
+211
+00:13:12,750 --> 00:13:14,940
+Now I have c0 and c1.
+现在我有c0和c1。 
+
+212
+00:13:14,940 --> 00:13:18,819
+What's an equation for c2 in terms of numbers.
+关于c2的数字方程式。 
+
+213
+00:13:19,019 --> 00:13:24,850
+I want a number for c2 based on c0 and c1.
+我想要一个基于c0和c1的c2的数字。 
+
+214
+00:13:24,850 --> 00:13:26,696
+Someone?
+有人吗
+
+215
+00:13:26,696 --> 00:13:27,459
+Yeah.
+是的
+
+216
+00:13:27,659 --> 00:13:29,589
+AUDIENCE: C0 plus c1.
+听众：C0加c1。 
+
+217
+00:13:29,590 --> 00:13:30,899
+PROFESSOR: c0 plus c1?
+教授：c0加c1？ 
+
+218
+00:13:30,899 --> 00:13:34,809
+
+
+
+219
+00:13:34,809 --> 00:13:35,829
+No, not quite right.
+不，不太正确。 
+
+220
+00:13:35,830 --> 00:13:38,960
+
+
+
+221
+00:13:38,960 --> 00:13:40,839
+How many strings do I have?
+我有几根琴弦？ 
+
+222
+00:13:41,039 --> 00:13:43,799
+
+
+
+223
+00:13:43,799 --> 00:13:44,849
+c0 plus c1.
+ c0加c1。 
+
+224
+00:13:44,850 --> 00:13:47,224
+Yeah, actually you're right.
+是的，实际上您是对的。 
+
+225
+00:13:47,224 --> 00:13:50,620
+Well, the number is right but the equation is wrong.
+好吧，这个数字是正确的，但是方程式是错误的。 
+
+226
+00:13:50,620 --> 00:13:53,000
+It's not quite that.
+不是那样的
+
+227
+00:13:53,000 --> 00:13:54,398
+You get a-- Yup.
+你得到-是的。 
+
+228
+00:13:54,398 --> 00:14:01,570
+AUDIENCE: So when something like c-- c1 times c1 plus c1.
+听众：所以当c– c1乘以c1加c1时。 
+
+229
+00:14:01,570 --> 00:14:03,632
+PROFESSOR: c1 times c1 plus c1?
+教授：c1乘以c1加c1？ 
+
+230
+00:14:03,832 --> 00:14:04,719
+AUDIENCE: Yeah.
+听众：是的。 
+
+231
+00:14:04,720 --> 00:14:06,185
+PROFESSOR: I think you want to use a c0.
+教授：我认为您想使用c0。 
+
+232
+00:14:06,385 --> 00:14:07,620
+AUDIENCE: OK. c0.
+听众：好的。 c0。 
+
+233
+00:14:07,620 --> 00:14:11,769
+PROFESSOR: c0 Well, that's not quite right either.
+教授：c0嗯，那也不完全正确。 
+
+234
+00:14:11,769 --> 00:14:13,210
+Someone else.
+其他人。 
+
+235
+00:14:13,210 --> 00:14:13,710
+Yeah.
+是的
+
+236
+00:14:13,710 --> 00:14:14,210
+OK.
+好。 
+
+237
+00:14:14,210 --> 00:14:14,921
+You.
+您。 
+
+238
+00:14:14,921 --> 00:14:17,809
+AUDIENCE: c0 times c1 plus c1 [INAUDIBLE].
+听众：c0乘以c1加c1 [听不清]。 
+
+239
+00:14:18,009 --> 00:14:21,361
+PROFESSOR: c0 times c1-- c2 would
+教授：c0乘以c1-- c2 
+
+240
+00:14:21,361 --> 00:14:25,179
+be c0 times c1 plus c1 times c0.
+是c0乘以c1乘以c1乘以c0。 
+
+241
+00:14:25,179 --> 00:14:25,879
+OK.
+好。 
+
+242
+00:14:25,879 --> 00:14:29,549
+And if you're setting the alpha-- So here's the thing,
+如果您要设置Alpha，那么事情就在这里， 
+
+243
+00:14:29,549 --> 00:14:32,669
+you set the alpha, and you choose the alpha,
+您设置Alpha，然后选择Alpha， 
+
+244
+00:14:32,669 --> 00:14:34,666
+and then you choose the beta.
+然后选择Beta。 
+
+245
+00:14:34,667 --> 00:14:36,250
+And there's a couple of different ways
+有两种不同的方式
+
+246
+00:14:36,250 --> 00:14:37,799
+that you could choose the alpha.
+您可以选择Alpha。 
+
+247
+00:14:37,799 --> 00:14:40,299
+You could choose the alpha from-- you
+您可以选择- 
+
+248
+00:14:40,299 --> 00:14:41,939
+could make it a string that's empty,
+可以将其设置为空字符串， 
+
+249
+00:14:41,940 --> 00:14:43,432
+or you could make it the one string
+或者你可以把它变成一个字符串
+
+250
+00:14:43,432 --> 00:14:44,889
+that you've generated so far, which
+到目前为止，您已经生成了
+
+251
+00:14:44,889 --> 00:14:49,139
+is the standard simple string, the non-empty,
+是标准的简单字符串，非空， 
+
+252
+00:14:49,139 --> 00:14:51,529
+the non-trivial balanced string.
+非平凡的平衡弦。 
+
+253
+00:14:51,529 --> 00:14:53,839
+And you could do that in a couple different ways
+您可以通过几种不同的方式
+
+254
+00:14:53,840 --> 00:14:54,839
+with alpha.
+与阿尔法。 
+
+255
+00:14:55,039 --> 00:14:57,360
+And that's why you have two terms over there.
+这就是为什么在那边有两个条件的原因。 
+
+256
+00:14:57,360 --> 00:15:03,080
+So the number, in terms of all of the equations I got,
+因此，就我得到的所有方程式而言， 
+
+257
+00:15:03,080 --> 00:15:04,480
+they all came out to be the same.
+他们都出来都是一样的。 
+
+258
+00:15:04,480 --> 00:15:05,604
+It's 2, and that's correct.
+是2，是正确的。 
+
+259
+00:15:05,604 --> 00:15:08,480
+
+
+
+260
+00:15:08,480 --> 00:15:11,200
+But this is the equation for it.
+但这就是方程式。 
+
+261
+00:15:11,200 --> 00:15:13,949
+And so now, tell me what a general equation
+所以现在，告诉我什么是一般方程
+
+262
+00:15:14,149 --> 00:15:19,500
+is for cn plus 1 based on what we've
+是基于我们的cn加1 
+
+263
+00:15:19,500 --> 00:15:23,429
+learned so far for the c2 equation?
+到目前为止，对于c2方程了解到了什么？ 
+
+264
+00:15:23,429 --> 00:15:25,169
+Yeah, back to you.
+是的，回到你身边。 
+
+265
+00:15:25,169 --> 00:15:28,969
+AUDIENCE: So c0 times cn plus c1 times cn
+观众：所以c0乘以cn加c1乘以cn 
+
+266
+00:15:28,970 --> 00:15:32,589
+minus 1 all the way to cn times [INAUDIBLE].
+一直减负1直到cn次[音频不清晰]。 
+
+267
+00:15:32,589 --> 00:15:33,179
+PROFESSOR: Perfect.
+教授：完美。 
+
+268
+00:15:33,379 --> 00:15:33,879
+Good.
+好。 
+
+269
+00:15:33,879 --> 00:15:35,067
+That deserves a cushion.
+那值得缓冲。 
+
+270
+00:15:35,067 --> 00:15:40,164
+
+
+
+271
+00:15:40,164 --> 00:15:42,969
+That wasn't me, it was you.
+那不是我，是你。 
+
+272
+00:15:42,970 --> 00:15:44,802
+And put it right there, breadbasket.
+然后放到那里，粮仓。 
+
+273
+00:15:44,802 --> 00:15:49,179
+
+
+
+274
+00:15:49,179 --> 00:15:57,059
+So cn plus 1 equals sigma, so you give me a summation,
+所以cn加1等于sigma，所以您求和
+
+275
+00:15:57,059 --> 00:16:05,496
+k equals 0 through n, ck, cn minus k where
+ k等于0到n，ck，cn减去k，其中
+
+276
+00:16:05,496 --> 00:16:06,829
+n is greater than or equal to 0.
+ n大于或等于0。 
+
+277
+00:16:06,830 --> 00:16:11,570
+
+
+
+278
+00:16:11,570 --> 00:16:15,820
+And you can figure this out, it's not particularly important
+您可以弄清楚，这并不是特别重要
+
+279
+00:16:15,820 --> 00:16:20,559
+as to exactly why this is true.
+到底为什么这是真的。 
+
+280
+00:16:20,759 --> 00:16:22,870
+You can think about it offline.
+您可以离线考虑。 
+
+281
+00:16:22,870 --> 00:16:25,860
+But the interesting thing is that this is a generator of,
+有趣的是，这是
+
+282
+00:16:25,860 --> 00:16:29,759
+obviously, and it's going to give you
+显然，它将给你
+
+283
+00:16:29,759 --> 00:16:32,330
+a nice looking set of numbers.
+一组漂亮的数字。 
+
+284
+00:16:32,330 --> 00:16:40,449
+And I came in early and wrote that the Catalan in numbers
+我很早就来写了加泰罗尼亚语
+
+285
+00:16:40,649 --> 00:16:47,519
+up on the board going from c0, c1, c2, et cetera, just
+从c0，c1，c2等开始， 
+
+286
+00:16:47,519 --> 00:16:52,929
+in case-- just in case you ever see these numbers in real life,
+以防万一，以防万一您在现实生活中看到这些数字， 
+
+287
+00:16:52,929 --> 00:16:54,709
+or when you're writing computer programs.
+或在编写计算机程序时。 
+
+288
+00:16:54,710 --> 00:16:57,620
+Or you're driving on the road, the next time you see a license
+或者您下次在道路上开车时，您会看到驾照
+
+289
+00:16:57,620 --> 00:17:01,289
+plate 4862, turn around and tell your mom or dad, hey,
+盘4862，转身告诉你的妈妈或爸爸，嘿， 
+
+290
+00:17:01,289 --> 00:17:03,809
+that's the Catalan number.
+那是加泰罗尼亚语的数字。 
+
+291
+00:17:03,809 --> 00:17:05,118
+And maybe she'll be impressed.
+也许她会留下深刻的印象。 
+
+292
+00:17:05,118 --> 00:17:07,504
+
+
+
+293
+00:17:07,505 --> 00:17:08,880
+This, of course, you're not going
+当然，你不会
+
+294
+00:17:08,880 --> 00:17:11,109
+to see on a license plate, but you can always
+可以在车牌上看到，但您始终可以
+
+295
+00:17:11,309 --> 00:17:14,279
+make up a bumper sticker or something,
+补上保险杠之类的东西， 
+
+296
+00:17:14,279 --> 00:17:16,420
+and you can have the c17 as being
+您可以将c17作为
+
+297
+00:17:16,420 --> 00:17:18,125
+a bumper sticker on your car.
+汽车上的保险杠贴纸。 
+
+298
+00:17:18,125 --> 00:17:20,000
+I mean, that's the kind of thing that I'd do.
+我的意思是，这就是我要做的事情。 
+
+299
+00:17:20,000 --> 00:17:23,049
+
+
+
+300
+00:17:23,049 --> 00:17:27,409
+Anyway, so it's just in case you see these numbers--
+无论如何，以防万一您看到这些数字- 
+
+301
+00:17:27,410 --> 00:17:30,700
+we might come back to this a little bit later in the class,
+我们可能会在课堂上稍后再讲到这一点， 
+
+302
+00:17:30,700 --> 00:17:31,221
+but--
+但 - 
+
+303
+00:17:31,221 --> 00:17:32,430
+AUDIENCE: 42 is on that list.
+听众：42在那个名单上。 
+
+304
+00:17:32,430 --> 00:17:33,680
+PROFESSOR: 42 is on that list.
+教授：这个清单上有42个。 
+
+305
+00:17:33,680 --> 00:17:34,960
+Yeah, it has to be.
+是的，一定是。 
+
+306
+00:17:34,960 --> 00:17:37,579
+42 is on every list.
+每个列表中有42个。 
+
+307
+00:17:37,579 --> 00:17:40,589
+42 is the answer to every question.
+ 42是每个问题的答案。 
+
+308
+00:17:40,589 --> 00:17:43,319
+I am glad you guys didn't put 42 down in the answer
+我很高兴你们没有在答案中写下42 
+
+309
+00:17:43,319 --> 00:17:44,559
+to every quiz question.
+每个测验问题。 
+
+310
+00:17:44,559 --> 00:17:48,730
+It doesn't quite work all the time, all right,
+它不是一直都在工作，好吧， 
+
+311
+00:17:48,730 --> 00:17:52,400
+but most of the time 42 is a good answer.
+但是大多数时候42是一个很好的答案。 
+
+312
+00:17:52,400 --> 00:17:54,450
+Most of the time.
+大多数时候。 
+
+313
+00:17:54,450 --> 00:17:55,700
+OK good.
+好的
+
+314
+00:17:55,700 --> 00:18:00,210
+So let's get down to business.
+因此，让我们开始做生意。 
+
+315
+00:18:00,210 --> 00:18:03,680
+So we talked about Catalan numbers as a digression.
+因此，我们谈到加泰罗尼亚语数字是题外话。 
+
+316
+00:18:03,680 --> 00:18:07,259
+If you see them you'll recognize them, I think.
+我想，如果看到它们，您就会认出它们。 
+
+317
+00:18:07,259 --> 00:18:08,879
+Let's talk about how we could compute.
+让我们谈谈如何计算。 
+
+318
+00:18:08,880 --> 00:18:11,460
+Let's go back to irrationals and talk
+让我们回到非理性的话题
+
+319
+00:18:11,460 --> 00:18:13,789
+about how we could compute square root of 2
+关于如何计算2的平方根
+
+320
+00:18:13,789 --> 00:18:16,359
+and other things to arbitrary precision.
+和其他东西达到任意精度。 
+
+321
+00:18:16,359 --> 00:18:19,089
+So what I want to do is to talk about Newton's method.
+所以我想谈的是牛顿法。 
+
+322
+00:18:19,089 --> 00:18:26,859
+
+
+
+323
+00:18:26,859 --> 00:18:29,449
+And Newton's method is something you probably
+牛顿的方法可能就是你
+
+324
+00:18:29,450 --> 00:18:32,509
+learned about in middle school, high school.
+在中学，高中就知道了。 
+
+325
+00:18:32,509 --> 00:18:36,839
+
+
+
+326
+00:18:36,839 --> 00:18:38,899
+And let's say you have a function
+假设您有一个功能
+
+327
+00:18:38,900 --> 00:18:44,650
+y equals f of x where this is x and that's
+ y等于x的f，其中x是
+
+328
+00:18:44,650 --> 00:18:47,899
+y, the coordinate axes.
+ y，坐标轴。 
+
+329
+00:18:48,099 --> 00:18:58,377
+And we want to try and find the root of fx equals 0
+我们想尝试找出fx的根等于0 
+
+330
+00:18:58,377 --> 00:18:59,894
+through successive approximation.
+通过逐次逼近
+
+331
+00:18:59,894 --> 00:19:12,549
+
+
+
+332
+00:19:12,549 --> 00:19:18,789
+For example, we might have f of x equals x squared minus a.
+例如，我们的x的f等于x平方减去a。 
+
+333
+00:19:18,789 --> 00:19:23,029
+And if a is 2 then you're trying to use Newton's method
+如果a为2，则您正在尝试使用牛顿方法
+
+334
+00:19:23,029 --> 00:19:24,799
+to find the root, and you're going
+找到根，你要去
+
+335
+00:19:24,799 --> 00:19:29,759
+to end up trying to compute square root of 2 or plus
+最终试图计算2或加的平方根
+
+336
+00:19:29,759 --> 00:19:31,690
+minus square root of 2, in this case.
+在这种情况下，减去2的平方根。 
+
+337
+00:19:31,690 --> 00:19:34,879
+But you can go for a particular root,
+但是您可以选择特定的根源， 
+
+338
+00:19:35,079 --> 00:19:37,929
+and you're try and converge to that.
+而您正在努力收敛。 
+
+339
+00:19:37,930 --> 00:19:44,380
+So the way Newton's method works is it tries, geometrically
+因此，牛顿方法的工作方式是尝试几何
+
+340
+00:19:44,380 --> 00:19:48,740
+speaking, it tries to find tangents--
+讲，它试图找到切线
+
+341
+00:19:48,740 --> 00:19:51,000
+and a different color chalk would be useful here
+在这里用不同颜色的粉笔会很有用
+
+342
+00:19:51,000 --> 00:19:54,420
+but I don't seem to see one-- So what would happen
+但我似乎没有看到-那么会发生什么
+
+343
+00:19:54,420 --> 00:19:57,210
+is, let's say you are sitting out here,
+是，假设您坐在这里， 
+
+344
+00:19:57,210 --> 00:20:00,240
+and it's successive approximation method,
+它是逐次逼近法
+
+345
+00:20:00,240 --> 00:20:05,200
+so this would give you x of i.
+因此，这将给您x i。 
+
+346
+00:20:05,200 --> 00:20:08,669
+And now you want to compute x of i plus 1.
+现在您要计算x的i加1。 
+
+347
+00:20:08,869 --> 00:20:11,889
+And what you're going to do is draw a tangent,
+然后您要做的就是画一条切线， 
+
+348
+00:20:11,890 --> 00:20:18,339
+like so, and find the intercept onto the x-axis,
+像这样，找到在x轴上的截距， 
+
+349
+00:20:18,539 --> 00:20:20,149
+the x-intercept.
+ X截距。 
+
+350
+00:20:20,150 --> 00:20:25,720
+And that is going to be your xi plus 1.
+那将是您的xi加1。 
+
+351
+00:20:25,720 --> 00:20:28,900
+And you have to write an equation for that tangent.
+而且您必须为该切线编写一个方程式。 
+
+352
+00:20:28,900 --> 00:20:32,339
+And this is, I guess, trying to figure
+我想这就是尝试
+
+353
+00:20:32,539 --> 00:20:35,730
+out how much of middle school math or high school math
+找出多少中学数学或高中数学
+
+354
+00:20:35,730 --> 00:20:37,220
+that you remember.
+你记得。 
+
+355
+00:20:37,220 --> 00:20:41,669
+What is the equation for that tangent?
+该切线的方程是什么？ 
+
+356
+00:20:41,869 --> 00:20:42,369
+Anybody?
+有人吗
+
+357
+00:20:42,369 --> 00:20:48,519
+
+
+
+358
+00:20:48,519 --> 00:20:50,339
+The equation for that tangent?
+该切线的方程式？ 
+
+359
+00:20:50,339 --> 00:20:53,199
+What do you do in order to compute that tangent?
+您要做什么才能计算该切线？ 
+
+360
+00:20:53,200 --> 00:20:54,014
+Give me a name.
+给我一个名字。 
+
+361
+00:20:54,214 --> 00:20:55,089
+AUDIENCE: Derivative?
+听众：衍生品？ 
+
+362
+00:20:55,089 --> 00:20:55,569
+PROFESSOR: Derivative.
+教授：导数。 
+
+363
+00:20:55,569 --> 00:20:56,460
+Thank you.
+谢谢。 
+
+364
+00:20:56,460 --> 00:20:59,380
+So what's the equation for that tangent?
+那么该切线的方程是什么？ 
+
+365
+00:20:59,380 --> 00:21:09,602
+y equals-- Someone?
+ y等于-有人吗？ 
+
+366
+00:21:09,602 --> 00:21:10,879
+AUDIENCE: [INAUDIBLE]
+观众：[听不清] 
+
+367
+00:21:11,079 --> 00:21:12,109
+PROFESSOR: It's a good think your middle school,
+教授：很高兴您的中学， 
+
+368
+00:21:12,109 --> 00:21:13,484
+high school teachers aren't here.
+高中老师不在。 
+
+369
+00:21:13,484 --> 00:21:16,139
+
+
+
+370
+00:21:16,140 --> 00:21:16,855
+Not you.
+不是你。 
+
+371
+00:21:16,855 --> 00:21:18,409
+You already got a cushion.
+你已经坐垫了。 
+
+372
+00:21:18,609 --> 00:21:19,269
+Someone else.
+其他人。 
+
+373
+00:21:19,269 --> 00:21:23,470
+
+
+
+374
+00:21:23,470 --> 00:21:24,421
+Someone else.
+其他人。 
+
+375
+00:21:24,421 --> 00:21:24,920
+All right.
+好吧。 
+
+376
+00:21:24,920 --> 00:21:26,750
+I'll start giving you some hints here.
+我将在这里开始给您一些提示。 
+
+377
+00:21:26,750 --> 00:21:30,539
+
+
+
+378
+00:21:30,539 --> 00:21:37,744
+f of xi plus-- plus--
+ xi的f加-加- 
+
+379
+00:21:37,744 --> 00:21:38,554
+ALL: f prime.
+全部：f素数。 
+
+380
+00:21:38,555 --> 00:21:39,680
+PROFESSOR: f prime xi.
+教授：f prime xi。 
+
+381
+00:21:39,680 --> 00:21:40,190
+Thank you.
+谢谢。 
+
+382
+00:21:40,190 --> 00:21:40,851
+Thank you.
+谢谢。 
+
+383
+00:21:40,851 --> 00:21:41,149
+All right.
+好吧。 
+
+384
+00:21:41,349 --> 00:21:42,629
+You get a cushion.
+你会得到缓冲。 
+
+385
+00:21:42,630 --> 00:21:45,371
+I'm getting them.
+我要他们。 
+
+386
+00:21:45,371 --> 00:21:47,619
+Whatever it takes.
+不惜一切代价。 
+
+387
+00:21:47,819 --> 00:21:50,169
+Here you go.
+干得好。 
+
+388
+00:21:50,170 --> 00:21:51,016
+Yeah.
+是的
+
+389
+00:21:51,016 --> 00:21:52,390
+That was left-handed, by the way.
+顺便说一句，那是左撇子。 
+
+390
+00:21:52,390 --> 00:21:55,359
+I'm actually right-handed, as you know.
+如您所知，我实际上是右撇子。 
+
+391
+00:21:55,559 --> 00:21:57,899
+So what do we have here?
+那我们这里有什么？ 
+
+392
+00:21:57,900 --> 00:22:01,099
+So we have f prime xi.
+因此，我们有素数xi。 
+
+393
+00:22:01,299 --> 00:22:03,190
+Now come on, let's finish it, finish it.
+现在来，让我们完成它，完成它。 
+
+394
+00:22:03,190 --> 00:22:05,549
+AUDIENCE: Times i minus xi.
+听众：我减去xi的次数。 
+
+395
+00:22:05,549 --> 00:22:06,639
+PROFESSOR: Times xi is xi.
+教授：时代xi是xi。 
+
+396
+00:22:06,640 --> 00:22:07,390
+Thank you.
+谢谢。 
+
+397
+00:22:07,390 --> 00:22:07,890
+OK.
+好。 
+
+398
+00:22:07,890 --> 00:22:09,190
+So now I get it.
+所以现在我明白了。 
+
+399
+00:22:09,190 --> 00:22:11,169
+You thought this was too simple a question.
+您认为这是一个太简单的问题。 
+
+400
+00:22:11,369 --> 00:22:13,929
+You guys were insulted by the question.
+你们被这个问题侮辱了。 
+
+401
+00:22:13,930 --> 00:22:16,730
+So that's why you didn't tell me what it was At least, that's
+所以这就是为什么你没有告诉我那是什么原因至少，那是
+
+402
+00:22:16,730 --> 00:22:21,779
+what I'm going to pretend to make myself feel better.
+我要假装使自己感觉好些。 
+
+403
+00:22:21,779 --> 00:22:26,055
+So y equals f of xi plus f prime xi,
+因此y等于xi的f加上f素数xi， 
+
+404
+00:22:26,055 --> 00:22:31,990
+which is the derivative of f evaluated at xi times
+这是在xi次评估的f的导数
+
+405
+00:22:31,990 --> 00:22:35,220
+x minus xi, that's the equation for the line.
+ x减去xi，即直线的方程式。 
+
+406
+00:22:35,220 --> 00:22:38,259
+And that's essentially what we have
+这基本上就是我们所拥有的
+
+407
+00:22:38,259 --> 00:22:42,640
+to do to compute things like square root of 2, which
+进行计算，例如2的平方根
+
+408
+00:22:42,640 --> 00:22:45,220
+is iteratively applied Newton's method.
+反复应用牛顿法。 
+
+409
+00:22:45,220 --> 00:22:50,630
+The only problem is this is all good in theory
+唯一的问题是，从理论上讲，这一切都很好
+
+410
+00:22:50,630 --> 00:22:56,980
+that we can do-- take that equation turn it into xi
+我们可以做的-将该等式变成xi 
+
+411
+00:22:56,980 --> 00:23:03,642
+plus 1 equals xi minus f of xi divided by f prime of xi.
+加1等于xi减去xi的f除以xi的f素数。 
+
+412
+00:23:03,642 --> 00:23:06,119
+
+
+
+413
+00:23:06,319 --> 00:23:13,869
+And if you end up doing f of x equals x squared minus a, then
+并且如果最后做x的f等于x平方减去a，则
+
+414
+00:23:13,869 --> 00:23:23,029
+you have xi plus 1 equals xi minus xi
+您有xi加1等于xi减去xi 
+
+415
+00:23:23,029 --> 00:23:27,569
+squared minus a divided by 2xi, which is the derivative of x
+减去a的平方除以2xi，即x的导数
+
+416
+00:23:27,569 --> 00:23:32,049
+squared minus a evaluated at xi.
+在xi处减去的平方减去a。 
+
+417
+00:23:32,049 --> 00:23:34,970
+And finally you get this equation, xi
+最后得到这个方程，xi 
+
+418
+00:23:34,970 --> 00:23:39,649
+plus a divided by xi divided by 2.
+加除以xi除以2。 
+
+419
+00:23:39,849 --> 00:23:41,559
+So it's fairly straightforward.
+因此，这非常简单。 
+
+420
+00:23:41,559 --> 00:23:46,059
+xi plus 1 equals xi plus a divided by xi divided by 2.
+ xi加1等于xi加除以xi除以2。 
+
+421
+00:23:46,059 --> 00:23:47,970
+And if you look at this, remember
+如果你看这个，记住
+
+422
+00:23:47,970 --> 00:23:51,180
+that a is typically a small number.
+通常是一个很小的数字。 
+
+423
+00:23:51,180 --> 00:23:52,930
+I mean, it's two, in this case, if you're
+我的意思是，如果您是
+
+424
+00:23:52,930 --> 00:23:54,920
+computing square root of 2.
+计算2的平方根。 
+
+425
+00:23:54,920 --> 00:23:58,730
+it may even be an integer, maybe a fraction.
+它甚至可以是整数，也可以是分数。 
+
+426
+00:23:58,730 --> 00:24:01,199
+But you have to do a division here.
+但是您必须在这里进行划分。 
+
+427
+00:24:01,199 --> 00:24:03,240
+And remember that since we want to compute things
+记住，因为我们要计算事物
+
+428
+00:24:03,240 --> 00:24:07,089
+to millions of digits, potentially, these numbers,
+数以百万计的数字，可能是这些数字， 
+
+429
+00:24:07,089 --> 00:24:11,689
+the xi numbers, are going to have millions of digits.
+ xi数将具有数百万个数字。 
+
+430
+00:24:11,690 --> 00:24:15,419
+And so if you end up running this Newton method
+因此，如果最终运行此牛顿方法
+
+431
+00:24:15,619 --> 00:24:22,709
+on a equals 2, then if I simulate what
+等于2，那么如果我模拟
+
+432
+00:24:22,710 --> 00:24:26,923
+happens without worrying about the implementation,
+无需担心实施， 
+
+433
+00:24:26,923 --> 00:24:28,089
+and this is what you'll get.
+这就是你所得到的。 
+
+434
+00:24:28,089 --> 00:24:33,299
+
+
+
+435
+00:24:33,299 --> 00:24:40,259
+You have x0-- you start with x0 equals 1 with a bunch of zeros.
+您有x0-您以x0开头等于一串零。 
+
+436
+00:24:40,259 --> 00:24:47,740
+xi equals 1.5 with a bunch of zeros, et cetera.
+ xi等于1.5，带有一串零，等等。 
+
+437
+00:24:47,740 --> 00:24:55,169
+And then, x2 equals 1.41666 et cetera.
+然后，x2等于1.41666等。 
+
+438
+00:24:55,369 --> 00:24:58,139
+That goes on.
+那继续。 
+
+439
+00:24:58,140 --> 00:25:00,399
+And we're not talking about fractions here,
+而且我们这里不是在谈论分数
+
+440
+00:25:00,599 --> 00:25:05,919
+we're talking about floating point numbers that
+我们谈论的是浮点数
+
+441
+00:25:05,920 --> 00:25:08,419
+are integers with a certain amount of precision.
+是具有一定精度的整数。 
+
+442
+00:25:08,619 --> 00:25:11,159
+So you've decided that you want to compute this
+所以您已经决定要计算
+
+443
+00:25:11,160 --> 00:25:14,029
+to d digits of precision where d may be a million.
+到d位精度，其中d可能是一百万。 
+
+444
+00:25:14,029 --> 00:25:17,619
+And so, really, here you would have a representation that's
+所以，真的，在这里您将得到一个表示
+
+445
+00:25:17,619 --> 00:25:19,859
+a million digits long that where,
+一百万位数长， 
+
+446
+00:25:19,859 --> 00:25:22,799
+basically, everything is zero, and here everything but one
+基本上，一切都是零，这里除了一个
+
+447
+00:25:22,799 --> 00:25:26,569
+is 0, or maybe a couple if you count the 1 here.
+是0，如果在这里算1，可能是一对。 
+
+448
+00:25:26,569 --> 00:25:28,789
+And here you have all these sixes here,
+在这里，您拥有所有这些六分力， 
+
+449
+00:25:28,789 --> 00:25:30,279
+and so on and so forth.
+等等等等。 
+
+450
+00:25:30,279 --> 00:25:42,686
+And you keep going, and you get x2 equals 1.414215686.
+然后继续前进，得到的x2等于1.414215686。 
+
+451
+00:25:42,686 --> 00:25:44,269
+And I want to write one more because I
+我想再写一封，因为我
+
+452
+00:25:44,269 --> 00:25:46,559
+want to point out something that's important.
+想指出重要的事情。 
+
+453
+00:25:46,559 --> 00:25:54,609
+1.414213562.
+ 1.414213562。 
+
+454
+00:25:54,609 --> 00:25:58,740
+And what's nice about this, if you go compare it
+如果这样做比较有什么好处
+
+455
+00:25:58,740 --> 00:26:01,160
+with what you have up there, is that you
+你在那里所拥有的是你
+
+456
+00:26:01,160 --> 00:26:05,349
+have quadratic convergence using the Newton's method.
+使用牛顿法进行二次收敛。 
+
+457
+00:26:05,549 --> 00:26:07,970
+And what do I mean by that?
+我的意思是什么？ 
+
+458
+00:26:07,970 --> 00:26:10,875
+Well, quadratic convergence is a nice property.
+二次收敛是一个很好的特性。 
+
+459
+00:26:10,875 --> 00:26:13,799
+
+
+
+460
+00:26:13,799 --> 00:26:15,889
+It's much better than linear convergence.
+它比线性收敛好得多。 
+
+461
+00:26:15,890 --> 00:26:17,930
+Linear convergence would mean that you
+线性收敛将意味着您
+
+462
+00:26:17,930 --> 00:26:24,250
+get an extra digit of precision for every iteration.
+每次迭代都获得额外的精度。 
+
+463
+00:26:24,250 --> 00:26:26,892
+So in this case, actually, a quadratic is better.
+因此，在这种情况下，实际上，二次方更好。 
+
+464
+00:26:26,892 --> 00:26:28,399
+Usually we think of quadratic algorithms,
+通常我们会想到二次算法
+
+465
+00:26:28,599 --> 00:26:30,329
+and we are going to throw up.
+而且我们要吐了。 
+
+466
+00:26:30,329 --> 00:26:33,710
+But linear algorithms is what we like.
+但是我们喜欢线性算法。 
+
+467
+00:26:33,710 --> 00:26:36,019
+But in this case it's actually a good thing.
+但是在这种情况下，这实际上是一件好事。 
+
+468
+00:26:36,019 --> 00:26:39,329
+You have this extended this quadratic rate of convergence
+您已经扩展了这种二次收敛速度
+
+469
+00:26:39,329 --> 00:26:42,879
+where the number of digits that are correct
+正确的位数
+
+470
+00:26:42,880 --> 00:26:45,899
+doubles with every iteration, as you can see.
+如您所见，每次迭代都会加倍。 
+
+471
+00:26:46,099 --> 00:26:50,299
+So here you have-- you start with, roughly,
+因此，在这里-您大致从
+
+472
+00:26:50,299 --> 00:26:53,269
+if you rounded this up you would get 5.
+如果将其四舍五入，将得到5。 
+
+473
+00:26:53,269 --> 00:26:56,670
+So you're saying that that's one digit of precision
+所以你说的是精度的一位数
+
+474
+00:26:56,670 --> 00:26:57,919
+in terms of the decimal.
+以小数表示。 
+
+475
+00:26:58,119 --> 00:27:10,159
+And then, now you're talking about 41421356,
+然后，您现在谈论的是41421356， 
+
+476
+00:27:10,160 --> 00:27:13,359
+so that's 1, 2, 3, 4, 5, 6, 7, 8,
+所以是1、2、3、4、5、6、7、8 
+
+477
+00:27:13,559 --> 00:27:16,460
+so that's eight digits of precision here, four here,
+所以这里的精度是八位数，这里的是四位数， 
+
+478
+00:27:16,460 --> 00:27:18,639
+and so on and so forth.
+等等等等。 
+
+479
+00:27:18,839 --> 00:27:19,709
+So that's nice.
+很好。 
+
+480
+00:27:19,710 --> 00:27:21,460
+That's why the Newton's method is actually
+这就是为什么牛顿法实际上是
+
+481
+00:27:21,460 --> 00:27:26,920
+used in practice because the number of digits doubles.
+在实践中使用，因为位数翻倍。 
+
+482
+00:27:26,920 --> 00:27:29,392
+
+
+
+483
+00:27:29,392 --> 00:27:30,024
+This is a precision.
+这是一个精度。 
+
+484
+00:27:30,224 --> 00:27:33,159
+
+
+
+485
+00:27:33,160 --> 00:27:36,750
+So now you don't get too scared about calculating things
+所以现在您不必太担心计算
+
+486
+00:27:36,750 --> 00:27:39,307
+that are a million because you kind of go and say, whoa,
+那是一百万，因为你会说，哇， 
+
+487
+00:27:39,307 --> 00:27:40,890
+I mean, that's not so bad, that's only
+我的意思是，还不错，只是
+
+488
+00:27:40,890 --> 00:27:43,910
+a logarithmic number of integrations.
+对数的积分。 
+
+489
+00:27:43,910 --> 00:27:46,420
+And it's not like you have to run for a million iterations.
+而且，您不必运行一百万次迭代。 
+
+490
+00:27:46,420 --> 00:27:51,789
+You go 2, 4, 8, 16, and now that exponential helps you,
+您进行了2、4、8、16运算，现在，指数可以帮助您， 
+
+491
+00:27:51,789 --> 00:27:55,319
+the geometric series helps you.
+几何系列可以为您提供帮助。 
+
+492
+00:27:55,319 --> 00:27:57,879
+So that's the nice thing about the Newton's method.
+这就是牛顿法的优点。 
+
+493
+00:27:57,880 --> 00:28:01,629
+Haven't quite told you how we are
+还没完全告诉你我们怎么样
+
+494
+00:28:01,829 --> 00:28:04,649
+going to compute the most important thing here
+在这里计算最重要的事情
+
+495
+00:28:04,650 --> 00:28:07,640
+with respect to a divided by xi.
+关于除以xi。 
+
+496
+00:28:07,640 --> 00:28:09,200
+So this is just additions.
+所以这只是补充。 
+
+497
+00:28:09,200 --> 00:28:12,379
+You can imagine that if you have long numbers
+你可以想像，如果你有很多数字
+
+498
+00:28:12,579 --> 00:28:17,409
+you'd end up doing addition fairly straightforwardly
+你最终会很直接地做加法
+
+499
+00:28:17,410 --> 00:28:20,220
+because you only have to worry about one carry,
+因为您只需要担心一个进位， 
+
+500
+00:28:20,220 --> 00:28:21,309
+and so you go off.
+所以你走了。 
+
+501
+00:28:21,309 --> 00:28:23,409
+And I'm sure you've added up numbers
+我确定你已经加了数字
+
+502
+00:28:23,410 --> 00:28:26,460
+that are in tens, if not hundreds, of digits long
+数位（如果不是几百个）长
+
+503
+00:28:26,460 --> 00:28:29,190
+but I'm guessing you haven't manually
+但我猜你不是手动
+
+504
+00:28:29,190 --> 00:28:34,129
+multiplied numbers that are hundreds of digits long.
+乘以数百位数的数字。 
+
+505
+00:28:34,329 --> 00:28:36,740
+And if you have I'd be impressed,
+如果有的话，我会印象深刻， 
+
+506
+00:28:36,740 --> 00:28:38,720
+though I won't believe your result.
+尽管我不会相信你的结果。 
+
+507
+00:28:38,720 --> 00:28:44,380
+But that's something that is kind of a painful thing to do.
+但这是一件痛苦的事情。 
+
+508
+00:28:44,380 --> 00:28:46,200
+And so that's why we need computers.
+这就是为什么我们需要计算机。 
+
+509
+00:28:46,200 --> 00:28:50,049
+And that's multiplication and-- has anybody
+那就是乘法，并且-有任何人
+
+510
+00:28:50,049 --> 00:28:54,839
+divided a hundred-digit number by another 50-digit number?
+用一个100位数字除以另一个50位数字？ 
+
+511
+00:28:54,839 --> 00:28:55,869
+No.
+没有。 
+
+512
+00:28:55,869 --> 00:28:57,809
+So you need computers.
+因此，您需要计算机。 
+
+513
+00:28:57,809 --> 00:29:00,369
+So we've got to be able to do that division there,
+所以我们必须能够在那里进行分区， 
+
+514
+00:29:00,369 --> 00:29:04,219
+a divided by xi, using computers.
+用计算机除以xi。 
+
+515
+00:29:04,220 --> 00:29:06,929
+And so that's really the purpose of this and the next lecture
+因此，这正是本课以及下一讲的目的
+
+516
+00:29:06,929 --> 00:29:08,720
+If you're only going to do a high precision
+如果您只想做高精度
+
+517
+00:29:08,720 --> 00:29:10,140
+multiplication here.
+这里乘法。 
+
+518
+00:29:10,140 --> 00:29:13,629
+And try see what an algorithm would be for high precision
+并尝试了解高精度算法
+
+519
+00:29:13,829 --> 00:29:15,819
+multiplication because what we're going to do
+乘法，因为我们要做的是
+
+520
+00:29:15,819 --> 00:29:21,559
+is, essentially, take the reciprocal of one over xi
+从本质上讲，是xi的倒数
+
+521
+00:29:21,559 --> 00:29:24,009
+and then multiply that by a.
+然后将其乘以a。 
+
+522
+00:29:24,009 --> 00:29:27,509
+And we need-- division is going to require multiplication.
+我们需要-除法将需要乘法。 
+
+523
+00:29:27,509 --> 00:29:29,210
+You don't really see a multiplication
+你真的看不到乘法
+
+524
+00:29:29,210 --> 00:29:31,769
+there other than a times 1 over xi.
+除xi的1倍以外。 
+
+525
+00:29:31,769 --> 00:29:34,150
+And you can say, well, do we really need multiplication?
+你可以说，嗯，我们真的需要乘法吗？ 
+
+526
+00:29:34,150 --> 00:29:37,419
+Well, the answer is the division algorithm
+好吧，答案是除法算法
+
+527
+00:29:37,619 --> 00:29:41,009
+that is used in practice in most division algorithms have
+在大多数除法算法中实际使用的
+
+528
+00:29:41,009 --> 00:29:43,430
+multiplication as a subroutine.
+乘法作为子例程。 
+
+529
+00:29:43,430 --> 00:29:46,289
+So we're going to have to figure out high precision
+所以我们必须找出高精度
+
+530
+00:29:46,289 --> 00:29:48,579
+multiplication first-- It's a little bit easier
+首先进行乘法-稍微容易一点
+
+531
+00:29:48,579 --> 00:29:52,899
+than division-- and use it as a subroutine for high precision
+比除法-并将其用作高精度子程序
+
+532
+00:29:52,900 --> 00:29:55,889
+division, which we'll do next time.
+部门，我们下次再做。 
+
+533
+00:29:56,089 --> 00:29:59,609
+So now we're sort of back in 006 land, if you will.
+所以现在，如果您愿意，我们有点回到006土地。 
+
+534
+00:29:59,609 --> 00:30:03,039
+We have a problem that is high precision multiplication,
+我们有一个问题，就是高精度乘法
+
+535
+00:30:03,039 --> 00:30:05,769
+and we want to find an algorithm for it.
+我们想找到一种算法。 
+
+536
+00:30:05,769 --> 00:30:08,039
+And there's the vanilla algorithm
+还有香草算法
+
+537
+00:30:08,039 --> 00:30:10,950
+that is going to take certain amounts of time,
+这将花费一定的时间， 
+
+538
+00:30:10,950 --> 00:30:12,585
+asymptotically speaking, and then there
+渐近地讲，然后在那里
+
+539
+00:30:12,585 --> 00:30:14,180
+is better and better algorithms.
+是越来越好的算法。 
+
+540
+00:30:14,180 --> 00:30:16,325
+As you can imagine, multiplication
+可以想象，乘法
+
+541
+00:30:16,325 --> 00:30:19,670
+is just such a fundamental operation
+就是这么基本的操作
+
+542
+00:30:19,670 --> 00:30:21,720
+that people have looked at trying
+人们已经看过尝试
+
+543
+00:30:21,720 --> 00:30:25,190
+to reduce the complexity of high precision multiplication.
+降低高精度乘法的复杂度。 
+
+544
+00:30:25,190 --> 00:30:27,900
+So if you have n bits-- So what is the standard algorithm
+所以如果你有n位-那么标准算法是什么
+
+545
+00:30:27,900 --> 00:30:32,678
+for multiplication take if you have n bits of precision?
+如果您有n位精度，则需要乘法吗？ 
+
+546
+00:30:32,678 --> 00:30:33,650
+AUDIENCE: N squared.
+听众：N平方。 
+
+547
+00:30:33,650 --> 00:30:34,980
+PROFESSOR: n squared.
+教授：n平方。 
+
+548
+00:30:34,980 --> 00:30:36,940
+But you can do better.
+但是你可以做得更好。 
+
+549
+00:30:36,940 --> 00:30:38,639
+And the people are work on it.
+人们正在为此努力。 
+
+550
+00:30:38,839 --> 00:30:40,679
+You can do fast Fourier transforms.
+您可以进行快速傅立叶变换。 
+
+551
+00:30:40,680 --> 00:30:42,009
+We won't quite do that here.
+我们不会在这里做到这一点。 
+
+552
+00:30:42,009 --> 00:30:45,970
+If you take 6.046 you'll probably learn about that.
+如果您采用6.046，您可能会学到更多。 
+
+553
+00:30:45,970 --> 00:30:47,910
+But we'll do a couple of algorithms
+但是我们将做一些算法
+
+554
+00:30:47,910 --> 00:30:50,977
+that are better than the order n squared method,
+比阶数n平方的方法更好， 
+
+555
+00:30:50,977 --> 00:30:52,109
+and we'll do one of those today.
+我们今天将做其中之一。 
+
+556
+00:30:52,309 --> 00:30:59,649
+
+
+
+557
+00:30:59,650 --> 00:31:01,650
+So the way they're going to work with integers--
+因此，他们使用整数的方式- 
+
+558
+00:31:01,650 --> 00:31:10,710
+one little point that I need to make before we move ahead here
+在我们继续前进之前，我需要提出一点
+
+559
+00:31:10,710 --> 00:31:16,659
+is, generally, we going to say, for the purposes of 006,
+一般来说，就006而言， 
+
+560
+00:31:16,859 --> 00:31:23,099
+that we know the digits of precision up front because we
+我们知道预先的精度数字，因为我们
+
+561
+00:31:23,099 --> 00:31:28,240
+want d digits of precision, maybe it's 42, maybe it's 125.
+想要d位精度，也许是42，也许是125。 
+
+562
+00:31:28,240 --> 00:31:30,910
+In the case of our problem set in RSA we going to have it
+对于我们在RSA中设置的问题，我们将拥有它
+
+563
+00:31:30,910 --> 00:31:34,109
+1,024-bit numbers, maybe 2,048.
+ 1,024位数字，也许是2,048。 
+
+564
+00:31:34,309 --> 00:31:36,679
+So we know d beforehand.
+所以我们事先知道d。 
+
+565
+00:31:36,680 --> 00:31:43,480
+And so what we want is an integer, which
+所以我们想要的是一个整数
+
+566
+00:31:43,480 --> 00:31:49,019
+is 10 raised to d times the square root of 2, a floor,
+是10上升到d乘以2的平方根，即地板， 
+
+567
+00:31:49,019 --> 00:31:57,889
+and which is essentially the same as that, 2 times 10 raised
+基本上是一样的，加注2乘10 
+
+568
+00:31:57,890 --> 00:31:59,141
+to 2 d.
+至2 d。 
+
+569
+00:31:59,141 --> 00:32:00,890
+So we're going to treat these as integers,
+因此，我们将这些视为整数， 
+
+570
+00:32:00,890 --> 00:32:02,440
+so we don't want to worry about decimal points
+所以我们不想担心小数点
+
+571
+00:32:02,440 --> 00:32:03,159
+and things like that.
+之类的。 
+
+572
+00:32:03,359 --> 00:32:06,144
+All of these things are going to be integers.
+所有这些都将是整数。 
+
+573
+00:32:06,144 --> 00:32:07,309
+And there's no problem here.
+而且这里没有问题。 
+
+574
+00:32:07,309 --> 00:32:08,690
+We can still use Newton's method.
+我们仍然可以使用牛顿法。 
+
+575
+00:32:08,690 --> 00:32:15,970
+
+
+
+576
+00:32:15,970 --> 00:32:18,500
+It just works on integers.
+它仅适用于整数。 
+
+577
+00:32:18,500 --> 00:32:21,240
+And let's take a look at how we would
+让我们来看看我们将如何
+
+578
+00:32:21,240 --> 00:32:28,169
+apply Newton's method in standard form.
+以标准形式应用牛顿法。 
+
+579
+00:32:28,369 --> 00:32:35,359
+
+
+
+580
+00:32:35,359 --> 00:32:40,869
+And we won't to really get to the part
+而且我们不会真正地参与其中
+
+581
+00:32:40,869 --> 00:32:44,259
+where we're going to go from division to multiplication
+我们要从除法到乘法的地方
+
+582
+00:32:44,259 --> 00:32:46,089
+today, as I said, we're just going
+今天，正如我说的，我们要去
+
+583
+00:32:46,089 --> 00:32:50,116
+to look at how you can multiply two numbers.
+看看如何将两个数字相乘。 
+
+584
+00:32:50,116 --> 00:32:51,532
+So I didn't mean to say that we're
+所以我不是故意要说我们
+
+585
+00:32:51,532 --> 00:32:52,819
+going to look at Newton's method.
+来看看牛顿的方法。 
+
+586
+00:32:52,819 --> 00:32:54,700
+We're going to look at high precision multiplication,
+我们将研究高精度乘法， 
+
+587
+00:32:54,700 --> 00:32:56,075
+and then, eventually, we're going
+然后，最终，我们要
+
+588
+00:32:56,075 --> 00:32:59,890
+to use that to build Newton's method
+用它来建立牛顿法
+
+589
+00:32:59,890 --> 00:33:00,859
+which requires the division.
+这需要分裂。 
+
+590
+00:33:01,059 --> 00:33:08,799
+
+
+
+591
+00:33:08,799 --> 00:33:23,399
+So I have two n-digit numbers, and the radix
+所以我有两个n位数字和基数
+
+592
+00:33:23,400 --> 00:33:28,419
+could be-- the base could be 2, 10.
+可能是-底数可以是2、10 
+
+593
+00:33:28,619 --> 00:33:32,339
+Normally, it doesn't really matter.
+通常，这并不重要。 
+
+594
+00:33:32,339 --> 00:33:38,319
+0 less than x, less than y, strictly less than r
+ 0小于x，小于y，严格小于r 
+
+595
+00:33:38,319 --> 00:33:39,789
+raised to n.
+升到n 
+
+596
+00:33:39,789 --> 00:33:44,450
+That's standard for the ranges.
+这是范围的标准。 
+
+597
+00:33:44,450 --> 00:33:46,529
+And what I have here is-- the way
+我在这里的是-方式
+
+598
+00:33:46,529 --> 00:33:49,460
+I'm going to do this is use our favorite strategy, which
+我要做的就是使用我们最喜欢的策略
+
+599
+00:33:49,460 --> 00:33:53,279
+is divide and conquer, because I have n, which is large,
+是分而治之，因为我有n，它很大， 
+
+600
+00:33:53,279 --> 00:33:56,700
+need to break things down, break it into n
+需要分解，分解成n 
+
+601
+00:33:56,700 --> 00:33:59,879
+by two-digit multiplications.
+两位数相乘。 
+
+602
+00:34:00,079 --> 00:34:01,789
+And when, finally, I break things down,
+最后，当我分解事情时， 
+
+603
+00:34:01,789 --> 00:34:05,549
+I get down to 64 bits, I just run one instruction
+我下降到64位，我只运行一条指令
+
+604
+00:34:05,549 --> 00:34:10,029
+on my computer to multiply the 64-bit numbers.
+在我的计算机上将64位数字相乘。 
+
+605
+00:34:10,030 --> 00:34:14,440
+And the standard machines, you would get 128 bits of result
+在标准机器上，您将获得128位结果
+
+606
+00:34:14,440 --> 00:34:16,771
+back when you multiply 64-bit numbers.
+当您乘以64位数字时返回。 
+
+607
+00:34:16,771 --> 00:34:18,230
+So in some sense you only go down--
+所以从某种意义上说，你只会下去- 
+
+608
+00:34:18,230 --> 00:34:22,130
+you don't go down to 1 bit, you go down to 64
+您不会下降到1位，而是下降到64位
+
+609
+00:34:22,130 --> 00:34:25,099
+and your machine does the rest.
+剩下的事由您的机器完成。 
+
+610
+00:34:25,099 --> 00:34:29,889
+So what we have here is you set x to be x1
+所以我们这里是将x设置为x1 
+
+611
+00:34:29,889 --> 00:34:36,420
+where x1 is the high half, r raised to n over 2 plus x0.
+其中x1是上半部分，r在2加x0的基础上提高到n。 
+
+612
+00:34:36,420 --> 00:34:44,079
+So x1 is the more significant half and x0 is the low half.
+因此，x1是较高的一半，x0是较低的一半。 
+
+613
+00:34:44,079 --> 00:34:47,210
+
+
+
+614
+00:34:47,210 --> 00:34:50,570
+And the same thing for y.
+和y同样。 
+
+615
+00:34:50,570 --> 00:34:55,199
+y1, whoops, r raised to n over 2 plus y0.
+ y1，哎呀，r在2加y0的基础上提高到n。 
+
+616
+00:34:55,199 --> 00:34:58,750
+
+
+
+617
+00:34:58,750 --> 00:35:01,690
+Now the ranges change.
+现在范围改变了。 
+
+618
+00:35:01,690 --> 00:35:07,840
+x0 and x1 are smaller, so that's what you have for x0 and x1.
+ x0和x1较小，所以这就是x0和x1的大小。 
+
+619
+00:35:07,840 --> 00:35:14,780
+
+
+
+620
+00:35:14,780 --> 00:35:16,880
+Same thing for y0 and y1.
+ y0和y1同样。 
+
+621
+00:35:17,079 --> 00:35:23,219
+So that's a fairly straightforward decomposition
+这是一个相当简单的分解
+
+622
+00:35:23,219 --> 00:35:26,469
+of this multiplication operation.
+这个乘法运算。 
+
+623
+00:35:26,469 --> 00:35:30,699
+And again, if you do things in a straightforward way
+再说一次，如果您以直截了当的方式做事
+
+624
+00:35:30,699 --> 00:35:38,049
+you will create a recursive multiply, as I'll write here.
+您将创建一个递归乘法，就像我在这里写的那样。 
+
+625
+00:35:38,050 --> 00:35:50,110
+And what you do is you say let z0 equal x0 times y0,
+而你要做的就是说让z0等于x0乘以y0， 
+
+626
+00:35:50,110 --> 00:36:03,260
+z two equals x2 times y2, and-- I missed z1,
+ z等于x2乘以y2，并且-我错过了z1， 
+
+627
+00:36:03,260 --> 00:36:09,500
+but z1 equals x0, y1 plus x1 y0.
+但是z1等于x0，y1加上x1 y0。 
+
+628
+00:36:09,500 --> 00:36:12,619
+
+
+
+629
+00:36:12,619 --> 00:36:17,069
+And I have, overall, z equals y equals
+总的来说，我等于z等于y等于
+
+630
+00:36:17,070 --> 00:36:27,400
+x1 y1 times r raised to n plus x0 y1 plus x1 y0 times
+ x1 y1倍r升至n加x0 y1加x1 y0倍
+
+631
+00:36:27,599 --> 00:36:34,440
+r raised to n over 2 plus x0 y0 zero.
+ r在2加上x0 y0零时升至n。 
+
+632
+00:36:34,440 --> 00:36:42,769
+And this part here was z0, this part here was z1,
+这部分是z0，这部分是z1， 
+
+633
+00:36:42,769 --> 00:36:45,809
+and this part here was z2.
+这部分是z2 
+
+634
+00:36:45,809 --> 00:36:54,250
+And if you look at, it you need four multiplies, 1, 2, 3, 4.
+如果您看一下，它需要四个乘法，即1、2、3、4。 
+
+635
+00:36:54,250 --> 00:36:56,550
+And you need four multiplies of n
+你需要n的四个乘积
+
+636
+00:36:56,550 --> 00:37:03,525
+by two-- n by two-digit numbers.
+用两位数-n用两位数表示。 
+
+637
+00:37:03,724 --> 00:37:06,980
+
+
+
+638
+00:37:06,980 --> 00:37:11,269
+And by now, after you have prepared for quiz two,
+到现在为止，在您准备了第二场测验之后， 
+
+639
+00:37:11,269 --> 00:37:19,974
+I will just say that it would take theta n square time
+我只想说这将花费平方时间
+
+640
+00:37:19,974 --> 00:37:21,549
+because you're recursive equation
+因为你是递归方程
+
+641
+00:37:21,550 --> 00:37:35,789
+is tn equals 4t of n over 2 plus the linear time that you take
+ tn等于2上n的4t加上您花费的线性时间
+
+642
+00:37:35,989 --> 00:37:38,519
+for addition.
+用于添加。 
+
+643
+00:37:38,519 --> 00:37:49,208
+So this is tn equals 4t of n over 2 plus theta n.
+因此，tn等于2上的n的4t加theta n。 
+
+644
+00:37:49,208 --> 00:37:51,000
+And you're assuming that the additions here
+而且您假设这里的添加项
+
+645
+00:37:51,000 --> 00:37:52,929
+take linear time.
+花费线性时间。 
+
+646
+00:37:52,929 --> 00:37:55,469
+So that's how you get your theta n square algorithm.
+这样便可以得到theta n square算法。 
+
+647
+00:37:55,469 --> 00:37:58,459
+And we're not happy with that.
+我们对此不满意。 
+
+648
+00:37:58,460 --> 00:38:00,750
+We'd like to do better.
+我们想做得更好。 
+
+649
+00:38:00,750 --> 00:38:03,409
+And so how do you do better?
+那么您如何做得更好？ 
+
+650
+00:38:03,409 --> 00:38:07,309
+Well, there's many ways of doing better.
+好吧，有很多方法可以做得更好。 
+
+651
+00:38:07,309 --> 00:38:13,329
+The simplest way off fairly, substantially lowering
+最简单的方法是公平，大幅降低
+
+652
+00:38:13,329 --> 00:38:19,389
+the complexity is due to a gentleman
+复杂性是由于一位绅士
+
+653
+00:38:19,389 --> 00:38:20,940
+by the name of Karatsuba.
+用唐津巴的名字
+
+654
+00:38:20,940 --> 00:38:29,300
+
+
+
+655
+00:38:29,300 --> 00:38:31,110
+This is one of those things where
+这是其中的一件事
+
+656
+00:38:31,309 --> 00:38:32,719
+if you were born early enough you
+如果你出生得早
+
+657
+00:38:32,719 --> 00:38:35,869
+get your name on an algorithm.
+通过算法获得您的名字。 
+
+658
+00:38:35,869 --> 00:38:42,429
+And what happens here is, using the z's that I have out there,
+然后发生的是，使用我在那里的z 
+
+659
+00:38:42,429 --> 00:38:46,940
+you essentially say, look, I know z0 equals x0 and y0,
+您基本上是说，看，我知道z0等于x0和y0， 
+
+660
+00:38:46,940 --> 00:38:49,210
+I'm going to go ahead and multiply.
+我要继续繁殖。 
+
+661
+00:38:49,210 --> 00:38:54,750
+z2 equals x2 and y2, go ahead and do that.
+ z2等于x2和y2，继续做。 
+
+662
+00:38:54,750 --> 00:39:03,519
+And now I'm going to write z1 as x0 plus x1 times y0
+现在我将z1写为x0加x1乘以y0 
+
+663
+00:39:03,519 --> 00:39:08,429
+plus y1 minus z0 minus z2.
+加y1减z0减z2。 
+
+664
+00:39:08,429 --> 00:39:11,419
+So you're actually computing z0 and z2 first,
+所以您实际上是先计算z0和z2， 
+
+665
+00:39:11,420 --> 00:39:16,269
+and then using them to compute z1.
+然后使用它们来计算z1。 
+
+666
+00:39:16,469 --> 00:39:20,569
+So someone tell me why this is interesting?
+所以有人告诉我为什么这很有趣吗？ 
+
+667
+00:39:20,570 --> 00:39:25,030
+And just take it all the way to the complexity of an algorithm.
+并将其一直处理到算法的复杂性。 
+
+668
+00:39:25,030 --> 00:39:28,250
+Explain to me why this is interesting
+向我解释为什么这很有趣
+
+669
+00:39:28,250 --> 00:39:32,059
+and why Karatsuba's algorithm has-- I'll give it away--
+以及为什么唐津算法有-我会放弃- 
+
+670
+00:39:32,059 --> 00:39:34,219
+a lower complexity than theta n square?
+比theta n square低的复杂度？ 
+
+671
+00:39:34,219 --> 00:39:37,219
+But tell me what it is.
+但是告诉我这是什么。 
+
+672
+00:39:37,219 --> 00:39:37,819
+Someone?
+有人吗
+
+673
+00:39:37,820 --> 00:39:38,577
+Someone other than you.
+除了你以外的人。 
+
+674
+00:39:38,777 --> 00:39:42,184
+
+
+
+675
+00:39:42,184 --> 00:39:43,184
+Someone way at the back.
+后面有人。 
+
+676
+00:39:43,184 --> 00:39:47,264
+
+
+
+677
+00:39:47,264 --> 00:39:47,764
+Yup.
+对。 
+
+678
+00:39:47,764 --> 00:39:48,609
+Out there.
+在那里。 
+
+679
+00:39:48,610 --> 00:39:52,070
+AUDIENCE: It's n to the log base 2 of 3.
+听众：以2为底的对数为n。 
+
+680
+00:39:52,070 --> 00:39:53,215
+PROFESSOR: n raised to--
+教授：n提出- 
+
+681
+00:39:53,215 --> 00:39:53,730
+AUDIENCE: Log base 2--
+受众：对数基础2-- 
+
+682
+00:39:53,929 --> 00:39:54,569
+PROFESSOR: --log base 2 of 3.
+教授：-以2为底的对数。 
+
+683
+00:39:54,570 --> 00:39:55,550
+That's exactly right.
+没错
+
+684
+00:39:55,550 --> 00:39:56,250
+And now, why did you get that?
+现在，您为什么得到了？ 
+
+685
+00:39:56,449 --> 00:39:57,782
+Explain to me how you got there.
+向我解释你如何到达那里。 
+
+686
+00:39:57,782 --> 00:39:59,670
+AUDIENCE: If you're using three products--
+观众：如果您使用的是三种产品， 
+
+687
+00:39:59,670 --> 00:40:00,670
+PROFESSOR: That's right.
+教授：是的。 
+
+688
+00:40:00,670 --> 00:40:03,110
+So first insight is that we're only
+所以第一个见识是，我们只是
+
+689
+00:40:03,110 --> 00:40:05,230
+doing three multiplications here.
+在这里做三个乘法。 
+
+690
+00:40:05,230 --> 00:40:07,780
+Additions are easy.
+添加很容易。 
+
+691
+00:40:07,780 --> 00:40:09,880
+And we're doing three multiplications as opposed
+我们正在做三个乘法
+
+692
+00:40:10,079 --> 00:40:12,299
+to four.
+到四个。 
+
+693
+00:40:12,300 --> 00:40:16,019
+So tell me how that equation changed, of tn.
+因此，请告诉我tn的等式是如何变化的。 
+
+694
+00:40:16,219 --> 00:40:17,509
+tn equals--
+ tn等于- 
+
+695
+00:40:17,510 --> 00:40:18,510
+AUDIENCE: 3 [INAUDIBLE].
+观众：3 [听不清]。 
+
+696
+00:40:18,510 --> 00:40:23,550
+PROFESSOR: 3 times t of n over 2 plus theta n
+教授：n的t乘以2加theta的3倍
+
+697
+00:40:23,550 --> 00:40:25,670
+because you're doing three multiplications rather than
+因为你在做三个乘法而不是
+
+698
+00:40:25,869 --> 00:40:26,599
+four.
+四。 
+
+699
+00:40:26,599 --> 00:40:29,029
+Multiplications are the complicated operation.
+乘法是复杂的运算。 
+
+700
+00:40:29,030 --> 00:40:30,500
+Divisions are even more complicated,
+除法更加复杂， 
+
+701
+00:40:30,699 --> 00:40:34,169
+but additions are easy, and you could do those in linear time
+但是加法很容易，您可以在线性时间内完成
+
+702
+00:40:34,170 --> 00:40:36,570
+for n-digit numbers.
+用于n位数字。 
+
+703
+00:40:36,570 --> 00:40:39,480
+And so, if you do that and then you go off and you say,
+因此，如果您这样做，然后离开，然后说： 
+
+704
+00:40:39,480 --> 00:40:42,889
+well, that tells us that tn equals
+好吧，这告诉我们tn等于
+
+705
+00:40:42,889 --> 00:40:50,009
+theta of n raised to log two of three, which is, by the way,
+ n的theta升为对数三的对数，顺便说一句， 
+
+706
+00:40:50,010 --> 00:40:53,650
+theta of n raised to 1.58, roughly speaking.
+大致来说，n的theta升至1.58。 
+
+707
+00:40:53,849 --> 00:40:57,219
+And I do not want to compute that to arbitrary precision,
+而且我不想将其计算为任意精度， 
+
+708
+00:40:57,219 --> 00:40:58,659
+though I could.
+虽然可以。 
+
+709
+00:40:58,659 --> 00:40:59,849
+But that goes on and on.
+但这还在继续。 
+
+710
+00:40:59,849 --> 00:41:01,891
+Why don't you grab this after you're done.
+完成后为什么不抓取这个。 
+
+711
+00:41:01,891 --> 00:41:03,099
+But that just goes on and on.
+但这只是持续不断。 
+
+712
+00:41:03,099 --> 00:41:06,799
+1.58 is a rough approximation.
+ 1.58是一个近似值。 
+
+713
+00:41:06,800 --> 00:41:09,940
+That's an irrational number too, assuming
+假设这也是一个不合理的数字
+
+714
+00:41:09,940 --> 00:41:12,170
+you think that irrational numbers exist.
+您认为存在非理性数字。 
+
+715
+00:41:12,170 --> 00:41:14,500
+That's an irrational number.
+这是一个不合理的数字。 
+
+716
+00:41:14,500 --> 00:41:18,969
+So good, that's really all I had.
+太好了，那真的是我所拥有的。 
+
+717
+00:41:18,969 --> 00:41:23,235
+By the way, it's 1.58490625.
+顺便说一下，它是1.58490625。 
+
+718
+00:41:23,235 --> 00:41:24,859
+I really should have written that down.
+我真的应该把它写下来。 
+
+719
+00:41:24,860 --> 00:41:28,710
+1.58-- in the context of this lecture
+ 1.58-在本讲座中
+
+720
+00:41:28,710 --> 00:41:30,949
+I think it's important that we get
+我认为重要的是
+
+721
+00:41:30,949 --> 00:41:33,269
+at least a few digits a precision.
+精度至少要几位数。 
+
+722
+00:41:33,269 --> 00:41:36,739
+
+
+
+723
+00:41:36,739 --> 00:41:40,729
+Now you can imagine that you could do it better than this.
+现在您可以想象自己可以做得更好。 
+
+724
+00:41:40,730 --> 00:41:43,389
+And it turns out that-- we'll talk a little bit
+事实证明，我们会谈一点
+
+725
+00:41:43,389 --> 00:41:46,339
+about this next time-- But you can imagine breaking this up
+关于下一次-但是您可以想象将其分解
+
+726
+00:41:46,340 --> 00:41:50,960
+into not n over two chunks, but n over three chunks.
+不是n超过两个块，而是n超过三个块。 
+
+727
+00:41:50,960 --> 00:41:54,880
+Why don't I just break up x into the top third,
+为什么我不把x分成前三位， 
+
+728
+00:41:54,880 --> 00:41:57,280
+the middle third, and then the bottom third,
+中间三分之一，然后是底部三分之一， 
+
+729
+00:41:57,280 --> 00:41:59,710
+and then try and see if I can get away
+然后试着看看我能否逃脱
+
+730
+00:41:59,710 --> 00:42:02,760
+with fewer than eight multiplications?
+少于八个乘法？ 
+
+731
+00:42:02,760 --> 00:42:05,110
+Because the original thing would have
+因为原来的东西
+
+732
+00:42:05,309 --> 00:42:07,340
+taken eight, and if I can do less than eight,
+拿了八分，如果我做不到八分， 
+
+733
+00:42:07,340 --> 00:42:10,952
+maybe I can reduce that 1.58 number.
+也许我可以减少1.58的数字。 
+
+734
+00:42:10,952 --> 00:42:12,210
+So that's a little bit of a preview
+所以这只是预览
+
+735
+00:42:12,409 --> 00:42:14,420
+for what we'll do next time.
+下次我们要做什么。 
+
+736
+00:42:14,420 --> 00:42:18,480
+But what I'd like to do is do a demo.
+但是我想做的是一个演示。 
+
+737
+00:42:18,480 --> 00:42:22,039
+And I want you to run that-- it's out there so
+我要你运行它-它在那里
+
+738
+00:42:22,239 --> 00:42:25,919
+blank that out for a second.
+一秒钟将其清空。 
+
+739
+00:42:25,920 --> 00:42:31,300
+What I'd like to do is really look at a different problem
+我真正想做的是看一个不同的问题
+
+740
+00:42:31,300 --> 00:42:35,780
+than square root of 2, and show you a demo of code
+而不是2的平方根，并向您展示代码演示
+
+741
+00:42:35,780 --> 00:42:42,610
+that Victor wrote that computes this particular quantity that,
+维克多（Victor）撰写的计算该特定数量的数据
+
+742
+00:42:42,809 --> 00:42:48,059
+you would argue, is irrational, to arbitrary digits.
+您会认为，对于任意数字而言，这是不合理的。 
+
+743
+00:42:48,059 --> 00:42:50,759
+Though we'll probably only go up to about a thousand today.
+虽然今天我们可能只会增加到一千左右。 
+
+744
+00:42:50,760 --> 00:42:54,380
+And if we just look at-- root 2 is kind of boring, right?
+而且，如果我们看一下-根2很无聊，对吗？ 
+
+745
+00:42:54,579 --> 00:42:56,529
+It's been around for a while.
+已经有一段时间了。 
+
+746
+00:42:56,530 --> 00:43:02,530
+Let's go back and remember high school geometry.
+让我们回想起高中的几何图形。 
+
+747
+00:43:02,530 --> 00:43:05,150
+So I think your high school teachers
+所以我想你的高中老师
+
+748
+00:43:05,150 --> 00:43:08,039
+would like this lecture.
+想要这个讲座。 
+
+749
+00:43:08,239 --> 00:43:09,519
+Nice little review.
+不错的小评论。 
+
+750
+00:43:09,519 --> 00:43:11,610
+So what is that about?
+那是什么呢？ 
+
+751
+00:43:11,610 --> 00:43:14,840
+That's supposed to be a circle, I think, as you've forgotten.
+我认为，这应该是一个圆圈，因为您已经忘记了。 
+
+752
+00:43:14,840 --> 00:43:17,250
+That's supposed to be a circle.
+那应该是一个圆圈。 
+
+753
+00:43:17,250 --> 00:43:22,909
+And the circle here is a really big circle.
+这里的圆圈是一个很大的圆圈。 
+
+754
+00:43:22,909 --> 00:43:25,000
+It's a trillion units long.
+它长一万亿个单位。 
+
+755
+00:43:25,000 --> 00:43:27,670
+
+
+
+756
+00:43:27,670 --> 00:43:31,769
+I'm into big numbers today, big numbers.
+我今天有很多人，很多人。 
+
+757
+00:43:31,769 --> 00:43:37,840
+And the center of the circle is c, c for center.
+圆的中心为c，c为中心。 
+
+758
+00:43:37,840 --> 00:43:40,670
+That is what's called a radius, in case you'd forgotten.
+如果您忘记了，那就是所谓的半径。 
+
+759
+00:43:40,869 --> 00:43:43,409
+
+
+
+760
+00:43:43,409 --> 00:43:44,889
+And that's b.
+那是b。 
+
+761
+00:43:44,889 --> 00:43:50,159
+And this is also a radius, and that's a.
+这也是一个半径，那就是。 
+
+762
+00:43:50,159 --> 00:43:52,065
+And what I'm going to do is I'm going--
+我要做的就是- 
+
+763
+00:43:52,065 --> 00:44:01,250
+I want to make a drop a little, I guess, perpendicular down,
+我想滴一点，垂直向下， 
+
+764
+00:44:01,449 --> 00:44:03,909
+which is one unit high.
+这是一个单位高。 
+
+765
+00:44:03,909 --> 00:44:06,589
+So the way that this is structured
+所以这是结构化的方式
+
+766
+00:44:06,590 --> 00:44:09,400
+is that this is one unit high, this obviously
+是这个单位高，这显然
+
+767
+00:44:09,599 --> 00:44:13,240
+is-- someone tell me what that is, CB.
+是-有人告诉我CB是什么。 
+
+768
+00:44:13,240 --> 00:44:14,641
+AUDIENCE: [INAUDIBLE].
+听众：[听不清]。 
+
+769
+00:44:14,641 --> 00:44:16,629
+PROFESSOR: Half a trillion.
+教授：半万亿。 
+
+770
+00:44:16,630 --> 00:44:18,510
+That's half a trillion.
+那是半兆。 
+
+771
+00:44:18,510 --> 00:44:21,400
+And obviously, CA is half a trillion.
+显然，CA为五万亿。 
+
+772
+00:44:21,599 --> 00:44:24,900
+And if I call this D, somebody who
+如果我叫D， 
+
+773
+00:44:24,900 --> 00:44:28,750
+remembers high school or middle school geometry
+记得高中或中学的几何
+
+774
+00:44:28,949 --> 00:44:31,129
+give me an equation for AD.
+给我一个AD方程
+
+775
+00:44:31,130 --> 00:44:34,710
+And that's definitely worth a cushion.
+这绝对值得缓冲。 
+
+776
+00:44:34,909 --> 00:44:37,859
+so what's an equation for AD guys?
+那么，广告专家的方程式是什么？ 
+
+777
+00:44:37,860 --> 00:44:38,360
+Yeah.
+是的
+
+778
+00:44:38,360 --> 00:44:39,480
+Go ahead.
+前进。 
+
+779
+00:44:39,480 --> 00:44:43,710
+AUDIENCE: The radius, half-trillion minus the square
+听众：半径，半兆减去平方
+
+780
+00:44:43,710 --> 00:44:45,599
+root of--
+的根源
+
+781
+00:44:45,599 --> 00:44:47,069
+PROFESSOR: Square root of-- Yeah?
+教授：的平方根-是吗？ 
+
+782
+00:44:47,070 --> 00:44:51,903
+AUDIENCE: Minus the square root of [INAUDIBLE] square minus 1?
+听众：减去[音频不清]的平方根减去1？ 
+
+783
+00:44:52,103 --> 00:44:53,269
+PROFESSOR: Perfect, perfect.
+教授：完美，完美。 
+
+784
+00:44:53,269 --> 00:44:54,039
+OK good.
+好的
+
+785
+00:44:54,039 --> 00:44:57,869
+So AD equals AC minus CD, and that
+所以AD等于AC减去CD， 
+
+786
+00:44:57,869 --> 00:45:02,829
+is going to be half a trillion-- that is 500 billion,
+将达到五万亿，即五千亿， 
+
+787
+00:45:02,829 --> 00:45:04,559
+a little bit less than bailout money,
+比救助资金少一点
+
+788
+00:45:04,559 --> 00:45:14,465
+but it's close-- 500 thousand minus square root of 500--
+但很接近-50万减去500的平方根
+
+789
+00:45:14,465 --> 00:45:16,382
+this, when you start squaring this, of course,
+当然，当您开始平方时， 
+
+790
+00:45:16,382 --> 00:45:19,730
+is not even real, real big money.
+甚至不是真实的，真正的大钱。 
+
+791
+00:45:19,730 --> 00:45:25,400
+But 500 thousand squared minus 1.
+但是50万平方减1。 
+
+792
+00:45:25,400 --> 00:45:27,914
+So forget the square root of two.
+因此，请忘记两个的平方根。 
+
+793
+00:45:27,914 --> 00:45:28,880
+You can put the screen down.
+您可以放下屏幕。 
+
+794
+00:45:29,079 --> 00:45:32,110
+
+
+
+795
+00:45:32,110 --> 00:45:34,365
+So is it on, the projector?
+投影机就这样了吗？ 
+
+796
+00:45:34,365 --> 00:45:36,387
+AUDIENCE: It's on, it just needs a [INAUDIBLE].
+听众：亮着，只需要[听不清]。 
+
+797
+00:45:36,387 --> 00:45:36,769
+PROFESSOR: OK.
+教授：好的。 
+
+798
+00:45:36,969 --> 00:45:38,415
+You can turn that on.
+您可以打开它。 
+
+799
+00:45:38,416 --> 00:45:39,166
+AUDIENCE: Rolling.
+听众：滚动。 
+
+800
+00:45:39,166 --> 00:45:41,190
+
+
+
+801
+00:45:41,190 --> 00:45:42,690
+PROFESSOR: So what we're going to do
+教授：那么我们要做的是
+
+802
+00:45:42,690 --> 00:45:46,530
+is, I'm just going to show you the digits
+是，我只是要向您展示数字
+
+803
+00:45:46,530 --> 00:45:55,150
+of this crazy quantity being computed to tens of thousands
+这个疯狂的数量被计算成数万
+
+804
+00:45:55,349 --> 00:45:56,429
+of digits.
+的数字。 
+
+805
+00:45:56,429 --> 00:46:00,159
+And you argue that this is it something clearly
+你认为这很明显
+
+806
+00:46:00,159 --> 00:46:01,929
+that isn't a perfect square.
+那不是一个完美的正方形。 
+
+807
+00:46:01,929 --> 00:46:04,629
+You took a perfect square, subtracted 1 from it,
+您取得了一个完美的正方形，减去了1， 
+
+808
+00:46:04,630 --> 00:46:06,610
+and so you have an irrational quantity
+所以你的数量不合理
+
+809
+00:46:06,610 --> 00:46:08,519
+that is going to go on and on.
+这将继续下去。 
+
+810
+00:46:08,719 --> 00:46:13,170
+And let's see what that number-- what it looks like.
+让我们看看那个数字-它看起来像什么。 
+
+811
+00:46:13,170 --> 00:46:13,669
+OK?
+好？ 
+
+812
+00:46:13,670 --> 00:46:23,630
+
+
+
+813
+00:46:23,630 --> 00:46:24,804
+Get out of the way.
+走开。 
+
+814
+00:46:24,804 --> 00:46:28,115
+
+
+
+815
+00:46:28,315 --> 00:46:29,689
+I hope you can see from the back.
+希望您能从后面看到。 
+
+816
+00:46:29,690 --> 00:46:32,625
+
+
+
+817
+00:46:32,625 --> 00:46:33,666
+AUDIENCE: Oh man, really?
+听众：哦，真的吗？ 
+
+818
+00:46:33,666 --> 00:46:38,650
+
+
+
+819
+00:46:38,650 --> 00:46:41,672
+PROFESSOR: Looking pretty good so far, looking pretty good.
+教授：到目前为止看起来还不错，看起来还不错。 
+
+820
+00:46:41,672 --> 00:46:42,630
+AUDIENCE: That's crazy.
+听众：太疯狂了。 
+
+821
+00:46:42,630 --> 00:46:47,440
+
+
+
+822
+00:46:47,639 --> 00:46:51,710
+PROFESSOR: Somebody see the numbers somewhere else?
+教授：有人在其他地方看到过数字吗？ 
+
+823
+00:46:51,710 --> 00:46:53,769
+Have you see these numbers before?
+您以前看过这些数字吗？ 
+
+824
+00:46:53,969 --> 00:46:59,239
+Like 20 minutes ago, like right in front of you?
+就像20分钟前一样，就在您眼前？ 
+
+825
+00:46:59,239 --> 00:47:01,899
+OK All right.
+好的没问题。 
+
+826
+00:47:01,900 --> 00:47:05,789
+So I think that's a good place to stop.
+所以我认为这是个好地方。 
+
+827
+00:47:05,989 --> 00:47:08,869
+If you want an explanation for this
+如果您要对此进行解释
+
+828
+00:47:08,869 --> 00:47:11,989
+I think you can go to section tomorrow.
+我想你明天可以去节。 
+
+829
+00:47:11,989 --> 00:47:14,879
+I'm going to use a some attendance tomorrow.
+我明天要去参加一些会议。 
+
+830
+00:47:14,880 --> 00:47:15,940
+All right.
+好吧。 
+
+831
+00:47:16,139 --> 00:47:20,609
+Happy to answer questions about the rest of the lecture,
+很高兴回答有关本讲座其余部分的问题， 
+
+832
+00:47:20,610 --> 00:47:25,610
+and thanks for coming.
+并感谢您的光临。 
+

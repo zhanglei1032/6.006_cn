@@ -1,0 +1,5345 @@
+﻿1
+00:00:00,000 --> 00:00:00,050
+
+
+
+2
+00:00:00,050 --> 00:00:01,770
+The following content is provided
+提供以下内容
+
+3
+00:00:01,770 --> 00:00:04,009
+under a Creative Commons license.
+根据知识共享许可。 
+
+4
+00:00:04,009 --> 00:00:06,859
+Your support will help MIT OpenCourseWare continue
+您的支持将帮助MIT OpenCourseWare继续
+
+5
+00:00:06,860 --> 00:00:10,720
+to offer high quality educational resources for free.
+免费提供高质量的教育资源。 
+
+6
+00:00:10,720 --> 00:00:13,320
+To make a donation or view additional materials
+捐款或查看其他材料
+
+7
+00:00:13,320 --> 00:00:17,207
+from hundreds of MIT courses, visit MIT OpenCourseWare
+从数百门麻省理工学院的课程中，访问MIT OpenCourseWare 
+
+8
+00:00:17,207 --> 00:00:17,832
+at ocw.mit.edu.
+在ocw.mit.edu。 
+
+9
+00:00:17,832 --> 00:00:20,929
+
+
+
+10
+00:00:21,129 --> 00:00:23,629
+PROFESSOR: We're going to start a brand new, exciting topic,
+教授：我们将开始一个崭新的，令人兴奋的话题， 
+
+11
+00:00:23,629 --> 00:00:25,286
+dynamic programming.
+动态编程。 
+
+12
+00:00:25,286 --> 00:00:25,869
+AUDIENCE: Yes!
+听众：是的！ 
+
+13
+00:00:25,870 --> 00:00:26,629
+PROFESSOR: Yeah!
+教授：是的！ 
+
+14
+00:00:26,829 --> 00:00:28,244
+So exciting.
+如此令人兴奋。 
+
+15
+00:00:28,245 --> 00:00:30,620
+Actually, I am really excited because dynamic programming
+实际上，我真的很兴奋，因为动态编程
+
+16
+00:00:30,620 --> 00:00:33,820
+is my favorite thing in the world, in algorithms.
+在算法上是我最喜欢的东西。 
+
+17
+00:00:33,820 --> 00:00:37,070
+And it's going to be the next four lectures,
+接下来的四节课， 
+
+18
+00:00:37,070 --> 00:00:38,640
+it's so exciting.
+它是如此令人兴奋。 
+
+19
+00:00:38,640 --> 00:00:40,380
+It has lots of different facets.
+它具有许多不同的方面。 
+
+20
+00:00:40,380 --> 00:00:44,719
+It's a very general, powerful design technique.
+这是一种非常通用，功能强大的设计技术。 
+
+21
+00:00:44,719 --> 00:00:47,390
+We don't talk a lot about algorithm design in this class,
+在本课程中，我们不会过多地讨论算法设计， 
+
+22
+00:00:47,390 --> 00:00:50,060
+but dynamic programming is one that's so important.
+但是动态编程是如此重要。 
+
+23
+00:00:50,060 --> 00:00:52,000
+And also takes a little while to settle in.
+而且还需要一些时间才能安顿下来。 
+
+24
+00:00:52,000 --> 00:00:57,509
+We like to injected it into you now, in 006.
+我们现在想在006年将其注入您体内。 
+
+25
+00:00:57,509 --> 00:01:05,920
+So in general, our motivation is designing new algorithms
+因此，总的来说，我们的动机是设计新算法
+
+26
+00:01:05,920 --> 00:01:10,599
+and dynamic programming, also called DP,
+和动态编程（也称为DP） 
+
+27
+00:01:10,599 --> 00:01:17,839
+is a great way-- or a very general, powerful way
+是一个好方法-或非常普遍，强大的方法
+
+28
+00:01:17,840 --> 00:01:18,164
+to do this.
+去做这个。 
+
+29
+00:01:18,364 --> 00:01:33,859
+
+
+
+30
+00:01:33,859 --> 00:01:37,540
+It's especially good, and intended for, optimization
+它特别好，并且旨在进行优化
+
+31
+00:01:37,540 --> 00:01:38,899
+problems, things like shortest paths.
+问题，例如最短路径。 
+
+32
+00:01:39,099 --> 00:01:41,274
+You want to find the best way to do something.
+您想找到做某事的最佳方法。 
+
+33
+00:01:41,274 --> 00:01:43,189
+Shortest path is you want to find the shortest
+最短的路径是您想找到最短的路径
+
+34
+00:01:43,189 --> 00:01:46,599
+path, the minimum-length path.
+路径，最小长度的路径。 
+
+35
+00:01:46,599 --> 00:01:48,609
+You want to minimize, maximize something, that's
+您想要最小化，最大化某些东西，那就是
+
+36
+00:01:48,609 --> 00:01:51,319
+an optimization problem, and typically
+优化问题，通常
+
+37
+00:01:51,319 --> 00:01:54,089
+good algorithms to solve them involve dynamic programming.
+解决它们的好的算法包括动态编程。 
+
+38
+00:01:54,090 --> 00:01:56,390
+It's a bit of a broad statement.
+这是一个广泛的声明。 
+
+39
+00:01:56,390 --> 00:01:58,119
+You can also think of dynamic programming
+您还可以想到动态编程
+
+40
+00:01:58,319 --> 00:02:01,699
+as a kind of exhaustive search.
+作为一种详尽的搜索。 
+
+41
+00:02:01,700 --> 00:02:03,269
+Which is usually a bad thing to do
+这通常是一件坏事
+
+42
+00:02:03,269 --> 00:02:05,259
+because it leads to exponential time.
+因为它导致指数时间。 
+
+43
+00:02:05,260 --> 00:02:09,449
+But if you do it in a clever way, via dynamic programming,
+但是，如果您通过动态编程巧妙地做到这一点， 
+
+44
+00:02:09,449 --> 00:02:13,469
+you typically get polynomial time.
+您通常会得到多项式时间。 
+
+45
+00:02:13,669 --> 00:02:17,429
+So one perspective is that dynamic programming
+因此，一种观点是动态编程
+
+46
+00:02:17,430 --> 00:02:22,969
+is approximately careful brute force.
+大概是蛮力的。 
+
+47
+00:02:23,169 --> 00:02:25,649
+It's kind of a funny combination.
+这是一个有趣的组合。 
+
+48
+00:02:25,650 --> 00:02:29,340
+A bit of an oxymoron.
+有点矛盾。 
+
+49
+00:02:29,340 --> 00:02:31,599
+But we take the idea of brute force, which is,
+但是我们采用蛮力的想法，即
+
+50
+00:02:31,599 --> 00:02:35,689
+try all possibilities and you do it carefully
+尝试所有可能的方法，然后仔细做
+
+51
+00:02:35,689 --> 00:02:37,109
+and you get it to polynomial time.
+然后得到多项式时间
+
+52
+00:02:37,110 --> 00:02:38,985
+There are a lot of problems where essentially
+本质上有很多问题
+
+53
+00:02:38,985 --> 00:02:41,650
+the only known polynomial time algorithm is
+唯一已知的多项式时间算法是
+
+54
+00:02:41,650 --> 00:02:42,650
+via dynamic programming.
+通过动态编程。 
+
+55
+00:02:42,650 --> 00:02:44,439
+It doesn't always work, there's some problems
+它并不总是有效，存在一些问题
+
+56
+00:02:44,439 --> 00:02:46,855
+where we don't think there are polynomial time algorithms,
+我们认为没有多项式时间算法的地方
+
+57
+00:02:46,855 --> 00:02:50,769
+but when it's possible DP is a nice, sort of,
+但是，DP可能很好， 
+
+58
+00:02:50,770 --> 00:02:54,037
+general approach to it.
+通用的方法。 
+
+59
+00:02:54,037 --> 00:02:56,620
+And we're going to be talking a lot about dynamic programming.
+我们将谈论很多有关动态编程的内容。 
+
+60
+00:02:56,620 --> 00:02:59,849
+There's a lot of different ways to think about it.
+有很多不同的方式来考虑它。 
+
+61
+00:02:59,849 --> 00:03:02,689
+We'll look at a few today.
+今天我们来看一些。 
+
+62
+00:03:02,689 --> 00:03:05,753
+We're going to warm up today with some fairly easy problems
+今天我们要准备解决一些相当简单的问题
+
+63
+00:03:05,753 --> 00:03:07,169
+that we already know how to solve,
+我们已经知道如何解决， 
+
+64
+00:03:07,169 --> 00:03:09,689
+namely computing Fibonacci numbers.
+即计算斐波那契数。 
+
+65
+00:03:09,689 --> 00:03:11,210
+It's pretty easy.
+很简单
+
+66
+00:03:11,210 --> 00:03:13,092
+And computing shortest paths.
+并计算最短路径。 
+
+67
+00:03:13,092 --> 00:03:14,550
+And then in the next three lectures
+然后在接下来的三讲中
+
+68
+00:03:14,550 --> 00:03:16,530
+we're going to get to more interesting examples
+我们将获得更多有趣的例子
+
+69
+00:03:16,530 --> 00:03:20,210
+where it's pretty surprising that you can even
+您甚至可以惊讶地发现
+
+70
+00:03:20,210 --> 00:03:24,159
+solve the problem in polynomial time.
+解决多项式时间内的问题。 
+
+71
+00:03:24,159 --> 00:03:26,469
+Probably the first burning question on your mind,
+可能是您脑海中第一个亟待解决的问题， 
+
+72
+00:03:26,469 --> 00:03:29,280
+though, is why is it called dynamic programming?
+但是，为什么将其称为动态编程？ 
+
+73
+00:03:29,280 --> 00:03:31,240
+What does that even mean?
+那有什么意思？ 
+
+74
+00:03:31,240 --> 00:03:34,560
+And I used to have this spiel about, well, you
+我曾经有过这样的话题，好吧，你
+
+75
+00:03:34,759 --> 00:03:37,479
+know, programming refers to the-- I think
+知道，编程是指-我认为
+
+76
+00:03:37,479 --> 00:03:39,549
+it's the British notion of the word,
+这是英国这个词的概念， 
+
+77
+00:03:39,550 --> 00:03:41,840
+where it's about optimization.
+关于优化的地方。 
+
+78
+00:03:42,039 --> 00:03:44,750
+Optimization in American English is something
+优化美式英语
+
+79
+00:03:44,750 --> 00:03:47,689
+like programming in British English,
+就像用英式英语编程一样
+
+80
+00:03:47,689 --> 00:03:50,349
+where you want to set up the program--
+您要在哪里设置程序- 
+
+81
+00:03:50,349 --> 00:03:52,799
+the schedule for your trains or something,
+您的火车时间表或其他东西， 
+
+82
+00:03:52,800 --> 00:03:54,650
+where programming comes from originally.
+编程是从哪里来的
+
+83
+00:03:54,849 --> 00:03:57,674
+But I looked up the actual history of,
+但是我查了一下， 
+
+84
+00:03:57,675 --> 00:04:00,530
+why is it called dynamic programming.
+为什么称为动态编程。 
+
+85
+00:04:00,729 --> 00:04:04,959
+Dynamic programming was invented by a guy named Richard Bellman.
+动态编程是由一个名叫Richard Bellman的人发明的。 
+
+86
+00:04:04,960 --> 00:04:07,849
+You may have heard of Bellman in the Bellman-Ford algorithm.
+您可能在Bellman-Ford算法中听说过Bellman。 
+
+87
+00:04:07,849 --> 00:04:10,359
+So this is actually the precursor to Bellman-Ford.
+因此，这实际上是Bellman-Ford的先驱。 
+
+88
+00:04:10,360 --> 00:04:13,090
+And we're going to see Bellman-Ford come up naturally
+我们将看到Bellman-Ford自然崛起
+
+89
+00:04:13,289 --> 00:04:15,479
+in this setting.
+在这种情况下。 
+
+90
+00:04:15,479 --> 00:04:17,519
+So here's a quote about him.
+所以这是关于他的名言。 
+
+91
+00:04:17,519 --> 00:04:19,300
+It says, Bellman explained that he
+它说，贝尔曼解释说他
+
+92
+00:04:19,300 --> 00:04:22,250
+invented the name dynamic programming to hide the fact
+发明了动态编程的名称来掩盖事实
+
+93
+00:04:22,250 --> 00:04:25,839
+that he was doing mathematical research.
+他正在做数学研究。 
+
+94
+00:04:25,839 --> 00:04:27,949
+He was working at this place called Rand,
+他在这个叫做兰德的地方工作
+
+95
+00:04:27,949 --> 00:04:31,889
+and under a secretary of defense who had a pathological fear
+在有病态恐惧的国防部长的领导下
+
+96
+00:04:31,889 --> 00:04:35,096
+and hatred for the term research.
+并对研究一词表示仇恨。 
+
+97
+00:04:35,096 --> 00:04:36,970
+So he settled on the term dynamic programming
+因此，他决定使用动态编程一词
+
+98
+00:04:36,970 --> 00:04:39,250
+because it would be difficult to give
+因为很难给
+
+99
+00:04:39,449 --> 00:04:42,000
+a pejorative meaning to it.
+贬义的意思
+
+100
+00:04:42,000 --> 00:04:43,870
+And because it was something not even
+而且因为那甚至没有
+
+101
+00:04:43,870 --> 00:04:45,829
+a congressman could object to.
+国会议员可以反对。 
+
+102
+00:04:45,829 --> 00:04:49,430
+Basically, it sounded cool.
+基本上，这听起来很酷。 
+
+103
+00:04:49,430 --> 00:04:52,540
+So that's the origin of the name dynamic programming.
+这就是动态编程名称的由来。 
+
+104
+00:04:52,540 --> 00:04:53,629
+So why is the called that?
+那为什么叫那个呢？ 
+
+105
+00:04:53,629 --> 00:04:55,449
+Who knows.
+谁知道。 
+
+106
+00:04:55,449 --> 00:04:56,779
+I mean, now you know.
+我的意思是，现在您知道了。 
+
+107
+00:04:56,779 --> 00:04:59,429
+But it's not-- it's a weird term.
+但这不是-这是一个奇怪的名词。 
+
+108
+00:04:59,430 --> 00:05:00,720
+Just take it for what it is.
+随便拿它是什么。 
+
+109
+00:05:00,720 --> 00:05:03,949
+
+
+
+110
+00:05:04,149 --> 00:05:06,819
+It may make some kind of sense, but--
+这可能有点道理，但是- 
+
+111
+00:05:06,819 --> 00:05:07,500
+All right.
+好吧。 
+
+112
+00:05:07,500 --> 00:05:14,569
+So we are going to start with this example of how
+所以我们将从这个例子开始
+
+113
+00:05:14,569 --> 00:05:16,800
+to compute Fibonacci numbers.
+计算斐波那契数。 
+
+114
+00:05:16,800 --> 00:05:18,699
+And maybe before we actually start
+也许在我们真正开始之前
+
+115
+00:05:18,699 --> 00:05:23,250
+I'm going to give you a sneak peak of what
+我要给你一个偷偷摸摸的高峰
+
+116
+00:05:23,250 --> 00:05:26,480
+you can think of dynamic programming as.
+您可以将动态编程视为。 
+
+117
+00:05:26,480 --> 00:05:37,629
+And this equation, so to speak, is
+可以说，这个等式是
+
+118
+00:05:37,829 --> 00:05:42,399
+going to change throughout today's lecture.
+在今天的演讲中将会有所改变。 
+
+119
+00:05:42,399 --> 00:05:43,969
+In the end we'll settle on a sort
+最后，我们将解决一个问题
+
+120
+00:05:43,970 --> 00:05:46,560
+of more accurate perspective.
+更准确的视角。 
+
+121
+00:05:46,759 --> 00:05:49,019
+The basic idea of dynamic programming
+动态编程的基本思想
+
+122
+00:05:49,019 --> 00:05:53,120
+is to take a problem, split it into subproblems,
+是要解决一个问题，将其分解为子问题， 
+
+123
+00:05:53,120 --> 00:05:55,579
+solve those subproblems, and reuse the solutions
+解决这些子问题，然后重用解决方案
+
+124
+00:05:55,779 --> 00:05:56,719
+to your subproblems.
+您的子问题。 
+
+125
+00:05:56,720 --> 00:05:59,319
+It's like a lesson in recycling.
+这就像回收中的一课。 
+
+126
+00:05:59,519 --> 00:06:03,289
+So we'll see that in Fibonacci numbers.
+因此，我们将在斐波纳契数中看到这一点。 
+
+127
+00:06:03,290 --> 00:06:06,069
+So you remember Fibonacci numbers, right?
+所以您还记得斐波那契数，对吗？ 
+
+128
+00:06:06,269 --> 00:06:10,444
+The number of rabbits you have on day n, if they reproduce.
+您在第n天繁殖的兔子数量。 
+
+129
+00:06:10,444 --> 00:06:15,019
+
+
+
+130
+00:06:15,019 --> 00:06:18,629
+We've mentioned them before, we're talking about AVL trees,
+我们之前提到过它们，我们在谈论AVL树， 
+
+131
+00:06:18,629 --> 00:06:19,909
+I think.
+我认为。 
+
+132
+00:06:19,910 --> 00:06:23,290
+So this is the usual-- you can think
+所以这是平常的-你可以想到
+
+133
+00:06:23,290 --> 00:06:26,509
+of it as a recursive definition or recurrence on Fibonacci
+作为递归定义或斐波那契上的递归
+
+134
+00:06:26,709 --> 00:06:27,769
+numbers.
+数字。 
+
+135
+00:06:27,769 --> 00:06:30,889
+It's the definition of what the nth Fibonacci number is.
+这是第n个斐波那契数的定义。 
+
+136
+00:06:30,889 --> 00:06:34,810
+So let's suppose our goal-- an algorithmic problem is,
+因此，假设我们的目标是一个算法问题， 
+
+137
+00:06:34,810 --> 00:06:39,220
+compute the nth Fibonacci number.
+计算第n个斐波那契数。 
+
+138
+00:06:39,220 --> 00:06:42,509
+And I'm going to assume here that that fits in a word.
+我将在这里假设一个词。 
+
+139
+00:06:42,709 --> 00:06:44,979
+And so basic arithmetic, addition,
+基本算术，加法， 
+
+140
+00:06:44,980 --> 00:06:48,100
+whatever's constant time per operation.
+每次操作的固定时间是多少。 
+
+141
+00:06:48,100 --> 00:06:50,389
+So how do we do it?
+那么我们该怎么做呢？ 
+
+142
+00:06:50,589 --> 00:06:52,199
+You all know how to do it.
+你们都知道该怎么做。 
+
+143
+00:06:52,199 --> 00:06:56,610
+Anyways-- but I'm going to give you the dynamic programming
+无论如何-但我将为您提供动态编程
+
+144
+00:06:56,610 --> 00:06:57,790
+perspective on things.
+对事物的看法。 
+
+145
+00:06:57,790 --> 00:07:00,500
+So this will seem kind of obvious,
+所以这看起来很明显， 
+
+146
+00:07:00,500 --> 00:07:03,610
+but it is-- we're going to apply exactly the same principles
+但这是-我们将应用完全相同的原理
+
+147
+00:07:03,610 --> 00:07:06,610
+that we will apply over and over in dynamic programming.
+我们将一遍又一遍地应用于动态编程中。 
+
+148
+00:07:06,610 --> 00:07:11,910
+But here it's in a very familiar setting.
+但是这里的环境非常熟悉。 
+
+149
+00:07:11,910 --> 00:07:16,430
+So we're going to start with the naive recursive algorithm.
+因此，我们将从朴素的递归算法开始。 
+
+150
+00:07:16,430 --> 00:07:24,850
+
+
+
+151
+00:07:24,850 --> 00:07:28,949
+And that is, if you want to compute the nth Fibonacci
+也就是说，如果您要计算第n个斐波那契
+
+152
+00:07:29,149 --> 00:07:32,009
+number, you check whether you're in the base case.
+数字，请检查您是否在基本情况下。 
+
+153
+00:07:32,009 --> 00:07:35,889
+
+
+
+154
+00:07:35,889 --> 00:07:38,519
+I'm going to write it this way.
+我要这样写。 
+
+155
+00:07:38,519 --> 00:07:55,229
+
+
+
+156
+00:07:55,230 --> 00:07:57,319
+So f is just our return value.
+所以f只是我们的返回值。 
+
+157
+00:07:57,319 --> 00:07:59,469
+You'll see why I write it this way in a moment.
+您很快就会明白为什么我要这样写。 
+
+158
+00:07:59,470 --> 00:08:01,069
+Then you return f.
+然后返回f。 
+
+159
+00:08:01,269 --> 00:08:03,029
+In the base case it's 1, otherwise
+在基本情况下为1，否则为
+
+160
+00:08:03,029 --> 00:08:05,859
+you recursively call Fibonacci of n minus 1.
+您递归地调用n减1的斐波那契。 
+
+161
+00:08:05,860 --> 00:08:08,319
+You recursively call Fibonacci of n minus 2.
+您递归地调用n减2的斐波那契。 
+
+162
+00:08:08,519 --> 00:08:10,599
+Add them together, return that.
+将它们加在一起，返回。 
+
+163
+00:08:10,600 --> 00:08:12,762
+This is a correct algorithm.
+这是正确的算法。 
+
+164
+00:08:12,762 --> 00:08:15,160
+Is it a good algorithm?
+这是一个好的算法吗？ 
+
+165
+00:08:15,160 --> 00:08:16,055
+No.
+没有。 
+
+166
+00:08:16,254 --> 00:08:17,230
+It's very bad.
+这很糟糕。 
+
+167
+00:08:17,230 --> 00:08:18,259
+Exponential time.
+指数时间。 
+
+168
+00:08:18,259 --> 00:08:23,449
+
+
+
+169
+00:08:23,449 --> 00:08:25,479
+How do we know it's exponential time,
+我们怎么知道现在是指数时间
+
+170
+00:08:25,480 --> 00:08:27,730
+other than from experience?
+除了经验之外？ 
+
+171
+00:08:27,730 --> 00:08:31,879
+Well, we can write the running time as recurrence.
+好吧，我们可以将运行时间写为递归。 
+
+172
+00:08:31,879 --> 00:08:34,990
+T of n represents the time to compute the nth Fibonacci
+ n的T代表计算第n个斐波那契的时间
+
+173
+00:08:34,990 --> 00:08:35,779
+number.
+数。 
+
+174
+00:08:35,779 --> 00:08:39,439
+How can I write the recurrence?
+如何写复发？ 
+
+175
+00:08:39,440 --> 00:08:41,429
+You're gonna throwback to the early lectures, divide
+您将退回到早期的讲座，分开
+
+176
+00:08:41,629 --> 00:08:42,605
+and conquer.
+并征服。 
+
+177
+00:08:42,605 --> 00:08:48,950
+
+
+
+178
+00:08:48,950 --> 00:08:50,689
+I hear whispers.
+我听到耳语。 
+
+179
+00:08:50,889 --> 00:08:51,389
+Yeah?
+是啊
+
+180
+00:08:51,389 --> 00:08:52,365
+AUDIENCE: [INAUDIBLE].
+听众：[听不清]。 
+
+181
+00:08:52,365 --> 00:08:55,319
+
+
+
+182
+00:08:55,320 --> 00:08:57,081
+PROFESSOR: Yeah.
+教授：是的。 
+
+183
+00:08:57,081 --> 00:09:03,340
+T of n minus 1 plus t of n minus 2 plus constant.
+ T的n减1加n的t减2加常数。 
+
+184
+00:09:03,340 --> 00:09:07,190
+
+
+
+185
+00:09:07,190 --> 00:09:08,865
+I don't know how many you have by now.
+我不知道你现在有多少。 
+
+186
+00:09:08,865 --> 00:09:11,509
+
+
+
+187
+00:09:11,509 --> 00:09:13,539
+So to create the nth Fibonacci number
+因此要创建第n个斐波那契数
+
+188
+00:09:13,539 --> 00:09:15,789
+we have to compute the n minus first Fibonacci number,
+我们必须计算n减去第一个斐波那契数， 
+
+189
+00:09:15,789 --> 00:09:17,456
+and the n minus second Fibonacci number.
+和n减去第二斐波那契数。 
+
+190
+00:09:17,456 --> 00:09:19,889
+That's these two recursions.
+这就是这两个递归。 
+
+191
+00:09:19,889 --> 00:09:21,759
+And then we take constant time otherwise.
+然后，我们花费固定的时间。 
+
+192
+00:09:21,759 --> 00:09:24,909
+We do constant number of additions, comparisons.
+我们进行固定数量的加法，比较。 
+
+193
+00:09:24,909 --> 00:09:27,919
+Return all these operations-- take constant time.
+返回所有这些操作-花费固定的时间。 
+
+194
+00:09:27,919 --> 00:09:29,549
+So that's a recurrence.
+所以这是重复发生的。 
+
+195
+00:09:29,549 --> 00:09:31,389
+How do we solve this recurrence?
+我们如何解决这种复发？ 
+
+196
+00:09:31,389 --> 00:09:35,720
+Well one way is to see this is the Fibonacci recurrence.
+很好的一种方法就是看这是斐波那契复发。 
+
+197
+00:09:35,720 --> 00:09:37,350
+So it's the same thing.
+所以是同一回事。 
+
+198
+00:09:37,350 --> 00:09:38,970
+There's this plus whatever.
+有这个加什么。 
+
+199
+00:09:38,970 --> 00:09:41,720
+But in particular, this is at least the nth Fibonacci number.
+但特别是，这至少是第n个斐波那契数。 
+
+200
+00:09:41,720 --> 00:09:43,350
+And if you know Fibonacci stuff, that's
+如果你知道斐波那契的东西，那就是
+
+201
+00:09:43,350 --> 00:09:48,440
+about the golden ratio to the nth power.
+关于黄金比例与n次方的关系。 
+
+202
+00:09:48,440 --> 00:09:50,449
+Which is bad.
+不好
+
+203
+00:09:50,649 --> 00:09:52,929
+We had a similar recurrence in AVL trees.
+我们在AVL树中也有类似的复发情况。 
+
+204
+00:09:52,929 --> 00:09:55,849
+And so another way to solve it-- it's
+解决问题的另一种方法是
+
+205
+00:09:55,850 --> 00:09:59,100
+just good review-- say, oh well, that's
+很好的评价-说，哦，那是
+
+206
+00:09:59,100 --> 00:10:03,600
+at least 2 times t of n minus 2.
+至少是n减去2的t的2倍。 
+
+207
+00:10:03,600 --> 00:10:05,019
+Because it's going to be monotone.
+因为它将是单调的。 
+
+208
+00:10:05,019 --> 00:10:07,331
+The bigger n is, the more work you have to do.
+ n越大，您要做的工作就越多。 
+
+209
+00:10:07,331 --> 00:10:08,830
+Because to do the nth thing you have
+因为要做第n件事
+
+210
+00:10:08,830 --> 00:10:10,569
+to do the n minus first thing.
+做n减第一件事。 
+
+211
+00:10:10,769 --> 00:10:14,259
+So we could just reduce t of n minus 1 to t of n minus 2.
+所以我们可以将n的t减1减为n的t减2。 
+
+212
+00:10:14,259 --> 00:10:16,620
+That will give us a lower bound.
+这将给我们一个下限。 
+
+213
+00:10:16,620 --> 00:10:19,700
+And now these two terms-- now this is sort of an easy thing.
+现在，这两个术语-现在这很容易。 
+
+214
+00:10:19,700 --> 00:10:22,950
+You see that you're multiplying by 2 each time.
+您会看到每次乘以2。 
+
+215
+00:10:22,950 --> 00:10:24,469
+You're subtracting 2 from n each time.
+每次从n中减去2。 
+
+216
+00:10:24,669 --> 00:10:27,269
+How many times can I subtract 2 from n?
+我可以从n中减去2次？ 
+
+217
+00:10:27,269 --> 00:10:30,389
+N/2 times, before I get down to a constant.
+ N / 2次，直到我趋于恒定。 
+
+218
+00:10:30,389 --> 00:10:37,740
+And so this is equal to 2 to the n over 2--
+所以这等于2等于n的2 
+
+219
+00:10:37,740 --> 00:10:39,460
+I mean, times some constant, which
+我的意思是，乘以一些常数， 
+
+220
+00:10:39,460 --> 00:10:41,699
+is what you get in the base case.
+这就是基本情况。 
+
+221
+00:10:41,899 --> 00:10:45,970
+So I guess I should say theta.
+所以我想我应该说theta。 
+
+222
+00:10:45,970 --> 00:10:48,889
+This thing is theta that.
+这个东西就是那个。 
+
+223
+00:10:48,889 --> 00:10:49,389
+OK.
+好。 
+
+224
+00:10:49,389 --> 00:10:51,319
+So it's at least that big.
+因此，至少有那么大。 
+
+225
+00:10:51,320 --> 00:10:56,302
+And the right constant is phi.
+正确的常数是phi。 
+
+226
+00:10:56,302 --> 00:10:58,620
+And the base of the exponent.
+和指数的基础。 
+
+227
+00:10:58,620 --> 00:10:59,120
+OK.
+好。 
+
+228
+00:10:59,120 --> 00:11:00,202
+So that's a bad algorithm.
+所以这是一个不好的算法。 
+
+229
+00:11:00,202 --> 00:11:03,689
+We all know it's a bad algorithm.
+我们都知道这是一个不好的算法。 
+
+230
+00:11:03,690 --> 00:11:06,469
+But I'm going to give you a general approach for making
+但我将为您提供一种通用的制作方法
+
+231
+00:11:06,669 --> 00:11:09,000
+bad algorithms like this good.
+像这样好的算法。 
+
+232
+00:11:09,000 --> 00:11:11,035
+And that general approach is called memoization.
+这种通用方法称为记忆。 
+
+233
+00:11:11,035 --> 00:11:14,169
+
+
+
+234
+00:11:14,169 --> 00:11:16,599
+We'll go over here.
+我们将在这里过去。 
+
+235
+00:11:16,600 --> 00:11:19,909
+
+
+
+236
+00:11:19,909 --> 00:11:21,899
+And this is a technique of dynamic programming.
+这是一种动态编程技术。 
+
+237
+00:11:21,899 --> 00:11:24,707
+
+
+
+238
+00:11:24,707 --> 00:11:28,370
+So I'm going to call this the memoized dynamic programming
+所以我将其称为记忆化的动态编程
+
+239
+00:11:28,370 --> 00:11:28,870
+algorithm.
+算法。 
+
+240
+00:11:28,870 --> 00:11:36,840
+
+
+
+241
+00:11:36,840 --> 00:11:44,269
+So did I settle on using memo in the notes?
+所以我决定在笔记中使用备忘录吗？ 
+
+242
+00:11:44,269 --> 00:11:44,769
+Yeah.
+是的
+
+243
+00:11:44,769 --> 00:11:48,569
+
+
+
+244
+00:11:48,570 --> 00:11:50,319
+The idea is simple.
+这个想法很简单。 
+
+245
+00:11:50,519 --> 00:11:52,870
+Whenever we compute a Fibonacci number
+每当我们计算斐波那契数
+
+246
+00:11:52,870 --> 00:11:55,167
+we put it in a dictionary.
+我们把它放在字典里。 
+
+247
+00:11:55,167 --> 00:11:57,250
+And then when we need to compute the nth Fibonacci
+然后当我们需要计算第n个斐波那契
+
+248
+00:11:57,250 --> 00:11:58,825
+number we check, is it already in the dictionary?
+我们检查的数字，已经在字典中了吗？ 
+
+249
+00:11:58,825 --> 00:12:00,040
+Did we already solve this problem?
+我们已经解决了这个问题吗？ 
+
+250
+00:12:00,240 --> 00:12:03,019
+If so, return that answer.
+如果是这样，请返回该答案。 
+
+251
+00:12:03,019 --> 00:12:05,085
+Otherwise, computer it.
+否则，将其计算机化。 
+
+252
+00:12:05,085 --> 00:12:06,960
+You'll see the transformation is very simple.
+您会看到转换非常简单。 
+
+253
+00:12:06,960 --> 00:12:57,609
+
+
+
+254
+00:12:57,809 --> 00:12:59,039
+OK.
+好。 
+
+255
+00:12:59,039 --> 00:13:04,649
+These two lines are identical to these two lines.
+这两行与这两行相同。 
+
+256
+00:13:04,649 --> 00:13:06,319
+So you can see how the transformation
+所以你可以看到如何转变
+
+257
+00:13:06,320 --> 00:13:07,730
+works in general.
+一般工作。 
+
+258
+00:13:07,730 --> 00:13:10,855
+You could do this with any recursive algorithm.
+您可以使用任何递归算法来做到这一点。 
+
+259
+00:13:10,855 --> 00:13:14,700
+The memoization transformation on that algorithm--
+该算法的记忆转换- 
+
+260
+00:13:14,700 --> 00:13:18,849
+which is, we initially make an empty dictionary called memo.
+也就是说，我们最初制作了一个空的字典，称为备忘。 
+
+261
+00:13:19,049 --> 00:13:22,949
+And before we actually do the computation we say,
+在实际进行计算之前，我们说
+
+262
+00:13:22,950 --> 00:13:26,820
+well, check whether this version of the Fibonacci problem,
+好吧，检查这个版本的斐波那契问题， 
+
+263
+00:13:26,820 --> 00:13:31,432
+computing f of n, is already in our dictionary.
+计算n的f已在我们的字典中。 
+
+264
+00:13:31,432 --> 00:13:33,264
+So if that key is already in the dictionary,
+因此，如果该键已经在字典中， 
+
+265
+00:13:33,264 --> 00:13:35,934
+we return the corresponding value in the dictionary.
+我们在字典中返回相应的值。 
+
+266
+00:13:35,934 --> 00:13:38,959
+
+
+
+267
+00:13:38,960 --> 00:13:41,590
+And then once we've computed the nth Fibonacci number,
+然后，一旦我们计算了第n个斐波那契数， 
+
+268
+00:13:41,590 --> 00:13:44,579
+if we bothered to do this, if this didn't apply,
+如果我们不愿意这样做，如果不适用， 
+
+269
+00:13:44,779 --> 00:13:47,139
+then we store it in the memo table.
+然后将其存储在备注表中。 
+
+270
+00:13:47,139 --> 00:13:50,899
+So we say well, if you ever need to compute f of n again,
+所以我们说得好，如果您再次需要计算n的f， 
+
+271
+00:13:50,899 --> 00:13:52,370
+here it is.
+这里是。 
+
+272
+00:13:52,370 --> 00:13:54,820
+And then we return that value.
+然后我们返回该值。 
+
+273
+00:13:54,820 --> 00:13:57,192
+So this is a general procedure.
+因此，这是一个一般步骤。 
+
+274
+00:13:57,192 --> 00:14:00,909
+It can apply to any recursive algorithm
+它可以应用于任何递归算法
+
+275
+00:14:00,909 --> 00:14:04,899
+with no side effects I guess, technically.
+从技术上讲，我认为没有副作用。 
+
+276
+00:14:04,899 --> 00:14:07,788
+And it turns out, this makes the algorithm efficient.
+事实证明，这使算法高效。 
+
+277
+00:14:07,788 --> 00:14:09,955
+Now there's a lot of ways to see why it's efficient.
+现在，有很多方法可以查看其为何有效。 
+
+278
+00:14:09,955 --> 00:14:12,479
+
+
+
+279
+00:14:12,679 --> 00:14:15,259
+In general, maybe it's helpful to think about the recursion
+通常，考虑递归可能会有所帮助
+
+280
+00:14:15,259 --> 00:14:16,220
+tree.
+树。 
+
+281
+00:14:16,220 --> 00:14:19,459
+So if you want to compute fn in the old algorithm,
+因此，如果您想用旧算法计算fn， 
+
+282
+00:14:19,659 --> 00:14:22,549
+we compute fn minus 1 and fn minus two
+我们计算fn减1和fn减2 
+
+283
+00:14:22,549 --> 00:14:23,939
+completely separately.
+完全分开。 
+
+284
+00:14:23,940 --> 00:14:29,820
+To compute fn minus 1 we compute fn minus 2 and fn minus 3.
+要计算fn负1，我们计算fn负2和fn负3。 
+
+285
+00:14:29,820 --> 00:14:34,720
+To compute fn minus 2 we compute fn minus 3 and fn minus 4.
+要计算fn负2，我们计算fn负3和fn负4。 
+
+286
+00:14:34,720 --> 00:14:35,620
+And so on.
+等等。 
+
+287
+00:14:35,620 --> 00:14:39,490
+And you can see why that's exponential in n.
+您会看到为什么在n中是指数的。 
+
+288
+00:14:39,490 --> 00:14:44,250
+Because we're only decrementing n by one or two each time.
+因为我们每次只将n减一或二。 
+
+289
+00:14:44,250 --> 00:14:48,200
+But then you observe, hey, these fn minus 3's are the same.
+但是您会发现，嘿，这些fn减3是相同的。 
+
+290
+00:14:48,200 --> 00:14:50,734
+I should really only have to compute them once.
+我真的应该只计算一次。 
+
+291
+00:14:50,934 --> 00:14:52,309
+And that's what we're doing here.
+这就是我们在这里所做的。 
+
+292
+00:14:52,309 --> 00:14:55,659
+The first time you call fn minus 3, you do work.
+第一次调用fn减3，就可以工作。 
+
+293
+00:14:55,659 --> 00:14:58,779
+But once it's done and you go over to this other recursive
+但是一旦完成，您就可以进行其他递归
+
+294
+00:14:58,779 --> 00:15:00,759
+call, this will just get cut off.
+电话，这将被切断。 
+
+295
+00:15:00,759 --> 00:15:02,039
+There's no tree here.
+这里没有树。 
+
+296
+00:15:02,039 --> 00:15:04,179
+Here we might have some recursive calling.
+在这里，我们可能会有一些递归调用。 
+
+297
+00:15:04,179 --> 00:15:08,699
+Here we won't, because it's already in the memo table.
+在这里我们不会，因为它已经在备忘录表中了。 
+
+298
+00:15:08,700 --> 00:15:11,729
+In fact, this already happens with fn minus 2.
+实际上，这已经在fn减2时发生。 
+
+299
+00:15:11,929 --> 00:15:15,599
+This whole tree disappears because fn minus 2
+这整个树消失了，因为fn减2 
+
+300
+00:15:15,600 --> 00:15:17,610
+has already been done.
+已经完成了。 
+
+301
+00:15:17,610 --> 00:15:18,110
+OK.
+好。 
+
+302
+00:15:18,110 --> 00:15:21,090
+So it's clear why it improves things.
+因此很明显为什么它可以改善性能。 
+
+303
+00:15:21,090 --> 00:15:24,750
+So in fact you can argue that this call will be free
+因此，实际上您可以争辩说此通话将是免费的
+
+304
+00:15:24,750 --> 00:15:27,539
+because you already did the work in here.
+因为您已经在这里完成了工作。 
+
+305
+00:15:27,539 --> 00:15:30,699
+But I want to give you a very particular way of thinking
+但是我想给你一个非常特殊的思考方式
+
+306
+00:15:30,700 --> 00:15:39,814
+about why this is efficient, which is following.
+关于为什么这样高效的问题，接下来是。 
+
+307
+00:15:40,014 --> 00:16:06,549
+
+
+
+308
+00:16:06,549 --> 00:16:09,799
+So you could write down a recurrence for the running time
+这样您就可以记下运行时间的重复周期
+
+309
+00:16:09,799 --> 00:16:10,299
+here.
+这里。 
+
+310
+00:16:10,299 --> 00:16:13,049
+But in some sense recurrences aren't quite the right way
+但是从某种意义上讲，复发并不是正确的方法
+
+311
+00:16:13,049 --> 00:16:15,240
+of thinking about this because recursion
+考虑这一点，因为递归
+
+312
+00:16:15,240 --> 00:16:17,220
+is kind of a rare thing.
+是一件罕见的事情。 
+
+313
+00:16:17,220 --> 00:16:20,840
+If you're calling Fibonacci of some value, k,
+如果您呼叫某个值的斐波那契，k， 
+
+314
+00:16:20,840 --> 00:16:23,700
+you're only going to make recursive calls the first time
+您只会在第一时间进行递归调用
+
+315
+00:16:23,700 --> 00:16:24,729
+you call Fibonacci of k.
+您称k为斐波那契。 
+
+316
+00:16:24,929 --> 00:16:28,250
+Because henceforth, you've put it
+因为从此以后，您已经把它
+
+317
+00:16:28,250 --> 00:16:30,860
+in the memo table you will not recurse.
+在备忘录表中，您将不会递归。 
+
+318
+00:16:30,860 --> 00:16:35,370
+So you can think of there being two versions
+所以你可以想到有两个版本
+
+319
+00:16:35,370 --> 00:16:36,639
+of calling Fibonacci of k.
+称为k的斐波那契。 
+
+320
+00:16:36,639 --> 00:16:40,949
+There's the first time, which is the non-memoized version that
+这是第一次，这是非记忆版
+
+321
+00:16:40,950 --> 00:16:42,960
+does recursion-- does some work.
+进行递归-做一些工作。 
+
+322
+00:16:42,960 --> 00:16:46,090
+And then every time henceforth you're
+然后从此以后每次
+
+323
+00:16:46,090 --> 00:16:48,080
+doing memoized calls of Fibonacci of k,
+对k的斐波那契进行记忆化调用， 
+
+324
+00:16:48,080 --> 00:16:51,620
+and those cost constant time.
+而那些花费固定的时间。 
+
+325
+00:16:51,620 --> 00:16:59,820
+So the memoized calls cost constant time.
+因此，已记录的呼叫要花费固定的时间。 
+
+326
+00:16:59,820 --> 00:17:03,120
+So we can think of them as basically free.
+因此我们可以认为它们基本上是免费的。 
+
+327
+00:17:03,120 --> 00:17:06,210
+That's when you call Fibonacci of n minus 2,
+那就是您将n减为2的斐波那契
+
+328
+00:17:06,210 --> 00:17:09,210
+because that's a memoized call, you really
+因为那是个回忆电话，您真的
+
+329
+00:17:09,210 --> 00:17:10,990
+don't pay anything for it.
+不要为此付出任何代价。 
+
+330
+00:17:10,990 --> 00:17:12,780
+I mean, you're already paying constant time
+我的意思是，您已经在支付固定时间了
+
+331
+00:17:12,780 --> 00:17:14,250
+to do addition and whatever.
+做加法等等。 
+
+332
+00:17:14,250 --> 00:17:16,088
+So you don't have to worry about the time.
+因此，您不必担心时间。 
+
+333
+00:17:16,088 --> 00:17:18,899
+There's no recursion here.
+这里没有递归。 
+
+334
+00:17:18,900 --> 00:17:21,670
+And then what we care about is that the number
+然后我们关心的是数字
+
+335
+00:17:21,670 --> 00:17:26,950
+of non-memorized calls, which is the first time you
+非记忆电话，这是您第一次
+
+336
+00:17:26,950 --> 00:17:33,924
+call Fibonacci of k, is n.
+称k的斐波那契为n。 
+
+337
+00:17:33,924 --> 00:17:35,639
+No theta is even necessary.
+甚至没有θ是必要的。 
+
+338
+00:17:35,640 --> 00:17:38,990
+We are going to call Fibonacci of 1.
+我们将斐波那契定为1。 
+
+339
+00:17:38,990 --> 00:17:41,859
+At some point we're going to call Fibonacci of 2
+在某个时候，我们将斐波那契定为2 
+
+340
+00:17:41,859 --> 00:17:46,038
+at some point, and the original call is Fibonacci of n.
+在某个时候，最初的电话是n的斐波那契。 
+
+341
+00:17:46,038 --> 00:17:48,079
+All of those things will be called at some point.
+所有这些事情都会在某个时候被调用。 
+
+342
+00:17:48,079 --> 00:17:49,649
+That's pretty easy to see.
+这很容易看到。 
+
+343
+00:17:49,650 --> 00:17:51,849
+But in particular, certainly at most this,
+但尤其是，当然，至多， 
+
+344
+00:17:52,049 --> 00:17:53,899
+we never call Fibonacci of n plus 1
+我们从不叫n加1的斐波那契
+
+345
+00:17:53,900 --> 00:17:55,619
+to compute Fibonacci of n.
+计算n的斐波那契
+
+346
+00:17:55,819 --> 00:17:57,460
+So it's at most n calls.
+因此最多只能进行n次通话。 
+
+347
+00:17:57,460 --> 00:18:00,880
+Indeed it will be exactly n calls that are not memoized.
+实际上，恰好是n个未记忆的调用。 
+
+348
+00:18:00,880 --> 00:18:02,130
+Those ones we have to pay for.
+那些我们必须付费的东西。 
+
+349
+00:18:02,130 --> 00:18:03,650
+How much do we have to pay?
+我们要付多少钱？ 
+
+350
+00:18:03,650 --> 00:18:07,409
+Well, if you don't count the recursion-- which
+好吧，如果您不计算递归- 
+
+351
+00:18:07,609 --> 00:18:09,839
+is what this recurrence does-- if you ignore
+这就是重复发生的事情-如果您忽略
+
+352
+00:18:09,839 --> 00:18:13,234
+recursion then the total amount of work done here is constant.
+递归，则此处完成的工作总量是恒定的。 
+
+353
+00:18:13,234 --> 00:18:16,109
+
+
+
+354
+00:18:16,109 --> 00:18:30,629
+So I will say the non-recursive work per call is constant.
+因此，我将说每次调用的非递归工作是恒定的。 
+
+355
+00:18:30,630 --> 00:18:33,809
+And therefore I claim that the running time is
+因此，我声称运行时间为
+
+356
+00:18:34,009 --> 00:18:37,869
+constant-- I'm sorry, is linear.
+常量-很抱歉，是线性的。 
+
+357
+00:18:37,869 --> 00:18:41,389
+Constant would be pretty amazing.
+常数将是惊人的。 
+
+358
+00:18:41,390 --> 00:18:44,109
+This is actually not the best algorithm-- as an aside.
+顺便说一句，这实际上并不是最佳算法。 
+
+359
+00:18:44,309 --> 00:18:46,720
+The best algorithm for computing the nth Fibonacci number
+计算第n个斐波那契数的最佳算法
+
+360
+00:18:46,720 --> 00:18:50,298
+uses log n arithmetic operations.
+使用log n算术运算。 
+
+361
+00:18:50,298 --> 00:18:51,839
+So you can do better, but if you want
+这样您可以做得更好，但是如果您愿意
+
+362
+00:18:51,839 --> 00:18:55,429
+to see that you should take 6046.
+看到你应该服用6046。 
+
+363
+00:18:55,430 --> 00:18:55,950
+OK.
+好。 
+
+364
+00:18:55,950 --> 00:18:57,865
+We're just going to get to linear today, which
+今天我们要线性化， 
+
+365
+00:18:57,865 --> 00:19:01,430
+is a lot better than exponential.
+比指数好得多。 
+
+366
+00:19:01,430 --> 00:19:03,890
+So why linear?
+那么为什么线性？ 
+
+367
+00:19:03,890 --> 00:19:07,700
+Because there's n non-memoize calls, and each of them
+因为有n个非记忆呼叫，每个呼叫
+
+368
+00:19:07,700 --> 00:19:08,690
+cost constant.
+成本常数。 
+
+369
+00:19:08,690 --> 00:19:12,129
+So it's the product of those two numbers.
+这是这两个数字的乘积。 
+
+370
+00:19:12,329 --> 00:19:14,819
+This is an important idea.
+这是一个重要的想法。 
+
+371
+00:19:14,819 --> 00:19:18,319
+And it's so important I'm going to write it
+这很重要，我要写出来
+
+372
+00:19:18,319 --> 00:19:25,079
+down again in a slightly more general framework.
+在更一般的框架中再次下降。 
+
+373
+00:19:25,079 --> 00:19:37,399
+In general, in dynamic programming--
+通常，在动态编程中- 
+
+374
+00:19:37,400 --> 00:19:40,339
+I didn't say why it's called memoization.
+我没有说为什么称之为记忆。 
+
+375
+00:19:40,539 --> 00:19:42,363
+The idea is you have this memo pad where
+这个想法是你有这个记事本
+
+376
+00:19:42,363 --> 00:19:44,809
+you write down all your scratch work.
+您写下所有的草稿工作。 
+
+377
+00:19:44,809 --> 00:19:46,494
+That's this memo dictionary.
+那是这个备忘录字典。 
+
+378
+00:19:46,494 --> 00:19:49,389
+And to memoize is to write down on your memo pad.
+记住就是在记事本上写下来。 
+
+379
+00:19:49,390 --> 00:19:50,329
+I didn't make it up.
+我没有弥补。 
+
+380
+00:19:50,529 --> 00:19:52,629
+Another crazy term.
+另一个疯狂的名词。 
+
+381
+00:19:52,630 --> 00:19:55,450
+It means remember.
+这意味着要记住。 
+
+382
+00:19:55,450 --> 00:19:59,409
+And then you remember all the solutions that you've done.
+然后，您会记住已完成的所有解决方案。 
+
+383
+00:19:59,609 --> 00:20:02,379
+And then you reuse those solutions.
+然后，您可以重复使用这些解决方案。 
+
+384
+00:20:02,380 --> 00:20:04,460
+Now these solutions are not really a solution
+现在这些解决方案并不是真正的解决方案
+
+385
+00:20:04,460 --> 00:20:06,470
+to the problem that I care about.
+我关心的问题。 
+
+386
+00:20:06,470 --> 00:20:08,970
+The problem I care about is computing the nth Fibonacci
+我关心的问题是计算第n个斐波那契
+
+387
+00:20:08,970 --> 00:20:09,649
+number.
+数。 
+
+388
+00:20:09,849 --> 00:20:13,230
+To get there I had to compute other Fibonacci numbers.
+为了到达那里，我不得不计算其他斐波那契数。 
+
+389
+00:20:13,230 --> 00:20:15,059
+Why?
+为什么？ 
+
+390
+00:20:15,059 --> 00:20:16,730
+Because I had a recursive formulation.
+因为我有递归公式。 
+
+391
+00:20:16,730 --> 00:20:19,220
+This is not always the way to solve a problem.
+这并不总是解决问题的方法。 
+
+392
+00:20:19,220 --> 00:20:22,549
+But usually when you're solving something
+但是通常在您解决问题时
+
+393
+00:20:22,549 --> 00:20:28,029
+you can split it into parts, into subproblems, we call them.
+您可以将其分为多个部分，再分为子问题，我们称它们为。 
+
+394
+00:20:28,029 --> 00:20:29,700
+They're not always of the same flavor
+它们并不总是一样
+
+395
+00:20:29,700 --> 00:20:31,450
+as your original goal problem, but there's
+作为您最初的目标问题，但是有
+
+396
+00:20:31,450 --> 00:20:34,289
+some kind of related parts.
+一些相关的部分。 
+
+397
+00:20:34,289 --> 00:20:38,039
+And this is the big challenge in designing a dynamic program,
+这是设计动态程序的巨大挑战， 
+
+398
+00:20:38,039 --> 00:20:41,409
+is to figure out what are the subproblems.
+找出什么是子问题。 
+
+399
+00:20:41,410 --> 00:20:42,879
+Let's say, the first thing I want
+比方说，我要的第一件事
+
+400
+00:20:43,079 --> 00:20:45,620
+to know about a dynamic program, is what are the subproblems.
+要了解动态程序，子问题是什么。 
+
+401
+00:20:45,621 --> 00:20:47,409
+
+
+
+402
+00:20:47,609 --> 00:20:51,639
+Somehow they are designed to help solve your actual problem.
+它们旨在以某种方式帮助您解决实际问题。 
+
+403
+00:20:51,640 --> 00:20:58,650
+
+
+
+404
+00:20:58,650 --> 00:21:01,650
+And the idea of memoization is, once you solve a subproblem,
+记忆的想法是，一旦解决了一个子问题， 
+
+405
+00:21:01,650 --> 00:21:02,650
+write down the answer.
+写下答案。 
+
+406
+00:21:02,650 --> 00:21:05,149
+If you ever need to solve that same problem again
+如果您需要再次解决相同的问题
+
+407
+00:21:05,349 --> 00:21:07,399
+you reuse the answer.
+您重复使用答案。 
+
+408
+00:21:07,400 --> 00:21:09,134
+So that is the core idea.
+这就是核心思想。 
+
+409
+00:21:09,134 --> 00:21:10,799
+And so in this sense dynamic programming
+所以从这个意义上讲，动态编程
+
+410
+00:21:10,799 --> 00:21:16,024
+is essentially recursion plus memoization.
+本质上是递归加记忆。 
+
+411
+00:21:16,025 --> 00:21:23,490
+
+
+
+412
+00:21:23,490 --> 00:21:27,450
+And so in this case these are the subproblems.
+因此，在这种情况下，这些是子问题。 
+
+413
+00:21:27,450 --> 00:21:29,950
+Fibonacci of 1 through Fibonacci of n.
+ 1的斐波那契到n的斐波那契。 
+
+414
+00:21:29,950 --> 00:21:31,476
+The one we care about is Fibonacci of n.
+我们关心的是n的斐波那契。 
+
+415
+00:21:31,676 --> 00:21:33,759
+But to get there we solve these other subproblems.
+但是到那里我们可以解决其他子问题。 
+
+416
+00:21:33,759 --> 00:21:36,289
+
+
+
+417
+00:21:36,289 --> 00:21:40,180
+In all cases, if this is the situation-- so
+在所有情况下，如果是这种情况，那么
+
+418
+00:21:40,180 --> 00:21:43,279
+for any dynamic program, the running time
+对于任何动态程序，运行时间
+
+419
+00:21:43,279 --> 00:21:46,559
+is going to be equal to the number of different subproblems
+将等于不同子问题的数量
+
+420
+00:21:46,559 --> 00:21:50,589
+you might have to solve, or that you do solve,
+您可能必须解决，或者确实要解决， 
+
+421
+00:21:50,589 --> 00:21:54,480
+times the amount of time you spend per subproblem.
+是每个子问题花费的时间的两倍。 
+
+422
+00:21:54,480 --> 00:22:00,950
+
+
+
+423
+00:22:00,950 --> 00:22:01,450
+OK.
+好。 
+
+424
+00:22:01,450 --> 00:22:06,960
+In this situation we had n subproblems.
+在这种情况下，我们有n个子问题。 
+
+425
+00:22:06,960 --> 00:22:10,900
+And for each of them we spent constant time.
+对于他们每个人，我们都花了恒定的时间。 
+
+426
+00:22:10,900 --> 00:22:13,379
+And when I measure the time per subproblem
+当我测量每个子问题的时间时
+
+427
+00:22:13,579 --> 00:22:15,889
+which, in the Fibonacci case I claim is constant,
+在我声称的斐波那契案例中，它是恒定的， 
+
+428
+00:22:15,890 --> 00:22:18,589
+I ignore recursive calls.
+我忽略了递归调用。 
+
+429
+00:22:18,789 --> 00:22:19,913
+That's the key.
+那是关键。 
+
+430
+00:22:19,913 --> 00:22:21,329
+We don't have to solve recurrences
+我们不必解决重复问题
+
+431
+00:22:21,329 --> 00:22:22,629
+with dynamic programming.
+动态编程。 
+
+432
+00:22:22,630 --> 00:22:23,355
+Yay.
+好极了。 
+
+433
+00:22:23,355 --> 00:22:25,250
+No recurrences necessary.
+无需重复。 
+
+434
+00:22:25,250 --> 00:22:25,750
+OK.
+好。 
+
+435
+00:22:25,750 --> 00:22:29,839
+Don't count recursions.
+不计算递归。 
+
+436
+00:22:29,839 --> 00:22:34,279
+
+
+
+437
+00:22:34,279 --> 00:22:36,799
+Obviously, don't count memoized recursions.
+显然，不要计算已记录的递归。 
+
+438
+00:22:36,799 --> 00:22:39,750
+The reason is, I only need to count them once.
+原因是，我只需要计数一次。 
+
+439
+00:22:39,750 --> 00:22:42,539
+After the first time I do it, it's free.
+我第一次这样做后，它是免费的。 
+
+440
+00:22:42,539 --> 00:22:45,835
+So I count how many different subproblems do I need to do?
+因此，我需要计算多少个不同的子问题？ 
+
+441
+00:22:45,835 --> 00:22:48,210
+These are they going to be the expensive recursions where
+这些将是昂贵的递归
+
+442
+00:22:48,210 --> 00:22:49,809
+I do work, I do some amount of work,
+我会工作，我会做一些工作， 
+
+443
+00:22:49,809 --> 00:22:52,059
+but I don't count the recursions because otherwise I'd
+但我不计算递归，否则我会
+
+444
+00:22:52,059 --> 00:22:53,599
+be double counting.
+重复计算。 
+
+445
+00:22:53,599 --> 00:22:56,929
+I only want to count each subproblem once,
+我只想对每个子问题计算一次， 
+
+446
+00:22:56,930 --> 00:22:59,009
+and then this will solve it.
+然后就可以解决。 
+
+447
+00:22:59,009 --> 00:23:00,839
+So a simple idea.
+所以一个简单的想法。 
+
+448
+00:23:00,839 --> 00:23:03,859
+In general, dynamic programming is a super simple idea.
+通常，动态编程是一个非常简单的想法。 
+
+449
+00:23:03,859 --> 00:23:05,389
+It's nothing fancy.
+没什么好看的。 
+
+450
+00:23:05,390 --> 00:23:07,440
+It's basically just memoization.
+基本上只是记忆。 
+
+451
+00:23:07,440 --> 00:23:10,730
+There is one extra trick we're going to pull out,
+我们要抽出另外一招， 
+
+452
+00:23:10,730 --> 00:23:12,769
+but that's the idea.
+但这就是想法。 
+
+453
+00:23:12,769 --> 00:23:14,109
+All right.
+好吧。 
+
+454
+00:23:14,109 --> 00:23:24,009
+Let me tell you another perspective.
+让我告诉您另一个观点。 
+
+455
+00:23:24,009 --> 00:23:28,049
+This is the one maybe most commonly taught.
+这可能是最常教授的一种。 
+
+456
+00:23:28,049 --> 00:23:31,259
+Is to think of-- but I'm not a particular fan of it.
+值得一提的是-但我并不特别喜欢它。 
+
+457
+00:23:31,259 --> 00:23:32,470
+I really like memoization.
+我真的很喜欢记忆
+
+458
+00:23:32,470 --> 00:23:35,240
+I think it's a simple idea.
+我认为这是一个简单的想法。 
+
+459
+00:23:35,240 --> 00:23:38,500
+And as long as you remember this formula here,
+只要您记得这里的公式， 
+
+460
+00:23:38,500 --> 00:23:39,900
+it's really easy to work with.
+真的很容易使用。 
+
+461
+00:23:39,900 --> 00:23:43,240
+
+
+
+462
+00:23:43,240 --> 00:23:45,559
+But some people like to think of it this way.
+但是有些人喜欢这样想。 
+
+463
+00:23:45,559 --> 00:23:49,315
+And so you can pick whichever way you find most intuitive.
+因此，您可以选择最直观的方式。 
+
+464
+00:23:49,315 --> 00:23:51,440
+Instead of thinking of a recursive algorithm, which
+而不是考虑递归算法， 
+
+465
+00:23:51,440 --> 00:23:55,940
+in some sense starts at the top of what you want to solve
+在某种意义上说，从您要解决的问题的顶部开始
+
+466
+00:23:55,940 --> 00:23:58,660
+and works its way down, you could do the reverse.
+然后逐步下降，您可以进行相反的操作。 
+
+467
+00:23:58,660 --> 00:24:00,628
+You could start at the bottom and work your way up.
+您可以从底部开始，然后逐步提高。 
+
+468
+00:24:00,828 --> 00:24:02,369
+And this is probably how you normally
+这可能就是你平时的样子
+
+469
+00:24:02,369 --> 00:24:03,993
+think about computing Fibonacci numbers
+考虑计算斐波纳契数
+
+470
+00:24:03,993 --> 00:24:05,753
+or how you learned it before.
+或您之前的学习方法。 
+
+471
+00:24:05,753 --> 00:24:07,669
+I'm going to write it in a slightly funny way.
+我将以一种稍微有趣的方式来编写它。 
+
+472
+00:24:07,670 --> 00:24:31,654
+
+
+
+473
+00:24:31,654 --> 00:24:33,779
+The point I want to make is that the transformation
+我想指出的是，转型
+
+474
+00:24:33,779 --> 00:24:38,839
+I'm doing from the naive recursive algorithm,
+我是从朴素的递归算法做的， 
+
+475
+00:24:38,839 --> 00:24:42,079
+to the memoized algorithm, to the bottom-up algorithm
+记忆算法，自底向上算法
+
+476
+00:24:42,079 --> 00:24:44,029
+is completely automated.
+完全自动化。 
+
+477
+00:24:44,029 --> 00:24:46,649
+I'm not thinking, I'm just doing.
+我不在考虑，我只是在做。 
+
+478
+00:24:46,650 --> 00:24:47,470
+OK.
+好。 
+
+479
+00:24:47,470 --> 00:24:49,500
+It's easy.
+这很容易。 
+
+480
+00:24:49,500 --> 00:24:52,470
+This code is exactly the same as this code
+该代码与该代码完全相同
+
+481
+00:24:52,470 --> 00:24:56,589
+and as that code, except I replaced n by k.
+和那样的代码，除了我用k代替n。 
+
+482
+00:24:56,589 --> 00:24:59,849
+Just because I needed a couple of different n values here.
+只是因为我在这里需要几个不同的n值。 
+
+483
+00:24:59,849 --> 00:25:01,379
+Or I want to iterate over n values.
+或者我想遍历n个值。 
+
+484
+00:25:01,380 --> 00:25:03,909
+
+
+
+485
+00:25:04,109 --> 00:25:06,490
+And then there's this stuff around that code
+然后在代码周围有这个东西
+
+486
+00:25:06,490 --> 00:25:07,690
+which is just formulaic.
+这只是公式化的。 
+
+487
+00:25:07,690 --> 00:25:11,000
+
+
+
+488
+00:25:11,000 --> 00:25:13,460
+A little bit of thought goes into this for loop,
+有点想法进入这个循环， 
+
+489
+00:25:13,460 --> 00:25:15,160
+but that's it.
+就是这样。 
+
+490
+00:25:15,160 --> 00:25:15,660
+OK.
+好。 
+
+491
+00:25:15,660 --> 00:25:18,909
+This does exactly the same thing as the memoized algorithm.
+这与记忆算法完全相同。 
+
+492
+00:25:19,109 --> 00:25:22,524
+
+
+
+493
+00:25:22,525 --> 00:25:24,150
+Maybe it takes a little bit of thinking
+也许需要一点思考
+
+494
+00:25:24,150 --> 00:25:26,639
+to realize, if you unroll all the recursion that's happening
+意识到，如果展开所有正在发生的递归
+
+495
+00:25:26,839 --> 00:25:29,349
+here and just write it out sequentially,
+在这里，然后按顺序写出来， 
+
+496
+00:25:29,349 --> 00:25:31,829
+this is exactly what's happening.
+这正是正在发生的事情。 
+
+497
+00:25:31,829 --> 00:25:34,579
+This code does exactly the same additions, exactly
+这段代码做了完全相同的添加， 
+
+498
+00:25:34,579 --> 00:25:37,019
+the same computations as this.
+与此相同的计算。 
+
+499
+00:25:37,019 --> 00:25:39,690
+The only difference is how you get there.
+唯一的区别是您到达那里的方式。 
+
+500
+00:25:39,690 --> 00:25:42,309
+Here we're using a loop, here we're using recursion.
+这里我们使用循环，这里我们使用递归。 
+
+501
+00:25:42,309 --> 00:25:45,558
+But the same things happen in the same order.
+但是相同的事情以相同的顺序发生。 
+
+502
+00:25:45,558 --> 00:25:47,349
+It's really no difference between the code.
+两者之间的代码确实没有区别。 
+
+503
+00:25:47,349 --> 00:25:49,682
+This code's probably going to be more efficient practice
+这段代码可能会更有效
+
+504
+00:25:49,682 --> 00:25:52,980
+because you don't make function calls so much.
+因为您不会进行太多函数调用。 
+
+505
+00:25:52,980 --> 00:25:55,839
+In fact I made a little mistake here.
+实际上，我在这里犯了一个小错误。 
+
+506
+00:25:55,839 --> 00:25:57,240
+This is not a function call, it's
+这不是函数调用，而是
+
+507
+00:25:57,240 --> 00:25:59,470
+just a lookup into a table.
+只是查表。 
+
+508
+00:25:59,470 --> 00:26:01,180
+Here I'm using a hash table to be simple,
+在这里，我使用一个哈希表来简化操作， 
+
+509
+00:26:01,180 --> 00:26:02,721
+but of course you could use an array.
+但是您当然可以使用数组。 
+
+510
+00:26:02,721 --> 00:26:05,920
+
+
+
+511
+00:26:05,920 --> 00:26:10,129
+But they're both constant time with good hashing.
+但是他们都是时间稳定且哈希值很高。 
+
+512
+00:26:10,329 --> 00:26:10,829
+All right.
+好吧。 
+
+513
+00:26:10,829 --> 00:26:12,379
+So is it clear what this is doing?
+很清楚这是在做什么吗？ 
+
+514
+00:26:12,380 --> 00:26:13,379
+I think so.
+我认同。 
+
+515
+00:26:13,579 --> 00:26:16,409
+I think I made a little typo.
+我想我打错了字。 
+
+516
+00:26:16,410 --> 00:26:21,630
+So we have to compute-- oh, another typo.
+所以我们必须计算-哦，另一个错字。 
+
+517
+00:26:21,630 --> 00:26:26,809
+We have to compute f1 up to fn, which in python is that.
+我们必须计算f1到fn，在python中就是这样。 
+
+518
+00:26:27,009 --> 00:26:31,859
+And we compute it exactly how we used to.
+而且我们可以像以前一样精确地进行计算。 
+
+519
+00:26:31,859 --> 00:26:34,019
+Except now, instead of recursing,
+除了现在，不再重复
+
+520
+00:26:34,019 --> 00:26:38,170
+I know that when I'm computing the k Fibonacci number-- man.
+我知道，当我计算k斐波那契数时，老兄。 
+
+521
+00:26:38,170 --> 00:26:39,134
+So many typos.
+这么多错别字。 
+
+522
+00:26:39,134 --> 00:26:40,503
+AUDIENCE: [LAUGHTER]
+观众：[笑声] 
+
+523
+00:26:40,503 --> 00:26:42,919
+PROFESSOR: You guys are laughing.
+教授：你们在笑。 
+
+524
+00:26:42,920 --> 00:26:45,230
+When I compute the kth Fibonacci number
+当我计算第k个斐波那契数
+
+525
+00:26:45,230 --> 00:26:48,230
+I know that I've already computed the previous two.
+我知道我已经计算了前两个。 
+
+526
+00:26:48,230 --> 00:26:48,730
+Why?
+为什么？ 
+
+527
+00:26:48,730 --> 00:26:50,549
+Because I'm doing them in increasing order.
+因为我正在按递增顺序进行操作。 
+
+528
+00:26:50,549 --> 00:26:52,619
+Nothing fancy.
+没有什么花哨。 
+
+529
+00:26:52,619 --> 00:26:55,229
+Then I can just do this and the solutions
+然后我就可以做到这一点和解决方案
+
+530
+00:26:55,230 --> 00:26:56,750
+will just be waiting there.
+会在那里等。 
+
+531
+00:26:56,750 --> 00:26:58,450
+If they work, I'd get a key error.
+如果它们起作用，我将得到一个关键错误。 
+
+532
+00:26:58,450 --> 00:26:59,919
+So I'd know that there's a bug.
+所以我知道有一个错误。 
+
+533
+00:27:00,119 --> 00:27:01,669
+But in fact, I won't get a key error.
+但实际上，我不会遇到关键错误。 
+
+534
+00:27:01,670 --> 00:27:04,889
+I will have always computed these things already.
+我会一直计算这些东西。 
+
+535
+00:27:05,089 --> 00:27:06,609
+Then I store it in my table.
+然后将其存储在我的表中。 
+
+536
+00:27:06,609 --> 00:27:07,289
+Then I iterate.
+然后我迭代。 
+
+537
+00:27:07,289 --> 00:27:11,250
+Eventually I've solved all the subproblems, f1 through fn.
+最终，我解决了所有子问题，从f1到fn。 
+
+538
+00:27:11,250 --> 00:27:14,140
+And the one I cared about was the nth one.
+我关心的是第n个。 
+
+539
+00:27:14,140 --> 00:27:14,640
+OK.
+好。 
+
+540
+00:27:14,640 --> 00:27:17,490
+So straightforward.
+如此简单。 
+
+541
+00:27:17,490 --> 00:27:19,432
+I do this because I don't really want
+我这样做是因为我真的不想要
+
+542
+00:27:19,432 --> 00:27:21,140
+to have to go through this transformation
+必须经历这种转变
+
+543
+00:27:21,140 --> 00:27:22,669
+for every single problem we do.
+对于我们遇到的每个问题。 
+
+544
+00:27:22,869 --> 00:27:25,149
+I'm doing it in Fibonacci because it's super easy
+我在斐波那契做，因为它非常容易
+
+545
+00:27:25,150 --> 00:27:26,879
+to write the code out explicitly.
+明确地写出代码。 
+
+546
+00:27:27,079 --> 00:27:29,199
+But you can do it for all of the dynamic programs
+但是您可以对所有动态程序执行此操作
+
+547
+00:27:29,200 --> 00:27:33,130
+that we cover in the next four lectures.
+我们将在接下来的四个讲座中介绍。 
+
+548
+00:27:33,130 --> 00:27:33,630
+OK.
+好。 
+
+549
+00:27:33,630 --> 00:27:35,609
+I'm going to give you now the general case.
+现在，我将为您提供一般情况。 
+
+550
+00:27:35,809 --> 00:27:39,259
+This was the special Fibonacci version.
+这是特殊的斐波那契版本。 
+
+551
+00:27:39,259 --> 00:27:44,230
+In general, the bottom-up does exactly the same computation
+通常，自下而上的计算完全相同
+
+552
+00:27:44,230 --> 00:27:45,565
+as the memoized version.
+作为备忘录版本。 
+
+553
+00:27:45,565 --> 00:27:51,269
+
+
+
+554
+00:27:51,269 --> 00:27:59,920
+And what we're doing is actually a topological sort
+而我们正在做的实际上是一种拓扑
+
+555
+00:27:59,920 --> 00:28:04,994
+of the subproblem dependency DAG.
+子问题依赖项DAG的定义。 
+
+556
+00:28:05,194 --> 00:28:13,839
+
+
+
+557
+00:28:13,839 --> 00:28:17,240
+So in this case, the dependency DAG is very simple.
+因此，在这种情况下，依赖项DAG非常简单。 
+
+558
+00:28:17,240 --> 00:28:21,329
+In order to compute-- I'll do it backwards.
+为了进行计算，我将向后进行。 
+
+559
+00:28:21,329 --> 00:28:26,449
+In order to compute fn, I need to know fn minus 1
+为了计算fn，我需要知道fn减1 
+
+560
+00:28:26,450 --> 00:28:28,819
+and fn minus 2.
+和fn减2。 
+
+561
+00:28:28,819 --> 00:28:32,089
+If I know those I can compute fn.
+如果我知道这些，我可以计算fn。 
+
+562
+00:28:32,089 --> 00:28:35,079
+Then there's fn minus 3, which is
+然后是fn减3，即
+
+563
+00:28:35,079 --> 00:28:38,449
+necessary to compute this one, and that one, and so on.
+计算这个和那个，等等的必要。 
+
+564
+00:28:38,450 --> 00:28:40,470
+So you see what this DAG looks like.
+因此，您将看到此DAG的外观。 
+
+565
+00:28:40,470 --> 00:28:42,160
+Now, I've drawn it conveniently so
+现在，我已经方便地绘制了
+
+566
+00:28:42,160 --> 00:28:43,509
+all the edges go left to right.
+所有边缘从左到右。 
+
+567
+00:28:43,509 --> 00:28:46,420
+So this is a topological order from left to right.
+因此，这是从左到右的拓扑顺序。 
+
+568
+00:28:46,420 --> 00:28:50,759
+And so I just need to do f1, f2, up to fn in order.
+因此，我只需要依次执行f1，f2到fn。 
+
+569
+00:28:50,759 --> 00:28:53,849
+Usually it's totally obvious what order
+通常很明显什么顺序
+
+570
+00:28:53,849 --> 00:28:55,559
+to solve the subproblems in.
+解决子问题。 
+
+571
+00:28:55,559 --> 00:28:58,319
+But in general, what you should have in mind
+但总的来说，您应该牢记
+
+572
+00:28:58,319 --> 00:29:00,429
+is that we are doing a topological sort.
+是我们正在做拓扑排序。 
+
+573
+00:29:00,430 --> 00:29:02,869
+Here we just did it in our heads because it's so easy.
+在这里，我们只是在脑海中做到了，因为它是如此简单。 
+
+574
+00:29:03,069 --> 00:29:04,220
+And usually it's so easy.
+通常这很容易。 
+
+575
+00:29:04,220 --> 00:29:05,480
+It's just a for loop.
+这只是一个for循环。 
+
+576
+00:29:05,480 --> 00:29:06,430
+Nothing fancy.
+没有什么花哨。 
+
+577
+00:29:06,430 --> 00:29:09,900
+
+
+
+578
+00:29:09,900 --> 00:29:10,500
+All right.
+好吧。 
+
+579
+00:29:10,500 --> 00:29:13,403
+
+
+
+580
+00:29:13,403 --> 00:29:14,450
+I'm missing an arrow.
+我错过了一支箭。 
+
+581
+00:29:14,450 --> 00:29:20,029
+
+
+
+582
+00:29:20,029 --> 00:29:22,553
+All right.
+好吧。 
+
+583
+00:29:22,554 --> 00:29:24,845
+Let's do something a little more interesting, shall we?
+让我们做一些更有趣的事情吧？ 
+
+584
+00:29:24,845 --> 00:29:37,971
+
+
+
+585
+00:29:37,971 --> 00:29:38,470
+All right.
+好吧。 
+
+586
+00:29:38,470 --> 00:29:41,769
+One thing you can do from this bottom-up perspective
+从此自下而上的角度来看，您可以做一件事
+
+587
+00:29:41,769 --> 00:29:42,775
+is you can save space.
+是您可以节省空间。 
+
+588
+00:29:42,775 --> 00:29:46,109
+
+
+
+589
+00:29:46,309 --> 00:29:48,571
+Storage space in the algorithm.
+算法中的存储空间。 
+
+590
+00:29:48,571 --> 00:29:51,109
+We don't usually worry about space in this class,
+我们通常不用担心此类的空间， 
+
+591
+00:29:51,109 --> 00:29:55,909
+but it matters in reality.
+但实际上很重要
+
+592
+00:29:55,910 --> 00:29:57,500
+So here we're building a table size,
+所以这里我们要建立一个表格大小
+
+593
+00:29:57,500 --> 00:29:59,829
+n, but in fact we really only need
+ n，但实际上我们只需要
+
+594
+00:29:59,829 --> 00:30:02,279
+to remember the last two values.
+记住最后两个值。 
+
+595
+00:30:02,279 --> 00:30:04,190
+So you could just store the last two values,
+这样您就可以存储最后两个值， 
+
+596
+00:30:04,190 --> 00:30:07,419
+and each time you make a new one delete the oldest.
+每次您制作一个新的，都会删除最旧的。 
+
+597
+00:30:07,619 --> 00:30:10,099
+so by thinking a little bit here you
+所以在这里想一想
+
+598
+00:30:10,099 --> 00:30:12,469
+realize you only need constant space.
+意识到您只需要恒定的空间。 
+
+599
+00:30:12,470 --> 00:30:15,789
+Still linear time, but constant space.
+时间仍然是线性的，但空间不变。 
+
+600
+00:30:15,789 --> 00:30:17,443
+And that's often the case.
+通常就是这种情况。 
+
+601
+00:30:17,443 --> 00:30:18,859
+From the bottom-up perspective you
+从下至上的角度来看， 
+
+602
+00:30:18,859 --> 00:30:20,698
+see what you really need to store,
+看看您真正需要存储什么， 
+
+603
+00:30:20,699 --> 00:30:21,990
+what you need to keep track of.
+您需要跟踪的内容。 
+
+604
+00:30:21,990 --> 00:30:24,829
+
+
+
+605
+00:30:24,829 --> 00:30:26,358
+All right.
+好吧。 
+
+606
+00:30:26,358 --> 00:30:28,399
+I guess another nice thing about this perspective
+我猜想这个观点还有另一个好处
+
+607
+00:30:28,400 --> 00:30:30,710
+is, the running time is totally obvious.
+是，运行时间是完全显而易见的。 
+
+608
+00:30:30,710 --> 00:30:32,430
+This is clearly constant time.
+这显然是恒定的时间。 
+
+609
+00:30:32,430 --> 00:30:34,730
+So this is clearly linear time.
+因此，这显然是线性时间。 
+
+610
+00:30:34,730 --> 00:30:37,029
+Whereas, in this memoized algorithm
+而在此记忆算法中
+
+611
+00:30:37,029 --> 00:30:40,109
+you have to think about, when's it
+你必须考虑，什么时候
+
+612
+00:30:40,109 --> 00:30:42,149
+going to be memoized, when is it not?
+要被记住，什么时候不被记住？ 
+
+613
+00:30:42,150 --> 00:30:44,979
+I still like this perspective because, with this rule,
+我仍然喜欢这种观点，因为按照这个规则， 
+
+614
+00:30:44,979 --> 00:30:46,519
+just multiply a number of subproblems
+只是乘以一些子问题
+
+615
+00:30:46,519 --> 00:30:49,109
+by time per subproblem, you get the answer.
+通过每个子问题的时间，您会得到答案。 
+
+616
+00:30:49,109 --> 00:30:54,299
+But it's a little less obvious than code like this.
+但这并不比这样的代码明显。 
+
+617
+00:30:54,299 --> 00:30:57,059
+So choose however you like to think about it.
+因此，请选择您想考虑的内容。 
+
+618
+00:30:57,059 --> 00:31:00,339
+
+
+
+619
+00:31:00,339 --> 00:31:00,839
+All right.
+好吧。 
+
+620
+00:31:00,839 --> 00:31:02,699
+We move onto shortest paths.
+我们走上最短的道路。 
+
+621
+00:31:02,700 --> 00:31:28,890
+
+
+
+622
+00:31:28,890 --> 00:31:32,109
+So I'm again, as usual, thinking about single-source shortest
+所以我像往常一样再次考虑最短的单一来源
+
+623
+00:31:32,309 --> 00:31:33,980
+paths.
+路径。 
+
+624
+00:31:33,980 --> 00:31:37,039
+So we want to compute the shortest pathway from s
+所以我们要计算的最短路径
+
+625
+00:31:37,039 --> 00:31:41,549
+to v for all v. OK.
+到v代表所有v。 
+
+626
+00:31:41,549 --> 00:31:46,039
+I'd like to write this initially as a naive recursive algorithm,
+我想最初将其编写为天真的递归算法， 
+
+627
+00:31:46,039 --> 00:31:49,899
+which I can then memoize, which I can then bottom-upify.
+然后我可以记住，然后我可以自下而上。 
+
+628
+00:31:49,900 --> 00:31:52,839
+I just made that up.
+我只是编造的。 
+
+629
+00:31:53,039 --> 00:31:57,079
+So how could I write this as a naive recursive algorithm?
+那么我怎么能把它写成一个朴素的递归算法呢？ 
+
+630
+00:31:57,079 --> 00:31:59,710
+It's not so obvious.
+这不是很明显。 
+
+631
+00:31:59,710 --> 00:32:06,649
+But first I'm going to tell you how, just as an oracle tells
+但是首先，我将告诉您如何，就像甲骨文告诉您的那样
+
+632
+00:32:06,849 --> 00:32:08,469
+you, here's what you should do.
+你，这是你应该做的。 
+
+633
+00:32:08,470 --> 00:32:10,950
+But then we're going to think about-- go back, step back.
+但是接下来我们要考虑-回去，退后一步。 
+
+634
+00:32:10,950 --> 00:32:11,991
+Actually, it's up to you.
+实际上，这取决于您。 
+
+635
+00:32:11,991 --> 00:32:13,490
+I could tell you the answer and then
+我可以告诉你答案，然后
+
+636
+00:32:13,490 --> 00:32:15,069
+we could figure out how we got there,
+我们可以弄清楚如何到达那里， 
+
+637
+00:32:15,069 --> 00:32:18,380
+or we could just figure out the answer.
+或者我们可以找出答案。 
+
+638
+00:32:18,381 --> 00:32:18,880
+Preferences?
+首选项？ 
+
+639
+00:32:18,880 --> 00:32:22,149
+
+
+
+640
+00:32:22,349 --> 00:32:22,933
+Figure it out.
+想办法。 
+
+641
+00:32:22,933 --> 00:32:23,432
+All right.
+好吧。 
+
+642
+00:32:23,432 --> 00:32:24,049
+Good.
+好。 
+
+643
+00:32:24,049 --> 00:32:26,139
+No divine inspiration allowed.
+不允许有上帝的启示。 
+
+644
+00:32:26,140 --> 00:32:37,584
+So let me give you a tool.
+所以让我给你一个工具。 
+
+645
+00:32:37,584 --> 00:32:38,759
+The tool is guessing.
+该工具正在猜测。 
+
+646
+00:32:38,759 --> 00:32:42,660
+
+
+
+647
+00:32:42,660 --> 00:32:45,880
+This may sound silly, but it's a very powerful tool.
+这听起来很愚蠢，但这是一个非常强大的工具。 
+
+648
+00:32:45,880 --> 00:32:48,500
+
+
+
+649
+00:32:48,500 --> 00:32:51,319
+The general idea is, suppose you don't know something
+一般的想法是，假设你不知道什么
+
+650
+00:32:51,319 --> 00:32:53,359
+but you'd like to know it.
+但您想知道。 
+
+651
+00:32:53,359 --> 00:32:55,349
+So what's the answer to this question?
+那么这个问题的答案是什么？ 
+
+652
+00:32:55,349 --> 00:32:56,629
+I don't know.
+我不知道。 
+
+653
+00:32:56,630 --> 00:32:57,659
+Man, I really want a cushion.
+老兄，我真的很想坐垫。 
+
+654
+00:32:57,859 --> 00:32:59,649
+How am I going to answer the question?
+我要如何回答这个问题？ 
+
+655
+00:32:59,650 --> 00:33:00,440
+Guess.
+猜测。 
+
+656
+00:33:00,440 --> 00:33:00,940
+OK?
+好？ 
+
+657
+00:33:00,940 --> 00:33:02,529
+AUDIENCE: [LAUGHTER]
+观众：[笑声] 
+
+658
+00:33:02,529 --> 00:33:04,309
+PROFESSOR: It's a tried and tested method
+教授：这是一种久经考验的方法
+
+659
+00:33:04,309 --> 00:33:05,490
+for solving any problem.
+解决任何问题。 
+
+660
+00:33:05,490 --> 00:33:16,920
+
+
+
+661
+00:33:16,920 --> 00:33:19,720
+I'm kind of belaboring the point here.
+我有点be惜这里。 
+
+662
+00:33:19,720 --> 00:33:23,409
+The algorithmic concept is, don't just try any guess.
+算法的概念是，不要只是尝试任何猜测。 
+
+663
+00:33:23,609 --> 00:33:25,959
+Try them all.
+尝试所有。 
+
+664
+00:33:25,960 --> 00:33:26,747
+OK?
+好？ 
+
+665
+00:33:26,747 --> 00:33:29,490
+AUDIENCE: [LAUGHTER]
+观众：[笑声] 
+
+666
+00:33:29,490 --> 00:33:30,809
+PROFESSOR: Also pretty simple.
+教授：也很简单。 
+
+667
+00:33:30,809 --> 00:33:32,880
+I said dynamic programming was simple.
+我说动态编程很简单。 
+
+668
+00:33:32,881 --> 00:33:33,380
+OK.
+好。 
+
+669
+00:33:33,380 --> 00:33:38,400
+
+
+
+670
+00:33:38,400 --> 00:33:42,829
+Try all guesses.
+尝试所有猜测。 
+
+671
+00:33:43,029 --> 00:33:45,430
+This is central to the dynamic programming.
+这对于动态编程至关重要。 
+
+672
+00:33:45,430 --> 00:33:52,470
+I know it sounds obvious, but if I want to fix my equation here,
+我知道这听起来很明显，但是如果我想在这里修正方程式， 
+
+673
+00:33:52,470 --> 00:33:58,259
+dynamic programming is roughly recursion plus memoization.
+动态编程大致是递归加记忆。 
+
+674
+00:33:58,259 --> 00:34:01,799
+This should really be, plus guessing.
+这确实应该是，加上猜测。 
+
+675
+00:34:01,799 --> 00:34:06,339
+Memoization, which is obvious, guessing which is obvious,
+记忆很明显，猜测很明显， 
+
+676
+00:34:06,339 --> 00:34:08,927
+are the central concepts to dynamic programming.
+是动态编程的核心概念。 
+
+677
+00:34:08,927 --> 00:34:11,219
+I'm trying to make it sound easy because usually people
+我正在尝试使其听起来很简单，因为通常人们
+
+678
+00:34:11,219 --> 00:34:12,802
+have trouble with dynamic programming.
+动态编程遇到麻烦。 
+
+679
+00:34:12,802 --> 00:34:15,309
+It is easy.
+这很容易。 
+
+680
+00:34:15,309 --> 00:34:16,791
+Try all the guesses.
+尝试所有的猜测。 
+
+681
+00:34:16,791 --> 00:34:18,500
+That's something a computer can do great.
+这是计算机可以做的出色的事情。 
+
+682
+00:34:18,500 --> 00:34:20,110
+This is the brute force part.
+这是蛮力部分。 
+
+683
+00:34:20,110 --> 00:34:20,609
+OK.
+好。 
+
+684
+00:34:20,610 --> 00:34:23,690
+But we're going to do it carefully.
+但是，我们将谨慎进行。 
+
+685
+00:34:23,690 --> 00:34:24,688
+Not that carefully.
+没那么仔细。 
+
+686
+00:34:24,688 --> 00:34:26,690
+I mean, we're just trying all the guesses.
+我的意思是，我们只是在尝试所有猜测。 
+
+687
+00:34:26,690 --> 00:34:27,590
+Take the best one.
+拿最好的一个。 
+
+688
+00:34:27,590 --> 00:34:33,960
+
+
+
+689
+00:34:33,960 --> 00:34:35,980
+That's kind of important that we can choose one
+这很重要，我们可以选择一个
+
+690
+00:34:35,980 --> 00:34:36,864
+to be called best.
+被称为最佳。 
+
+691
+00:34:36,864 --> 00:34:38,239
+That's why dynamic programming is
+这就是为什么动态编程是
+
+692
+00:34:38,239 --> 00:34:39,610
+good for optimization problems.
+对优化问题有好处。 
+
+693
+00:34:39,610 --> 00:34:42,110
+You want to maximize something, minimize something,
+您想最大化某些东西，最小化某些东西， 
+
+694
+00:34:42,110 --> 00:34:45,130
+you try them all and then you can forget about all of them
+你尝试所有的东西，然后你就可以忘记所有的东西
+
+695
+00:34:45,130 --> 00:34:47,019
+and just reduce it down to one thing which
+并将其简化为一件事
+
+696
+00:34:47,019 --> 00:34:50,889
+is the best one, or a best one.
+是最好的，还是最好的。 
+
+697
+00:34:50,889 --> 00:34:51,388
+OK.
+好。 
+
+698
+00:34:51,389 --> 00:34:53,829
+So now I want you to try to apply
+所以现在我要你尝试申请
+
+699
+00:34:53,829 --> 00:34:56,639
+this principle to shortest paths.
+这条最短路径的原则。 
+
+700
+00:34:56,639 --> 00:34:59,380
+Now I'm going to draw a picture which may help.
+现在，我要画一幅画可能会有所帮助。 
+
+701
+00:34:59,380 --> 00:35:08,789
+We have the source, s, we have some vertex,
+我们有源s，有一些顶点， 
+
+702
+00:35:08,789 --> 00:35:11,369
+v. We'd like to find the shortest--
+ v。我们想找到最短的- 
+
+703
+00:35:11,369 --> 00:35:13,869
+a shortest path from s to v.
+从s到v的最短路径。 
+
+704
+00:35:13,869 --> 00:35:16,250
+Suppose I want to know what this shortest path is.
+假设我想知道这条最短的路径是什么。 
+
+705
+00:35:16,250 --> 00:35:18,092
+Suppose this was it.
+假设是这样。 
+
+706
+00:35:18,092 --> 00:35:19,789
+You have an idea already?
+你有个主意吗？ 
+
+707
+00:35:19,789 --> 00:35:21,244
+Yeah.
+是的
+
+708
+00:35:21,244 --> 00:35:27,549
+AUDIENCE: What you could do is you could look at everywhere
+观众：您可以做的是随处可见
+
+709
+00:35:27,550 --> 00:35:29,289
+you can go from s.
+你可以从s去。 
+
+710
+00:35:29,489 --> 00:35:33,073
+[INAUDIBLE] shortest path of each of those notes.
+ [音符]每个音符的最短路径。 
+
+711
+00:35:33,074 --> 00:35:33,539
+PROFESSOR: Good.
+教授：很好。 
+
+712
+00:35:33,739 --> 00:35:37,919
+So I can look at all the places I could go from s,
+所以我可以查看我可以从s到达的所有地方， 
+
+713
+00:35:37,920 --> 00:35:41,789
+and then look at the shortest paths from there to v.
+然后查看从那里到v的最短路径。 
+
+714
+00:35:41,789 --> 00:35:45,599
+So we could call this s prime.
+因此，我们可以称其为素数。 
+
+715
+00:35:45,599 --> 00:35:46,730
+So here's the idea.
+所以这就是想法。 
+
+716
+00:35:46,730 --> 00:35:50,719
+There's some hypothetical shortest path.
+有一些假设的最短路径。 
+
+717
+00:35:50,719 --> 00:35:53,459
+I don't know where it goes first,
+我不知道先去哪
+
+718
+00:35:53,460 --> 00:35:56,079
+so I will guess where it goes first.
+所以我猜猜它先去哪里。 
+
+719
+00:35:56,079 --> 00:35:58,799
+I know the first edge must be one
+我知道第一个优势一定是
+
+720
+00:35:58,800 --> 00:36:00,090
+of the outgoing edges from s.
+从s传出的边缘。 
+
+721
+00:36:00,090 --> 00:36:00,900
+I don't know which one.
+我不知道是哪一个。 
+
+722
+00:36:01,099 --> 00:36:03,210
+Try them all.
+尝试所有。 
+
+723
+00:36:03,210 --> 00:36:04,478
+Very simple idea.
+很简单的主意。 
+
+724
+00:36:04,478 --> 00:36:06,019
+Then from each of those, if somehow I
+然后从每个这些，如果我以某种方式
+
+725
+00:36:06,019 --> 00:36:10,590
+can compute the shortest path from there to v,
+可以计算从那里到v的最短路径， 
+
+726
+00:36:10,590 --> 00:36:13,539
+just do that and take the best choice
+只要做到这一点，并采取最佳选择
+
+727
+00:36:13,739 --> 00:36:15,649
+for what that first edge was.
+对于第一个优势是什么。 
+
+728
+00:36:15,650 --> 00:36:18,670
+So this would be the guess first edge approach.
+因此，这将是猜测的第一个优势方法。 
+
+729
+00:36:18,670 --> 00:36:22,340
+
+
+
+730
+00:36:22,340 --> 00:36:23,690
+It's a very good idea.
+这是一个很好的主意。 
+
+731
+00:36:23,690 --> 00:36:28,269
+Not quite the one I wanted because unfortunately
+不完全是我想要的那个，因为不幸的是
+
+732
+00:36:28,469 --> 00:36:30,588
+that changes s.
+改变s。 
+
+733
+00:36:30,588 --> 00:36:32,130
+And so this would work, it would just
+所以这将起作用，它将只是
+
+734
+00:36:32,130 --> 00:36:33,503
+be slightly less efficient if I'm
+如果我的效率较低
+
+735
+00:36:33,503 --> 00:36:36,089
+solving single-source shortest paths.
+解决单一来源最短路径。 
+
+736
+00:36:36,090 --> 00:36:38,010
+So I'm going to tweak that idea slightly
+所以我要稍微调整一下这个想法
+
+737
+00:36:38,010 --> 00:36:40,110
+by guessing the last edge instead of the first edge.
+通过猜测最后一个边缘而不是第一个边缘。 
+
+738
+00:36:40,309 --> 00:36:41,961
+They're really equivalent.
+它们实际上是等效的。 
+
+739
+00:36:41,961 --> 00:36:43,420
+If I was doing this I'd essentially
+如果我这样做的话，我基本上会
+
+740
+00:36:43,420 --> 00:36:46,480
+be solving a single-target shortest paths,
+解决单一目标的最短路径， 
+
+741
+00:36:46,480 --> 00:36:49,820
+which we talked about before.
+我们之前讨论过。 
+
+742
+00:36:49,820 --> 00:36:51,644
+So I'm going to draw the same picture.
+因此，我将绘制相同的图片。 
+
+743
+00:36:51,644 --> 00:36:56,509
+
+
+
+744
+00:36:56,510 --> 00:36:59,230
+I want to get to v. I'm going to guess the last edge,
+我要诉诸v。我要猜测最后一个优势， 
+
+745
+00:36:59,429 --> 00:37:01,559
+call it uv.
+称之为uv。 
+
+746
+00:37:01,559 --> 00:37:06,259
+I know it's one of the incoming edges to v-- unless s equals v,
+我知道这是v的传入边之一-除非s等于v， 
+
+747
+00:37:06,260 --> 00:37:07,780
+then there's a special case.
+然后有一个特例。 
+
+748
+00:37:07,780 --> 00:37:09,710
+As long as this path has length of at least 1,
+只要该路径的长度至少为1， 
+
+749
+00:37:09,909 --> 00:37:11,289
+there's some last edge.
+还有一些最后的优势。 
+
+750
+00:37:11,289 --> 00:37:12,039
+What is it?
+它是什么？ 
+
+751
+00:37:12,039 --> 00:37:12,840
+I don't know.
+我不知道。 
+
+752
+00:37:12,840 --> 00:37:14,070
+Guess.
+猜测。 
+
+753
+00:37:14,070 --> 00:37:19,010
+Guess all the possible incoming edges to v, and then
+猜测所有可能的传入边到v，然后
+
+754
+00:37:19,010 --> 00:37:23,130
+recursively compute the shortest path from s to u.
+递归计算从s到u的最短路径。 
+
+755
+00:37:23,130 --> 00:37:25,871
+And then add on the edge v.
+然后添加边缘v。 
+
+756
+00:37:25,871 --> 00:37:26,369
+OK.
+好。 
+
+757
+00:37:26,369 --> 00:37:27,750
+So what is this shortest path?
+那么，这条最短的路径是什么？ 
+
+758
+00:37:27,750 --> 00:37:32,159
+It's delta of s comma u, which looks the same.
+它是逗号的增量，看起来一样。 
+
+759
+00:37:32,159 --> 00:37:34,909
+It's another subproblem that I want to solve.
+这是我要解决的另一个子问题。 
+
+760
+00:37:34,909 --> 00:37:37,779
+There's v subproblems here I care about. .
+我关心的是这里的v个子问题。 。 
+
+761
+00:37:37,780 --> 00:37:38,460
+So that's good.
+这样很好。 
+
+762
+00:37:38,659 --> 00:37:39,779
+I take that.
+我接受
+
+763
+00:37:39,780 --> 00:37:41,605
+I add on the weight of the edge uv.
+我增加了边缘uv的重量。 
+
+764
+00:37:41,804 --> 00:37:44,799
+
+
+
+765
+00:37:44,800 --> 00:37:50,019
+And that should hopefully give me delta of s comma v.
+希望这能给我s逗号v的增量。 
+
+766
+00:37:50,019 --> 00:37:53,460
+Well, if I was lucky and I guessed the right choice of u.
+好吧，如果我很幸运，我猜到你的选择是正确的。 
+
+767
+00:37:53,460 --> 00:37:55,289
+In reality, I'm not lucky.
+实际上，我并不幸运。 
+
+768
+00:37:55,489 --> 00:38:02,789
+So I have to minimize over all edges uv.
+因此，我必须在所有方面使uv最小化。 
+
+769
+00:38:02,789 --> 00:38:05,369
+So this is the-- we're minimizing
+这就是我们正在将
+
+770
+00:38:05,369 --> 00:38:06,579
+over the choice of u.
+在你的选择上
+
+771
+00:38:06,579 --> 00:38:08,420
+V is already given here.
+ V已经在这里给出。 
+
+772
+00:38:08,420 --> 00:38:12,130
+So I take the minimum over all edges of the shortest
+所以我在最短的所有边上取最小值
+
+773
+00:38:12,130 --> 00:38:17,324
+path from s to u, plus the weight of the edge uv.
+从s到u的路径，加上边缘uv的权重。 
+
+774
+00:38:17,324 --> 00:38:19,539
+That should give me the shortest path because this gave me
+那应该给我最短的路，因为这给了我
+
+775
+00:38:19,739 --> 00:38:21,579
+the shortest path from s to u.
+从s到u的最短路径。 
+
+776
+00:38:21,579 --> 00:38:24,110
+Then I added on the edge I need to get there.
+然后我添加了需要到达的边缘。 
+
+777
+00:38:24,110 --> 00:38:29,920
+And wherever the shortest path is, it uses some last edge, uv.
+无论最短的路径在哪里，它都会使用最后的边缘uv。 
+
+778
+00:38:30,119 --> 00:38:32,650
+There's got to be some choice of u that is the right one.
+您必须选择一些正确的选择。 
+
+779
+00:38:32,650 --> 00:38:35,244
+That's the good guess that we're hoping for.
+这就是我们所希望的很好的猜测。 
+
+780
+00:38:35,244 --> 00:38:36,619
+We don't know what the good guess
+我们不知道有什么好猜测
+
+781
+00:38:36,619 --> 00:38:38,650
+is so we just try them all.
+因此，我们只需尝试所有这些。 
+
+782
+00:38:38,650 --> 00:38:43,264
+But whatever it is, this will be the weight of that path.
+但是无论如何，这将是那条路的重担。 
+
+783
+00:38:43,264 --> 00:38:44,889
+It's going to take the best path from s
+从s走出最佳路径
+
+784
+00:38:44,889 --> 00:38:46,650
+to u because sub paths are shortest
+到你，因为子路径最短
+
+785
+00:38:46,650 --> 00:38:47,490
+paths are shortest paths.
+路径是最短的路径。 
+
+786
+00:38:47,690 --> 00:38:48,899
+Optimal substructure.
+最佳子结构。 
+
+787
+00:38:48,900 --> 00:38:51,456
+So this part will be delta of su.
+因此，这部分将是su的增量。 
+
+788
+00:38:51,456 --> 00:38:53,750
+This part is obviously w of uv.
+这部分显然是uv的w。 
+
+789
+00:38:53,949 --> 00:38:57,759
+So this will give the right answer.
+因此，这将给出正确的答案。 
+
+790
+00:38:57,760 --> 00:38:59,610
+Hopefully.
+希望。 
+
+791
+00:38:59,610 --> 00:39:00,664
+OK.
+好。 
+
+792
+00:39:00,864 --> 00:39:02,239
+It's certainly going to-- I mean,
+这肯定会-我的意思是， 
+
+793
+00:39:02,239 --> 00:39:05,099
+this is the analog of the naive recursive algorithm
+这是朴素递归算法的模拟
+
+794
+00:39:05,099 --> 00:39:05,829
+for Fibonacci.
+斐波那契
+
+795
+00:39:05,829 --> 00:39:08,190
+So it's not going to be efficient if I-- I mean,
+因此，如果我-我是说， 
+
+796
+00:39:08,190 --> 00:39:09,849
+this is an algorithm, right?
+这是一种算法，对不对？ 
+
+797
+00:39:09,849 --> 00:39:13,719
+You could say-- this is a recursive call.
+您可以说-这是一个递归调用。 
+
+798
+00:39:13,719 --> 00:39:17,519
+We're going to treat this as recursive call instead
+我们将其视为递归调用
+
+799
+00:39:17,519 --> 00:39:19,909
+of just a definition.
+只是一个定义。 
+
+800
+00:39:19,909 --> 00:39:23,289
+Then this is a recursive algorithm.
+这是一个递归算法。 
+
+801
+00:39:23,289 --> 00:39:27,085
+How good or bad is this recursive algorithm?
+这种递归算法有多好？ 
+
+802
+00:39:27,085 --> 00:39:28,009
+AUDIENCE: Terrible.
+听众：糟糕。 
+
+803
+00:39:28,010 --> 00:39:28,650
+PROFESSOR: Terrible.
+教授：太糟糕了。 
+
+804
+00:39:28,849 --> 00:39:29,960
+Very good.
+很好。 
+
+805
+00:39:29,960 --> 00:39:31,039
+Very bad, I should say.
+我应该说非常糟糕。 
+
+806
+00:39:31,239 --> 00:39:34,000
+
+
+
+807
+00:39:34,000 --> 00:39:38,079
+It's definitely going to be exponential
+肯定是指数级的
+
+808
+00:39:38,079 --> 00:39:39,119
+without memoization.
+没有记忆。 
+
+809
+00:39:39,119 --> 00:39:39,956
+But we know.
+但是我们知道。 
+
+810
+00:39:39,956 --> 00:39:41,539
+We know how to make algorithms better.
+我们知道如何使算法更好。 
+
+811
+00:39:41,539 --> 00:39:42,639
+We memoize.
+我们记住。 
+
+812
+00:39:42,639 --> 00:39:43,139
+OK.
+好。 
+
+813
+00:39:43,139 --> 00:39:46,849
+So I think you know how to write this as a memoized algorithm.
+因此，我认为您知道如何将其编写为记忆算法。 
+
+814
+00:39:46,849 --> 00:39:51,819
+To define the function delta of sv, you first check,
+要定义sv的函数增量，请先检查， 
+
+815
+00:39:51,820 --> 00:39:53,880
+is s comma v in the memo table?
+备注表中的逗号v是？ 
+
+816
+00:39:54,079 --> 00:39:55,559
+If so return that value.
+如果是这样，则返回该值。 
+
+817
+00:39:55,559 --> 00:39:59,449
+Otherwise, do this computation where this is a recursive call
+否则，在这是递归调用的地方进行此计算
+
+818
+00:39:59,449 --> 00:40:02,819
+and then stored it in the memo table.
+然后将其存储在备注表中。 
+
+819
+00:40:02,820 --> 00:40:03,460
+OK.
+好。 
+
+820
+00:40:03,460 --> 00:40:05,126
+I don't think I need to write that down.
+我认为我不需要写下来。 
+
+821
+00:40:05,126 --> 00:40:07,360
+It's just like the memoized code over there.
+就像那边的记忆代码一样。 
+
+822
+00:40:07,360 --> 00:40:11,190
+Just there's now two arguments instead of one.
+现在只有两个参数，而不是一个。 
+
+823
+00:40:11,190 --> 00:40:12,389
+In fact, s isn't changing.
+实际上，s并没有改变。 
+
+824
+00:40:12,389 --> 00:40:18,500
+So I only need to store with v instead of s comma v.
+所以我只需要存储v而不是s逗号v。 
+
+825
+00:40:18,500 --> 00:40:19,844
+Is that a good algorithm?
+那是一个好的算法吗？ 
+
+826
+00:40:19,844 --> 00:40:23,569
+I claim memoization makes everything faster.
+我声称记忆能使一切变得更快。 
+
+827
+00:40:23,570 --> 00:40:25,500
+Is that a fast algorithm?
+那是一个快速的算法吗？ 
+
+828
+00:40:25,699 --> 00:40:36,559
+
+
+
+829
+00:40:36,559 --> 00:40:37,639
+Not so obvious, I guess.
+我猜不太明显。 
+
+830
+00:40:37,639 --> 00:40:51,079
+
+
+
+831
+00:40:51,079 --> 00:40:52,569
+Yes?
+是？ 
+
+832
+00:40:52,570 --> 00:40:54,789
+How many people think, yes, that's a good algorithm?
+有多少人认为，这是一个很好的算法？ 
+
+833
+00:40:54,989 --> 00:40:55,750
+AUDIENCE: Better.
+听众：更好。 
+
+834
+00:40:55,750 --> 00:40:56,030
+PROFESSOR: Better.
+教授：更好。 
+
+835
+00:40:56,030 --> 00:40:57,090
+Definitely better.
+绝对更好。 
+
+836
+00:40:57,090 --> 00:40:58,340
+Can't be worse.
+不会更糟。 
+
+837
+00:40:58,340 --> 00:41:00,960
+How many people think it's a bad algorithm still?
+有多少人认为它仍然是一个不好的算法？ 
+
+838
+00:41:00,960 --> 00:41:01,460
+OK.
+好。 
+
+839
+00:41:01,460 --> 00:41:04,760
+So three for yes, zero for no.
+所以三个代表是，零代表否。 
+
+840
+00:41:04,760 --> 00:41:08,840
+How many people aren't sure?
+有多少人不确定？ 
+
+841
+00:41:08,840 --> 00:41:09,871
+Including the yes votes?
+包括赞成票？ 
+
+842
+00:41:09,871 --> 00:41:10,369
+Good.
+好。 
+
+843
+00:41:10,369 --> 00:41:12,969
+
+
+
+844
+00:41:12,969 --> 00:41:13,569
+All right.
+好吧。 
+
+845
+00:41:13,570 --> 00:41:14,210
+It's not so tricky.
+这不是那么棘手。 
+
+846
+00:41:14,409 --> 00:41:15,414
+Let me draw you a graph.
+让我给你画一个图。 
+
+847
+00:41:15,414 --> 00:41:27,371
+
+
+
+848
+00:41:27,371 --> 00:41:30,349
+Something like that.
+这样的事情。 
+
+849
+00:41:30,349 --> 00:41:32,329
+So we wanted to commit delta of s comma
+所以我们想提交s逗号
+
+850
+00:41:32,329 --> 00:41:36,670
+v. Let me give these guys names, a and b.
+ v。让我给这些家伙取名字a和b。 
+
+851
+00:41:36,670 --> 00:41:39,380
+So we compute delta of s comma v. To compute
+因此我们计算s逗号v的增量。 
+
+852
+00:41:39,380 --> 00:41:45,829
+that we need to know delta of s comma a and delta
+我们需要知道逗号的增量和增量
+
+853
+00:41:45,829 --> 00:41:48,110
+of s comma v. All right?
+ s逗号v。好吗？ 
+
+854
+00:41:48,110 --> 00:41:51,789
+Those are the two ways-- sorry, actually we just need one.
+这是两种方式-抱歉，实际上我们只需要一种。 
+
+855
+00:41:51,989 --> 00:41:57,639
+Only one incoming edge to v. So its delta of s comma a.
+ v仅有一个输入边。因此，它的逗号间隔为a。 
+
+856
+00:41:57,639 --> 00:42:00,949
+
+
+
+857
+00:42:00,949 --> 00:42:04,089
+Sorry-- I should have put a base case here too.
+抱歉-我也应该在这里放一个基本情况。 
+
+858
+00:42:04,090 --> 00:42:07,150
+Delta of s comma s equals 0.
+逗号s的Delta等于0。 
+
+859
+00:42:07,150 --> 00:42:10,000
+
+
+
+860
+00:42:10,199 --> 00:42:10,699
+OK.
+好。 
+
+861
+00:42:10,699 --> 00:42:12,800
+Delta of s comma a plus the edge.
+逗号Delta加上边缘。 
+
+862
+00:42:12,800 --> 00:42:13,299
+OK.
+好。 
+
+863
+00:42:13,300 --> 00:42:14,940
+There is some shortest path to a.
+有一条通往a的最短路径。 
+
+864
+00:42:14,940 --> 00:42:16,519
+To compute the shortest path to a we
+要计算到达我们的最短路径
+
+865
+00:42:16,519 --> 00:42:18,019
+look at all the incoming edges to a.
+看一下所有进入的边。 
+
+866
+00:42:18,019 --> 00:42:19,400
+There's only one.
+只有一个。 
+
+867
+00:42:19,400 --> 00:42:22,320
+So delta of s comma b.
+所以s的逗号是b。 
+
+868
+00:42:22,320 --> 00:42:24,420
+Now I want to compute the shortest paths from b.
+现在，我想从b计算最短路径。 
+
+869
+00:42:24,619 --> 00:42:26,219
+Well, there's two ways to get to b.
+好吧，有两种方法可以到达b。 
+
+870
+00:42:26,219 --> 00:42:33,730
+One of them is delta of s comma b-- sorry, s comma s.
+其中之一是s逗号-抱歉，s逗号。 
+
+871
+00:42:33,730 --> 00:42:35,469
+Came from s.
+来自s。 
+
+872
+00:42:35,469 --> 00:42:42,759
+The other way is delta of s comma v. Do you see a problem?
+另一种方法是s逗号v的增量。您看到问题了吗？ 
+
+873
+00:42:42,760 --> 00:42:44,340
+Yeah.
+是的
+
+874
+00:42:44,539 --> 00:42:47,420
+Delta of s comma v is what we were trying to figure out.
+ s的Delta逗号是我们试图找出的。 
+
+875
+00:42:47,420 --> 00:42:50,079
+
+
+
+876
+00:42:50,079 --> 00:42:51,989
+Now you might say, oh, it's OK because we're
+现在您可能会说，哦，没关系，因为我们
+
+877
+00:42:51,989 --> 00:42:54,059
+going to memoize our answer to delta s comma v
+要记住我们对delta逗号v的回答
+
+878
+00:42:54,059 --> 00:42:55,308
+and then we can reuse it here.
+然后我们可以在这里重用它。 
+
+879
+00:42:55,309 --> 00:42:57,530
+Except, we haven't finished computing delta of s
+除了，我们还没有完成s的增量计算
+
+880
+00:42:57,530 --> 00:43:02,340
+comma v. We can only put it in the memo table once we're done.
+逗号v。完成后，我们只能将其放入备忘表中。 
+
+881
+00:43:02,340 --> 00:43:06,230
+So when this call happens the memo table has not been set.
+因此，发生此调用时，尚未设置备忘录表。 
+
+882
+00:43:06,429 --> 00:43:07,929
+And we're going to do the same thing
+我们将做同样的事情
+
+883
+00:43:07,929 --> 00:43:09,839
+over and over and over again.
+一而再，再而三。 
+
+884
+00:43:09,840 --> 00:43:12,690
+This is an infinite algorithm.
+这是一个无限算法。 
+
+885
+00:43:12,889 --> 00:43:14,739
+Oops.
+哎呀。 
+
+886
+00:43:14,739 --> 00:43:15,559
+Not so hot.
+不太热。 
+
+887
+00:43:15,559 --> 00:43:19,409
+
+
+
+888
+00:43:19,409 --> 00:43:30,159
+So it's going to be infinite time on graphs with cycles.
+因此，具有周期的图将是无限的时间。 
+
+889
+00:43:30,159 --> 00:43:35,154
+
+
+
+890
+00:43:35,155 --> 00:43:35,655
+OK.
+好。 
+
+891
+00:43:35,655 --> 00:43:42,400
+For DAGs, for acyclic graphs, it actually runs in v plus e time.
+对于DAG，对于非循环图，它实际上在v加上e的时间内运行。 
+
+892
+00:43:42,400 --> 00:43:43,670
+This is the good case.
+这是很好的情况。 
+
+893
+00:43:43,670 --> 00:43:46,730
+In this situation we can use this formula.
+在这种情况下，我们可以使用此公式。 
+
+894
+00:43:46,929 --> 00:43:48,940
+The time is equal to the number of subproblems
+时间等于子问题的数量
+
+895
+00:43:48,940 --> 00:43:52,320
+times the time per subproblem.
+乘以每个子问题的时间。 
+
+896
+00:43:52,320 --> 00:43:55,039
+So I guess we have to think about that a little bit.
+所以我想我们必须考虑一下。 
+
+897
+00:43:55,039 --> 00:43:55,719
+Where's my code?
+我的代码在哪里？ 
+
+898
+00:43:55,719 --> 00:43:57,189
+Here's my code.
+这是我的代码。 
+
+899
+00:43:57,190 --> 00:44:00,659
+Number of subproblems is v. There's
+子问题数是v。 
+
+900
+00:44:00,659 --> 00:44:03,109
+v different subproblems that I'm using here.
+ v我在这里使用的不同子问题。 
+
+901
+00:44:03,110 --> 00:44:05,360
+I'm always reusing subproblems of the form delta
+我一直在重复使用delta形式的子问题
+
+902
+00:44:05,360 --> 00:44:06,400
+s comma something.
+逗号。 
+
+903
+00:44:06,400 --> 00:44:10,309
+The something could be any of the v vertices.
+某物可能是v个顶点中的任何一个。 
+
+904
+00:44:10,309 --> 00:44:14,619
+How much time do I spend per subproblem?
+每个子问题我要花多少时间？ 
+
+905
+00:44:14,619 --> 00:44:15,789
+That's a little tricky.
+有点棘手。 
+
+906
+00:44:15,789 --> 00:44:17,639
+It's the number of incoming edges
+这是传入边缘的数量
+
+907
+00:44:17,639 --> 00:44:30,710
+to v. So time for a sub problem delta of sv
+ v。因此，时间为sv的子问题delta 
+
+908
+00:44:30,710 --> 00:44:36,849
+is the indegree of v. The number of incoming edges to v.
+是v的度数。v的传入边数。 
+
+909
+00:44:36,849 --> 00:44:39,230
+So this depends on v. So I can't just
+所以这取决于v。所以我不能只是
+
+910
+00:44:39,230 --> 00:44:41,050
+take a straightforward product here.
+在这里拿一个简单的产品。 
+
+911
+00:44:41,050 --> 00:44:42,266
+What this is really saying is, you
+这实际上是在说你
+
+912
+00:44:42,465 --> 00:44:44,130
+should sum up over all sub problems
+应该总结所有子问题
+
+913
+00:44:44,130 --> 00:44:46,599
+of the time per sub problem.
+每个子问题的时间。 
+
+914
+00:44:46,599 --> 00:44:58,360
+So total time is the sum over all v and v, the indegree of v.
+因此，总时间是所有v和v的总和，即v的度数。 
+
+915
+00:44:58,360 --> 00:45:02,920
+And we know this is number of edges.
+我们知道这是边数。 
+
+916
+00:45:02,920 --> 00:45:06,650
+It's really-- so indegree plus 1, indegree plus 1.
+的确如此-所以度数加1，度数加1。 
+
+917
+00:45:06,650 --> 00:45:11,000
+So this is v plus v. OK.
+这就是v加v。确定。 
+
+918
+00:45:11,000 --> 00:45:14,059
+Handshaking again.
+再次握手。 
+
+919
+00:45:14,059 --> 00:45:14,679
+OK.
+好。 
+
+920
+00:45:14,679 --> 00:45:17,339
+Now we already knew an algorithm for shortest paths and DAGs.
+现在我们已经知道用于最短路径和DAG的算法。 
+
+921
+00:45:17,340 --> 00:45:18,650
+And it ran a v plus e time.
+而且它还运行了AV时间。 
+
+922
+00:45:18,650 --> 00:45:21,369
+So it's another way to do the same thing.
+因此，这是做同一件事的另一种方法。 
+
+923
+00:45:21,369 --> 00:45:23,929
+If you think about it long enough,
+如果您考虑了足够长的时间， 
+
+924
+00:45:23,929 --> 00:45:27,339
+this algorithm memoized, is essentially
+记住的这个算法本质上是
+
+925
+00:45:27,340 --> 00:45:30,769
+doing a depth first search to do a topological sort
+进行深度优先搜索以进行拓扑排序
+
+926
+00:45:30,769 --> 00:45:33,440
+to run one round of Bellman-Ford.
+跑一轮贝尔曼福特。 
+
+927
+00:45:33,440 --> 00:45:36,119
+So we had topological sort plus one round of Bellman-Ford.
+因此，我们进行了拓扑排序，再加上一轮Bellman-Ford。 
+
+928
+00:45:36,119 --> 00:45:38,159
+This is kind of it all rolled into one.
+这全都变成了一种。 
+
+929
+00:45:38,159 --> 00:45:40,629
+This should look kind of like the Bellman Ford relaxation
+这看起来有点像贝尔曼福特的放松
+
+930
+00:45:40,630 --> 00:45:42,960
+step, or shortest paths relaxation step.
+步骤或最短路径放松步骤。 
+
+931
+00:45:42,960 --> 00:45:44,150
+It is.
+它是。 
+
+932
+00:45:44,150 --> 00:45:46,724
+This min is really doing the same thing.
+这个分钟确实在做同样的事情。 
+
+933
+00:45:46,724 --> 00:45:47,940
+So it's really the same algorithm.
+因此，它实际上是相同的算法。 
+
+934
+00:45:48,139 --> 00:45:50,097
+But we come at it from a different perspective.
+但是我们从不同的角度来看待它。 
+
+935
+00:45:50,097 --> 00:45:52,400
+
+
+
+936
+00:45:52,400 --> 00:45:53,269
+OK.
+好。 
+
+937
+00:45:53,469 --> 00:45:55,869
+But I claim I can use this same approach
+但我声称我可以使用相同的方法
+
+938
+00:45:55,869 --> 00:45:58,829
+to solve shortest paths in general graphs, even when they
+解决一般图形中的最短路径，即使它们
+
+939
+00:45:58,829 --> 00:46:01,539
+have cycles.
+有周期。 
+
+940
+00:46:01,539 --> 00:46:04,170
+How am I going to do that?
+我该怎么做？ 
+
+941
+00:46:04,170 --> 00:46:08,980
+DAGs seem fine-- oh, what was the lesson learned here?
+ DAG看起来很好-哦，这里学到了什么？ 
+
+942
+00:46:08,980 --> 00:46:18,400
+Lesson learned is that subproblem dependencies
+吸取的教训是子问题的依赖性
+
+943
+00:46:18,400 --> 00:46:19,250
+should be acyclic.
+应该是非循环的。 
+
+944
+00:46:19,449 --> 00:46:22,239
+Otherwise, we get an infinite algorithm.
+否则，我们将得到一个无限算法。 
+
+945
+00:46:22,239 --> 00:46:24,989
+For memoization to work this is what you need.
+为了使备忘录有效，这就是您所需要的。 
+
+946
+00:46:24,989 --> 00:46:26,049
+It's all you need.
+这就是您所需要的。 
+
+947
+00:46:26,050 --> 00:46:29,590
+
+
+
+948
+00:46:29,590 --> 00:46:30,090
+OK.
+好。 
+
+949
+00:46:30,090 --> 00:46:32,460
+We've almost seen this already.
+我们几乎已经看到了这一点。 
+
+950
+00:46:32,460 --> 00:46:35,090
+Because I said that, to do a bottom up algorithm
+因为我说过，要做一个自下而上的算法
+
+951
+00:46:35,090 --> 00:46:38,940
+you do a topological sort of this subproblem dependency DAG.
+您对这种子问题依赖项DAG进行了拓扑排序。 
+
+952
+00:46:39,139 --> 00:46:40,641
+I already said it should be acyclic.
+我已经说过它应该是非循环的。 
+
+953
+00:46:40,641 --> 00:46:41,139
+OK.
+好。 
+
+954
+00:46:41,139 --> 00:46:42,489
+We just forgot.
+我们只是忘记了。 
+
+955
+00:46:42,489 --> 00:46:43,871
+I didn't tell you yet.
+我还没告诉你
+
+956
+00:46:43,871 --> 00:46:45,579
+So for that to work it better be acyclic.
+因此，要使其正常工作，最好是非循环的。 
+
+957
+00:46:45,579 --> 00:46:48,869
+For DP to work, for memoization to work, it better be acyclic.
+为了使DP工作，为了使备忘录工作，最好是非循环的。 
+
+958
+00:46:48,869 --> 00:46:55,529
+If you're acyclic then this is the running time.
+如果您是非周期性的，那么这就是运行时间。 
+
+959
+00:46:55,530 --> 00:46:59,590
+So that's all general.
+这就是一般。 
+
+960
+00:46:59,590 --> 00:47:00,090
+OK.
+好。 
+
+961
+00:47:00,090 --> 00:47:02,059
+So somehow I need to take a cyclic graph
+所以我需要做一个循环图
+
+962
+00:47:02,059 --> 00:47:03,005
+and make it acyclic.
+并使其非循环。 
+
+963
+00:47:03,005 --> 00:47:08,047
+
+
+
+964
+00:47:08,047 --> 00:47:10,005
+We've actually done this already in recitation.
+实际上，我们已经在背诵中做到了这一点。 
+
+965
+00:47:10,005 --> 00:47:18,539
+
+
+
+966
+00:47:18,739 --> 00:47:22,829
+So if I have a graph-- let's take
+所以，如果我有一个图表-让我们来
+
+967
+00:47:22,829 --> 00:47:25,849
+a very simple cyclic graph.
+一个非常简单的循环图。 
+
+968
+00:47:25,849 --> 00:47:26,349
+OK.
+好。 
+
+969
+00:47:26,349 --> 00:47:29,569
+One thing I could do is explode it into multiple layers.
+我可以做的一件事就是将其爆炸成多层。 
+
+970
+00:47:29,570 --> 00:47:32,400
+We did this on quiz two in various forms.
+我们以各种形式进行了两次测验。 
+
+971
+00:47:32,400 --> 00:47:35,019
+It's like the only cool thing you can do with shortest paths,
+这就像用最短路径可以做的唯一有趣的事情， 
+
+972
+00:47:35,019 --> 00:47:37,882
+I feel like.
+我感觉像。 
+
+973
+00:47:37,882 --> 00:47:40,000
+If you want to make a shortest path problem harder,
+如果您想使最短路径问题更加困难， 
+
+974
+00:47:40,199 --> 00:47:45,596
+require that you reduce your graph to k copies of the graph.
+要求您将图形缩减为k个图形副本。 
+
+975
+00:47:45,597 --> 00:47:46,980
+I'm going to do it in a particular way
+我将以一种特殊的方式来做
+
+976
+00:47:47,179 --> 00:47:50,579
+here-- which I think you've seen in recitation-- which
+在这里-我认为您在朗诵中已经看到- 
+
+977
+00:47:50,579 --> 00:47:54,360
+is to think of this axis as time, or however you want,
+是将这个轴视为时间，或者您愿意， 
+
+978
+00:47:54,360 --> 00:47:57,090
+and make all of the edges go from each layer
+并使所有边缘都来自每一层
+
+979
+00:47:57,090 --> 00:47:58,050
+to the next layer.
+到下一层。 
+
+980
+00:47:58,050 --> 00:48:00,880
+
+
+
+981
+00:48:01,079 --> 00:48:03,469
+This should be a familiar technique.
+这应该是一种熟悉的技术。 
+
+982
+00:48:03,469 --> 00:48:05,339
+So the idea is, every time I follow
+所以想法是，每次我跟随
+
+983
+00:48:05,340 --> 00:48:07,440
+an edge I go down to the next layer.
+边缘，我进入了下一层。 
+
+984
+00:48:07,440 --> 00:48:09,539
+This makes any graph acyclic.
+这使得任何图都是非循环的。 
+
+985
+00:48:09,739 --> 00:48:11,509
+Done.
+做完了
+
+986
+00:48:11,510 --> 00:48:13,440
+What in the world does this mean?
+这到底是什么意思？ 
+
+987
+00:48:13,639 --> 00:48:14,549
+What is it doing?
+到底在做什么
+
+988
+00:48:14,550 --> 00:48:20,070
+
+
+
+989
+00:48:20,070 --> 00:48:21,960
+What does it mean?
+这是什么意思？ 
+
+990
+00:48:21,960 --> 00:48:23,099
+Double rainbow.
+双彩虹。 
+
+991
+00:48:23,099 --> 00:48:23,599
+All right.
+好吧。 
+
+992
+00:48:23,599 --> 00:48:24,432
+AUDIENCE: [LAUGHTER]
+观众：[笑声] 
+
+993
+00:48:24,432 --> 00:48:26,693
+PROFESSOR: So-- I don't know how I've
+教授：所以-我不知道我过得如何
+
+994
+00:48:26,693 --> 00:48:28,610
+gone so long in the semester without referring
+这个学期花了这么长时间没有提到
+
+995
+00:48:28,610 --> 00:48:29,360
+to double rainbow.
+加倍彩虹。 
+
+996
+00:48:29,360 --> 00:48:30,480
+It used to be my favorite.
+曾经是我的最爱。 
+
+997
+00:48:30,679 --> 00:48:31,179
+All right.
+好吧。 
+
+998
+00:48:31,179 --> 00:48:34,569
+So here's what it means.
+这就是它的意思。 
+
+999
+00:48:34,570 --> 00:48:36,818
+Delta sub k of sv.
+ SV的Delta sub k。 
+
+1000
+00:48:37,018 --> 00:48:38,559
+I'm going to define this first-- this
+我先定义这个
+
+1001
+00:48:38,559 --> 00:48:41,639
+is a new kind of subproblem-- which
+是一种新的子问题- 
+
+1002
+00:48:41,639 --> 00:48:49,219
+is, what is the shortest-- what is the weight of the shortest
+最短的是什么-最短的重量是多少
+
+1003
+00:48:49,219 --> 00:48:54,524
+s to v path that uses, at most, k edges.
+ s到v的路径，最多使用k条边。 
+
+1004
+00:48:54,525 --> 00:48:58,731
+
+
+
+1005
+00:48:58,731 --> 00:49:00,940
+So I want it to be shortest in terms of total weight,
+所以我希望它的总重量最短， 
+
+1006
+00:49:00,940 --> 00:49:03,090
+but I also want it to use few edges total.
+但我也希望它总共使用很少的边缘。 
+
+1007
+00:49:03,090 --> 00:49:05,000
+So this is going to be 0.
+所以这将是0。 
+
+1008
+00:49:05,199 --> 00:49:08,579
+In some sense, if you look at-- so here's s
+从某种意义上讲，如果您看的话-这就是
+
+1009
+00:49:08,579 --> 00:49:11,889
+and I'm always going to make s this.
+而且我总是要做到这一点。 
+
+1010
+00:49:11,889 --> 00:49:15,369
+And then this is going to be v in the zero situation.
+然后在零情况下将为v。 
+
+1011
+00:49:15,369 --> 00:49:17,460
+This is going to be v in the one situation,
+在一种情况下这将是v 
+
+1012
+00:49:17,460 --> 00:49:20,599
+v-- so if I look at this v, I look at the shortest
+ v--所以如果我看这个v，我看最短的
+
+1013
+00:49:20,599 --> 00:49:24,039
+path from s to v, that is delta sub 0 of sv.
+从s到v的路径，即sv的增量sub 0。 
+
+1014
+00:49:24,039 --> 00:49:28,460
+So maybe I'll call this v sub 0, v sub 1, v sub 2.
+因此，也许我将其称为v sub 0，v sub 1，v sub 2。 
+
+1015
+00:49:28,460 --> 00:49:28,960
+OK.
+好。 
+
+1016
+00:49:28,960 --> 00:49:30,585
+Shortest path from here to here is,
+从这里到这里的最短路径是
+
+1017
+00:49:30,585 --> 00:49:32,389
+there's no way to get there on 0 edges.
+没有办法在0边到达那里。 
+
+1018
+00:49:32,389 --> 00:49:33,969
+Shortest path from here to here, that
+从这里到这里的最短路径
+
+1019
+00:49:33,969 --> 00:49:38,165
+is the best way to get there with, at most, one edge.
+最多只有一条优势才能到达那里。 
+
+1020
+00:49:38,166 --> 00:49:39,539
+Shortest path from here to here--
+从这里到这里的最短路径
+
+1021
+00:49:39,539 --> 00:49:41,769
+well, if I add some vertical edges too,
+好吧，如果我也添加一些垂直边缘， 
+
+1022
+00:49:41,769 --> 00:49:43,436
+I guess, cheating a little bit.
+我想，有点作弊。 
+
+1023
+00:49:43,436 --> 00:49:45,059
+Then this is the best way to get from s
+那么这是从s获得的最好方法
+
+1024
+00:49:45,059 --> 00:49:46,960
+to v using at most two edges.
+至v使用最多两个边缘。 
+
+1025
+00:49:46,960 --> 00:49:51,000
+And then you get a recurrence which
+然后你会复发
+
+1026
+00:49:51,000 --> 00:49:54,750
+is the min over all last edges.
+是所有最后一条边的最小值。 
+
+1027
+00:49:54,750 --> 00:49:56,570
+So I'm just copying that recurrence,
+所以我只是复制那个重复， 
+
+1028
+00:49:56,570 --> 00:50:03,039
+but realizing that the s to u part uses one fewer edge.
+但意识到从s到u的部分少了一条边。 
+
+1029
+00:50:03,039 --> 00:50:04,331
+And then I use the edge uv.
+然后，我使用边缘uv。 
+
+1030
+00:50:04,331 --> 00:50:06,998
+
+
+
+1031
+00:50:07,197 --> 00:50:07,697
+OK.
+好。 
+
+1032
+00:50:07,697 --> 00:50:09,329
+That's our new recurrence.
+那是我们的新复发。 
+
+1033
+00:50:09,329 --> 00:50:11,380
+By adding this k parameter I've made
+通过添加这个k参数，我做了
+
+1034
+00:50:11,380 --> 00:50:13,980
+this recurrence on subproblems acyclic.
+子问题的这种复发是非周期性的。 
+
+1035
+00:50:14,179 --> 00:50:17,049
+Unfortunately, I've increased the number of subproblems.
+不幸的是，我增加了子问题的数量。 
+
+1036
+00:50:17,050 --> 00:50:28,250
+The number of subproblems now is v squared.
+现在，子问题的数量为v平方。 
+
+1037
+00:50:28,250 --> 00:50:30,840
+Technically, v times v minus 1.
+从技术上讲，v乘以v减去1。 
+
+1038
+00:50:30,840 --> 00:50:32,880
+Because I really-- actually, v squared.
+因为我真的-实际上，v平方。 
+
+1039
+00:50:32,880 --> 00:50:34,130
+Sorry.
+抱歉。 
+
+1040
+00:50:34,130 --> 00:50:36,860
+I start at 0.
+我从0开始。 
+
+1041
+00:50:36,860 --> 00:50:46,210
+And what I care about, my goal, is delta sub v minus 1 of sv.
+我关心的目标是delta sub v减去sv 1。 
+
+1042
+00:50:46,210 --> 00:50:47,900
+Because by Bellman-Ford analysis I
+因为通过贝尔曼·福特的分析我
+
+1043
+00:50:47,900 --> 00:50:51,269
+know that I only care about simple paths, paths of length
+知道我只关心简单的路径，长度的路径
+
+1044
+00:50:51,269 --> 00:50:52,039
+at most v minus 1.
+最多v减1。 
+
+1045
+00:50:52,039 --> 00:50:53,873
+I'm assuming here no negative weight cycles.
+我假设这里没有负重量循环。 
+
+1046
+00:50:53,873 --> 00:50:55,250
+I should've said that earlier.
+我应该早一点说。 
+
+1047
+00:50:55,449 --> 00:50:58,619
+If you assume that, then this is what I care about.
+如果您认为那样，那就是我所关心的。 
+
+1048
+00:50:58,619 --> 00:51:00,380
+So k ranges from 0 to v minus 1.
+所以k的范围是0到v减去1。 
+
+1049
+00:51:00,380 --> 00:51:01,960
+So there are v choices for k.
+因此，k有v个选择。 
+
+1050
+00:51:02,159 --> 00:51:04,859
+There are v choices for v. So the number of subproblems
+ v有v个选择。因此，子问题的数量
+
+1051
+00:51:04,860 --> 00:51:05,510
+is v squared.
+ V平方。 
+
+1052
+00:51:05,510 --> 00:51:07,230
+How much time do I spend per subproblem?
+每个子问题我要花多少时间？ 
+
+1053
+00:51:07,230 --> 00:51:08,271
+Well, the same as before.
+好吧，和以前一样。 
+
+1054
+00:51:08,271 --> 00:51:09,690
+The indegree-- where did I write it?
+学位-我在哪里写的？ 
+
+1055
+00:51:09,889 --> 00:51:13,011
+Up here-- the indegree of that problem.
+在这里-该问题的严重性。 
+
+1056
+00:51:13,012 --> 00:51:14,269
+So what I'm really doing is summing
+所以我真正在做的是总结
+
+1057
+00:51:14,469 --> 00:51:17,399
+over all v of the indegree.
+在所有度数上
+
+1058
+00:51:17,400 --> 00:51:19,849
+And then I multiply it by v. So the running time,
+然后我将其乘以v。因此运行时间
+
+1059
+00:51:19,849 --> 00:51:25,239
+total running time is ve.
+总运行时间为ve。 
+
+1060
+00:51:25,239 --> 00:51:26,739
+Sound familiar?
+听起来有点熟？ 
+
+1061
+00:51:26,739 --> 00:51:29,659
+This is Bellman-Ford's algorithm again.
+这又是Bellman-Ford的算法。 
+
+1062
+00:51:29,659 --> 00:51:32,409
+And this is actually where Bellman-Ford algorithm
+这实际上是Bellman-Ford算法的所在
+
+1063
+00:51:32,409 --> 00:51:35,809
+came from is this view on dynamic programming.
+来自这种对动态编程的看法。 
+
+1064
+00:51:35,809 --> 00:51:38,639
+So we're seeing yet another way to do Bellman-Ford.
+因此，我们看到了另一种做Bellman-Ford的方法。 
+
+1065
+00:51:38,639 --> 00:51:39,659
+It may seem familiar.
+似乎很熟悉。 
+
+1066
+00:51:39,659 --> 00:51:41,159
+But in the next three lectures we're
+但是在接下来的三讲中
+
+1067
+00:51:41,159 --> 00:51:42,742
+going to see a whole bunch of problems
+会看到很多问题
+
+1068
+00:51:42,742 --> 00:51:44,650
+that can succumb to the same approach.
+可以屈服于相同的方法。 
+
+1069
+00:51:44,650 --> 00:51:49,650
+And that's super cool.
+那太酷了。 
+

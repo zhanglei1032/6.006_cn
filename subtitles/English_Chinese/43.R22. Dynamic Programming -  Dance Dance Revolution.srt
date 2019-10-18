@@ -1,0 +1,6790 @@
+﻿1
+00:00:00,000 --> 00:00:00,090
+
+
+
+2
+00:00:00,090 --> 00:00:01,800
+The following content is provided
+提供以下内容
+
+3
+00:00:01,800 --> 00:00:04,030
+under a Creative Commons license.
+根据知识共享许可。 
+
+4
+00:00:04,030 --> 00:00:06,679
+Your support will help MIT OpenCourseWare continue
+您的支持将帮助MIT OpenCourseWare继续
+
+5
+00:00:06,879 --> 00:00:10,740
+to offer high quality educational resources for free.
+免费提供高质量的教育资源。 
+
+6
+00:00:10,740 --> 00:00:13,349
+To make a donation, or view additional materials
+捐款或查看其他材料
+
+7
+00:00:13,349 --> 00:00:17,256
+from hundreds of MIT courses, visit MIT OpenCourseWare
+从数百门麻省理工学院的课程中，访问MIT OpenCourseWare 
+
+8
+00:00:17,256 --> 00:00:17,881
+at ocw.mit.edu.
+在ocw.mit.edu。 
+
+9
+00:00:17,881 --> 00:00:27,000
+
+
+
+10
+00:00:27,000 --> 00:00:28,980
+PROFESSOR: So we're going to do a problem that
+教授：所以我们要解决一个问题
+
+11
+00:00:28,980 --> 00:00:30,129
+looks like the guitar problem.
+看起来像吉他问题。 
+
+12
+00:00:30,329 --> 00:00:31,911
+But it's a bit cooler.
+但这有点凉。 
+
+13
+00:00:31,911 --> 00:00:33,619
+At the same time, there are fewer states,
+同时，状态更少
+
+14
+00:00:33,619 --> 00:00:35,369
+so I think it's easier to manage.
+所以我认为它更容易管理。 
+
+15
+00:00:35,369 --> 00:00:38,285
+How many people know how to play DDR?
+有多少人知道怎么玩DDR？ 
+
+16
+00:00:38,286 --> 00:00:38,989
+AUDIENCE: Well.
+听众：嗯。 
+
+17
+00:00:39,189 --> 00:00:40,479
+PROFESSOR: Yeah.
+教授：是的。 
+
+18
+00:00:40,479 --> 00:00:40,979
+OK.
+好。 
+
+19
+00:00:40,979 --> 00:00:43,831
+How many people know the rules of playing DDR?
+有多少人知道玩DDR的规则？ 
+
+20
+00:00:43,832 --> 00:00:46,039
+Because otherwise I won't be able to lift my hand up.
+因为否则我将无法举起我的手。 
+
+21
+00:00:46,039 --> 00:00:47,969
+OK.
+好。 
+
+22
+00:00:47,969 --> 00:00:51,640
+OK, so let's go through an algorithmic model.
+好的，让我们看一下算法模型。 
+
+23
+00:00:51,640 --> 00:00:58,509
+So, you have a board that basically looks like this.
+因此，您拥有一个基本上像这样的板。 
+
+24
+00:00:58,509 --> 00:01:03,089
+And you have four touch sensitive pads.
+您有四个触摸感应板。 
+
+25
+00:01:03,090 --> 00:01:05,140
+Up, down, left, right.
+上下左右。 
+
+26
+00:01:05,140 --> 00:01:08,230
+And then you have a center position.
+然后，您将处于中心位置。 
+
+27
+00:01:08,230 --> 00:01:13,340
+You also have a sheet of notes that looks something like this.
+您还会看到一张看起来像这样的笔记。 
+
+28
+00:01:13,340 --> 00:01:23,700
+Say, up, up down, down, up down, up, up down, left right,
+说，向上，向上，向下，向下，向上，向下，向上，向上，向下，向左，向右， 
+
+29
+00:01:23,700 --> 00:01:27,039
+left, left right, right.
+左，左，右，右。 
+
+30
+00:01:27,039 --> 00:01:27,829
+So on and so forth.
+等等等等。 
+
+31
+00:01:27,829 --> 00:01:31,120
+
+
+
+32
+00:01:31,120 --> 00:01:34,760
+So when you see an arrow of up, that's
+因此，当您看到向上的箭头时， 
+
+33
+00:01:34,760 --> 00:01:36,929
+a constraint that says one of your feet
+说你一只脚的约束
+
+34
+00:01:37,129 --> 00:01:40,310
+has to be on the up arrow.
+必须在向上箭头上。 
+
+35
+00:01:40,310 --> 00:01:43,409
+Has to tap the up arrow, actually.
+实际上必须点击向上箭头。 
+
+36
+00:01:43,409 --> 00:01:45,469
+There's no constraint for the other foot.
+另一只脚没有任何约束。 
+
+37
+00:01:45,469 --> 00:01:47,769
+So your other foot can be anywhere else on the board.
+因此，另一只脚可以放在板上的其他任何位置。 
+
+38
+00:01:47,769 --> 00:01:49,339
+It doesn't matter.
+没关系
+
+39
+00:01:49,340 --> 00:01:52,980
+You are also allowed to tap the board some extra times.
+您也可以在某些额外时间轻按板子。 
+
+40
+00:01:52,980 --> 00:01:56,929
+So if you don't have a note showing up,
+因此，如果您没有出现注释， 
+
+41
+00:01:57,129 --> 00:01:58,780
+you can still hit the board.
+您仍然可以发挥作用。 
+
+42
+00:01:58,780 --> 00:02:00,340
+And there's no penalty.
+而且没有罚款。 
+
+43
+00:02:00,340 --> 00:02:02,340
+So you can hop around as many times as you want,
+这样您就可以随意跳很多次， 
+
+44
+00:02:02,340 --> 00:02:06,260
+or as many times as you can, until you run out of breath.
+或尽可能多的次数，直到您喘不过气来。 
+
+45
+00:02:06,260 --> 00:02:09,550
+So up basically means, it's actually one foot has to be up.
+因此，上升基本上意味着必须抬起一只脚。 
+
+46
+00:02:09,550 --> 00:02:10,900
+The other one center.
+另一个中心。 
+
+47
+00:02:11,099 --> 00:02:13,588
+Also, of course, because of the design of the board,
+而且，当然，由于主板的设计， 
+
+48
+00:02:13,588 --> 00:02:15,129
+it doesn't matter what foot is where.
+哪只脚在哪里都没关系。 
+
+49
+00:02:15,129 --> 00:02:18,180
+
+
+
+50
+00:02:18,180 --> 00:02:22,251
+So what are possible goals for this game?
+那么这个游戏可能有什么目标呢？ 
+
+51
+00:02:22,251 --> 00:02:25,000
+AUDIENCE: Not to get an F.
+听众：不要拿F。 
+
+52
+00:02:25,000 --> 00:02:27,240
+PROFESSOR: OK.
+教授：好的。 
+
+53
+00:02:27,240 --> 00:02:29,711
+AUDIENCE: Hit all the arrows when
+听众： 
+
+54
+00:02:29,711 --> 00:02:32,637
+they line up with the top row.
+他们与第一行对齐。 
+
+55
+00:02:32,637 --> 00:02:33,219
+PROFESSOR: OK.
+教授：好的。 
+
+56
+00:02:33,219 --> 00:02:36,680
+So there are two different ways of doing it.
+因此，有两种不同的实现方法。 
+
+57
+00:02:36,680 --> 00:02:38,659
+One, you said, "not to get an F."
+您说过一个，“不要拿F。” 
+
+58
+00:02:38,659 --> 00:02:44,020
+So I would say, given some limited set of skills.
+所以我要说的是，由于技能有限。 
+
+59
+00:02:44,020 --> 00:02:49,219
+So given a set of skills, or your skill level
+因此，给定一组技能或您的技能水平
+
+60
+00:02:49,219 --> 00:02:50,979
+maximizes your score. right?
+最大化您的分数。对？ 
+
+61
+00:02:50,979 --> 00:02:51,605
+AUDIENCE: Yeah.
+听众：是的。 
+
+62
+00:02:51,605 --> 00:02:53,229
+PROFESSOR: This is dynamic programming,
+教授：这是动态编程， 
+
+63
+00:02:53,229 --> 00:02:55,114
+so we always want to maximize something.
+所以我们一直想最大化某些东西。 
+
+64
+00:02:55,115 --> 00:02:58,550
+
+
+
+65
+00:02:58,550 --> 00:03:01,960
+Now, if you're really good, then another possible goal
+现在，如果您真的很好，那么另一个可能的目标
+
+66
+00:03:02,159 --> 00:03:10,740
+is hit all the notes with a minimum amount of effort.
+以最小的努力击中所有音符。 
+
+67
+00:03:10,740 --> 00:03:13,495
+
+
+
+68
+00:03:13,495 --> 00:03:15,120
+If you're going to be in a competition,
+如果您要参加比赛， 
+
+69
+00:03:15,120 --> 00:03:16,703
+and you're going to be doing 10 songs,
+您将要制作10首歌曲， 
+
+70
+00:03:16,703 --> 00:03:19,689
+you don't want to die after the first song, right?
+你不想死于第一首歌，对吗？ 
+
+71
+00:03:19,889 --> 00:03:22,369
+So, assuming you can do everything reasonably well,
+因此，假设您可以将所有事情做好， 
+
+72
+00:03:22,370 --> 00:03:25,830
+this is another possible goal.
+这是另一个可能的目标。 
+
+73
+00:03:25,830 --> 00:03:28,804
+Any other goals?
+还有其他目标吗？ 
+
+74
+00:03:28,804 --> 00:03:29,969
+So we're brainstorming here.
+所以我们在这里集思广益。 
+
+75
+00:03:29,969 --> 00:03:32,210
+This isn't set in stone.
+这不是一成不变的。 
+
+76
+00:03:32,210 --> 00:03:36,150
+We've already seen the formal solution for this problem.
+我们已经看到了解决此问题的正式解决方案。 
+
+77
+00:03:36,150 --> 00:03:38,430
+So I want to play with it for a little bit, right?
+所以我想玩一点，对吗？ 
+
+78
+00:03:38,430 --> 00:03:42,909
+We brought a DDR pad, so I want to play with it.
+我们带来了DDR垫，所以我想玩它。 
+
+79
+00:03:42,909 --> 00:03:45,990
+What else could you hope to maximize or minimize
+您还希望最大化或最小化什么
+
+80
+00:03:45,990 --> 00:03:47,205
+for with dynamic programming?
+对于动态编程？ 
+
+81
+00:03:47,205 --> 00:03:51,262
+
+
+
+82
+00:03:51,262 --> 00:03:54,590
+AUDIENCE: Not look ridiculous.
+听众：看起来并不荒谬。 
+
+83
+00:03:54,590 --> 00:03:56,469
+PROFESSOR: OK.
+教授：好的。 
+
+84
+00:03:56,469 --> 00:03:59,961
+AUDIENCE: I guess we're looking at the cost of each move,
+观众：我想我们正在考虑的是每一步的成本， 
+
+85
+00:03:59,961 --> 00:04:00,460
+right?
+对？ 
+
+86
+00:04:00,460 --> 00:04:02,180
+PROFESSOR: So, hit all the notes.
+教授：所以，打所有音符。 
+
+87
+00:04:02,180 --> 00:04:09,685
+Minimum effort, or otherwise say best appearance.
+花费最少的精力，或者说是最好的外观。 
+
+88
+00:04:09,685 --> 00:04:13,530
+
+
+
+89
+00:04:13,530 --> 00:04:18,230
+So every move looks somewhat good or somewhat bad.
+因此，每一步看起来都有些好坏。 
+
+90
+00:04:18,230 --> 00:04:21,269
+And you want to do the moves that look as good as possible.
+您想做的动作看起来尽可能的好。 
+
+91
+00:04:21,269 --> 00:04:23,410
+So this maximizes entertainment, right?
+因此，这可以最大程度地提高娱乐性，对吗？ 
+
+92
+00:04:23,410 --> 00:04:28,439
+
+
+
+93
+00:04:28,639 --> 00:04:32,829
+if you're on TV, you probably want this.
+如果您在电视上，则可能需要这样做。 
+
+94
+00:04:32,829 --> 00:04:34,589
+Now suppose you are in a competition
+现在假设您正在参加比赛
+
+95
+00:04:34,589 --> 00:04:36,639
+and you only have one track to play.
+而且只有一首曲目可以播放。 
+
+96
+00:04:36,639 --> 00:04:41,919
+
+
+
+97
+00:04:41,920 --> 00:04:45,254
+AUDIENCE: Well, you know where all the notes are.
+听众：好吧，你知道所有笔记在哪里。 
+
+98
+00:04:45,254 --> 00:04:45,920
+PROFESSOR: Sure.
+教授：当然可以。 
+
+99
+00:04:45,920 --> 00:04:47,718
+Like, we assume that we know this ahead of time.
+就像，我们假设我们提前知道这一点。 
+
+100
+00:04:47,918 --> 00:04:49,031
+So you've memorized this.
+所以你已经记住了。 
+
+101
+00:04:49,031 --> 00:04:50,990
+And you're trying to compute the best strategy,
+而且您正在尝试计算最佳策略， 
+
+102
+00:04:50,990 --> 00:04:52,031
+so you can memorize that.
+所以你可以记住。 
+
+103
+00:04:52,031 --> 00:04:53,980
+Then when you go and play, you dominate.
+然后，当您去玩时，您就占了上风。 
+
+104
+00:04:53,980 --> 00:04:55,220
+AUDIENCE: Yeah.
+听众：是的。 
+
+105
+00:04:55,220 --> 00:04:56,769
+PROFESSOR: So, if you have one track,
+教授：所以，如果您有一个曲目， 
+
+106
+00:04:56,769 --> 00:04:58,560
+then I would say that what you'd want to do
+那我想说的是你想做什么
+
+107
+00:04:58,560 --> 00:05:00,949
+is minimize your probability of failure.
+使您的失败可能性降到最低。 
+
+108
+00:05:00,949 --> 00:05:01,449
+Right?
+对？ 
+
+109
+00:05:01,449 --> 00:05:05,459
+So given the probability of failure for each possible move.
+因此，给定每个可能动作失败的可能性。 
+
+110
+00:05:05,459 --> 00:05:07,750
+You want to minimize the overall probability of failure
+您希望最大程度地减少失败的可能性
+
+111
+00:05:07,750 --> 00:05:10,170
+so your teammates won't hate you.
+这样你的队友就不会讨厌你。 
+
+112
+00:05:10,170 --> 00:05:14,386
+So, hit all the notes and minimize.
+因此，点击所有音符并最小化。 
+
+113
+00:05:14,386 --> 00:05:23,836
+
+
+
+114
+00:05:24,036 --> 00:05:26,370
+So this one's a little bit different from the other ones
+所以这个跟其他的有点不同
+
+115
+00:05:26,370 --> 00:05:27,752
+because all the other ones are already
+因为其他所有的都已经
+
+116
+00:05:27,952 --> 00:05:30,389
+set up as a nice problem where you add up things.
+设置为一个很好的问题，在其中添加东西。 
+
+117
+00:05:30,389 --> 00:05:31,879
+So you can solve them with graphs
+所以你可以用图来解决
+
+118
+00:05:31,879 --> 00:05:33,769
+or with dynamic programming.
+或使用动态编程。 
+
+119
+00:05:33,769 --> 00:05:36,579
+If you want to minimize the probability of failure,
+如果您想最大程度地减少失败的可能性， 
+
+120
+00:05:36,579 --> 00:05:39,319
+then you want to maximize the probability of success.
+那么您想最大化成功的可能性。 
+
+121
+00:05:39,319 --> 00:05:41,839
+The probability of succeeding on all your moves
+您的所有举动成功的可能性
+
+122
+00:05:41,839 --> 00:05:44,549
+is the product of the probability
+是概率的乘积
+
+123
+00:05:44,550 --> 00:05:46,321
+of succeeding on each move.
+每一步成功的秘诀。 
+
+124
+00:05:46,321 --> 00:05:46,620
+All right?
+好吧？ 
+
+125
+00:05:46,819 --> 00:05:48,110
+So if you have five moves, then you
+因此，如果您有五步动作，那么您
+
+126
+00:05:48,110 --> 00:05:49,389
+have five individual probabilities.
+有五个个体概率。 
+
+127
+00:05:49,589 --> 00:05:50,539
+You multiply them up.
+你乘以它们。 
+
+128
+00:05:50,540 --> 00:05:53,819
+And that's the probability that you execute the whole sequence
+这就是您执行整个序列的可能性
+
+129
+00:05:53,819 --> 00:05:55,930
+correctly, and not stumble.
+正确，而不是绊倒。 
+
+130
+00:05:55,930 --> 00:05:57,430
+So we have products instead of sums.
+所以我们有乘积而不是和。 
+
+131
+00:05:57,430 --> 00:05:57,759
+Yes?
+是？ 
+
+132
+00:05:57,759 --> 00:06:00,093
+AUDIENCE: Isn't it related to the maximizing score goal?
+听众：这与最大化得分目标有关吗？ 
+
+133
+00:06:00,093 --> 00:06:04,379
+
+
+
+134
+00:06:04,579 --> 00:06:07,240
+PROFESSOR: You can.
+教授：可以。 
+
+135
+00:06:07,240 --> 00:06:09,009
+Well, not necessarily because this one
+好吧，不一定因为这个
+
+136
+00:06:09,209 --> 00:06:12,519
+says that you only have some possible moves.
+说你只有一些可能的举动。 
+
+137
+00:06:12,519 --> 00:06:15,449
+I think in the end, all of them, except for this last one,
+最后，我认为所有这些人，除了最后一个， 
+
+138
+00:06:15,449 --> 00:06:17,839
+can be solved using the recursion depth we have for it.
+可以使用我们拥有的递归深度来解决。 
+
+139
+00:06:17,839 --> 00:06:19,839
+The last one, you have to do a bit of massaging.
+最后一个，您需要做一些按摩。 
+
+140
+00:06:19,839 --> 00:06:21,338
+And we're going over that right now.
+我们现在要解决这个问题。 
+
+141
+00:06:21,338 --> 00:06:24,430
+
+
+
+142
+00:06:24,430 --> 00:06:29,610
+So, you have products instead of sums.
+因此，您需要乘积而不是总和。 
+
+143
+00:06:29,610 --> 00:06:31,694
+How do you turn products into sums?
+您如何将产品转化为总和？ 
+
+144
+00:06:31,694 --> 00:06:32,909
+AUDIENCE: Logs?
+听众：原木？ 
+
+145
+00:06:32,910 --> 00:06:33,850
+PROFESSOR: Yep.
+教授：是的。 
+
+146
+00:06:33,850 --> 00:06:38,220
+So, for this one, I would want to use logs,
+因此，对于这一点，我想使用日志， 
+
+147
+00:06:38,220 --> 00:06:40,250
+so that I can say that I want to maximize
+这样我可以说我想最大化
+
+148
+00:06:40,449 --> 00:06:42,199
+the log probability of success.
+成功的对数概率。 
+
+149
+00:06:42,199 --> 00:06:45,659
+Which is just the sum of the log probabilities for each move.
+这只是每一步的对数概率之和。 
+
+150
+00:06:45,660 --> 00:06:49,379
+And then it looks like dynamic programming, as usual.
+然后像往常一样看起来像动态编程。 
+
+151
+00:06:49,579 --> 00:06:51,550
+Now, if I wouldn't want to use logs,
+现在，如果我不想使用日志， 
+
+152
+00:06:51,550 --> 00:06:56,920
+if I'm using the DP formulation, where I'm doing recursion,
+如果我使用DP公式进行递归， 
+
+153
+00:06:56,920 --> 00:06:58,790
+I can incorporate products there.
+我可以在这里合并产品。 
+
+154
+00:06:58,790 --> 00:07:00,290
+But it turns out, I didn't practice.
+事实证明，我没有练习。 
+
+155
+00:07:00,290 --> 00:07:02,331
+If you have a lot of numbers that are close to 1,
+如果您有很多接近1的数字
+
+156
+00:07:02,331 --> 00:07:05,069
+or that are close to 0, so all the easy moves
+或接近0，所以所有容易的动作
+
+157
+00:07:05,069 --> 00:07:07,920
+are going to be really close to 1, for example.
+例如，实际上将接近1。 
+
+158
+00:07:07,920 --> 00:07:10,310
+If you have a lot of numbers that are close to 1 or close
+如果您有很多数字接近1或接近
+
+159
+00:07:10,310 --> 00:07:12,459
+to 0, if you multiply them up, you
+到0，如果将它们相乘， 
+
+160
+00:07:12,459 --> 00:07:13,829
+get numerical instabilities.
+得到数值不稳定性。 
+
+161
+00:07:13,829 --> 00:07:18,000
+So we get the number that's really close to 1.
+所以我们得到的数字实际上接近于1。 
+
+162
+00:07:18,000 --> 00:07:23,100
+So for example, if I'm choosing whether to do, say I'm here,
+例如，如果我要选择是否要说我在这里， 
+
+163
+00:07:23,100 --> 00:07:26,230
+and I'm thinking, do I want to move like this?
+我在想，我想这样走吗？ 
+
+164
+00:07:26,230 --> 00:07:31,259
+Or do I want to move like this, and then like this?
+还是我想这样移动然后再这样移动？ 
+
+165
+00:07:31,259 --> 00:07:32,969
+These are both pretty easy moves.
+这些都是很容易的举动。 
+
+166
+00:07:32,970 --> 00:07:35,785
+So, in both cases, we're looking at probabilities
+因此，在两种情况下，我们都在研究概率
+
+167
+00:07:35,785 --> 00:07:38,560
+of success of 99.991%.
+成功率的99.991％。 
+
+168
+00:07:38,560 --> 00:07:42,009
+And maybe 99.992%.
+也许是99.992％。 
+
+169
+00:07:42,009 --> 00:07:44,444
+So if you have numbers with probabilities
+所以如果你有概率的数字
+
+170
+00:07:44,444 --> 00:07:46,819
+that are really close to 1, and if you have a lot of them
+确实接近1，如果有很多
+
+171
+00:07:46,819 --> 00:07:48,959
+and you try to multiply them, you're
+然后尝试将它们相乘
+
+172
+00:07:48,959 --> 00:07:50,989
+going to get a bad result.
+会得到不好的结果。 
+
+173
+00:07:50,990 --> 00:07:54,439
+So all the products are going to start looking the same.
+因此，所有产品都将开始看起来相同。 
+
+174
+00:07:54,439 --> 00:07:56,139
+So we're going to get a random solution,
+因此，我们将获得一个随机的解决方案， 
+
+175
+00:07:56,139 --> 00:07:57,529
+instead of what you want.
+而不是你想要的。 
+
+176
+00:07:57,529 --> 00:07:58,639
+This is a practical thing.
+这是实际的事情。 
+
+177
+00:07:58,639 --> 00:08:00,099
+It's called numerical instability.
+这就是数值不稳定性。 
+
+178
+00:08:00,100 --> 00:08:02,310
+And it's a practical reason why you'd
+这是您为什么要这样做的实际原因
+
+179
+00:08:02,310 --> 00:08:06,788
+want to use logs, instead of multiplying things up.
+想要使用日志，而不是事半功倍。 
+
+180
+00:08:06,788 --> 00:08:08,329
+So it's not just a theoretical thing.
+因此，这不仅仅是理论上的事情。 
+
+181
+00:08:08,329 --> 00:08:12,199
+It also makes life nice in practice.
+在实践中，这也使生活变得美好。 
+
+182
+00:08:12,199 --> 00:08:12,699
+OK.
+好。 
+
+183
+00:08:12,699 --> 00:08:15,269
+So we have a goal that looks like this.
+因此，我们的目标看起来像这样。 
+
+184
+00:08:15,269 --> 00:08:16,629
+Say, let's go for this one.
+说，让我们开始吧。 
+
+185
+00:08:16,629 --> 00:08:18,819
+Hit all the notes, minimize the effort.
+打所有的笔记，最大程度地减少工作量。 
+
+186
+00:08:18,819 --> 00:08:23,480
+And all the other ones can be reduced to this one.
+所有其他的都可以简化为这个。 
+
+187
+00:08:23,480 --> 00:08:25,490
+We need to define effort, right?
+我们需要定义努力，对吗？ 
+
+188
+00:08:25,490 --> 00:08:29,300
+Let's say that we have a function called delta, that
+假设我们有一个叫做delta的函数
+
+189
+00:08:29,300 --> 00:08:33,279
+takes two foot locations-- so, where both of my feet
+需要两个脚的位置-所以，我的两只脚
+
+190
+00:08:33,279 --> 00:08:38,500
+are-- from and to.
+是-从和到。 
+
+191
+00:08:38,500 --> 00:08:48,470
+And it gives me a number from 0 to 1, where 0 is really easy.
+它给了我一个从0到1的数字，其中0真的很简单。 
+
+192
+00:08:48,470 --> 00:08:49,980
+And 1 is really hard.
+而且1真的很难。 
+
+193
+00:08:49,980 --> 00:08:54,190
+
+
+
+194
+00:08:54,190 --> 00:08:58,480
+So from would look something like, my left foot is up.
+因此，从看起来像，我的左脚向上。 
+
+195
+00:08:58,480 --> 00:09:00,230
+My right foot is centered.
+我的右脚居中。 
+
+196
+00:09:00,230 --> 00:09:04,230
+To would look something like, my left foot is centered
+看起来像是我的左脚居中
+
+197
+00:09:04,230 --> 00:09:05,349
+and my right foot is up.
+我的右脚抬起
+
+198
+00:09:05,549 --> 00:09:10,729
+So basically going from here to here.
+所以基本上是从这里到这里。 
+
+199
+00:09:10,730 --> 00:09:12,427
+So from left foot up.
+所以从左脚向上。 
+
+200
+00:09:12,427 --> 00:09:13,330
+Right foot center.
+右脚中心。 
+
+201
+00:09:13,330 --> 00:09:13,960
+To here.
+到这里。 
+
+202
+00:09:13,960 --> 00:09:16,432
+
+
+
+203
+00:09:16,432 --> 00:09:18,139
+So there is some difficulty there, right?
+所以那里有些困难，对吧？ 
+
+204
+00:09:18,139 --> 00:09:19,830
+We have to jump, so it's not 0.
+我们必须跳，所以它不是0。 
+
+205
+00:09:19,830 --> 00:09:23,230
+I'm burning some calories here.
+我在这里燃烧一些卡路里。 
+
+206
+00:09:23,230 --> 00:09:25,529
+So any move that I make has some difficulty.
+因此，我的任何举动都会有些困难。 
+
+207
+00:09:25,529 --> 00:09:28,299
+And I want to solve the game so that overall I
+我想解决游戏问题，以便总的来说， 
+
+208
+00:09:28,299 --> 00:09:32,449
+have a reasonably small total difficulty.
+总难度相对较小。 
+
+209
+00:09:32,450 --> 00:09:37,089
+
+
+
+210
+00:09:37,289 --> 00:09:41,129
+OK, are we understanding the problem?
+好，我们了解问题了吗？ 
+
+211
+00:09:41,129 --> 00:09:43,610
+So we have three possible avenues here.
+因此，这里有三个可能的途径。 
+
+212
+00:09:43,610 --> 00:09:47,039
+We can start solving it using dynamic programming.
+我们可以开始使用动态编程来解决它。 
+
+213
+00:09:47,039 --> 00:09:49,549
+We can start solving it using graphs.
+我们可以开始使用图形来解决它。 
+
+214
+00:09:49,549 --> 00:09:52,669
+Or we can have someone else play the DDR again so that we
+或者我们可以让其他人再次玩DDR，以便我们
+
+215
+00:09:52,669 --> 00:09:54,120
+can get more hands on experience,
+可以获得更多经验
+
+216
+00:09:54,120 --> 00:09:57,860
+and look at what a good strategy or a bad strategy looks like.
+然后看一下好策略或坏策略的模样。 
+
+217
+00:09:57,860 --> 00:09:58,860
+So you guys get to vote.
+这样你们就可以投票了。 
+
+218
+00:09:58,860 --> 00:10:01,789
+Who wants to solve this using the dynamic programming?
+谁想使用动态编程解决这个问题？ 
+
+219
+00:10:01,789 --> 00:10:04,490
+
+
+
+220
+00:10:04,490 --> 00:10:08,549
+Who wants to solve this using graphs?
+谁想用图表解决这个问题？ 
+
+221
+00:10:08,549 --> 00:10:10,379
+Who wants to get more hands on experience?
+谁想获得更多实践经验？ 
+
+222
+00:10:10,379 --> 00:10:13,019
+
+
+
+223
+00:10:13,019 --> 00:10:15,159
+Damn.
+该死的。 
+
+224
+00:10:15,159 --> 00:10:17,279
+I was hoping that DDR would win.
+我希望DDR能赢。 
+
+225
+00:10:17,279 --> 00:10:19,620
+You guys are boring.
+你们真无聊
+
+226
+00:10:19,620 --> 00:10:20,831
+So, graphs, right?
+那么，图吧？ 
+
+227
+00:10:20,831 --> 00:10:21,914
+We're going to have notes.
+我们将有笔记。 
+
+228
+00:10:21,914 --> 00:10:26,360
+
+
+
+229
+00:10:26,360 --> 00:10:27,820
+Notes represent states, right?
+注释代表状态，对不对？ 
+
+230
+00:10:27,820 --> 00:10:31,099
+So a state is where you are at some point in the game.
+因此，状态是您在游戏中处于某个位置的位置。 
+
+231
+00:10:31,299 --> 00:10:34,509
+And we'll have to define what where you are means.
+而且，我们必须定义您所在的位置。 
+
+232
+00:10:34,509 --> 00:10:37,549
+And then, when you jump, you make a move.
+然后，当您跳跃时，便采取了行动。 
+
+233
+00:10:37,549 --> 00:10:40,149
+So moves go between states.
+因此，在状态之间进行移动。 
+
+234
+00:10:40,149 --> 00:10:42,370
+So in any game, you have states and moves.
+因此，在任何游戏中，您都有状态和动作。 
+
+235
+00:10:42,370 --> 00:10:43,980
+A state is very hard to put in time.
+状态很难及时设定。 
+
+236
+00:10:43,980 --> 00:10:44,820
+And then you make a move.
+然后您采取行动。 
+
+237
+00:10:45,020 --> 00:10:45,620
+Like in chess.
+就像在国际象棋中一样。 
+
+238
+00:10:45,620 --> 00:10:47,269
+Your state is your board position.
+您的状态就是您的董事会职位。 
+
+239
+00:10:47,269 --> 00:10:49,199
+And whether you're moving, or your opponent
+不管你是移动还是对手
+
+240
+00:10:49,200 --> 00:10:50,865
+is the next to move.
+是下一步行动。 
+
+241
+00:10:50,865 --> 00:10:53,490
+And the move is when you take a piece and put it from one place
+而移动就是当您从一块放到一块放到一块
+
+242
+00:10:53,490 --> 00:10:53,989
+to another.
+到另一个。 
+
+243
+00:10:53,989 --> 00:10:57,959
+
+
+
+244
+00:10:58,159 --> 00:10:59,709
+So your vertices are states.
+因此，您的顶点就是状态。 
+
+245
+00:10:59,710 --> 00:11:03,269
+And your edges are moves.
+和你的边缘是移动。 
+
+246
+00:11:03,269 --> 00:11:05,899
+
+
+
+247
+00:11:05,899 --> 00:11:10,110
+So what's in a state?
+那么状态如何？ 
+
+248
+00:11:10,110 --> 00:11:11,849
+This is our problem.
+这是我们的问题。 
+
+249
+00:11:12,049 --> 00:11:13,740
+Whether we're solving it with graphs
+是否用图来解决
+
+250
+00:11:13,740 --> 00:11:16,139
+or with dynamic programming, this
+或通过动态编程， 
+
+251
+00:11:16,139 --> 00:11:17,937
+is what everything comes down to.
+就是一切。 
+
+252
+00:11:17,937 --> 00:11:18,769
+What's in the state?
+状态如何？ 
+
+253
+00:11:18,769 --> 00:11:29,189
+
+
+
+254
+00:11:29,190 --> 00:11:31,440
+AUDIENCE: So your current state is how much difficulty
+观众：所以您目前的状态是多少困难
+
+255
+00:11:31,440 --> 00:11:33,719
+have you-- what is the problem?
+你有什么问题吗？ 
+
+256
+00:11:33,919 --> 00:11:36,671
+Are those representing the probabilities,
+是代表概率的那些， 
+
+257
+00:11:36,672 --> 00:11:37,379
+the difficulties?
+困难？ 
+
+258
+00:11:37,379 --> 00:11:38,399
+Or.
+要么。 
+
+259
+00:11:38,399 --> 00:11:41,459
+PROFESSOR: So this is the difficulty for one move.
+教授：这就是一举一动的困难。 
+
+260
+00:11:41,460 --> 00:11:44,000
+Does it depend on previous moves?
+是否取决于先前的举动？ 
+
+261
+00:11:44,000 --> 00:11:44,797
+AUDIENCE: No, but.
+听众：不，但是。 
+
+262
+00:11:44,797 --> 00:11:45,379
+PROFESSOR: No.
+教授：不。 
+
+263
+00:11:45,379 --> 00:11:47,529
+So it's a nice thing to note that the difficulties
+因此，很高兴注意到困难
+
+264
+00:11:47,529 --> 00:11:48,778
+for each move are independent.
+每个动作都是独立的。 
+
+265
+00:11:48,778 --> 00:11:58,745
+
+
+
+266
+00:11:58,745 --> 00:12:01,216
+AUDIENCE: Would it be dependent in real life?
+听众：这会取决于现实生活吗？ 
+
+267
+00:12:01,216 --> 00:12:02,697
+You'll get tired at the end.
+最后你会累的。 
+
+268
+00:12:02,697 --> 00:12:05,168
+And he's able to have less energy.
+而且他的能量更少。 
+
+269
+00:12:05,168 --> 00:12:07,544
+
+
+
+270
+00:12:07,544 --> 00:12:08,169
+PROFESSOR: Yep.
+教授：是的。 
+
+271
+00:12:08,169 --> 00:12:12,059
+So, in real life, we might want to say that this actually
+因此，在现实生活中，我们可能想说
+
+272
+00:12:12,059 --> 00:12:15,869
+depends on how much energy you've expended so far.
+取决于您到目前为止已消耗了多少能量。 
+
+273
+00:12:15,870 --> 00:12:18,740
+And if we have time, let's solve that problem.
+如果有时间，让我们解决这个问题。 
+
+274
+00:12:18,740 --> 00:12:24,979
+
+
+
+275
+00:12:25,179 --> 00:12:26,679
+So the nice thing about this problem
+所以关于这个问题的好处
+
+276
+00:12:26,679 --> 00:12:29,949
+is there are many directions in which we can take it.
+我们可以采取许多方向吗？ 
+
+277
+00:12:29,950 --> 00:12:30,719
+This is one of them.
+这就是其中之一。 
+
+278
+00:12:30,919 --> 00:12:32,000
+I'm fine.
+我很好。 
+
+279
+00:12:32,000 --> 00:12:34,779
+And I think we'll learn a lot by doing that.
+我认为这样做会学到很多东西。 
+
+280
+00:12:34,779 --> 00:12:37,339
+So back to the original problem.
+回到原来的问题。 
+
+281
+00:12:37,340 --> 00:12:40,100
+Suppose that it doesn't matter how tired you are.
+假设你有多累都没关系。 
+
+282
+00:12:40,100 --> 00:12:41,720
+You're pretty good, so you're not
+你很好，所以你不是
+
+283
+00:12:41,720 --> 00:12:43,413
+going to be tired enough to go [GASP].
+够累了[GASP]。 
+
+284
+00:12:43,413 --> 00:12:46,519
+
+
+
+285
+00:12:46,519 --> 00:12:50,019
+So, mostly independent difficulties for each move.
+因此，每个动作大多都是独立的困难。 
+
+286
+00:12:50,019 --> 00:12:53,240
+What's in a state?
+什么状态？ 
+
+287
+00:12:53,240 --> 00:12:56,417
+AUDIENCE: The sum of the difficulties up to that point.
+听众：到那时为止困难的总和。 
+
+288
+00:12:56,417 --> 00:12:57,000
+PROFESSOR: OK.
+教授：好的。 
+
+289
+00:12:57,000 --> 00:12:57,500
+So.
+所以。 
+
+290
+00:12:57,500 --> 00:13:09,666
+
+
+
+291
+00:13:09,666 --> 00:13:11,564
+AUDIENCE: Your appearance factor,
+听众：你的外表因素， 
+
+292
+00:13:11,764 --> 00:13:12,884
+if we're including that.
+如果我们包括在内。 
+
+293
+00:13:12,884 --> 00:13:13,610
+Or are we only doing--
+还是我们只是在做- 
+
+294
+00:13:13,610 --> 00:13:14,700
+PROFESSOR: So we're doing this.
+教授：所以我们正在这样做。 
+
+295
+00:13:14,900 --> 00:13:16,759
+
+
+
+296
+00:13:16,759 --> 00:13:17,801
+AUDIENCE: Oh, I was just.
+听众：哦，我只是。 
+
+297
+00:13:17,801 --> 00:13:18,763
+Oh, effort.
+辛苦了
+
+298
+00:13:18,763 --> 00:13:19,729
+OK, we're minimizing effort.
+好的，我们正在努力。 
+
+299
+00:13:19,929 --> 00:13:21,803
+PROFESSOR: So the way I like to think of this
+教授：所以我喜欢这样想
+
+300
+00:13:21,803 --> 00:13:23,589
+is, what is does a solution look like?
+是，解决方案是什么样的？ 
+
+301
+00:13:23,590 --> 00:13:25,257
+It's made up of decisions, right?
+它是由决定组成的，对不对？ 
+
+302
+00:13:25,457 --> 00:13:26,415
+What are the decisions?
+有什么决定？ 
+
+303
+00:13:26,416 --> 00:13:29,090
+
+
+
+304
+00:13:29,090 --> 00:13:33,500
+AUDIENCE: To make that move or don't make that move?
+听众：要采取行动还是不采取行动？ 
+
+305
+00:13:33,500 --> 00:13:34,470
+PROFESSOR: We'll see.
+教授：我们会看到的。 
+
+306
+00:13:34,470 --> 00:13:35,839
+But once you know what the decisions are,
+但是一旦知道了决定是什么， 
+
+307
+00:13:36,039 --> 00:13:38,456
+then you have to think, what do I need to make a decision?
+然后您必须考虑，我需要做出什么决定？ 
+
+308
+00:13:38,456 --> 00:13:41,479
+
+
+
+309
+00:13:41,679 --> 00:13:43,649
+AUDIENCE: The note.
+听众：笔记。 
+
+310
+00:13:43,649 --> 00:13:51,840
+PROFESSOR: So, a note is one of these.
+教授：因此，便笺就是其中之一。 
+
+311
+00:13:51,840 --> 00:13:54,000
+For some reason, they're called notes.
+由于某种原因，它们被称为便笺。 
+
+312
+00:13:54,000 --> 00:13:58,716
+
+
+
+313
+00:13:58,716 --> 00:14:00,299
+AUDIENCE: So you know that somehow you
+听众：所以你以某种方式知道你
+
+314
+00:14:00,299 --> 00:14:01,949
+have to hit all of them?
+必须打所有人？ 
+
+315
+00:14:01,950 --> 00:14:04,915
+Like, you can have steps in between.
+就像，您可以在两者之间进行操作。 
+
+316
+00:14:05,115 --> 00:14:05,740
+PROFESSOR: Yep.
+教授：是的。 
+
+317
+00:14:05,740 --> 00:14:06,864
+AUDIENCE: Moves in between.
+听众：在两者之间移动。 
+
+318
+00:14:06,864 --> 00:14:08,480
+You have to hit all of them.
+您必须全部击中。 
+
+319
+00:14:08,480 --> 00:14:10,219
+PROFESSOR: OK, so I like this.
+教授：好的，所以我喜欢这个。 
+
+320
+00:14:10,419 --> 00:14:15,639
+So, every one of these is going to have to generate a move.
+因此，其中的每一个都将不得不采取行动。 
+
+321
+00:14:15,639 --> 00:14:17,429
+And there might be some moves in between.
+两者之间可能会有一些动作。 
+
+322
+00:14:17,429 --> 00:14:24,649
+
+
+
+323
+00:14:24,649 --> 00:14:26,949
+Well, each move is going to map to some edge.
+好吧，每一步都将映射到某个边缘。 
+
+324
+00:14:26,950 --> 00:14:28,959
+And I'm going to need vertices.
+而且我将需要顶点。 
+
+325
+00:14:29,159 --> 00:14:33,509
+So, as an algorithms program where when I hear that, oh.
+所以，作为算法程序，当我听到时，哦。 
+
+326
+00:14:33,509 --> 00:14:36,039
+I can have some moves in between, I get really uneasy.
+我之间可以有一些动作，我真的很不安。 
+
+327
+00:14:36,039 --> 00:14:37,423
+Like, what is this?
+就像，这是什么？ 
+
+328
+00:14:37,423 --> 00:14:38,840
+How many moves am I going to have?
+我要走几步？ 
+
+329
+00:14:38,840 --> 00:14:40,340
+Is this going to become really huge?
+这会变得非常巨大吗？ 
+
+330
+00:14:40,340 --> 00:14:43,950
+And am I not going to be able to run any algorithm on it?
+而且我将无法在其上运行任何算法吗？ 
+
+331
+00:14:43,950 --> 00:14:45,200
+So let's think about that.
+因此，让我们考虑一下。 
+
+332
+00:14:45,200 --> 00:14:46,709
+How many moves would I have in between?
+我之间会有几步动作？ 
+
+333
+00:14:46,909 --> 00:14:48,408
+And, what would I achieve with them?
+而且，我将与他们达成什么目标？ 
+
+334
+00:14:48,408 --> 00:14:52,519
+
+
+
+335
+00:14:52,519 --> 00:14:55,759
+AUDIENCE: I guess you'd have a max of, like, four, right?
+听众：我想您最多可以有四个，对吧？ 
+
+336
+00:14:55,759 --> 00:14:58,583
+I mean, you can put your right leg someplace,
+我的意思是，您可以将右腿放在某个位置， 
+
+337
+00:14:58,583 --> 00:15:00,250
+and you can put your left leg someplace.
+你可以把你的左腿放在某个地方。 
+
+338
+00:15:00,250 --> 00:15:02,870
+That's like a max of two.
+最多只能有两个。 
+
+339
+00:15:02,870 --> 00:15:03,370
+Right?
+对？ 
+
+340
+00:15:03,370 --> 00:15:04,350
+Or no?
+或者没有？ 
+
+341
+00:15:04,350 --> 00:15:07,350
+PROFESSOR: So, let's think of an example.
+教授：那么，让我们考虑一个例子。 
+
+342
+00:15:07,350 --> 00:15:10,469
+You want to go, say, I want to go, what?
+你想去，说，我想去，什么？ 
+
+343
+00:15:10,669 --> 00:15:12,929
+From here to here, right?
+从这里到这里，对吗？ 
+
+344
+00:15:12,929 --> 00:15:13,979
+AUDIENCE: Um-hmm.
+听众：嗯。 
+
+345
+00:15:13,980 --> 00:15:17,110
+PROFESSOR: And you're thinking what?
+教授：那你在想什么？ 
+
+346
+00:15:17,110 --> 00:15:19,750
+They can do this, oh sorry.
+他们可以这样做，抱歉。 
+
+347
+00:15:19,750 --> 00:15:21,429
+So I can do this as one move.
+因此，我可以一口气做到这一点。 
+
+348
+00:15:21,429 --> 00:15:22,419
+And this is one move.
+这是一招。 
+
+349
+00:15:22,419 --> 00:15:22,548
+AUDIENCE: Yeah.
+听众：是的。 
+
+350
+00:15:22,548 --> 00:15:24,235
+Or you can just do one jump, right?
+或者您也可以跳一跳，对吗？ 
+
+351
+00:15:24,235 --> 00:15:25,644
+So it's-- oh, yeah.
+哦，是的。 
+
+352
+00:15:25,644 --> 00:15:27,569
+I guess that's more than one.
+我想那不止一个。 
+
+353
+00:15:27,570 --> 00:15:29,090
+PROFESSOR: OK.
+教授：好的。 
+
+354
+00:15:29,090 --> 00:15:31,459
+So looking at this, if I'm considering
+所以看这个，如果我正在考虑
+
+355
+00:15:31,659 --> 00:15:35,240
+whether to go from here to here.
+是否从这里到这里。 
+
+356
+00:15:35,240 --> 00:15:41,186
+If I want to go either this way, or if I want to go this way.
+如果我想这样走，或者我想这样走。 
+
+357
+00:15:41,386 --> 00:15:42,969
+So let's write this down on the board.
+因此，让我们将其写下来。 
+
+358
+00:15:42,970 --> 00:15:46,149
+
+
+
+359
+00:15:46,149 --> 00:15:54,049
+So I'm going from up down to left right.
+所以我要从上到下从左到右。 
+
+360
+00:15:54,049 --> 00:15:56,120
+And I'm considering, do I want to go directly
+我正在考虑，我想直接去吗
+
+361
+00:15:56,120 --> 00:16:01,690
+or do I want to go up right first.
+还是我想先上升。 
+
+362
+00:16:01,690 --> 00:16:04,980
+And then left right.
+然后从左向右。 
+
+363
+00:16:04,980 --> 00:16:07,980
+Let's not do these arrows because they're confusing.
+我们不要做这些箭头，因为它们很混乱。 
+
+364
+00:16:07,980 --> 00:16:09,859
+So, do I want to transition like this?
+那么，我要这样过渡吗？ 
+
+365
+00:16:10,059 --> 00:16:12,989
+Or do I want to transition like this?
+还是我想这样过渡？ 
+
+366
+00:16:12,990 --> 00:16:19,700
+Well, I claim that, since my moves are independent,
+好吧，我声称，由于我的举动是独立的， 
+
+367
+00:16:19,700 --> 00:16:23,990
+going from here to here, if it's beneficial to go
+从这里到这里，如果有益的话
+
+368
+00:16:23,990 --> 00:16:25,990
+this way instead of this way, I would
+这样，而不是这样，我会
+
+369
+00:16:25,990 --> 00:16:28,070
+want to go this way all the time.
+想一直走这种路。 
+
+370
+00:16:28,070 --> 00:16:30,330
+So I would just say that, look.
+所以，我只想说，看。 
+
+371
+00:16:30,330 --> 00:16:32,171
+Inside my delta here, I would say that, actually,
+在我的三角洲内，我会说，实际上， 
+
+372
+00:16:32,371 --> 00:16:34,370
+if you know what you're doing, whenever you have
+如果知道自己在做什么，只要有
+
+373
+00:16:34,370 --> 00:16:36,779
+to go from here to here, you're going to go like this.
+从这里到这里，您将像这样去。 
+
+374
+00:16:36,779 --> 00:16:39,649
+And the delta is going to report to the total delta for this.
+增量将为此报告总增量。 
+
+375
+00:16:39,649 --> 00:16:43,699
+
+
+
+376
+00:16:43,700 --> 00:16:48,949
+So, if the problem is that they have one note,
+因此，如果问题在于他们只有一张纸条， 
+
+377
+00:16:49,149 --> 00:16:52,549
+and then I have my next note like this, between these two
+然后我在这两个之间有下一个音符
+
+378
+00:16:52,549 --> 00:16:55,609
+notes, I can always go in one move.
+笔记，我总是可以一move而就。 
+
+379
+00:16:55,610 --> 00:16:58,543
+
+
+
+380
+00:16:58,543 --> 00:16:59,960
+AUDIENCE: So you're saying 1 would
+听众：所以你说1 
+
+381
+00:16:59,960 --> 00:17:03,349
+like, including in our difficulty function,
+包括我们的难度函数在内
+
+382
+00:17:03,549 --> 00:17:06,149
+it'll also tell us, like, what move
+它也会告诉我们，例如什么动作
+
+383
+00:17:06,150 --> 00:17:07,900
+we should make to get there?
+我们应该去那里吗？ 
+
+384
+00:17:07,900 --> 00:17:09,099
+PROFESSOR: How to get there.
+教授：如何到达那里。 
+
+385
+00:17:09,299 --> 00:17:11,269
+The best way to get from one state to another.
+从一种状态到达另一种状态的最佳方法。 
+
+386
+00:17:11,269 --> 00:17:12,769
+Well, like when you're learning DDR,
+好吧，就像您在学习DDR一样， 
+
+387
+00:17:12,769 --> 00:17:14,990
+these are the basic steps, right?
+这些是基本步骤，对吧？ 
+
+388
+00:17:14,990 --> 00:17:17,680
+Like, you practice until you know how to get from one place
+就像，你练习直到知道如何从一个地方去
+
+389
+00:17:17,680 --> 00:17:19,410
+to another.
+到另一个。 
+
+390
+00:17:19,410 --> 00:17:21,960
+There is something else where you need intermediate steps.
+还有其他一些地方需要中间步骤。 
+
+391
+00:17:21,960 --> 00:17:26,218
+
+
+
+392
+00:17:26,218 --> 00:17:27,634
+AUDIENCE: Or if you're holding one
+听众：或者如果您拿着一个
+
+393
+00:17:27,634 --> 00:17:30,684
+and then you've got to move to another.
+然后您必须移至另一个。 
+
+394
+00:17:30,684 --> 00:17:31,184
+Right?
+对？ 
+
+395
+00:17:31,184 --> 00:17:35,019
+
+
+
+396
+00:17:35,019 --> 00:17:36,809
+PROFESSOR: So, let's not worry about holds.
+教授：所以，我们不用担心搁置。 
+
+397
+00:17:36,809 --> 00:17:38,393
+Let's say that we would just represent
+假设我们只是代表
+
+398
+00:17:38,393 --> 00:17:43,390
+holds as-- so if you have a hold in a game, then
+保持为-因此，如果您在游戏中处于保持状态，则
+
+399
+00:17:43,390 --> 00:17:45,169
+we're just going to represent it like this.
+我们只是要这样表示。 
+
+400
+00:17:45,369 --> 00:17:46,243
+We're going to cheat.
+我们要作弊。 
+
+401
+00:17:46,243 --> 00:17:49,289
+
+
+
+402
+00:17:49,289 --> 00:17:50,945
+So we don't have to deal with it.
+因此，我们不必处理它。 
+
+403
+00:17:50,945 --> 00:17:52,819
+In real life, you would have to deal with it.
+在现实生活中，您将不得不处理它。 
+
+404
+00:17:52,819 --> 00:17:55,360
+Like if you're actually writing a program that trains people.
+就像您实际上在编写训练人员的程序一样。 
+
+405
+00:17:55,361 --> 00:17:59,970
+AUDIENCE: What happens if you have, like, right, left, up
+听众：如果您有左右，左上，左上的姿势会怎样
+
+406
+00:17:59,970 --> 00:18:00,779
+or something.
+或者其他的东西。 
+
+407
+00:18:00,779 --> 00:18:04,200
+So let's say you start off hitting your right foot
+假设您开始打右脚
+
+408
+00:18:04,200 --> 00:18:10,836
+on the top, and then you have to hit the right one again.
+在顶部，然后您必须再次点击正确的一个。 
+
+409
+00:18:10,836 --> 00:18:12,420
+And then you have to hit up again
+然后你必须再打一次
+
+410
+00:18:12,420 --> 00:18:13,670
+and then you have to transfer.
+然后您必须转移。 
+
+411
+00:18:13,670 --> 00:18:17,700
+So I guess anytime you have to through the middle.
+所以我想您随时都需要经历中间阶段。 
+
+412
+00:18:17,700 --> 00:18:19,700
+You have move your foot.
+你已经动了脚。 
+
+413
+00:18:19,700 --> 00:18:23,539
+PROFESSOR: So I like the idea of going through the middle.
+教授：所以我喜欢经历中间的想法。 
+
+414
+00:18:23,539 --> 00:18:27,953
+Why or how do you, why would you go through the middle?
+你为什么或怎么样，为什么要经历中间？ 
+
+415
+00:18:27,953 --> 00:18:32,098
+AUDIENCE: To avoid crossing your leg over or something.
+听众：为避免双腿交叉或其他东西。 
+
+416
+00:18:32,098 --> 00:18:34,264
+PROFESSOR: Well, what if I have something like this?
+教授：好吧，如果我有这样的事情怎么办？ 
+
+417
+00:18:34,265 --> 00:18:37,590
+
+
+
+418
+00:18:37,790 --> 00:18:40,539
+If there are DDR experts, I know this isn't the right way
+如果有DDR专家，我知道这不是正确的方法
+
+419
+00:18:40,539 --> 00:18:41,039
+to do it.
+去做吧。 
+
+420
+00:18:41,039 --> 00:18:49,595
+But one way of doing it is left, right, left, right, left,
+但是一种方法是左，右，左，右，左， 
+
+421
+00:18:49,595 --> 00:18:51,640
+right.
+对。 
+
+422
+00:18:51,640 --> 00:18:53,950
+So then, I have some states that account for the fact
+因此，我有一些状态说明了这一事实
+
+423
+00:18:53,950 --> 00:18:54,740
+that I'm centering.
+我正在居中。 
+
+424
+00:18:54,740 --> 00:18:57,420
+
+
+
+425
+00:18:57,420 --> 00:18:58,879
+So, some people like to do this, right?
+所以，有些人喜欢这样做，对吗？ 
+
+426
+00:18:59,079 --> 00:19:02,069
+Some people like to go to the center as much as possible,
+有些人喜欢尽可能地去中心， 
+
+427
+00:19:02,069 --> 00:19:04,500
+if they have time between the moves.
+如果他们在两次行动之间有时间。 
+
+428
+00:19:04,500 --> 00:19:07,059
+So then, I would need at least one state
+因此，我将需要至少一个状态
+
+429
+00:19:07,059 --> 00:19:11,166
+in between where I'm allowed to center, right?
+在允许我居中的位置之间，对吗？ 
+
+430
+00:19:11,166 --> 00:19:13,000
+In order to represent what I just did there,
+为了代表我刚才在那做的事， 
+
+431
+00:19:13,000 --> 00:19:14,569
+I need one move.
+我需要一招。 
+
+432
+00:19:14,569 --> 00:19:21,490
+
+
+
+433
+00:19:21,490 --> 00:19:24,609
+So, one way I could meet this is I have left center.
+因此，我可以实现的一种方法是离开中心。 
+
+434
+00:19:24,609 --> 00:19:26,979
+And then left right.
+然后从左向右。 
+
+435
+00:19:26,980 --> 00:19:30,729
+And then left right, left right, left right.
+然后左右，左右，左右。 
+
+436
+00:19:30,729 --> 00:19:31,519
+So on and so forth.
+等等等等。 
+
+437
+00:19:31,519 --> 00:19:35,160
+But this would mean that instead of doing this, which
+但这意味着，而不是这样做， 
+
+438
+00:19:35,160 --> 00:19:37,890
+is reasonably easy, I would have to do this.
+是相当容易的，我必须这样做。 
+
+439
+00:19:38,090 --> 00:19:38,589
+This.
+这个。 
+
+440
+00:19:38,589 --> 00:19:40,939
+And then jump, jump, jump, jump every time.
+然后每次跳，跳，跳，跳。 
+
+441
+00:19:40,940 --> 00:19:41,900
+Harder.
+更难。 
+
+442
+00:19:41,900 --> 00:19:42,930
+Not good.
+不好。 
+
+443
+00:19:42,930 --> 00:19:43,669
+Not good for my knees.
+对我的膝盖不好。 
+
+444
+00:19:43,869 --> 00:19:45,195
+Not good for my score.
+对我的分数不好。 
+
+445
+00:19:45,195 --> 00:19:46,319
+So I don't want to do this.
+所以我不想这样做。 
+
+446
+00:19:46,319 --> 00:19:50,200
+I want to have an intermediate state so I can say,
+我想要一个中间状态，所以我可以说， 
+
+447
+00:19:50,200 --> 00:19:53,139
+I start here and then I get back here.
+我从这里开始，然后回到这里。 
+
+448
+00:19:53,339 --> 00:19:55,539
+Then I do this.
+那我做
+
+449
+00:19:55,539 --> 00:19:56,609
+Then I get back here.
+然后我回到这里。 
+
+450
+00:19:56,609 --> 00:19:59,689
+Then I go here.
+那我去这里
+
+451
+00:19:59,690 --> 00:20:02,630
+And then I go back here.
+然后我回到这里。 
+
+452
+00:20:02,630 --> 00:20:03,309
+And then go back.
+然后回去。 
+
+453
+00:20:03,509 --> 00:20:06,131
+Do guys see how this works?
+大家知道这是怎么回事吗？ 
+
+454
+00:20:06,131 --> 00:20:07,763
+AUDIENCE: You could also rock back and forth
+听众：您也可以来回摇摆
+
+455
+00:20:07,963 --> 00:20:10,881
+to because they don't require both feet to be on the ground
+因为他们不需要两只脚都在地上
+
+456
+00:20:10,882 --> 00:20:12,269
+the entire time.
+整个时间。 
+
+457
+00:20:12,269 --> 00:20:13,559
+PROFESSOR: Rock back and forth.
+教授：来回摇摆。 
+
+458
+00:20:13,559 --> 00:20:14,308
+Hold that thought.
+保持那个想法。 
+
+459
+00:20:14,308 --> 00:20:17,168
+
+
+
+460
+00:20:17,169 --> 00:20:18,210
+That might come in handy.
+可能会派上用场。 
+
+461
+00:20:18,210 --> 00:20:20,269
+Assuming we have enough time.
+假设我们有足够的时间。 
+
+462
+00:20:20,269 --> 00:20:23,549
+So, if we only do one move every time we see a note,
+因此，如果我们每次看到音符时只走一动， 
+
+463
+00:20:23,549 --> 00:20:25,720
+we're stuck with this.
+我们被困住了。 
+
+464
+00:20:25,720 --> 00:20:28,180
+In our to allow re-centering, we have
+为了使我们能够重新居中，我们有
+
+465
+00:20:28,180 --> 00:20:32,549
+to add states between the notes.
+在注释之间添加状态。 
+
+466
+00:20:32,549 --> 00:20:35,210
+We need to add an intermediary state.
+我们需要添加一个中间状态。 
+
+467
+00:20:35,210 --> 00:20:39,529
+And you can either think about it, or take my word for it,
+您可以考虑一下，也可以相信我， 
+
+468
+00:20:39,529 --> 00:20:43,569
+but if you represent the notes using the trick that I said
+但是如果您使用我说的技巧来代表笔记
+
+469
+00:20:43,569 --> 00:20:47,460
+above, and you want to represent centering, then all you need
+以上，而您想代表居中，那么您所需要的就是
+
+470
+00:20:47,460 --> 00:20:49,069
+is one extra state.
+是一种额外的状态。 
+
+471
+00:20:49,069 --> 00:20:50,960
+So one extra move between every two states.
+因此，每两个状态之间要多移动一个。 
+
+472
+00:20:50,960 --> 00:20:56,139
+
+
+
+473
+00:20:56,339 --> 00:20:57,209
+Between two notes.
+在两个音符之间。 
+
+474
+00:20:57,210 --> 00:21:00,319
+
+
+
+475
+00:21:00,319 --> 00:21:01,069
+And that's enough.
+这就足够了。 
+
+476
+00:21:01,069 --> 00:21:03,269
+Because that one extra state allows you to center.
+因为那一种额外的状态使您能够居中。 
+
+477
+00:21:03,269 --> 00:21:06,609
+And it allows you to do pretty much everything a beginner
+它使您几乎可以做初学者的所有事情
+
+478
+00:21:06,609 --> 00:21:10,169
+like me would know how to do.
+像我一样会怎么做。 
+
+479
+00:21:10,170 --> 00:21:13,875
+AUDIENCE: So you only need one extra state between each note?
+听众：那么您在每个音符之间只需要一个额外的状态？ 
+
+480
+00:21:13,875 --> 00:21:14,500
+PROFESSOR: Yep.
+教授：是的。 
+
+481
+00:21:14,500 --> 00:21:16,690
+That is the inside.
+那就是里面。 
+
+482
+00:21:16,690 --> 00:21:18,639
+That is where I'm thinking, right?
+那是我在想的地方，对吧？ 
+
+483
+00:21:18,839 --> 00:21:22,490
+So I have to do both this trick, to see
+所以我必须同时做这把戏
+
+484
+00:21:22,490 --> 00:21:25,299
+that I don't need an infinite number of steps.
+我不需要无数个步骤。 
+
+485
+00:21:25,299 --> 00:21:28,319
+And come up with the need for centering
+并提出居中的需求
+
+486
+00:21:28,319 --> 00:21:30,290
+to see why I need one intermediate step.
+了解为什么我需要一个中间步骤。 
+
+487
+00:21:30,290 --> 00:21:33,491
+
+
+
+488
+00:21:33,491 --> 00:21:34,950
+By the way, does anyone know what's
+顺便说一句，有人知道什么吗
+
+489
+00:21:34,950 --> 00:21:36,594
+the right way of doing that?
+正确的做法吗？ 
+
+490
+00:21:36,594 --> 00:21:38,259
+What's the right way of doing this move?
+采取此举的正确方法是什么？ 
+
+491
+00:21:38,259 --> 00:21:41,509
+
+
+
+492
+00:21:41,509 --> 00:21:42,779
+You said, rock back and forth.
+你说，来回晃动。 
+
+493
+00:21:42,779 --> 00:21:44,859
+So I wouldn't rock back and forth in this case, right?
+因此，在这种情况下，我不会来回摇摆，对吗？ 
+
+494
+00:21:44,859 --> 00:21:45,939
+Because that wouldn't be helpful.
+因为那不会有帮助。 
+
+495
+00:21:45,940 --> 00:21:46,447
+How would I rock?
+我会如何摇滚？ 
+
+496
+00:21:46,647 --> 00:21:48,155
+AUDIENCE: Well, you hold down one
+听众：嗯，你按住一个
+
+497
+00:21:48,155 --> 00:21:49,529
+and then you go to the other one.
+然后您转到另一个。 
+
+498
+00:21:49,529 --> 00:21:51,730
+PROFESSOR: Yeah, so rock left and right.
+教授：是的，所以左右摇摆。 
+
+499
+00:21:51,730 --> 00:21:52,337
+OK.
+好。 
+
+500
+00:21:52,337 --> 00:21:54,529
+AUDIENCE: I said back and forth, I meant rocking--
+听众：我来回说，我的意思是摇摆- 
+
+501
+00:21:54,529 --> 00:21:55,238
+PROFESSOR: Sorry.
+教授：对不起。 
+
+502
+00:21:55,238 --> 00:21:57,170
+I thought back, forth.
+我回想了一下。 
+
+503
+00:21:57,170 --> 00:21:58,889
+So, the optimal way of doing this
+所以，这样做的最佳方法
+
+504
+00:21:59,089 --> 00:22:04,689
+is left, right, left, right, left, right.
+是左，右，左，右，左，右。 
+
+505
+00:22:04,690 --> 00:22:06,497
+So what am I doing?
+那我在做什么呢？ 
+
+506
+00:22:06,497 --> 00:22:07,629
+AUDIENCE: You have another move.
+听众：您还有另外一个举动。 
+
+507
+00:22:07,829 --> 00:22:11,280
+
+
+
+508
+00:22:11,280 --> 00:22:15,460
+You have, like, one state for your foot where
+您的脚有一种状态
+
+509
+00:22:15,460 --> 00:22:17,400
+it's not touching the ground.
+它没有触地。 
+
+510
+00:22:17,400 --> 00:22:17,909
+PROFESSOR: OK.
+教授：好的。 
+
+511
+00:22:18,109 --> 00:22:20,159
+It's an interesting, and important, distinction.
+这是一个有趣且重要的区别。 
+
+512
+00:22:20,160 --> 00:22:22,160
+So if I wanted to hit both of them, if I'm here,
+所以如果我想打他们两个，如果我在这里， 
+
+513
+00:22:22,160 --> 00:22:25,200
+and I need to hit both of them, I need to hit them.
+我需要打他们两个，我需要打他们。 
+
+514
+00:22:25,200 --> 00:22:27,769
+If I only need to hit one of them, if I'm here,
+如果我只需要打一个，如果我在这里， 
+
+515
+00:22:27,769 --> 00:22:29,430
+I can hit it like this.
+我可以这样打
+
+516
+00:22:29,430 --> 00:22:31,180
+If I'm here, though, and I want to hit it,
+如果我在这里，但我想打它， 
+
+517
+00:22:31,180 --> 00:22:34,659
+I have to lift myself up.
+我必须振作起来。 
+
+518
+00:22:34,659 --> 00:22:36,450
+So the difference is whether I'm like this.
+所以区别在于我是否喜欢这个。 
+
+519
+00:22:36,450 --> 00:22:37,409
+Or like this.
+或者像这样。 
+
+520
+00:22:37,409 --> 00:22:38,200
+Where is my weight?
+我的体重在哪里？ 
+
+521
+00:22:38,200 --> 00:22:42,690
+
+
+
+522
+00:22:42,690 --> 00:22:44,659
+So if I want to allow for these moves,
+因此，如果我想允许这些举动， 
+
+523
+00:22:44,859 --> 00:22:47,799
+if I want to go past the stage of very beginner,
+如果我想超越初学者的阶段， 
+
+524
+00:22:47,799 --> 00:22:50,190
+aside from keeping track of where my feet are,
+除了跟踪我的脚在哪里， 
+
+525
+00:22:50,190 --> 00:22:52,750
+I have to keep track of whether my weight is on my left foot
+我必须跟踪自己的体重是否在左脚上
+
+526
+00:22:52,750 --> 00:22:54,920
+or on my right foot.
+或在我的右脚。 
+
+527
+00:22:54,920 --> 00:22:58,369
+So, I would actually have l, r, and W,
+因此，我实际上会有l，r和W， 
+
+528
+00:22:58,569 --> 00:23:01,210
+where W is either l or r.
+其中W是l或r。 
+
+529
+00:23:01,210 --> 00:23:06,937
+
+
+
+530
+00:23:07,137 --> 00:23:11,264
+AUDIENCE: So your state now has what you're currently
+听众：所以您的州现在拥有您目前的状态
+
+531
+00:23:11,265 --> 00:23:13,609
+putting more weight on.
+加大重量。 
+
+532
+00:23:13,809 --> 00:23:15,769
+PROFESSOR: And where each of the feet are.
+教授：每只脚都在哪里。 
+
+533
+00:23:15,769 --> 00:23:16,660
+AUDIENCE: Yeah.
+听众：是的。 
+
+534
+00:23:16,660 --> 00:23:18,890
+Where your two feet are.
+你的两只脚在哪里。 
+
+535
+00:23:18,890 --> 00:23:21,945
+And then also, the song difficulty.
+然后还有歌曲的难度
+
+536
+00:23:22,145 --> 00:23:24,069
+So it's everything in your state, right?
+一切都在您的状态中，对吧？ 
+
+537
+00:23:24,069 --> 00:23:25,470
+PROFESSOR: Ah, yes.
+教授：是的。 
+
+538
+00:23:25,470 --> 00:23:26,470
+I didn't think about it.
+我没有考虑。 
+
+539
+00:23:26,470 --> 00:23:28,159
+I was just talking about foot position.
+我只是在谈论脚的位置。 
+
+540
+00:23:28,159 --> 00:23:29,950
+But we need to get back to the state thing.
+但是我们需要回到状态。 
+
+541
+00:23:29,950 --> 00:23:31,269
+So that's a good point.
+这是一个好点。 
+
+542
+00:23:31,269 --> 00:23:35,359
+So before we get to that, how many feet positions do we have?
+那么在我们做到这一点之前，我们要先坐几英尺？ 
+
+543
+00:23:35,359 --> 00:23:39,609
+If we don't include where do I have my weight,
+如果我们不包括我的体重， 
+
+544
+00:23:39,609 --> 00:23:42,229
+how many possible positions for both of my feet do I have?
+我的双脚有几个可能的位置？ 
+
+545
+00:23:42,230 --> 00:23:47,349
+
+
+
+546
+00:23:47,349 --> 00:23:48,369
+So I have two feet.
+所以我有两只脚。 
+
+547
+00:23:48,369 --> 00:23:51,909
+Each of them can be in any of these five squares, right?
+每个人都可以在这五个正方形中的任何一个中，对吗？ 
+
+548
+00:23:51,910 --> 00:23:53,842
+So how many total positions?
+那么总职位数是多少？ 
+
+549
+00:23:54,042 --> 00:23:57,255
+AUDIENCE: 5 choose 2.
+受众群体：5选择2。 
+
+550
+00:23:57,256 --> 00:23:58,419
+Using 2.
+使用2。 
+
+551
+00:23:58,619 --> 00:24:00,357
+PROFESSOR: So I can do this.
+教授：所以我可以这样做。 
+
+552
+00:24:00,357 --> 00:24:00,982
+AUDIENCE: Sure.
+听众：好的。 
+
+553
+00:24:00,982 --> 00:24:02,339
+Why not?
+为什么不？ 
+
+554
+00:24:02,339 --> 00:24:04,615
+PROFESSOR: Well, if I have 5 choose 2, then you--
+教授：好吧，如果我有5个选择2，那么您- 
+
+555
+00:24:04,615 --> 00:24:05,430
+AUDIENCE: Oh, then that doesn't quite work.
+听众：哦，那还行不通。 
+
+556
+00:24:05,430 --> 00:24:06,096
+PROFESSOR: Yeah.
+教授：是的。 
+
+557
+00:24:06,096 --> 00:24:07,819
+AUDIENCE: Yeah, no.
+听众：是的，不。 
+
+558
+00:24:07,819 --> 00:24:12,977
+PROFESSOR: So flip.
+教授：那么翻转。 
+
+559
+00:24:12,978 --> 00:24:13,533
+AUDIENCE: Times 2.
+观众：次2。 
+
+560
+00:24:13,733 --> 00:24:14,399
+PROFESSOR: Yeah.
+教授：是的。 
+
+561
+00:24:14,400 --> 00:24:15,980
+So you have two feet.
+所以你有两只脚。 
+
+562
+00:24:15,980 --> 00:24:17,259
+Each foot, five possibilities.
+每只脚有五种可能性。 
+
+563
+00:24:17,259 --> 00:24:21,519
+
+
+
+564
+00:24:21,519 --> 00:24:23,109
+Now, what if we have weight?
+现在，如果我们有体重怎么办？ 
+
+565
+00:24:23,109 --> 00:24:25,669
+If we are tracking on where I keep my weight.
+如果我们要跟踪我在哪里保持体重。 
+
+566
+00:24:25,670 --> 00:24:27,275
+How many possible positions?
+有多少个职位？ 
+
+567
+00:24:27,275 --> 00:24:31,006
+
+
+
+568
+00:24:31,006 --> 00:24:31,970
+AUDIENCE: [INAUDIBLE]?
+听众：[听不清]？ 
+
+569
+00:24:31,970 --> 00:24:34,480
+Oh no, because there's only two.
+哦，不，因为只有两个。 
+
+570
+00:24:34,480 --> 00:24:36,700
+PROFESSOR: So, for each of these,
+教授：因此，对于每个
+
+571
+00:24:36,700 --> 00:24:38,470
+there's two possibilities now.
+现在有两种可能性。 
+
+572
+00:24:38,470 --> 00:24:39,169
+So 50.
+ 50。 
+
+573
+00:24:39,369 --> 00:24:41,169
+AUDIENCE: You also have to be so your weight is like this.
+听众：您也必须如此，这样才能保持体重。 
+
+574
+00:24:41,170 --> 00:24:41,880
+PROFESSOR: In the middle?
+教授：在中间吗？ 
+
+575
+00:24:41,880 --> 00:24:42,619
+AUDIENCE: Yeah.
+听众：是的。 
+
+576
+00:24:42,819 --> 00:24:44,287
+PROFESSOR: You can.
+教授：可以。 
+
+577
+00:24:44,287 --> 00:24:46,419
+Based on that what I've been reading, you never want to.
+基于我一直在阅读的内容，您永远不会想要。 
+
+578
+00:24:46,619 --> 00:24:48,369
+Because if you're weight is in the middle,
+因为如果您的体重在中间， 
+
+579
+00:24:48,369 --> 00:24:53,228
+then you're extending a lot of effort to move either foot.
+那么您将花费很多精力来移动任一只脚。 
+
+580
+00:24:53,229 --> 00:24:55,269
+So you always want to have your weight somewhere.
+因此，您始终希望将体重放在某个地方。 
+
+581
+00:24:55,269 --> 00:24:56,894
+So that, at least for one of your feet,
+因此，至少对于您的一只脚， 
+
+582
+00:24:56,894 --> 00:24:58,848
+it's easy to move it.
+移动起来很容易。 
+
+583
+00:24:58,848 --> 00:25:00,581
+AUDIENCE: Could it be the back?
+听众：会回来吗？ 
+
+584
+00:25:00,582 --> 00:25:02,089
+PROFESSOR: If that's not true, then yeah.
+教授：如果不是这样，那么是的。 
+
+585
+00:25:02,289 --> 00:25:04,568
+We'd need to have a center.
+我们需要一个中心。 
+
+586
+00:25:04,568 --> 00:25:06,609
+Oh, so, like, whether I'm like this or like this?
+哦，所以，就像我是这样还是这样？ 
+
+587
+00:25:06,609 --> 00:25:06,851
+AUDIENCE: Yeah.
+听众：是的。 
+
+588
+00:25:06,852 --> 00:25:08,554
+If you were, like, doing the same thing.
+如果您喜欢做同样的事情。 
+
+589
+00:25:08,554 --> 00:25:09,329
+Rocking back and forth.
+来回摇摆。 
+
+590
+00:25:09,529 --> 00:25:10,945
+PROFESSOR: So, if I have two feet,
+教授：如果我有两只脚， 
+
+591
+00:25:10,945 --> 00:25:13,099
+then this says my weight is on my left foot.
+这说明我的体重在我的左脚上。 
+
+592
+00:25:13,099 --> 00:25:15,069
+My weight is on my right foot.
+我的体重在我的右脚上。 
+
+593
+00:25:15,069 --> 00:25:20,069
+So l and r is which foot, not where on the board.
+所以l和r是哪只脚，而不是木板上的位置。 
+
+594
+00:25:20,069 --> 00:25:22,899
+AUDIENCE: So, did you not do center because it was optimal?
+听众：那么，您不是因为最佳而没有进行居中吗？ 
+
+595
+00:25:22,900 --> 00:25:25,250
+PROFESSOR: Because I claim that, in an optimal strategy,
+教授：因为我主张以最佳策略， 
+
+596
+00:25:25,250 --> 00:25:26,240
+you wouldn't have it.
+你不会有它。 
+
+597
+00:25:26,240 --> 00:25:28,059
+But you don't have to take my word for it.
+但是您不必相信我的话。 
+
+598
+00:25:28,059 --> 00:25:30,059
+If you don't believe me, then you add center.
+如果您不相信我，那么请添加中心。 
+
+599
+00:25:30,059 --> 00:25:32,109
+And you just have more possibilities.
+而且您还有更多的可能性。 
+
+600
+00:25:32,109 --> 00:25:34,219
+And if it happens to not be an optimal thing,
+如果碰巧不是最佳选择， 
+
+601
+00:25:34,220 --> 00:25:37,259
+then the dynamic programming will ignore it.
+那么动态编程将忽略它。 
+
+602
+00:25:37,259 --> 00:25:40,859
+So how many positions do I have if I add center?
+那么，如果添加中心，我将拥有几个职位？ 
+
+603
+00:25:40,859 --> 00:25:44,098
+So if I have left, center, right for each position.
+因此，如果我在每个位置都左，中，右。 
+
+604
+00:25:44,098 --> 00:25:44,639
+AUDIENCE: 75.
+观众：75。 
+
+605
+00:25:44,640 --> 00:25:47,140
+
+
+
+606
+00:25:47,140 --> 00:25:47,806
+PROFESSOR: Cool.
+教授：太好了。 
+
+607
+00:25:47,806 --> 00:25:50,640
+
+
+
+608
+00:25:50,640 --> 00:25:51,194
+Yes.
+是。 
+
+609
+00:25:51,394 --> 00:25:53,452
+AUDIENCE: So why is it 25?
+观众：那为什么是25？ 
+
+610
+00:25:53,452 --> 00:25:56,944
+You wouldn't actually have both of your feet on the right.
+实际上，您实际上不会双脚都在右边。 
+
+611
+00:25:56,944 --> 00:25:57,569
+PROFESSOR: Why?
+教授：为什么？ 
+
+612
+00:25:57,569 --> 00:26:00,429
+
+
+
+613
+00:26:00,430 --> 00:26:03,720
+Maybe, well especially, for maximizing this one actually.
+也许，尤其是为了最大限度地提高这一能力。 
+
+614
+00:26:03,720 --> 00:26:06,799
+Especially for maximizing entertainment.
+特别是为了最大程度地提高娱乐性。 
+
+615
+00:26:06,799 --> 00:26:10,514
+Then it's way cooler to do this, right?
+然后这样做比较酷，对吗？ 
+
+616
+00:26:10,515 --> 00:26:12,629
+[LAUGHTER]
+ [笑声] 
+
+617
+00:26:12,829 --> 00:26:13,579
+You get the point.
+你明白了。 
+
+618
+00:26:13,579 --> 00:26:14,745
+AUDIENCE: --possible weight.
+听众：-可能的体重。 
+
+619
+00:26:14,746 --> 00:26:16,757
+Like combinations for like, where is
+相似组合的相似之处在哪里
+
+620
+00:26:16,757 --> 00:26:18,139
+you should have your feet at one time.
+你应该一次站起来。 
+
+621
+00:26:18,339 --> 00:26:20,763
+Like, not necessarily what the game is asking you to do.
+喜欢，不一定是游戏要你做什么。 
+
+622
+00:26:20,763 --> 00:26:21,429
+PROFESSOR: Yeah.
+教授：是的。 
+
+623
+00:26:21,430 --> 00:26:25,039
+So this is where my feet are.
+这就是我的脚所在。 
+
+624
+00:26:25,039 --> 00:26:26,963
+The game will always ask something like this.
+游戏总是会问这样的事情。 
+
+625
+00:26:26,963 --> 00:26:29,129
+So the game won't always care about both of my feet.
+所以游戏不会总是在乎我的双脚。 
+
+626
+00:26:29,130 --> 00:26:30,930
+Sometimes it'll only care about one foot.
+有时只关心一只脚。 
+
+627
+00:26:30,930 --> 00:26:33,240
+
+
+
+628
+00:26:33,240 --> 00:26:33,740
+So, yeah.
+是的。 
+
+629
+00:26:33,740 --> 00:26:35,405
+There are two different concepts, right?
+有两个不同的概念，对吗？ 
+
+630
+00:26:35,405 --> 00:26:37,899
+There's the position of my feet.
+这是我脚的位置。 
+
+631
+00:26:37,900 --> 00:26:40,479
+And then there's the note on the screen.
+然后屏幕上有笔记。 
+
+632
+00:26:40,479 --> 00:26:42,519
+And my feet have to match the note on the screen.
+而且我的脚必须与屏幕上的音符匹配。 
+
+633
+00:26:42,519 --> 00:26:45,500
+And we'll have to capture that somehow.
+而且，我们必须以某种方式捕获它。 
+
+634
+00:26:45,500 --> 00:26:48,369
+So what's in a state?
+那么状态如何？ 
+
+635
+00:26:48,369 --> 00:26:50,168
+What are my decisions?
+我的决定是什么？ 
+
+636
+00:26:50,169 --> 00:26:50,710
+Come on, now.
+快点
+
+637
+00:26:50,710 --> 00:26:53,779
+We should be in a good shape to know what my decisions are.
+我们应该处于良好状态，以了解我的决定。 
+
+638
+00:26:53,779 --> 00:26:54,990
+What do I decide every time?
+我每次都决定什么？ 
+
+639
+00:26:54,990 --> 00:26:57,905
+
+
+
+640
+00:26:57,905 --> 00:27:00,033
+AUDIENCE: What move to make?
+听众：采取什么措施？ 
+
+641
+00:27:00,034 --> 00:27:00,700
+PROFESSOR: Yeah.
+教授：是的。 
+
+642
+00:27:00,700 --> 00:27:01,950
+How am I going to jump, right?
+我怎么跳，对吗？ 
+
+643
+00:27:01,950 --> 00:27:05,509
+Where my feet are going to be in the new position.
+我的脚将要处于新的位置。 
+
+644
+00:27:05,509 --> 00:27:12,569
+So every time, I'm deciding what's the new foot position.
+所以每次，我都在决定新的脚位置。 
+
+645
+00:27:12,569 --> 00:27:14,809
+AUDIENCE: Aren't you also deciding weight position,
+听众：您不是也在决定体重位置吗？ 
+
+646
+00:27:14,809 --> 00:27:17,156
+where you're going to hold to, right?
+你要坚持的地方，对不对？ 
+
+647
+00:27:17,156 --> 00:27:17,740
+PROFESSOR: OK.
+教授：好的。 
+
+648
+00:27:17,740 --> 00:27:21,240
+So when I say foot position, it's a cheat for everything.
+因此，当我说脚步姿势时，一切都是骗人的。 
+
+649
+00:27:21,240 --> 00:27:24,380
+
+
+
+650
+00:27:24,380 --> 00:27:24,880
+So yeah.
+是的。 
+
+651
+00:27:24,880 --> 00:27:27,650
+Good observation.
+好观察。 
+
+652
+00:27:27,650 --> 00:27:29,359
+OK.
+好。 
+
+653
+00:27:29,559 --> 00:27:33,679
+What do I need to know, in order to make this decision?
+我需要知道什么才能做出此决定？ 
+
+654
+00:27:33,680 --> 00:27:38,029
+
+
+
+655
+00:27:38,029 --> 00:27:39,450
+OK.
+好。 
+
+656
+00:27:39,450 --> 00:27:41,450
+I would need to know where I was before
+我需要知道我以前在哪里
+
+657
+00:27:41,450 --> 00:27:43,419
+if I want to compute the difficulties.
+如果我想计算困难。 
+
+658
+00:27:43,619 --> 00:27:45,750
+But aside from that-- what?
+但是除此之外-什么？ 
+
+659
+00:27:45,750 --> 00:27:48,539
+AUDIENCE: Sir, it came up with this polynomial.
+听众：主席先生，它提出了这个多项式。 
+
+660
+00:27:48,539 --> 00:27:50,450
+PROFESSOR: All right.
+教授：好的。 
+
+661
+00:27:50,450 --> 00:27:53,698
+AUDIENCE: Is that a hint to what the run time of this will be?
+听众：这是否暗示了它的运行时间？ 
+
+662
+00:27:53,898 --> 00:27:55,189
+PROFESSOR: It's not on purpose.
+教授：这不是故意的。 
+
+663
+00:27:55,190 --> 00:27:57,399
+But yes.
+但是，是的。 
+
+664
+00:27:57,599 --> 00:27:58,949
+So, yeah.
+是的。 
+
+665
+00:27:58,950 --> 00:27:59,730
+That makes sense.
+那讲得通。 
+
+666
+00:27:59,730 --> 00:28:00,220
+Probably not good.
+可能不好。 
+
+667
+00:28:00,220 --> 00:28:02,303
+I should probably not have my screen up without me
+没有我，我可能不应该把屏幕关起来
+
+668
+00:28:02,303 --> 00:28:04,369
+looking at it.
+看着它。 
+
+669
+00:28:04,569 --> 00:28:05,509
+OK, so.
+好吧
+
+670
+00:28:05,509 --> 00:28:07,720
+Back to decisions.
+回到决定。 
+
+671
+00:28:07,720 --> 00:28:10,529
+I think I want to know what's going to be on the screen
+我想我想知道屏幕上会发生什么
+
+672
+00:28:10,529 --> 00:28:11,349
+when I land, right?
+当我降落时，对不对？ 
+
+673
+00:28:11,349 --> 00:28:15,119
+Because if the screen says, yo, you need to go up and down.
+因为如果屏幕上显示“哟”，那么您需要上下移动。 
+
+674
+00:28:15,119 --> 00:28:17,871
+Then maybe I shouldn't do this, right?
+那也许我不应该这样做，对吗？ 
+
+675
+00:28:17,872 --> 00:28:18,629
+That would not be good.
+那不是很好。 
+
+676
+00:28:18,829 --> 00:28:21,619
+
+
+
+677
+00:28:21,619 --> 00:28:24,459
+So I need to know what the note is going to be when I land.
+所以我需要知道降落时的音符会是什么。 
+
+678
+00:28:24,460 --> 00:28:27,131
+
+
+
+679
+00:28:27,131 --> 00:28:27,630
+Note.
+注意。 
+
+680
+00:28:27,630 --> 00:28:31,117
+
+
+
+681
+00:28:31,317 --> 00:28:33,724
+AUDIENCE: Is that the same as the next?
+听众：与下一个相同吗？ 
+
+682
+00:28:33,724 --> 00:28:34,349
+PROFESSOR: Yep.
+教授：是的。 
+
+683
+00:28:34,349 --> 00:28:35,359
+Next note.
+下一个音符。 
+
+684
+00:28:35,359 --> 00:28:36,479
+Yes.
+是。 
+
+685
+00:28:36,480 --> 00:28:39,049
+So the next note here on the screen.
+因此屏幕上的下一个音符。 
+
+686
+00:28:39,049 --> 00:28:42,879
+So, my position in this list, basically.
+因此，基本上，我在这份名单中的位置。 
+
+687
+00:28:42,880 --> 00:28:45,296
+AUDIENCE: So it's kind of like the knapsack problem, where
+听众：这有点像背包问题， 
+
+688
+00:28:45,296 --> 00:28:48,005
+it's like which thing we're considering picking up.
+就像我们要考虑的事情。 
+
+689
+00:28:48,005 --> 00:28:51,470
+But in this case, it's coming [INAUDIBLE].
+但是在这种情况下，它即将[听不清]。 
+
+690
+00:28:51,470 --> 00:28:53,720
+PROFESSOR: So it's close to knapsack.
+教授：因此，它接近背包。 
+
+691
+00:28:53,720 --> 00:28:56,970
+But the difference is, in knapsack, I
+但是不同的是，在背包里，我
+
+692
+00:28:56,970 --> 00:29:02,680
+have to decide, do I choose this or do I ignore it.
+必须决定，我选择这个还是忽略它。 
+
+693
+00:29:02,680 --> 00:29:11,778
+So, if I'd be like, if I can only do a few things
+所以，如果我愿意，我只能做几件事
+
+694
+00:29:11,778 --> 00:29:13,319
+and I want to maximize my score, then
+我想最大化自己的分数，然后
+
+695
+00:29:13,319 --> 00:29:14,869
+maybe I would choose, all right.
+也许我会选择，好的。 
+
+696
+00:29:14,869 --> 00:29:15,449
+This is easy.
+这很容易。 
+
+697
+00:29:15,450 --> 00:29:16,240
+I'm going to do it.
+我要去做
+
+698
+00:29:16,240 --> 00:29:16,869
+This is hard.
+这很难。 
+
+699
+00:29:16,869 --> 00:29:17,369
+Screw it.
+算了。 
+
+700
+00:29:17,369 --> 00:29:17,859
+This is easy.
+这很容易。 
+
+701
+00:29:17,859 --> 00:29:18,650
+I'm going to do it.
+我要去做
+
+702
+00:29:18,651 --> 00:29:20,779
+So then my decisions are 0, 1.
+所以我的决定是0，1。 
+
+703
+00:29:20,779 --> 00:29:22,609
+Pick or not pick.
+选择还是不选择。 
+
+704
+00:29:22,609 --> 00:29:24,519
+In this case, every time my decision
+在这种情况下，每次我的决定
+
+705
+00:29:24,519 --> 00:29:25,869
+is a new state of my feet.
+是我脚下的一种新状态。 
+
+706
+00:29:25,869 --> 00:29:27,045
+So it's not 0, 1.
+因此它不是0、1。 
+
+707
+00:29:27,046 --> 00:29:27,659
+AUDIENCE: OK.
+听众：好的。 
+
+708
+00:29:27,859 --> 00:29:29,259
+PROFESSOR: That's the difference.
+教授：就是这样。 
+
+709
+00:29:29,259 --> 00:29:31,309
+And then, because of that, the state
+然后，因此，国家
+
+710
+00:29:31,309 --> 00:29:32,569
+is going to look different.
+看起来会有所不同。 
+
+711
+00:29:32,569 --> 00:29:34,519
+And the recursion's will look a bit different.
+递归的看起来会有所不同。 
+
+712
+00:29:34,519 --> 00:29:40,740
+
+
+
+713
+00:29:40,740 --> 00:29:41,240
+OK.
+好。 
+
+714
+00:29:41,240 --> 00:29:43,710
+So I want to know the note that I'm landing at.
+所以我想知道我要降落的音符。 
+
+715
+00:29:43,710 --> 00:29:46,845
+I want to know the sum of-- well,
+我想知道-嗯， 
+
+716
+00:29:46,845 --> 00:29:48,970
+we'll see if I want to know the sum of difficulties
+我们看看我是否想知道困难的总和
+
+717
+00:29:48,970 --> 00:29:50,230
+up to this point.
+到这一点。 
+
+718
+00:29:50,230 --> 00:29:53,730
+And I want to know one more thing, so.
+我还想知道一件事。 
+
+719
+00:29:53,730 --> 00:29:56,309
+If this is going to be my new state,
+如果这将是我的新状态， 
+
+720
+00:29:56,309 --> 00:30:00,899
+and I know what note I'm landing at, I'm making a decision.
+而且我知道我要下注，我正在做决定。 
+
+721
+00:30:00,900 --> 00:30:04,240
+The decision tells me where my feet are going to be.
+这个决定告诉我我的脚在哪里。 
+
+722
+00:30:04,240 --> 00:30:07,319
+
+
+
+723
+00:30:07,319 --> 00:30:07,819
+Right?
+对？ 
+
+724
+00:30:07,819 --> 00:30:10,389
+The move decides where my feet are going to be.
+此举决定了我的脚在哪里。 
+
+725
+00:30:10,390 --> 00:30:12,640
+What do I need to do?
+我需要做什么？ 
+
+726
+00:30:12,640 --> 00:30:16,672
+What else do I need to know for my total solution?
+我的总体解决方案还需要了解什么？ 
+
+727
+00:30:16,672 --> 00:30:19,005
+So what do I need to know to consider between decisions?
+那么我需要知道哪些才能在决定之间进行考虑？ 
+
+728
+00:30:19,005 --> 00:30:24,500
+
+
+
+729
+00:30:24,500 --> 00:30:31,289
+So say I'm considering the state of-- I'm at note two.
+所以说我正在考虑状态–我在第二点。 
+
+730
+00:30:31,289 --> 00:30:35,750
+Note two says, left right.
+注意二说，从左到右。 
+
+731
+00:30:35,750 --> 00:30:38,789
+And I'm considering of coming here
+我正在考虑来这里
+
+732
+00:30:38,789 --> 00:30:44,700
+from note one, where my foot position was up down.
+从注一看，我的脚的位置向下。 
+
+733
+00:30:44,700 --> 00:30:48,509
+Or come here from note one, where
+或者从注释一来这里
+
+734
+00:30:48,509 --> 00:30:52,269
+my foot position was left right.
+我的脚的位置是左右。 
+
+735
+00:30:52,269 --> 00:30:57,671
+
+
+
+736
+00:30:57,671 --> 00:30:59,420
+I need to know where my foot position was,
+我要知道脚的位置
+
+737
+00:30:59,420 --> 00:31:01,650
+to choose between these, right?
+在这些之间选择，对不对？ 
+
+738
+00:31:01,650 --> 00:31:03,795
+If I don't know that, then I can't choose.
+如果我不知道，那我就选择不了。 
+
+739
+00:31:03,795 --> 00:31:06,170
+AUDIENCE: That's not from your state, though?
+听众：那不是你的状态吗？ 
+
+740
+00:31:06,170 --> 00:31:07,115
+PROFESSOR: Not yet.
+教授：还没有。 
+
+741
+00:31:07,115 --> 00:31:09,009
+It's not here, so it's not part of my state.
+它不在这里，所以这不是我的状态的一部分。 
+
+742
+00:31:09,009 --> 00:31:11,569
+We've been talking about it a lot, but we didn't put it here.
+我们一直在谈论它，但是我们没有把它放在这里。 
+
+743
+00:31:11,569 --> 00:31:13,069
+So let's say that the state is going
+假设国家正在发展
+
+744
+00:31:13,069 --> 00:31:14,639
+to have the note that I'm landing at.
+有我要降落的音符。 
+
+745
+00:31:14,640 --> 00:31:18,349
+And my foot position after landing.
+和我着陆后的脚位置。 
+
+746
+00:31:18,549 --> 00:31:28,129
+
+
+
+747
+00:31:28,130 --> 00:31:32,899
+So, if I know that I'm going to land like this,
+所以，如果我知道我要像这样降落， 
+
+748
+00:31:33,099 --> 00:31:35,529
+then I know where I was here. l r.
+然后我知道我在这里。拉河
+
+749
+00:31:35,529 --> 00:31:37,920
+Say, l r.
+说，河。 
+
+750
+00:31:37,920 --> 00:31:39,650
+I can compute the costs here, right?
+我可以在这里计算成本，对不对？ 
+
+751
+00:31:39,650 --> 00:31:47,009
+This is delta of going from this to this.
+这是从此到此的增量。 
+
+752
+00:31:47,009 --> 00:31:53,641
+And this is the delta for going from this to this.
+这是从此到此的增量。 
+
+753
+00:31:53,641 --> 00:31:54,539
+Can you see?
+你知道吗？ 
+
+754
+00:31:54,539 --> 00:31:55,289
+Is that too small?
+那太小了吗？ 
+
+755
+00:31:55,289 --> 00:31:59,599
+
+
+
+756
+00:31:59,599 --> 00:32:02,209
+Delta wants to know where my feet were before.
+三角洲想知道我的脚在哪里。 
+
+757
+00:32:02,210 --> 00:32:03,910
+And where they're going to be now.
+以及他们现在要去的地方。 
+
+758
+00:32:03,910 --> 00:32:06,089
+So when I call it, I need to know where I was before.
+因此，当我打电话给我时，我需要知道我以前在哪里。 
+
+759
+00:32:06,289 --> 00:32:08,164
+And I need to know where I'm going to be now.
+我需要知道我现在要去哪里。 
+
+760
+00:32:08,164 --> 00:32:11,359
+So this should be part of my state.
+所以这应该是我的状态的一部分。 
+
+761
+00:32:11,359 --> 00:32:15,139
+So our decision says, what's my new position going to be?
+所以我们的决定说，我的新职位是什么？ 
+
+762
+00:32:15,140 --> 00:32:18,409
+So when I make a move, I influence my new foot position.
+因此，当我移动时，会影响我的新脚位置。 
+
+763
+00:32:18,609 --> 00:32:20,449
+They're going to be in someplace.
+他们将在某个地方。 
+
+764
+00:32:20,450 --> 00:32:25,241
+And independently of that, the note-- the position here--
+而且与此无关，该音符-此处的位置- 
+
+765
+00:32:25,241 --> 00:32:27,575
+the position of the note, increases all the time, right?
+音符的位置一直在增加，对吗？ 
+
+766
+00:32:27,575 --> 00:32:28,990
+Because time can only go forwards.
+因为时间只能前进。 
+
+767
+00:32:28,990 --> 00:32:32,910
+
+
+
+768
+00:32:32,910 --> 00:32:35,009
+How are we going to account for these extra moves?
+我们将如何考虑这些额外的举动？ 
+
+769
+00:32:35,009 --> 00:32:38,689
+
+
+
+770
+00:32:38,689 --> 00:32:40,824
+AUDIENCE: [INAUDIBLE].
+听众：[听不清]。 
+
+771
+00:32:40,824 --> 00:32:42,990
+PROFESSOR: So, we said that between every two notes,
+教授：所以，我们说在每两个音符之间， 
+
+772
+00:32:42,990 --> 00:32:45,200
+we might want to make one extra move.
+我们可能要多采取一些行动。 
+
+773
+00:32:45,200 --> 00:32:50,639
+
+
+
+774
+00:32:50,839 --> 00:32:53,091
+AUDIENCE: Like, a potential new note
+听众：喜欢，一个潜在的新音符
+
+775
+00:32:53,092 --> 00:32:56,409
+in between your destination note?
+在目的地注释之间？ 
+
+776
+00:32:56,609 --> 00:32:57,442
+PROFESSOR: Yep.
+教授：是的。 
+
+777
+00:32:57,442 --> 00:33:00,384
+AUDIENCE: And then just fill in the difficulties for that
+听众：然后填写相关的困难
+
+778
+00:33:00,384 --> 00:33:01,349
+and see which ones--
+看看哪个- 
+
+779
+00:33:01,349 --> 00:33:03,849
+PROFESSOR: So, if I want to use the algorithm that I already
+教授：所以，如果我想使用已经存在的算法
+
+780
+00:33:03,849 --> 00:33:07,089
+have, that compares my landing position to my note,
+可以比较我的着陆位置和我的笔记， 
+
+781
+00:33:07,089 --> 00:33:10,470
+to see whether I can go there or not, what note would
+看看我是否可以去那里，那张纸条会
+
+782
+00:33:10,470 --> 00:33:14,670
+I want to put in that intermediate note?
+我要插入中间注释吗？ 
+
+783
+00:33:14,670 --> 00:33:18,750
+So, you're basically saying that between every two notes,
+因此，您基本上是说，在每两个音符之间， 
+
+784
+00:33:18,750 --> 00:33:20,559
+I'm going to have one more note.
+我还要再记一下。 
+
+785
+00:33:20,559 --> 00:33:24,903
+And my feet can be wherever here.
+我的脚可以在这里的任何地方。 
+
+786
+00:33:24,903 --> 00:33:25,443
+AUDIENCE: Oh.
+听众：哦。 
+
+787
+00:33:25,443 --> 00:33:28,228
+I mean, you'll also have the edge originally
+我的意思是，你本来也有优势
+
+788
+00:33:28,228 --> 00:33:30,549
+connecting them.
+连接他们。 
+
+789
+00:33:30,549 --> 00:33:32,819
+So, you'd have it going to the intermediate note,
+因此，您可以将其转到中间音符， 
+
+790
+00:33:32,819 --> 00:33:34,069
+but also from the destination.
+而且从目的地出发
+
+791
+00:33:34,069 --> 00:33:35,762
+Yeah, like that.
+是的，那样。 
+
+792
+00:33:35,762 --> 00:33:38,069
+You'd have to--
+您必须- 
+
+793
+00:33:38,069 --> 00:33:42,629
+PROFESSOR: So, what note would I have here?
+教授：那我在这里要注意些什么？ 
+
+794
+00:33:42,630 --> 00:33:44,556
+AUDIENCE: It makes you go to the center.
+听众：它使您可以进入中心。 
+
+795
+00:33:44,556 --> 00:33:46,000
+PROFESSOR: Do I have to be at the center?
+教授：我必须在中心吗？ 
+
+796
+00:33:46,000 --> 00:33:47,369
+AUDIENCE: Well, you can be anywhere.
+听众：好吧，你可以在任何地方。 
+
+797
+00:33:47,369 --> 00:33:48,035
+PROFESSOR: Yeah.
+教授：是的。 
+
+798
+00:33:48,036 --> 00:33:50,900
+So I'm going to invent the blank note.
+因此，我将发明空白便笺。 
+
+799
+00:33:50,900 --> 00:33:53,159
+That's a big O. That means you can do whatever you want.
+那是一个很大的O。这意味着您可以做任何您想做的事。 
+
+800
+00:33:53,359 --> 00:33:54,819
+There are no constraints.
+没有任何限制。 
+
+801
+00:33:54,819 --> 00:33:56,799
+So that is just an intermediary state.
+因此，这只是一个中介状态。 
+
+802
+00:33:56,799 --> 00:34:00,789
+So then I'm going to take this input,
+因此，我将接受此输入， 
+
+803
+00:34:00,789 --> 00:34:03,710
+and I'm going to add these blank notes here.
+我将在此处添加这些空白便笺。 
+
+804
+00:34:03,710 --> 00:34:05,690
+And these map to adding notes in the graph.
+这些映射到图中添加注释。 
+
+805
+00:34:05,690 --> 00:34:11,025
+
+
+
+806
+00:34:11,025 --> 00:34:12,483
+AUDIENCE: Well, then, when you just
+听众：那么，当你
+
+807
+00:34:12,483 --> 00:34:16,319
+run through your difficulty function between each two notes
+在每两个音符之间运行难度函数
+
+808
+00:34:16,320 --> 00:34:20,653
+and see if, for all the potential moves, which
+并查看所有潜在移动是否
+
+809
+00:34:20,853 --> 00:34:23,655
+one minimizes that path.
+一个使路径最小化。 
+
+810
+00:34:23,655 --> 00:34:25,059
+PROFESSOR: Yep.
+教授：是的。 
+
+811
+00:34:25,059 --> 00:34:27,190
+So basically, I'm assuming I don't need this.
+所以基本上，我假设我不需要这个。 
+
+812
+00:34:27,190 --> 00:34:30,065
+I'm assuming that.
+我以为是。 
+
+813
+00:34:30,065 --> 00:34:31,440
+This is going to be where there's
+这将是那里
+
+814
+00:34:31,440 --> 00:34:33,989
+at least one choice where this is going
+至少要这样做的一个选择
+
+815
+00:34:33,989 --> 00:34:37,376
+to have the same cost as a direct note.
+具有与直接记录相同的费用。 
+
+816
+00:34:37,376 --> 00:34:38,960
+And then I'm going to say that instead
+然后我要说的是
+
+817
+00:34:38,960 --> 00:34:42,260
+of having more complex shapes in the graph,
+在图形中具有更复杂的形状
+
+818
+00:34:42,260 --> 00:34:45,938
+I'm going to insert extra moves here.
+我将在此处插入其他动作。 
+
+819
+00:34:46,137 --> 00:34:46,679
+AUDIENCE: OK.
+听众：好的。 
+
+820
+00:34:46,679 --> 00:34:49,052
+I would think that, if you have an intermediate move that
+我认为，如果您采取中间措施， 
+
+821
+00:34:49,052 --> 00:34:52,569
+might be less expensive, you should, like, just
+可能会便宜一些，您应该只是
+
+822
+00:34:52,570 --> 00:34:54,411
+hop to that new position than to have
+跳到那个新位置而不是拥有
+
+823
+00:34:54,411 --> 00:34:56,173
+an intermediate move, right?
+中间动作吧？ 
+
+824
+00:34:56,373 --> 00:34:57,039
+PROFESSOR: Yeah.
+教授：是的。 
+
+825
+00:34:57,039 --> 00:35:00,375
+And I'm going to assume that either that's not the case,
+我将假设不是这样， 
+
+826
+00:35:00,375 --> 00:35:02,500
+or that I can always find an intermediate move that
+或我总能找到一个中间步骤
+
+827
+00:35:02,500 --> 00:35:05,289
+makes my life better.
+使我的生活变得更好。 
+
+828
+00:35:05,289 --> 00:35:06,563
+AUDIENCE: Every case?
+听众：每种情况？ 
+
+829
+00:35:06,563 --> 00:35:07,230
+PROFESSOR: Yeah.
+教授：是的。 
+
+830
+00:35:07,230 --> 00:35:12,786
+
+
+
+831
+00:35:12,786 --> 00:35:14,255
+PROFESSOR: These results do work.
+教授：这些结果确实有用。 
+
+832
+00:35:14,255 --> 00:35:16,380
+You'll have to take my word for it that this works.
+您必须接受我的保证。 
+
+833
+00:35:16,380 --> 00:35:18,860
+And this makes your dynamic programming easy.
+这使动态编程变得容易。 
+
+834
+00:35:18,860 --> 00:35:21,500
+And it makes your graph building easy.
+它使您的图形构建变得容易。 
+
+835
+00:35:21,500 --> 00:35:24,369
+So the advantage of this is you're changing the input.
+因此，这样做的好处是您可以更改输入。 
+
+836
+00:35:24,369 --> 00:35:26,159
+And then, when you're building your graph
+然后，当您建立图表时
+
+837
+00:35:26,159 --> 00:35:28,000
+or when you're doing the DP, you only
+或在执行DP时，仅
+
+838
+00:35:28,000 --> 00:35:30,429
+worry about an input that looks like this.
+担心输入看起来像这样。 
+
+839
+00:35:30,429 --> 00:35:32,719
+You don't care about any intermediate stuff.
+您不在乎任何中间的东西。 
+
+840
+00:35:32,719 --> 00:35:35,269
+You have notes, and you have to transition between the notes.
+您有注释，并且必须在注释之间转换。 
+
+841
+00:35:35,269 --> 00:35:36,239
+Period.
+期。 
+
+842
+00:35:36,239 --> 00:35:39,364
+So we reduce the complexity of the problem.
+因此，我们降低了问题的复杂性。 
+
+843
+00:35:39,364 --> 00:35:41,739
+So whenever you can get away with that, it's really nice.
+因此，只要您能摆脱它，那真的很好。 
+
+844
+00:35:41,739 --> 00:35:43,969
+We can do that for centering.
+我们可以做到居中。 
+
+845
+00:35:43,969 --> 00:35:46,529
+We might not be able to do it for other more complicated
+我们可能无法完成其他更复杂的操作
+
+846
+00:35:46,530 --> 00:35:47,028
+stuff.
+东西。 
+
+847
+00:35:47,028 --> 00:35:50,360
+
+
+
+848
+00:35:50,360 --> 00:35:52,789
+OK.
+好。 
+
+849
+00:35:52,989 --> 00:35:57,729
+So, we sort of know what we want in a state.
+因此，我们有点知道某种状态下的需求。 
+
+850
+00:35:57,730 --> 00:36:00,949
+Now we want to build a graph, so that the path
+现在我们要建立一个图，这样路径
+
+851
+00:36:00,949 --> 00:36:05,139
+from some source to some destination
+从某个来源到某个目的地
+
+852
+00:36:05,139 --> 00:36:10,969
+has a cost that's equivalent to the sum of these difficulties.
+所付出的代价等于这些困难的总和。 
+
+853
+00:36:10,969 --> 00:36:11,469
+Right?
+对？ 
+
+854
+00:36:11,469 --> 00:36:13,219
+Because then I can run the shortest path.
+因为这样我才能走最短的路。 
+
+855
+00:36:13,219 --> 00:36:17,329
+And my solution will be right there.
+我的解决方案就在那里。 
+
+856
+00:36:17,329 --> 00:36:17,829
+I know.
+我知道。 
+
+857
+00:36:17,829 --> 00:36:18,949
+You guys seem awfully sad.
+你们似乎很难过。 
+
+858
+00:36:18,949 --> 00:36:21,969
+Do you want to take a break and play for a little bit more?
+您想休息一下再玩吗？ 
+
+859
+00:36:21,969 --> 00:36:24,789
+Yes?
+是？ 
+
+860
+00:36:24,789 --> 00:36:28,797
+How many people want to play, instead of.
+想玩多少人，而不是。 
+
+861
+00:36:28,797 --> 00:36:30,130
+You don't have to play yourself.
+您不必扮演自己。 
+
+862
+00:36:30,130 --> 00:36:32,519
+You can just rest for these two or three minutes.
+您可以休息两三分钟。 
+
+863
+00:36:32,719 --> 00:36:34,219
+And you can watch someone else play.
+您可以看别人玩。 
+
+864
+00:36:34,219 --> 00:36:37,310
+And get more intuition about how you're supposed to play.
+并获得更多关于您应该如何比赛的直觉。 
+
+865
+00:36:37,311 --> 00:36:39,740
+
+
+
+866
+00:36:39,740 --> 00:36:40,239
+OK.
+好。 
+
+867
+00:36:40,239 --> 00:36:41,819
+So one person wants to take a break.
+所以一个人想休息一下。 
+
+868
+00:36:41,820 --> 00:36:43,110
+Everyone else wants to keep going?
+其他人都想继续吗？ 
+
+869
+00:36:43,110 --> 00:36:44,440
+Or are you guys passed out already?
+还是你们已经昏倒了？ 
+
+870
+00:36:44,440 --> 00:36:45,731
+AUDIENCE: Can we get out early?
+听众：我们可以早点离开吗？ 
+
+871
+00:36:45,731 --> 00:36:48,170
+
+
+
+872
+00:36:48,369 --> 00:36:49,920
+PROFESSOR: Sort of.
+教授：有点。 
+
+873
+00:36:49,920 --> 00:36:50,420
+Yeah.
+是的
+
+874
+00:36:50,420 --> 00:36:51,878
+You'll get out three minutes early,
+你会提前三分钟出去
+
+875
+00:36:51,878 --> 00:36:55,210
+if we don't do another round.
+如果我们不做另一轮。 
+
+876
+00:36:55,409 --> 00:36:57,932
+So who wants to keep going?
+那么谁愿意继续前进呢？ 
+
+877
+00:36:57,932 --> 00:36:58,474
+AUDIENCE: No.
+听众：不。 
+
+878
+00:36:58,474 --> 00:37:00,856
+Let's play.
+让我们玩。 
+
+879
+00:37:01,056 --> 00:37:01,639
+PROFESSOR: OK.
+教授：好的。 
+
+880
+00:37:01,639 --> 00:37:02,764
+So who wants to keep going?
+那么谁愿意继续前进呢？ 
+
+881
+00:37:02,764 --> 00:37:04,240
+You can only vote on one thing.
+您只能对一件事投票。 
+
+882
+00:37:04,240 --> 00:37:04,989
+Who wants to play?
+谁想玩？ 
+
+883
+00:37:04,989 --> 00:37:08,296
+
+
+
+884
+00:37:08,297 --> 00:37:08,838
+AUDIENCE: OK.
+听众：好的。 
+
+885
+00:37:08,838 --> 00:37:09,463
+AUDIENCE: Five.
+听众：五。 
+
+886
+00:37:09,463 --> 00:37:10,960
+AUDIENCE: Four.
+听众：四。 
+
+887
+00:37:10,960 --> 00:37:12,099
+AUDIENCE: Victor, go.
+听众：维克多，走。 
+
+888
+00:37:12,099 --> 00:37:13,049
+PROFESSOR: OK.
+教授：好的。 
+
+889
+00:37:13,050 --> 00:37:15,480
+Who wants to go?
+谁想去？ 
+
+890
+00:37:15,679 --> 00:37:18,329
+So we decided what we're going to have in notes.
+因此，我们决定了笔记中将要包含的内容。 
+
+891
+00:37:18,329 --> 00:37:20,730
+And we're going to build a graph, where
+我们将建立一个图形
+
+892
+00:37:20,730 --> 00:37:22,199
+the notes are the states.
+笔记是状态。 
+
+893
+00:37:22,199 --> 00:37:23,829
+And the edges are the moves.
+而边缘就是动作。 
+
+894
+00:37:23,829 --> 00:37:25,630
+Right?
+对？ 
+
+895
+00:37:25,630 --> 00:37:29,300
+So a note tells me, just like there, what note I'm at.
+因此，有一个音符告诉我，就像在那儿一样。 
+
+896
+00:37:29,300 --> 00:37:31,440
+Say I'm at note two.
+说我在第二注。 
+
+897
+00:37:31,440 --> 00:37:34,440
+And where my feet are on.
+而我的脚在哪里。 
+
+898
+00:37:34,440 --> 00:37:35,320
+So, left foot left.
+所以，左脚离开。 
+
+899
+00:37:35,320 --> 00:37:36,289
+Right foot right.
+右脚右。 
+
+900
+00:37:36,289 --> 00:37:38,820
+
+
+
+901
+00:37:38,820 --> 00:37:42,269
+So, given a state, what outgoing edges do I build?
+因此，给定状态，我要构建哪些输出边缘？ 
+
+902
+00:37:42,269 --> 00:37:43,949
+Where can I go to?
+我可以去哪里？ 
+
+903
+00:37:43,949 --> 00:37:47,480
+So let's say I have a state that says I'm at note n
+假设我有一个状态，说我在音符n 
+
+904
+00:37:47,480 --> 00:37:49,320
+and my left foot is in some position.
+我的左脚在某个位置。 
+
+905
+00:37:49,320 --> 00:37:53,000
+My right foot is in some position.
+我的右脚处于某个位置。 
+
+906
+00:37:53,000 --> 00:37:55,655
+What are my outgoing edges from here?
+我从这里出去的边缘是什么？ 
+
+907
+00:37:55,655 --> 00:37:58,340
+AUDIENCE: Is there an outgoing edge to every move?
+听众：每一步都有外向的优势吗？ 
+
+908
+00:37:58,340 --> 00:37:59,297
+Because there's a point.
+因为有一点。 
+
+909
+00:37:59,496 --> 00:38:00,079
+PROFESSOR: OK.
+教授：好的。 
+
+910
+00:38:00,079 --> 00:38:03,869
+
+
+
+911
+00:38:03,869 --> 00:38:05,460
+Well, actually, the blank is a note, right?
+好吧，实际上，空格是一个音符，对吗？ 
+
+912
+00:38:05,659 --> 00:38:09,750
+So if the next note, if note three's a blank,
+因此，如果下一个音符，如果音符三为空白， 
+
+913
+00:38:09,750 --> 00:38:11,610
+then the note is a blank.
+那么便笺为空白。 
+
+914
+00:38:11,610 --> 00:38:13,463
+And then I can have.
+然后我可以拥有。 
+
+915
+00:38:13,463 --> 00:38:16,469
+AUDIENCE: I guess, isn't the difficulty
+听众：我想这不是难事
+
+916
+00:38:16,469 --> 00:38:21,584
+of the move dependent on what note that blank actually is?
+此举取决于空白实际上是什么？ 
+
+917
+00:38:21,585 --> 00:38:23,960
+PROFESSOR: So, it doesn't depend on what the screen says.
+教授：因此，这并不取决于屏幕上显示的内容。 
+
+918
+00:38:23,960 --> 00:38:27,231
+It depends on where my feet are.
+这取决于我的脚在哪里。 
+
+919
+00:38:27,231 --> 00:38:27,940
+AUDIENCE: Oh, OK.
+听众：哦，好。 
+
+920
+00:38:27,940 --> 00:38:28,463
+I see.
+我懂了。 
+
+921
+00:38:28,463 --> 00:38:29,880
+PROFESSOR: So I have a number that
+教授：所以我有一个数字
+
+922
+00:38:29,880 --> 00:38:31,690
+tells me what's on my screen.
+告诉我屏幕上的内容。 
+
+923
+00:38:31,690 --> 00:38:33,980
+This number is enough for me to know
+这个数字足以让我知道
+
+924
+00:38:33,980 --> 00:38:36,610
+what's going to be on my screen from now on until forever.
+从现在开始一直到永远在我的屏幕上显示什么。 
+
+925
+00:38:36,610 --> 00:38:39,079
+Because I have the list ahead of time.
+因为我事先有清单。 
+
+926
+00:38:39,079 --> 00:38:41,009
+And then I have the position of my feet.
+然后我有了脚的位置。 
+
+927
+00:38:41,010 --> 00:38:43,300
+So these are both part of the state.
+因此，这些都是国家的一部分。 
+
+928
+00:38:43,300 --> 00:38:45,110
+So I have notes for all the notes.
+所以我有所有笔记的笔记。 
+
+929
+00:38:45,309 --> 00:38:47,469
+And all the positions of the feet.
+以及脚的所有位置。 
+
+930
+00:38:47,469 --> 00:38:49,269
+AUDIENCE: Right.
+听众：对。 
+
+931
+00:38:49,269 --> 00:38:55,239
+But the blank note is just one position of feet?
+但是空白便笺只是脚的一个位置？ 
+
+932
+00:38:55,239 --> 00:38:56,009
+PROFESSOR: No.
+教授：不。 
+
+933
+00:38:56,010 --> 00:38:56,920
+AUDIENCE: Or, it's all positions.
+听众：或者，所有职位。 
+
+934
+00:38:57,119 --> 00:38:57,319
+PROFESSOR: Yeah.
+教授：是的。 
+
+935
+00:38:57,320 --> 00:38:58,923
+AUDIENCE: Isn't the difficulty dependent
+听众：不依赖于难度
+
+936
+00:38:59,123 --> 00:39:01,013
+on what position your feet end up?
+您的脚最终处于什么位置？ 
+
+937
+00:39:01,014 --> 00:39:01,480
+PROFESSOR: Yeah.
+教授：是的。 
+
+938
+00:39:01,679 --> 00:39:03,690
+So it's from where I start to where I land.
+所以这是从我开始到登陆的地方。 
+
+939
+00:39:03,690 --> 00:39:14,030
+So, if I decide to start from here, and go here,
+所以，如果我决定从这里开始，然后去这里， 
+
+940
+00:39:14,030 --> 00:39:17,880
+the difficulty of this move is-- so it doesn't depend on
+此举的困难在于-因此它并不取决于
+
+941
+00:39:18,079 --> 00:39:20,519
+whether I have a blank there.
+我那里是否有空白。 
+
+942
+00:39:20,519 --> 00:39:21,449
+And this was OK.
+没关系。 
+
+943
+00:39:21,449 --> 00:39:24,319
+Or, if I had an up down, then I just missed the note.
+或者，如果我情绪低落，那么我只是错过了笔记。 
+
+944
+00:39:24,320 --> 00:39:26,920
+But the difficulty, the effort I'm expending, is the same.
+但是困难，我正在付出的努力，是相同的。 
+
+945
+00:39:27,119 --> 00:39:28,119
+AUDIENCE: OK.
+听众：好的。 
+
+946
+00:39:28,119 --> 00:39:31,119
+But if you start from that other move and go to a different
+但是，如果您从其他步骤开始，然后转到其他位置
+
+947
+00:39:31,119 --> 00:39:32,150
+position, that's--
+位置- 
+
+948
+00:39:32,150 --> 00:39:34,059
+PROFESSOR: If I go from this to this,
+教授：如果我从这个转到这个， 
+
+949
+00:39:34,059 --> 00:39:35,746
+then that's a different difficulty.
+那是另外一个困难。 
+
+950
+00:39:35,746 --> 00:39:38,608
+AUDIENCE: But it still could be a blank note?
+听众：但这还是空白吗？ 
+
+951
+00:39:38,608 --> 00:39:39,569
+PROFESSOR: Yeah.
+教授：是的。 
+
+952
+00:39:39,570 --> 00:39:42,025
+So, a blank note will let me go wherever I want.
+因此，空白便笺可以让我随心所欲。 
+
+953
+00:39:42,025 --> 00:39:43,630
+AUDIENCE: I see.
+听众：我明白了。 
+
+954
+00:39:43,630 --> 00:39:49,097
+But there are different kinds of blank notes, with different--
+但是有不同种类的空白便笺，其中- 
+
+955
+00:39:49,097 --> 00:39:50,717
+I guess I'm confused as to what--
+我想我对什么感到困惑- 
+
+956
+00:39:50,717 --> 00:39:51,300
+PROFESSOR: OK.
+教授：好的。 
+
+957
+00:39:51,300 --> 00:39:52,391
+So let's go through them again.
+因此，让我们再次浏览它们。 
+
+958
+00:39:52,590 --> 00:39:55,199
+AUDIENCE: Is it kind of like it's, like, spreading,
+听众：是不是像传播， 
+
+959
+00:39:55,199 --> 00:39:58,859
+so really when you have your source note,
+所以当您有原始记录时， 
+
+960
+00:39:58,860 --> 00:40:02,460
+it's actually connecting to every possible move.
+它实际上与所有可能的动作都息息相关。 
+
+961
+00:40:02,659 --> 00:40:05,079
+And every possible move is connecting to your next--
+而且所有可能的举措都在连接您的下一个- 
+
+962
+00:40:05,079 --> 00:40:06,913
+so it's kind of like a diamond shaped thing?
+所以有点像菱形的东西？ 
+
+963
+00:40:06,913 --> 00:40:08,684
+
+
+
+964
+00:40:08,684 --> 00:40:09,559
+PROFESSOR: Not quite.
+教授：不完全是。 
+
+965
+00:40:09,559 --> 00:40:10,429
+Not quite.
+不完全的。 
+
+966
+00:40:10,429 --> 00:40:12,219
+So, let's go through the notes again.
+因此，让我们再次浏览笔记。 
+
+967
+00:40:12,219 --> 00:40:13,730
+And then let's go through that.
+然后让我们来看一下。 
+
+968
+00:40:13,730 --> 00:40:16,030
+So the source move will be connected to some notes.
+因此，源动作将与某些音符相关。 
+
+969
+00:40:16,030 --> 00:40:18,280
+And then those notes will be connected to other notes.
+然后这些笔记将被连接到其他笔记。 
+
+970
+00:40:18,280 --> 00:40:21,289
+And it looks more like you have a big, outgoing degree.
+而且看起来您的学历很高。 
+
+971
+00:40:21,489 --> 00:40:22,835
+Then you have a big network.
+然后，您将拥有一个庞大的网络。 
+
+972
+00:40:22,835 --> 00:40:24,084
+Then the big, incoming degree.
+然后是大的传入度。 
+
+973
+00:40:24,085 --> 00:40:27,081
+It looks like a messed up sorting network.
+它看起来像一个混乱的分拣网络。 
+
+974
+00:40:27,081 --> 00:40:28,164
+So, notes are constraints.
+因此，注释是约束。 
+
+975
+00:40:28,164 --> 00:40:31,050
+
+
+
+976
+00:40:31,050 --> 00:40:34,230
+This accepts any possible feet combination, right?
+这接受任何可能的脚组合，对吗？ 
+
+977
+00:40:34,230 --> 00:40:38,829
+So this accepts this.
+因此，这接受了这一点。 
+
+978
+00:40:38,829 --> 00:40:40,311
+AUDIENCE: Is the first combination
+听众：是第一个组合
+
+979
+00:40:40,311 --> 00:40:42,781
+contained in that note?
+该说明中包含？ 
+
+980
+00:40:42,782 --> 00:40:43,606
+In that blank note?
+在那空白的笔记里？ 
+
+981
+00:40:43,606 --> 00:40:44,190
+PROFESSOR: No.
+教授：不。 
+
+982
+00:40:44,190 --> 00:40:45,273
+The blank is a constraint.
+空白是一个约束。 
+
+983
+00:40:45,273 --> 00:40:47,400
+
+
+
+984
+00:40:47,599 --> 00:40:51,170
+So, if I have a note that looks like this, then
+所以，如果我有一个像这样的笔记， 
+
+985
+00:40:51,170 --> 00:40:54,590
+if one of my feet is here and the other one is in the center,
+如果我的一只脚在这里，另一只脚在中间， 
+
+986
+00:40:54,590 --> 00:40:55,750
+then that's fine.
+那很好
+
+987
+00:40:55,750 --> 00:40:57,516
+The constraint is met.
+满足约束。 
+
+988
+00:40:57,516 --> 00:40:59,599
+If one of my feet is up and the other one is down,
+如果我的一只脚举起而另一只脚举起， 
+
+989
+00:40:59,599 --> 00:41:02,110
+then the constraint is met.
+然后满足约束。 
+
+990
+00:41:02,110 --> 00:41:04,652
+AUDIENCE: But the edge running into that blank note,
+听众：但是边缘碰到了空白的钞票， 
+
+991
+00:41:04,652 --> 00:41:09,976
+depending on how your feet land, is different difficulty.
+根据脚的着陆方式，难度有所不同。 
+
+992
+00:41:09,976 --> 00:41:10,943
+Is that right?
+那正确吗？ 
+
+993
+00:41:10,943 --> 00:41:12,409
+PROFESSOR: Yep.
+教授：是的。 
+
+994
+00:41:12,409 --> 00:41:13,980
+But when I compute the edge width,
+但是当我计算边缘宽度时
+
+995
+00:41:13,980 --> 00:41:16,590
+I need to know where I'm landing exactly.
+我需要确切地知道我要降落在哪里。 
+
+996
+00:41:16,590 --> 00:41:18,769
+Not just where the note is because the note might
+不仅是笔记所在的地方，因为笔记可能
+
+997
+00:41:18,769 --> 00:41:20,250
+admit multiple positions.
+接受多个职位。 
+
+998
+00:41:20,250 --> 00:41:21,077
+AUDIENCE: I see.
+听众：我明白了。 
+
+999
+00:41:21,077 --> 00:41:22,710
+PROFESSOR: So this guy admits all positions.
+教授：所以这个人承认所有职位。 
+
+1000
+00:41:22,909 --> 00:41:23,940
+AUDIENCE: OK.
+听众：好的。 
+
+1001
+00:41:23,940 --> 00:41:26,050
+PROFESSOR: This guy admits some positions, right?
+教授：这个人承认一些职位，对吗？ 
+
+1002
+00:41:26,050 --> 00:41:27,940
+These are l r, l r.
+这些是lr，l r。 
+
+1003
+00:41:28,139 --> 00:41:33,150
+If I have up down, how many feet positions does it admit?
+如果我仰卧起坐，它可以容纳多少脚？ 
+
+1004
+00:41:33,150 --> 00:41:33,914
+AUDIENCE: Just one.
+听众：一个。 
+
+1005
+00:41:34,114 --> 00:41:34,989
+PROFESSOR: Not great.
+教授：不好。 
+
+1006
+00:41:34,989 --> 00:41:36,829
+AUDIENCE: No.
+听众：不。 
+
+1007
+00:41:36,829 --> 00:41:38,909
+PROFESSOR: How many?
+教授：多少？ 
+
+1008
+00:41:38,909 --> 00:41:41,443
+AUDIENCE: As an intermediate?
+听众：作为中间人？ 
+
+1009
+00:41:41,443 --> 00:41:43,610
+PROFESSOR: If it's up down, then it's on the screen.
+教授：如果它向下，则它在屏幕上。 
+
+1010
+00:41:43,610 --> 00:41:44,701
+My intermediates are all blank.
+我的中间体都是空白的。 
+
+1011
+00:41:44,900 --> 00:41:45,653
+AUDIENCE: Oh, oh.
+听众：哦，哦。 
+
+1012
+00:41:45,653 --> 00:41:47,844
+I thought you were saying start with that.
+我以为你是从那开始。 
+
+1013
+00:41:47,844 --> 00:41:48,760
+PROFESSOR: So up down.
+教授：那么下来。 
+
+1014
+00:41:48,760 --> 00:41:50,135
+If you see up down on the screen,
+如果您在屏幕上向上看， 
+
+1015
+00:41:50,135 --> 00:41:51,360
+how many feet positions?
+多少脚位置？ 
+
+1016
+00:41:51,360 --> 00:41:52,440
+AUDIENCE: Left to right what it could have.
+听众：从左到右可能会有什么。 
+
+1017
+00:41:52,639 --> 00:41:53,420
+PROFESSOR: Yep.
+教授：是的。 
+
+1018
+00:41:53,420 --> 00:41:56,210
+So, if the screen says up down, the only two ways
+因此，如果屏幕上下显示，只有两种方法
+
+1019
+00:41:56,210 --> 00:41:58,539
+I can do that is this.
+我可以做到的就是这个。 
+
+1020
+00:41:58,739 --> 00:41:59,439
+Or this.
+或这个。 
+
+1021
+00:41:59,440 --> 00:41:59,940
+Right?
+对？ 
+
+1022
+00:41:59,940 --> 00:42:00,554
+So, two positions.
+因此，有两个职位。 
+
+1023
+00:42:00,554 --> 00:42:01,346
+AUDIENCE: I see.
+听众：我明白了。 
+
+1024
+00:42:01,346 --> 00:42:03,637
+AUDIENCE: Well, I mean, but you could have intermediate
+听众：好吧，我是说，但是你可以有中级
+
+1025
+00:42:03,637 --> 00:42:05,650
+where you step in the first one, then back.
+首先进入第一个位置，然后返回。 
+
+1026
+00:42:05,849 --> 00:42:07,889
+PROFESSOR: But I don't care because I've
+教授：但是我不在乎，因为我已经
+
+1027
+00:42:07,889 --> 00:42:09,119
+added these blank notes.
+添加了这些空白便笺。 
+
+1028
+00:42:09,119 --> 00:42:11,199
+And they take care of my intermediates for me.
+他们为我照顾了我的中间体。 
+
+1029
+00:42:11,199 --> 00:42:12,699
+AUDIENCE: But so, we're saying where
+听众：但是，我们说的是
+
+1030
+00:42:12,699 --> 00:42:17,803
+the feet land aren't part of the note.
+脚的着地不属于音符的一部分。 
+
+1031
+00:42:17,804 --> 00:42:18,269
+PROFESSOR: Nope.
+教授：不。 
+
+1032
+00:42:18,469 --> 00:42:19,639
+They're just states.
+他们只是国家。 
+
+1033
+00:42:19,639 --> 00:42:22,289
+So they're a decision I'm making.
+因此，这是我的决定。 
+
+1034
+00:42:22,289 --> 00:42:24,815
+AUDIENCE: So, do we have the multiple-- no,
+听众：那么，我们是否有倍数-不， 
+
+1035
+00:42:24,815 --> 00:42:28,500
+we don't because they're not part of the--
+我们不是因为它们不属于- 
+
+1036
+00:42:28,500 --> 00:42:34,760
+
+
+
+1037
+00:42:34,760 --> 00:42:37,420
+PROFESSOR: For each note position here,
+教授：对于这里的每个音符位置， 
+
+1038
+00:42:37,619 --> 00:42:40,960
+for every position in the screen thing,
+屏幕上每个位置的东西
+
+1039
+00:42:40,960 --> 00:42:45,539
+I have multiple feet positions that I could be in.
+我可能处于多个脚位置。 
+
+1040
+00:42:45,539 --> 00:42:46,362
+AUDIENCE: Right.
+听众：对。 
+
+1041
+00:42:46,362 --> 00:42:46,862
+Right.
+对。 
+
+1042
+00:42:46,862 --> 00:42:50,894
+But then, are there multiple moves to get to those?
+但是，要实现这些目标，是否有多种举措？ 
+
+1043
+00:42:50,894 --> 00:42:51,519
+PROFESSOR: Yep.
+教授：是的。 
+
+1044
+00:42:51,519 --> 00:42:52,061
+AUDIENCE: OK.
+听众：好的。 
+
+1045
+00:42:52,061 --> 00:42:54,440
+So there's multiple moves connecting each.
+因此，有很多动作相互关联。 
+
+1046
+00:42:54,639 --> 00:42:55,949
+PROFESSOR: Yeah.
+教授：是的。 
+
+1047
+00:42:55,949 --> 00:43:04,230
+So for example, if I want to get to l r, up down here,
+例如，如果我想去lr，在这里
+
+1048
+00:43:04,230 --> 00:43:09,360
+I can go from l r, up down in the blank.
+我可以从lr到空白处。 
+
+1049
+00:43:09,360 --> 00:43:12,760
+Or, I could have l r be like this.
+或者，我可能会像这样。 
+
+1050
+00:43:12,760 --> 00:43:15,840
+And then transition.
+然后过渡。 
+
+1051
+00:43:16,039 --> 00:43:20,449
+So I can have a lot of possible foot positions
+所以我可以有很多可能的脚位
+
+1052
+00:43:20,449 --> 00:43:24,969
+that I'm transitioning from in order to get here.
+我要从这里过渡到这里。 
+
+1053
+00:43:24,969 --> 00:43:27,639
+AUDIENCE: But those aren't actually
+听众：但是这些实际上并不是
+
+1054
+00:43:27,639 --> 00:43:29,836
+separate notes on the graph.
+图上的单独注释。 
+
+1055
+00:43:29,836 --> 00:43:30,670
+PROFESSOR: They are.
+教授：是的。 
+
+1056
+00:43:30,670 --> 00:43:33,619
+They have to be.
+他们必须是。 
+
+1057
+00:43:33,619 --> 00:43:36,259
+So these all have to be separate notes.
+因此，这些都必须单独注释。 
+
+1058
+00:43:36,260 --> 00:43:38,400
+Because the edges are going to have separate weights.
+因为边缘将具有不同的权重。 
+
+1059
+00:43:38,599 --> 00:43:39,099
+Right?
+对？ 
+
+1060
+00:43:39,099 --> 00:43:40,679
+This edge is going to have one weight.
+该边缘将具有一个重量。 
+
+1061
+00:43:40,679 --> 00:43:42,159
+This edge is going to have another weight.
+这条边缘将有另一个分量。 
+
+1062
+00:43:42,159 --> 00:43:42,819
+AUDIENCE: OK.
+听众：好的。 
+
+1063
+00:43:42,820 --> 00:43:43,536
+That's what I thought.
+那正是我所想。 
+
+1064
+00:43:43,735 --> 00:43:45,679
+But then you said there was only one blank.
+但是随后您说只有一个空白。 
+
+1065
+00:43:45,679 --> 00:43:51,998
+
+
+
+1066
+00:43:51,998 --> 00:43:54,911
+Don't there have to be multiple blank notes for every foot
+每只脚不必有多个空白便笺
+
+1067
+00:43:54,911 --> 00:43:55,609
+thing.
+事情。 
+
+1068
+00:43:55,610 --> 00:43:57,485
+If you're approaching a note from different--
+如果您要使用的音符不同， 
+
+1069
+00:43:57,485 --> 00:44:00,110
+
+
+
+1070
+00:44:00,110 --> 00:44:04,840
+PROFESSOR: So, I'm not sure what you're asking.
+教授：所以，我不确定您要问什么。 
+
+1071
+00:44:04,840 --> 00:44:06,596
+So, if you want to care about centering,
+因此，如果您想关心居中， 
+
+1072
+00:44:06,795 --> 00:44:08,419
+if you want to have intermediate moves,
+如果您想进行一些中间动作， 
+
+1073
+00:44:08,420 --> 00:44:12,059
+you need one blank note between every real note.
+您需要在每个真实音符之间添加一个空白音符。 
+
+1074
+00:44:12,059 --> 00:44:16,121
+So that you're allowed to make one intermediate move between.
+这样您就可以在两者之间进行一个中间的移动。 
+
+1075
+00:44:16,121 --> 00:44:16,788
+AUDIENCE: Right.
+听众：对。 
+
+1076
+00:44:16,788 --> 00:44:21,184
+I get that that's talking about the on the screen.
+我知道那是关于屏幕上的内容。 
+
+1077
+00:44:21,184 --> 00:44:21,650
+PROFESSOR: Yeah.
+教授：是的。 
+
+1078
+00:44:21,849 --> 00:44:22,519
+That's the screen.
+那是屏幕。 
+
+1079
+00:44:22,519 --> 00:44:23,179
+AUDIENCE: That's the screen.
+听众：那是屏幕。 
+
+1080
+00:44:23,179 --> 00:44:23,804
+PROFESSOR: Yep.
+教授：是的。 
+
+1081
+00:44:23,804 --> 00:44:24,429
+AUDIENCE: OK.
+听众：好的。 
+
+1082
+00:44:24,429 --> 00:44:26,349
+So, that's not the graph, though.
+所以，那不是图形。 
+
+1083
+00:44:26,349 --> 00:44:28,759
+Here, we're talking about the screen on the graph.
+在这里，我们正在谈论图形上的屏幕。 
+
+1084
+00:44:28,760 --> 00:44:30,780
+PROFESSOR: Here, we're talking about the graph.
+教授：在这里，我们谈论的是图表。 
+
+1085
+00:44:30,780 --> 00:44:34,340
+So two tells me that the screen is at note two.
+所以两个告诉我屏幕在注释二。 
+
+1086
+00:44:34,539 --> 00:44:36,369
+Whatever that happens to be.
+无论发生什么。 
+
+1087
+00:44:36,369 --> 00:44:37,759
+And my feet are in this position.
+我的脚处于这个位置。 
+
+1088
+00:44:37,760 --> 00:44:40,000
+
+
+
+1089
+00:44:40,199 --> 00:44:40,699
+OK.
+好。 
+
+1090
+00:44:40,699 --> 00:44:42,449
+So that's very important.
+所以这很重要。 
+
+1091
+00:44:42,449 --> 00:44:44,559
+Thanks for asking because that's very important.
+感谢您提出要求，因为这非常重要。 
+
+1092
+00:44:44,559 --> 00:44:47,349
+So, a state has the note that I'm landing at.
+因此，一个州有我要降落的音符。 
+
+1093
+00:44:47,349 --> 00:44:48,650
+So, where the screen is.
+因此，屏幕在哪里。 
+
+1094
+00:44:48,650 --> 00:44:50,184
+And where my feet are.
+而且我的脚在哪里。 
+
+1095
+00:44:50,184 --> 00:44:51,496
+AUDIENCE: OK.
+听众：好的。 
+
+1096
+00:44:51,496 --> 00:44:52,079
+PROFESSOR: OK.
+教授：好的。 
+
+1097
+00:44:52,079 --> 00:44:54,269
+AUDIENCE: The state corresponds to the nodes that you're on.
+听众：状态对应于您所在的节点。 
+
+1098
+00:44:54,269 --> 00:44:55,019
+PROFESSOR: A note.
+教授：注意。 
+
+1099
+00:44:55,019 --> 00:44:56,940
+A note is a state.
+音符是一种状态。 
+
+1100
+00:44:56,940 --> 00:44:58,230
+So, a note is a state.
+因此，注释是一种状态。 
+
+1101
+00:44:58,230 --> 00:45:01,070
+And a move goes between two states.
+并且在两个状态之间移动。 
+
+1102
+00:45:01,070 --> 00:45:03,069
+This is how we represent all the graph problems.
+这就是我们表示所有图形问题的方式。 
+
+1103
+00:45:03,070 --> 00:45:05,880
+
+
+
+1104
+00:45:05,880 --> 00:45:08,050
+OK.
+好。 
+
+1105
+00:45:08,050 --> 00:45:10,634
+AUDIENCE: So, you need multiple blank.
+听众：因此，您需要多个空白。 
+
+1106
+00:45:10,833 --> 00:45:11,500
+PROFESSOR: Yeah.
+教授：是的。 
+
+1107
+00:45:11,500 --> 00:45:13,389
+So here, I'm just drawing one example.
+所以在这里，我仅举一个例子。 
+
+1108
+00:45:13,389 --> 00:45:14,009
+Yeah.
+是的
+
+1109
+00:45:14,010 --> 00:45:14,039
+Yeah.
+是的
+
+1110
+00:45:14,239 --> 00:45:16,000
+So for example, here I would need-- sorry.
+例如，在这里我需要-抱歉。 
+
+1111
+00:45:16,000 --> 00:45:16,588
+Oh, OK.
+哦好的。 
+
+1112
+00:45:16,588 --> 00:45:17,630
+I get your confusion now.
+我现在让你感到困惑。 
+
+1113
+00:45:17,630 --> 00:45:18,128
+So, yeah.
+是的。 
+
+1114
+00:45:18,128 --> 00:45:20,929
+This would be one move.
+这将是一招。 
+
+1115
+00:45:20,929 --> 00:45:24,210
+This would be another move.
+这将是另一步。 
+
+1116
+00:45:24,210 --> 00:45:26,795
+AUDIENCE: That's all for a single thing on the screen.
+听众：屏幕上的所有东西都是这样。 
+
+1117
+00:45:26,795 --> 00:45:27,419
+PROFESSOR: Yep.
+教授：是的。 
+
+1118
+00:45:27,420 --> 00:45:28,286
+AUDIENCE: OK.
+听众：好的。 
+
+1119
+00:45:28,286 --> 00:45:28,784
+OK.
+好。 
+
+1120
+00:45:28,784 --> 00:45:29,694
+That makes sense.
+那讲得通。 
+
+1121
+00:45:29,695 --> 00:45:31,827
+AUDIENCE: So the next note would have a really large end
+听众：所以下一个音符的结局很大
+
+1122
+00:45:32,027 --> 00:45:32,839
+degree, right?
+学位，对不对？ 
+
+1123
+00:45:32,840 --> 00:45:33,539
+I guess they always have--
+我想他们总是- 
+
+1124
+00:45:33,539 --> 00:45:34,099
+AUDIENCE: Well, no.
+听众：好吧，不。 
+
+1125
+00:45:34,099 --> 00:45:34,799
+It'd have lots of--
+它会有很多
+
+1126
+00:45:34,800 --> 00:45:36,385
+PROFESSOR: So, this note has a huge out degree.
+教授：因此，此笔记的程度很高。 
+
+1127
+00:45:36,385 --> 00:45:37,010
+AUDIENCE: Yeah.
+听众：是的。 
+
+1128
+00:45:37,010 --> 00:45:40,237
+But I'm saying the ones that all those intermediates connect to.
+但我是说所有这些中间物都连接到的那些。 
+
+1129
+00:45:40,237 --> 00:45:40,702
+PROFESSOR: Yeah.
+教授：是的。 
+
+1130
+00:45:40,902 --> 00:45:42,029
+AUDIENCE: So, then, they would connect
+听众：那么，他们会联系
+
+1131
+00:45:42,030 --> 00:45:43,601
+with some note that have, like, really large degree.
+带有很大程度的音符
+
+1132
+00:45:43,800 --> 00:45:44,284
+PROFESSOR: Yep.
+教授：是的。 
+
+1133
+00:45:44,284 --> 00:45:46,250
+AUDIENCE: But there's two of them after that, right?
+听众：但是那之后有两个，对吧？ 
+
+1134
+00:45:46,449 --> 00:45:48,294
+Because there would be two different--
+因为会有两个不同的地方- 
+
+1135
+00:45:48,295 --> 00:45:49,420
+PROFESSOR: So, what's next?
+教授：那接下来呢？ 
+
+1136
+00:45:49,420 --> 00:45:52,829
+Next, is position, hmm.
+接下来是位置，嗯。 
+
+1137
+00:45:52,829 --> 00:45:54,210
+How did U number them?
+你是怎么给他们编号的？ 
+
+1138
+00:45:54,210 --> 00:45:57,452
+I guess, crap.
+我猜，胡扯。 
+
+1139
+00:45:57,452 --> 00:46:02,911
+
+
+
+1140
+00:46:03,110 --> 00:46:03,609
+No.
+没有。 
+
+1141
+00:46:03,610 --> 00:46:05,079
+It's not going to match that, so.
+所以不会匹配的。 
+
+1142
+00:46:05,079 --> 00:46:08,449
+Whatever we do, it's not going to match that.
+无论我们做什么，都无法做到这一点。 
+
+1143
+00:46:08,449 --> 00:46:13,369
+Say the next note, 4, is just an up.
+再说下一个音符4，就好了。 
+
+1144
+00:46:13,369 --> 00:46:18,929
+
+
+
+1145
+00:46:18,929 --> 00:46:19,889
+4 is up down.
+ 4是向下。 
+
+1146
+00:46:19,889 --> 00:46:21,879
+And then I have two notes for it, right?
+然后我有两个注释，对不对？ 
+
+1147
+00:46:21,880 --> 00:46:22,800
+Wild One note, l r.
+狂野一音，l r。 
+
+1148
+00:46:22,800 --> 00:46:26,130
+
+
+
+1149
+00:46:26,130 --> 00:46:27,829
+So this is note 4.
+这就是注释4。 
+
+1150
+00:46:27,829 --> 00:46:29,059
+That happens to be up down.
+那恰好是下跌。 
+
+1151
+00:46:29,059 --> 00:46:32,269
+And then I have this.
+然后我有这个。 
+
+1152
+00:46:32,269 --> 00:46:40,766
+And every one of these connects to every one of these.
+这些中的每一个都连接到其中的每一个。 
+
+1153
+00:46:40,766 --> 00:46:42,349
+AUDIENCE: If the next move is up down,
+听众：如果下一步走高， 
+
+1154
+00:46:42,349 --> 00:46:43,560
+how can notes have down up?
+纸币如何下降？ 
+
+1155
+00:46:43,561 --> 00:46:45,059
+Oh, because you can switch the feet.
+哦，因为您可以换脚。 
+
+1156
+00:46:45,059 --> 00:46:45,556
+PROFESSOR: Yep.
+教授：是的。 
+
+1157
+00:46:45,556 --> 00:46:46,097
+AUDIENCE: Oh.
+听众：哦。 
+
+1158
+00:46:46,097 --> 00:46:48,324
+
+
+
+1159
+00:46:48,523 --> 00:46:49,190
+PROFESSOR: Yeah.
+教授：是的。 
+
+1160
+00:46:49,190 --> 00:46:51,773
+So, I aimed to ask you guys, how am I going to draw the edges?
+所以，我打算问你们，我要如何画边缘？ 
+
+1161
+00:46:51,773 --> 00:46:54,289
+But you guys made me do it with questions.
+但是你们让我提出了问题。 
+
+1162
+00:46:54,489 --> 00:46:57,039
+So, suppose I met note n, l, r.
+因此，假设我遇到了注n，l，r。 
+
+1163
+00:46:57,039 --> 00:46:59,759
+What edges do I draw going out of it?
+我要画出什么边缘？ 
+
+1164
+00:46:59,760 --> 00:47:01,914
+So, note n, left foot at some position.
+因此，请注意n，左脚在某个位置。 
+
+1165
+00:47:01,914 --> 00:47:02,880
+Right foot at some position.
+右脚在某个位置。 
+
+1166
+00:47:03,079 --> 00:47:04,420
+What are my outgoing edges?
+我的外向优势是什么？ 
+
+1167
+00:47:04,420 --> 00:47:07,476
+
+
+
+1168
+00:47:07,476 --> 00:47:09,099
+AUDIENCE: This is a note on the screen.
+听众：这是屏幕上的注释。 
+
+1169
+00:47:09,099 --> 00:47:09,619
+Or--
+要么 - 
+
+1170
+00:47:09,619 --> 00:47:09,859
+PROFESSOR: In the graph.
+教授：在图中。 
+
+1171
+00:47:09,860 --> 00:47:11,693
+AUDIENCE: --the new one or intermediate one?
+听众：-新的还是中间的？ 
+
+1172
+00:47:11,693 --> 00:47:12,650
+PROFESSOR: Doesn't matter.
+教授：没关系。 
+
+1173
+00:47:12,849 --> 00:47:15,105
+So, intermediate notes have a note blank.
+因此，中级注释的注释为空白。 
+
+1174
+00:47:15,106 --> 00:47:16,480
+AUDIENCE: That's just everything.
+听众：仅此而已。 
+
+1175
+00:47:16,480 --> 00:47:17,688
+PROFESSOR: It doesn't matter.
+教授：没关系。 
+
+1176
+00:47:17,688 --> 00:47:20,519
+Yeah, we're looking at all of them at the same time.
+是的，我们要同时查看所有这些。 
+
+1177
+00:47:20,719 --> 00:47:23,169
+AUDIENCE: Wait, so you're asking what are--
+听众：等等，所以您要问- 
+
+1178
+00:47:23,170 --> 00:47:26,320
+PROFESSOR: So, given this note, who am I connecting it to?
+教授：那么，给了这篇笔记，我应该和谁联系？ 
+
+1179
+00:47:26,320 --> 00:47:28,510
+Let's draw the outgoing edges.
+让我们画出边缘。 
+
+1180
+00:47:28,510 --> 00:47:30,960
+So, if you're solving this as a graph problem,
+因此，如果您将其作为图形问题解决， 
+
+1181
+00:47:30,960 --> 00:47:31,860
+you build the notes.
+您建立笔记。 
+
+1182
+00:47:31,860 --> 00:47:32,789
+You draw the edges.
+您绘制边缘。 
+
+1183
+00:47:32,989 --> 00:47:34,471
+You're on some algorithm.
+您正在使用某种算法。 
+
+1184
+00:47:34,471 --> 00:47:35,469
+So let's draw the edges.
+因此，让我们绘制边缘。 
+
+1185
+00:47:35,469 --> 00:47:38,022
+
+
+
+1186
+00:47:38,023 --> 00:47:40,481
+AUDIENCE: I think it depends if you're an intermediate note
+听众：我认为这取决于您是否是中级音符
+
+1187
+00:47:40,481 --> 00:47:41,780
+or not.
+或不。 
+
+1188
+00:47:41,780 --> 00:47:42,400
+PROFESSOR: Nope.
+教授：不。 
+
+1189
+00:47:42,599 --> 00:47:45,190
+So the note tells you what your constraints are.
+因此，该注释告诉您您的约束是什么。 
+
+1190
+00:47:45,190 --> 00:47:48,829
+And that covers intermediate notes.
+这涵盖了中级音符。 
+
+1191
+00:47:48,829 --> 00:47:52,098
+If you're note is a blank, then, well, there's no constraints.
+如果您注意的是空白，那么没有任何限制。 
+
+1192
+00:47:52,099 --> 00:47:54,190
+If the note is not a blank, then there are constraints.
+如果注释不是空白，则存在约束。 
+
+1193
+00:47:54,389 --> 00:47:54,638
+AUDIENCE: Oh, note.
+听众：哦，注意。 
+
+1194
+00:47:54,639 --> 00:47:56,829
+I thought that was referring to the note, not the--
+我以为那是指笔记，而不是- 
+
+1195
+00:47:56,829 --> 00:47:57,413
+PROFESSOR: No.
+教授：不。 
+
+1196
+00:47:57,413 --> 00:47:58,860
+So this is a note.
+因此，这是一个注释。 
+
+1197
+00:47:58,860 --> 00:48:00,400
+Maybe n is not good.
+也许n不好。 
+
+1198
+00:48:00,400 --> 00:48:03,702
+Let's use i, instead, then.
+那么，让我们使用i。 
+
+1199
+00:48:03,702 --> 00:48:04,690
+If n is hard.
+如果n很难。 
+
+1200
+00:48:04,889 --> 00:48:08,646
+So, i is the position here, in this guy.
+所以，我是这个人的职位。 
+
+1201
+00:48:08,646 --> 00:48:09,145
+Right?
+对？ 
+
+1202
+00:48:09,146 --> 00:48:12,340
+
+
+
+1203
+00:48:12,340 --> 00:48:13,815
+Say for example, i equals 1 here.
+举例来说，我在这里等于1。 
+
+1204
+00:48:14,014 --> 00:48:15,089
+I equals 2 here.
+我在这里等于2。 
+
+1205
+00:48:15,090 --> 00:48:15,760
+I equals 3 here.
+我在这里等于3。 
+
+1206
+00:48:15,760 --> 00:48:17,070
+So and so forth.
+等等。 
+
+1207
+00:48:17,269 --> 00:48:19,672
+And that doesn't match this, so.
+那与这个不匹配，所以。 
+
+1208
+00:48:19,672 --> 00:48:21,171
+AUDIENCE: We're talking about note--
+听众：我们正在谈论笔记- 
+
+1209
+00:48:21,172 --> 00:48:21,797
+PROFESSOR: Yep.
+教授：是的。 
+
+1210
+00:48:21,797 --> 00:48:23,570
+AUDIENCE: --not--
+听众：-不- 
+
+1211
+00:48:23,570 --> 00:48:25,260
+PROFESSOR: If one note is represented
+教授：如果有一个音符
+
+1212
+00:48:25,260 --> 00:48:26,510
+by these three numbers, right?
+用这三个数字吧？ 
+
+1213
+00:48:26,510 --> 00:48:27,625
+Each note has this tuple in it.
+每个音符都有这个元组。 
+
+1214
+00:48:27,824 --> 00:48:29,494
+AUDIENCE: Then i is the note.
+听众：那么我就是音符。 
+
+1215
+00:48:29,494 --> 00:48:30,119
+PROFESSOR: Yep.
+教授：是的。 
+
+1216
+00:48:30,119 --> 00:48:32,027
+AUDIENCE: So i connects to i plus 1.
+听众：所以我连接到我加1。 
+
+1217
+00:48:32,027 --> 00:48:34,096
+And then all possibilities known.
+然后所有可能性都知道了。 
+
+1218
+00:48:34,097 --> 00:48:34,480
+PROFESSOR: OK.
+教授：好的。 
+
+1219
+00:48:34,679 --> 00:48:36,609
+So this connects to i plus 1.
+所以这连接到我加1。 
+
+1220
+00:48:36,610 --> 00:48:40,880
+And then all possible destinations, right?
+然后是所有可能的目的地，对不对？ 
+
+1221
+00:48:40,880 --> 00:48:44,380
+So I'm going to say left.
+所以我要说左。 
+
+1222
+00:48:44,380 --> 00:48:45,360
+This is after the jump.
+这是跳跃之后。 
+
+1223
+00:48:45,360 --> 00:48:48,630
+So, left after the jump, and right after the jump.
+因此，跳后左移，跳后右移。 
+
+1224
+00:48:48,630 --> 00:48:54,340
+And this is for all possible left after a jump,
+这是跳跃后剩下的所有可能的东西， 
+
+1225
+00:48:54,340 --> 00:48:55,710
+right after the jump.
+跳后
+
+1226
+00:48:55,710 --> 00:49:02,780
+And lost a weight on this edge.
+并失去了这一优势。 
+
+1227
+00:49:02,780 --> 00:49:05,940
+AUDIENCE: The way that it's from--
+观众：来源- 
+
+1228
+00:49:05,940 --> 00:49:06,728
+AUDIENCE: l r to
+听众：lr to 
+
+1229
+00:49:06,728 --> 00:49:08,996
+AUDIENCE: --l r to l r.
+听众：--lr至l r。 
+
+1230
+00:49:08,996 --> 00:49:10,079
+AUDIENCE: l j-- l sub j r.
+听众：l j-- l sub j r。 
+
+1231
+00:49:10,079 --> 00:49:11,769
+AUDIENCE: l r.
+听众：l r。 
+
+1232
+00:49:11,769 --> 00:49:16,849
+PROFESSOR: So you want to say from l r to l j, r j.
+教授：所以您想说从lr到lj，r j。 
+
+1233
+00:49:16,849 --> 00:49:18,855
+But what?
+但是呢
+
+1234
+00:49:18,855 --> 00:49:19,980
+AUDIENCE: Difficulty level?
+听众：难度级别？ 
+
+1235
+00:49:19,980 --> 00:49:20,646
+PROFESSOR: Yeah.
+教授：是的。 
+
+1236
+00:49:20,646 --> 00:49:21,922
+Where is that?
+哪里是？ 
+
+1237
+00:49:21,922 --> 00:49:23,380
+AUDIENCE: Your difficulty function.
+听众：您的难度函数。 
+
+1238
+00:49:23,380 --> 00:49:24,423
+PROFESSOR: Which is?
+教授：那是什么？ 
+
+1239
+00:49:24,423 --> 00:49:25,090
+AUDIENCE: Delta.
+听众：三角洲。 
+
+1240
+00:49:25,090 --> 00:49:27,150
+PROFESSOR: Delta.
+教授：达美航空。 
+
+1241
+00:49:27,349 --> 00:49:27,849
+So, yeah.
+是的。 
+
+1242
+00:49:27,849 --> 00:49:29,710
+The weight is delta.
+重量为增量。 
+
+1243
+00:49:29,710 --> 00:49:31,019
+I drew d.
+我画了d。 
+
+1244
+00:49:31,219 --> 00:49:36,879
+Delta of these two foot positions.
+这两个脚位置的Delta。 
+
+1245
+00:49:36,880 --> 00:49:37,460
+Almost.
+几乎。 
+
+1246
+00:49:37,659 --> 00:49:42,259
+If I want to minimize the difficulty, then this is right.
+如果我想最小化难度，那是对的。 
+
+1247
+00:49:42,260 --> 00:49:43,840
+If I want to maximize a score, then I
+如果我想最大化分数，那么我
+
+1248
+00:49:44,039 --> 00:49:47,403
+would have to add a minus sign.
+将必须添加一个减号。 
+
+1249
+00:49:47,403 --> 00:49:49,070
+But if you're minimizing the difficulty,
+但是，如果您将难度降到最低， 
+
+1250
+00:49:49,070 --> 00:49:51,519
+this is exactly the way because it maps the shortest path.
+这正是方法，因为它映射了最短的路径。 
+
+1251
+00:49:51,519 --> 00:49:55,302
+Usually, in dynamic programming, things are maximized.
+通常，在动态编程中，事物被最大化。 
+
+1252
+00:49:55,302 --> 00:49:57,385
+AUDIENCE: Wait, why would you add a minus if it's--
+听众：等等，为什么要加上减号，如果- 
+
+1253
+00:49:57,585 --> 00:49:59,459
+PROFESSOR: So, if we're maximizing something,
+教授：所以，如果我们要最大限度地发挥作用， 
+
+1254
+00:49:59,460 --> 00:50:02,164
+we have to flip-- we have to add a minus to the edge costs
+我们必须翻转-我们必须在边缘成本上加上减号
+
+1255
+00:50:02,164 --> 00:50:02,664
+because--
+因为 - 
+
+1256
+00:50:02,664 --> 00:50:03,519
+AUDIENCE: Right.
+听众：对。 
+
+1257
+00:50:03,519 --> 00:50:03,699
+PROFESSOR: Yeah.
+教授：是的。 
+
+1258
+00:50:03,699 --> 00:50:05,589
+But this time we're minimizing something.
+但是这次我们要最小化一些东西。 
+
+1259
+00:50:05,590 --> 00:50:05,802
+AUDIENCE: Oh.
+听众：哦。 
+
+1260
+00:50:05,802 --> 00:50:06,579
+Right, right, right.
+对，对，对。 
+
+1261
+00:50:06,579 --> 00:50:08,259
+PROFESSOR: I promised you that we'll maximize something
+教授：我向你保证，我们会尽最大努力
+
+1262
+00:50:08,260 --> 00:50:08,730
+all the time.
+每时每刻。 
+
+1263
+00:50:08,730 --> 00:50:09,630
+Well, I guess I lied.
+好吧，我想我撒了谎。 
+
+1264
+00:50:09,630 --> 00:50:09,884
+AUDIENCE: OK.
+听众：好的。 
+
+1265
+00:50:10,083 --> 00:50:10,538
+Right, right, right.
+对，对，对。 
+
+1266
+00:50:10,538 --> 00:50:12,161
+AUDIENCE: You don't want to maximize d.
+听众：您不想最大化d。 
+
+1267
+00:50:12,161 --> 00:50:13,719
+Then you're dead.
+那你就死定了
+
+1268
+00:50:13,719 --> 00:50:14,438
+PROFESSOR: No.
+教授：不。 
+
+1269
+00:50:14,438 --> 00:50:15,730
+You want to maximize show offs.
+您想最大化炫耀。 
+
+1270
+00:50:15,730 --> 00:50:17,090
+So if we have the entertainment thing,
+所以如果我们有娱乐的东西， 
+
+1271
+00:50:17,090 --> 00:50:18,210
+then that would be maximized.
+那么那将被最大化。 
+
+1272
+00:50:18,210 --> 00:50:19,289
+And then you'd have minus.
+然后你会减去。 
+
+1273
+00:50:19,289 --> 00:50:20,135
+AUDIENCE: Then you'd have everything you need.
+听众：然后，您将拥有所需的一切。 
+
+1274
+00:50:20,135 --> 00:50:20,760
+PROFESSOR: Yep.
+教授：是的。 
+
+1275
+00:50:20,760 --> 00:50:21,610
+AUDIENCE: OK.
+听众：好的。 
+
+1276
+00:50:21,610 --> 00:50:23,109
+PROFESSOR: OK, so we're almost good.
+教授：好的，我们差不多。 
+
+1277
+00:50:23,110 --> 00:50:26,630
+Source notes and destination notes.
+源注释和目标注释。 
+
+1278
+00:50:26,630 --> 00:50:27,846
+AUDIENCE: Well, I guess source, we
+观众：好吧，我想消息来源，我们
+
+1279
+00:50:28,045 --> 00:50:30,141
+know that means start in the middle.
+知道那意味着从中间开始。 
+
+1280
+00:50:30,141 --> 00:50:30,641
+Right?
+对？ 
+
+1281
+00:50:30,641 --> 00:50:33,719
+Like, you would start off with--
+就像，你会开始- 
+
+1282
+00:50:33,719 --> 00:50:35,328
+PROFESSOR: What's the source?
+教授：来源是什么？ 
+
+1283
+00:50:35,329 --> 00:50:36,920
+You want to start at the first note, right?
+您想从第一个音符开始，对吗？ 
+
+1284
+00:50:37,119 --> 00:50:38,509
+AUDIENCE: Yeah.
+听众：是的。 
+
+1285
+00:50:38,510 --> 00:50:40,581
+PROFESSOR: But in which position?
+教授：但是在哪个位置？ 
+
+1286
+00:50:40,581 --> 00:50:42,065
+AUDIENCE: Well, in the center, right?
+听众：好吧，在中心，对吧？ 
+
+1287
+00:50:42,264 --> 00:50:43,987
+I mean, the [INAUDIBLE] start.
+我的意思是，[听不清]开始。 
+
+1288
+00:50:43,987 --> 00:50:45,195
+Or, I guess you could start--
+或者，我想您可以开始- 
+
+1289
+00:50:45,195 --> 00:50:47,699
+AUDIENCE: Wherever you want.
+听众：无论您在哪里。 
+
+1290
+00:50:47,699 --> 00:50:49,039
+AUDIENCE: Could you add a source note
+听众：您能添加原始记录吗
+
+1291
+00:50:49,239 --> 00:50:51,059
+going to a bunch of intermediate notes?
+去一堆中级音符？ 
+
+1292
+00:50:51,059 --> 00:50:52,179
+PROFESSOR: Yeah.
+教授：是的。 
+
+1293
+00:50:52,179 --> 00:50:52,679
+Yeah.
+是的
+
+1294
+00:50:52,679 --> 00:50:56,509
+So what I'm going to do is I'm going to say there is a note 0.
+因此，我要说的是音符0。 
+
+1295
+00:50:56,510 --> 00:50:59,275
+That let's me choose how I'm going to start.
+那让我选择开始的方式。 
+
+1296
+00:50:59,474 --> 00:51:01,099
+AUDIENCE: Oh, it could be any position.
+听众：哦，可能是任何位置。 
+
+1297
+00:51:01,099 --> 00:51:02,889
+It's like an intermediate note itself.
+它本身就像一个中级音符。 
+
+1298
+00:51:02,889 --> 00:51:03,514
+PROFESSOR: Yep.
+教授：是的。 
+
+1299
+00:51:03,514 --> 00:51:06,179
+
+
+
+1300
+00:51:06,179 --> 00:51:09,690
+So I'm going to have a note 0, with all possible foot
+所以我要记下音符0，所有可能的支脚
+
+1301
+00:51:09,690 --> 00:51:11,760
+positions.
+职位。 
+
+1302
+00:51:11,760 --> 00:51:15,340
+And then this is going to be connected to a source,
+然后将其连接到源， 
+
+1303
+00:51:15,539 --> 00:51:18,086
+by edges of weight 0.
+按权重0的边。 
+
+1304
+00:51:18,086 --> 00:51:20,670
+So the intuition is that I get to choose my starting position,
+因此，直觉是我可以选择自己的开始位置， 
+
+1305
+00:51:20,670 --> 00:51:21,710
+right?
+对？ 
+
+1306
+00:51:21,710 --> 00:51:23,360
+Starting position.
+起始位置。 
+
+1307
+00:51:23,360 --> 00:51:24,440
+I see the first note.
+我看到第一个音符。 
+
+1308
+00:51:24,440 --> 00:51:26,019
+I make a move.
+我走了
+
+1309
+00:51:26,019 --> 00:51:28,280
+So I want to be able to choose the starting position.
+因此，我希望能够选择起始位置。 
+
+1310
+00:51:28,280 --> 00:51:29,820
+That's why I have all those notes.
+这就是为什么我有所有这些笔记。 
+
+1311
+00:51:29,820 --> 00:51:32,170
+And then make a move to touch the first note.
+然后移动以触摸第一个音符。 
+
+1312
+00:51:32,369 --> 00:51:35,842
+
+
+
+1313
+00:51:35,842 --> 00:51:38,322
+AUDIENCE: The starting position is also a note.
+听众：起始位置也是一个注释。 
+
+1314
+00:51:38,322 --> 00:51:39,820
+PROFESSOR: Yep.
+教授：是的。 
+
+1315
+00:51:39,820 --> 00:51:43,289
+Because, if the first note is here,
+因为，如果第一个音符在这里， 
+
+1316
+00:51:43,489 --> 00:51:45,500
+I don't necessarily want to start like this
+我不一定要这样开始
+
+1317
+00:51:45,500 --> 00:51:47,820
+because maybe this is harder than this.
+因为也许这比这难。 
+
+1318
+00:51:47,820 --> 00:51:52,295
+
+
+
+1319
+00:51:52,295 --> 00:51:52,795
+All right.
+好吧。 
+
+1320
+00:51:52,795 --> 00:51:53,753
+What's the destination?
+目的地是哪里？ 
+
+1321
+00:51:53,753 --> 00:51:56,898
+
+
+
+1322
+00:51:56,898 --> 00:51:58,400
+AUDIENCE: The last note.
+听众：最后一点。 
+
+1323
+00:51:58,400 --> 00:51:59,730
+PROFESSOR: OK.
+教授：好的。 
+
+1324
+00:51:59,929 --> 00:52:04,789
+So, all the notes that are at note n, and have any position,
+因此，所有在音符n上并处于任意位置的音符
+
+1325
+00:52:04,789 --> 00:52:06,719
+would be connected to a destination note,
+将连接到目的地记录， 
+
+1326
+00:52:06,719 --> 00:52:09,659
+using an edge of weight 0.
+使用权重为0的边。 
+
+1327
+00:52:09,659 --> 00:52:11,509
+Or I can consider them as destinations.
+或者我可以将它们视为目的地。 
+
+1328
+00:52:11,510 --> 00:52:16,340
+And then choose the destination that has the shortest path.
+然后选择路径最短的目的地。 
+
+1329
+00:52:16,340 --> 00:52:18,579
+AUDIENCE: Oh, I see.
+听众：哦，我知道了。 
+
+1330
+00:52:18,579 --> 00:52:23,319
+The final destination is going to be, like, two notes.
+最终目的地将是两个音符。 
+
+1331
+00:52:23,320 --> 00:52:23,820
+Right?
+对？ 
+
+1332
+00:52:23,820 --> 00:52:25,242
+It's going to be that last position, and then--
+这将是最后一个位置，然后- 
+
+1333
+00:52:25,242 --> 00:52:26,865
+PROFESSOR: Or it might be more than two
+教授：或者可能不止两个
+
+1334
+00:52:26,865 --> 00:52:29,900
+if the note is just a simple note.
+如果笔记只是一个简单的笔记。 
+
+1335
+00:52:29,900 --> 00:52:32,030
+Because that wouldn't constrain my feet too much.
+因为那不会太大约束我的脚。 
+
+1336
+00:52:32,030 --> 00:52:32,530
+OK.
+好。 
+
+1337
+00:52:32,530 --> 00:52:34,769
+And last, last question.
+最后，最后一个问题。 
+
+1338
+00:52:34,769 --> 00:52:36,382
+Dijkstra or Bellman-Ford?
+ Dijkstra还是Bellman-Ford？ 
+
+1339
+00:52:36,382 --> 00:52:37,840
+AUDIENCE: Bellman-Ford, because you
+观众：贝尔曼·福特，因为你
+
+1340
+00:52:37,840 --> 00:52:41,235
+have negative edges, negative weight,
+负边，负重
+
+1341
+00:52:41,235 --> 00:52:45,130
+as if you were going to maximize to death.
+仿佛你要最大化死亡。 
+
+1342
+00:52:45,130 --> 00:52:48,059
+PROFESSOR: So, this is always going to be from 0 to 1.
+教授：因此，它总是从0到1。 
+
+1343
+00:52:48,059 --> 00:52:50,489
+So I could possibly use Dijkstra.
+所以我可能会使用Dijkstra。 
+
+1344
+00:52:50,489 --> 00:52:51,549
+The answer is neither.
+答案都不是。 
+
+1345
+00:52:51,550 --> 00:52:54,175
+The answer is, we're building a DAG, so.
+答案是，我们正在构建DAG。 
+
+1346
+00:52:54,175 --> 00:52:54,766
+AUDIENCE: Dijkstra.
+听众：Dijkstra。 
+
+1347
+00:52:54,965 --> 00:52:56,730
+AUDIENCE: We don't use that.
+听众：我们不使用它。 
+
+1348
+00:52:56,730 --> 00:52:57,980
+PROFESSOR: DAG, shortest path.
+教授：DAG，最短路径。 
+
+1349
+00:52:57,980 --> 00:53:00,349
+Every time we have dynamic programming, DAG,
+每次我们进行动态编程，DAG， 
+
+1350
+00:53:00,349 --> 00:53:02,819
+shortest path.
+最短路径。 
+
+1351
+00:53:02,820 --> 00:53:03,320
+OK?
+好？ 
+
+1352
+00:53:03,320 --> 00:53:04,039
+AUDIENCE: Question.
+听众：问题。 
+
+1353
+00:53:04,239 --> 00:53:05,159
+PROFESSOR: Yeah.
+教授：是的。 
+
+1354
+00:53:05,159 --> 00:53:06,359
+Come on, last question.
+来，最后一个问题。 
+
+1355
+00:53:06,360 --> 00:53:08,000
+You can't get away that easily.
+您无法轻易摆脱。 
+
+1356
+00:53:08,000 --> 00:53:08,550
+OK, so.
+好吧
+
+1357
+00:53:08,550 --> 00:53:10,400
+Who wants to play?
+谁想玩？ 
+
+1358
+00:53:10,400 --> 00:53:15,400
+
+
+

@@ -1,0 +1,5020 @@
+﻿1
+00:00:00,000 --> 00:00:00,050
+
+
+
+2
+00:00:00,050 --> 00:00:01,770
+The following content is provided
+提供以下内容
+
+3
+00:00:01,770 --> 00:00:04,009
+under a Creative Commons license.
+根据知识共享许可。 
+
+4
+00:00:04,009 --> 00:00:06,859
+Your support will help MIT OpenCourseWare continue
+您的支持将帮助MIT OpenCourseWare继续
+
+5
+00:00:06,860 --> 00:00:10,720
+to offer high quality educational resources for free.
+免费提供高质量的教育资源。 
+
+6
+00:00:10,720 --> 00:00:13,330
+To make a donation or view additional materials
+捐款或查看其他材料
+
+7
+00:00:13,330 --> 00:00:17,225
+from hundreds of MIT courses, visit MIT OpenCourseWare
+从数百门麻省理工学院的课程中，访问MIT OpenCourseWare 
+
+8
+00:00:17,225 --> 00:00:17,850
+at ocw.mit.edu.
+在ocw.mit.edu。 
+
+9
+00:00:17,850 --> 00:00:21,879
+
+
+
+10
+00:00:21,879 --> 00:00:25,649
+PROFESSOR: Today we're going to solve three problems,
+教授：今天我们要解决三个问题， 
+
+11
+00:00:25,649 --> 00:00:27,895
+a problem called Parenthesization,
+一个叫做括号的问题， 
+
+12
+00:00:27,896 --> 00:00:31,440
+a problem called Edit Distance, which is used in practice
+在实践中会使用一个称为“编辑距离”的问题
+
+13
+00:00:31,440 --> 00:00:34,789
+a lot, for things like comparing two strings of DNA,
+在很多方面，例如比较两串DNA， 
+
+14
+00:00:34,789 --> 00:00:37,909
+and a problem called Knapsack, just
+还有一个叫做背包的问题
+
+15
+00:00:37,909 --> 00:00:39,669
+about how to pack your bags.
+关于如何打包行李。 
+
+16
+00:00:39,670 --> 00:00:43,099
+And we're going to get a couple of general ideas,
+我们将获得一些一般性想法， 
+
+17
+00:00:43,299 --> 00:00:45,829
+one is about how to deal with string problems in general
+一是关于如何处理字符串问题
+
+18
+00:00:45,829 --> 00:00:47,489
+with dynamic programming.
+动态编程。 
+
+19
+00:00:47,490 --> 00:00:49,630
+The first two and our previous lecture
+前两个和我们之前的演讲
+
+20
+00:00:49,630 --> 00:00:52,989
+are all about strings, certain sense or sequences,
+都是关于字符串，某种意义或序列的， 
+
+21
+00:00:53,189 --> 00:00:55,559
+and we're going to introduce a new concept, kind
+我们将介绍一种新的概念
+
+22
+00:00:55,560 --> 00:00:58,880
+of like polynomial time, but only kind of, sort of-- pseudo
+像多项式时间，但只是一种
+
+23
+00:00:58,880 --> 00:00:59,989
+polynomial time.
+多项式时间。 
+
+24
+00:01:00,189 --> 00:01:03,199
+Remember, dynamic programming in five easy steps.
+请记住，动态编程只需五个简单步骤。 
+
+25
+00:01:03,200 --> 00:01:05,609
+You define what your sub problems are and count
+您定义您的子问题并计算
+
+26
+00:01:05,609 --> 00:01:10,150
+how many there are, to solve a sub problem,
+有多少解决一个子问题， 
+
+27
+00:01:10,150 --> 00:01:13,756
+you guess some part of the solution, where there's not too
+你猜想解决方案的某些部分
+
+28
+00:01:13,956 --> 00:01:15,789
+many different possibilities for that guess.
+这种猜测有许多不同的可能性。 
+
+29
+00:01:15,790 --> 00:01:18,790
+You count them, better be polynomial.
+你算他们，最好是多项式。 
+
+30
+00:01:18,790 --> 00:01:23,180
+Then you, using that guess-- this is sort of optional,
+然后，您使用这种猜测-这是可选的， 
+
+31
+00:01:23,180 --> 00:01:25,370
+but I think it's a useful way to think about things.
+但我认为这是思考事情的有用方法。 
+
+32
+00:01:25,370 --> 00:01:28,530
+You write a recurrence relating the solution to the subproblem
+您编写与解决方案相关的子问题的重复记录
+
+33
+00:01:28,530 --> 00:01:31,950
+you want to solve, in terms of smaller subproblem, something
+您想解决较小的子问题
+
+34
+00:01:31,950 --> 00:01:33,859
+that you already know how to solve,
+您已经知道如何解决， 
+
+35
+00:01:33,859 --> 00:01:36,263
+but it's got to be within this list.
+但必须在此列表中。 
+
+36
+00:01:36,263 --> 00:01:37,679
+And when you do that, you're going
+当您这样做时，您将
+
+37
+00:01:37,680 --> 00:01:39,640
+to get a min or a max of a bunch of options,
+获得一堆选项的最小值或最大值， 
+
+38
+00:01:39,640 --> 00:01:41,310
+those correspond to your guesses.
+这些符合您的猜测。 
+
+39
+00:01:41,310 --> 00:01:43,009
+And you get some running time, in order
+然后您会获得一些运行时间
+
+40
+00:01:43,209 --> 00:01:46,809
+to compute that recurrence, ignoring the recursion, that's
+计算递归，而忽略递归，那就是
+
+41
+00:01:46,810 --> 00:01:48,390
+time for subproblem.
+子问题的时间。 
+
+42
+00:01:48,390 --> 00:01:51,780
+Then, to make a dynamic program, you either just
+然后，要制作一个动态程序，您要么
+
+43
+00:01:51,780 --> 00:01:54,930
+make that a recursive algorithm and memoize everything,
+使它成为递归算法并记住所有内容， 
+
+44
+00:01:54,930 --> 00:01:58,155
+or you write the bottom up version of the DP.
+或编写DP的自底向上版本。 
+
+45
+00:01:58,155 --> 00:02:02,370
+They do exactly the same computations, more or less,
+他们或多或少地进行完全相同的计算， 
+
+46
+00:02:02,370 --> 00:02:06,900
+and you need to check that this recurrence is acyclic,
+并且您需要检查这种复发是否为非周期性， 
+
+47
+00:02:06,900 --> 00:02:09,069
+that you never end up depending on yourself,
+你永远不会依赖自己
+
+48
+00:02:09,069 --> 00:02:11,019
+otherwise these will be infinite algorithms
+否则这些将是无限算法
+
+49
+00:02:11,020 --> 00:02:12,469
+or incorrect algorithms.
+或错误的算法。 
+
+50
+00:02:12,669 --> 00:02:13,900
+Either way is bad.
+两种方法都不好。 
+
+51
+00:02:13,901 --> 00:02:16,150
+From the bottom up, you really like to explicitly know
+从下至上，您真的很想明确地知道
+
+52
+00:02:16,150 --> 00:02:18,789
+a topological order on the subproblems,
+子问题的拓扑顺序， 
+
+53
+00:02:18,789 --> 00:02:21,159
+and that's usually pretty easy, but you've
+通常很容易，但是您已经
+
+54
+00:02:21,159 --> 00:02:24,329
+got make sure that it's acyclic.
+确保它是非循环的。 
+
+55
+00:02:24,329 --> 00:02:26,620
+And then, to compute the running time of the algorithm,
+然后，要计算算法的运行时间， 
+
+56
+00:02:26,620 --> 00:02:28,990
+you just take the number of subproblems from part 1
+您只需从第1部分中获取子问题的数量
+
+57
+00:02:28,990 --> 00:02:30,780
+and you multiply it by the time it takes
+然后乘以所需的时间
+
+58
+00:02:30,979 --> 00:02:34,355
+per subproblem, ignoring recursion, in part 3.
+每个子问题，忽略递归，在第3部分中。 
+
+59
+00:02:34,355 --> 00:02:35,729
+That gives you your running time.
+那给您您的运行时间。 
+
+60
+00:02:35,729 --> 00:02:38,310
+I've written this formula by now three times
+我已经写了三遍这个公式
+
+61
+00:02:38,310 --> 00:02:39,979
+are more, remember it.
+还有，记住它。 
+
+62
+00:02:39,979 --> 00:02:40,968
+We use it all the time.
+我们一直在使用它。 
+
+63
+00:02:40,968 --> 00:02:43,259
+And then you need to double check that you can actually
+然后您需要仔细检查您是否可以
+
+64
+00:02:43,259 --> 00:02:45,090
+solve the original problem you cared about,
+解决您关心的原始问题， 
+
+65
+00:02:45,090 --> 00:02:46,631
+either it was one of your subproblems
+要么这是你的子问题之一
+
+66
+00:02:46,631 --> 00:02:48,509
+or a combination of them.
+或它们的组合。 
+
+67
+00:02:48,509 --> 00:02:52,560
+So that's what we're going to do three times today.
+这就是我们今天要做的三遍。 
+
+68
+00:02:52,560 --> 00:02:54,879
+One of the hardest parts in dynamic programming
+动态编程中最难的部分之一
+
+69
+00:02:54,879 --> 00:02:57,269
+is step 1, defining your subproblems.
+是步骤1，定义子问题。 
+
+70
+00:02:57,270 --> 00:03:01,330
+Usually if you do that right, it becomes-- with some practice,
+通常，如果您做对了，通过实践， 
+
+71
+00:03:01,330 --> 00:03:03,442
+step 2 is pretty easy.
+第2步非常简单。 
+
+72
+00:03:03,442 --> 00:03:06,500
+Step 1 is really where most of the insight comes in,
+第1步确实是大多数洞察力产生的地方， 
+
+73
+00:03:06,500 --> 00:03:09,330
+and step 3 is usually trivial, once you know 1 and 2.
+一旦知道了1和2，步骤3通常就很简单了。 
+
+74
+00:03:09,330 --> 00:03:13,219
+Once you realize 1 and 2 will work, the recurrence is clear.
+一旦您意识到1和2将起作用，就很清楚了。 
+
+75
+00:03:13,419 --> 00:03:19,429
+So I want to give you some general tips for step 1,
+因此，我想向您介绍第1步的一些一般性提示
+
+76
+00:03:19,430 --> 00:03:30,780
+how to choose subproblems, and we're
+如何选择子问题，我们
+
+77
+00:03:30,780 --> 00:03:34,110
+going to start with problems that involve strings
+从涉及字符串的问题开始
+
+78
+00:03:34,110 --> 00:03:39,210
+or sequences as input, where the problem, the input
+或序列作为输入，问题出在哪里
+
+79
+00:03:39,409 --> 00:03:41,020
+to the problem is string or sequence.
+问题是字符串或序列。 
+
+80
+00:03:41,020 --> 00:03:44,500
+Last class we saw text justification,
+上一课，我们看到了文字对齐方式， 
+
+81
+00:03:44,500 --> 00:03:47,349
+where the input was a sequence of words,
+输入是一个单词序列， 
+
+82
+00:03:47,349 --> 00:03:51,009
+and we saw Blackjack, where the input was a sequence of cards.
+我们看到了二十一点，其中输入是一系列纸牌。 
+
+83
+00:03:51,009 --> 00:03:54,060
+Both of these are examples, and if you look at them,
+这两个都是示例，如果您查看它们， 
+
+84
+00:03:54,060 --> 00:04:00,788
+in both cases we used suffixes, what
+在两种情况下，我们都使用后缀， 
+
+85
+00:04:00,788 --> 00:04:05,750
+do I call it, x, as our subproblems.
+我称它为x是我们的子问题。 
+
+86
+00:04:05,750 --> 00:04:10,020
+If x was our sequence, we did all the suffixes,
+如果x是我们的序列，则我们完成所有后缀， 
+
+87
+00:04:10,020 --> 00:04:12,370
+I equals zero up to the length of the thing.
+直到事物的长度，我等于零。 
+
+88
+00:04:12,569 --> 00:04:15,150
+
+
+
+89
+00:04:15,150 --> 00:04:18,060
+So they're about n, n plus 1, such subproblems.
+因此，它们大约是n，n加1的子问题。 
+
+90
+00:04:18,060 --> 00:04:18,970
+This is good.
+很好
+
+91
+00:04:18,970 --> 00:04:21,300
+Not very many of them, and usually if you're
+他们不是很多，通常如果你是
+
+92
+00:04:21,300 --> 00:04:23,920
+plucking things off the beginning of the string
+从字符串的开头删除内容
+
+93
+00:04:23,920 --> 00:04:26,223
+or of the sequence, then you'll be left with the suffix.
+或序列号，那么您将获得后缀。 
+
+94
+00:04:26,423 --> 00:04:28,339
+If you always are plucking from the beginning,
+如果您总是从一开始就采摘， 
+
+95
+00:04:28,339 --> 00:04:30,506
+you always have suffixes, you'll stay in this class,
+您总是有后缀，您将继续上课， 
+
+96
+00:04:30,507 --> 00:04:31,963
+and that's good, because you always
+那很好，因为你总是
+
+97
+00:04:31,963 --> 00:04:33,810
+want a recurrence that relates, in terms
+希望相关的复发
+
+98
+00:04:33,810 --> 00:04:37,629
+of the same subproblems that you know.
+您知道的相同子问题。 
+
+99
+00:04:37,629 --> 00:04:38,839
+Sometimes it doesn't work.
+有时它不起作用。 
+
+100
+00:04:38,839 --> 00:04:41,219
+Sometimes prefixes are more convenient.
+有时前缀更方便。 
+
+101
+00:04:41,220 --> 00:04:43,410
+These are usually pretty much identical,
+这些通常是完全相同的
+
+102
+00:04:43,410 --> 00:04:45,620
+but if you're plucking off from the end instead
+但是如果你从最后开始
+
+103
+00:04:45,620 --> 00:04:50,480
+of the beginning, you'll end up with prefixes, not suffixes.
+首先，您将以前缀而不是后缀结尾。 
+
+104
+00:04:50,480 --> 00:04:52,720
+Both of these have linear size, so they're
+两者都具有线性尺寸，所以它们
+
+105
+00:04:52,720 --> 00:04:56,100
+good news, quite efficient.
+好消息，效率很高。 
+
+106
+00:04:56,100 --> 00:04:59,430
+Another possibility when that doesn't work,
+当另一种方法不起作用时， 
+
+107
+00:04:59,430 --> 00:05:02,410
+we're going to see an example of that today,
+我们今天将看到一个例子
+
+108
+00:05:02,410 --> 00:05:03,435
+is you do all substrings.
+是您处理所有子字符串吗？ 
+
+109
+00:05:03,634 --> 00:05:06,170
+
+
+
+110
+00:05:06,170 --> 00:05:08,319
+So I don't mean subsequences, they
+所以我不是说子序列
+
+111
+00:05:08,519 --> 00:05:12,129
+have to be consecutive substrains, i through j.
+必须是从i到j的连续子应变。 
+
+112
+00:05:12,129 --> 00:05:13,629
+And now for all i and j.
+现在，对于所有我和j。 
+
+113
+00:05:13,629 --> 00:05:19,213
+
+
+
+114
+00:05:19,213 --> 00:05:20,379
+How many of these are there?
+其中有几个？ 
+
+115
+00:05:20,379 --> 00:05:24,009
+
+
+
+116
+00:05:24,009 --> 00:05:27,129
+For a string of length n?
+对于长度为n的字符串？ 
+
+117
+00:05:27,129 --> 00:05:28,889
+N squared.
+ N平方。 
+
+118
+00:05:28,889 --> 00:05:34,269
+So this one is n squared, the others are linear.
+所以这个是n平方，其他是线性的。 
+
+119
+00:05:34,269 --> 00:05:36,139
+Out of room here.
+没房间了
+
+120
+00:05:36,139 --> 00:05:38,074
+Theta n.
+塞塔
+
+121
+00:05:38,074 --> 00:05:40,803
+
+
+
+122
+00:05:40,803 --> 00:05:42,969
+So you obviously you prefer to use these subproblems
+因此，您显然希望使用这些子问题
+
+123
+00:05:42,970 --> 00:05:45,360
+because there's fewer of them, but if sometimes they
+因为它们较少，但如果有时它们
+
+124
+00:05:45,360 --> 00:05:47,730
+don't work, then use this one, still polynomial, still
+不起作用，然后使用这个仍然是多项式的
+
+125
+00:05:47,730 --> 00:05:49,569
+pretty good.
+非常好。 
+
+126
+00:05:49,569 --> 00:05:53,339
+This will get you through most DP's.
+这将使您通过大多数DP。 
+
+127
+00:05:53,339 --> 00:05:57,149
+It's pretty simple, but very useful.
+这很简单，但非常有用。 
+
+128
+00:05:57,149 --> 00:05:59,444
+Let me define the next problem we consider.
+让我定义我们考虑的下一个问题。 
+
+129
+00:05:59,444 --> 00:06:04,603
+
+
+
+130
+00:06:04,603 --> 00:06:07,019
+For each of them we're going to go through the five steps.
+对于他们每个人，我们将经历五个步骤。 
+
+131
+00:06:07,019 --> 00:06:09,699
+
+
+
+132
+00:06:09,699 --> 00:06:13,120
+So the first problem for today is parenthesization.
+因此，今天的第一个问题是括号。 
+
+133
+00:06:13,120 --> 00:06:18,540
+You're given an associative expression,
+您会得到一个关联的表达， 
+
+134
+00:06:18,540 --> 00:06:21,259
+and you want to evaluate it in some order.
+您想按某种顺序进行评估。 
+
+135
+00:06:21,459 --> 00:06:33,069
+
+
+
+136
+00:06:33,069 --> 00:06:35,490
+So I'm going to-- for associative expression,
+因此，我将要进行关联表达， 
+
+137
+00:06:35,490 --> 00:06:39,170
+I'm going to think of matrix multiplication,
+我要考虑矩阵乘法， 
+
+138
+00:06:39,170 --> 00:06:41,569
+and I probably want to start at zero.
+我可能想从零开始。 
+
+139
+00:06:41,769 --> 00:06:48,060
+
+
+
+140
+00:06:48,060 --> 00:06:49,610
+So let's say you have n matrices,
+假设您有n个矩阵， 
+
+141
+00:06:49,610 --> 00:06:51,629
+you want to compute their product.
+您要计算其乘积。 
+
+142
+00:06:51,629 --> 00:06:53,480
+So you remember matrix multiplication is not
+所以你记得矩阵乘法不是
+
+143
+00:06:53,480 --> 00:06:55,480
+commutative, I can't reorder these things.
+交换，我不能重新排序这些东西。 
+
+144
+00:06:55,480 --> 00:06:58,379
+All I can do is, if I want to do it
+我所能做的就是，如果我想做
+
+145
+00:06:58,379 --> 00:07:00,839
+by sequence of pairwise multiplications,
+通过成对乘法的序列， 
+
+146
+00:07:00,839 --> 00:07:04,149
+is I get to choose where the parentheses are, and do
+我可以选择括号的位置，然后执行
+
+147
+00:07:04,149 --> 00:07:06,799
+whatever I want for the parentheses,
+无论我想要什么括号， 
+
+148
+00:07:06,800 --> 00:07:08,300
+because it's associative.
+因为它是关联的。 
+
+149
+00:07:08,300 --> 00:07:09,759
+It doesn't matter where they go.
+他们去哪里都没关系。 
+
+150
+00:07:09,959 --> 00:07:12,779
+Now it turns out if you use straightforward matrix
+现在事实证明，如果您使用简单矩阵
+
+151
+00:07:12,779 --> 00:07:15,529
+multiplication, really any algorithm for matrix
+乘法，实际上任何矩阵算法
+
+152
+00:07:15,529 --> 00:07:19,679
+multiplication, it matters how you parenthesize.
+乘法，括号的大小很重要。 
+
+153
+00:07:19,680 --> 00:07:21,160
+Some will be cheaper than others,
+有些会比其他便宜
+
+154
+00:07:21,160 --> 00:07:22,379
+and we can use dynamic programming
+我们可以使用动态编程
+
+155
+00:07:22,579 --> 00:07:24,930
+to find out which is best.
+找出最好的。 
+
+156
+00:07:24,930 --> 00:07:28,579
+So let me draw a simple example.
+因此，让我举一个简单的例子。 
+
+157
+00:07:28,779 --> 00:07:33,469
+Suppose I have a column vector times a row
+假设我有列向量乘以行
+
+158
+00:07:33,470 --> 00:07:37,250
+vector times a column vector.
+向量乘以列向量。 
+
+159
+00:07:37,449 --> 00:07:40,629
+And there are two ways to compute this product.
+有两种计算此乘积的方法。 
+
+160
+00:07:40,629 --> 00:07:50,865
+One is like this, and the other is like this.
+一个是这样，另一个是这样。 
+
+161
+00:07:50,865 --> 00:07:53,603
+
+
+
+162
+00:07:53,603 --> 00:07:55,019
+If I compute the product this way,
+如果我这样计算产品， 
+
+163
+00:07:55,019 --> 00:07:57,029
+it's every row times every column,
+它是每一行乘以每一列， 
+
+164
+00:07:57,029 --> 00:07:58,689
+and then every row times every column,
+然后每一行乘以每一列， 
+
+165
+00:07:58,689 --> 00:08:00,250
+and every row times every column.
+每一行乘以每一列
+
+166
+00:08:00,250 --> 00:08:06,319
+This subresult is a square matrix, so if these are-- say
+该子结果是一个方矩阵，所以如果这些是- 
+
+167
+00:08:06,319 --> 00:08:10,050
+everything here is n, and this will be an n by n matrix.
+这里的所有内容都是n，这将是一个n×n的矩阵。 
+
+168
+00:08:10,050 --> 00:08:15,600
+Then we multiply it by a vector and this computation
+然后我们将其乘以一个向量，然后进行此计算
+
+169
+00:08:15,600 --> 00:08:19,951
+has to take, if you do it well, it
+必须采取，如果做得好， 
+
+170
+00:08:20,151 --> 00:08:21,860
+will take theta n squared time, because I
+将花费theta n平方的时间，因为我
+
+171
+00:08:21,860 --> 00:08:24,110
+need to compute n squared values here,
+这里需要计算n个平方值， 
+
+172
+00:08:24,110 --> 00:08:27,915
+and then it's n squared to do this final multiplication.
+然后进行最后的乘法运算n个平方。 
+
+173
+00:08:27,915 --> 00:08:30,620
+
+
+
+174
+00:08:30,620 --> 00:08:35,139
+Versus if I do it this way, I take all the rows here,
+与如果我采用这种方式，我将把所有行都放在这里， 
+
+175
+00:08:35,139 --> 00:08:38,460
+multiply them on all the columns here, it's a single number,
+将它们乘以此处的所有列，这是一个数字， 
+
+176
+00:08:38,460 --> 00:08:41,480
+and then I multiply by this column.
+然后我乘以此列。 
+
+177
+00:08:41,480 --> 00:08:45,519
+This will take linear time.
+这将花费线性时间。 
+
+178
+00:08:45,519 --> 00:08:49,220
+So this is better parenthesization than this one.
+因此，比起此括号更好。 
+
+179
+00:08:49,220 --> 00:08:53,099
+Now, I don't even need to define in
+现在，我什至不需要定义
+
+180
+00:08:53,299 --> 00:08:59,339
+general for an x by y matrix, times a y by z matrix,
+一般用x乘y矩阵乘以a乘z矩阵， 
+
+181
+00:08:59,340 --> 00:09:03,000
+you can think about the running time of that multiplication.
+您可以考虑该乘法的运行时间。 
+
+182
+00:09:03,000 --> 00:09:05,669
+Whatever the running time is, dynamic programming
+无论运行时间如何，动态编程
+
+183
+00:09:05,669 --> 00:09:08,371
+can solve this problem, as long as it only
+可以解决这个问题，只要
+
+184
+00:09:08,371 --> 00:09:10,079
+depends on the dimensions of the matrices
+取决于矩阵的尺寸
+
+185
+00:09:10,080 --> 00:09:12,719
+that you're multiplying.
+你正在繁殖。 
+
+186
+00:09:12,919 --> 00:09:17,236
+So for this problem, there's going
+所以对于这个问题， 
+
+187
+00:09:17,236 --> 00:09:19,069
+to be the issue of which subproblems we use.
+成为我们使用哪个子问题的问题。 
+
+188
+00:09:19,070 --> 00:09:22,379
+Now we have a sequence of matrices
+现在我们有了一系列矩阵
+
+189
+00:09:22,379 --> 00:09:25,529
+here, so we naturally think of these as subproblems,
+在这里，所以我们自然将这些视为子问题， 
+
+190
+00:09:25,529 --> 00:09:28,269
+but before we get to the subproblems, let me ask you,
+但是在我们讨论这些子问题之前，让我问你， 
+
+191
+00:09:28,269 --> 00:09:29,759
+what you think you should guess?
+您认为应该怎么猜？ 
+
+192
+00:09:29,759 --> 00:09:32,309
+
+
+
+193
+00:09:32,309 --> 00:09:34,859
+Let's just say from the outset, if I give you
+一开始就说，如果我给你
+
+194
+00:09:34,860 --> 00:09:38,110
+this entire sequence, what feature
+这整个序列，有什么特点
+
+195
+00:09:38,110 --> 00:09:39,740
+of the solution of the optimal solution
+最优解的解
+
+196
+00:09:39,740 --> 00:09:40,899
+would you like to guess?
+你想猜吗？ 
+
+197
+00:09:40,899 --> 00:09:43,399
+Can't know the whole solution, because there's exponentially
+无法知道整个解决方案，因为
+
+198
+00:09:43,399 --> 00:09:45,235
+many ways to parenthesize.
+括号的方法很多。 
+
+199
+00:09:45,235 --> 00:09:46,610
+What's one piece of it that you'd
+你会做的一件事情是什么
+
+200
+00:09:46,610 --> 00:09:50,529
+like to guess that will make progress?
+想猜会有所进步吗？ 
+
+201
+00:09:50,529 --> 00:09:51,029
+Any idea?
+任何想法？ 
+
+202
+00:09:51,029 --> 00:09:54,279
+
+
+
+203
+00:09:54,279 --> 00:09:55,279
+It's not so easy.
+这不是那么容易。 
+
+204
+00:09:55,279 --> 00:10:01,891
+
+
+
+205
+00:10:01,892 --> 00:10:04,100
+AUDIENCE: Well, wouldn't you need the last operation?
+听众：嗯，您不需要最后一次手术吗？ 
+
+206
+00:10:04,100 --> 00:10:05,720
+PROFESSOR: What's the last operation
+教授：最后一次手术是什么
+
+207
+00:10:05,720 --> 00:10:06,845
+we're going to do, exactly.
+确切地说，我们将要做。 
+
+208
+00:10:06,845 --> 00:10:10,219
+
+
+
+209
+00:10:10,419 --> 00:10:12,384
+You might call it the outermost multiplication
+您可能称其为最外层乘法
+
+210
+00:10:12,384 --> 00:10:15,100
+or the last multiplication.
+或最后的乘法。 
+
+211
+00:10:15,100 --> 00:10:22,610
+
+
+
+212
+00:10:22,610 --> 00:10:27,960
+So that's going to look like we somehow multiply a 0 through ak
+这样看起来就像我们以某种方式将0乘以ak 
+
+213
+00:10:27,960 --> 00:10:36,190
+minus 1, and then we somehow multiply aK through an minus 1,
+减1，然后以某种方式将k乘以减1， 
+
+214
+00:10:36,190 --> 00:10:39,689
+and this is the last one.
+这是最后一个。 
+
+215
+00:10:39,889 --> 00:10:41,319
+So now we have two subproblems.
+所以现在我们有两个子问题。 
+
+216
+00:10:41,320 --> 00:10:43,445
+Somehow we want to multiply this, somehow-- I mean,
+我们想以某种方式将其相乘，我是说， 
+
+217
+00:10:43,445 --> 00:10:45,469
+there's got to be some last thing you do.
+你要做的最后一件事。 
+
+218
+00:10:45,669 --> 00:10:47,899
+I don't know what it is, so just guess it.
+我不知道这是什么，所以就猜吧。 
+
+219
+00:10:47,899 --> 00:10:51,309
+Try all possibilities for k, it's got to be one of them,
+尝试所有可能的k，它必须是其中之一， 
+
+220
+00:10:51,309 --> 00:10:52,889
+take the best.
+尽力而为。 
+
+221
+00:10:52,889 --> 00:10:56,189
+If somehow we know the optimal way to do a0 to k minus 1
+如果以某种方式我们知道将a0减至k减1的最佳方法
+
+222
+00:10:56,190 --> 00:11:00,329
+and the optimal way to ak to an minus 1, then we're golden.
+以及将ak减为负1的最佳方法，那么我们就是黄金。 
+
+223
+00:11:00,529 --> 00:11:06,289
+Now, this looks like a prefix, this looks like a suffix.
+现在，这看起来像一个前缀，这看起来像一个后缀。 
+
+224
+00:11:06,289 --> 00:11:10,120
+So do you think we can just combine subproblems, suffixes
+那么您认为我们可以将子问题，后缀组合吗
+
+225
+00:11:10,120 --> 00:11:12,970
+and prefixes?
+和前缀？ 
+
+226
+00:11:12,970 --> 00:11:15,120
+How many people think yes?
+有多少人认为是？ 
+
+227
+00:11:15,120 --> 00:11:15,700
+A few?
+一些？ 
+
+228
+00:11:15,700 --> 00:11:20,204
+How many people think no, OK, why?
+有多少人认为不可以，为什么？ 
+
+229
+00:11:20,404 --> 00:11:23,596
+AUDIENCE: So, for example if you split, if you were to split,
+听众：例如，如果您拆分了，如果您拆分了， 
+
+230
+00:11:23,596 --> 00:11:26,799
+like [INAUDIBLE]?
+像[听不清]？ 
+
+231
+00:11:26,799 --> 00:11:27,838
+PROFESSOR: Yeah.
+教授：是的。 
+
+232
+00:11:27,839 --> 00:11:29,179
+The very next thing we're going to do
+我们要做的下一件事
+
+233
+00:11:29,379 --> 00:11:32,480
+is recurse on this subproblem, recurse on this subproblem.
+是在此子问题上递归的，是在此子问题上递归的。 
+
+234
+00:11:32,480 --> 00:11:34,240
+When we recurse here, we're going
+当我们在这里递归时，我们要
+
+235
+00:11:34,240 --> 00:11:42,159
+to split it into a0 to ak prime minus 1, and ak prime minus 1,
+将其分为a0到ak素减1，和ak素减1， 
+
+236
+00:11:42,159 --> 00:11:47,039
+or ak prime to ak minus 1.
+或ak素数到ak减1。 
+
+237
+00:11:47,039 --> 00:11:50,529
+
+
+
+238
+00:11:50,529 --> 00:11:52,579
+We're going to consider all possible partitions,
+我们将考虑所有可能的分区， 
+
+239
+00:11:52,580 --> 00:11:57,320
+and this thing, from ak prime to ak minus 1,
+这个东西，从ak素数到ak减1， 
+
+240
+00:11:57,320 --> 00:11:59,320
+is not a prefix or a suffix.
+不是前缀或后缀。 
+
+241
+00:11:59,320 --> 00:12:01,610
+What is it?
+它是什么？ 
+
+242
+00:12:01,610 --> 00:12:02,220
+A substring.
+子字符串。 
+
+243
+00:12:02,220 --> 00:12:03,830
+There's only one thing left.
+只剩下一件事了。 
+
+244
+00:12:03,830 --> 00:12:06,759
+I claim these are usually enough, and in this case
+我声称这些通常就足够了，在这种情况下
+
+245
+00:12:06,759 --> 00:12:08,590
+substrings will be enough.
+子串就足够了。 
+
+246
+00:12:08,590 --> 00:12:10,100
+But this is how you can figure out
+但这是您可以找出的方法
+
+247
+00:12:10,100 --> 00:12:13,658
+that, ah, I'm not staying within the family prefixes,
+那啊，我不留在家庭前缀中， 
+
+248
+00:12:13,658 --> 00:12:15,450
+I'm not staying within the family suffixes.
+我不在家庭后缀之内。 
+
+249
+00:12:15,450 --> 00:12:18,319
+In general, you never use both of these together.
+通常，您永远不会将两者同时使用。 
+
+250
+00:12:18,519 --> 00:12:21,549
+If you're going to need both, you probably need substrings.
+如果您同时需要两者，则可能需要子字符串。 
+
+251
+00:12:21,549 --> 00:12:22,914
+So if just suffixes work, fine.
+因此，只要后缀有效，就可以了。 
+
+252
+00:12:22,914 --> 00:12:25,769
+If just prefixes work, fine, but otherwise
+如果只是前缀有效，那么可以，否则
+
+253
+00:12:25,769 --> 00:12:27,879
+you're probably going to need substrings.
+您可能需要子字符串。 
+
+254
+00:12:27,879 --> 00:12:31,480
+That's just a rule of thumb, of course.
+当然，这只是一个经验法则。 
+
+255
+00:12:31,480 --> 00:12:32,480
+Cool.
+凉。 
+
+256
+00:12:32,480 --> 00:12:46,580
+So, part 1 subproblem is going to be the optimal evaluation
+因此，第1部分子问题将是最佳评估
+
+257
+00:12:46,580 --> 00:12:58,070
+parenthesization of ai to aj minus 1.
+ ai到aj的括号内减1。 
+
+258
+00:12:58,070 --> 00:13:01,840
+So that's part of the problem here.
+这就是这里问题的一部分。 
+
+259
+00:13:01,840 --> 00:13:04,022
+We want to do a0 to n minus 1.
+我们想做a0到n减1。 
+
+260
+00:13:04,022 --> 00:13:06,230
+So in general, let's just take some substring in here
+所以总的来说，让我们在这里取一些子字符串
+
+261
+00:13:06,230 --> 00:13:08,389
+and say, well what's the best way to multiply that,
+然后说，乘以它的最佳方法是什么， 
+
+262
+00:13:08,389 --> 00:13:09,847
+and that's the sorts of subproblems
+那是种子问题
+
+263
+00:13:09,847 --> 00:13:12,079
+we're getting if we use this guess.
+如果我们使用这个猜测，我们就会知道。 
+
+264
+00:13:12,080 --> 00:13:15,120
+And if you start with a substring and you do this,
+如果您以子字符串开头并执行此操作， 
+
+265
+00:13:15,120 --> 00:13:17,620
+you will still remain within a substring,
+您仍将保留在子字符串中， 
+
+266
+00:13:17,620 --> 00:13:20,359
+so actually I have to revise this slightly.
+所以实际上我必须对此稍作修改。 
+
+267
+00:13:20,559 --> 00:13:25,099
+Now we're going from ai-- to solve this subproblem, which
+现在我们要从人工智能着手解决这个子问题
+
+268
+00:13:25,100 --> 00:13:27,340
+is what we need to do in the guessing step,
+是我们在猜测步骤中需要做的， 
+
+269
+00:13:27,340 --> 00:13:31,240
+we start from ai, we go to some guest place, ak minus 1,
+我们从ai开始，我们去某个客人的地方，ak减去1， 
+
+270
+00:13:31,240 --> 00:13:37,379
+then from ak up to aj minus 1.
+然后从ak到aj减1。 
+
+271
+00:13:37,379 --> 00:13:43,490
+This is the i colon j subproblem.
+这是第i个冒号j子问题。 
+
+272
+00:13:43,490 --> 00:13:47,490
+So we guess some point in the middle, some choice for k.
+因此，我们猜测中间的某个点，k的某些选择。 
+
+273
+00:13:47,490 --> 00:13:56,019
+The number of choices for k is-- number
+ k的选择数是- 
+
+274
+00:13:56,019 --> 00:13:57,559
+of possible choices for this guess,
+这种猜测的可能选择， 
+
+275
+00:13:57,559 --> 00:14:05,489
+so we have to try all of them, is like order j minus i plus 1.
+所以我们必须尝试所有这些，就像阶数j减去i加1一样。 
+
+276
+00:14:05,490 --> 00:14:08,720
+I put order in case I'm off by 1 or something.
+我下订单以防万一我不满意。 
+
+277
+00:14:08,720 --> 00:14:11,437
+But in particular this is [INAUDIBLE].
+但特别是[听不清]。 
+
+278
+00:14:11,437 --> 00:14:12,519
+And that's all we'll need.
+这就是我们所需要的。 
+
+279
+00:14:12,519 --> 00:14:15,129
+
+
+
+280
+00:14:15,129 --> 00:14:16,679
+So that's the guess.
+这就是猜测。 
+
+281
+00:14:16,679 --> 00:14:19,524
+Now we go to step 3, which is the recurrence.
+现在我们转到第3步，即重复。 
+
+282
+00:14:19,524 --> 00:14:26,819
+
+
+
+283
+00:14:26,820 --> 00:14:29,340
+And this-- we're going to do this over and over again.
+这-我们将一遍又一遍地做。 
+
+284
+00:14:29,340 --> 00:14:31,139
+Hopefully by the end, it's really obvious
+希望到最后，这确实很明显
+
+285
+00:14:31,139 --> 00:14:33,230
+how to do this recurrence.
+如何进行这种复发。 
+
+286
+00:14:33,230 --> 00:14:35,725
+Let me just fix my notation, we're going to use dp,
+我来修正一下符号，我们将使用dp， 
+
+287
+00:14:35,725 --> 00:14:37,129
+I believe.
+我相信。 
+
+288
+00:14:37,129 --> 00:14:45,289
+For whatever reason, in my notes I often write dp of ij.
+无论出于什么原因，我经常在笔记中写ij的dp。 
+
+289
+00:14:45,289 --> 00:14:46,829
+This is supposed to be the solution
+这应该是解决方案
+
+290
+00:14:46,830 --> 00:14:49,335
+to the subproblem i colon j.
+子问题我冒号j。 
+
+291
+00:14:49,335 --> 00:14:51,460
+I want to write it recursively, in terms of smaller
+我想递归地写它
+
+292
+00:14:51,460 --> 00:14:54,849
+subproblems, and I want to minimize the cost,
+子问题，我想将成本降到最低， 
+
+293
+00:14:55,049 --> 00:14:57,879
+so I'm going to write a min overall.
+所以我要写一分钟的整体。 
+
+294
+00:14:57,879 --> 00:15:02,689
+And for each choice of k, so there's going to be a for loop,
+对于k的每个选择，都会有一个for循环， 
+
+295
+00:15:02,690 --> 00:15:05,479
+I'm going to use Python notation here with iterators.
+我将在这里使用带有迭代器的Python表示法。 
+
+296
+00:15:05,679 --> 00:15:12,939
+So k is going to be in the range,
+因此，k将在该范围内， 
+
+297
+00:15:12,940 --> 00:15:14,990
+I think range ij is correct.
+我认为范围ij是正确的。 
+
+298
+00:15:14,990 --> 00:15:19,789
+I'm going to double check there's no off by 1's here.
+我要仔细检查这里是否没有1。 
+
+299
+00:15:19,789 --> 00:15:22,019
+Says i plus 1j.
+说我加1j。 
+
+300
+00:15:22,019 --> 00:15:23,370
+I think that's probably right.
+我认为可能是正确的。 
+
+301
+00:15:23,370 --> 00:15:31,110
+
+
+
+302
+00:15:31,110 --> 00:15:32,859
+Once I choose where k is, where I'm
+一旦我选择k在哪里，我在哪里
+
+303
+00:15:33,059 --> 00:15:37,289
+going to split my multiplication,
+要分割我的乘法
+
+304
+00:15:37,289 --> 00:15:43,669
+I do the cost for i up to k, that's
+我为我付出了不超过k的费用，这就是
+
+305
+00:15:43,669 --> 00:15:51,639
+the left multiplication, plus the cost for k up to j,
+左乘法，再加上k到j的成本， 
+
+306
+00:15:51,639 --> 00:15:55,649
+plus-- so those are the two recursive multiplications.
+加-所以这是两个递归乘法
+
+307
+00:15:55,649 --> 00:15:58,689
+So then I also have to do this outermost one.
+因此，我还必须做这最外层的一个。 
+
+308
+00:15:58,690 --> 00:15:59,709
+So how much does that cost?
+那要花多少钱？ 
+
+309
+00:15:59,909 --> 00:16:08,829
+Well, it's something, so cost of the product
+好吧，这就是产品的成本
+
+310
+00:16:08,830 --> 00:16:20,629
+ai colon k times the product ak colon j.
+ ai冒号k乘以ak冒号j。 
+
+311
+00:16:20,629 --> 00:16:22,980
+So I'm assuming I can compute this cost,
+所以我假设我可以计算出这笔费用， 
+
+312
+00:16:22,980 --> 00:16:25,230
+not even going to try to write down a general formula,
+甚至不打算写下一个通用公式， 
+
+313
+00:16:25,230 --> 00:16:26,945
+you could do it, it's not hard, it's like xyz.
+您可以做到，这并不难，就像xyz。 
+
+314
+00:16:27,145 --> 00:16:29,271
+
+
+
+315
+00:16:29,272 --> 00:16:31,230
+For a standard matrix multiplication algorithm.
+用于标准矩阵乘法算法。 
+
+316
+00:16:31,230 --> 00:16:33,009
+But whatever algorithm you're using,
+但是无论您使用哪种算法， 
+
+317
+00:16:33,009 --> 00:16:35,559
+assuming you could figure out the dimensions of this matrix,
+假设您可以找出此矩阵的尺寸， 
+
+318
+00:16:35,559 --> 00:16:36,899
+it doesn't matter how it's computed,
+无论如何计算， 
+
+319
+00:16:36,899 --> 00:16:38,524
+the dimensions will always be the same.
+尺寸将始终相同。 
+
+320
+00:16:38,524 --> 00:16:40,620
+You compute the dimensions of this matrix that
+您计算该矩阵的维数
+
+321
+00:16:40,620 --> 00:16:42,539
+will result from that product, it's
+将由该产品产生，它是
+
+322
+00:16:42,539 --> 00:16:44,819
+always going to be the first dimension
+永远是第一维度
+
+323
+00:16:44,820 --> 00:16:47,331
+here, with the last dimension there.
+在这里，最后一个尺寸在那里。 
+
+324
+00:16:47,331 --> 00:16:49,669
+And it's constant time, you know that.
+而且这是恒定的时间，您知道的。 
+
+325
+00:16:49,669 --> 00:16:52,625
+And then if you can figure out the cost of a multiplication
+然后，如果您能算出乘法的成本
+
+326
+00:16:52,625 --> 00:16:54,500
+in constant time, just knowing the dimensions
+在恒定的时间内，只知道尺寸
+
+327
+00:16:54,500 --> 00:16:56,291
+of these matrices, then you could plug this
+这些矩阵，那么您可以插入
+
+328
+00:16:56,291 --> 00:16:58,490
+in to this dynamic program, and you
+进入这个动态程序，您
+
+329
+00:16:58,490 --> 00:17:00,479
+will get the optimal solution.
+将获得最佳解决方案。 
+
+330
+00:17:00,679 --> 00:17:04,875
+This is magically considering all possible parenthesizations
+神奇地考虑了所有可能的括号
+
+331
+00:17:04,875 --> 00:17:09,899
+of these matrices, but magically it does it in polynomial time.
+这些矩阵，但是神奇的是它可以在多项式时间内完成。 
+
+332
+00:17:09,900 --> 00:17:13,019
+Because the time for subproblem here--
+因为这里出现子问题的时间是
+
+333
+00:17:13,019 --> 00:17:17,588
+
+
+
+334
+00:17:17,588 --> 00:17:19,879
+We're spending constant time for each iteration
+我们每次迭代都花固定的时间
+
+335
+00:17:19,880 --> 00:17:21,329
+of this for loop, because this is
+这个for循环，因为这是
+
+336
+00:17:21,529 --> 00:17:24,519
+a constant time just computing the cost.
+一个恒定的时间，只是计算成本。 
+
+337
+00:17:24,519 --> 00:17:27,086
+These are free recursive calls, so it's
+这些是免费的递归调用，因此
+
+338
+00:17:27,086 --> 00:17:29,460
+dominated by the length of the for loop, which we already
+由for循环的长度决定，我们已经
+
+339
+00:17:29,460 --> 00:17:33,480
+said was order n, so it's order n time for subproblem,
+说是n阶，所以子问题是n阶
+
+340
+00:17:33,480 --> 00:17:34,990
+ignoring recursions.
+忽略递归。 
+
+341
+00:17:34,990 --> 00:17:36,730
+And so when we put this together,
+因此，当我们将它们放在一起时， 
+
+342
+00:17:36,730 --> 00:17:39,589
+the total time is going to be the number
+总时间将是数字
+
+343
+00:17:39,589 --> 00:17:42,689
+of some problems, which I did not write.
+有些问题，我没有写。 
+
+344
+00:17:42,690 --> 00:17:51,119
+The number of problems in step 1 is n squared,
+步骤1中的问题数为n的平方， 
+
+345
+00:17:51,319 --> 00:17:56,529
+that's what we said over here, for substrings.
+这就是我们在这里所说的子字符串。 
+
+346
+00:17:56,529 --> 00:17:58,700
+So running time is number of subproblems, which is n
+因此，运行时间就是子问题的数量，即n 
+
+347
+00:17:58,700 --> 00:18:03,139
+squared, times linear for each, and so it's order n cubed,
+平方，每个时间都是线性的，所以它的阶数为n， 
+
+348
+00:18:03,339 --> 00:18:04,779
+it's actually theta n cubed.
+它实际上是立方体。 
+
+349
+00:18:04,779 --> 00:18:07,879
+
+
+
+350
+00:18:07,880 --> 00:18:10,230
+So polynomial time, much better than trying
+多项式时间，比尝试好得多
+
+351
+00:18:10,230 --> 00:18:12,420
+all possible parenthesizations, they're about 4
+所有可能的括号，大约是4 
+
+352
+00:18:12,420 --> 00:18:15,519
+to the n parenthesizations, that's a lot.
+到n个括号，就很多了。 
+
+353
+00:18:15,519 --> 00:18:18,740
+
+
+
+354
+00:18:18,740 --> 00:18:21,309
+Topological order here is a little more interesting,
+这里的拓扑顺序更有趣
+
+355
+00:18:21,309 --> 00:18:22,789
+if you think about that.
+如果您考虑一下。 
+
+356
+00:18:22,789 --> 00:18:31,769
+
+
+
+357
+00:18:31,769 --> 00:18:34,309
+I can tell you, for suffixes, topological order
+我可以告诉您后缀的拓扑顺序
+
+358
+00:18:34,309 --> 00:18:36,509
+is almost always right to left.
+几乎总是从右到左。 
+
+359
+00:18:36,509 --> 00:18:38,410
+And for prefixes, it's almost always
+对于前缀，几乎总是
+
+360
+00:18:38,410 --> 00:18:43,149
+left to right, for increasing i, decreasing i.
+从左到右，用于增加i，减小i。 
+
+361
+00:18:43,349 --> 00:18:45,379
+For substrings, what do you think it is?
+对于子字符串，您认为它是什么？ 
+
+362
+00:18:45,380 --> 00:18:47,690
+Or for this situation in particular?
+还是针对这种情况？ 
+
+363
+00:18:47,690 --> 00:18:50,029
+In what order should I evaluate these subproblems?
+我应该以什么顺序评估这些子问题？ 
+
+364
+00:18:50,029 --> 00:19:02,605
+
+
+
+365
+00:19:02,605 --> 00:19:03,521
+AUDIENCE: [INAUDIBLE].
+听众：[听不清]。 
+
+366
+00:19:03,521 --> 00:19:10,672
+
+
+
+367
+00:19:10,672 --> 00:19:12,130
+PROFESSOR: This is the running time
+教授：这是运行时间
+
+368
+00:19:12,130 --> 00:19:15,720
+to determine the best way to multiply-- that's right.
+确定最好的繁殖方式-是的。 
+
+369
+00:19:15,720 --> 00:19:18,660
+So yeah, it's worth checking, because we also
+是的，值得检查，因为我们也
+
+370
+00:19:18,660 --> 00:19:20,720
+have to do the multiplication.
+必须做乘法。 
+
+371
+00:19:20,720 --> 00:19:22,940
+But if you imagine this n, the number
+但是如果你想象这个n 
+
+372
+00:19:22,940 --> 00:19:24,690
+of matrices you're multiplying is probably
+您要相乘的矩阵可能
+
+373
+00:19:24,690 --> 00:19:26,700
+much smaller than their sizes.
+比它们的尺寸小得多。 
+
+374
+00:19:26,700 --> 00:19:29,180
+In that situation, this will be tiny,
+在那种情况下，这会很小
+
+375
+00:19:29,180 --> 00:19:32,970
+whereas the time to actually do the multiplication, that's
+而实际进行乘法的时间是
+
+376
+00:19:32,970 --> 00:19:35,779
+what's being computed by the DP, hopefully that's much larger,
+ DP正在计算什么，希望它会更大， 
+
+377
+00:19:35,779 --> 00:19:38,359
+otherwise you're kind of wasting your time doing the DP.
+否则您会浪费时间进行DP。 
+
+378
+00:19:38,359 --> 00:19:41,799
+But hey, at least you could tell somebody
+但是，嘿，至少你可以告诉别人
+
+379
+00:19:41,799 --> 00:19:43,309
+that you did it optimally.
+您做到了最佳。 
+
+380
+00:19:43,309 --> 00:19:46,440
+
+
+
+381
+00:19:46,440 --> 00:19:47,940
+But it gets into a fun issue of cost
+但这成为一个有趣的成本问题
+
+382
+00:19:47,940 --> 00:19:50,259
+of planning verses execution, but we're not really
+计划执行诗句，但是我们不是真的
+
+383
+00:19:50,259 --> 00:19:53,579
+going to worry about that here.
+在这里担心这一点。 
+
+384
+00:19:53,579 --> 00:19:57,309
+So, in what order should I evaluate this recurrence,
+因此，我应该按什么顺序评估这种复发， 
+
+385
+00:19:57,309 --> 00:20:01,369
+in order to-- I want, when I'm evaluating DP of ij,
+为了-当我评估ij的DP时， 
+
+386
+00:20:01,369 --> 00:20:04,179
+I've already done DP of ik and DP of kj,
+我已经做过ik的DP和kj的DP， 
+
+387
+00:20:04,180 --> 00:20:06,149
+and this is what you need for bottom up execution.
+这就是自下而上执行所需的内容。 
+
+388
+00:20:06,349 --> 00:20:07,069
+Yeah.
+是的
+
+389
+00:20:07,069 --> 00:20:08,110
+AUDIENCE: Small to large.
+听众：从小到大。 
+
+390
+00:20:08,111 --> 00:20:09,379
+PROFESSOR: Small to large, exactly.
+教授：确切地说，从小到大。 
+
+391
+00:20:09,579 --> 00:20:15,836
+We want to do increasing substring size.
+我们要增加子字符串的大小。 
+
+392
+00:20:15,836 --> 00:20:17,210
+That's actually what we're always
+这实际上就是我们一直在做的
+
+393
+00:20:17,210 --> 00:20:19,390
+doing for all of those subproblems over there.
+为那里的所有这些子问题做。 
+
+394
+00:20:19,390 --> 00:20:22,369
+
+
+
+395
+00:20:22,569 --> 00:20:24,799
+When I say all suffixes, you go right to left.
+当我说所有后缀时，您从右到左。 
+
+396
+00:20:24,799 --> 00:20:27,618
+Well, that's because the rightmost suffix is nothing,
+嗯，那是因为最右边的后缀什么都没有， 
+
+397
+00:20:27,618 --> 00:20:30,159
+and then you build up a larger and larger strings, same thing
+然后建立越来越大的弦，同样的事情
+
+398
+00:20:30,160 --> 00:20:31,399
+here.
+这里。 
+
+399
+00:20:31,599 --> 00:20:35,099
+Exercise, try to draw the DAG for this picture.
+练习，尝试为此图片绘制DAG。 
+
+400
+00:20:35,099 --> 00:20:37,704
+It's a little harder, but if you-- I
+有点难，但是如果你-我
+
+401
+00:20:37,704 --> 00:20:41,929
+mean you could basically imagine-- I'll do it for you.
+意味着您基本上可以想象-我会为您做到的。 
+
+402
+00:20:41,930 --> 00:20:44,960
+Here is, let's say-- well, at the top
+我们可以说-好吧，在顶部
+
+403
+00:20:44,960 --> 00:20:50,409
+there's everything, the longest substring, that
+所有的东西，最长的子串， 
+
+404
+00:20:50,609 --> 00:20:54,429
+would be from zero to n, that's everything.
+从零到n，仅此而已。 
+
+405
+00:20:54,430 --> 00:20:56,390
+Then you're going to have n different ways
+然后，您将拥有n种不同的方式
+
+406
+00:20:56,390 --> 00:20:58,629
+to have substrings of, or actually just
+拥有或实际上只是
+
+407
+00:20:58,829 --> 00:21:02,569
+two different ways, to have a slightly smaller substring.
+两种不同的方式，使子字符串略小一些。 
+
+408
+00:21:02,569 --> 00:21:05,679
+At the bottom you have a bunch of substrings,
+在底部，您有一堆子字符串， 
+
+409
+00:21:05,680 --> 00:21:10,729
+which are the length zero ones, and in between,
+长度为零，介于两者之间
+
+410
+00:21:10,729 --> 00:21:12,269
+like in the middle here, you're going
+就像在中间
+
+411
+00:21:12,269 --> 00:21:14,089
+to have a much larger number.
+有更大的数字。 
+
+412
+00:21:14,089 --> 00:21:17,779
+
+
+
+413
+00:21:17,779 --> 00:21:20,224
+And all these edges are pointed up,
+所有这些边缘都指向上
+
+414
+00:21:20,224 --> 00:21:21,599
+so you can compute all the length
+这样就可以计算出所有长度
+
+415
+00:21:21,599 --> 00:21:24,349
+zero ones without any dependencies and then just
+没有任何依赖性的零个，然后
+
+416
+00:21:24,349 --> 00:21:25,699
+increasing in length.
+长度增加。 
+
+417
+00:21:25,700 --> 00:21:32,015
+It's a little hard to see, but in each case-- Yeah,
+很难看，但是在每种情况下-是的， 
+
+418
+00:21:32,215 --> 00:21:33,963
+ah, interesting.
+啊，有趣。 
+
+419
+00:21:33,963 --> 00:21:36,379
+This is a little harder to formulate as a regular shortest
+将其简化为常规最短点有点困难
+
+420
+00:21:36,380 --> 00:21:40,359
+paths problem, because if you look at one of these nodes,
+路径问题，因为如果您查看这些节点之一， 
+
+421
+00:21:40,559 --> 00:21:44,049
+it depends on two different values,
+它取决于两个不同的值， 
+
+422
+00:21:44,049 --> 00:21:47,659
+and you have to take the sum of both of them.
+而您必须将两者加起来。 
+
+423
+00:21:47,660 --> 00:21:50,909
+And then you also add the cost of that split.
+然后，您还要添加该拆分的成本。 
+
+424
+00:21:51,109 --> 00:21:51,609
+Cool.
+凉。 
+
+425
+00:21:51,609 --> 00:21:59,209
+So this is the subproblem DAG, you could draw it,
+这是子问题DAG，您可以绘制它， 
+
+426
+00:21:59,210 --> 00:22:03,549
+but this DP is not shortest paths in that DAG.
+但是该DP不是该DAG中的最短路径。 
+
+427
+00:22:03,549 --> 00:22:11,409
+
+
+
+428
+00:22:11,410 --> 00:22:13,890
+So perhaps dynamic programming is not just shortest paths
+所以也许动态编程不仅仅是最短的路径
+
+429
+00:22:13,890 --> 00:22:16,440
+in a DAG, that's a new realization for me
+在DAG中，对我来说这是一个新认识
+
+430
+00:22:16,440 --> 00:22:18,139
+as of right now.
+截至目前。 
+
+431
+00:22:18,339 --> 00:22:19,105
+OK.
+好。 
+
+432
+00:22:19,105 --> 00:22:20,740
+Some other things I forgot to do-- I
+我忘记做的其他事情-我
+
+433
+00:22:20,740 --> 00:22:22,270
+didn't specify the base case.
+没有指定基本情况。 
+
+434
+00:22:22,270 --> 00:22:23,644
+The base case for that recurrence
+重复发生的基本情况
+
+435
+00:22:23,644 --> 00:22:29,129
+is when your string is of length 0 or even of length 1,
+是当您的字符串的长度为0或什至长度为1时
+
+436
+00:22:29,130 --> 00:22:31,319
+because when it's length 1, there's only one matrix,
+因为当它的长度为1时，只有一个矩阵
+
+437
+00:22:31,519 --> 00:22:35,869
+there's no multiplication to do, and so the cost is zero.
+没有乘法可做，因此成本为零。 
+
+438
+00:22:35,869 --> 00:22:40,969
+So you have something like dp of i, i plus 1 equals zero.
+因此，您拥有i的dp之类的东西，我加1等于零。 
+
+439
+00:22:40,970 --> 00:22:42,460
+That's the base case.
+这是基本情况。 
+
+440
+00:22:42,460 --> 00:22:46,730
+And then step 5, step 5 is what's
+然后是步骤5，步骤5是什么
+
+441
+00:22:46,730 --> 00:22:48,230
+the overall problem I want to solve,
+我要解决的整体问题
+
+442
+00:22:48,230 --> 00:22:53,529
+and that's just dp from 0 to n, that's the whole string.
+那只是从0到n的dp，这就是整个字符串。 
+
+443
+00:22:53,529 --> 00:22:56,930
+Any questions about that DP?
+对那个DP有任何疑问吗？ 
+
+444
+00:22:56,930 --> 00:23:04,720
+I didn't write down, I didn't write down a memoized recursive
+我没有写下来，也没有写下有记忆的递归
+
+445
+00:23:04,720 --> 00:23:06,669
+algorithm, you all know how to do that.
+算法，你们都知道该怎么做。 
+
+446
+00:23:06,869 --> 00:23:09,109
+Just do this for loop and put this inside,
+只需将其放入循环并将其放入内部， 
+
+447
+00:23:09,109 --> 00:23:10,785
+that would be the bottom up one, or just
+那将是自下而上的一个，或者仅仅是
+
+448
+00:23:10,786 --> 00:23:12,160
+write this with memoization, that
+带着回忆写下来
+
+449
+00:23:12,160 --> 00:23:13,769
+would be the recursive algorithm.
+将是递归算法。 
+
+450
+00:23:13,769 --> 00:23:17,244
+It's totally easy once you have this recurrence.
+一旦复发，这是完全容易的。 
+
+451
+00:23:17,244 --> 00:23:20,939
+
+
+
+452
+00:23:20,940 --> 00:23:22,170
+All right, good.
+好，好
+
+453
+00:23:22,170 --> 00:23:28,220
+
+
+
+454
+00:23:28,220 --> 00:23:33,420
+How many people is this completely clear to?
+这完全清楚了多少人？ 
+
+455
+00:23:33,420 --> 00:23:33,920
+OK.
+好。 
+
+456
+00:23:33,920 --> 00:23:37,389
+How many people does it kind of make sense?
+这对多少人有意义？ 
+
+457
+00:23:37,589 --> 00:23:40,609
+And how many people it doesn't make sense at all?
+还有多少人根本没有意义呢？ 
+
+458
+00:23:40,609 --> 00:23:41,349
+OK, good.
+好好
+
+459
+00:23:41,349 --> 00:23:43,269
+Hopefully we're going to shift more
+希望我们能做得更多
+
+460
+00:23:43,269 --> 00:23:44,730
+towards the first category.
+对第一类。 
+
+461
+00:23:44,730 --> 00:23:47,079
+It's a little magical, how this guessing works out,
+这有点神奇，这种猜测如何实现， 
+
+462
+00:23:47,079 --> 00:23:50,470
+but I think the only way to really get it is to see more
+但我认为真正获得它的唯一方法是看到更多
+
+463
+00:23:50,470 --> 00:23:53,079
+examples and write code to do it,
+示例并编写代码来做到这一点， 
+
+464
+00:23:53,079 --> 00:23:55,149
+that's-- the ladder is your problem set,
+那是-阶梯是您的问题所在， 
+
+465
+00:23:55,150 --> 00:23:57,579
+examples is what we'll do here.
+例子就是我们在这里要做的。 
+
+466
+00:23:57,779 --> 00:23:59,825
+So next problem we're going to solve.
+因此，我们要解决下一个问题。 
+
+467
+00:23:59,825 --> 00:24:06,658
+
+
+
+468
+00:24:06,858 --> 00:24:08,899
+Dynamic programming is one of these things that's
+动态编程是其中的一件事
+
+469
+00:24:08,900 --> 00:24:15,250
+really easy once you get it, but it takes a little while
+一旦获得它真的很容易，但是要花一点时间
+
+470
+00:24:15,250 --> 00:24:17,519
+to get there.
+到那里。 
+
+471
+00:24:17,519 --> 00:24:24,869
+So edit distance, we're going to make things a little harder.
+因此，编辑距离，我们将使事情变得更困难。 
+
+472
+00:24:24,869 --> 00:24:28,929
+Now we're going to be given two strings instead of just one.
+现在，我们将获得两个字符串，而不仅仅是一个。 
+
+473
+00:24:28,930 --> 00:24:34,669
+And I want to know the cheapest way to convert x into y.
+而且我想知道将x转换为y的最便宜的方法。 
+
+474
+00:24:34,869 --> 00:24:46,409
+
+
+
+475
+00:24:46,410 --> 00:24:48,490
+I'm going to define what transform means.
+我将定义转换的含义。 
+
+476
+00:24:48,490 --> 00:24:50,940
+We're going to allow character edits.
+我们将允许角色编辑。 
+
+477
+00:24:50,940 --> 00:25:01,648
+
+
+
+478
+00:25:01,848 --> 00:25:05,500
+We want to transform this string x into string y,
+我们想将字符串x转换为字符串y， 
+
+479
+00:25:05,500 --> 00:25:08,309
+so what character edits are we allowed?
+那么我们允许哪些字符编辑？ 
+
+480
+00:25:08,309 --> 00:25:12,119
+Very simple, we're allowed to insert a character anywhere
+很简单，我们可以在任意位置插入一个字符
+
+481
+00:25:12,119 --> 00:25:14,949
+in the strength, we're allowed to delete a character anywhere
+从实力上讲，我们可以在任何地方删除角色
+
+482
+00:25:14,950 --> 00:25:21,509
+in the string, and we're allowed to replace a character anywhere
+在字符串中，我们可以在任何地方替换字符
+
+483
+00:25:21,509 --> 00:25:26,269
+in the string, replace c with c prime.
+在字符串中，将c替换为c prime。 
+
+484
+00:25:26,269 --> 00:25:29,430
+Now, you could do a replacement by deleting c and inserting
+现在，您可以通过删除c并插入来进行替换
+
+485
+00:25:29,430 --> 00:25:32,130
+c that's, one way to do it, but I'm
+ c那是做到这一点的一种方法，但是我
+
+486
+00:25:32,130 --> 00:25:34,880
+going to imagine that in general someone tells me
+想像一般来说有人告诉我
+
+487
+00:25:34,880 --> 00:25:37,910
+how much each of these operations costs,
+这些操作的成本是多少
+
+488
+00:25:37,910 --> 00:25:40,903
+and that cost may depend on the character you're inserting.
+费用可能取决于您要插入的字符。 
+
+489
+00:25:40,903 --> 00:25:43,569
+So deleting a character and then inserting a different character
+所以先删除一个字符，然后再插入一个不同的字符
+
+490
+00:25:43,569 --> 00:25:44,899
+will cost one thing.
+将花费一件事。 
+
+491
+00:25:44,900 --> 00:25:48,170
+It will cost the sum of those two cost values.
+它将花费这两个成本值的总和。 
+
+492
+00:25:48,170 --> 00:25:50,170
+Replacing a character with another character
+用另一个字符替换一个字符
+
+493
+00:25:50,170 --> 00:25:51,519
+might be cheaper.
+可能更便宜。 
+
+494
+00:25:51,519 --> 00:25:52,019
+It depends.
+这取决于。 
+
+495
+00:25:52,019 --> 00:25:55,000
+Someone gives me a little table, saying for this character,
+有人给我一张桌子，说这个角色， 
+
+496
+00:25:55,000 --> 00:25:57,250
+for letter a, it costs this much to insert, for letter
+对于字母a，要花这么多钱
+
+497
+00:25:57,250 --> 00:25:59,798
+b it costs this much to insert, this much to delete,
+ b插入要花这么多钱，删除要花这么多钱， 
+
+498
+00:25:59,798 --> 00:26:01,339
+and there's a little matrix for, if I
+如果我有一个矩阵
+
+499
+00:26:01,339 --> 00:26:04,250
+want to convert an a into a b it costs this much to replace.
+想要将a转换为ab，则替换成本很高。 
+
+500
+00:26:04,250 --> 00:26:06,640
+Imagine, if you will, you're trying
+想象一下，如果您愿意，您正在尝试
+
+501
+00:26:06,640 --> 00:26:10,880
+to do a spelling correction, someone's typing on a keyboard,
+进行拼写更正，有人在键盘上打字， 
+
+502
+00:26:10,880 --> 00:26:13,853
+and you have some model of, oh, well if I hit a,
+你有一个模型，哦，好吧，如果我碰到一个， 
+
+503
+00:26:13,853 --> 00:26:16,129
+I might have meant to hit an s, because s
+我可能想打s，因为s 
+
+504
+00:26:16,329 --> 00:26:19,119
+is right next to an a, and that's an easy mistake
+就在a旁边，这是一个简单的错误
+
+505
+00:26:19,119 --> 00:26:22,989
+to make if you're not touch typing, because it's
+如果您不触摸打字，那是因为
+
+506
+00:26:22,990 --> 00:26:25,582
+on the same finger, or maybe you're shifted over by one.
+用同一根手指，或者也许您被移了一个。 
+
+507
+00:26:25,582 --> 00:26:27,089
+So you can come up with some cost models,
+因此，您可以提出一些成本模型， 
+
+508
+00:26:27,289 --> 00:26:29,080
+someone could do a lot of work and research
+某人可以做很多工作和研究
+
+509
+00:26:29,080 --> 00:26:31,449
+and whatnot and see what are typical typos,
+然后看什么是典型的错别字， 
+
+510
+00:26:31,450 --> 00:26:33,279
+replacing one letter for another,
+用一个字母替换另一个字母， 
+
+511
+00:26:33,279 --> 00:26:36,226
+and then associate some cost for each character,
+然后为每个角色关联一些费用， 
+
+512
+00:26:36,227 --> 00:26:37,984
+for each pair characters, what's the likelihood
+对于每对字符，可能性是多少
+
+513
+00:26:38,184 --> 00:26:41,679
+that that was the mistake?
+那是错误的吗？ 
+
+514
+00:26:41,680 --> 00:26:44,259
+I call that the cost, that's the unlikeliness.
+我称这是成本，这不太可能。 
+
+515
+00:26:44,259 --> 00:26:47,170
+And then you want to minimize the sum of costs,
+然后，您希望将成本总和最小化， 
+
+516
+00:26:47,170 --> 00:26:52,650
+and so you want to find what was the least set of errors that
+所以您想找出最少的错误集
+
+517
+00:26:52,650 --> 00:26:54,950
+would end up with this word instead of this word.
+最终将以这个词代替这个词。 
+
+518
+00:26:54,950 --> 00:26:57,049
+You do that on all words of your dictionary
+您对字典中的所有单词都执行此操作
+
+519
+00:26:57,049 --> 00:26:58,424
+and then you'll find the one that
+然后您会找到一个
+
+520
+00:26:58,424 --> 00:27:00,889
+was most likely what you meant to type.
+是您最想输入的内容。 
+
+521
+00:27:00,890 --> 00:27:02,399
+And insertions and deletions are,
+插入和删除是， 
+
+522
+00:27:02,599 --> 00:27:05,579
+I didn't hit the key hard enough,
+我没有足够努力地击键， 
+
+523
+00:27:05,579 --> 00:27:08,509
+or I hit it twice, or accidentally hit a key
+或我打了两次，或不小心打了一个键
+
+524
+00:27:08,509 --> 00:27:11,886
+because it was right next to another one, or whatever.
+因为它紧挨着另一个，或者其他任何东西。 
+
+525
+00:27:11,886 --> 00:27:13,720
+OK, so this is used for spelling correction.
+好的，这用于拼写更正。 
+
+526
+00:27:13,720 --> 00:27:15,630
+It's used for comparing DNA sequences,
+它用于比较DNA序列， 
+
+527
+00:27:15,630 --> 00:27:19,463
+and DNA sequences, if you have one strand of DNA,
+和DNA序列，如果您有一链DNA， 
+
+528
+00:27:19,663 --> 00:27:21,579
+there's a lot of mutation-- some mutations are
+有很多突变-有些突变是
+
+529
+00:27:21,579 --> 00:27:22,869
+more likely than others.
+比其他人更有可能。 
+
+530
+00:27:22,869 --> 00:27:25,029
+For example, c to a g mutation is
+例如，从c到ag的突变是
+
+531
+00:27:25,029 --> 00:27:28,240
+more common than c to an a mutation,
+比c更常见于a突变， 
+
+532
+00:27:28,240 --> 00:27:31,650
+and so you give this replacement a high cost,
+因此您要付出高昂的代价， 
+
+533
+00:27:31,650 --> 00:27:33,940
+you give this one a low cost, to represent
+你给这低成本的代表
+
+534
+00:27:33,940 --> 00:27:35,236
+this is more likely than this.
+比这更有可能。 
+
+535
+00:27:35,236 --> 00:27:36,909
+And then at a distance will give your measure
+然后距离一定可以给你量度
+
+536
+00:27:37,109 --> 00:27:41,189
+of how similar two DNA strings are evolutionarily.
+两个DNA串在进化上有多相似。 
+
+537
+00:27:41,190 --> 00:27:44,419
+And you also get extra characters randomly inserted
+而且您还会随机插入额外的字符
+
+538
+00:27:44,619 --> 00:27:46,559
+and deleted in mutation.
+并删除了突变。 
+
+539
+00:27:46,559 --> 00:27:50,899
+So, it's a simplified model of what happens in mutation,
+因此，它是突变发生情况的简化模型， 
+
+540
+00:27:50,900 --> 00:27:53,759
+but still it's used a lot.
+但仍然使用很多。 
+
+541
+00:27:53,759 --> 00:27:56,529
+So all these are encompassed by edit distance.
+因此，所有这些都包含在编辑距离中。 
+
+542
+00:27:56,529 --> 00:28:00,019
+Another problem encompassed by edit distance
+编辑距离包含的另一个问题
+
+543
+00:28:00,019 --> 00:28:03,700
+is the longest common subsequence problem.
+是最长的常见子序列问题。 
+
+544
+00:28:03,700 --> 00:28:15,279
+
+
+
+545
+00:28:15,279 --> 00:28:20,950
+And I have a fun example, which I spent some hours,
+我有一个有趣的例子，我花了几个小时， 
+
+546
+00:28:20,950 --> 00:28:23,569
+way back when, coming up with.
+回来的时候，想出了。 
+
+547
+00:28:23,569 --> 00:28:25,740
+I can't spell it, though.
+不过，我无法拼写。 
+
+548
+00:28:25,740 --> 00:28:27,059
+It's such a weird word.
+这是一个很奇怪的词。 
+
+549
+00:28:27,059 --> 00:28:32,639
+Hieroglyphology is an English word
+象形文字是一个英语单词
+
+550
+00:28:32,640 --> 00:28:34,950
+and Michelangelo is another English word,
+而米开朗基罗是另一个英文单词， 
+
+551
+00:28:34,950 --> 00:28:37,365
+if you allow proper nouns, unlike Scrabble.
+如果您允许专有名词，则与Scrabble不同。 
+
+552
+00:28:37,365 --> 00:28:41,180
+
+
+
+553
+00:28:41,180 --> 00:28:43,160
+So, think of these as strings.
+因此，将它们视为字符串。 
+
+554
+00:28:43,160 --> 00:28:44,960
+This is x, this is y.
+这是x，这是y。 
+
+555
+00:28:44,960 --> 00:28:47,950
+What is the longest common subsequence?
+最长的公共子序列是什么？ 
+
+556
+00:28:47,950 --> 00:28:50,309
+So not substring, I get to choose--
+所以不是子字符串，我可以选择- 
+
+557
+00:28:50,309 --> 00:28:53,609
+I can drop any set of letters from x, drop any set of letters
+我可以从x中删除任何一组字母，也可以删除任何一组字母
+
+558
+00:28:53,609 --> 00:28:59,000
+from y, and I want them to, in the end, be equal.
+从y开始，我希望它们最终相等。 
+
+559
+00:28:59,000 --> 00:29:00,619
+It's a puzzle for you.
+这对你来说是一个难题。 
+
+560
+00:29:00,619 --> 00:29:02,809
+While you're thinking about it, you
+在思考的时候， 
+
+561
+00:29:02,809 --> 00:29:05,250
+can model this as an edit distance problem,
+可以将其建模为编辑距离问题， 
+
+562
+00:29:05,250 --> 00:29:15,819
+you just define the cost of an insert or a delete to be 1,
+您只需将插入或删除的费用定义为1， 
+
+563
+00:29:15,819 --> 00:29:24,179
+and the cost of a replace to be 0.
+替换成本为0。 
+
+564
+00:29:24,180 --> 00:29:26,690
+So this is a c to c prime replacement.
+因此，这是交流的c素替换。 
+
+565
+00:29:26,690 --> 00:29:30,210
+It's going to be 0 if c equals c prime,
+如果c等于c素数，它将为0， 
+
+566
+00:29:30,210 --> 00:29:32,970
+and I guess infinity otherwise.
+我猜是无穷大。 
+
+567
+00:29:32,970 --> 00:29:38,200
+You just don't consider it in that situation.
+您只是不考虑这种情况。 
+
+568
+00:29:38,200 --> 00:29:41,470
+Can anyone find the longest common subsequence here?
+谁能在这里找到最长的公共子序列？ 
+
+569
+00:29:41,470 --> 00:29:43,324
+It's in English word, that's a hint.
+用英语单词，这是一个提示。 
+
+570
+00:29:43,324 --> 00:29:45,849
+
+
+
+571
+00:29:46,049 --> 00:29:47,539
+So if you do this you're, basically
+因此，如果您这样做，基本上
+
+572
+00:29:47,539 --> 00:29:50,200
+trying to minimize number of insertions and deletions.
+试图减少插入和删除的次数。 
+
+573
+00:29:50,200 --> 00:29:55,140
+Insertions in x correspond to deletions in y,
+ x中的插入对应于y中的删除， 
+
+574
+00:29:55,140 --> 00:29:57,440
+and deletions in x correspond to deletions in x.
+ x中的删除对应于x中的删除。 
+
+575
+00:29:57,440 --> 00:30:01,700
+So this is the minimum number of deletions in both strings,
+所以这是两个字符串中最小的删除次数， 
+
+576
+00:30:01,700 --> 00:30:03,960
+so you end up with a common substring.
+因此，您最终得到一个通用的子字符串。 
+
+577
+00:30:03,960 --> 00:30:06,450
+Because replacement says, I don't pay anything
+因为更换说，我什么都不付
+
+578
+00:30:06,450 --> 00:30:09,710
+if the characters match exactly, otherwise I pay everything.
+如果字符完全匹配，否则我将支付所有费用。 
+
+579
+00:30:09,710 --> 00:30:12,259
+I'd never want to do this, so if there's a mismatch
+我永远都不想这样做，所以如果不匹配
+
+580
+00:30:12,259 --> 00:30:13,900
+I have to delete it.
+我必须删除它。 
+
+581
+00:30:13,900 --> 00:30:15,419
+And so this model is the same thing
+所以这个模型是同一回事
+
+582
+00:30:15,619 --> 00:30:17,209
+as long as common subsequence.
+只要共同的子序列。 
+
+583
+00:30:17,210 --> 00:30:19,210
+I want to solve this more general problem,
+我想解决这个更普遍的问题， 
+
+584
+00:30:19,210 --> 00:30:20,990
+it's actually easier to solve the more general problem,
+解决更一般的问题实际上更容易， 
+
+585
+00:30:20,990 --> 00:30:22,419
+but in particular, you can use it
+但特别是您可以使用它
+
+586
+00:30:22,619 --> 00:30:23,849
+to solve this tricky problem.
+解决这个棘手的问题。 
+
+587
+00:30:23,849 --> 00:30:26,049
+Any answers?
+有什么答案吗？ 
+
+588
+00:30:26,049 --> 00:30:26,549
+Yeah.
+是的
+
+589
+00:30:26,549 --> 00:30:27,048
+Hello.
+你好。 
+
+590
+00:30:27,048 --> 00:30:28,097
+Very good.
+很好。 
+
+591
+00:30:28,097 --> 00:30:31,649
+Hello is the longest common subsequence.
+你好是最长的普通子序列。 
+
+592
+00:30:31,650 --> 00:30:34,700
+
+
+
+593
+00:30:34,700 --> 00:30:37,759
+You can imagine how I found that.
+您可以想象我是如何发现的。 
+
+594
+00:30:37,759 --> 00:30:39,529
+Searching for all English words that
+搜索所有的英语单词
+
+595
+00:30:39,529 --> 00:30:41,990
+have "hello" as the subsequence.
+以“ hello”作为子序列。 
+
+596
+00:30:41,990 --> 00:30:44,359
+That can also be done in polynomial time.
+这也可以在多项式时间内完成。 
+
+597
+00:30:44,359 --> 00:30:49,389
+
+
+
+598
+00:30:49,390 --> 00:30:54,659
+So how are we going to do this?
+那么我们该怎么做呢？ 
+
+599
+00:30:54,859 --> 00:30:57,679
+Well, I'd like to somehow use subproblems for strings,
+好吧，我想以某种方式对字符串使用子问题， 
+
+600
+00:30:57,680 --> 00:31:00,659
+suffixes, prefixes, or substrings.
+后缀，前缀或子字符串。 
+
+601
+00:31:00,859 --> 00:31:04,549
+But now I have two strings, that's kind of annoying.
+但是现在我有两个字符串，这很烦人。 
+
+602
+00:31:04,549 --> 00:31:08,119
+But don't worry, we can do sort of dynamic programming
+但是不用担心，我们可以进行一些动态编程
+
+603
+00:31:08,119 --> 00:31:11,059
+simultaneously over x and y.
+同时在x和y上。 
+
+604
+00:31:11,059 --> 00:31:14,909
+What we're going to do is look at suffixes of x and suffixes
+我们要做的是看x和后缀
+
+605
+00:31:14,910 --> 00:31:18,140
+of y, and to make our subproblems
+ y的子问题
+
+606
+00:31:18,140 --> 00:31:27,259
+we need to combine all of those subproblems by multiplication.
+我们需要通过乘法来组合所有这些子问题。 
+
+607
+00:31:27,259 --> 00:31:30,670
+We need to think about both of them simultaneously.
+我们需要同时考虑两者。 
+
+608
+00:31:30,670 --> 00:31:37,650
+So subproblem is going to be solve edit distance,
+因此，子问题将是解决编辑距离问题， 
+
+609
+00:31:37,650 --> 00:31:42,639
+edit distance problem on two different strings,
+在两个不同的字符串上编辑距离问题， 
+
+610
+00:31:42,839 --> 00:31:49,909
+a suffix of x and a possibly different suffix of y.
+ x的后缀和y的可能不同的后缀。 
+
+611
+00:31:49,910 --> 00:31:53,490
+Because this is for all possible i and j choices.
+因为这适用于所有可能的i和j选择。 
+
+612
+00:31:53,490 --> 00:31:59,294
+And so the number of subproblems is?
+那么子问题的数量是多少？ 
+
+613
+00:31:59,494 --> 00:32:12,204
+
+
+
+614
+00:32:12,204 --> 00:32:13,210
+AUDIENCE: N squared.
+听众：N平方。 
+
+615
+00:32:13,210 --> 00:32:14,710
+PROFESSOR: N squared, yes.
+教授：N平方，是的。 
+
+616
+00:32:14,710 --> 00:32:16,912
+If x is of length n and y is of length n,
+如果x的长度为n而y的长度为n， 
+
+617
+00:32:16,912 --> 00:32:18,669
+there's n choices for this, n choices for that,
+有n种选择，有n种选择， 
+
+618
+00:32:18,869 --> 00:32:20,679
+and we have to do all of them as pairs,
+我们必须将它们全部成对进行， 
+
+619
+00:32:20,680 --> 00:32:21,948
+if there's n squared pairs.
+如果有n个平方对。 
+
+620
+00:32:22,148 --> 00:32:23,939
+In general, if they have different lengths,
+通常，如果它们的长度不同， 
+
+621
+00:32:23,940 --> 00:32:26,256
+it's going to be the length of x times length of y.
+这将是x的长度乘以y的长度。 
+
+622
+00:32:26,256 --> 00:32:26,880
+It's quadratic.
+这是二次方。 
+
+623
+00:32:26,880 --> 00:32:29,319
+
+
+
+624
+00:32:29,519 --> 00:32:30,289
+Good.
+好。 
+
+625
+00:32:30,289 --> 00:32:33,909
+So, next we need to guess something, step 2.
+因此，接下来我们需要猜测，步骤2。 
+
+626
+00:32:33,910 --> 00:32:38,609
+
+
+
+627
+00:32:38,809 --> 00:32:42,309
+This is maybe not so obvious, let's see.
+让我们来看看这可能不是很明显。 
+
+628
+00:32:42,309 --> 00:32:48,759
+You have here's x, starting at position i.
+您的位置是x，从位置i开始。 
+
+629
+00:32:48,759 --> 00:32:54,039
+You have y starting at position j.
+您从位置j开始有y。 
+
+630
+00:32:54,039 --> 00:32:56,000
+Somehow I need to convert x into y,
+我不知何故需要将x转换为y， 
+
+631
+00:32:56,000 --> 00:32:59,309
+I think it's probably better if I line these up,
+我认为如果将它们排列起来可能会更好， 
+
+632
+00:32:59,309 --> 00:33:01,869
+even though in some sense they're not lined up,
+即使从某种意义上说他们没有排队， 
+
+633
+00:33:01,869 --> 00:33:03,449
+that's OK.
+没关系。 
+
+634
+00:33:03,450 --> 00:33:06,976
+I want to convert x into y.
+我想将x转换为y。 
+
+635
+00:33:06,976 --> 00:33:07,899
+What should I look at here?
+我应该在这里看什么？ 
+
+636
+00:33:08,099 --> 00:33:10,209
+Well, I should look at the very first characters,
+好吧，我应该看看第一个字符， 
+
+637
+00:33:10,210 --> 00:33:11,625
+because we're looking at suffixes.
+因为我们正在查看后缀。 
+
+638
+00:33:11,625 --> 00:33:13,519
+We want to cut off first characters somehow.
+我们想以某种方式切断第一个字符。 
+
+639
+00:33:13,519 --> 00:33:16,769
+
+
+
+640
+00:33:16,769 --> 00:33:20,670
+How could it-- what are the possible ways to convert, or to
+怎么可能-转换或转换成什么可能的方法
+
+641
+00:33:20,670 --> 00:33:22,263
+deal with the first character of x?
+处理x的第一个字符？ 
+
+642
+00:33:22,463 --> 00:33:24,129
+What are the possible things I could do?
+我可能会做些什么？ 
+
+643
+00:33:24,130 --> 00:33:26,977
+
+
+
+644
+00:33:26,977 --> 00:33:28,859
+Given that, ultimately, I want the first character
+鉴于此，最终，我想要第一个角色
+
+645
+00:33:29,059 --> 00:33:30,869
+of x to become the first character of y.
+ x成为y的第一个字符。 
+
+646
+00:33:30,869 --> 00:33:36,821
+
+
+
+647
+00:33:36,821 --> 00:33:38,199
+AUDIENCE: Delete [INAUDIBLE].
+听众：删除[听不清]。 
+
+648
+00:33:38,200 --> 00:33:39,950
+PROFESSOR: You could delete this character
+教授：您可以删除此字符
+
+649
+00:33:39,950 --> 00:33:43,430
+and then insert this one, yes.
+然后插入这个，是的。 
+
+650
+00:33:43,430 --> 00:33:44,049
+Other things?
+其他事情？ 
+
+651
+00:33:44,049 --> 00:33:54,183
+
+
+
+652
+00:33:54,183 --> 00:33:55,349
+There's a few possibilities.
+有几种可能性。 
+
+653
+00:33:55,349 --> 00:33:58,728
+
+
+
+654
+00:33:58,729 --> 00:34:01,019
+If you look at it right, there are three possibilities.
+如果您看对了，就有三种可能。 
+
+655
+00:34:01,019 --> 00:34:04,940
+
+
+
+656
+00:34:04,940 --> 00:34:09,019
+And three possibilities are insert, delete, or replace.
+三种可能性是插入，删除或替换。 
+
+657
+00:34:09,019 --> 00:34:12,400
+So let's figure out how that's the case.
+因此，让我们弄清楚情况如何。 
+
+658
+00:34:12,400 --> 00:34:15,300
+I could replace this character with that character,
+我可以用那个字符代替这个字符， 
+
+659
+00:34:15,300 --> 00:34:17,400
+so that's one choice.
+这是一种选择。 
+
+660
+00:34:17,400 --> 00:34:18,690
+That will make progress.
+那将会取得进展。 
+
+661
+00:34:18,690 --> 00:34:21,369
+Once I do that, I can cross off those first characters
+一旦这样做，我就可以删除第一个字符
+
+662
+00:34:21,369 --> 00:34:23,077
+and deal with the rest of the substrings.
+并处理其余的子字符串。 
+
+663
+00:34:23,077 --> 00:34:25,110
+
+
+
+664
+00:34:25,110 --> 00:34:27,409
+Let's think about insert and delete.
+让我们考虑一下插入和删除。 
+
+665
+00:34:27,409 --> 00:34:30,590
+If I wanted to insert, presumably, I
+如果我想插入，大概是
+
+666
+00:34:30,590 --> 00:34:32,007
+need this character at some point.
+在某个时候需要这个角色。 
+
+667
+00:34:32,007 --> 00:34:33,463
+So in order to make this character,
+因此，为了使这个角色， 
+
+668
+00:34:33,463 --> 00:34:35,549
+if it's not going to come from replacing this one,
+如果不是要替换这一个， 
+
+669
+00:34:35,550 --> 00:34:39,789
+it's got to be from inserting that character right there.
+一定要从那里插入那个字符开始。 
+
+670
+00:34:39,789 --> 00:34:42,340
+Once I do that, I can cross out that newly inserted character
+一旦这样做，我就可以删掉新插入的字符
+
+671
+00:34:42,340 --> 00:34:45,570
+in this one, and then I have all of the string x from i
+在这个中，然后我从i中获得了所有的字符串x 
+
+672
+00:34:45,570 --> 00:34:48,469
+onward still, but then I've removed one character from y,
+仍然向前，但是后来我从y中删除了一个字符， 
+
+673
+00:34:48,469 --> 00:34:50,760
+so that's progress.
+这样就可以了。 
+
+674
+00:34:50,760 --> 00:34:53,739
+The other possibility is deletion,
+另一种可能是删除
+
+675
+00:34:53,739 --> 00:34:56,530
+so maybe I delete this character,
+所以也许我删除这个角色， 
+
+676
+00:34:56,530 --> 00:34:58,920
+and then maybe I insert it in the next step,
+然后也许我将其插入下一步
+
+677
+00:34:58,920 --> 00:35:01,059
+but it could be this character matches that one,
+但可能是这个角色与那个角色匹配， 
+
+678
+00:35:01,059 --> 00:35:03,268
+or maybe I have to delete several characters before I
+也许我必须先删除几个字符
+
+679
+00:35:03,268 --> 00:35:06,159
+get to one that matches, something.
+找到一个匹配的东西。 
+
+680
+00:35:06,159 --> 00:35:08,409
+But I don't know that, so that's hard to guess,
+但是我不知道，所以很难猜测， 
+
+681
+00:35:08,409 --> 00:35:11,309
+because that would be more time to guess.
+因为那将是更多的时间去猜测。 
+
+682
+00:35:11,309 --> 00:35:14,059
+But I could say, well, this character might get deleted.
+但是我可以说，这个字符可能会被删除。 
+
+683
+00:35:14,059 --> 00:35:19,429
+If it gets deleted, that's it, it gets deleted.
+如果它被删除，就是这样，它也会被删除。 
+
+684
+00:35:19,429 --> 00:35:22,639
+And then somehow the rest of the x, from i plus 1 on,
+然后以某种方式从我加1开始，剩下的x 
+
+685
+00:35:22,639 --> 00:35:26,440
+has to match with all of y, from j on.
+从j开始必须与所有y匹配。 
+
+686
+00:35:26,440 --> 00:35:31,070
+But those are the three possibilities,
+但这是三种可能性， 
+
+687
+00:35:31,070 --> 00:35:33,289
+and in some sense capture all possibilities.
+从某种意义上讲，抓住了所有可能性。 
+
+688
+00:35:33,489 --> 00:35:37,889
+
+
+
+689
+00:35:37,889 --> 00:35:46,632
+So it could be we replace xi with yj,
+所以可能是我们用yj代替xi 
+
+690
+00:35:46,632 --> 00:35:49,599
+and so that has some cost, which we're given.
+因此，这需要一些费用，这是我们得到的。 
+
+691
+00:35:49,599 --> 00:35:54,449
+It could be that we insert yj at the beginning,
+可能是我们在开头插入了yj， 
+
+692
+00:35:54,449 --> 00:35:55,839
+or it could be that we delete xi.
+或者可能是我们删除了xi。 
+
+693
+00:35:55,840 --> 00:35:59,697
+
+
+
+694
+00:35:59,697 --> 00:36:01,280
+You can see that's definitely spanning
+您可以看到这肯定跨越了
+
+695
+00:36:01,280 --> 00:36:02,663
+all the possible operations we can do,
+我们可以做的所有可能的操作， 
+
+696
+00:36:02,862 --> 00:36:04,509
+and if you think about it long enough,
+如果你考虑了足够长的时间， 
+
+697
+00:36:04,510 --> 00:36:06,090
+you will be convinced this really
+您将确信这真的
+
+698
+00:36:06,090 --> 00:36:07,940
+covers every possible thing you can do.
+涵盖了您可以做的所有可能的事情。 
+
+699
+00:36:08,139 --> 00:36:10,869
+If you think about the optimal solution,
+如果您考虑最佳解决方案， 
+
+700
+00:36:10,869 --> 00:36:13,119
+it's got to do something to make this first character.
+必须要做些什么才能使第一个角色成为现实。 
+
+701
+00:36:13,119 --> 00:36:17,980
+Either it does it by replacement or it does it by an insertion.
+它可以通过替换来实现，也可以通过插入来实现。 
+
+702
+00:36:17,980 --> 00:36:19,750
+But if it inserts it later on, it's
+但是如果以后再插入它， 
+
+703
+00:36:19,750 --> 00:36:21,510
+got to get this out of the way somehow,
+必须以某种方式解决这个问题， 
+
+704
+00:36:21,510 --> 00:36:22,719
+and that's the deletion case.
+这就是删除案例。 
+
+705
+00:36:22,719 --> 00:36:25,009
+If it inserts it at the beginning, that's the insertion
+如果它在开头插入，那就是插入
+
+706
+00:36:25,009 --> 00:36:26,559
+case, if it just does a replacement,
+情况下，如果只是替换， 
+
+707
+00:36:26,559 --> 00:36:28,000
+that's the replace case.
+那是替换案例。 
+
+708
+00:36:28,000 --> 00:36:31,989
+Those are all possibilities for the optimal solution.
+这些都是最佳解决方案的可能性。 
+
+709
+00:36:31,989 --> 00:36:34,649
+Then you can write a recurrence, which
+然后，您可以编写一个循环
+
+710
+00:36:34,650 --> 00:36:39,360
+is just a max of those things, those three options.
+只是这三个选项的最大值。 
+
+711
+00:36:39,360 --> 00:36:45,539
+So I'm going to write, I guess, dp of ij, yes, of i,j,
+我想写的是ij的dp，是的，i，j， 
+
+712
+00:36:45,539 --> 00:36:47,829
+but now i,j is not a substring.
+但是现在i，j不是子字符串。 
+
+713
+00:36:47,829 --> 00:36:49,829
+It's a suffix of x and a suffix of y,
+它是x的后缀和y的后缀， 
+
+714
+00:36:49,829 --> 00:36:51,420
+so it corresponds to this subproblem.
+因此它对应于此子问题。 
+
+715
+00:36:51,420 --> 00:36:53,289
+If I want to solve that subproblem,
+如果我想解决这个子问题， 
+
+716
+00:36:53,289 --> 00:36:58,730
+it's going to be the min of three options.
+这将是三个选项的最小值。 
+
+717
+00:36:58,730 --> 00:37:01,639
+We've got the replace case, so it's
+我们有替换盒，所以
+
+718
+00:37:01,639 --> 00:37:12,659
+going to be some cost of the replace, from xi to yj.
+从xi到yj，将需要一些更换费用。 
+
+719
+00:37:12,659 --> 00:37:16,399
+So that's a quantity which we're given.
+这就是我们得到的数量。 
+
+720
+00:37:16,400 --> 00:37:24,568
+Plus the cost of the rest.
+加上其余的费用。 
+
+721
+00:37:24,768 --> 00:37:26,809
+So after we do this replacement, we can cross off
+因此，在执行此替换之后，我们可以取消
+
+722
+00:37:26,809 --> 00:37:28,994
+both those characters, and so we look at i plus 1 on
+这两个字符，所以我们看我加1 
+
+723
+00:37:28,994 --> 00:37:32,219
+for x, and j plus 1 onwards for y.
+ x表示，j表示y加1。 
+
+724
+00:37:32,219 --> 00:37:34,529
+So that's option 1.
+这就是选项1。 
+
+725
+00:37:34,530 --> 00:37:37,280
+Then comma for the min.
+然后用逗号隔开。 
+
+726
+00:37:37,280 --> 00:37:46,480
+Option 2 is we have the cost of insert yj.
+选项2是我们有插入yj的费用。 
+
+727
+00:37:46,679 --> 00:37:50,219
+So that's also something we're given.
+这就是我们得到的。 
+
+728
+00:37:50,219 --> 00:37:54,389
+Then we add on what we have to do afterwards,
+然后，我们添加之后要做的事情， 
+
+729
+00:37:54,389 --> 00:37:56,609
+which is we've just gotten rid of yj,
+这就是我们刚摆脱了yj， 
+
+730
+00:37:56,610 --> 00:38:00,099
+so x still has the entire string from i on,
+所以x仍然有从i开始的整个字符串， 
+
+731
+00:38:00,099 --> 00:38:03,699
+and y has a smaller string.
+ y的字符串较小。 
+
+732
+00:38:03,699 --> 00:38:06,419
+Comma.
+逗号。 
+
+733
+00:38:06,420 --> 00:38:12,590
+Last option is basically the same, cost of the delete,
+最后一个选项基本相同，删除的费用， 
+
+734
+00:38:12,590 --> 00:38:21,360
+deleting xi, and then we have to add on DP of i plus 1j.
+删除xi，然后我们必须在i加上1j的DP上加上。 
+
+735
+00:38:21,360 --> 00:38:24,340
+Because here we did not advance y but we advanced x.
+因为在这里我们没有推进y但我们推进了x。 
+
+736
+00:38:24,340 --> 00:38:26,340
+It's crucial that we always advance at least one
+至关重要的是，我们必须至少提前一个
+
+737
+00:38:26,340 --> 00:38:30,250
+of the strings, because that means we're making progress,
+的字符串，因为这意味着我们正在取得进步， 
+
+738
+00:38:30,449 --> 00:38:34,299
+and indeed, if you want to jump to step 4, which is topological
+实际上，如果您想跳到步骤4，这是拓扑
+
+739
+00:38:34,300 --> 00:38:38,380
+ordering-- sorry, I reused my symbols here,
+订购-抱歉，我在这里重复使用了我的符号， 
+
+740
+00:38:38,579 --> 00:38:40,039
+some different symbols.
+一些不同的符号。 
+
+741
+00:38:40,039 --> 00:38:44,710
+Head back to step 4 of DP, topological order.
+返回到DP的第4步，拓扑顺序。 
+
+742
+00:38:44,710 --> 00:38:47,010
+Well, these are suffixes, and so I
+好，这些都是后缀，所以我
+
+743
+00:38:47,010 --> 00:38:49,010
+know with suffixes I like to go from the smaller
+知道后缀，我喜欢从较小的后缀开始
+
+744
+00:38:49,010 --> 00:38:52,110
+suffixes, which is the end, to the beginning.
+后缀，即结尾。 
+
+745
+00:38:52,110 --> 00:38:55,250
+And, indeed, because we're always increasing,
+而且，的确，因为我们一直在增长， 
+
+746
+00:38:55,449 --> 00:38:58,879
+we're always looking at later substrings, later suffixes,
+我们总是在查看后面的子字符串，后面的后缀， 
+
+747
+00:38:58,880 --> 00:39:00,500
+for one or the other.
+一个或另一个。 
+
+748
+00:39:00,500 --> 00:39:04,355
+It's enough to just do-- come over here.
+要做就足够了-过来这里。 
+
+749
+00:39:04,355 --> 00:39:08,690
+
+
+
+750
+00:39:08,690 --> 00:39:11,750
+To just do that for both of the strings,
+为了对两个字符串都做到这一点， 
+
+751
+00:39:11,750 --> 00:39:15,360
+it doesn't really matter the order.
+顺序并不重要。 
+
+752
+00:39:15,360 --> 00:39:24,039
+So you can do for i equals x down to zero,
+所以你可以做，因为我等于x降到零， 
+
+753
+00:39:24,039 --> 00:39:32,099
+for j equals y down to zero, and that will work.
+因为j等于y减小到零，这将起作用。 
+
+754
+00:39:32,099 --> 00:39:33,739
+Now this is another dynamic programming
+现在这是另一个动态编程
+
+755
+00:39:33,739 --> 00:39:36,179
+you can think of as just shortest paths in the DAG.
+您可以将其视为DAG中最短的路径。 
+
+756
+00:39:36,179 --> 00:39:41,489
+The DAG is most easily seen as a two-dimensional matrix, where
+ DAG最容易被视为二维矩阵，其中
+
+757
+00:39:41,489 --> 00:39:49,879
+the i index is between zero and length of x, and the j index
+ i索引介于零和x的长度之间，而j索引
+
+758
+00:39:49,880 --> 00:39:53,090
+is between zero and length of y, and each
+在零和y的长度之间，并且每个
+
+759
+00:39:53,090 --> 00:39:56,400
+of the cells in this matrix is a node in the DAG.
+该矩阵中的单元格中的一个是DAG中的节点。 
+
+760
+00:39:56,599 --> 00:40:00,480
+That's one of our subproblems, dp of ij.
+那是我们的子问题之一，ij的dp。 
+
+761
+00:40:00,480 --> 00:40:05,485
+And it depends on these three adjacent cells.
+它取决于这三个相邻的单元格。 
+
+762
+00:40:05,485 --> 00:40:08,690
+
+
+
+763
+00:40:08,889 --> 00:40:10,659
+The edges are like this.
+边缘是这样的。 
+
+764
+00:40:10,659 --> 00:40:13,199
+If you look at it, we have to check i
+如果您看的话，我们必须检查一下
+
+765
+00:40:13,199 --> 00:40:15,004
+plus 1, j plus 1, that's this guy.
+加1，加1，就是这个人。 
+
+766
+00:40:15,005 --> 00:40:18,590
+We have to check ij plus 1, that's this guy.
+我们必须检查ij加1，就是这个家伙。 
+
+767
+00:40:18,590 --> 00:40:21,210
+We have to check i plus 1j, that's this guy.
+我们必须检查我加1j，就是这个家伙。 
+
+768
+00:40:21,409 --> 00:40:24,500
+And so, as long as we compute the matrix this way,
+因此，只要我们以此方式计算矩阵， 
+
+769
+00:40:24,500 --> 00:40:30,159
+what I've done here is row by row, bottom up.
+我在这里所做的是逐行，自下而上的。 
+
+770
+00:40:30,159 --> 00:40:31,710
+You could do it anti-diagonals, you
+你可以做反对角线，你
+
+771
+00:40:31,710 --> 00:40:34,289
+could do it column by column backwards, all of those
+可以逐列地向后做，所有这些
+
+772
+00:40:34,489 --> 00:40:38,636
+will work because we're making progress towards the origin.
+之所以会奏效，是因为我们正在朝着原点迈进。 
+
+773
+00:40:38,637 --> 00:40:40,519
+And so if you ever-- if you look up at a distance,
+因此，如果您-如果您抬头望远， 
+
+774
+00:40:40,719 --> 00:40:43,376
+most descriptions think about it in the matrix form,
+大多数描述都是以矩阵形式考虑的， 
+
+775
+00:40:43,376 --> 00:40:45,960
+but I think it's easier to think of it in this recursive form,
+但我认为以这种递归形式更容易想到它， 
+
+776
+00:40:45,960 --> 00:40:49,159
+whatever your poison.
+不管你的毒药
+
+777
+00:40:49,159 --> 00:40:51,859
+But this is, again, shortest paths in a DAG.
+但这又是DAG中最短的路径。 
+
+778
+00:40:51,860 --> 00:40:54,250
+The original problem we care about
+我们关心的原始问题
+
+779
+00:40:54,250 --> 00:40:58,090
+is dp of zero zero, the upper left corner.
+是dp零零，左上角。 
+
+780
+00:40:58,090 --> 00:41:03,150
+
+
+
+781
+00:41:03,349 --> 00:41:05,949
+So to be clear in the DAG, what you write here
+因此，在DAG中要清楚一点，您在此处写的内容
+
+782
+00:41:05,949 --> 00:41:09,779
+is like the cost of, the weight of that edge
+就像成本，那边缘的重量
+
+783
+00:41:09,780 --> 00:41:12,440
+is the cost of, I believe, a deletion.
+我认为是删除的代价。 
+
+784
+00:41:12,639 --> 00:41:14,344
+Deletion, oh sorry, it's an insertion.
+删除，抱歉，这是一个插入。 
+
+785
+00:41:14,344 --> 00:41:16,576
+
+
+
+786
+00:41:16,577 --> 00:41:18,710
+Inserting that character, this one's a cost of deletion,
+插入该字符，这是删除的代价， 
+
+787
+00:41:18,909 --> 00:41:21,451
+this is a cost to replace, so you just put those edge weights
+这是更换的成本，因此您只需放置这些边缘权重
+
+788
+00:41:21,451 --> 00:41:24,960
+in, and then just do a shortest paths in the DAG,
+进入，然后在DAG中做最短的路径， 
+
+789
+00:41:24,960 --> 00:41:28,929
+I think, from this corner to this corner.
+我认为，从这个角落到这个角落。 
+
+790
+00:41:28,929 --> 00:41:32,379
+And that will give you this, or you could just do this for loop
+那会给你这个，或者你可以做这个for循环
+
+791
+00:41:32,380 --> 00:41:35,480
+and do that in the for loop, same thing.
+然后在for循环中执行相同操作
+
+792
+00:41:35,480 --> 00:41:35,980
+OK.
+好。 
+
+793
+00:41:35,980 --> 00:41:38,599
+What's the running time?
+几点钟了？ 
+
+794
+00:41:38,599 --> 00:41:45,719
+Well, the number of subproblems here is x times y,
+嗯，这里的子问题数是y的x倍， 
+
+795
+00:41:45,719 --> 00:41:47,349
+the running time for subproblem is?
+子问题的运行时间是？ 
+
+796
+00:41:47,349 --> 00:41:56,690
+
+
+
+797
+00:41:56,690 --> 00:42:00,929
+I'm assuming that I know these costs in constant time,
+我假设我会不断了解这些费用， 
+
+798
+00:42:00,929 --> 00:42:04,234
+so what's the overall running time of that, evaluating that?
+那么，对其进行评估的总运行时间是多少？ 
+
+799
+00:42:04,235 --> 00:42:04,735
+Constant.
+不变。 
+
+800
+00:42:04,735 --> 00:42:12,340
+
+
+
+801
+00:42:12,340 --> 00:42:18,269
+And so the overall running time is the number of subproblems
+因此，总的运行时间就是子问题的数量
+
+802
+00:42:18,269 --> 00:42:20,894
+times a constant equals x times y.
+常数乘以x乘以y。 
+
+803
+00:42:20,894 --> 00:42:23,019
+This is the best known algorithm for edit distance,
+这是最著名的编辑距离算法， 
+
+804
+00:42:23,019 --> 00:42:24,150
+no one knows how to do any better.
+没有人知道如何做得更好。 
+
+805
+00:42:24,150 --> 00:42:26,030
+It's a big open problem whether you can.
+是否可以这样做是一个很大的开放问题。 
+
+806
+00:42:26,030 --> 00:42:27,519
+You can improve the space a little bit,
+您可以稍微改善空间， 
+
+807
+00:42:27,719 --> 00:42:29,219
+because we really only need to store
+因为我们真的只需要存储
+
+808
+00:42:29,219 --> 00:42:31,746
+the last row or the last column, depending
+最后一行或最后一列，具体取决于
+
+809
+00:42:31,746 --> 00:42:33,329
+on the order you're evaluating things.
+根据您要评估的顺序。 
+
+810
+00:42:33,329 --> 00:42:35,960
+To even get down to linear space, as far as we know,
+据我们所知，甚至进入线性空间， 
+
+811
+00:42:35,960 --> 00:42:36,789
+we need quadratic time.
+我们需要二次时间。 
+
+812
+00:42:36,989 --> 00:42:41,259
+
+
+
+813
+00:42:41,260 --> 00:42:44,050
+One more problem, are you ready?
+还有一个问题，您准备好了吗？ 
+
+814
+00:42:44,050 --> 00:42:45,894
+This one's going to blow your minds hopefully.
+希望这会让您大吃一惊。 
+
+815
+00:42:46,094 --> 00:42:50,569
+
+
+
+816
+00:42:50,570 --> 00:42:55,090
+Because we're going to diverge from strings and sequences,
+因为我们要从字符串和序列中分离出来， 
+
+817
+00:42:55,090 --> 00:42:57,079
+kind of.
+的种类。 
+
+818
+00:42:57,079 --> 00:43:01,500
+So far everything we've looked at involves one or two
+到目前为止，我们研究的所有内容都涉及一两个
+
+819
+00:43:01,500 --> 00:43:03,550
+strings or sequences, except for [INAUDIBLE].
+字符串或序列，[音频不清晰]除外。 
+
+820
+00:43:03,550 --> 00:43:06,269
+That involved a graph, that was a little more exciting.
+这涉及到一个图表，这更令人兴奋。 
+
+821
+00:43:06,269 --> 00:43:08,561
+But we'd already seen that, so it wasn't that exciting.
+但是我们已经看到了，所以并不令人兴奋。 
+
+822
+00:43:08,561 --> 00:43:13,780
+
+
+
+823
+00:43:13,780 --> 00:43:17,630
+OK, our last problem for today is knapsack.
+好，今天我们的最后一个问题是背包。 
+
+824
+00:43:17,630 --> 00:43:20,219
+
+
+
+825
+00:43:20,418 --> 00:43:21,460
+It's a practical problem.
+这是一个实际的问题。 
+
+826
+00:43:21,460 --> 00:43:23,550
+You're going camping.
+你要去露营。 
+
+827
+00:43:23,550 --> 00:43:25,400
+You're going backpacking, I should say,
+你要去背包旅行，我应该说， 
+
+828
+00:43:25,400 --> 00:43:27,929
+and you can only afford to take whatever
+而且你只能负担任何
+
+829
+00:43:27,929 --> 00:43:28,769
+you can fit on your back.
+你可以背对背。 
+
+830
+00:43:28,969 --> 00:43:31,199
+You have some limit to capacity, let's say
+假设您对容量有一定的限制
+
+831
+00:43:31,199 --> 00:43:33,869
+one giant backpack is all you can carry.
+一个巨大的背包就可以随身携带。 
+
+832
+00:43:33,869 --> 00:43:36,891
+Let's imagine it's the size of the backpack that matters,
+假设重要的是背包的大小， 
+
+833
+00:43:36,891 --> 00:43:38,599
+not the weight, but you could reformulate
+不是重量，但您可以重新设定
+
+834
+00:43:38,599 --> 00:43:40,069
+this in terms of weight.
+就重量而言。 
+
+835
+00:43:40,070 --> 00:43:42,070
+And you've got a lot of stuff you want to bring.
+而且您有很多要带的东西。 
+
+836
+00:43:42,070 --> 00:43:44,170
+Ideally you bring everything you own,
+理想情况下，您要拥有自己的一切， 
+
+837
+00:43:44,170 --> 00:43:46,139
+that would be kind of nice, convenient,
+那会很好，方便， 
+
+838
+00:43:46,139 --> 00:43:47,329
+but it'd be kind of heavy.
+但是有点沉重
+
+839
+00:43:47,329 --> 00:43:51,019
+So you're limited, you're not able to do that.
+因此，您受到限制，无法执行此操作。 
+
+840
+00:43:51,019 --> 00:44:08,449
+So you have a list of items and each of them has a size, si,
+因此，您有一个项目列表，每个项目都有一个大小si， 
+
+841
+00:44:08,449 --> 00:44:12,730
+and has a desire, a value to you,
+对你有一种渴望，一种价值， 
+
+842
+00:44:12,730 --> 00:44:16,409
+how much you care about it, how much you need it on this trip.
+您有多在乎它，这次旅行中您需要多少。 
+
+843
+00:44:16,409 --> 00:44:21,920
+OK, each item has two things, and the sizes are integers.
+好的，每个项目都有两件事，并且大小是整数。 
+
+844
+00:44:21,920 --> 00:44:23,169
+This is going to be important.
+这将很重要。 
+
+845
+00:44:23,170 --> 00:44:26,349
+
+
+
+846
+00:44:26,349 --> 00:44:28,259
+It won't work without that assumption.
+没有这个假设，它将无法正常工作。 
+
+847
+00:44:28,260 --> 00:44:32,070
+And we have a knapsack, backpack,
+我们有一个背包，背包， 
+
+848
+00:44:32,269 --> 00:44:34,809
+whatever, I guess it's the British, but I don't know,
+随便，我猜是英国人，但我不知道， 
+
+849
+00:44:34,809 --> 00:44:35,929
+I get confused.
+我有点迷惑不解了。 
+
+850
+00:44:35,929 --> 00:44:39,849
+Growing up in Canada, I use both, so it's very confusing.
+我在加拿大长大，我俩都使用，所以非常令人困惑。 
+
+851
+00:44:39,849 --> 00:44:45,130
+Knapsack of total size, S.
+总尺寸背包，S。 
+
+852
+00:44:45,130 --> 00:44:48,050
+And what you'd like to do is choose a subset of the items.
+而您想要做的就是选择项的子集。 
+
+853
+00:44:48,050 --> 00:44:50,152
+If you're lucky, the sum of the si's fit within s,
+如果您很幸运，则si在s内的总和， 
+
+854
+00:44:50,351 --> 00:44:51,460
+then you bring everything.
+然后你带来一切。 
+
+855
+00:44:51,460 --> 00:44:53,409
+But if you're not lucky, that's not possible,
+但是，如果您不走运，那是不可能的， 
+
+856
+00:44:53,409 --> 00:44:56,139
+you want to choose a subset of the items whose total size is
+您要选择总大小为
+
+857
+00:44:56,139 --> 00:44:57,949
+less than or equal to s, in order
+小于或等于s 
+
+858
+00:44:57,949 --> 00:45:01,431
+to maximize the sum of the values.
+最大化值的总和。 
+
+859
+00:45:01,431 --> 00:45:10,409
+So you want to maximize the sum of values
+所以你想最大化价值的总和
+
+860
+00:45:10,409 --> 00:45:28,119
+for a subset of items, of total size less than or equal to S.
+对于总大小小于或等于S的项目子集。 
+
+861
+00:45:28,119 --> 00:45:31,289
+You can imagine size as weights instead of size, not
+您可以将尺寸想象为重量而不是尺寸，而不是
+
+862
+00:45:31,289 --> 00:45:33,289
+a big deal, or you could have sizes and weights.
+很大，否则您可能会有尺寸和重量。 
+
+863
+00:45:33,289 --> 00:45:36,869
+All of these things generalize.
+所有这些事情都是普遍的。 
+
+864
+00:45:36,869 --> 00:45:42,289
+But we're going to need that the sizes/weights are integers.
+但是我们将需要大小/权重为整数。 
+
+865
+00:45:42,289 --> 00:45:46,679
+And so the items have to fit, because you can't cheat,
+所以这些物品必须适合，因为你不能作弊， 
+
+866
+00:45:46,679 --> 00:45:49,089
+you can't have more things than what fit,
+你所拥有的东西不能超过适合的东西， 
+
+867
+00:45:49,090 --> 00:45:53,059
+but then you want to maximize the value.
+但是您想最大化价值。 
+
+868
+00:45:53,059 --> 00:45:54,650
+How do we do this with dynamic programming?
+我们如何通过动态编程做到这一点？ 
+
+869
+00:45:54,849 --> 00:45:57,980
+
+
+
+870
+00:45:57,980 --> 00:46:01,440
+With difficulty.
+有困难。 
+
+871
+00:46:01,440 --> 00:46:03,480
+I don't have a ton of time, so I think
+我没有很多时间，所以我认为
+
+872
+00:46:03,480 --> 00:46:06,340
+I'm going to tell you-- well, let's see.
+我要告诉你-好吧，让我们看看。 
+
+873
+00:46:06,340 --> 00:46:08,650
+
+
+
+874
+00:46:08,849 --> 00:46:10,339
+Start with guessing.
+从猜测开始。 
+
+875
+00:46:10,340 --> 00:46:12,170
+This is the easy part to this problem.
+这是解决此问题的容易部分。 
+
+876
+00:46:12,170 --> 00:46:14,697
+
+
+
+877
+00:46:14,697 --> 00:46:17,280
+We should also be thinking about subproblems at the same time.
+我们还应该同时考虑子问题。 
+
+878
+00:46:17,280 --> 00:46:23,210
+
+
+
+879
+00:46:23,210 --> 00:46:26,599
+Even though I said we're leaving sequences, in fact,
+即使我说过我们要离开序列，实际上， 
+
+880
+00:46:26,599 --> 00:46:29,199
+we have a sequence here, we have a sequence of items.
+我们这里有一个序列，我们有一个项目序列。 
+
+881
+00:46:29,199 --> 00:46:31,539
+We don't actually care about the order of the items, but hey,
+我们实际上并不关心项目的顺序，但是， 
+
+882
+00:46:31,739 --> 00:46:32,949
+they're in an order.
+他们有秩序。 
+
+883
+00:46:32,949 --> 00:46:35,049
+If they weren't, we could put them in an order,
+如果不是，我们可以将它们整理好， 
+
+884
+00:46:35,050 --> 00:46:35,884
+in an arbitrary order.
+以任意顺序。 
+
+885
+00:46:36,083 --> 00:46:37,750
+We're going to use that order, and we're
+我们将使用该顺序，并且
+
+886
+00:46:37,750 --> 00:46:39,855
+going to look at suffixes of items.
+要查看项目的后缀。 
+
+887
+00:46:39,855 --> 00:46:45,969
+
+
+
+888
+00:46:45,969 --> 00:46:48,269
+i colon of items.
+我冒号的项目。 
+
+889
+00:46:48,269 --> 00:46:52,960
+
+
+
+890
+00:46:52,960 --> 00:46:55,269
+That's helpful, because now it says, oh, well, we
+这很有用，因为现在它说，哦，嗯，我们
+
+891
+00:46:55,469 --> 00:46:57,849
+should be plucking off items from the beginning.
+应该从一开始就摘掉物品。 
+
+892
+00:46:57,849 --> 00:47:00,309
+Starting with the i-th item, what
+从第i个项目开始， 
+
+893
+00:47:00,309 --> 00:47:03,429
+should I decide about the i-th item,
+我应该决定第i个项目
+
+894
+00:47:03,429 --> 00:47:05,866
+relative to the optimal solution?
+相对于最佳解决方案？ 
+
+895
+00:47:05,867 --> 00:47:06,500
+What should I guess?
+我应该怎么猜？ 
+
+896
+00:47:06,699 --> 00:47:16,118
+
+
+
+897
+00:47:16,119 --> 00:47:17,210
+AUDIENCE: Is i included or not?
+听众：我是否包括在内？ 
+
+898
+00:47:17,409 --> 00:47:19,659
+PROFESSOR: Is i included or not, exactly.
+教授：我是否被包括在内。 
+
+899
+00:47:19,659 --> 00:47:23,119
+
+
+
+900
+00:47:23,119 --> 00:47:33,009
+Is item i in the subset or not.
+项目i是否在子集中。 
+
+901
+00:47:33,010 --> 00:47:36,170
+Two choices, easy.
+两种选择，简单。 
+
+902
+00:47:36,369 --> 00:47:38,039
+Of course, those are the choices.
+当然，这些是选择。 
+
+903
+00:47:38,039 --> 00:47:41,550
+If I do that for everybody, then I know the entire subset.
+如果我为所有人做到这一点，那么我将了解整个子集。 
+
+904
+00:47:41,550 --> 00:47:43,960
+Somehow I need to be able to write
+我需要以某种方式能够写
+
+905
+00:47:44,159 --> 00:47:45,849
+and this is what's actually impossible
+这实际上是不可能的
+
+906
+00:47:45,849 --> 00:47:47,639
+if I choose this as my subproblem.
+如果我选择这个作为我的子问题。 
+
+907
+00:47:47,639 --> 00:47:51,750
+I want to write DP of i, somehow, in terms of, I guess,
+我想以某种方式写i的DP，我想， 
+
+908
+00:47:51,750 --> 00:47:54,389
+DP of i plus 1.
+我加1。 
+
+909
+00:47:54,389 --> 00:47:58,589
+And we'd like to do max, and either we don't put it in,
+而且我们想做到最大，或者我们不把它放进去， 
+
+910
+00:47:58,590 --> 00:48:02,519
+in which case that's our value, or we put it in, in which case
+在这种情况下，这就是我们的价值，或者在这种情况下，我们将其投入其中
+
+911
+00:48:02,719 --> 00:48:05,909
+we get an additional v i in value.
+我们将获得额外的vi价值。 
+
+912
+00:48:05,909 --> 00:48:09,440
+OK, but we consume in size, and there's
+可以，但是我们会消耗很多， 
+
+913
+00:48:09,440 --> 00:48:13,309
+no way to remember that we've consumed the size here.
+没有办法记住我们已经在这里消耗了大小。 
+
+914
+00:48:13,309 --> 00:48:15,150
+We just called DP of i plus 1.
+我们只称i + 1的DP。 
+
+915
+00:48:15,150 --> 00:48:18,030
+In this case, it has everything, all this.
+在这种情况下，它拥有一切。 
+
+916
+00:48:18,030 --> 00:48:22,130
+In this case, we lose si of S, but we
+在这种情况下，我们失去S的si，但是我们
+
+917
+00:48:22,130 --> 00:48:24,289
+can't represent that here.
+在这里不能代表这一点。 
+
+918
+00:48:24,489 --> 00:48:28,178
+That's bad, this would be an incorrect algorithm.
+不好，这将是错误的算法。 
+
+919
+00:48:28,179 --> 00:48:29,769
+I would always choose to put everything in,
+我总是会选择放所有东西， 
+
+920
+00:48:29,969 --> 00:48:32,010
+because it's not keeping track of the size bound.
+因为它没有跟踪大小限制。 
+
+921
+00:48:32,010 --> 00:48:35,289
+There's no capital S in this formula, that's wrong.
+该公式中没有大写字母S，这是错误的。 
+
+922
+00:48:35,289 --> 00:48:40,155
+So, to fix that, I'm going to write that again,
+因此，要解决此问题，我将再次编写， 
+
+923
+00:48:40,155 --> 00:48:43,230
+but a subproblem is going to have more information,
+但是一个子问题将需要更多信息， 
+
+924
+00:48:43,230 --> 00:48:46,539
+it's going to have an index i, and it's
+它会有一个索引i，它是
+
+925
+00:48:46,539 --> 00:48:48,344
+going to have remaining capacity.
+将具有剩余容量。 
+
+926
+00:48:48,344 --> 00:48:53,699
+
+
+
+927
+00:48:53,699 --> 00:48:58,549
+I'm going to call it capital X, at some integer at most
+我将其称为大写X，最多为一个整数
+
+928
+00:48:58,550 --> 00:49:01,190
+S. We're assuming that the sizes are all integers,
+ S.我们假设大小都是整数， 
+
+929
+00:49:01,389 --> 00:49:02,900
+so this is valid.
+所以这是有效的。 
+
+930
+00:49:02,900 --> 00:49:09,230
+The number of subproblems is equal to n,
+子问题的数量等于n， 
+
+931
+00:49:09,230 --> 00:49:12,340
+the number of items, did I say there are n items?
+项目数，我说有n个项目吗？ 
+
+932
+00:49:12,340 --> 00:49:16,690
+Now there are n items, times capital S, really S plus 1,
+现在有n个项目，乘以资本S，实际上是S加1， 
+
+933
+00:49:16,690 --> 00:49:18,619
+because I have to go down to zero.
+因为我必须降至零。 
+
+934
+00:49:18,619 --> 00:49:21,799
+But n times S, different subproblems.
+但是n乘以S，则存在不同的子问题。 
+
+935
+00:49:21,800 --> 00:49:24,400
+Now for each of them I can write a recurrence,
+现在我可以为每个人写一个循环
+
+936
+00:49:24,599 --> 00:49:30,380
+and that is DP of i comma s, is going
+那就是我逗号的DP， 
+
+937
+00:49:30,380 --> 00:49:34,730
+to be the max of DP of i plus 1s.
+是i加上1的DP的最大值。 
+
+938
+00:49:34,730 --> 00:49:36,869
+This is the case where we don't include the items,
+在这种情况下，我们不包含商品， 
+
+939
+00:49:36,869 --> 00:49:38,505
+so S stays the same.
+所以S保持不变。 
+
+940
+00:49:38,505 --> 00:49:40,880
+Actually I should write x here, because it's not actually
+其实我应该在这里写x，因为实际上不是
+
+941
+00:49:40,880 --> 00:49:42,382
+our original value of s.
+ s的原始值。 
+
+942
+00:49:42,581 --> 00:49:44,489
+x is the general situation.
+ x是一般情况。 
+
+943
+00:49:44,489 --> 00:49:46,969
+The other possibility is we include item i,
+另一种可能性是我们包括项目i， 
+
+944
+00:49:46,969 --> 00:49:49,239
+and then we give DP of i plus 1.
+然后给定DP的i加1。 
+
+945
+00:49:49,239 --> 00:49:51,069
+We still consume item i.
+我们仍然消耗物品i。 
+
+946
+00:49:51,070 --> 00:49:55,019
+We now have x minus si as our new capacity,
+现在，我们将x减si作为我们的新容量， 
+
+947
+00:49:55,219 --> 00:49:57,529
+what remains after we add in this item.
+添加此项目后剩下的内容。 
+
+948
+00:49:57,530 --> 00:49:59,440
+And then we add on vi, because that's
+然后我们添加vi，因为那是
+
+949
+00:49:59,639 --> 00:50:03,559
+the value we gain from putting that item in.
+我们从放置该物品中获得的价值。 
+
+950
+00:50:03,559 --> 00:50:07,409
+That's it, that's the DP, pretty simple.
+就是这样，这就是DP，非常简单。 
+
+951
+00:50:07,409 --> 00:50:11,829
+Let me say a little bit about the running time of this thing.
+让我说说这件事的运行时间。 
+
+952
+00:50:11,829 --> 00:50:14,239
+Again, you check there's a topological order and all
+同样，您检查是否存在拓扑顺序，并且所有
+
+953
+00:50:14,239 --> 00:50:16,049
+that, it's in the notes.
+那是在笔记中。 
+
+954
+00:50:16,050 --> 00:50:19,250
+The total running time, we spend constant time
+总的运行时间，我们花费恒定的时间
+
+955
+00:50:19,449 --> 00:50:23,409
+to evaluate this formula, so it's super easy.
+评估此公式，因此超级简单。 
+
+956
+00:50:23,409 --> 00:50:26,389
+The number of subproblems is the bottleneck.
+子问题的数量是瓶颈。 
+
+957
+00:50:26,389 --> 00:50:28,679
+So it's n times s.
+所以是n倍。 
+
+958
+00:50:28,679 --> 00:50:31,089
+Is this polynomial time?
+这是多项式时间吗？ 
+
+959
+00:50:31,090 --> 00:50:34,590
+You might guess from the outline of today that the answer is no.
+您可能从今天的轮廓中猜测答案是否定的。 
+
+960
+00:50:34,590 --> 00:50:38,730
+This is not polynomial time.
+这不是多项式时间。 
+
+961
+00:50:38,929 --> 00:50:41,759
+What this polynomial time mean?
+这个多项式时间是什么意思？ 
+
+962
+00:50:41,760 --> 00:50:46,360
+It's polynomial and n, where n is the size of the input.
+它是多项式和n，其中n是输入的大小。 
+
+963
+00:50:46,360 --> 00:50:47,880
+What's the size of the input here?
+这里的输入大小是多少？ 
+
+964
+00:50:47,880 --> 00:50:50,869
+Well, we're given n items, each with a size, each with a value.
+好吧，我们得到了n个项目，每个项目都有一个大小，每个都有一个值。 
+
+965
+00:50:50,869 --> 00:50:52,460
+If you think of the sizes and values
+如果您考虑规模和价值
+
+966
+00:50:52,460 --> 00:50:56,659
+as being single word items, then the size is n.
+作为单个词项，则大小为n。 
+
+967
+00:50:56,659 --> 00:50:59,819
+If you think of them as being ginormous values,
+如果您认为它们是巨大的价值， 
+
+968
+00:50:59,820 --> 00:51:02,519
+at most, the size of this input is
+最多，此输入的大小为
+
+969
+00:51:02,719 --> 00:51:05,898
+going to be something like n times log s,
+大约是n倍log s， 
+
+970
+00:51:05,898 --> 00:51:07,440
+because if you write it out in binary
+因为如果用二进制写出来
+
+971
+00:51:07,440 --> 00:51:11,110
+you would need log s, bits to write down those numbers.
+您将需要log s位来写下这些数字。 
+
+972
+00:51:11,110 --> 00:51:14,090
+But it is not n times s.
+但这不是n倍。 
+
+973
+00:51:14,090 --> 00:51:17,650
+This would be the binary encoding of the input,
+这将是输入的二进制编码， 
+
+974
+00:51:17,650 --> 00:51:19,059
+but the running time is this.
+但是运行时间是这个
+
+975
+00:51:19,059 --> 00:51:22,960
+Now s is exponential in log s, this is, at best,
+现在s在log s中是指数，这充其量是， 
+
+976
+00:51:22,960 --> 00:51:24,670
+an exponential time algorithm.
+指数时间算法。 
+
+977
+00:51:24,670 --> 00:51:27,190
+But it's really not that bad if s is small,
+但是，如果s很小，那真的不是那么糟糕， 
+
+978
+00:51:27,190 --> 00:51:30,809
+and so we call it pseudopolynomial time.
+所以我们称其为伪多项式时间。 
+
+979
+00:51:30,809 --> 00:51:34,179
+What does pseudopolynomial mean?
+伪多项式是什么意思？ 
+
+980
+00:51:34,179 --> 00:51:36,269
+It just means that your polynomial
+就是说你的多项式
+
+981
+00:51:36,269 --> 00:51:39,920
+in n, the input size, which might be this,
+在n中，输入大小（可能是这个） 
+
+982
+00:51:39,920 --> 00:51:43,800
+and in the numbers that are in your input.
+以及您输入的数字。 
+
+983
+00:51:43,800 --> 00:51:45,550
+Numbers here means integers, basically,
+基本上，这里的数字表示整数
+
+984
+00:51:45,550 --> 00:51:47,510
+otherwise it's not really well defined.
+否则，它的定义不是很明确。 
+
+985
+00:51:47,510 --> 00:51:50,500
+So in this case we have a bunch of integers,
+因此，在这种情况下，我们有一堆整数， 
+
+986
+00:51:50,500 --> 00:51:52,900
+but in particular we have s.
+但特别是我们有。 
+
+987
+00:51:52,900 --> 00:51:55,670
+And so there's S and the si's.
+因此，有S和si。 
+
+988
+00:51:55,670 --> 00:51:57,750
+This is definitely polynomial in n and s.
+这绝对是n和s的多项式。 
+
+989
+00:51:57,949 --> 00:51:59,549
+It is the product of n and S. So you
+它是n和S的乘积。 
+
+990
+00:51:59,550 --> 00:52:02,750
+think of this as pseudoquadratic time, I guess?
+我认为这是伪二次时间吗？ 
+
+991
+00:52:02,949 --> 00:52:05,980
+Because it's quadratic, but one of the things is pseudo,
+因为它是二次方，但是其中之一是伪的， 
+
+992
+00:52:05,980 --> 00:52:09,389
+meaning it is one of the numbers in the input.
+表示它是输入中的数字之一。 
+
+993
+00:52:09,389 --> 00:52:12,159
+So if the number is big in k bits,
+因此，如果数字以k位为大， 
+
+994
+00:52:12,159 --> 00:52:15,619
+so I can write down a number that's of size 2 to the k.
+所以我可以写下一个大小为k的2的数字。 
+
+995
+00:52:15,619 --> 00:52:18,819
+So it's kind of in between polynomial and exponential,
+所以它介于多项式和指数之间
+
+996
+00:52:18,820 --> 00:52:19,880
+you might say.
+你可能会说。 
+
+997
+00:52:19,880 --> 00:52:22,070
+Polynomial good, exponential bad,
+多项式好，指数坏
+
+998
+00:52:22,070 --> 00:52:25,860
+pseudopolynomial, it's all right.
+伪多项式，没关系。 
+
+999
+00:52:25,860 --> 00:52:27,590
+That's the lesson.
+这就是教训。 
+
+1000
+00:52:27,590 --> 00:52:31,940
+And for knapsack, this is the best we can do,
+对于背包来说，这是我们所能做的最好的事情， 
+
+1001
+00:52:31,940 --> 00:52:33,119
+as we'll talk about later.
+稍后再讨论。 
+
+1002
+00:52:33,119 --> 00:52:36,400
+Pseudopolynomial is really the best you could hope for.
+伪多项式确实是您所希望的最好的。 
+
+1003
+00:52:36,400 --> 00:52:38,269
+So, sometimes that's as good as you can do
+所以，有时候这就是你所能做的
+
+1004
+00:52:38,269 --> 00:52:43,269
+and dynamic programming lets you do it.
+动态编程使您可以做到这一点。 
+

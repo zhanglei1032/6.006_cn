@@ -1,0 +1,6255 @@
+﻿1
+00:00:00,000 --> 00:00:00,060
+
+
+
+2
+00:00:00,060 --> 00:00:01,770
+The following content is provided
+提供以下内容
+
+3
+00:00:01,770 --> 00:00:04,009
+under a Creative Commons license.
+根据知识共享许可。 
+
+4
+00:00:04,009 --> 00:00:06,859
+Your support will help MIT OpenCourseWare continue
+您的支持将帮助MIT OpenCourseWare继续
+
+5
+00:00:06,860 --> 00:00:10,720
+to offer high quality educational resources for free.
+免费提供高质量的教育资源。 
+
+6
+00:00:10,720 --> 00:00:13,320
+To make a donation, or view additional materials
+捐款或查看其他材料
+
+7
+00:00:13,320 --> 00:00:17,207
+from hundreds of MIT courses, visit MIT OpenCourseWare
+从数百门麻省理工学院的课程中，访问MIT OpenCourseWare 
+
+8
+00:00:17,207 --> 00:00:17,832
+at ocw.mit.edu.
+在ocw.mit.edu。 
+
+9
+00:00:17,832 --> 00:00:20,469
+
+
+
+10
+00:00:20,469 --> 00:00:22,510
+PROFESSOR: The things we can talk about today, we
+教授：我们今天可以谈论的事情，我们
+
+11
+00:00:22,510 --> 00:00:24,000
+can talk about this code.
+可以谈谈这段代码。 
+
+12
+00:00:24,000 --> 00:00:28,370
+We can talk a little bit more about the hash functions.
+我们可以多说一些哈希函数。 
+
+13
+00:00:28,370 --> 00:00:31,170
+And we can talk a little bit more about amortization.
+我们可以谈谈更多有关摊销的内容。 
+
+14
+00:00:31,170 --> 00:00:32,518
+What to do guys want to hear?
+家伙想听些什么？ 
+
+15
+00:00:32,518 --> 00:00:35,109
+
+
+
+16
+00:00:35,109 --> 00:00:36,979
+AUDIENCE: Amoritizaiton.
+听众：Amoritizaiton。 
+
+17
+00:00:36,979 --> 00:00:38,919
+PROFESSOR: OK, so one vote for amortization.
+教授：好的，所以一票赞成摊销。 
+
+18
+00:00:38,920 --> 00:00:42,489
+So who wants to look at the PSET code?
+那么，谁想看一下PSET代码？ 
+
+19
+00:00:42,689 --> 00:00:46,809
+Who wants to talk about hashes?
+谁想谈论哈希？ 
+
+20
+00:00:46,810 --> 00:00:50,725
+Who wants to talk about amortization?
+谁想谈谈摊销？ 
+
+21
+00:00:50,725 --> 00:00:51,850
+Two, three, four, five, OK.
+二，三，四，五，好的。 
+
+22
+00:00:51,850 --> 00:00:53,810
+So then let's try this.
+因此，让我们尝试一下。 
+
+23
+00:00:53,810 --> 00:00:56,969
+Let's look at the PSET code then talk about amortization a bit
+让我们看一下PSET代码，然后再讨论摊销
+
+24
+00:00:56,969 --> 00:00:57,920
+at the end.
+在末尾。 
+
+25
+00:00:57,920 --> 00:01:00,570
+I do have to talk a little bit about hashes
+我确实要谈一些哈希
+
+26
+00:01:00,570 --> 00:01:04,489
+though, because I owe someone a question from last time.
+但是，因为我上次欠某人一个问题。 
+
+27
+00:01:04,489 --> 00:01:08,099
+And the question was, we have rolling hashes,
+问题是，我们有滚动哈希， 
+
+28
+00:01:08,299 --> 00:01:11,209
+so the hashes look like this.
+所以哈希看起来像这样
+
+29
+00:01:11,209 --> 00:01:16,169
+K where K is a big number, modulo p.
+ K，其中K是大数，模为p。 
+
+30
+00:01:16,170 --> 00:01:21,340
+And we argue that it's really nice if p is a prime.
+而且我们认为，如果p是质数，那真的很好。 
+
+31
+00:01:21,340 --> 00:01:26,929
+And then the question was, what if instead p is 2 to the w,
+然后问题是，如果p相对于w为2，该怎么办？ 
+
+32
+00:01:27,129 --> 00:01:31,899
+and is not prime, as long as the base that we're using
+并且不是素数，只要我们使用的基础
+
+33
+00:01:31,900 --> 00:01:35,869
+is co-prime with p?
+是p的素数？ 
+
+34
+00:01:36,069 --> 00:01:37,929
+Does this work?
+这样行吗？ 
+
+35
+00:01:37,930 --> 00:01:39,760
+And the answer is-- I didn't want
+答案是-我不想
+
+36
+00:01:39,760 --> 00:01:42,429
+to say yes without making sure that I don't say something
+在不确保我不说话的情况下说是
+
+37
+00:01:42,629 --> 00:01:44,129
+stupid-- but the answer is yes, this
+愚蠢的-但答案是肯定的，这
+
+38
+00:01:44,129 --> 00:01:48,000
+works just fine, because the way a compute multiplicative
+效果很好，因为计算乘法的方式
+
+39
+00:01:48,000 --> 00:01:50,310
+inverse is is you use so something
+反之是你用了什么
+
+40
+00:01:50,310 --> 00:01:58,745
+called the extended Euclid's method.
+称为扩展的欧几里得方法。 
+
+41
+00:01:58,745 --> 00:02:03,140
+
+
+
+42
+00:02:03,140 --> 00:02:08,349
+And if we have b and p, then if we compute their GCD,
+如果我们有b和p，那么如果我们计算它们的GCD， 
+
+43
+00:02:08,349 --> 00:02:17,469
+the that's the greatest common divisor-- so GCD is greatest--
+那是最大的公约数-所以GCD也是最大的- 
+
+44
+00:02:17,469 --> 00:02:24,710
+
+
+
+45
+00:02:24,710 --> 00:02:32,580
+If you use extended Euclid you get something like xb plus yp
+如果您使用扩展的Euclid，则会得到类似xb和yp的信息
+
+46
+00:02:32,580 --> 00:02:40,340
+equals GCD of b and p.
+等于b和p的GCD。 
+
+47
+00:02:40,340 --> 00:02:48,500
+So if this is 1, then you have xb plus yp equals 1.
+因此，如果这是1，则xb加yp等于1。 
+
+48
+00:02:48,500 --> 00:02:53,250
+And if you're working modulo p, whatever that is,
+如果您正在对p取模，不管是什么， 
+
+49
+00:02:53,250 --> 00:02:59,409
+then you have that xb is 1 mod p.
+则xb为1 mod p。 
+
+50
+00:02:59,409 --> 00:03:03,099
+So there's your multiplicative inverse.
+因此，存在您的乘法逆。 
+
+51
+00:03:03,099 --> 00:03:04,840
+Well so now that's nice math, right?
+好了，现在算是好数学了，对吧？ 
+
+52
+00:03:04,840 --> 00:03:08,860
+But that doesn't tell me why are we not using this.
+但这并不能告诉我为什么我们不使用它。 
+
+53
+00:03:08,860 --> 00:03:11,465
+So with the multiplicative inverse would work,
+因此，通过乘法逆可以工作， 
+
+54
+00:03:11,465 --> 00:03:12,840
+but there's something else that's
+但是还有其他的东西
+
+55
+00:03:12,840 --> 00:03:15,941
+wrong with using 2 to the w.
+对w使用2是错误的。 
+
+56
+00:03:15,941 --> 00:03:18,710
+
+
+
+57
+00:03:18,710 --> 00:03:21,969
+Will this give me a good hash function?
+这会给我一个好的哈希函数吗？ 
+
+58
+00:03:22,169 --> 00:03:24,299
+OK, the fact that it's p might be confusing.
+好吧，事实是p可能令人困惑。 
+
+59
+00:03:24,300 --> 00:03:34,032
+So let's say h equals K mod 2 to the w.
+因此，假设h等于w的K mod 2。 
+
+60
+00:03:34,032 --> 00:03:38,340
+And remember that the K is some digits in base b, right?
+还记得K是底数b的数字吗？ 
+
+61
+00:03:38,539 --> 00:03:41,322
+It's a big number made out of digits in base b.
+这是一个很大的数字，由基数b中的数​​字组成。 
+
+62
+00:03:41,322 --> 00:03:52,189
+So K is d1, d2, d3, all the way up until d length in base b.
+因此K一直是d1，d2，d3，一直到基b中的d长度为止。 
+
+63
+00:03:52,389 --> 00:03:56,309
+
+
+
+64
+00:03:56,310 --> 00:04:00,550
+And I'll make things easier and say that b is 2 to the 8,
+我会让事情变得容易些，并说b是8的2。 
+
+65
+00:04:00,550 --> 00:04:03,810
+because we're working with ASCII characters, or colors,
+因为我们正在使用ASCII字符或颜色， 
+
+66
+00:04:03,810 --> 00:04:07,330
+or something that fits nicely in a bit.
+或非常适合的东西。 
+
+67
+00:04:07,330 --> 00:04:11,213
+So what could go wrong with using this?
+那么使用此功能可能出什么问题呢？ 
+
+68
+00:04:11,213 --> 00:04:14,430
+AUDIENCE: Well if your series of-- if your K is bigger than
+听众：如果您的系列-如果您的K大于
+
+69
+00:04:14,430 --> 00:04:17,110
+2-- if it's K is bigger than 2 to the w--
+ 2--如果K大于w的2- 
+
+70
+00:04:17,110 --> 00:04:18,444
+PROFESSOR: It will be, for sure.
+教授：当然可以。 
+
+71
+00:04:18,444 --> 00:04:20,694
+AUDIENCE: Yes, that's the problem, because then you'll
+听众：是的，这就是问题所在，因为那样您会
+
+72
+00:04:20,694 --> 00:04:21,490
+loop.
+环。 
+
+73
+00:04:21,490 --> 00:04:24,060
+You'll get the same hashes for--
+您会为...获得相同的哈希值
+
+74
+00:04:24,060 --> 00:04:25,259
+PROFESSOR: Yeah, yeah.
+教授：是的，是的。 
+
+75
+00:04:25,259 --> 00:04:32,430
+So you will get-- So hashing takes a lot of possible inputs
+这样您将获得-因此散列需要大量可能的输入
+
+76
+00:04:32,430 --> 00:04:37,790
+and maps them to a relatively small set of outputs.
+并将它们映射到相对较小的一组输出。 
+
+77
+00:04:37,790 --> 00:04:41,230
+Inputs hash output.
+输入哈希输出。 
+
+78
+00:04:41,230 --> 00:04:42,449
+And we argued last time that we're
+上次我们争论说
+
+79
+00:04:42,649 --> 00:04:44,315
+going to have collisions no matter what,
+不管发生什么碰撞
+
+80
+00:04:44,315 --> 00:04:47,539
+because we have a ton of inputs and not that many outputs.
+因为我们有大量的投入，却没有那么多的产出。 
+
+81
+00:04:47,540 --> 00:04:49,250
+For example, if we're hashing strings
+例如，如果我们要对字符串进行哈希处理
+
+82
+00:04:49,250 --> 00:04:51,649
+that are a million characters then this
+那是一百万个字符
+
+83
+00:04:51,649 --> 00:04:58,599
+is going to be 2 to the 8 to the 1 million possible strings.
+将是2到8到100万个可能的字符串。 
+
+84
+00:04:58,600 --> 00:05:00,740
+And then the number of possible values
+然后是可能值的数量
+
+85
+00:05:00,740 --> 00:05:04,889
+is, if we're using the word size, 2 to the 32.
+是，如果我们使用字长，则2到32。 
+
+86
+00:05:04,889 --> 00:05:07,044
+There is no way we can design a function that
+我们无法设计一个可以
+
+87
+00:05:07,045 --> 00:05:09,500
+will take this many inputs, map them to this many outputs,
+将接受这么多输入，将它们映射到这么多输出， 
+
+88
+00:05:09,500 --> 00:05:11,269
+and not do collisions.
+而不做碰撞。 
+
+89
+00:05:11,269 --> 00:05:12,560
+But instead, what do we want?
+但是，相反，我们想要什么？ 
+
+90
+00:05:12,560 --> 00:05:13,692
+What makes a good hash function?
+什么使一个好的哈希函数？ 
+
+91
+00:05:13,892 --> 00:05:21,289
+
+
+
+92
+00:05:21,290 --> 00:05:25,569
+Say my hash function is 0 for all the K's.
+假设我的哈希函数对于所有K均为0。 
+
+93
+00:05:25,769 --> 00:05:27,392
+Is that a good hash function?
+那是一个很好的哈希函数吗？ 
+
+94
+00:05:27,392 --> 00:05:29,381
+AUDIENCE: It's an excellent hash function.
+听众：这是一个出色的哈希函数。 
+
+95
+00:05:29,382 --> 00:05:30,514
+PROFESSOR: What's wrong with it?
+教授：怎么了？ 
+
+96
+00:05:30,714 --> 00:05:32,654
+AUDIENCE: You would put everything in one
+观众：您可以将所有内容合而为一
+
+97
+00:05:32,654 --> 00:05:36,049
+so that it's searching, or it would take a long time?
+以便进行搜索，或者需要很长时间？ 
+
+98
+00:05:36,050 --> 00:05:38,922
+PROFESSOR: Yeah, searching takes a long time.
+教授：是的，搜索需要很长时间。 
+
+99
+00:05:38,922 --> 00:05:40,430
+And we've don't do sorting with this yet.
+而且我们还没有对此进行排序。 
+
+100
+00:05:40,629 --> 00:05:42,579
+Searching takes a long time, string sub-matching
+搜索需要很长时间，字符串子匹配
+
+101
+00:05:42,579 --> 00:05:44,120
+will take a long time, it's horrible.
+需要很长时间，这太可怕了。 
+
+102
+00:05:44,120 --> 00:05:46,747
+
+
+
+103
+00:05:46,747 --> 00:05:49,689
+AUDIENCE: So what would that distribute--
+听众：那会散布什么呢？ 
+
+104
+00:05:49,689 --> 00:05:51,469
+like [INAUDIBLE] over all--
+像[音频不清晰] 
+
+105
+00:05:51,470 --> 00:05:53,220
+PROFESSOR: All right, so we want something
+教授：好的，所以我们想要一些东西
+
+106
+00:05:53,220 --> 00:05:56,560
+that looks sort of random.
+看起来有点随机。 
+
+107
+00:05:56,560 --> 00:05:58,980
+The ideals hash function takes an input then
+理想哈希函数接受输入，然后
+
+108
+00:05:58,980 --> 00:06:02,127
+gives it a random output, and then stays consistent.
+给它一个随机输出，然后保持一致。 
+
+109
+00:06:02,127 --> 00:06:04,009
+So when it sees an input, returns the same output.
+因此，当看到输入时，将返回相同的输出。 
+
+110
+00:06:04,209 --> 00:06:10,029
+
+
+
+111
+00:06:10,029 --> 00:06:13,059
+So I think distribute is the keyword here.
+所以我认为分发是这里的关键词。 
+
+112
+00:06:13,060 --> 00:06:15,959
+What's wrong with this hash function?
+此哈希函数有什么问题？ 
+
+113
+00:06:15,959 --> 00:06:20,109
+
+
+
+114
+00:06:20,110 --> 00:06:21,449
+If it takes random data, it's going
+如果需要随机数据，它将
+
+115
+00:06:21,649 --> 00:06:22,819
+to distribute it randomly.
+随机分发。 
+
+116
+00:06:22,819 --> 00:06:24,153
+That's true, so that's all good.
+是的，所以一切都很好。 
+
+117
+00:06:24,153 --> 00:06:27,060
+But what data that we might see in real life
+但是我们在现实生活中可能会看到哪些数据
+
+118
+00:06:27,259 --> 00:06:30,786
+will make it behave badly?
+会使其表现不佳吗？ 
+
+119
+00:06:30,786 --> 00:06:34,689
+AUDIENCE: The K is a series of characters, right?
+听众：K是一系列字符，对吗？ 
+
+120
+00:06:34,689 --> 00:06:35,620
+PROFESSOR: Maybe.
+教授：也许吧。 
+
+121
+00:06:35,620 --> 00:06:37,120
+AUDIENCE: It just could be anything.
+听众：什么都可以。 
+
+122
+00:06:37,120 --> 00:06:41,759
+But we know for sure that L will be larger than w.
+但是我们肯定知道L会大于w。 
+
+123
+00:06:41,759 --> 00:06:43,269
+PROFESSOR: Say L is a million.
+教授：说L是一百万。 
+
+124
+00:06:43,269 --> 00:06:46,495
+AUDIENCE: OK, well that sucks.
+听众：好吧，那太糟了。 
+
+125
+00:06:46,495 --> 00:06:47,245
+PROFESSOR: Oh, no.
+教授：哦，不。 
+
+126
+00:06:47,245 --> 00:06:48,920
+That in itself, that doesn't suck.
+就其本身而言，那并不烂。 
+
+127
+00:06:48,920 --> 00:06:51,009
+That's what let's us do sub-string matching really
+这就是让我们真正进行子字符串匹配的原因
+
+128
+00:06:51,009 --> 00:06:52,745
+fast, even if we have large strings.
+即使我们有很大的弦，速度也很快。 
+
+129
+00:06:52,745 --> 00:06:54,370
+AUDIENCE: --say for 2 to the w, though,
+听众：-比方说2对w 
+
+130
+00:06:54,370 --> 00:06:56,908
+because then it will be much larger, like the number of--
+因为那样的话，它将变得更大，就像- 
+
+131
+00:06:56,908 --> 00:06:58,199
+PROFESSOR: Yeah, but that's OK.
+教授：是的，但是可以。 
+
+132
+00:06:58,199 --> 00:07:03,409
+So I'm OK with doing this as long as all the values here
+所以我可以这样做，只要这里的所有值
+
+133
+00:07:03,410 --> 00:07:06,375
+are distributed sort of uniformly here.
+在这里均匀地分布。 
+
+134
+00:07:06,375 --> 00:07:07,000
+So that's fine.
+这样很好
+
+135
+00:07:07,000 --> 00:07:07,899
+AUDIENCE: OK.
+听众：好的。 
+
+136
+00:07:07,899 --> 00:07:11,370
+PROFESSOR: But there's-- I'm arguing that there are some
+教授：但是-我是在争论
+
+137
+00:07:11,370 --> 00:07:14,660
+values which will make this hash function behave badly.
+值会使该哈希函数的行为不佳。 
+
+138
+00:07:14,660 --> 00:07:17,569
+And that those values are so simple that we might see them
+这些值是如此简单，以至于我们可能会看到它们
+
+139
+00:07:17,769 --> 00:07:18,389
+in real life.
+在真实生活中。 
+
+140
+00:07:18,389 --> 00:07:26,379
+
+
+
+141
+00:07:26,379 --> 00:07:29,409
+OK, what if all these numbers are-- what
+好吧，如果所有这些数字都是-怎么办
+
+142
+00:07:29,410 --> 00:07:32,670
+if all the digits are even?
+如果所有数字都是偶数？ 
+
+143
+00:07:32,670 --> 00:07:35,819
+So d is 0 mod 2.
+所以d是0 mod 2。 
+
+144
+00:07:35,819 --> 00:07:40,149
+
+
+
+145
+00:07:40,149 --> 00:07:41,479
+What happens to K?
+ K会发生什么？ 
+
+146
+00:07:41,480 --> 00:07:45,305
+
+
+
+147
+00:07:45,505 --> 00:07:47,879
+AUDIENCE: Well, you're saying that instead of 2 to the w,
+听众：嗯，你是说而不是w的2， 
+
+148
+00:07:47,879 --> 00:07:50,120
+we're just using 2.
+我们只是在使用2。 
+
+149
+00:07:50,120 --> 00:07:52,391
+PROFESSOR: So no, the modulo is 2 to the w.
+教授：所以不，模数是w的2。 
+
+150
+00:07:52,391 --> 00:07:55,069
+Say it's 2 to the 32.
+说32的2。 
+
+151
+00:07:55,069 --> 00:08:01,629
+So d are the digits that make up my K. So what
+ d是构成我的K的数字。那么
+
+152
+00:08:01,629 --> 00:08:03,159
+if the base is 2 to the 8?
+如果基数是2到8？ 
+
+153
+00:08:03,160 --> 00:08:06,850
+So I have digits from 0 to 255, 256 of them.
+所以我有0到255之间的数字，其中有256位。 
+
+154
+00:08:06,850 --> 00:08:08,990
+And all the digits are 0 modulo 2.
+并且所有数字均为0模2。 
+
+155
+00:08:08,990 --> 00:08:14,379
+
+
+
+156
+00:08:14,379 --> 00:08:16,639
+For my sub-string matching example,
+对于我的子字符串匹配示例， 
+
+157
+00:08:16,639 --> 00:08:18,930
+what if all the characters in the sub-string are even?
+如果子字符串中的所有字符都是偶数怎么办？ 
+
+158
+00:08:18,930 --> 00:08:22,697
+
+
+
+159
+00:08:22,697 --> 00:08:24,649
+AUDIENCE: [INAUDIBLE]
+观众：[听不清] 
+
+160
+00:08:24,649 --> 00:08:25,899
+PROFESSOR: Not the same thing.
+教授：不一样。 
+
+161
+00:08:25,899 --> 00:08:26,849
+But there's a problem.
+但是有一个问题。 
+
+162
+00:08:26,850 --> 00:08:30,240
+They will hash to-- so if all the digits are
+他们将散列到-因此，如果所有数字都是
+
+163
+00:08:30,240 --> 00:08:36,639
+0 modulo 2 then what about the K?
+ 0模2那么K呢？ 
+
+164
+00:08:36,639 --> 00:08:39,014
+AUDIENCE: [INAUDIBLE] 0 modulo 2--
+听众：[听不清] 0模2 
+
+165
+00:08:39,014 --> 00:08:39,639
+PROFESSOR: Yep.
+教授：是的。 
+
+166
+00:08:39,639 --> 00:08:44,639
+
+
+
+167
+00:08:44,639 --> 00:08:47,804
+So it's just like when you have numbers in base 10.
+因此，就像以10为底的数字一样。 
+
+168
+00:08:47,804 --> 00:08:50,519
+10 happens to be divisible by 2.
+ 10恰好可被2整除。 
+
+169
+00:08:50,519 --> 00:08:54,480
+So if your last digit is even, then the entire number is even.
+因此，如果您的最后一位数字是偶数，则整个数字是偶数。 
+
+170
+00:08:54,480 --> 00:08:57,451
+
+
+
+171
+00:08:57,451 --> 00:08:58,450
+That makes sense, right?
+那是有道理的，对吧？ 
+
+172
+00:08:58,450 --> 00:08:59,820
+That's math.
+那是数学。 
+
+173
+00:08:59,820 --> 00:09:02,230
+Please nod, tell me that I'm making sense.
+请点头，告诉我，我有道理。 
+
+174
+00:09:02,230 --> 00:09:06,009
+OK, so here, the base is 256.
+好的，所以这里的底数是256。 
+
+175
+00:09:06,009 --> 00:09:07,309
+And it's also divisible by 2.
+而且也可以被2整除。 
+
+176
+00:09:07,309 --> 00:09:10,009
+So if your last digit is divisible by 2,
+因此，如果您的最后一位数字可被2整除， 
+
+177
+00:09:10,009 --> 00:09:13,100
+then the whole number is divisible by 2.
+则整数可被2整除。 
+
+178
+00:09:13,100 --> 00:09:19,090
+So then if I take this K modulo 2 to the 32
+所以如果我把这个K模2取到32 
+
+179
+00:09:19,090 --> 00:09:20,979
+then the hash is also going to be divisible by 2.
+那么散列也将被2整除。 
+
+180
+00:09:21,179 --> 00:09:29,083
+
+
+
+181
+00:09:29,083 --> 00:09:32,048
+AUDIENCE: Why does it matter if the hash is divisible by 2?
+听众：如果哈希可以被2整除，那为什么很重要？ 
+
+182
+00:09:32,048 --> 00:09:35,019
+
+
+
+183
+00:09:35,019 --> 00:09:39,549
+PROFESSOR: So it matters because this
+教授：这很重要，因为这
+
+184
+00:09:39,549 --> 00:09:41,429
+is supposed to be my universe, right?
+应该是我的宇宙吧？ 
+
+185
+00:09:41,429 --> 00:09:43,489
+These are supposed to be all the outputs.
+这些应该是所有输出。 
+
+186
+00:09:43,490 --> 00:09:46,344
+And I'm saying that if my inputs look like this,
+我是说，如果我的输入看起来像这样， 
+
+187
+00:09:46,344 --> 00:09:48,559
+then the hash function will not distribute them uniformly.
+那么散列函数将不会将它们均匀分布。 
+
+188
+00:09:48,759 --> 00:09:52,470
+Instead, if this is my possible set of outputs,
+相反，如果这是我可能的一组输出， 
+
+189
+00:09:52,470 --> 00:09:56,123
+the hash function will always put outputs in this half.
+哈希函数将始终将输出放在这一半。 
+
+190
+00:09:56,123 --> 00:09:58,200
+So the outputs will always be here.
+因此，输出将始终在此处。 
+
+191
+00:09:58,200 --> 00:10:01,220
+And these are the numbers that are divisible by 2.
+这些是可以被2整除的数字。 
+
+192
+00:10:01,220 --> 00:10:04,297
+So these are even, and these are odd.
+所以这些都是偶数，这些都是奇数。 
+
+193
+00:10:04,297 --> 00:10:10,769
+
+
+
+194
+00:10:10,769 --> 00:10:12,139
+And this area gets no love.
+而且这个地区没有爱。 
+
+195
+00:10:12,139 --> 00:10:16,069
+Absolutely no number will hash here.
+绝对没有数字会在这里散列。 
+
+196
+00:10:16,070 --> 00:10:16,820
+So--
+所以 - 
+
+197
+00:10:16,820 --> 00:10:20,699
+AUDIENCE: Wait, what about something with all odds?
+听众：等等，万事大吉怎么办？ 
+
+198
+00:10:20,899 --> 00:10:22,901
+AUDIENCE: Something with all odd digits?
+听众：东西全都是奇数？ 
+
+199
+00:10:22,902 --> 00:10:23,860
+AUDIENCE: Because you're asking--
+听众：因为你在问- 
+
+200
+00:10:23,860 --> 00:10:25,442
+AUDIENCE: You have all A's rather than
+听众：您拥有所有A，而不是
+
+201
+00:10:25,442 --> 00:10:28,596
+all B's in your sub-string or in your string.
+您的子字符串或字符串中的所有B。 
+
+202
+00:10:28,596 --> 00:10:31,001
+AUDIENCE: Or because your last digit was odd.
+听众：或者因为您的最后一位数字是奇数。 
+
+203
+00:10:31,001 --> 00:10:32,837
+PROFESSOR: If all of our digits are odd
+教授：如果我们所有的数字都是奇数
+
+204
+00:10:32,837 --> 00:10:34,589
+then the last digit is odd.
+那么最后一位是奇数。 
+
+205
+00:10:34,590 --> 00:10:38,341
+And then you'd also get something odd, right?
+然后你也会得到一些奇怪的东西，对吧？ 
+
+206
+00:10:38,341 --> 00:10:38,966
+AUDIENCE: Yeah.
+听众：是的。 
+
+207
+00:10:38,966 --> 00:10:40,445
+AUDIENCE: So there's a pattern.
+听众：所以有一种模式。 
+
+208
+00:10:40,445 --> 00:10:44,189
+But there's an even distribution.
+但分布均匀。 
+
+209
+00:10:44,389 --> 00:10:49,049
+PROFESSOR: Well if your hash function is always odd,
+教授：如果您的哈希函数始终是奇数， 
+
+210
+00:10:49,049 --> 00:10:50,939
+then it's not an even distribution.
+那就不是均匀分布。 
+
+211
+00:10:50,940 --> 00:10:51,527
+It's--
+它的 - 
+
+212
+00:10:51,727 --> 00:10:53,161
+AUDIENCE: Wait, our hash function?
+听众：等等，我们的哈希函数？ 
+
+213
+00:10:53,162 --> 00:10:54,873
+I thought we were talking about--
+我以为我们在谈论- 
+
+214
+00:10:55,073 --> 00:10:58,419
+AUDIENCE: Isn't it even if your K is even?
+听众：即使您的K等于偶数吗？ 
+
+215
+00:10:58,419 --> 00:11:00,331
+And if it's odd [INAUDIBLE]?
+如果奇怪[听不清]？ 
+
+216
+00:11:00,331 --> 00:11:02,509
+PROFESSOR: Yeah, so that's bad.
+教授：是的，这很糟糕。 
+
+217
+00:11:02,509 --> 00:11:05,519
+Because if all your K's happens to be even--
+因为如果您所有的K碰巧是偶数- 
+
+218
+00:11:05,519 --> 00:11:09,129
+say if you're doing the nucleotides,
+说如果你正在做核苷酸， 
+
+219
+00:11:09,129 --> 00:11:15,019
+and the nucleotides are A, C, G, T.
+核苷酸是A，C，G，T。 
+
+220
+00:11:15,019 --> 00:11:20,390
+If they happen to be encoded as, say, 0, 2, 4, 6,
+如果碰巧将它们编码为0、2、4、6 
+
+221
+00:11:20,390 --> 00:11:21,389
+then these are all even.
+然后这些都是偶数。 
+
+222
+00:11:21,389 --> 00:11:23,919
+
+
+
+223
+00:11:23,919 --> 00:11:25,620
+So the hash function will always be even
+因此哈希函数将始终是偶数
+
+224
+00:11:25,620 --> 00:11:28,889
+and I'm wasting the last bit.
+我在浪费最后一点。 
+
+225
+00:11:28,889 --> 00:11:30,729
+So if I'm building a hash table, half the entries
+因此，如果我要构建哈希表，则一半的条目
+
+226
+00:11:30,929 --> 00:11:31,579
+will be wasted.
+将被浪费。 
+
+227
+00:11:31,580 --> 00:11:33,080
+They'll never get anything in there.
+他们永远不会得到任何东西。 
+
+228
+00:11:33,080 --> 00:11:35,389
+I'm just wasting memory.
+我只是在浪费记忆。 
+
+229
+00:11:35,389 --> 00:11:38,090
+AUDIENCE: So if you could guarantee
+观众：所以如果您可以保证
+
+230
+00:11:38,090 --> 00:11:43,686
+that your inputs would be evenly distributed--
+您的输入将平均分配- 
+
+231
+00:11:43,886 --> 00:11:45,469
+PROFESSOR: So if our inputs are random
+教授：如果我们的输入是随机的
+
+232
+00:11:45,470 --> 00:11:47,529
+then the hash function-- most hash functions will
+然后是哈希函数-大多数哈希函数会
+
+233
+00:11:47,529 --> 00:11:49,899
+do a good job of producing a random output.
+做好产生随机输出的工作。 
+
+234
+00:11:49,899 --> 00:11:53,600
+The problem is real life inputs are not random.
+问题是现实生活中的输入不是随机的。 
+
+235
+00:11:53,600 --> 00:11:55,970
+For example, if you get-- asides from this--
+例如，如果您从中得到了帮助， 
+
+236
+00:11:55,970 --> 00:11:59,960
+if you get data from a camera, so if you get your color pixels
+如果您从相机获取数据，那么如果您获得了彩色像素
+
+237
+00:11:59,960 --> 00:12:02,879
+from a camera, then because of noise those
+来自相机，然后由于噪音
+
+238
+00:12:02,879 --> 00:12:06,340
+might have the last few bits, always be the same thing.
+可能只有最后几位，总是一样。 
+
+239
+00:12:06,340 --> 00:12:09,190
+
+
+
+240
+00:12:09,190 --> 00:12:12,089
+Also it seems like in real life-- [INAUDIBLE],
+似乎在现实生活中[[听不清]， 
+
+241
+00:12:12,289 --> 00:12:13,584
+in his book, argues about this.
+在他的书中对此进行了争论。 
+
+242
+00:12:13,585 --> 00:12:15,085
+It seems like in real life there are
+在现实生活中似乎有
+
+243
+00:12:15,085 --> 00:12:17,379
+a lot of sequences that look like that, that would make
+很多看起来像这样的序列
+
+244
+00:12:17,379 --> 00:12:19,005
+your hash function behave poorly.
+您的哈希函数的行为不佳。 
+
+245
+00:12:19,005 --> 00:12:23,470
+
+
+
+246
+00:12:23,470 --> 00:12:25,940
+So again, the keyword is distribute.
+同样，关键字是distributed。 
+
+247
+00:12:25,940 --> 00:12:28,340
+If some non-random property in the input
+如果在输入中有一些非随机属性
+
+248
+00:12:28,340 --> 00:12:30,946
+is reflected in the output, then that's a bad hash function.
+反映在输出中，那么这是一个错误的哈希函数。 
+
+249
+00:12:30,946 --> 00:12:33,547
+
+
+
+250
+00:12:33,547 --> 00:12:35,129
+AUDIENCE: Would you gain a lot of time
+听众：你会花很多时间吗
+
+251
+00:12:35,129 --> 00:12:38,460
+from your mod operation?
+从你的mod操作？ 
+
+252
+00:12:38,460 --> 00:12:45,580
+Because in mod 2 to the n you just truncate any bits
+因为在mod 2的n中，您只需要截断任何位
+
+253
+00:12:45,580 --> 00:12:47,719
+to the left of the n.
+在n的左边
+
+254
+00:12:47,919 --> 00:12:50,360
+PROFESSOR: Yeah, so that's why we would do this, right?
+教授：是的，这就是为什么我们要这样做，对吗？ 
+
+255
+00:12:50,360 --> 00:12:52,440
+That's why we're even considering this case.
+这就是为什么我们甚至考虑这种情况。 
+
+256
+00:12:52,440 --> 00:12:54,729
+AUDIENCE: Because that'd be really nice to be able to not--
+听众：因为能够做到这一点真是太好了- 
+
+257
+00:12:54,929 --> 00:12:57,704
+PROFESSOR: So modulo is faster, but in return my hash function
+教授：所以取模更快，但是返回我的哈希函数
+
+258
+00:12:57,705 --> 00:12:59,579
+is crap here.
+在这里胡扯。 
+
+259
+00:12:59,779 --> 00:13:03,259
+So usually we prefer-- it turns out that in practice nicer hash
+所以通常我们更喜欢-事实证明，在实践中更好的哈希
+
+260
+00:13:03,259 --> 00:13:08,649
+functions give better speed improvements overall.
+功能总体上改善了速度。 
+
+261
+00:13:08,649 --> 00:13:11,991
+So if you think of how a hash is laid out in memory,
+因此，如果您考虑哈希在内存中的布局方式， 
+
+262
+00:13:11,991 --> 00:13:13,449
+you'll see that because of caching.
+您会因为缓存而看到它。 
+
+263
+00:13:13,450 --> 00:13:16,225
+And everything gets better to take more time on the mod
+一切都会变得更好，以便在mod上花费更多时间
+
+264
+00:13:16,225 --> 00:13:21,320
+function and use up all your memory for the hash table.
+函数并用完所有的内存用于哈希表。 
+
+265
+00:13:21,320 --> 00:13:24,740
+So this is why we don't use the and we use this.
+因此，这就是为什么我们不使用而是使用它的原因。 
+
+266
+00:13:24,740 --> 00:13:27,149
+Not because of this argument.
+不是因为这种说法。 
+
+267
+00:13:27,149 --> 00:13:29,769
+So a good question required a lot of talking and remembering
+因此，一个好的问题需要大量的交谈和记忆
+
+268
+00:13:29,769 --> 00:13:31,620
+what's a good hash function, what's a bad hash function.
+什么是好哈希函数，什么是坏哈希函数。 
+
+269
+00:13:31,620 --> 00:13:32,120
+Thank you.
+谢谢。 
+
+270
+00:13:32,120 --> 00:13:41,370
+
+
+
+271
+00:13:41,370 --> 00:13:43,850
+OK, let's look at the code a little bit.
+好的，让我们看一下代码。 
+
+272
+00:13:43,850 --> 00:13:45,519
+Everyone looked at it, right?
+大家都看了吧？ 
+
+273
+00:13:45,519 --> 00:13:48,490
+So this time we have modules.
+所以这次我们有模块。 
+
+274
+00:13:48,490 --> 00:13:50,490
+We don't have everything in one big file.
+我们没有将所有内容都放在一个大文件中。 
+
+275
+00:13:50,490 --> 00:13:53,240
+Can someone tell me what are the modules we care about, and why?
+有人可以告诉我我们关心的模块是什么，为什么？ 
+
+276
+00:13:53,240 --> 00:13:55,580
+
+
+
+277
+00:13:55,580 --> 00:13:57,080
+AUDIENCE: The problem with the one's
+听众：一个人的问题
+
+278
+00:13:57,080 --> 00:13:59,070
+we have to code ourselves.
+我们必须自己编码。 
+
+279
+00:13:59,070 --> 00:14:01,340
+PROFESSOR: OK, let's start with that.
+教授：好的，让我们开始吧。 
+
+280
+00:14:01,340 --> 00:14:05,830
+AUDIENCE: Sub-sequence hashes-- interval sub-sequence hashes.
+听众：子序列散列-间隔子序列散列。 
+
+281
+00:14:05,830 --> 00:14:08,329
+PROFESSOR: OK, so these are all in DNA seq, right?
+教授：好的，所以这些都在DNA序列中，对吗？ 
+
+282
+00:14:08,529 --> 00:14:16,559
+So the module is-- so yeah, the PSET hopefully
+所以模块是-是的，希望PSET 
+
+283
+00:14:16,559 --> 00:14:20,029
+says that you need to upload this file because it's
+说您需要上传此文件，因为它是
+
+284
+00:14:20,029 --> 00:14:22,250
+the only file you'll need to modify.
+您唯一需要修改的文件。 
+
+285
+00:14:22,250 --> 00:14:25,649
+So everything that we need to write is here.
+因此，我们需要编写的所有内容都在这里。 
+
+286
+00:14:25,649 --> 00:14:29,129
+Now pretty much everything that's in that file
+现在，该文件中的几乎所有内容
+
+287
+00:14:29,129 --> 00:14:30,149
+needs to be modified.
+需要修改。 
+
+288
+00:14:30,149 --> 00:14:32,870
+So I'm not going to list them out.
+所以我不会列出它们。 
+
+289
+00:14:32,870 --> 00:14:35,525
+What else do we want to read in that PSET?
+我们还想在该PSET中阅读什么？ 
+
+290
+00:14:35,525 --> 00:14:37,389
+AUDIENCE: Rolling [INAUDIBLE]
+听众：滚动[听不清] 
+
+291
+00:14:37,389 --> 00:14:38,985
+PROFESSOR: OK, where is rolling hash?
+教授：好的，滚动哈希值在哪里？ 
+
+292
+00:14:38,985 --> 00:14:39,950
+AUDIENCE: In the [INAUDIBLE]
+观众：在[听不清] 
+
+293
+00:14:40,150 --> 00:14:54,569
+
+
+
+294
+00:14:54,570 --> 00:14:58,195
+PROFESSOR: So what's different between the API in rolling hash
+教授：那么滚动散列的API之间有什么不同
+
+295
+00:14:58,195 --> 00:15:00,230
+and the API that we talked about last time?
+以及我们上次讨论的API？ 
+
+296
+00:15:00,230 --> 00:15:03,690
+
+
+
+297
+00:15:03,690 --> 00:15:04,340
+Yes?
+是？ 
+
+298
+00:15:04,340 --> 00:15:08,531
+AUDIENCE: Them having the [INAUDIBLE] pop,
+观众：他们弹出[音频不清晰]， 
+
+299
+00:15:08,731 --> 00:15:09,707
+or it would skip.
+否则会跳过。 
+
+300
+00:15:09,707 --> 00:15:12,148
+And that's something else [INAUDIBLE] just has a slide,
+还有[音频不清晰]只是一张幻灯片， 
+
+301
+00:15:12,148 --> 00:15:14,387
+it puts everything in one operation.
+它将一切都放在一个操作中。 
+
+302
+00:15:14,587 --> 00:15:19,159
+PROFESSOR: All right, so we have append and skip.
+教授：好的，所以我们要追加和跳过。 
+
+303
+00:15:19,159 --> 00:15:22,078
+
+
+
+304
+00:15:22,078 --> 00:15:23,870
+And we built some beautiful code with that.
+我们以此构建了一些漂亮的代码。 
+
+305
+00:15:23,870 --> 00:15:26,859
+And we looked at some fancy math because of it.
+因此，我们看了一些奇特的数学运算。 
+
+306
+00:15:27,059 --> 00:15:28,609
+But it turns out that for this PSET
+但事实证明，对于此PSET 
+
+307
+00:15:28,610 --> 00:15:31,740
+we can get away with slide.
+我们可以摆脱幻灯片。 
+
+308
+00:15:31,740 --> 00:15:35,269
+And we started from slide and built these two methods
+我们从幻灯片开始，构建了这两种方法
+
+309
+00:15:35,269 --> 00:15:35,799
+last time.
+上次。 
+
+310
+00:15:35,799 --> 00:15:38,069
+So I'm not going to explain slide again.
+因此，我将不再解释幻灯片。 
+
+311
+00:15:38,070 --> 00:15:39,479
+It's exactly what we had in the code
+这正是我们在代码中所拥有的
+
+312
+00:15:39,679 --> 00:15:43,549
+before we started breaking them up.
+在我们开始分解它们之前。 
+
+313
+00:15:43,549 --> 00:15:45,759
+OK so this is the rolling hash.
+确定，所以这是滚动哈希。 
+
+314
+00:15:45,759 --> 00:15:47,470
+It is good.
+很好
+
+315
+00:15:47,470 --> 00:15:48,609
+Do we care about anything else?
+我们还关心其他吗？ 
+
+316
+00:15:48,809 --> 00:16:00,098
+
+
+
+317
+00:16:00,099 --> 00:16:02,189
+AUDIENCE: I guess you can look at the rest of the code,
+听众：我想您可以看一下其余的代码， 
+
+318
+00:16:02,389 --> 00:16:03,812
+if you feel like it.
+如果您喜欢的话。 
+
+319
+00:16:03,812 --> 00:16:05,769
+PROFESSOR: You can look at the rest of the code
+教授：您可以看一下其余的代码
+
+320
+00:16:05,769 --> 00:16:07,350
+if you feel like it, yep.
+如果您愿意，是的。 
+
+321
+00:16:07,350 --> 00:16:10,325
+So I highlighted one file that might be useful,
+所以我强调了一个可能有用的文件， 
+
+322
+00:16:10,325 --> 00:16:11,200
+and that's Kfasta.py.
+那就是Kfasta.py。 
+
+323
+00:16:11,200 --> 00:16:21,440
+
+
+
+324
+00:16:21,440 --> 00:16:23,339
+That file has a FASTA sequence class,
+该文件具有FASTA序列类， 
+
+325
+00:16:23,539 --> 00:16:26,889
+and that's reads from a file and returns something.
+从文件中读取并返回一些内容。 
+
+326
+00:16:26,889 --> 00:16:29,470
+And the important thing is it doesn't return a list.
+重要的是它不会返回列表。 
+
+327
+00:16:29,470 --> 00:16:32,200
+If you remember the doc dists, doc dist 1 thorugh doc
+如果您还记得doc dists，则doc dist 1 thorugh doc 
+
+328
+00:16:32,200 --> 00:16:35,460
+dist 8 dot PI, fun times.
+ dist 8点PI，娱乐时间。 
+
+329
+00:16:35,460 --> 00:16:38,070
+What we had there was we took the input file,
+我们在那里得到的是输入文件， 
+
+330
+00:16:38,070 --> 00:16:39,998
+and we read it all a list.
+我们都阅读了清单。 
+
+331
+00:16:40,198 --> 00:16:41,490
+This time we're not doing that.
+这次我们不这样做。 
+
+332
+00:16:41,490 --> 00:16:45,250
+We're writing, what, 20 lines of code instead of what
+我们在写20行代码，而不是20行
+
+333
+00:16:45,250 --> 00:16:47,899
+could be five lines of code to read the input.
+可能是五行代码来读取输入。 
+
+334
+00:16:47,899 --> 00:16:49,331
+Why is that?
+这是为什么？ 
+
+335
+00:16:49,331 --> 00:16:51,019
+AUDIENCE: Less memory?
+听众：更少的内存？ 
+
+336
+00:16:51,019 --> 00:16:52,600
+PROFESSOR: Less memory, OK.
+教授：减少内存，确定。 
+
+337
+00:16:52,600 --> 00:16:55,000
+So if we're doing it this way, chances
+因此，如果我们这样做，机会
+
+338
+00:16:55,000 --> 00:16:59,139
+are that if we tried to shove the whole input into memory,
+就是如果我们试图将整个输入推入内存， 
+
+339
+00:16:59,139 --> 00:17:00,657
+it wouldn't fit.
+它不合适。 
+
+340
+00:17:00,657 --> 00:17:02,240
+And it would crash and you would get 0
+它会崩溃，您将得到0 
+
+341
+00:17:02,240 --> 00:17:03,205
+on the test because of that.
+因此，在测试中。 
+
+342
+00:17:03,405 --> 00:17:05,108
+So that's not good.
+所以那不好。 
+
+343
+00:17:05,108 --> 00:17:06,889
+So what do we use instead?
+那我们用什么代替呢？ 
+
+344
+00:17:06,890 --> 00:17:09,408
+Does anyone know what this thing is called?
+有人知道这个东西叫什么吗？ 
+
+345
+00:17:09,608 --> 00:17:11,509
+What this class is called?
+这个班叫什么？ 
+
+346
+00:17:11,509 --> 00:17:13,108
+AUDIENCE: [INAUDIBLE]
+观众：[听不清] 
+
+347
+00:17:13,108 --> 00:17:14,399
+PROFESSOR: Iterator, very good.
+教授：迭代器，非常好。 
+
+348
+00:17:14,400 --> 00:17:27,873
+
+
+
+349
+00:17:27,873 --> 00:17:30,866
+AUDIENCE: Why do they call it FASTA?
+听众：他们为什么称其为FASTA？ 
+
+350
+00:17:30,866 --> 00:17:33,744
+Because it goes faster?
+因为走得更快？ 
+
+351
+00:17:33,744 --> 00:17:36,209
+PROFESSOR: I think the letters are a bio acronym.
+教授：我认为这些字母是生物的缩写。 
+
+352
+00:17:36,210 --> 00:17:37,740
+AUDIENCE: Oh, OK.
+听众：哦，好。 
+
+353
+00:17:37,740 --> 00:17:42,223
+PROFESSOR: Does anyone, does anyone do bio here?
+教授：有没有人在这里做生物？ 
+
+354
+00:17:42,223 --> 00:17:43,139
+I've seen that before.
+我以前见过。 
+
+355
+00:17:43,140 --> 00:17:44,118
+So it's a bio thing.
+所以这是一个生物的东西。 
+
+356
+00:17:44,318 --> 00:17:45,359
+Let's not worry about it.
+不用担心。 
+
+357
+00:17:45,359 --> 00:17:45,900
+AUDIENCE: OK.
+听众：好的。 
+
+358
+00:17:45,901 --> 00:17:49,263
+
+
+
+359
+00:17:49,463 --> 00:17:51,759
+Or, your can use that for any type of file.
+或者，您可以将其用于任何类型的文件。 
+
+360
+00:17:51,759 --> 00:17:54,289
+Like, you don't have to use it just for bio files.
+就像，您不必仅将其用于生物文件。 
+
+361
+00:17:54,289 --> 00:17:56,089
+PROFESSOR: Well, presumably it's reads,
+教授：好吧，大概是读
+
+362
+00:17:56,089 --> 00:17:58,679
+it takes advantage of the format that they're stored in,
+它利用了它们存储的格式， 
+
+363
+00:17:58,680 --> 00:18:02,119
+and gives you a list instead of something else.
+并为您提供列表，而不是其他内容。 
+
+364
+00:18:02,319 --> 00:18:04,269
+So how does an iterator work?
+那么迭代器如何工作？ 
+
+365
+00:18:04,269 --> 00:18:06,019
+Suppose you're building your own iterator.
+假设您正在构建自己的迭代器。 
+
+366
+00:18:06,019 --> 00:18:08,076
+What do you have to implement?
+您必须执行什么？ 
+
+367
+00:18:08,076 --> 00:18:09,509
+AUDIENCE: Iterator [INAUDIBLE]
+听众：迭代器[听不清] 
+
+368
+00:18:09,509 --> 00:18:12,379
+
+
+
+369
+00:18:12,380 --> 00:18:15,559
+PROFESSOR: OK, let's start with next, that's the fun one.
+教授：好的，让我们开始下一个，这很有趣。 
+
+370
+00:18:15,759 --> 00:18:16,923
+What does next do?
+接下来做什么？ 
+
+371
+00:18:16,923 --> 00:18:19,725
+
+
+
+372
+00:18:19,726 --> 00:18:22,329
+AUDIENCE: It's like pop.
+听众：就像流行音乐。 
+
+373
+00:18:22,529 --> 00:18:25,389
+PROFESSOR: OK, so it's like pop in what way?
+教授：好的，这就像流行音乐一样吗？ 
+
+374
+00:18:25,390 --> 00:18:27,180
+AUDIENCE: It gives you the next character.
+听众：它给你下一个角色。 
+
+375
+00:18:27,180 --> 00:18:27,562
+PROFESSOR: OK.
+教授：好的。 
+
+376
+00:18:27,762 --> 00:18:34,379
+
+
+
+377
+00:18:34,380 --> 00:18:38,264
+And what happens when you're at the end of the list?
+当您位于列表末尾时，会发生什么？ 
+
+378
+00:18:38,464 --> 00:18:41,455
+AUDIENCE: It stops.
+听众：它停止了。 
+
+379
+00:18:41,455 --> 00:18:42,930
+PROFESSOR: How do you stop?
+教授：您如何停止？ 
+
+380
+00:18:42,931 --> 00:18:44,374
+AUDIENCE: It raises an exception?
+听众：这引发了例外？ 
+
+381
+00:18:44,374 --> 00:18:54,980
+
+
+
+382
+00:18:54,980 --> 00:18:57,430
+PROFESSOR: So next will either return an element,
+教授：因此，下一步将返回一个元素， 
+
+383
+00:18:57,430 --> 00:18:59,740
+that's the next element in the sequence
+那是序列中的下一个元素
+
+384
+00:18:59,740 --> 00:19:00,669
+that you're iterating over.
+您正在迭代。 
+
+385
+00:19:00,869 --> 00:19:04,409
+Or it will raise a stop iteration exception
+否则将引发停止迭代异常
+
+386
+00:19:04,410 --> 00:19:07,720
+error to stop iteration, cool.
+错误停止迭代，很酷。 
+
+387
+00:19:07,720 --> 00:19:10,899
+So what's the other method?
+那么另一种方法是什么呢？ 
+
+388
+00:19:11,099 --> 00:19:12,814
+Someone said it before, say it again.
+有人说过，再说一次。 
+
+389
+00:19:12,815 --> 00:19:13,440
+AUDIENCE: Iter.
+听众：Iter。 
+
+390
+00:19:13,440 --> 00:19:14,105
+PROFESSOR: Iter.
+教授：Iter。 
+
+391
+00:19:14,105 --> 00:19:18,410
+
+
+
+392
+00:19:18,410 --> 00:19:19,609
+What does this do in an iterator?
+这在迭代器中有什么作用？ 
+
+393
+00:19:19,809 --> 00:19:24,789
+
+
+
+394
+00:19:24,789 --> 00:19:26,226
+AUDIENCE: It returns itself.
+听众：它返回自己。 
+
+395
+00:19:26,227 --> 00:19:27,359
+PROFESSOR: All right, very good.
+教授：好的，很好。 
+
+396
+00:19:27,559 --> 00:19:31,307
+In an iterator this is how you will implement it all the time.
+在迭代器中，这就是您始终将其实现的方式。 
+
+397
+00:19:31,307 --> 00:19:35,299
+
+
+
+398
+00:19:35,299 --> 00:19:39,325
+Does anyone know what's the point of iter?
+有人知道迭代的意义吗？ 
+
+399
+00:19:39,325 --> 00:19:40,976
+AUDIENCE: So you can return an iterator?
+听众：那么您可以返回一个迭代器？ 
+
+400
+00:19:41,176 --> 00:19:44,109
+Because that's what it told us to do in the PSET.
+因为这就是它告诉我们在PSET中要做的事情。 
+
+401
+00:19:44,109 --> 00:19:47,049
+PROFESSOR: OK, so iter returns and iterator.
+教授：好的，所以iter返回并进行迭代。 
+
+402
+00:19:47,049 --> 00:19:51,829
+But it doesn't-- you don't have to start from an iterator.
+但这不是-您不必从迭代器开始。 
+
+403
+00:19:51,829 --> 00:19:53,679
+You can start from any object.
+您可以从任何对象开始。 
+
+404
+00:19:53,680 --> 00:19:55,919
+And if it has a method iter, then it
+如果它有方法迭代，那么它
+
+405
+00:19:56,119 --> 00:19:59,559
+should give you an iterator that iterates over that object.
+应该给您一个迭代该对象的迭代器。 
+
+406
+00:19:59,559 --> 00:20:05,569
+So if you have something like a list-- 1, 2, 3, 4-- then
+因此，如果您有清单-1，2，3，4-- 
+
+407
+00:20:05,569 --> 00:20:08,669
+if you call iter on this, you'll get an iterator for it,
+如果对此调用iter，则会得到一个迭代器， 
+
+408
+00:20:08,670 --> 00:20:10,259
+hopefully, right?
+希望是吧？ 
+
+409
+00:20:10,259 --> 00:20:15,930
+And this is what Python uses when you say for i in.
+这就是Python在您对我说的时候所使用的。 
+
+410
+00:20:15,930 --> 00:20:19,539
+
+
+
+411
+00:20:19,539 --> 00:20:22,430
+So behind the scenes, whatever object you give it here,
+因此，在幕后，无论您在此处提供什么对象， 
+
+412
+00:20:22,430 --> 00:20:23,890
+gets an iter call.
+接到一个迭代电话。 
+
+413
+00:20:23,890 --> 00:20:25,639
+And then that produces an iterator.
+然后产生一个迭代器。 
+
+414
+00:20:25,839 --> 00:20:31,059
+And then Python calls next until stop iteration happens.
+然后Python调用下一个，直到停止迭代发生。 
+
+415
+00:20:31,059 --> 00:20:33,099
+So you can write an iterator that
+所以你可以写一个迭代器
+
+416
+00:20:33,099 --> 00:20:34,549
+almost behaves like a list.
+几乎像列表一样
+
+417
+00:20:34,549 --> 00:20:37,149
+
+
+
+418
+00:20:37,150 --> 00:20:40,109
+You can use it in these [INAUDIBLE] instructions,
+您可以在这些[音频不清晰]说明中使用它， 
+
+419
+00:20:40,309 --> 00:20:42,379
+and it works as if it was a list,
+它就像一个列表一样工作， 
+
+420
+00:20:42,380 --> 00:20:46,160
+except it uses a lot less memory, because it computes
+除了使用更少的内存外，因为它可以计算
+
+421
+00:20:46,160 --> 00:20:47,140
+the elements.
+要素。 
+
+422
+00:20:47,140 --> 00:20:49,267
+Hopefully every time next is called,
+希望每次下一次被调用时， 
+
+423
+00:20:49,267 --> 00:20:51,399
+you're computing the next element that you're returning.
+您正在计算要返回的下一个元素。 
+
+424
+00:20:51,599 --> 00:20:53,807
+If you're storing everything in a list then returning
+如果您将所有内容存储在列表中，则返回
+
+425
+00:20:53,807 --> 00:20:56,365
+the elements that way, that's not the very smart iterator.
+这样的元素，那不是很聪明的迭代器。 
+
+426
+00:20:56,365 --> 00:20:59,349
+
+
+
+427
+00:20:59,349 --> 00:21:02,149
+OK let's look at the last page.
+好，让我们看看最后一页。 
+
+428
+00:21:02,150 --> 00:21:05,419
+
+
+
+429
+00:21:05,619 --> 00:21:08,099
+So the last page has an iterator on top.
+因此，最后一页的顶部有一个迭代器。 
+
+430
+00:21:08,099 --> 00:21:10,449
+And the iterator computes-- given a list,
+然后迭代器计算-给定一个列表， 
+
+431
+00:21:10,450 --> 00:21:13,549
+it computes the reverse of that list.
+它计算该列表的反向。 
+
+432
+00:21:13,549 --> 00:21:16,100
+And you can see that it doesn't reverse the list
+您会发现它不会反转列表
+
+433
+00:21:16,101 --> 00:21:17,649
+and then keep the reversed list in memory.
+然后将反向列表保留在内存中。 
+
+434
+00:21:17,849 --> 00:21:20,429
+Instead, every time you call next,
+相反，每次您下次打电话时， 
+
+435
+00:21:20,430 --> 00:21:22,789
+it does some magic with the indexes--
+它对索引有一些神奇作用- 
+
+436
+00:21:22,789 --> 00:21:24,409
+I think the magic is called math--
+我认为魔术叫做数学
+
+437
+00:21:24,410 --> 00:21:28,019
+and then it return something for as long as it can.
+然后它会尽可能长地返回某些内容。 
+
+438
+00:21:28,019 --> 00:21:29,639
+So this is how you implement reverse
+所以这就是实现反向的方式
+
+439
+00:21:29,640 --> 00:21:32,140
+without producing a new list.
+而不生成新列表。 
+
+440
+00:21:32,140 --> 00:21:37,159
+If the original list was order, say had n elements, then
+如果原始列表是有序的，说有n个元素，则
+
+441
+00:21:37,359 --> 00:21:40,259
+if you'd produce a new list, you'd consume order and memory.
+如果要生成新列表，则会消耗订单和内存。 
+
+442
+00:21:40,259 --> 00:21:42,439
+This think consumes order 1 memory,
+这个想法消耗了1阶内存， 
+
+443
+00:21:42,439 --> 00:21:44,480
+and the running time is the same, asymptotically.
+渐近地，运行时间是相同的
+
+444
+00:21:44,480 --> 00:21:47,069
+
+
+
+445
+00:21:47,069 --> 00:21:48,339
+OK, any question on iterators?
+好的，关于迭代器有什么问题吗？ 
+
+446
+00:21:48,339 --> 00:21:52,049
+
+
+
+447
+00:21:52,049 --> 00:21:57,690
+AUDIENCE: So it's going from the very end,
+听众：从一开始， 
+
+448
+00:21:57,690 --> 00:22:02,389
+oh, to the very beginning, and then it's stepping back.
+哦，从一开始，然后就退一步了。 
+
+449
+00:22:02,589 --> 00:22:04,359
+PROFESSOR: So reverse, if I give it
+教授：那么，相反，如果我给它
+
+450
+00:22:04,359 --> 00:22:09,054
+the list 1, 2, 3, 4, I want reverse to give it back 4, 3,
+清单1、2、3、4，我想反向将其归还4、3， 
+
+451
+00:22:09,055 --> 00:22:10,826
+2, 1.
+ 2、1 
+
+452
+00:22:10,826 --> 00:22:12,450
+Except it's not going to return a list,
+除非它不会返回列表， 
+
+453
+00:22:12,450 --> 00:22:15,210
+it's going to return something that I can use here.
+它会返回一些我可以在这里使用的东西。 
+
+454
+00:22:15,210 --> 00:22:18,289
+AUDIENCE: Mm hm, ah, OK.
+听众：嗯，嗯，好。 
+
+455
+00:22:18,289 --> 00:22:19,347
+PROFESSOR: OK, yes.
+教授：好的，是的。 
+
+456
+00:22:19,347 --> 00:22:21,837
+AUDIENCE: Is it ever possible to, sort of,
+听众：有没有可能， 
+
+457
+00:22:21,837 --> 00:22:25,324
+rewind the iterator to like, sort of, reset it?
+将迭代器倒回喜欢的位置，将其重置？ 
+
+458
+00:22:25,324 --> 00:22:28,544
+PROFESSOR: OK, is it?
+教授：好吗？ 
+
+459
+00:22:28,544 --> 00:22:29,476
+AUDIENCE: No.
+听众：不。 
+
+460
+00:22:29,476 --> 00:22:30,410
+PROFESSOR: Nope.
+教授：不。 
+
+461
+00:22:30,410 --> 00:22:31,849
+So Python iterators are simple.
+因此，Python迭代器很简单。 
+
+462
+00:22:32,049 --> 00:22:34,154
+All you can do is go forward.
+您所能做的就是继续前进。 
+
+463
+00:22:34,154 --> 00:22:34,999
+AUDIENCE: OK.
+听众：好的。 
+
+464
+00:22:34,999 --> 00:22:36,539
+PROFESSOR: The reason that is good is
+教授：好的原因是
+
+465
+00:22:36,539 --> 00:22:38,329
+because you can use them for streams.
+因为您可以将它们用于流。 
+
+466
+00:22:38,329 --> 00:22:41,379
+So if you get data from a file, or if you can get data
+因此，如果您从文件中获取数据，或者可以获取数据
+
+467
+00:22:41,380 --> 00:22:44,149
+from the network, you can wrap it in an iterator.
+从网络上，您可以将其包装在迭代器中。 
+
+468
+00:22:44,349 --> 00:22:47,139
+If you wanted to support resume on data that you
+如果您想支持对您的数据的恢复
+
+469
+00:22:47,140 --> 00:22:50,544
+get from the network, you'd have to buffer all the data.
+从网络上获取数据，您将不得不缓冲所有数据。 
+
+470
+00:22:50,544 --> 00:22:51,801
+AUDIENCE: So you would have to call
+听众：所以你必须打电话
+
+471
+00:22:52,001 --> 00:22:53,669
+the iter about that again and--
+再次对此进行迭代- 
+
+472
+00:22:53,670 --> 00:22:54,710
+PROFESSOR: Yeah.
+教授：是的。 
+
+473
+00:22:54,710 --> 00:22:57,700
+Yeah, if you want to rewind, get another iterator.
+是的，如果您想倒带，请使用另一个迭代器。 
+
+474
+00:22:57,700 --> 00:23:00,529
+OK, that's a good question, thank you.
+好的，这是一个很好的问题，谢谢。 
+
+475
+00:23:00,529 --> 00:23:03,279
+So these are iterators.
+所以这些是迭代器。 
+
+476
+00:23:03,279 --> 00:23:06,450
+Now we're going to go over some Python magic, which
+现在，我们将介绍一些Python魔术， 
+
+477
+00:23:06,450 --> 00:23:07,730
+is called generators.
+被称为发电机。 
+
+478
+00:23:07,730 --> 00:23:10,049
+So look at the iterator code, and then look
+所以看一下迭代器代码，然后看
+
+479
+00:23:10,049 --> 00:23:11,980
+at the equivalent code right below it.
+在它下面的等效代码处。 
+
+480
+00:23:11,980 --> 00:23:14,890
+
+
+
+481
+00:23:14,890 --> 00:23:20,069
+So 12 lines of Python turned into three lines of Python
+所以12行Python变成了3行Python 
+
+482
+00:23:20,269 --> 00:23:23,309
+that do exactly the same thing.
+做完全一样的事情。 
+
+483
+00:23:23,309 --> 00:23:27,339
+So the reverse method will return an object
+所以反向方法将返回一个对象
+
+484
+00:23:27,339 --> 00:23:30,649
+that is an iterator, and that you can use just
+那是一个迭代器，您可以只使用
+
+485
+00:23:30,650 --> 00:23:33,419
+like the iterator in the reverse class.
+像反向类中的迭代器一样。 
+
+486
+00:23:33,619 --> 00:23:40,159
+
+
+
+487
+00:23:40,160 --> 00:23:43,480
+Do people understand what that code does?
+人们是否了解该代码的作用？ 
+
+488
+00:23:43,480 --> 00:23:48,180
+If you do I'm so out of here, we're done.
+如果您愿意，我会不在这里，我们就完成了。 
+
+489
+00:23:48,180 --> 00:23:49,630
+AUDIENCE: What does yield do?
+听众：产量有什么作用？ 
+
+490
+00:23:49,630 --> 00:23:51,069
+PROFESSOR: What does yield do?
+教授：产量有什么作用？ 
+
+491
+00:23:51,269 --> 00:23:53,855
+All right, that's the hard question, what does yield do?
+好吧，这是一个难题，产量是做什么的？ 
+
+492
+00:23:53,855 --> 00:23:57,180
+I will probably spend the rest of the session on the answer
+我可能会把剩下的时间都花在答案上
+
+493
+00:23:57,180 --> 00:23:57,869
+to that question.
+这个问题。 
+
+494
+00:23:58,069 --> 00:24:01,369
+You're asking all the had questions today, man.
+你今天要问所有的问题，伙计。 
+
+495
+00:24:01,369 --> 00:24:06,819
+So yield, does anyone know conceptually what yield does?
+那么，收益率，从概念上讲，有人知道吗？ 
+
+496
+00:24:06,819 --> 00:24:08,939
+Not in detail, just what's it supposed
+没有详细说明，这是什么意思
+
+497
+00:24:08,940 --> 00:24:10,639
+to do so that the rest of the code works?
+这样做以便其余的代码都能正常工作？ 
+
+498
+00:24:10,839 --> 00:24:11,638
+Yes.
+是。 
+
+499
+00:24:11,638 --> 00:24:13,179
+AUDIENCE: If you're driving someplace
+观众：如果您开车去某个地方
+
+500
+00:24:13,180 --> 00:24:16,150
+and there's a yield sign, you pause.
+而且有一个屈服信号，你停下来。 
+
+501
+00:24:16,150 --> 00:24:18,089
+PROFESSOR: OK, Python yield.
+教授：好的，Python的产量。 
+
+502
+00:24:18,289 --> 00:24:20,269
+So I like the word pause in there.
+所以我喜欢其中停顿这个词。 
+
+503
+00:24:20,269 --> 00:24:22,420
+The word pause is useful.
+暂停一词很有用。 
+
+504
+00:24:22,420 --> 00:24:26,140
+So say, instead of implementing this,
+可以这么说，而不是实施
+
+505
+00:24:26,140 --> 00:24:28,129
+say we're implementing sub-sequence hashes.
+说我们正在实现子序列哈希。 
+
+506
+00:24:28,329 --> 00:24:32,493
+
+
+
+507
+00:24:32,493 --> 00:24:35,391
+AUDIENCE: It kind of spit something out, but keeps going.
+听众：有点吐出来，但是还在继续。 
+
+508
+00:24:35,392 --> 00:24:37,807
+PROFESSOR: Yep.
+教授：是的。 
+
+509
+00:24:37,807 --> 00:24:39,586
+AUDIENCE: Returns [INAUDIBLE]
+听众：返回[听不清] 
+
+510
+00:24:39,586 --> 00:24:41,460
+PROFESSOR: OK, so suppose you're implementing
+教授：好的，假设您正在实施
+
+511
+00:24:41,460 --> 00:24:42,420
+sub-sequence hashes.
+子序列哈希。 
+
+512
+00:24:42,420 --> 00:24:47,678
+What's the worst, worst possible way you could implement this?
+实施此方法的最糟糕的方法是什么？ 
+
+513
+00:24:47,678 --> 00:24:48,684
+AUDIENCE: Return a list.
+听众：返回列表。 
+
+514
+00:24:48,884 --> 00:24:50,990
+PROFESSOR: OK, so the worst, worst way is to go all the way,
+教授：好的，所以最糟糕，最糟糕的方法就是一路走下去， 
+
+515
+00:24:50,990 --> 00:24:52,900
+brute force, don't use the rolling hashes,
+蛮力，不要使用滚动哈希， 
+
+516
+00:24:52,900 --> 00:24:54,170
+don't use anything.
+不要使用任何东西。 
+
+517
+00:24:54,170 --> 00:24:56,210
+The next best way is to make a list, right?
+下一个最佳方法是列出清单，对吧？ 
+
+518
+00:24:56,210 --> 00:25:01,029
+So you're going to start with an empty list.
+因此，您将从一个空列表开始。 
+
+519
+00:25:01,029 --> 00:25:09,670
+Then you're going to use the rolling hash in some way.
+然后，您将以某种方式使用滚动哈希。 
+
+520
+00:25:09,670 --> 00:25:16,539
+And in some loop you're going to say list.append e.
+在某些循环中，您将说list.append e。 
+
+521
+00:25:16,539 --> 00:25:21,119
+And then you're going to return the list.
+然后您将返回列表。 
+
+522
+00:25:21,119 --> 00:25:23,439
+Does this makes sense?
+这有意义吗？ 
+
+523
+00:25:23,440 --> 00:25:26,265
+OK, what's the problem with this code?
+好的，这段代码有什么问题？ 
+
+524
+00:25:26,265 --> 00:25:28,369
+AUDIENCE: You're going to have a huge list.
+听众：您将有一个庞大的清单。 
+
+525
+00:25:28,569 --> 00:25:30,509
+PROFESSOR: Going to have a huge list.
+教授：将会有一个庞大的清单。 
+
+526
+00:25:30,509 --> 00:25:36,900
+So the way we fix it with iterators is we remove this,
+因此，我们使用迭代器对其进行修复的方法是将其删除， 
+
+527
+00:25:36,900 --> 00:25:46,240
+we replace this with yield e, and we remove this.
+我们将其替换为yield e，然后将其删除。 
+
+528
+00:25:46,240 --> 00:25:48,009
+And now it's a generator.
+现在它是一个发电机。 
+
+529
+00:25:48,009 --> 00:25:51,519
+And now this consumes a constant amount of memory,
+现在，这消耗了恒定数量的内存， 
+
+530
+00:25:51,519 --> 00:25:54,400
+instead of building a list.
+而不是建立清单。 
+
+531
+00:25:54,400 --> 00:25:58,669
+And as long as you only want an iterator out of this method,
+而且只要您只希望使用此方法中的迭代器， 
+
+532
+00:25:58,869 --> 00:26:00,556
+you'll get the right thing.
+你会得到正确的事情。 
+
+533
+00:26:00,557 --> 00:26:02,640
+Your code will still work in exactly the same way.
+您的代码仍将以完全相同的方式工作。 
+
+534
+00:26:02,640 --> 00:26:06,730
+
+
+
+535
+00:26:06,730 --> 00:26:09,460
+OK, so the big question is what does this guy do, right?
+好吧，所以最大的问题是这个人做什么，对吗？ 
+
+536
+00:26:09,460 --> 00:26:11,669
+This is where the magic is.
+这就是魔术所在。 
+
+537
+00:26:11,869 --> 00:26:15,189
+So I already said, as a first hint,
+所以我已经说过，作为第一个提示， 
+
+538
+00:26:15,190 --> 00:26:18,920
+that this guy will return an iterator.
+这个家伙将返回一个迭代器。 
+
+539
+00:26:18,920 --> 00:26:21,730
+
+
+
+540
+00:26:21,730 --> 00:26:27,690
+So can someone try to imagine their Python, and see this?
+那么有人可以想象一下他们的Python，然后看看吗？ 
+
+541
+00:26:27,690 --> 00:26:29,539
+So suppose it's your Python, you see this.
+因此，假设这是您的Python，您会看到。 
+
+542
+00:26:29,539 --> 00:26:32,529
+What do you do?
+你是做什么？ 
+
+543
+00:26:32,529 --> 00:26:35,453
+AUDIENCE: You wait for some sort of command of some sort, right?
+听众：您在等待某种命令，对吗？ 
+
+544
+00:26:35,453 --> 00:26:37,119
+PROFESSOR: No, let's try something else.
+教授：不，我们再尝试其他方法。 
+
+545
+00:26:37,119 --> 00:26:38,479
+AUDIENCE: OK.
+听众：好的。 
+
+546
+00:26:38,480 --> 00:26:42,880
+PROFESSOR: So the execution of this pauses.
+教授：因此，该执行暂停。 
+
+547
+00:26:42,880 --> 00:26:43,419
+What happens?
+怎么了？ 
+
+548
+00:26:43,619 --> 00:26:47,259
+So we're looping somewhere, we got a yield.
+因此，我们在某个地方循环，我们获得了收益。 
+
+549
+00:26:47,259 --> 00:26:49,260
+We stop, what's the first thing we do?
+我们停下来，我们要做的第一件事是什么？ 
+
+550
+00:26:49,260 --> 00:26:52,619
+AUDIENCE: Spit out e.
+听众：吐出e。 
+
+551
+00:26:52,619 --> 00:26:55,973
+PROFESSOR: So you're saying you return e from this guy?
+教授：所以您是说您从这个人那里归还e？ 
+
+552
+00:26:55,973 --> 00:26:58,779
+AUDIENCE: [INAUDIBLE] out e [INAUDIBLE]
+听众：[听不清] e [听不清] 
+
+553
+00:26:58,779 --> 00:27:01,472
+PROFESSOR: So I want to return something--
+教授：所以我想退货- 
+
+554
+00:27:01,472 --> 00:27:03,950
+I want to return something else from this.
+我想从中返回其他内容。 
+
+555
+00:27:03,950 --> 00:27:06,460
+So I want to use this as if it was a list, yes?
+所以我想像使用列表一样使用它，是吗？ 
+
+556
+00:27:06,460 --> 00:27:08,496
+AUDIENCE: We store e somewhere.
+听众：我们将e存储在某个地方。 
+
+557
+00:27:08,496 --> 00:27:09,669
+PROFESSOR: OK, store e somewhere.
+教授：好的，将e存储在某个地方。 
+
+558
+00:27:09,869 --> 00:27:11,681
+AUDIENCE: Do you return the pointer of e?
+听众：您是否返回e的指针？ 
+
+559
+00:27:11,682 --> 00:27:14,329
+
+
+
+560
+00:27:14,329 --> 00:27:17,240
+PROFESSOR: Almost, so there's a word for the object
+教授：差不多了，这个对象有一个字
+
+561
+00:27:17,240 --> 00:27:19,259
+that I'm returning.
+我回来了
+
+562
+00:27:19,259 --> 00:27:21,349
+So I want to use it as if it was a list.
+所以我想像使用列表一样使用它。 
+
+563
+00:27:21,349 --> 00:27:25,179
+So I want to pretend that I had returned list in this method,
+所以我想假装我已经用这种方法返回了列表， 
+
+564
+00:27:25,180 --> 00:27:26,899
+right?
+对？ 
+
+565
+00:27:27,099 --> 00:27:30,423
+So what's the closest thing to a list that I can return.
+那么，最接近我可以返回的列表的是什么。 
+
+566
+00:27:30,423 --> 00:27:31,397
+AUDIENCE: An iterator.
+听众：一个迭代器。 
+
+567
+00:27:31,397 --> 00:27:33,919
+PROFESSOR: An iterator, thank you, all right.
+教授：一个迭代器，谢谢。 
+
+568
+00:27:33,920 --> 00:27:36,664
+So we will grab some information from here.
+因此，我们将从此处获取一些信息。 
+
+569
+00:27:36,664 --> 00:27:39,755
+
+
+
+570
+00:27:39,756 --> 00:27:42,190
+We'll put it in a nice box.
+我们将其放入一个漂亮的盒子中。 
+
+571
+00:27:42,190 --> 00:27:48,389
+And that box will behave like an iterator.
+该框的行为类似于迭代器。 
+
+572
+00:27:48,589 --> 00:27:51,889
+OK, so the first thing, someone said put e away,
+好，所以第一件事就是有人说把e收起来， 
+
+573
+00:27:51,890 --> 00:27:58,900
+so that's when we call next we're going to spit that out.
+因此，当我们接下来打电话时，我们将把它吐出来。 
+
+574
+00:27:58,900 --> 00:28:00,369
+What else do I need to put away?
+我还需要收拾些什么？ 
+
+575
+00:28:00,569 --> 00:28:07,303
+
+
+
+576
+00:28:07,304 --> 00:28:08,759
+AUDIENCE: [INAUDIBLE]
+观众：[听不清] 
+
+577
+00:28:08,759 --> 00:28:10,750
+PROFESSOR: Yep, so this is a lot of magic.
+教授：是的，所以这很神奇。 
+
+578
+00:28:10,750 --> 00:28:13,829
+This tiny box actually has a lot of magic in it.
+这个小盒子里面确实有很多魔力。 
+
+579
+00:28:13,829 --> 00:28:17,319
+Because when I call next, I want to get e.
+因为当我下次打电话时，我想得到e。 
+
+580
+00:28:17,319 --> 00:28:22,309
+But I want to come back here and keep going, right?
+但是我想回到这里继续前进，对吗？ 
+
+581
+00:28:22,309 --> 00:28:26,029
+So I have my code that's using the iterator.
+所以我的代码正在使用迭代器。 
+
+582
+00:28:26,029 --> 00:28:28,859
+And there's this code here, that's sort of
+这里有这段代码， 
+
+583
+00:28:28,859 --> 00:28:30,329
+in a frozen state.
+处于冻结状态。 
+
+584
+00:28:30,329 --> 00:28:32,960
+Did you guys see any movies where people are frozen up
+你们有看过冻结人的电影吗
+
+585
+00:28:32,960 --> 00:28:34,710
+and then, in the future, they're unfrozen
+然后，在未来，它们将被冻结
+
+586
+00:28:34,710 --> 00:28:36,582
+and they start moving again?
+然后他们又开始移动了？ 
+
+587
+00:28:36,582 --> 00:28:38,149
+AUDIENCE: [INAUDIBLE] movies.
+观众：[听不清]电影。 
+
+588
+00:28:38,349 --> 00:28:39,529
+PROFESSOR: All right, cool.
+教授：好的，很酷。 
+
+589
+00:28:39,529 --> 00:28:42,450
+So this is like that, this takes up the whole function,
+这样就占据了整个功能， 
+
+590
+00:28:42,450 --> 00:28:45,539
+freezes it up and puts it in a box here.
+将其冻结并将其放在此处的框中。 
+
+591
+00:28:45,539 --> 00:28:50,349
+And it returns an iterator that can use the box in the future.
+并且它返回一个迭代器，该迭代器将来可以使用该框。 
+
+592
+00:28:50,349 --> 00:28:52,379
+So when you call next, it gives e,
+因此，当您下次致电时，它会给出e， 
+
+593
+00:28:52,380 --> 00:28:54,740
+which is the guy that you put in here.
+你在这里放的那个人
+
+594
+00:28:54,740 --> 00:28:56,759
+And then it take the function out of the box,
+然后将功能直接使用
+
+595
+00:28:56,759 --> 00:28:59,460
+unfreezes it, and lets it run again
+解冻它，然后再次运行
+
+596
+00:28:59,460 --> 00:29:02,000
+until it hits yield again.
+直到再次达到产量。 
+
+597
+00:29:02,000 --> 00:29:04,059
+Then what happens the next time it hits yield?
+那么，下一次达到收益率时会发生什么呢？ 
+
+598
+00:29:04,059 --> 00:29:08,679
+
+
+
+599
+00:29:08,680 --> 00:29:10,980
+So, you're looping, and you're yielding again.
+因此，您循环播放，并且再次屈服。 
+
+600
+00:29:10,980 --> 00:29:15,134
+And say this time you're yielding.
+并说这次你屈服。 
+
+601
+00:29:15,134 --> 00:29:16,509
+AUDIENCE: Just do the same thing?
+听众：做同样的事情吗？ 
+
+602
+00:29:16,509 --> 00:29:18,218
+AUDIENCE: Do you put it in that iterator?
+听众：你把它放在那个迭代器中吗？ 
+
+603
+00:29:18,218 --> 00:29:19,399
+Or do you make another iterator?
+还是要制作另一个迭代器？ 
+
+604
+00:29:19,599 --> 00:29:21,039
+PROFESSOR: Same iterator.
+教授：相同的迭代器。 
+
+605
+00:29:21,039 --> 00:29:24,259
+So while this is looping, the code outside
+所以当这循环时，外面的代码
+
+606
+00:29:24,259 --> 00:29:26,779
+should get the values that it's yielding.
+应该得到它产生的值。 
+
+607
+00:29:26,779 --> 00:29:29,210
+So this has to behave as one iterator.
+因此，它必须充当一个迭代器。 
+
+608
+00:29:29,210 --> 00:29:31,690
+So the code is unfrozen, it's allowed
+所以代码是未冻结的，它被允许
+
+609
+00:29:31,690 --> 00:29:33,639
+to execute until it says yield again.
+执行直到再次说出yield为止。 
+
+610
+00:29:33,839 --> 00:29:36,179
+And then it says yield with a new element.
+然后用新元素表示收益。 
+
+611
+00:29:36,180 --> 00:29:38,440
+I put this guy in the box.
+我把这个家伙放在盒子里。 
+
+612
+00:29:38,440 --> 00:29:43,390
+Then I return the old guy as the return value for next.
+然后，我将老家伙返回作为下一个的返回值。 
+
+613
+00:29:43,390 --> 00:29:44,946
+AUDIENCE: Oh.
+听众：哦。 
+
+614
+00:29:45,146 --> 00:29:46,730
+PROFESSOR: And then it's frozen again.
+教授：然后又被冻结了。 
+
+615
+00:29:46,730 --> 00:29:50,048
+So this guy's still in a frozen state.
+因此，这个人仍然处于冻结状态。 
+
+616
+00:29:50,048 --> 00:29:52,089
+In the movies, I think you're only unfrozen once.
+在电影中，我认为您只冻结了一次。 
+
+617
+00:29:52,089 --> 00:29:53,169
+And then you keep going, right?
+然后您继续前进，对吗？ 
+
+618
+00:29:53,170 --> 00:29:54,295
+And there's a happy ending.
+有一个幸福的结局。 
+
+619
+00:29:54,295 --> 00:29:56,000
+Where here, every time you call yield
+在这里，每次调用收益率
+
+620
+00:29:56,000 --> 00:29:59,559
+you're frozen again, until someone calls next.
+您再次被冻结，直到有人打电话给下一个。 
+
+621
+00:29:59,559 --> 00:30:02,480
+
+
+
+622
+00:30:02,480 --> 00:30:03,480
+Does this make sense?
+这有意义吗？ 
+
+623
+00:30:03,480 --> 00:30:06,759
+AUDIENCE: It's kind of like Groundhog Day.
+听众：有点像土拨鼠日。 
+
+624
+00:30:06,759 --> 00:30:09,980
+PROFESSOR: Yes, except you're allowed to go forward.
+教授：是的，除了您可以前进。 
+
+625
+00:30:09,980 --> 00:30:12,141
+So this keeps going forward.
+因此，这一直在继续。 
+
+626
+00:30:12,141 --> 00:30:13,140
+AUDIENCE: --up, thought.
+听众：-起来，想一想。 
+
+627
+00:30:13,140 --> 00:30:14,444
+So it's looping.
+因此，它正在循环。 
+
+628
+00:30:14,644 --> 00:30:16,421
+It's the same day, really.
+真的是同一天。 
+
+629
+00:30:16,421 --> 00:30:17,920
+It's doing different things, though.
+不过，它在做不同的事情。 
+
+630
+00:30:17,920 --> 00:30:18,586
+PROFESSOR: Yeah.
+教授：是的。 
+
+631
+00:30:18,586 --> 00:30:20,920
+But all your state is saved.
+但是您的所有状态都已保存。 
+
+632
+00:30:20,920 --> 00:30:23,129
+So there, some of the state is rolled back.
+因此，某些状态会回滚。 
+
+633
+00:30:23,329 --> 00:30:25,071
+Here all the state is saved.
+此处保存了所有状态。 
+
+634
+00:30:25,071 --> 00:30:26,055
+AUDIENCE: OK.
+听众：好的。 
+
+635
+00:30:26,056 --> 00:30:29,410
+PROFESSOR: OK, but if that analogy helps, keep it.
+教授：好的，但是如果这样的比喻有帮助，请保留。 
+
+636
+00:30:29,410 --> 00:30:32,700
+AUDIENCE: When you call next, are you computing e
+听众：下次打电话时，您正在计算e 
+
+637
+00:30:32,700 --> 00:30:33,894
+or e prime to be returned?
+还是要退货的素数？ 
+
+638
+00:30:33,894 --> 00:30:35,519
+PROFESSOR: So when you're calling next,
+教授：所以，当您接下来打电话时， 
+
+639
+00:30:35,519 --> 00:30:38,951
+you're computing e prime and returning e.
+您正在计算e素数并返回e。 
+
+640
+00:30:38,951 --> 00:30:41,656
+AUDIENCE: So the value you get from next is pre-computed?
+听众：那么从下一个获得的价值是预先计算的？ 
+
+641
+00:30:41,656 --> 00:30:43,490
+PROFESSOR: So the value you get form next is
+教授：那么您接下来获得的价值是
+
+642
+00:30:43,490 --> 00:30:46,385
+what you yielded before.
+你以前屈服的
+
+643
+00:30:46,385 --> 00:30:50,210
+AUDIENCE: Wait, so you would just take some sequence hashes
+听众：等等，所以您只需要进行一些序列散列
+
+644
+00:30:50,210 --> 00:30:53,299
+instance of that, and then just by putting in yield,
+实例，然后通过增加收益， 
+
+645
+00:30:53,299 --> 00:30:55,409
+now it's magically become an iterator
+现在它神奇地变成了迭代器
+
+646
+00:30:55,410 --> 00:30:56,889
+and you can call that next on it?
+你可以打电话给下一个吗？ 
+
+647
+00:30:57,089 --> 00:30:57,919
+PROFESSOR: Yep.
+教授：是的。 
+
+648
+00:30:57,920 --> 00:31:00,787
+And inside, you don't have to know that it's an iterator.
+在内部，您不必知道它是一个迭代器。 
+
+649
+00:31:00,787 --> 00:31:02,419
+So you don't have a method next here, right?
+所以，您这里接下来没有方法了，对吧？ 
+
+650
+00:31:02,619 --> 00:31:04,939
+I don't implement next or iter here.
+我在这里不执行下一步或迭代。 
+
+651
+00:31:04,940 --> 00:31:08,230
+I write this as if it's printing stuff to the output.
+我将其写为好像将内容打印到输出中。 
+
+652
+00:31:08,230 --> 00:31:10,640
+You can think of yield is a print.
+您可以认为产量是印刷品。 
+
+653
+00:31:10,640 --> 00:31:12,500
+If you wanted an iterator, then pretend
+如果您想要一个迭代器，那么假装
+
+654
+00:31:12,500 --> 00:31:14,740
+you're printing what you want to iterate over.
+您正在打印要迭代的内容。 
+
+655
+00:31:14,740 --> 00:31:16,990
+And instead of saying print you say yield.
+与其说打印，不如说产量。 
+
+656
+00:31:16,990 --> 00:31:18,089
+And then you use that.
+然后您使用它。 
+
+657
+00:31:18,089 --> 00:31:20,709
+
+
+
+658
+00:31:20,710 --> 00:31:22,501
+OK, now what happens when we're done?
+好，现在完成后会发生什么？ 
+
+659
+00:31:22,501 --> 00:31:23,960
+What happens when this loop is done
+完成此循环后会发生什么
+
+660
+00:31:23,960 --> 00:31:25,410
+and you return from this method?
+然后您从此方法返回？ 
+
+661
+00:31:25,410 --> 00:31:27,650
+We said there's no return value.
+我们说没有返回值。 
+
+662
+00:31:27,650 --> 00:31:30,750
+AUDIENCE: It raises a stop?
+听众：停下来了吗？ 
+
+663
+00:31:30,750 --> 00:31:32,430
+PROFESSOR: So when we return, it's
+教授：所以当我们回来时， 
+
+664
+00:31:32,430 --> 00:31:35,129
+going to keep in-- have to remember that it's done, right?
+要坚持下去-必须记住它已经完成了，对吧？ 
+
+665
+00:31:35,329 --> 00:31:39,329
+
+
+
+666
+00:31:39,329 --> 00:31:42,179
+And the first time, it has some element here
+第一次，这里有一些元素
+
+667
+00:31:42,180 --> 00:31:44,759
+that it has to return.
+它必须返回。 
+
+668
+00:31:44,759 --> 00:31:48,230
+So every time you call yield we put a new element in the box,
+因此，每次您调用yield时，我们都会在框中输入一个新元素， 
+
+669
+00:31:48,230 --> 00:31:51,579
+and return the old one.
+并退还旧的。 
+
+670
+00:31:51,579 --> 00:31:55,619
+So now we would return the old one.
+所以现在我们将退回旧的。 
+
+671
+00:31:55,619 --> 00:32:01,729
+We've returned e prime, take it out, and put done in the box.
+我们已退回e prime，将其取出，然后放入盒子中。 
+
+672
+00:32:01,730 --> 00:32:05,309
+So in the future, if next is called again,
+因此，将来如果再次调用next， 
+
+673
+00:32:05,309 --> 00:32:11,509
+raise stop iteration.
+提高停止迭代。 
+
+674
+00:32:11,509 --> 00:32:13,680
+No more freezing, unfreezing, because we're done.
+不再冻结，解冻，因为我们完成了。 
+
+675
+00:32:13,680 --> 00:32:14,304
+We're returned.
+我们回来了。 
+
+676
+00:32:14,304 --> 00:32:18,201
+
+
+
+677
+00:32:18,201 --> 00:32:21,470
+AUDIENCE: So if you called next it would just give you nothing?
+听众：那么，如果您接下来打电话给您，它什么也不会给您？ 
+
+678
+00:32:21,470 --> 00:32:23,761
+PROFESSOR: It has to raise this exception.
+教授：必须提出这个例外。 
+
+679
+00:32:23,761 --> 00:32:26,220
+AUDIENCE: So you mean, like-- oh, so it-- oh, I see.
+听众：所以你的意思是-哦，是这样-哦，我明白了。 
+
+680
+00:32:26,220 --> 00:32:28,257
+It would give you red text then?
+那会给你红色的文字吗？ 
+
+681
+00:32:28,257 --> 00:32:30,007
+PROFESSOR: If you called it directly, yes,
+教授：如果您直接致电，是的， 
+
+682
+00:32:30,007 --> 00:32:32,140
+it would give you red text.
+它会给您红色文字。 
+
+683
+00:32:32,140 --> 00:32:32,930
+Yes?
+是？ 
+
+684
+00:32:32,930 --> 00:32:37,603
+AUDIENCE: So this takes a sequence or a list,
+听众：这需要一个序列或一个列表， 
+
+685
+00:32:37,603 --> 00:32:40,360
+not another iterator, ever?
+从来没有另一个迭代器？ 
+
+686
+00:32:40,560 --> 00:32:42,044
+PROFESSOR: This?
+教授：这吗？ 
+
+687
+00:32:42,045 --> 00:32:43,529
+What's this?
+这是什么？ 
+
+688
+00:32:43,529 --> 00:32:44,519
+This other code here?
+这是其他代码吗？ 
+
+689
+00:32:44,519 --> 00:32:45,869
+AUDIENCE: Yeah.
+听众：是的。 
+
+690
+00:32:45,869 --> 00:32:46,994
+PROFESSOR: Not necessarily.
+教授：不一定。 
+
+691
+00:32:46,994 --> 00:32:49,409
+AUDIENCE: Or you could give it a procedure.
+听众：或者你可以给它一个程序。 
+
+692
+00:32:49,410 --> 00:32:50,910
+PROFESSOR: I can give it an iterator
+教授：我可以给它一个迭代器
+
+693
+00:32:50,910 --> 00:32:52,849
+if I'm iterating over it using for-in.
+如果我使用for-in遍历它。 
+
+694
+00:32:53,049 --> 00:32:55,539
+AUDIENCE: Like, for something in one iterator, yield
+听众：例如，对于一个迭代器中的某项，收益
+
+695
+00:32:55,539 --> 00:32:57,531
+that something, and then [INAUDIBLE]
+那东西，然后[听不清] 
+
+696
+00:32:57,531 --> 00:33:00,328
+AUDIENCE: Oh, OK.
+听众：哦，好。 
+
+697
+00:33:00,328 --> 00:33:01,869
+PROFESSOR: Yeah, that's a good point.
+教授：是的，这很重要。 
+
+698
+00:33:01,869 --> 00:33:04,113
+I'll get to that later, when we talk
+等一下再说
+
+699
+00:33:04,114 --> 00:33:05,779
+about how we're going to solve the PSET.
+关于我们如何解决PSET的问题。 
+
+700
+00:33:05,779 --> 00:33:07,569
+No, we're not solving the PSET for you.
+不，我们没有为您解决PSET。 
+
+701
+00:33:07,569 --> 00:33:09,660
+But we'll talk about it a little bit.
+但是，我们将稍作讨论。 
+
+702
+00:33:09,661 --> 00:33:10,910
+But yeah, that's a good point.
+但是，是的，这很不错。 
+
+703
+00:33:10,910 --> 00:33:13,210
+So there's no reason why you can't
+所以没有理由你不能
+
+704
+00:33:13,210 --> 00:33:16,250
+have an argument here that, either a list or an iterator,
+这里有一个参数，即列表或迭代器， 
+
+705
+00:33:16,250 --> 00:33:18,069
+and then you're iterating over it.
+然后您要遍历它。 
+
+706
+00:33:18,069 --> 00:33:20,345
+And then you have nested generators.
+然后您有嵌套的生成器。 
+
+707
+00:33:20,345 --> 00:33:23,160
+So you have generators returned in other generators,
+所以您有其他发电机返回的发电机， 
+
+708
+00:33:23,160 --> 00:33:24,879
+and you have a whole chain of things
+而且你有一连串的事情
+
+709
+00:33:25,079 --> 00:33:26,491
+happening when you say next.
+接下来说的话会发生。 
+
+710
+00:33:26,491 --> 00:33:28,325
+AUDIENCE: Wait, so this is a generator then,
+听众：等等，那么这就是发电机， 
+
+711
+00:33:28,325 --> 00:33:32,129
+because it produces-- well it is an iterator though?
+因为它产生了-虽然它是一个迭代器？ 
+
+712
+00:33:32,329 --> 00:33:34,769
+PROFESSOR: So a generator returns an iterator
+教授：因此，生成器返回迭代器
+
+713
+00:33:34,769 --> 00:33:36,680
+from this method.
+从这种方法。 
+
+714
+00:33:36,680 --> 00:33:38,960
+So a generator acts like an iterator,
+因此，生成器的作用类似于迭代器， 
+
+715
+00:33:38,960 --> 00:33:42,049
+except when you call next, it unfreezes this code here,
+除了下次调用时，它会在此处解冻此代码， 
+
+716
+00:33:42,049 --> 00:33:43,723
+and it let's it run.
+它开始运行。 
+
+717
+00:33:43,723 --> 00:33:46,044
+AUDIENCE: But I mean, it's basically an iterator then?
+听众：但是我的意思是，那基本上是一个迭代器？ 
+
+718
+00:33:46,045 --> 00:33:46,509
+PROFESSOR: Yeah.
+教授：是的。 
+
+719
+00:33:46,509 --> 00:33:48,694
+AUDIENCE: But we're just calling it a generator because--
+听众：但是我们之所以称其为发电机是因为- 
+
+720
+00:33:48,694 --> 00:33:50,240
+PROFESSOR: Because there's a lot more magic.
+教授：因为还有很多魔术。 
+
+721
+00:33:50,240 --> 00:33:50,819
+AUDIENCE: OK.
+听众：好的。 
+
+722
+00:33:50,819 --> 00:33:53,980
+PROFESSOR: So an iterator just says next and iter.
+教授：因此，一个迭代器只说下一个然后迭代。 
+
+723
+00:33:53,980 --> 00:33:57,250
+This is all that an iterator is, nothing more.
+这就是迭代器的全部，仅此而已。 
+
+724
+00:33:57,250 --> 00:33:59,519
+Any object that has these two methods is an iterator.
+具有这两种方法的任何对象都是迭代器。 
+
+725
+00:33:59,519 --> 00:34:01,940
+AUDIENCE: Oh, OK.
+听众：哦，好。 
+
+726
+00:34:01,940 --> 00:34:06,879
+PROFESSOR: Now a generator is a piece of Python magic
+教授：现在，生成器是Python的魔力
+
+727
+00:34:07,079 --> 00:34:10,309
+that let's you write shorter iterators.
+让我们编写更短的迭代器。 
+
+728
+00:34:10,309 --> 00:34:12,579
+So three lines, as opposed to 13 lines.
+所以三行，而不是十三行。 
+
+729
+00:34:12,579 --> 00:34:15,980
+And we came up with a way to turn
+我们想出了一种方法
+
+730
+00:34:15,980 --> 00:34:18,110
+in a code that would build a list,
+在可以建立清单的程式码中
+
+731
+00:34:18,110 --> 00:34:21,980
+and easily turn it into a code that uses a generator,
+并轻松地将其转换为使用生成器的代码， 
+
+732
+00:34:21,980 --> 00:34:24,717
+and that uses constant memory instead of building that list.
+并且使用常量内存而不是建立该列表。 
+
+733
+00:34:24,717 --> 00:34:26,913
+AUDIENCE: OK, now I know how an iterator functions.
+听众：好的，现在我知道迭代器的功能了。 
+
+734
+00:34:27,112 --> 00:34:27,903
+PROFESSOR: Exactly.
+教授：是的。 
+
+735
+00:34:27,903 --> 00:34:30,690
+
+
+
+736
+00:34:30,690 --> 00:34:33,820
+OK, do generators make sense now?
+好了，发电机现在有意义吗？ 
+
+737
+00:34:33,820 --> 00:34:34,659
+Yes.
+是。 
+
+738
+00:34:34,659 --> 00:34:36,250
+AUDIENCE: If you wanted to loop through all
+听众：如果您想遍历所有
+
+739
+00:34:36,449 --> 00:34:38,751
+of the values in a generator, do you just
+生成器中的值，您只是
+
+740
+00:34:38,751 --> 00:34:40,480
+wait until the exception's raised?
+等到引发异常？ 
+
+741
+00:34:40,480 --> 00:34:42,880
+Or should you, like, keep track of how many things
+还是您应该跟踪多少东西
+
+742
+00:34:42,880 --> 00:34:44,902
+are going to be in that generator?
+将在那个发电机？ 
+
+743
+00:34:44,902 --> 00:34:46,610
+PROFESSOR: So, when you have a generator,
+教授：所以，当您有发电机时， 
+
+744
+00:34:46,610 --> 00:34:48,777
+you'd have no idea how many things there are.
+你不知道有多少东西。 
+
+745
+00:34:48,777 --> 00:34:49,610
+That's a good point.
+那是个很好的观点。 
+
+746
+00:34:49,610 --> 00:34:53,516
+So you're wondering if I have an iterator, say any iterator,
+所以您想知道我是否有一个迭代器，比如说任何迭代器， 
+
+747
+00:34:53,715 --> 00:34:56,339
+not necessarily a generator, how do I know how many things it's
+不一定是发电机，我怎么知道它有多少东西
+
+748
+00:34:56,340 --> 00:34:57,190
+going to return, right?
+要回来了吧？ 
+
+749
+00:34:57,389 --> 00:34:59,199
+Do I have ln?
+我有ln吗？ 
+
+750
+00:34:59,199 --> 00:35:01,059
+I do not have ln.
+我没有ln。 
+
+751
+00:35:01,059 --> 00:35:05,409
+So an iterator does not have ln.
+因此，迭代器没有ln。 
+
+752
+00:35:05,409 --> 00:35:08,849
+So you have to iterate through it.
+因此，您必须遍历它。 
+
+753
+00:35:08,849 --> 00:35:14,759
+And most importantly, some iterators can never return.
+最重要的是，某些迭代器永远不会返回。 
+
+754
+00:35:14,760 --> 00:35:17,070
+So you can have an iterator that streams data for you
+因此，您可以拥有一个可以为您流数据的迭代器
+
+755
+00:35:17,070 --> 00:35:18,500
+across the network.
+跨网络。 
+
+756
+00:35:18,500 --> 00:35:21,550
+Or you can have an iterator that iterates over the Fibonacci
+或者您可以有一个迭代斐波纳契的迭代器
+
+757
+00:35:21,550 --> 00:35:22,572
+numbers.
+数字。 
+
+758
+00:35:22,572 --> 00:35:24,030
+That's an infinite sequence, right?
+那是一个无限的顺序，对吧？ 
+
+759
+00:35:24,030 --> 00:35:25,030
+It's never going to end.
+它永远不会结束。 
+
+760
+00:35:25,030 --> 00:35:28,500
+So ln would not even be defined then.
+因此，ln甚至都不会被定义。 
+
+761
+00:35:28,699 --> 00:35:30,335
+Good question, I like it.
+好问题，我喜欢。 
+
+762
+00:35:30,335 --> 00:35:33,896
+AUDIENCE: Is there an is-next method for either iterators
+听众：两个迭代器是否都有一个is-next方法
+
+763
+00:35:33,896 --> 00:35:35,090
+or generators?
+还是发电机？ 
+
+764
+00:35:35,090 --> 00:35:36,456
+PROFESSOR: Nope.
+教授：不。 
+
+765
+00:35:36,456 --> 00:35:39,297
+This is what you get, if there is no in.
+如果没有，这就是您得到的。 
+
+766
+00:35:39,496 --> 00:35:40,929
+AUDIENCE: If that is mature then--
+听众：如果那很成熟， 
+
+767
+00:35:40,929 --> 00:35:42,019
+PROFESSOR: Yeah.
+教授：是的。 
+
+768
+00:35:42,019 --> 00:35:44,989
+So in Java you have this belief that you
+因此，在Java中，您有这样的信念： 
+
+769
+00:35:44,989 --> 00:35:46,476
+shouldn't get exceptions.
+不应该例外。 
+
+770
+00:35:46,476 --> 00:35:48,309
+You should be able to check for them, right?
+您应该可以检查它们，对吗？ 
+
+771
+00:35:48,309 --> 00:35:49,860
+So maybe that's why you're asking.
+所以也许这就是为什么你问。 
+
+772
+00:35:49,860 --> 00:35:52,565
+So if people coming from Java know that any time a method
+因此，如果来自Java的人们随时知道一种方法
+
+773
+00:35:52,565 --> 00:35:53,940
+raises an exception, there should
+引发异常，应该
+
+774
+00:35:53,940 --> 00:35:57,110
+be another method that tells you whether this first method is
+可以告诉您第一个方法是否是
+
+775
+00:35:57,110 --> 00:35:58,920
+going to raise an exception or not.
+是否会引发例外。 
+
+776
+00:35:58,920 --> 00:36:00,820
+In Python the exception is just raised.
+在Python中，仅引发了异常。 
+
+777
+00:36:00,820 --> 00:36:03,269
+So exceptions are not a lot more expensive
+因此，异常的代价并不昂贵
+
+778
+00:36:03,469 --> 00:36:05,949
+than regular instructions, because we're
+比常规说明要多，因为我们
+
+779
+00:36:05,949 --> 00:36:08,059
+using an interpreted language, and it's already
+使用一种解释语言，它已经
+
+780
+00:36:08,059 --> 00:36:09,150
+reasonably slow.
+相当慢。 
+
+781
+00:36:09,150 --> 00:36:12,280
+So it can do exceptions for free, yay.
+所以它可以免费做例外，是的。 
+
+782
+00:36:12,280 --> 00:36:13,340
+So this is how it works.
+这就是它的工作方式。 
+
+783
+00:36:13,340 --> 00:36:14,706
+This is how for-in works.
+这是for-in的工作方式。 
+
+784
+00:36:14,706 --> 00:36:16,829
+Every time you do a for-in, an exception is raised.
+每次您进行for-in时，都会引发异常。 
+
+785
+00:36:16,829 --> 00:36:19,516
+
+
+
+786
+00:36:19,516 --> 00:36:21,349
+AUDIENCE: We don't have to catch that, then?
+听众：那我们不必得意吗？ 
+
+787
+00:36:21,349 --> 00:36:24,429
+PROFESSOR: Nope, the for-in catches it for you.
+教授：不会，for-in为您服务。 
+
+788
+00:36:24,429 --> 00:36:25,710
+AUDIENCE: That's tricky stuff.
+听众：这很棘手。 
+
+789
+00:36:25,710 --> 00:36:28,389
+
+
+
+790
+00:36:28,389 --> 00:36:30,819
+PROFESSOR: But it's nice because then you
+教授：那很好，因为那时候你
+
+791
+00:36:30,820 --> 00:36:33,360
+can build any iterator that acts like a list.
+可以构建任何类似于列表的迭代器。 
+
+792
+00:36:33,360 --> 00:36:35,599
+And then you can do even more fancy stuff,
+然后您可以做更多花哨的事情， 
+
+793
+00:36:35,599 --> 00:36:37,650
+and build a generator.
+并建造一个发电机。 
+
+794
+00:36:37,650 --> 00:36:40,710
+And you're using constant memory instead of order and memory
+而且您使用的是恒定内存，而不是顺序和内存
+
+795
+00:36:40,710 --> 00:36:45,139
+for producing an order and size list.
+用于生成订单和尺寸列表。 
+
+796
+00:36:45,139 --> 00:36:45,900
+Yes?
+是？ 
+
+797
+00:36:45,900 --> 00:36:52,280
+AUDIENCE: So if we get passed in an iterator
+观众：所以如果我们通过迭代器
+
+798
+00:36:52,280 --> 00:36:57,496
+and then just yielded what we passed in, yielded
+然后就产生了我们传承的东西
+
+799
+00:36:57,695 --> 00:36:59,985
+the iterator, would that just, essentially,
+迭代器，从本质上讲， 
+
+800
+00:36:59,985 --> 00:37:04,054
+delay everything by one?
+推迟一切吗？ 
+
+801
+00:37:04,054 --> 00:37:06,269
+PROFESSOR: So you're yielding the iterator as next, right?
+教授：因此，您接下来要产生迭代器，对吗？ 
+
+802
+00:37:06,469 --> 00:37:07,239
+AUDIENCE: What?
+听众：什么？ 
+
+803
+00:37:07,239 --> 00:37:07,519
+Yeah.
+是的
+
+804
+00:37:07,519 --> 00:37:08,889
+PROFESSOR: You want to yield the iterator as next.
+教授：您想像下面那样产生迭代器。 
+
+805
+00:37:08,889 --> 00:37:10,759
+Because if you yield the iterator object,
+因为如果产生迭代器对象， 
+
+806
+00:37:10,760 --> 00:37:12,476
+you're going to return that object every time.
+您将每次都返回该对象。 
+
+807
+00:37:12,675 --> 00:37:14,909
+
+
+
+808
+00:37:14,909 --> 00:37:16,801
+So you're thinking of something that--
+所以您在想一些事情- 
+
+809
+00:37:16,802 --> 00:37:18,260
+AUDIENCE: So you need to increase--
+听众：所以你需要增加- 
+
+810
+00:37:18,260 --> 00:37:19,550
+PROFESSOR: You'll yield up next, right?
+教授：接下来，您会屈服吧？ 
+
+811
+00:37:19,550 --> 00:37:20,269
+AUDIENCE: Right.
+听众：对。 
+
+812
+00:37:20,269 --> 00:37:22,289
+PROFESSOR: You can have a method that says this is the method.
+教授：您可以使用一个方法来说明此方法。 
+
+813
+00:37:22,289 --> 00:37:23,663
+And then you take in an iterator.
+然后加入一个迭代器。 
+
+814
+00:37:23,664 --> 00:37:25,780
+And then you yield it up next.
+然后您将其屈服。 
+
+815
+00:37:25,780 --> 00:37:27,902
+But then you'll, basically, get the same thing.
+但是，基本上，您将获得相同的结果。 
+
+816
+00:37:28,101 --> 00:37:29,143
+AUDIENCE: The same thing.
+听众：同一件事。 
+
+817
+00:37:29,143 --> 00:37:31,744
+But is it delayed by one or no?
+但是它延迟了一个还是没有？ 
+
+818
+00:37:31,744 --> 00:37:32,454
+PROFESSOR: Nope.
+教授：不。 
+
+819
+00:37:32,454 --> 00:37:35,070
+No, so you have to work through this
+不，所以你必须通过这个工作
+
+820
+00:37:35,070 --> 00:37:37,615
+to convince yourself that it's not delayed.
+让自己相信它没有延迟。 
+
+821
+00:37:37,615 --> 00:37:38,989
+So if it would be delayed by one,
+因此，如果将其延迟一倍， 
+
+822
+00:37:38,989 --> 00:37:40,329
+what's the first thing that you're yielding.
+您要产生的第一件事是什么。 
+
+823
+00:37:40,329 --> 00:37:41,329
+AUDIENCE: I don't know.
+听众：我不知道。 
+
+824
+00:37:41,329 --> 00:37:42,864
+PROFESSOR: Yeah, so no delay.
+教授：是的，所以不要拖延。 
+
+825
+00:37:42,864 --> 00:37:43,769
+AUDIENCE: OK.
+听众：好的。 
+
+826
+00:37:43,769 --> 00:37:46,320
+PROFESSOR: OK, cool.
+教授：好的，很酷。 
+
+827
+00:37:46,320 --> 00:37:48,789
+So let's see, what do we have to implement
+让我们来看看，我们必须实现什么
+
+828
+00:37:48,989 --> 00:37:52,279
+in DNA seq, sub-sequence hashes.
+在DNA序列中，子序列哈希。 
+
+829
+00:37:52,280 --> 00:37:54,630
+Do people have an idea of how to implement that now?
+人们是否有想法现在如何实施？ 
+
+830
+00:37:54,829 --> 00:37:58,529
+
+
+
+831
+00:37:58,530 --> 00:37:59,030
+Yes?
+是？ 
+
+832
+00:37:59,030 --> 00:38:01,380
+Does it make sense for everyone?
+这对每个人有意义吗？ 
+
+833
+00:38:01,380 --> 00:38:04,230
+So you build it as if you were building a list,
+因此，您就像在构建列表一样构建它， 
+
+834
+00:38:04,230 --> 00:38:07,570
+and then you use yield to make it fast.
+然后使用yield使其快速。 
+
+835
+00:38:07,570 --> 00:38:09,400
+And by fast I mean less memory.
+快速是指更少的内存。 
+
+836
+00:38:09,400 --> 00:38:12,105
+OK, how about interval sub-sequence hashes?
+好吧，区间子序列哈希如何？ 
+
+837
+00:38:12,304 --> 00:38:15,579
+
+
+
+838
+00:38:15,579 --> 00:38:17,550
+The one below.
+下面的一个。 
+
+839
+00:38:17,550 --> 00:38:19,380
+AUDIENCE: Is that just like rolling hash,
+听众：就像滚动哈希一样， 
+
+840
+00:38:19,380 --> 00:38:22,826
+except you, like, have a step in your range?
+除了您之外，您需要在自己的范围内迈出一步？ 
+
+841
+00:38:22,826 --> 00:38:25,920
+PROFESSOR: OK, so it's like having a step in your range.
+教授：好的，这就像在您的范围内迈出了一步。 
+
+842
+00:38:25,920 --> 00:38:27,039
+So how can you do that?
+那你该怎么做呢？ 
+
+843
+00:38:27,239 --> 00:38:28,599
+What's one way of doing it?
+这样做的一种方式是什么？ 
+
+844
+00:38:28,599 --> 00:38:34,011
+
+
+
+845
+00:38:34,012 --> 00:38:35,288
+AUDIENCE: [INAUDIBLE] hashes?
+听众：[听不清]哈希？ 
+
+846
+00:38:35,487 --> 00:38:38,440
+
+
+
+847
+00:38:38,440 --> 00:38:41,159
+PROFESSOR: Did anyone solve the PSET yet?
+教授：有人解决过PSET吗？ 
+
+848
+00:38:41,159 --> 00:38:44,839
+Yes, OK how did you guys do it?
+是的，你们是如何做到的？ 
+
+849
+00:38:44,840 --> 00:38:45,980
+Wait, no.
+等一下
+
+850
+00:38:46,179 --> 00:38:49,099
+That's a bad question because you guys can answer too much.
+这是一个不好的问题，因为你们可以回答太多。 
+
+851
+00:38:49,099 --> 00:38:54,199
+So interval sub-sequence hashes versus sub-sequence hashes.
+因此，区间子序列哈希与子序列哈希。 
+
+852
+00:38:54,199 --> 00:38:55,779
+Did you copy paste the code?
+您复制粘贴代码了吗？ 
+
+853
+00:38:55,780 --> 00:38:57,519
+AUDIENCE: Absolutely.
+听众：绝对。 
+
+854
+00:38:57,519 --> 00:39:00,204
+PROFESSOR: OK, so one way of doing it is copy
+教授：好的，所以做到这一点的一种方法是复制
+
+855
+00:39:00,204 --> 00:39:01,422
+and pasting the code.
+并粘贴代码。 
+
+856
+00:39:01,422 --> 00:39:03,630
+The problem if you copy paste the code is then you're
+如果您复制粘贴代码的问题是
+
+857
+00:39:03,630 --> 00:39:04,289
+not DRY.
+不干。 
+
+858
+00:39:04,289 --> 00:39:09,360
+There's this engineering thing-- DRY means do not
+有一个工程学的东西-DRY意味着不要
+
+859
+00:39:09,360 --> 00:39:10,630
+repeat yourself.
+再说一遍。 
+
+860
+00:39:10,630 --> 00:39:12,750
+So if you're not DRY, if you copy paste,
+因此，如果您不干燥，如果您复制粘贴， 
+
+861
+00:39:12,750 --> 00:39:14,280
+then suppose you find the bug later.
+然后假设您稍后找到该错误。 
+
+862
+00:39:14,280 --> 00:39:16,530
+Suppose you run the big test and it crashes somewhere.
+假设您运行了大型测试，并且崩溃了。 
+
+863
+00:39:16,530 --> 00:39:19,400
+And you fix a bug in sub-sequence hashes.
+并且您修复了子序列哈希中的一个错误。 
+
+864
+00:39:19,599 --> 00:39:21,190
+AUDIENCE: Oh, we're supposed to, like,
+听众：哦，我们应该， 
+
+865
+00:39:21,190 --> 00:39:24,175
+call sub-sequence hashes from interval sub-sequence hashes,
+从区间子序列哈希中调用子序列哈希， 
+
+866
+00:39:24,175 --> 00:39:24,675
+right?
+对？ 
+
+867
+00:39:24,675 --> 00:39:27,456
+PROFESSOR: That's another way of doing it that is DRY.
+教授：那是干的另一种方式。 
+
+868
+00:39:27,655 --> 00:39:29,529
+So this way you're not copy pasting the code.
+因此，您无需复制粘贴代码。 
+
+869
+00:39:29,530 --> 00:39:32,072
+AUDIENCE: We're inlining the code.
+听众：我们正在内联代码。 
+
+870
+00:39:32,271 --> 00:39:34,559
+PROFESSOR: You're inlining it manually, right?
+教授：您是手动进行内联，对吗？ 
+
+871
+00:39:34,559 --> 00:39:35,429
+All right.
+好吧。 
+
+872
+00:39:35,429 --> 00:39:38,672
+So the problem, if you do this on a large scale,
+所以问题是，如果您大规模进行此操作， 
+
+873
+00:39:38,672 --> 00:39:40,130
+like when you go work somewhere, is
+就像当你去某个地方工作时
+
+874
+00:39:40,130 --> 00:39:43,010
+that you end up with 20 copies of the same code.
+最终得到20个相同代码的副本。 
+
+875
+00:39:43,010 --> 00:39:46,769
+And then five of them have bug fixes and the other 15
+然后其中五个修复了错误，另外15个修复了错误
+
+876
+00:39:46,969 --> 00:39:50,119
+don't, because people forgot where they are.
+不会，因为人们忘记了他们在哪里。 
+
+877
+00:39:50,119 --> 00:39:52,759
+So ideally, try to keep your code DRY.
+因此，理想情况下，请尝试使代码保持DRY。 
+
+878
+00:39:52,760 --> 00:39:59,885
+
+
+
+879
+00:40:00,085 --> 00:40:03,465
+AUDIENCE: So, basically, a list of tuples, right?
+听众：所以，基本上，有一个元组列表，对吗？ 
+
+880
+00:40:03,465 --> 00:40:04,923
+PROFESSOR: OK, so a list of tuples.
+教授：好的，所以有一个元组列表。 
+
+881
+00:40:04,923 --> 00:40:08,269
+
+
+
+882
+00:40:08,269 --> 00:40:10,487
+What does a tuple have?
+元组有什么？ 
+
+883
+00:40:10,487 --> 00:40:16,940
+AUDIENCE: The index at which the sub-sequence operates?
+观众：子序列的运行索引？ 
+
+884
+00:40:16,940 --> 00:40:19,039
+PROFESSOR: So two indexes, right?
+教授：那么有两个索引吧？ 
+
+885
+00:40:19,039 --> 00:40:22,779
+The index in the first sub-sequence, say--
+第一个子序列中的索引说： 
+
+886
+00:40:22,780 --> 00:40:24,590
+AUDIENCE: [INAUDIBLE]
+观众：[听不清] 
+
+887
+00:40:24,590 --> 00:40:31,110
+PROFESSOR: OK, say i1 and then the index in a second sequence,
+教授：好的，先说i1，然后再说第二个索引， 
+
+888
+00:40:31,110 --> 00:40:32,925
+for the same sub-sequence, r right?
+对于相同的子序列，r对吗？ 
+
+889
+00:40:32,925 --> 00:40:40,686
+And then i1, i2 prime, i1, i2 second, so on and so forth.
+然后是i1，i2质数，i1，i2秒，依此类推。 
+
+890
+00:40:40,686 --> 00:40:42,059
+So you have the same sub-sequence
+所以你有相同的子序列
+
+891
+00:40:42,059 --> 00:40:45,650
+in the first sequence matches more things in the second one.
+在第一个序列中匹配第二个中的更多事物。 
+
+892
+00:40:45,650 --> 00:40:48,594
+This is how you're supposed to return them.
+这就是您应该退还它们的方式。 
+
+893
+00:40:48,594 --> 00:40:50,550
+AUDIENCE: Does the order matter?
+听众：顺序重要吗？ 
+
+894
+00:40:50,550 --> 00:40:51,496
+PROFESSOR: I hope not.
+教授：我希望不会。 
+
+895
+00:40:51,496 --> 00:40:56,630
+
+
+
+896
+00:40:56,630 --> 00:40:59,500
+OK, any questions on this?
+好，对此有任何疑问吗？ 
+
+897
+00:40:59,699 --> 00:41:01,079
+We went through generators fast.
+我们快速通过了发电机。 
+
+898
+00:41:01,079 --> 00:41:02,579
+You guys are smart.
+你们很聪明。 
+
+899
+00:41:02,579 --> 00:41:03,079
+Yes?
+是？ 
+
+900
+00:41:03,079 --> 00:41:05,480
+AUDIENCE: Can you explain how the imaging works?
+听众：您能解释一下成像的工作原理吗？ 
+
+901
+00:41:05,480 --> 00:41:08,840
+Like, how they create the [INAUDIBLE] on tuples.
+就像他们如何在元组上创建[音频不清晰]。 
+
+902
+00:41:08,840 --> 00:41:09,800
+PROFESSOR: No.
+教授：不。 
+
+903
+00:41:09,800 --> 00:41:11,519
+[LAUGHTER]
+ [笑声] 
+
+904
+00:41:11,719 --> 00:41:15,279
+PROFESSOR: Sorry, I do not know.
+教授：对不起，我不知道。 
+
+905
+00:41:15,280 --> 00:41:18,360
+AUDIENCE: Wait, which part?
+听众：等等，哪一部分？ 
+
+906
+00:41:18,360 --> 00:41:20,414
+AUDIENCE: So we yield the tuples.
+听众：所以我们产生元组。 
+
+907
+00:41:20,414 --> 00:41:24,027
+But I don't really get how they come up with the image from it.
+但是我真的不了解他们如何从中得出图像。 
+
+908
+00:41:24,027 --> 00:41:25,110
+AUDIENCE: From the tuples?
+听众：来自元组？ 
+
+909
+00:41:25,110 --> 00:41:29,010
+Oh, I mean, I guess they're probably values.
+哦，我是说，我想它们可能是价值观。 
+
+910
+00:41:29,010 --> 00:41:30,385
+AUDIENCE: Yeah, because I thought
+听众：是的，因为我想
+
+911
+00:41:30,385 --> 00:41:36,719
+if you compared two strings of DNA that had the exact same,
+如果您比较两串完全相同的DNA， 
+
+912
+00:41:36,719 --> 00:41:39,359
+I thought it would be like a diagonal line down,
+我以为这就像一条对角线， 
+
+913
+00:41:39,360 --> 00:41:42,980
+not just a small black box.
+不只是一个小黑匣子。 
+
+914
+00:41:42,980 --> 00:41:44,139
+PROFESSOR: OK.
+教授：好的。 
+
+915
+00:41:44,139 --> 00:41:46,516
+AUDIENCE: So I don't think I'm understanding
+听众：所以我不认为我在理解
+
+916
+00:41:46,516 --> 00:41:49,980
+how they, like, image it.
+他们如何形象化。 
+
+917
+00:41:49,980 --> 00:41:56,590
+PROFESSOR: So you're supposed to get--
+教授：所以你应该得到- 
+
+918
+00:41:56,590 --> 00:42:00,920
+your image has some things here, and a match
+您的图片有一些东西，还有一个匹配项
+
+919
+00:42:01,119 --> 00:42:03,480
+is going to give you a big diagonal line that's
+会给你一条很大的对角线
+
+920
+00:42:03,480 --> 00:42:06,019
+stronger than everything else, right?
+比其他任何东西都强，对吗？ 
+
+921
+00:42:06,019 --> 00:42:08,009
+AUDIENCE: It's really fanned out.
+听众：真的散开了。 
+
+922
+00:42:08,010 --> 00:42:09,476
+PROFESSOR: Well I don't have thin chalk.
+教授：嗯，我没有粉笔。 
+
+923
+00:42:09,675 --> 00:42:12,829
+AUDIENCE: No, no, there's like one really dark black box,
+听众：不，不，有一个非常黑的盒子， 
+
+924
+00:42:12,829 --> 00:42:15,309
+that's like really black.
+那真的很黑。 
+
+925
+00:42:15,309 --> 00:42:18,509
+So I thought that meant that all the tuples are there,
+所以我认为这意味着所有元组都在那里， 
+
+926
+00:42:18,510 --> 00:42:20,018
+and everything else is just kind of gray.
+其他的一切都是灰色的。 
+
+927
+00:42:20,217 --> 00:42:24,429
+
+
+
+928
+00:42:24,429 --> 00:42:26,089
+PROFESSOR: Good question.
+教授：好问题。 
+
+929
+00:42:26,090 --> 00:42:27,579
+I will have to think about that--
+我将不得不考虑- 
+
+930
+00:42:27,579 --> 00:42:28,954
+AUDIENCE: --supposed to be there.
+听众：-应该在那儿。 
+
+931
+00:42:28,954 --> 00:42:30,663
+Is it like a notation thing, or--
+就像记谱法一样吗？ 
+
+932
+00:42:30,664 --> 00:42:32,880
+PROFESSOR: I think that black box is supposed to be there.
+教授：我认为应该有黑匣子。 
+
+933
+00:42:33,079 --> 00:42:35,179
+Did anyone try comparing two things that
+有没有人尝试比较两件事
+
+934
+00:42:35,179 --> 00:42:37,679
+shouldn't match, like the dog and the monkey?
+不应该像狗和猴子一样搭配吗？ 
+
+935
+00:42:37,679 --> 00:42:39,487
+AUDIENCE: Yeah.
+听众：是的。 
+
+936
+00:42:39,487 --> 00:42:41,594
+And the entire thing was like dark.
+整个事情就像黑暗。 
+
+937
+00:42:41,594 --> 00:42:42,260
+PROFESSOR: Yeah.
+教授：是的。 
+
+938
+00:42:42,260 --> 00:42:46,190
+AUDIENCE: --against, like, two same DNAs everything
+听众：-就像两个相同的DNA一样
+
+939
+00:42:46,190 --> 00:42:46,818
+was very light.
+很轻。 
+
+940
+00:42:47,018 --> 00:42:50,673
+And there was like a very, very light gray line.
+那里有一条非常非常浅的灰色线条。 
+
+941
+00:42:50,673 --> 00:42:53,889
+But I thought that would be like black.
+但是我认为那会像黑色。 
+
+942
+00:42:53,889 --> 00:42:56,629
+PROFESSOR: So I think how black it is means
+教授：所以我认为它有多黑
+
+943
+00:42:56,630 --> 00:43:00,134
+relative to all the sub-sequences, how long it is--
+相对于所有子序列，要多长时间- 
+
+944
+00:43:00,134 --> 00:43:02,050
+how long the sub-sequence you're recording is.
+您正在录制的子序列多长时间。 
+
+945
+00:43:02,050 --> 00:43:05,289
+
+
+
+946
+00:43:05,289 --> 00:43:06,289
+Either that or how many.
+无论是多少。 
+
+947
+00:43:06,289 --> 00:43:07,873
+There is a function somewhere in there
+那里有一个功能
+
+948
+00:43:07,873 --> 00:43:11,179
+that computes the intensity of a pixel, that's
+计算像素的强度，即
+
+949
+00:43:11,179 --> 00:43:13,085
+square root of order 4 of something.
+ 4阶的平方根。 
+
+950
+00:43:13,085 --> 00:43:17,420
+
+
+
+951
+00:43:17,420 --> 00:43:21,260
+OK, and I can look at that now and tell you.
+好的，我现在可以看看并告诉您。 
+
+952
+00:43:21,260 --> 00:43:22,704
+AUDIENCE: It's OK.
+听众：可以。 
+
+953
+00:43:22,704 --> 00:43:25,110
+It's not super important.
+这不是超级重要。 
+
+954
+00:43:25,110 --> 00:43:28,190
+PROFESSOR: Or we can talk about amortized analysis for a bit.
+教授：或者我们可以谈谈摊销分析。 
+
+955
+00:43:28,389 --> 00:43:29,039
+Yay!
+好极了！ 
+
+956
+00:43:29,039 --> 00:43:32,110
+Let's talk about amortized analysis.
+让我们谈谈摊销分析。 
+
+957
+00:43:32,110 --> 00:43:35,460
+So this is what you're supposed to get, that's what matters.
+这就是您应该得到的，这才是重要的。 
+
+958
+00:43:35,659 --> 00:43:36,534
+AUDIENCE: [INAUDIBLE]
+观众：[听不清] 
+
+959
+00:43:36,534 --> 00:43:58,618
+
+
+
+960
+00:43:58,619 --> 00:43:59,960
+PROFESSOR: OK, so amortized analysis,
+教授：好的，摊销分析， 
+
+961
+00:44:00,159 --> 00:44:02,384
+what's the example that we talked about in class?
+我们在课堂上谈论的例子是什么？ 
+
+962
+00:44:02,385 --> 00:44:05,380
+
+
+
+963
+00:44:05,380 --> 00:44:07,960
+AUDIENCE: It's like list expansion?
+听众：就像列表扩展吗？ 
+
+964
+00:44:08,159 --> 00:44:13,500
+PROFESSOR: OK, so you have-- you have a list.
+教授：好的，所以您有一个清单。 
+
+965
+00:44:13,500 --> 00:44:16,072
+And we know that the list is stored as an array, right?
+而且我们知道列表存储为数组，对吗？ 
+
+966
+00:44:16,072 --> 00:44:19,529
+
+
+
+967
+00:44:19,530 --> 00:44:24,539
+So this means that you can do indexing in constant time.
+因此，这意味着您可以在恒定时间内进行索引。 
+
+968
+00:44:24,739 --> 00:44:26,899
+So if you want to get the first element, order 1.
+因此，如果要获取第一个元素，请订购1。 
+
+969
+00:44:26,900 --> 00:44:30,480
+If you want to get the millionth element, order 1.
+如果要获得百万分之一的元素，请订购1。 
+
+970
+00:44:30,679 --> 00:44:32,789
+This is not true if you had a link list instead.
+如果您有一个链接列表，则不正确。 
+
+971
+00:44:32,789 --> 00:44:37,380
+The millionth element would be order a million.
+第百万个元素将是一百万。 
+
+972
+00:44:37,380 --> 00:44:39,706
+So this is an array.
+所以这是一个数组。 
+
+973
+00:44:39,706 --> 00:44:41,300
+What do we implement?
+我们执行什么？ 
+
+974
+00:44:41,300 --> 00:44:43,530
+What's the operation that we implement on this list?
+我们在此列表上执行的操作是什么？ 
+
+975
+00:44:43,530 --> 00:44:46,077
+
+
+
+976
+00:44:46,277 --> 00:44:47,709
+AUDIENCE: Insert--
+观众：插入- 
+
+977
+00:44:47,710 --> 00:44:49,635
+PROFESSOR: Insert, append, push.
+教授：插入，追加，推送。 
+
+978
+00:44:49,635 --> 00:44:54,480
+Let's go for append, because that's what Python calls it.
+让我们进行附加操作，因为这就是Python所说的。 
+
+979
+00:44:54,480 --> 00:44:59,059
+OK, so append puts an element at the end of the list, right?
+好的，所以append将元素放在列表的末尾，对吗？ 
+
+980
+00:44:59,059 --> 00:45:00,170
+So how does append work?
+那么追加如何工作？ 
+
+981
+00:45:00,170 --> 00:45:03,780
+
+
+
+982
+00:45:03,780 --> 00:45:05,356
+AUDIENCE: The array is not full.
+听众：阵列未满。 
+
+983
+00:45:05,356 --> 00:45:07,436
+PROFESSOR: OK.
+教授：好的。 
+
+984
+00:45:07,635 --> 00:45:11,039
+So say I have some count variable here.
+所以说我这里有一些计数变量。 
+
+985
+00:45:11,039 --> 00:45:23,059
+So if the length of the array is bigger than count
+因此，如果数组的长度大于count 
+
+986
+00:45:23,059 --> 00:45:24,942
+then what do I do?
+那我该怎么办？ 
+
+987
+00:45:24,943 --> 00:45:26,942
+AUDIENCE: Then we can directly insert.
+听众：然后我们可以直接插入。 
+
+988
+00:45:26,942 --> 00:45:30,760
+
+
+
+989
+00:45:30,760 --> 00:45:32,226
+And because we're looking up in an array
+而且因为我们要查找数组
+
+990
+00:45:32,425 --> 00:45:34,730
+and we're doing constant time.
+而且我们正在做固定的时间。 
+
+991
+00:45:34,730 --> 00:45:37,472
+PROFESSOR: OK.
+教授：好的。 
+
+992
+00:45:37,472 --> 00:45:39,230
+AUDIENCE: And so an order amount of information
+听众：所以订购的信息量
+
+993
+00:45:39,429 --> 00:45:42,230
+in x [INAUDIBLE]?
+在[[听不清]]中？ 
+
+994
+00:45:42,230 --> 00:45:42,980
+PROFESSOR: Sorry?
+教授：对不起？ 
+
+995
+00:45:42,980 --> 00:45:44,869
+AUDIENCE: Order amount of information of x [INAUDIBLE]?
+听众：订单信息量x [听不清]？ 
+
+996
+00:45:44,869 --> 00:45:45,597
+Or do we just--
+还是我们只是- 
+
+997
+00:45:45,597 --> 00:45:47,389
+PROFESSOR: Let's say this is our reference,
+教授：可以说这是我们的参考， 
+
+998
+00:45:47,389 --> 00:45:48,347
+so it's constant time.
+所以这是恒定的时间。 
+
+999
+00:45:48,347 --> 00:45:51,500
+
+
+
+1000
+00:45:51,699 --> 00:45:54,419
+AUDIENCE: Otherwise we don't have enough room in our array.
+听众：否则我们的阵列空间不足。 
+
+1001
+00:45:54,420 --> 00:45:56,112
+So we need to make it bigger.
+因此，我们需要使其更大。 
+
+1002
+00:45:56,112 --> 00:45:56,695
+PROFESSOR: OK.
+教授：好的。 
+
+1003
+00:45:56,695 --> 00:45:59,260
+
+
+
+1004
+00:45:59,260 --> 00:46:06,030
+So we have array 2 becomes new array
+所以我们将数组2变成了新数组
+
+1005
+00:46:06,030 --> 00:46:14,610
+of size 2 times count, right?
+大小的2倍算吧？ 
+
+1006
+00:46:14,809 --> 00:46:16,586
+Copy everything from--
+复制所有内容- 
+
+1007
+00:46:16,586 --> 00:46:17,920
+AUDIENCE: --length of the array.
+听众：-数组的长度。 
+
+1008
+00:46:17,920 --> 00:46:18,961
+I guess they're the same.
+我想他们是一样的。 
+
+1009
+00:46:18,961 --> 00:46:20,420
+PROFESSOR: I hope they're the same.
+教授：我希望他们是一样的。 
+
+1010
+00:46:20,420 --> 00:46:21,269
+AUDIENCE: It is.
+听众：是的。 
+
+1011
+00:46:21,269 --> 00:46:23,115
+PROFESSOR: Yeah, I'd say that.
+教授：是的，我这么说。 
+
+1012
+00:46:23,115 --> 00:46:35,420
+So copy from array to-- let's do this-- to array 2.
+因此，从数组复制到-让我们这样做-复制到数组2。 
+
+1013
+00:46:35,420 --> 00:46:40,130
+And then array 2 becomes array.
+然后数组2变成数组。 
+
+1014
+00:46:40,130 --> 00:46:44,510
+
+
+
+1015
+00:46:44,510 --> 00:46:46,710
+And then this code here goes here, right?
+然后这段代码在这里，对吗？ 
+
+1016
+00:46:46,710 --> 00:46:49,539
+So there's a better way to write this if statement
+因此，有一种更好的方式编写此if语句
+
+1017
+00:46:49,539 --> 00:46:52,210
+so the code isn't duplicated.
+因此代码不会重复。 
+
+1018
+00:46:52,210 --> 00:46:57,179
+OK, so if the length is bigger than how many elements I have,
+好，所以如果长度大于我拥有的元素数， 
+
+1019
+00:46:57,179 --> 00:46:59,469
+if I still have room in the array, what's the cost?
+如果阵列中还有空间，那要花多少钱？ 
+
+1020
+00:46:59,469 --> 00:47:02,359
+What's the running time?
+几点钟了？ 
+
+1021
+00:47:02,360 --> 00:47:04,201
+Constant.
+不变。 
+
+1022
+00:47:04,201 --> 00:47:05,588
+Oh, let's put it on the left.
+哦，把它放在左边。 
+
+1023
+00:47:05,588 --> 00:47:09,989
+
+
+
+1024
+00:47:09,989 --> 00:47:13,167
+OK, if I have to resize the array, what's the cost?
+好吧，如果我必须调整数组的大小，那要花多少钱？ 
+
+1025
+00:47:13,168 --> 00:47:14,043
+AUDIENCE: [INAUDIBLE]
+观众：[听不清] 
+
+1026
+00:47:14,043 --> 00:47:18,760
+
+
+
+1027
+00:47:18,760 --> 00:47:21,630
+PROFESSOR: So, if I did an operations, what then, right?
+教授：那么，如果我做了手术，那是什么呢？ 
+
+1028
+00:47:21,630 --> 00:47:23,980
+N is the size of the array.
+ N是数组的大小。 
+
+1029
+00:47:23,980 --> 00:47:25,969
+If the only operation I have is append,
+如果我唯一的操作是追加， 
+
+1030
+00:47:25,969 --> 00:47:28,029
+then I can say n operations will cause
+那我可以说n次操作会导致
+
+1031
+00:47:28,030 --> 00:47:30,920
+the array of grow to size n.
+增长到大小n的数组。 
+
+1032
+00:47:31,119 --> 00:47:36,859
+So n where n is the number of operations.
+因此，n是操作数。 
+
+1033
+00:47:36,860 --> 00:47:39,635
+AUDIENCE: You mean, like, re-adding to the--
+听众：您的意思是，例如，重新添加- 
+
+1034
+00:47:39,635 --> 00:47:42,670
+
+
+
+1035
+00:47:42,670 --> 00:47:45,340
+PROFESSOR: So an operation is a data structure operation,
+教授：因此，操作是一种数据结构操作， 
+
+1036
+00:47:45,340 --> 00:47:49,730
+like a query or an update.
+例如查询或更新。 
+
+1037
+00:47:49,929 --> 00:47:52,259
+This is my update and this is my query.
+这是我的更新，这是我的查询。 
+
+1038
+00:47:52,260 --> 00:47:57,210
+
+
+
+1039
+00:47:57,210 --> 00:48:02,019
+AUDIENCE: Wait, but like, it's order n though, because--
+听众：等等，但是，它的顺序是n，因为- 
+
+1040
+00:48:02,219 --> 00:48:03,009
+PROFESSOR: Yeah.
+教授：是的。 
+
+1041
+00:48:03,010 --> 00:48:04,101
+AUDIENCE: I know, it's order n.
+听众：我知道，是n号命令。 
+
+1042
+00:48:04,300 --> 00:48:06,509
+But because we have like an array,
+但是因为我们就像一个数组， 
+
+1043
+00:48:06,510 --> 00:48:08,010
+and then you have to make a new one,
+然后必须重新制作一个
+
+1044
+00:48:08,010 --> 00:48:10,699
+and you have to move all those old items over, right?
+而且您必须将所有这些旧物品移走，对吗？ 
+
+1045
+00:48:10,699 --> 00:48:11,324
+PROFESSOR: Yep.
+教授：是的。 
+
+1046
+00:48:11,324 --> 00:48:12,480
+AUDIENCE: OK.
+听众：好的。 
+
+1047
+00:48:12,679 --> 00:48:17,744
+But, I mean, sometimes like, if your actual array,
+但是，我的意思是，有时就像，如果您的实际阵列， 
+
+1048
+00:48:17,744 --> 00:48:21,192
+if you expand it before-- like, let's say you notice
+如果您之前进行过扩展-例如，假设您注意到了
+
+1049
+00:48:21,192 --> 00:48:23,565
+you're getting full and you decide to like make it bigger
+你吃饱了，决定决定做大一点
+
+1050
+00:48:23,565 --> 00:48:27,181
+at that point, is it still order n,
+在那个时候，它仍然是n阶吗？ 
+
+1051
+00:48:27,181 --> 00:48:28,993
+as in the number of elements that are--
+如元素的数量- 
+
+1052
+00:48:28,994 --> 00:48:30,460
+PROFESSOR: It depends on how you decide.
+教授：这取决于您的决定方式。 
+
+1053
+00:48:30,659 --> 00:48:33,759
+There's a problem on the PSET that asks you about that.
+ PSET上有一个问题询问您。 
+
+1054
+00:48:33,760 --> 00:48:36,210
+So, depends on when you make the decision
+因此，取决于您何时做出决定
+
+1055
+00:48:36,210 --> 00:48:39,063
+and how you make the decision, the answer is either yes,
+以及如何做出决定，答案是肯定的， 
+
+1056
+00:48:39,063 --> 00:48:40,480
+you're still constant time, or no.
+您仍然是固定时间，还是没有。 
+
+1057
+00:48:40,480 --> 00:48:43,360
+So if you understand the amortized analysis then
+因此，如果您了解摊销分析， 
+
+1058
+00:48:43,360 --> 00:48:45,690
+you can argue of whether it still holds or not.
+您可以争论它是否仍然成立。 
+
+1059
+00:48:45,690 --> 00:48:47,179
+If this breaks down at any point,
+如果在任何时候出现故障， 
+
+1060
+00:48:47,179 --> 00:48:48,789
+not going to be constant time.
+不会是固定的时间。 
+
+1061
+00:48:48,789 --> 00:48:49,289
+Yes?
+是？ 
+
+1062
+00:48:49,289 --> 00:48:51,869
+AUDIENCE: So the only cost is really copying everything
+听众：所以唯一的代价就是复制所有内容
+
+1063
+00:48:51,869 --> 00:48:52,969
+from the old array to the new array?
+从旧阵列到新阵列？ 
+
+1064
+00:48:52,969 --> 00:48:53,409
+PROFESSOR: Yes.
+教授：是的。 
+
+1065
+00:48:53,409 --> 00:48:55,329
+AUDIENCE: Actually allocating that space is--
+听众：实际上分配空间是- 
+
+1066
+00:48:55,329 --> 00:48:56,875
+PROFESSOR: We assume that allocating the space
+教授：我们假设分配空间
+
+1067
+00:48:56,875 --> 00:48:57,630
+is constant time.
+是恒定的时间。 
+
+1068
+00:48:57,630 --> 00:49:00,539
+Good question, because you can't take that for granted, right?
+好问题，因为您不能认为这是理所当然的，对吧？ 
+
+1069
+00:49:00,739 --> 00:49:04,439
+So we assume that this is order 1, copying is order n.
+因此，我们假设这是订单1，复制是订单n。 
+
+1070
+00:49:04,440 --> 00:49:08,769
+And then the insertion is order 1, just like before.
+然后插入是顺序1，就像以前一样。 
+
+1071
+00:49:08,969 --> 00:49:11,309
+So allocating may not be constant.
+因此分配可能不是恒定的。 
+
+1072
+00:49:11,309 --> 00:49:14,049
+In real life, allocating is actually
+在现实生活中，分配实际上是
+
+1073
+00:49:14,050 --> 00:49:17,340
+logarithmic either of the size that you're asking for
+您所要求的大小的对数
+
+1074
+00:49:17,340 --> 00:49:20,670
+or logarithmic of how many buffers you've allocated.
+或分配了多少个缓冲区的对数。 
+
+1075
+00:49:20,670 --> 00:49:22,900
+And you can make a constant time allocator.
+您可以创建一个恒定的时间分配器。 
+
+1076
+00:49:22,900 --> 00:49:26,789
+But that's lower than a logarithmic allocator,
+但这比对数分配器低， 
+
+1077
+00:49:26,989 --> 00:49:29,799
+because the constant factor behind it is so big.
+因为它背后的恒定因素是如此之大。 
+
+1078
+00:49:29,800 --> 00:49:31,820
+But even if this allocation would
+但是即使这种分配会
+
+1079
+00:49:31,820 --> 00:49:35,039
+be order n, which would be terrible,
+是n阶，那将是可怕的， 
+
+1080
+00:49:35,039 --> 00:49:37,440
+it would still get absorbed here.
+它仍然会在这里被吸收。 
+
+1081
+00:49:37,440 --> 00:49:40,550
+So the overall model works no matter what the allocation is.
+因此，无论分配是什么，整体模型都可以工作。 
+
+1082
+00:49:40,550 --> 00:49:43,170
+It's reasonable, from a theoretical standpoint,
+从理论上讲，这是合理的， 
+
+1083
+00:49:43,369 --> 00:49:47,210
+to say that allocation is order 1,
+说分配是订单1， 
+
+1084
+00:49:47,210 --> 00:49:50,639
+from a theoretical standpoint.
+从理论上讲。 
+
+1085
+00:49:50,639 --> 00:49:53,949
+So this is the real cost copying the elements.
+这就是复制元素的实际成本。 
+
+1086
+00:49:53,949 --> 00:49:57,909
+And this makes an append order n worst case.
+这会使追加命令成为最坏的情况。 
+
+1087
+00:49:57,909 --> 00:50:01,179
+So if you look at this data structure then
+因此，如果您查看此数据结构，则
+
+1088
+00:50:01,179 --> 00:50:04,259
+suppose we want to compute the cost of an append.
+假设我们要计算附加成本。 
+
+1089
+00:50:04,260 --> 00:50:11,840
+So say we have code like this, 4, 1, 2, n.
+可以这么说，我们有这样的代码4，1，2，n。 
+
+1090
+00:50:12,039 --> 00:50:17,630
+First we have L be an empty list.
+首先，我们让L为空列表。 
+
+1091
+00:50:17,630 --> 00:50:24,840
+Then we want to compute the cost of this.
+然后我们要计算成本。 
+
+1092
+00:50:24,840 --> 00:50:27,800
+
+
+
+1093
+00:50:27,800 --> 00:50:32,570
+So if we do it without amortized analysis,
+因此，如果我们不进行摊销分析， 
+
+1094
+00:50:32,570 --> 00:50:35,250
+line by line analysis, just like we
+逐行分析，就像我们
+
+1095
+00:50:35,250 --> 00:50:38,380
+learned in the first lecture, what's the cost of this,
+在第一堂课中学到的，这要花多少钱， 
+
+1096
+00:50:38,380 --> 00:50:40,869
+making a new list constant?
+使新列表不变？ 
+
+1097
+00:50:40,869 --> 00:50:43,960
+
+
+
+1098
+00:50:43,960 --> 00:50:46,059
+What's the cost of one append?
+一个追加的费用是多少？ 
+
+1099
+00:50:46,059 --> 00:50:48,916
+
+
+
+1100
+00:50:48,916 --> 00:50:49,668
+AUDIENCE: Constant.
+听众：不变。 
+
+1101
+00:50:49,867 --> 00:50:51,389
+PROFESSOR: One append.
+教授：一个附录。 
+
+1102
+00:50:51,389 --> 00:50:55,730
+So an append can either branch here or branch here.
+因此，追加可以在此处分支或在此处分支。 
+
+1103
+00:50:55,730 --> 00:50:58,260
+
+
+
+1104
+00:50:58,260 --> 00:51:01,775
+So what's the cost of one append?
+那么一个追加的费用是多少？ 
+
+1105
+00:51:01,974 --> 00:51:04,016
+AUDIENCE: It would be showing with an empty list?
+听众：会显示一个空列表吗？ 
+
+1106
+00:51:04,016 --> 00:51:04,731
+AUDIENCE: Depends.
+听众：取决于。 
+
+1107
+00:51:04,931 --> 00:51:06,839
+PROFESSOR: It depends.
+教授：这取决于。 
+
+1108
+00:51:06,840 --> 00:51:07,547
+So worst case.
+所以最坏的情况。 
+
+1109
+00:51:07,547 --> 00:51:08,880
+We have to look at a worst case.
+我们必须考虑最坏的情况。 
+
+1110
+00:51:08,880 --> 00:51:10,260
+So this is line by line analysis.
+因此，这是逐行分析。 
+
+1111
+00:51:10,260 --> 00:51:13,635
+We're going to get one number for this.
+我们将为此获得一个号码。 
+
+1112
+00:51:13,835 --> 00:51:14,335
+AUDIENCE: N.
+听众：N. 
+
+1113
+00:51:14,335 --> 00:51:15,199
+AUDIENCE: An n.
+听众： 
+
+1114
+00:51:15,199 --> 00:51:15,824
+PROFESSOR: Yep.
+教授：是的。 
+
+1115
+00:51:15,824 --> 00:51:19,519
+
+
+
+1116
+00:51:19,519 --> 00:51:21,963
+So in the worst case, the list will be full.
+因此，在最坏的情况下，列表将是完整的。 
+
+1117
+00:51:21,963 --> 00:51:23,380
+And you'll have to make a new one.
+而且您必须重新制作一个。 
+
+1118
+00:51:23,380 --> 00:51:25,440
+And then you're going on this branch of the if,
+然后您进入if的这一分支， 
+
+1119
+00:51:25,440 --> 00:51:27,900
+so the cost is order n.
+因此成本为订单n。 
+
+1120
+00:51:27,900 --> 00:51:34,119
+So order n, worst case.
+因此，最糟糕的情况是命令n。 
+
+1121
+00:51:34,119 --> 00:51:37,609
+So the cost of one call is order n, worst case.
+因此，一次通话的费用为n级（最坏的情况）。 
+
+1122
+00:51:37,610 --> 00:51:39,000
+How many calls do we make?
+我们打多少个电话？ 
+
+1123
+00:51:39,000 --> 00:51:43,969
+
+
+
+1124
+00:51:43,969 --> 00:51:47,009
+So what is the total cost of this thing?
+那么这东西的总成本是多少？ 
+
+1125
+00:51:47,010 --> 00:51:48,594
+AUDIENCE: It's not actually n squared.
+听众：实际上不是n平方。 
+
+1126
+00:51:48,594 --> 00:51:50,425
+PROFESSOR: Yes, it's not actually n squared.
+教授：是的，实际上不是n平方。 
+
+1127
+00:51:50,425 --> 00:51:52,019
+But if we do line by line analysis,
+但是如果我们逐行进行分析， 
+
+1128
+00:51:52,019 --> 00:51:54,349
+before we learn amortized analysis,
+在我们学习摊销分析之前， 
+
+1129
+00:51:54,349 --> 00:51:56,829
+all we can say it's order of n squared.
+我们所能说的是n阶的平方。 
+
+1130
+00:51:56,829 --> 00:51:59,340
+And this is correct, it's not bigger than n squared, right?
+这是正确的，它不大于n平方，对吗？ 
+
+1131
+00:51:59,340 --> 00:52:00,789
+So O is correct.
+所以O是正确的。 
+
+1132
+00:52:00,989 --> 00:52:03,019
+But it's not the tight bound.
+但这不是界限。 
+
+1133
+00:52:03,019 --> 00:52:05,882
+So if we had a multiple choice, and you selected this,
+因此，如果我们有多个选择，而您选择了这个， 
+
+1134
+00:52:05,882 --> 00:52:08,090
+you wouldn't get the score because we usually ask you
+您不会得到分数，因为我们通常会问您
+
+1135
+00:52:08,090 --> 00:52:10,730
+what the tightest bound that you can get.
+您可以获得的最严格的限制。 
+
+1136
+00:52:10,929 --> 00:52:13,049
+OK, so line by line analysis.
+好的，所以逐行分析。 
+
+1137
+00:52:13,050 --> 00:52:14,880
+We worked through that a lot in doc dist.
+我们在doc dist中做了很多工作。 
+
+1138
+00:52:14,880 --> 00:52:16,105
+Doesn't work all the time.
+并不是一直都在工作。 
+
+1139
+00:52:16,304 --> 00:52:17,679
+When it doesn't work, we tell you
+当它不起作用时，我们告诉您
+
+1140
+00:52:17,679 --> 00:52:19,779
+to use amortized analysis instead.
+而是使用摊销分析。 
+
+1141
+00:52:19,780 --> 00:52:21,650
+So what's the goal of amortized analysis?
+那么，摊销分析的目的是什么？ 
+
+1142
+00:52:21,849 --> 00:52:23,019
+What do we want?
+我们想要什么？ 
+
+1143
+00:52:23,019 --> 00:52:26,509
+You guys are yelling at me that this is not n squared, why?
+你们在对我大喊，这不是n平方，为什么？ 
+
+1144
+00:52:26,510 --> 00:52:27,385
+I mean not why, what?
+我的意思不是为什么，什么？ 
+
+1145
+00:52:27,385 --> 00:52:28,110
+What is it instead?
+那是什么呢？ 
+
+1146
+00:52:28,309 --> 00:52:30,521
+What do we want from amortized analysis?
+我们希望从摊销分析中得到什么？ 
+
+1147
+00:52:30,521 --> 00:52:32,931
+AUDIENCE: [INAUDIBLE]
+观众：[听不清] 
+
+1148
+00:52:32,931 --> 00:52:36,305
+AUDIENCE: It's a [INAUDIBLE] that's an n.
+听众：这是[听不清]，是n。 
+
+1149
+00:52:36,306 --> 00:52:38,809
+PROFESSOR: So we want amortized analysis
+教授：所以我们要摊销分析
+
+1150
+00:52:38,809 --> 00:52:43,039
+to say that this is order 1 amortized, and this is--
+说这是订单1的摊销额，这是- 
+
+1151
+00:52:43,039 --> 00:52:44,815
+[ALARM SOUNDING]
+ [警报声音] 
+
+1152
+00:52:44,815 --> 00:52:46,069
+PROFESSOR: Am I out of time?
+教授：我没时间吗？ 
+
+1153
+00:52:46,070 --> 00:52:46,570
+Yeah.
+是的
+
+1154
+00:52:46,570 --> 00:52:49,000
+
+
+
+1155
+00:52:49,199 --> 00:52:53,936
+OK, so there's a difference between the worst
+好，所以最差的
+
+1156
+00:52:53,936 --> 00:52:55,019
+case and amortized, right?
+案并摊销吧？ 
+
+1157
+00:52:55,019 --> 00:53:03,210
+We can argue that this is order 1 amortized.
+我们可以说这是订单1的摊销额。 
+
+1158
+00:53:03,210 --> 00:53:05,099
+And if this is order 1 amortized,
+如果这是订单1的摊销额， 
+
+1159
+00:53:05,099 --> 00:53:09,019
+then this is order n amortized.
+那么这是订单n摊销。 
+
+1160
+00:53:09,019 --> 00:53:11,789
+So does the difference between worst case and amortized
+最坏情况与摊销之间的差异也是如此
+
+1161
+00:53:11,789 --> 00:53:12,519
+make sense now?
+现在有意义吗？ 
+
+1162
+00:53:12,519 --> 00:53:15,650
+
+
+
+1163
+00:53:15,650 --> 00:53:17,961
+So this is what I want, the rest is fancy math.
+这就是我想要的，剩下的就是花哨的数学。 
+
+1164
+00:53:18,161 --> 00:53:19,869
+If you forget the fancy math after you're
+如果您忘记了花哨的数学
+
+1165
+00:53:19,869 --> 00:53:21,639
+done with this class, that's OK.
+完成本课后，就可以了。 
+
+1166
+00:53:21,639 --> 00:53:24,029
+If you remember that this is order 1 amortized,
+如果您还记得这是订单1的摊销额， 
+
+1167
+00:53:24,030 --> 00:53:26,362
+and that's order n amortized, that's good.
+那是分期付款的顺序，那很好。 
+
+1168
+00:53:26,362 --> 00:53:28,070
+That's all you need to know to write code
+这就是编写代码所需的全部知识
+
+1169
+00:53:28,070 --> 00:53:30,269
+if you don't design algorithms.
+如果您不设计算法。 
+
+1170
+00:53:30,469 --> 00:53:34,306
+So this is an important piece of knowledge on its own.
+因此，这本身就是重要的知识。 
+
+1171
+00:53:34,306 --> 00:53:36,639
+OK, so questions about the difference between worst case
+好的，所以有关最坏情况之间的区别的问题
+
+1172
+00:53:36,639 --> 00:53:37,299
+and amortized?
+摊销？ 
+
+1173
+00:53:37,300 --> 00:53:40,280
+
+
+
+1174
+00:53:40,280 --> 00:53:41,460
+OK, what does amortized mean?
+好，摊销意味着什么？ 
+
+1175
+00:53:41,659 --> 00:53:44,783
+
+
+
+1176
+00:53:44,784 --> 00:53:46,309
+AUDIENCE: Average.
+听众：一般。 
+
+1177
+00:53:46,309 --> 00:53:48,750
+PROFESSOR: Yep, averaged out over multiple operations.
+教授：是的，对多个操作取平均值。 
+
+1178
+00:53:48,750 --> 00:53:51,099
+So instead of doing line by line analysis,
+因此，与其进行逐行分析， 
+
+1179
+00:53:51,099 --> 00:53:54,469
+we have to look at what happens over multiple operations,
+我们必须看看多个操作会发生什么， 
+
+1180
+00:53:54,469 --> 00:53:56,759
+right?
+对？ 
+
+1181
+00:53:56,760 --> 00:54:00,380
+So there are two methods that I think are useful in CLRS.
+因此，我认为有两种方法在CLRS中很有用。 
+
+1182
+00:54:00,579 --> 00:54:02,329
+There are three in total, but the last one
+一共有三个，但最后一个
+
+1183
+00:54:02,329 --> 00:54:04,001
+is horribly complicated.
+非常复杂。 
+
+1184
+00:54:04,001 --> 00:54:05,960
+So there's something called aggregate analysis.
+因此，有一种叫做汇总分析的东西。 
+
+1185
+00:54:05,960 --> 00:54:11,130
+
+
+
+1186
+00:54:11,130 --> 00:54:14,250
+And there's something called the cost based accounting.
+还有一种叫做基于成本的会计。 
+
+1187
+00:54:14,449 --> 00:54:19,159
+
+
+
+1188
+00:54:19,159 --> 00:54:22,199
+So last time when we looked at the costs for append,
+因此，上次查看附加费用时， 
+
+1189
+00:54:22,199 --> 00:54:30,149
+we argued that, hey, it's order 1 for a lot of times.
+我们争辩说，嘿，很多次都是1。 
+
+1190
+00:54:30,150 --> 00:54:34,900
+And then it's only order n for an operation
+然后只有一个操作的n 
+
+1191
+00:54:34,900 --> 00:54:37,090
+that's a power of 2.
+那是2的幂。 
+
+1192
+00:54:37,090 --> 00:54:43,690
+So if we're looking at the K-ith append,
+因此，如果我们查看第K个附加项， 
+
+1193
+00:54:43,690 --> 00:54:50,289
+then this is order K for K equals 2 to the i.
+那么这就是K的阶数K等于i。 
+
+1194
+00:54:50,289 --> 00:54:52,639
+And it's order 1 otherwise.
+否则为1。 
+
+1195
+00:54:52,639 --> 00:54:58,879
+
+
+
+1196
+00:54:58,880 --> 00:55:01,460
+Right?
+对？ 
+
+1197
+00:55:01,460 --> 00:55:04,110
+So if we sum up all these costs, we
+因此，如果我们汇总所有这些费用， 
+
+1198
+00:55:04,110 --> 00:55:20,400
+get-- plus sum over log n of O of 2 to the i.
+得到-加2的O的对数n到i的总和。 
+
+1199
+00:55:20,400 --> 00:55:22,250
+And this is clearly order n.
+这显然是命令n。 
+
+1200
+00:55:22,449 --> 00:55:25,429
+
+
+
+1201
+00:55:25,429 --> 00:55:29,349
+And if you do the math here, this is also order n.
+如果您在此处进行数学运算，则该阶也为n。 
+
+1202
+00:55:29,349 --> 00:55:33,000
+
+
+
+1203
+00:55:33,000 --> 00:55:34,480
+So this is aggregate analysis.
+这就是聚合分析。 
+
+1204
+00:55:34,480 --> 00:55:36,599
+This is what we taught you in lecture.
+这就是我们在讲座中教给您的。 
+
+1205
+00:55:36,599 --> 00:55:40,799
+
+
+
+1206
+00:55:40,800 --> 00:55:42,820
+Does this make sense?
+这有意义吗？ 
+
+1207
+00:55:42,820 --> 00:55:48,480
+So the key here is that whenever we are increasing the array,
+所以这里的关键是，每当我们增加数组时， 
+
+1208
+00:55:48,679 --> 00:55:52,960
+we're increasing it to 2 times.
+我们将其增加到2倍。 
+
+1209
+00:55:52,960 --> 00:55:55,449
+And we start with a size of 1, count is 1.
+我们从1开始，计数为1。 
+
+1210
+00:55:55,449 --> 00:55:58,039
+We start with an array with 1 element.
+我们从一个包含1个元素的数组开始。 
+
+1211
+00:55:58,039 --> 00:55:59,789
+So the size of the array will first
+因此，数组的大小将首先
+
+1212
+00:55:59,789 --> 00:56:06,715
+be 1, then 2, then 4, then 8, then 16, 32, 64, 128,
+依次为1、2、4、8、16、32、64、128， 
+
+1213
+00:56:06,715 --> 00:56:07,339
+so on so forth.
+依此类推。 
+
+1214
+00:56:07,340 --> 00:56:09,550
+It increases exponentially.
+它成倍增加。 
+
+1215
+00:56:09,550 --> 00:56:11,880
+So on the first append I'll have to do a resize.
+因此，在第一个附录中，我将需要调整大小。 
+
+1216
+00:56:11,880 --> 00:56:13,230
+On the second one, resize.
+在第二个上，调整大小。 
+
+1217
+00:56:13,230 --> 00:56:14,380
+Fourth one, resize.
+第四，调整大小。 
+
+1218
+00:56:14,380 --> 00:56:17,530
+Eighth, resize, so on and so forth.
+第八，调整大小，依此类推。 
+
+1219
+00:56:17,530 --> 00:56:20,480
+So if I'm adding up the cost for n operations,
+因此，如果我将n次操作的费用加起来， 
+
+1220
+00:56:20,480 --> 00:56:23,829
+each operation is order 1 because I'm
+每个操作都是订单1，因为我
+
+1221
+00:56:23,829 --> 00:56:25,059
+inserting everywhere.
+随处插入。 
+
+1222
+00:56:25,059 --> 00:56:30,019
+And then all these operations are all order n.
+然后所有这些操作都为n阶。 
+
+1223
+00:56:30,019 --> 00:56:31,159
+But there's few of them.
+但是很少。 
+
+1224
+00:56:31,159 --> 00:56:32,559
+They're few and far out.
+他们很少而且很遥远。 
+
+1225
+00:56:32,559 --> 00:56:35,110
+So if you write the sum this way, and you do the math,
+因此，如果您以这种方式写总和，然后进行数学计算， 
+
+1226
+00:56:35,110 --> 00:56:36,920
+you get that it's order n.
+您得到的是订单n。 
+
+1227
+00:56:37,119 --> 00:56:40,109
+So aggregate analysis says, look at n operations
+所以汇总分析说，看一下n个运算
+
+1228
+00:56:40,110 --> 00:56:42,019
+and add the costs up together.
+并把成本加起来
+
+1229
+00:56:42,219 --> 00:56:44,839
+And last time we had that good example of walking over a tree,
+上次我们有一个很好的例子，那就是走在树上
+
+1230
+00:56:44,840 --> 00:56:48,309
+and in order traversal where we drew arrows across edges.
+为了遍历，我们在边缘画了箭头。 
+
+1231
+00:56:48,309 --> 00:56:50,449
+So that's aggregate analysis.
+这就是汇总分析。 
+
+1232
+00:56:50,449 --> 00:56:52,710
+And then you should look at the cost method in CLRS
+然后，您应该查看CLRS中的费用方法
+
+1233
+00:56:52,710 --> 00:56:56,030
+because that's also useful sometimes.
+因为有时候这也很有用。 
+
+1234
+00:56:56,030 --> 00:56:57,500
+Does this help?
+这有帮助吗？ 
+
+1235
+00:56:57,500 --> 00:56:59,659
+Any questions?
+任何问题？ 
+
+1236
+00:56:59,659 --> 00:57:00,909
+No, everyone wants to go home.
+不，每个人都想回家。 
+
+1237
+00:57:00,909 --> 00:57:01,679
+AUDIENCE: Wait--
+听众：等等- 
+
+1238
+00:57:01,679 --> 00:57:02,429
+PROFESSOR: Almost.
+教授：差不多了。 
+
+1239
+00:57:02,429 --> 00:57:06,369
+AUDIENCE: For log n, so you're starting from log n going to--
+听众：对于日志n，所以您从日志n开始- 
+
+1240
+00:57:06,369 --> 00:57:09,173
+PROFESSOR: So I'm starting from 1 going to log n.
+教授：所以我从1开始要登录n。 
+
+1241
+00:57:09,173 --> 00:57:13,610
+AUDIENCE: Oh, oh, so [INAUDIBLE] after you're buffering.
+听众：哦，哦，所以缓冲后[听不清]。 
+
+1242
+00:57:13,610 --> 00:57:15,750
+PROFESSOR: So this is fancy math for saying only
+教授：所以这只是说说而已
+
+1243
+00:57:15,750 --> 00:57:18,503
+add up powers of two.
+将两个的幂加起来。 
+
+1244
+00:57:18,503 --> 00:57:20,670
+So that's what I'm trying to say, add these guys up.
+这就是我要说的，把这些家伙加起来。 
+
+1245
+00:57:20,670 --> 00:57:22,000
+AUDIENCE: Well that's your step [INAUDIBLE].
+听众：这就是您的步骤[听不清]。 
+
+1246
+00:57:22,000 --> 00:57:22,666
+PROFESSOR: Yeah.
+教授：是的。 
+
+1247
+00:57:22,666 --> 00:57:23,800
+AUDIENCE: Oh, OK.
+听众：哦，好。 
+
+1248
+00:57:23,800 --> 00:57:25,000
+Oh, I like that.
+哦，我喜欢。 
+
+1249
+00:57:25,000 --> 00:57:25,599
+OK.
+好。 
+
+1250
+00:57:25,599 --> 00:57:26,710
+PROFESSOR: OK.
+教授：好的。 
+
+1251
+00:57:26,710 --> 00:57:31,710
+
+
+

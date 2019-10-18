@@ -1,0 +1,5405 @@
+﻿1
+00:00:00,000 --> 00:00:00,080
+
+
+
+2
+00:00:00,080 --> 00:00:01,770
+The following content is provided
+提供以下内容
+
+3
+00:00:01,770 --> 00:00:04,000
+under a Creative Commons license.
+根据知识共享许可。 
+
+4
+00:00:04,000 --> 00:00:06,859
+Your support will help MIT OpenCourseWare continue
+您的支持将帮助MIT OpenCourseWare继续
+
+5
+00:00:06,860 --> 00:00:10,720
+to offer high-quality educational resources for free.
+免费提供高质量的教育资源。 
+
+6
+00:00:10,720 --> 00:00:13,330
+To make a donation or view additional materials
+捐款或查看其他材料
+
+7
+00:00:13,330 --> 00:00:17,207
+from hundreds of MIT courses, visit MIT OpenCourseWare
+从数百门麻省理工学院的课程中，访问MIT OpenCourseWare 
+
+8
+00:00:17,207 --> 00:00:17,832
+at ocw.mit.edu.
+在ocw.mit.edu。 
+
+9
+00:00:17,832 --> 00:00:21,879
+
+
+
+10
+00:00:22,079 --> 00:00:23,709
+PROFESSOR: Continuing in the theme
+教授：继续主题
+
+11
+00:00:23,710 --> 00:00:27,190
+of sorting in general, but in particular, binary search
+排序，但特别是二进制搜索
+
+12
+00:00:27,190 --> 00:00:28,910
+trees, which are a kind of way of doing
+树木，这是一种做事方式
+
+13
+00:00:28,910 --> 00:00:31,210
+dynamic sorting, if you will, where
+动态排序（如果可以）在哪里
+
+14
+00:00:31,210 --> 00:00:32,759
+the elements are coming and going.
+元素来来去去。 
+
+15
+00:00:32,759 --> 00:00:36,020
+And at all times, you want to know the sorted order
+而且在任何时候，您都想知道排序顺序
+
+16
+00:00:36,020 --> 00:00:41,170
+of your elements by storing them in a nice binary search tree.
+通过将它们存储在一个漂亮的二进制搜索树中来实现。 
+
+17
+00:00:41,170 --> 00:00:46,359
+Remember, in general, a binary search tree is a tree.
+请记住，通常，二叉搜索树是一棵树。 
+
+18
+00:00:46,359 --> 00:00:50,039
+It's binary, and it has the search property.
+它是二进制文件，并且具有search属性。 
+
+19
+00:00:50,039 --> 00:00:51,299
+Those three things.
+那三件事。 
+
+20
+00:00:51,299 --> 00:00:52,659
+This is a rooted binary tree.
+这是一棵有根的二叉树。 
+
+21
+00:00:52,659 --> 00:00:53,814
+It has a root.
+它有根。 
+
+22
+00:00:53,814 --> 00:00:56,869
+It's binary, so there's a left child and a right child.
+它是二进制的，所以有一个左孩子和一个右孩子。 
+
+23
+00:00:56,869 --> 00:00:59,269
+Some nodes lack a right or left child.
+一些节点缺少右孩子或左孩子。 
+
+24
+00:00:59,270 --> 00:01:01,839
+Some nodes lack both.
+一些节点缺少两者。 
+
+25
+00:01:02,039 --> 00:01:03,780
+Every node has a key.
+每个节点都有一个密钥。 
+
+26
+00:01:03,780 --> 00:01:05,109
+This is the search part.
+这是搜索部分。 
+
+27
+00:01:05,109 --> 00:01:08,849
+You store key in every node, and you have this BST property,
+您将密钥存储在每个节点中，并且具有此BST属性， 
+
+28
+00:01:08,849 --> 00:01:10,780
+or also called the search property,
+或也称为搜索属性， 
+
+29
+00:01:10,780 --> 00:01:14,280
+that every node-- if you have a node the stores key x,
+每个节点-如果您有一个节点，则存储密钥x， 
+
+30
+00:01:14,280 --> 00:01:17,599
+everybody in the left subtree stores a key that's less than
+左子树中的每个人都存储一个小于
+
+31
+00:01:17,599 --> 00:01:19,890
+or equal to x, and everyone that's in the right subtree
+或等于x，并且每个在正确的子树中的人
+
+32
+00:01:19,890 --> 00:01:22,129
+stores a key that's greater than or equal to x.
+存储大于或等于x的键。 
+
+33
+00:01:22,129 --> 00:01:24,369
+So not just the left and right children,
+因此，不仅是左右两个孩子， 
+
+34
+00:01:24,370 --> 00:01:27,870
+but every descendant way down there is smaller than x.
+但那里的每个后代都小于x。 
+
+35
+00:01:27,870 --> 00:01:30,370
+Every descendent way down there is greater than x.
+那里的每个后代都大于x。 
+
+36
+00:01:30,370 --> 00:01:32,370
+So when you have a binary search tree like this,
+因此，当您拥有像这样的二叉搜索树时， 
+
+37
+00:01:32,370 --> 00:01:34,170
+if you want to know the sorted order,
+如果您想知道排序顺序， 
+
+38
+00:01:34,170 --> 00:01:37,268
+you do what's called an in-order traversal.
+您执行所谓的有序遍历。 
+
+39
+00:01:37,468 --> 00:01:38,259
+You look at a node.
+您看一个节点。 
+
+40
+00:01:38,260 --> 00:01:40,750
+You recursively visit the left child.
+您递归访问左孩子。 
+
+41
+00:01:40,750 --> 00:01:42,739
+Then you print out the root.
+然后打印出根。 
+
+42
+00:01:42,739 --> 00:01:44,780
+Then you recursively visit the right child.
+然后，您递归地访问合适的孩子。 
+
+43
+00:01:44,780 --> 00:01:47,742
+So in this case, we'd go left, left, print 11.
+因此，在这种情况下，我们将向左，向左打印11。 
+
+44
+00:01:47,742 --> 00:01:48,929
+Print 20.
+打印20。 
+
+45
+00:01:49,129 --> 00:01:49,629
+Go right.
+向右走。 
+
+46
+00:01:49,629 --> 00:01:50,129
+Go left.
+向左走。 
+
+47
+00:01:50,129 --> 00:01:51,000
+Print 26.
+打印26。 
+
+48
+00:01:51,000 --> 00:01:51,980
+Print 29.
+打印29。 
+
+49
+00:01:51,980 --> 00:01:53,620
+Go up.
+上。 
+
+50
+00:01:53,620 --> 00:01:54,780
+Print 41.
+打印41。 
+
+51
+00:01:54,780 --> 00:01:55,500
+Go right.
+向右走。 
+
+52
+00:01:55,500 --> 00:01:56,640
+Print 50.
+打印50。 
+
+53
+00:01:56,640 --> 00:01:57,629
+Print 65.
+打印65。 
+
+54
+00:01:57,629 --> 00:01:59,449
+Then check that's in sorted order.
+然后检查它的排序顺序。 
+
+55
+00:01:59,450 --> 00:02:02,180
+If you're not familiar with in-order traversal,
+如果您不熟悉顺序遍历， 
+
+56
+00:02:02,180 --> 00:02:03,039
+look at the textbook.
+看课本。 
+
+57
+00:02:03,239 --> 00:02:05,349
+It's a very simple operation.
+这是一个非常简单的操作。 
+
+58
+00:02:05,349 --> 00:02:07,849
+I'm not going to talk about it more here,
+我在这里不再谈论它， 
+
+59
+00:02:07,849 --> 00:02:11,750
+except we're going to use it.
+除了我们要使用它。 
+
+60
+00:02:11,750 --> 00:02:14,030
+All right, we'll get to the topic of today's lecture
+好吧，我们将讨论今天的演讲主题
+
+61
+00:02:14,030 --> 00:02:16,620
+in a moment, which is balance.
+一会儿，那是平衡。 
+
+62
+00:02:16,620 --> 00:02:19,219
+What we saw in last lecture and recitation
+我们在上一次讲座和朗诵中看到的
+
+63
+00:02:19,219 --> 00:02:21,219
+is that these basic binary search
+是这些基本的二进制搜索
+
+64
+00:02:21,219 --> 00:02:23,508
+trees, where when you insert a node you just walk down
+树木，当您插入节点时，您只需向下走
+
+65
+00:02:23,508 --> 00:02:26,049
+the tree to find where that item fits-- like if you're trying
+找到适合的项目的树-就像您正在尝试
+
+66
+00:02:26,050 --> 00:02:29,360
+to insert 30, you go left here, go right here, go right here,
+插入30，您在此处向左走，在此处向右走，在此处向右走， 
+
+67
+00:02:29,360 --> 00:02:30,460
+and say, oh 30 fits here.
+说，哦30适合这里。 
+
+68
+00:02:30,460 --> 00:02:31,439
+Let's put 30 there.
+让我们把30放在那里。 
+
+69
+00:02:31,439 --> 00:02:35,419
+If you keep doing that, you can do insert.
+如果继续这样做，则可以插入。 
+
+70
+00:02:35,419 --> 00:02:36,559
+You can do delete.
+您可以删除。 
+
+71
+00:02:36,560 --> 00:02:38,336
+You can do these kinds of searches,
+您可以进行此类搜索， 
+
+72
+00:02:38,336 --> 00:02:40,750
+which we saw, finding the next larger element
+我们看到了，找到了下一个更大的元素
+
+73
+00:02:40,750 --> 00:02:43,352
+or finding the next smaller element, also known
+或寻找下一个较小的元素
+
+74
+00:02:43,352 --> 00:02:44,560
+as successor and predecessor.
+作为继任者和前任。 
+
+75
+00:02:44,560 --> 00:02:47,849
+These are actually the typical names for those operations.
+这些实际上是这些操作的典型名称。 
+
+76
+00:02:47,849 --> 00:02:50,519
+You can solve them in order h time.
+您可以按h时间解决它们。 
+
+77
+00:02:50,520 --> 00:02:53,090
+Anyone remember what h was?
+有人记得h是什么吗？ 
+
+78
+00:02:53,289 --> 00:02:54,150
+The height.
+高度。 
+
+79
+00:02:54,150 --> 00:02:54,789
+Yeah, good.
+耶，好样的。 
+
+80
+00:02:54,789 --> 00:02:57,459
+The height of the tree.
+树的高度。 
+
+81
+00:02:57,460 --> 00:03:04,800
+So h is the height of the BST.
+因此，h是BST的高度。 
+
+82
+00:03:04,800 --> 00:03:06,560
+What is the height of the tree?
+那棵树的高度是多少？ 
+
+83
+00:03:06,560 --> 00:03:08,199
+AUDIENCE: [INAUDIBLE].
+听众：[听不清]。 
+
+84
+00:03:08,199 --> 00:03:08,913
+PROFESSOR: Sorry?
+教授：对不起？ 
+
+85
+00:03:08,913 --> 00:03:09,829
+AUDIENCE: [INAUDIBLE].
+听众：[听不清]。 
+
+86
+00:03:09,830 --> 00:03:10,538
+PROFESSOR: Log n?
+教授：登录n？ 
+
+87
+00:03:10,538 --> 00:03:13,210
+Log n would be great, but not always.
+ Log n很好，但并非总是如此。 
+
+88
+00:03:13,210 --> 00:03:15,530
+So this is the issue of being balance.
+因此，这是保持平衡的问题。 
+
+89
+00:03:15,530 --> 00:03:22,050
+
+
+
+90
+00:03:22,050 --> 00:03:24,870
+So in an ideal world, your tree's
+所以在理想的世界里，你的树是
+
+91
+00:03:24,870 --> 00:03:28,189
+going to look something like this.
+看起来像这样
+
+92
+00:03:28,189 --> 00:03:32,229
+I've drawn this picture probably the most in my academic career.
+这幅画可能是我职业生涯中最多的。 
+
+93
+00:03:32,229 --> 00:03:35,179
+This is a nice, perfectly balanced binary search tree.
+这是一个很好的，完美平衡的二进制搜索树。 
+
+94
+00:03:35,180 --> 00:03:38,689
+The height is log n.
+高度为log n。 
+
+95
+00:03:38,689 --> 00:03:40,579
+This would be the balance case.
+这将是平衡情况。 
+
+96
+00:03:40,580 --> 00:03:41,680
+I mean, roughly log n.
+我的意思是大致登录n。 
+
+97
+00:03:41,680 --> 00:03:46,379
+Let's just put theta to be approximate.
+让我们将θ近似。 
+
+98
+00:03:46,379 --> 00:03:48,560
+But as we saw at the end of last class,
+但是正如我们在上课结束时看到的那样， 
+
+99
+00:03:48,560 --> 00:03:54,020
+you can have a very unbalanced tree, which is just a path.
+您可以拥有非常不平衡的树，这只是一条路径。 
+
+100
+00:03:54,020 --> 00:03:57,657
+And there the height is n.
+高度为n。 
+
+101
+00:03:57,657 --> 00:03:58,990
+What's the definition of height?
+高度的定义是什么？ 
+
+102
+00:03:58,990 --> 00:04:00,615
+That's actually what I was looking for.
+这实际上就是我想要的。 
+
+103
+00:04:00,615 --> 00:04:03,280
+
+
+
+104
+00:04:03,280 --> 00:04:05,586
+Should be 6.042 material.
+应该是6.042的材质。 
+
+105
+00:04:05,586 --> 00:04:06,580
+Yeah?
+是啊
+
+106
+00:04:06,580 --> 00:04:08,568
+AUDIENCE: Is it the length of the longest path
+听众：这是最长路径的长度吗
+
+107
+00:04:08,568 --> 00:04:09,826
+always going down?
+总是下去？ 
+
+108
+00:04:09,826 --> 00:04:12,409
+PROFESSOR: Yeah, length of the longest path always going down.
+教授：是的，最长的路径的长度总是下降。 
+
+109
+00:04:12,409 --> 00:04:15,609
+So length of the longest path from the root to some leaf.
+因此，是从根到叶的最长路径的长度。 
+
+110
+00:04:15,610 --> 00:04:16,910
+That's right.
+那就对了。 
+
+111
+00:04:16,910 --> 00:04:18,060
+OK, so this is--
+好的，这是- 
+
+112
+00:04:18,060 --> 00:04:35,870
+
+
+
+113
+00:04:35,870 --> 00:04:37,519
+I highlight this because we're going
+我强调这一点，因为我们要
+
+114
+00:04:37,519 --> 00:04:40,839
+to be working a lot with height today.
+今天要努力工作
+
+115
+00:04:40,839 --> 00:04:44,839
+All that's happening here, all of the paths are length log n.
+这里发生的所有事情，所有路径都是length log n。 
+
+116
+00:04:44,839 --> 00:04:46,828
+Here, there is a path of length n.
+在此，存在长度为n的路径。 
+
+117
+00:04:46,829 --> 00:04:49,120
+Some of them are shorter, but in fact, the average path
+其中一些较短，但实际上，平均路径
+
+118
+00:04:49,120 --> 00:04:49,709
+is n over 2.
+在2以上。 
+
+119
+00:04:49,709 --> 00:04:50,839
+It's really bad.
+真的很糟糕
+
+120
+00:04:50,839 --> 00:04:52,789
+So this is very unbalanced.
+因此，这是非常不平衡的。 
+
+121
+00:04:52,790 --> 00:04:56,980
+
+
+
+122
+00:04:56,980 --> 00:04:58,920
+I'll put "very."
+我会说“非常”。 
+
+123
+00:04:58,920 --> 00:05:01,389
+It's not a very formal term, but that's
+这不是一个非常正式的术语，但这是
+
+124
+00:05:01,589 --> 00:05:04,169
+like the worst case for BSTs.
+例如BST的最坏情况。 
+
+125
+00:05:04,170 --> 00:05:04,730
+This is good.
+很好
+
+126
+00:05:04,730 --> 00:05:06,449
+This does have a formal definition.
+这确实有一个正式定义。 
+
+127
+00:05:06,649 --> 00:05:15,409
+We call a tree balanced if the height is order log n.
+如果高度是阶数log n，我们称树为平衡的。 
+
+128
+00:05:15,410 --> 00:05:18,170
+
+
+
+129
+00:05:18,170 --> 00:05:19,250
+So you're storing n keys.
+因此，您要存储n个键。 
+
+130
+00:05:19,250 --> 00:05:20,970
+If your height is always order log n,
+如果您的身高始终为log n， 
+
+131
+00:05:20,970 --> 00:05:22,930
+we get a constant factor here.
+我们在这里得到一个常数。 
+
+132
+00:05:23,129 --> 00:05:26,430
+Here, it's basically exactly log n, 1 times log n.
+在这里，基本上是log n，是log n的1倍。 
+
+133
+00:05:26,430 --> 00:05:28,930
+It's always going to be at least log n,
+总是至少要为log n， 
+
+134
+00:05:28,930 --> 00:05:31,425
+because if you're storing n things in a binary tree,
+因为如果您要在二叉树中存储n件事， 
+
+135
+00:05:31,425 --> 00:05:33,050
+you need to have height at least log n.
+您需要使高度至少为log n。 
+
+136
+00:05:33,050 --> 00:05:36,170
+So in fact, it will be theta log n if your tree is balanced.
+因此，实际上，如果您的树是平衡的，它将是theta log n。 
+
+137
+00:05:36,170 --> 00:05:38,540
+And today's goal is to always maintain
+今天的目标是始终保持
+
+138
+00:05:38,540 --> 00:05:40,560
+that your trees are balanced.
+你的树木是平衡的。 
+
+139
+00:05:40,759 --> 00:05:42,689
+And we're going to do that using the structure
+我们将使用该结构
+
+140
+00:05:42,689 --> 00:05:46,839
+called AVL trees, which I'll define in a moment.
+称为AVL树，稍后我将对其进行定义。 
+
+141
+00:05:46,839 --> 00:05:49,629
+They're the original way people found
+这是人们发现的原始方式
+
+142
+00:05:49,629 --> 00:05:52,980
+to keep trees balanced back in the '60s,
+保持树木在60年代的平衡， 
+
+143
+00:05:52,980 --> 00:05:54,720
+but they're still kind of the simplest.
+但它们仍然是最简单的一种。 
+
+144
+00:05:54,720 --> 00:05:56,478
+There are lots of ways to keep a tree balanced,
+有很多方法可以使树保持平衡， 
+
+145
+00:05:56,677 --> 00:05:59,699
+so I'll mention some other balance trees later on.
+所以稍后我会提到其他一些平衡树。 
+
+146
+00:05:59,699 --> 00:06:02,909
+In particular, your textbook covers two other ways to do it.
+特别是，您的教科书涵盖了另外两种实现方法。 
+
+147
+00:06:02,910 --> 00:06:05,720
+It does not cover AVL trees, so pay attention.
+它不包括AVL树，因此请注意。 
+
+148
+00:06:05,720 --> 00:06:12,774
+
+
+
+149
+00:06:12,973 --> 00:06:14,389
+One more thing I wanted to define.
+我想定义一件事。 
+
+150
+00:06:14,389 --> 00:06:20,229
+We talked about the height of the tree,
+我们谈到了树的高度， 
+
+151
+00:06:20,230 --> 00:06:27,350
+but I'd also like to talk about the height of a node in a tree.
+但我也想谈一谈树中节点的高度。 
+
+152
+00:06:27,350 --> 00:06:29,579
+
+
+
+153
+00:06:29,779 --> 00:06:31,029
+Can anyone define this for me?
+谁能为我定义这个？ 
+
+154
+00:06:31,029 --> 00:06:33,939
+
+
+
+155
+00:06:33,939 --> 00:06:35,879
+Yeah?
+是啊
+
+156
+00:06:35,879 --> 00:06:38,521
+AUDIENCE: It's the level that the node is at.
+听众：这是节点所在的级别。 
+
+157
+00:06:38,521 --> 00:06:40,230
+PROFESSOR: The level that the node is at.
+教授：节点所在的级别。 
+
+158
+00:06:40,230 --> 00:06:41,254
+That is roughly right.
+大致正确。 
+
+159
+00:06:41,254 --> 00:06:42,170
+I mean, that is right.
+我的意思是，那是对的。 
+
+160
+00:06:42,170 --> 00:06:44,312
+It's all about, what is the level of a node?
+就是说，节点的级别是多少？ 
+
+161
+00:06:44,512 --> 00:06:48,423
+AUDIENCE: Like how many levels of children it has.
+听众：就像有多少个孩子。 
+
+162
+00:06:48,423 --> 00:06:50,339
+PROFESSOR: How many levels of children it has.
+教授：它有多少个孩子等级。 
+
+163
+00:06:50,339 --> 00:06:51,829
+That's basically right, yeah.
+没错，是的。 
+
+164
+00:06:51,829 --> 00:06:54,109
+AUDIENCE: The distance from it to the root.
+听众：从它到根的距离。 
+
+165
+00:06:54,110 --> 00:06:55,776
+PROFESSOR: Distance from it to the root.
+教授：到根的距离。 
+
+166
+00:06:55,776 --> 00:06:56,930
+That would be the depth.
+那就是深度。 
+
+167
+00:06:56,930 --> 00:06:59,180
+So depth is counting from above.
+因此，深度是从上方算起的。 
+
+168
+00:06:59,180 --> 00:06:59,959
+Height is--
+身高是- 
+
+169
+00:06:59,959 --> 00:07:00,875
+AUDIENCE: [INAUDIBLE].
+听众：[听不清]。 
+
+170
+00:07:00,875 --> 00:07:04,659
+
+
+
+171
+00:07:04,660 --> 00:07:08,927
+PROFESSOR: Yes, longest path from that node to the leaf.
+教授：是的，从该节点到叶子的最长路径。 
+
+172
+00:07:08,927 --> 00:07:11,855
+Note that's why I wrote this definition actually,
+请注意，这就是我实际上编写此定义的原因， 
+
+173
+00:07:11,855 --> 00:07:12,831
+to give you a hint.
+给你一个提示。 
+
+174
+00:07:12,831 --> 00:07:20,649
+
+
+
+175
+00:07:20,649 --> 00:07:27,000
+Here I should probably say down to be precise.
+在这里我应该说清楚一点。 
+
+176
+00:07:27,000 --> 00:07:29,026
+You're not allowed to go up in these paths.
+您不允许沿着这些路径前进。 
+
+177
+00:07:29,026 --> 00:07:35,449
+
+
+
+178
+00:07:35,649 --> 00:07:38,484
+[INAUDIBLE]
+ [听不清] 
+
+179
+00:07:38,485 --> 00:07:39,447
+All right.
+好吧。 
+
+180
+00:07:39,447 --> 00:07:40,889
+Sorry.
+抱歉。 
+
+181
+00:07:40,889 --> 00:07:42,449
+I've got to learn how to throw.
+我必须学习如何投掷。 
+
+182
+00:07:42,449 --> 00:07:42,949
+All right.
+好吧。 
+
+183
+00:07:42,949 --> 00:07:46,495
+So for example, over here I'm going to write depths in red.
+因此，例如，在这里我将用红色书写深度。 
+
+184
+00:07:46,495 --> 00:07:49,139
+
+
+
+185
+00:07:49,339 --> 00:07:50,819
+If you're taking notes it's OK.
+如果您要记笔记，可以。 
+
+186
+00:07:50,819 --> 00:07:52,490
+Don't worry.
+不用担心
+
+187
+00:07:52,490 --> 00:07:55,480
+So length off the longest path from it down to a leaf.
+因此，要延长从它到叶子的最长路径。 
+
+188
+00:07:55,480 --> 00:07:59,740
+Well, this is a leaf, so its height is 0.
+好吧，这是一片叶子，因此其高度为0。 
+
+189
+00:07:59,740 --> 00:08:01,894
+OK.
+好。 
+
+190
+00:08:01,894 --> 00:08:04,959
+Yeah, I'll just leave it at that.
+是的，我只保留它。 
+
+191
+00:08:04,959 --> 00:08:09,000
+It takes 0 steps to get from a leaf to a leaf.
+从一片叶子到一片叶子需要0步。 
+
+192
+00:08:09,000 --> 00:08:10,259
+This guy's not a leaf.
+这个家伙不是一片叶子。 
+
+193
+00:08:10,259 --> 00:08:16,899
+It has a child, but it has a path of length one to a leaf.
+它有一个孩子，但是到叶子的长度为一。 
+
+194
+00:08:16,899 --> 00:08:19,579
+So it's one.
+所以这是一个。 
+
+195
+00:08:19,579 --> 00:08:20,629
+This guy has a choice.
+这个家伙有一个选择。 
+
+196
+00:08:20,629 --> 00:08:24,829
+You could go left and you get a path of length 1,
+您可以向左走，然后得到一条长度为1的路径
+
+197
+00:08:24,829 --> 00:08:27,719
+or you could go right and get a path of length 2.
+否则您可以向右走并获得长度为2的路径。 
+
+198
+00:08:27,720 --> 00:08:31,490
+We take the max, so this guy has height 2.
+我们以最大值为准，所以这个人的身高为2。 
+
+199
+00:08:31,490 --> 00:08:34,250
+This node has height 1.
+该节点的高度为1。 
+
+200
+00:08:34,250 --> 00:08:38,620
+This node has height 3.
+该节点的高度为3。 
+
+201
+00:08:38,620 --> 00:08:40,871
+How do you compute the height of a node?
+您如何计算节点的高度？ 
+
+202
+00:08:40,871 --> 00:08:42,478
+Anyone?
+任何人？ 
+
+203
+00:08:42,479 --> 00:08:43,218
+Yeah.
+是的
+
+204
+00:08:43,418 --> 00:08:45,543
+AUDIENCE: Max of the height of the children plus 1.
+听众：孩子的身高上限加1。 
+
+205
+00:08:45,543 --> 00:08:46,251
+PROFESSOR: Right.
+教授：对。 
+
+206
+00:08:46,251 --> 00:08:48,329
+You take the max of the height of the children.
+您将孩子的身高最大化。 
+
+207
+00:08:48,330 --> 00:08:49,700
+Here, 2 and 1.
+在这里2和1。 
+
+208
+00:08:49,700 --> 00:08:50,730
+Max is 2.
+最大值为2。 
+
+209
+00:08:50,730 --> 00:08:51,539
+Add 1.
+加1。 
+
+210
+00:08:51,539 --> 00:08:52,769
+You get 3.
+你得到3。 
+
+211
+00:08:52,769 --> 00:08:56,110
+So it's going to always be-- this is just a formula.
+因此，它将永远是-这只是一个公式。 
+
+212
+00:08:56,110 --> 00:09:06,639
+The height of the left child maxed
+左孩子的身高最大
+
+213
+00:09:06,639 --> 00:09:17,860
+with the height of the right child plus 1.
+合适的孩子的身高加1。 
+
+214
+00:09:17,860 --> 00:09:20,379
+This is obviously useful for computing.
+这显然对计算很有用。 
+
+215
+00:09:20,379 --> 00:09:24,090
+And in particular, in lecture and recitation
+特别是在演讲和朗诵中
+
+216
+00:09:24,090 --> 00:09:27,110
+last time, we saw how to maintain
+上次我们看到了如何保养
+
+217
+00:09:27,110 --> 00:09:32,759
+the size of every tree using data structure augmentation.
+使用数据结构扩充的每棵树的大小。 
+
+218
+00:09:32,759 --> 00:09:34,403
+Data structure augmentation.
+数据结构扩充。 
+
+219
+00:09:34,403 --> 00:09:37,210
+
+
+
+220
+00:09:37,210 --> 00:09:40,699
+And then we started with a regular vanilla binary search
+然后我们开始进行常规的原始二进制搜索
+
+221
+00:09:40,899 --> 00:09:43,539
+tree, and then we maintained-- every time
+树，然后我们每次维护
+
+222
+00:09:43,539 --> 00:09:46,159
+we did an operation on the tree, we also
+我们在树上做了一个手术， 
+
+223
+00:09:46,159 --> 00:09:49,059
+updated the size of the subtree rooted
+更新了植根的子树的大小
+
+224
+00:09:49,059 --> 00:09:52,259
+at that node, the size field.
+在该节点上的size字段。 
+
+225
+00:09:52,259 --> 00:09:54,720
+Here, I want to store a height field,
+在这里，我想存储一个高度场， 
+
+226
+00:09:54,720 --> 00:09:56,969
+and because I have this nice local rule that tells me
+而且因为我有一条很好的当地法则告诉我
+
+227
+00:09:57,169 --> 00:09:59,410
+how to compute the height of a node using just
+如何仅使用节点计算高度
+
+228
+00:09:59,410 --> 00:10:01,909
+local information-- the height of its left child, the height
+当地信息-左孩子的身高，身高
+
+229
+00:10:01,909 --> 00:10:02,750
+of its right child.
+正确的孩子
+
+230
+00:10:02,750 --> 00:10:06,287
+Do a constant amount of work here.
+在这里做固定的工作。 
+
+231
+00:10:06,287 --> 00:10:07,370
+There's a general theorem.
+有一个一般性定理。 
+
+232
+00:10:07,370 --> 00:10:09,179
+Whenever you have a nice local formula
+只要您有一个不错的本地公式
+
+233
+00:10:09,179 --> 00:10:11,299
+like this for updating your information in terms
+像这样更新您的信息
+
+234
+00:10:11,299 --> 00:10:14,009
+of your children, then you can maintain
+的孩子，那么你可以维持
+
+235
+00:10:14,009 --> 00:10:15,889
+it using constant overhead.
+它使用恒定的开销。 
+
+236
+00:10:15,889 --> 00:10:19,500
+So we can store the height of every node for free.
+因此，我们可以免费存储每个节点的高度。 
+
+237
+00:10:19,500 --> 00:10:20,389
+Why do I care?
+我为什么在乎？ 
+
+238
+00:10:20,389 --> 00:10:23,309
+Because AVL trees are going to use the heights of the nodes.
+因为AVL树将使用节点的高度。 
+
+239
+00:10:23,309 --> 00:10:25,259
+Our goal is to keep the heights small.
+我们的目标是使身高保持较小。 
+
+240
+00:10:25,259 --> 00:10:26,750
+We don't want this.
+我们不想要这个。 
+
+241
+00:10:26,750 --> 00:10:28,200
+We want this.
+我们想要这个。 
+
+242
+00:10:28,200 --> 00:10:30,259
+So a natural thing to do is store the heights.
+因此，自然要做的就是存储高度。 
+
+243
+00:10:30,259 --> 00:10:34,100
+When they get too big, fix it.
+当它们太大时，请修复它。 
+
+244
+00:10:34,100 --> 00:10:36,349
+So that's what we're going to do.
+这就是我们要做的。 
+
+245
+00:10:36,549 --> 00:10:52,139
+
+
+
+246
+00:10:52,139 --> 00:10:56,362
+Maybe one more thing to mention over here for convenience.
+为了方便起见，也许在这里还要提一件事。 
+
+247
+00:10:56,363 --> 00:11:01,059
+
+
+
+248
+00:11:01,259 --> 00:11:04,360
+Leaves, for example, have children that are-- I mean,
+举例来说，树叶的孩子是-我的意思是， 
+
+249
+00:11:04,360 --> 00:11:07,349
+they have null pointers to their left and right children.
+他们有指向左和右孩子的空指针。 
+
+250
+00:11:07,549 --> 00:11:10,250
+You could draw them explicitly like this.
+您可以像这样显式地绘制它们。 
+
+251
+00:11:10,250 --> 00:11:12,919
+Also some nodes just lack a single child.
+另外，有些节点只是缺少一个孩子。 
+
+252
+00:11:12,919 --> 00:11:16,360
+I'm going to define the depths of these things
+我将定义这些东西的深度
+
+253
+00:11:16,360 --> 00:11:19,590
+to be negative 1.
+为负1。 
+
+254
+00:11:19,590 --> 00:11:22,269
+This will be convenient later on.
+以后会很方便。 
+
+255
+00:11:22,269 --> 00:11:23,069
+Why negative 1?
+为什么是负数1？ 
+
+256
+00:11:23,070 --> 00:11:24,874
+Because then this formula works.
+因为此公式有效。 
+
+257
+00:11:24,874 --> 00:11:25,839
+You can just think about it.
+您可以考虑一下。 
+
+258
+00:11:26,039 --> 00:11:28,184
+Like leaves, for example, have two children,
+像树叶一样，有两个孩子， 
+
+259
+00:11:28,184 --> 00:11:29,059
+which are negative 1.
+都是负数1。 
+
+260
+00:11:29,059 --> 00:11:29,750
+You take the max.
+你拿最大。 
+
+261
+00:11:29,750 --> 00:11:30,250
+You add 1.
+您添加1。 
+
+262
+00:11:30,250 --> 00:11:31,460
+You get 0.
+您得到0。 
+
+263
+00:11:31,460 --> 00:11:33,504
+So that just makes things work out.
+这样就可以解决问题。 
+
+264
+00:11:33,504 --> 00:11:35,379
+We don't normally draw these in the pictures,
+我们通常不会在图片中画这些， 
+
+265
+00:11:35,379 --> 00:11:39,189
+but it's convenient that I don't have to do special cases when
+但是很方便，我不需要在特殊情况下
+
+266
+00:11:39,190 --> 00:11:42,096
+the left child doesn't exist and the right child doesn't exist.
+左边的孩子不存在，右边的孩子不存在。 
+
+267
+00:11:42,096 --> 00:11:43,470
+You could either do special cases
+您可以做特殊情况
+
+268
+00:11:43,470 --> 00:11:44,709
+or you could make this definition.
+或者您可以进行此定义。 
+
+269
+00:11:44,909 --> 00:11:47,509
+Up to you.
+由你决定。 
+
+270
+00:11:47,509 --> 00:11:49,779
+OK.
+好。 
+
+271
+00:11:49,779 --> 00:11:50,534
+AVL trees.
+ AVL树。 
+
+272
+00:11:50,534 --> 00:11:54,959
+
+
+
+273
+00:11:54,960 --> 00:12:00,729
+So the idea with an AVL tree is the following.
+因此，使用AVL树的想法如下。 
+
+274
+00:12:00,929 --> 00:12:36,659
+
+
+
+275
+00:12:36,659 --> 00:12:39,211
+We'd like to keep the height order log n.
+我们想保持高度顺序为n。 
+
+276
+00:12:39,211 --> 00:12:41,710
+It's a little harder to think about keeping the height order
+考虑保持高度顺序有点困难
+
+277
+00:12:41,710 --> 00:12:46,110
+log n than it is to think about keeping the tree balance,
+记录n而不是考虑保持树的平衡， 
+
+278
+00:12:46,110 --> 00:12:49,095
+meaning the left and right sides are more or less equal.
+表示左右两侧大致相等。 
+
+279
+00:12:49,095 --> 00:12:50,970
+In this case, we're going to think about them
+在这种情况下，我们将考虑它们
+
+280
+00:12:50,970 --> 00:12:53,720
+as being more or less equal in height.
+高度大致相等
+
+281
+00:12:53,720 --> 00:12:55,279
+You could also think about them being
+您也可以考虑他们是
+
+282
+00:12:55,279 --> 00:12:57,600
+more or less equal in subtree size.
+子树大小大致相等。 
+
+283
+00:12:57,600 --> 00:12:58,639
+That would also work.
+那也可以。 
+
+284
+00:12:58,639 --> 00:13:01,019
+It's a different balanced search tree.
+这是不同的平衡搜索树。 
+
+285
+00:13:01,019 --> 00:13:03,610
+Height is kind of the easiest thing to work with.
+高度是最容易使用的一种方法。 
+
+286
+00:13:03,610 --> 00:13:07,570
+So if we have a node, it has a left subtree.
+因此，如果我们有一个节点，则它有一个左子树。 
+
+287
+00:13:07,570 --> 00:13:09,469
+It has a right subtree, which we traditionally
+它有一个正确的子树，我们传统上
+
+288
+00:13:09,669 --> 00:13:11,309
+draw as triangles.
+画成三角形。 
+
+289
+00:13:11,309 --> 00:13:13,455
+This subtree has a height.
+该子树具有高度。 
+
+290
+00:13:13,456 --> 00:13:17,440
+We'll call it HL for left.
+我们将其称为HL。 
+
+291
+00:13:17,440 --> 00:13:20,710
+By the height of the subtree, I mean the height of its root.
+子树的高度是指其根的高度。 
+
+292
+00:13:20,710 --> 00:13:24,079
+And the right subtree has some height, r.
+右子树的高度为r。 
+
+293
+00:13:24,279 --> 00:13:26,860
+I've drawn them as the same, but in general they
+我把它们画得一样，但总的来说
+
+294
+00:13:26,860 --> 00:13:28,259
+might be different.
+可能会有所不同。 
+
+295
+00:13:28,259 --> 00:13:31,250
+And what we would like is that h sub l and h
+我们想要的是h sub l和h 
+
+296
+00:13:31,250 --> 00:13:32,889
+sub r are more or less the same.
+ sub r大致相同。 
+
+297
+00:13:32,889 --> 00:13:35,669
+They differ by at most an additive 1.
+它们最多相加1。 
+
+298
+00:13:35,669 --> 00:13:41,240
+So if I look at h sub l minus h sub r in absolute value,
+因此，如果我以绝对值看h sub l减去h sub r， 
+
+299
+00:13:41,240 --> 00:13:45,690
+this is at most 1, for every node.
+每个节点最多为1。 
+
+300
+00:13:45,690 --> 00:13:47,579
+So I have some node x.
+所以我有一些节点x。 
+
+301
+00:13:47,779 --> 00:13:50,370
+For every node x, I want the left and right subtrees
+对于每个节点x，我想要左右子树
+
+302
+00:13:50,370 --> 00:13:52,409
+to be almost balanced.
+几乎达到平衡。 
+
+303
+00:13:52,409 --> 00:13:54,839
+Now, I could say differ by at most 0,
+现在，我可以说最多相差0， 
+
+304
+00:13:54,840 --> 00:13:57,829
+that the left and right have exactly the same heights.
+左右高度完全相同。 
+
+305
+00:13:58,029 --> 00:14:00,289
+That's difficult, because that really
+那很困难，因为那真的
+
+306
+00:14:00,289 --> 00:14:03,129
+forces you to have exactly the perfect tree.
+迫使您拥有完美的树。 
+
+307
+00:14:03,129 --> 00:14:07,899
+And in fact, it's not even possible for odd n or even n
+实际上，甚至不可能有奇数n或什至n 
+
+308
+00:14:07,899 --> 00:14:09,279
+or something.
+或者其他的东西。 
+
+309
+00:14:09,279 --> 00:14:10,809
+Because at the very end you're going
+因为最后你要走
+
+310
+00:14:10,809 --> 00:14:14,750
+to have one missing child, and then you're unbalanced there.
+怀有一个失踪的孩子，然后那里就不平衡了。 
+
+311
+00:14:14,750 --> 00:14:18,070
+So 0's just not possible to maintain,
+因此，就无法维持0， 
+
+312
+00:14:18,070 --> 00:14:21,199
+but 1 is almost as good, hopefully.
+但希望1几乎一样好。 
+
+313
+00:14:21,399 --> 00:14:23,949
+We're going to prove that in a second.
+我们将在一秒钟内证明这一点。 
+
+314
+00:14:23,950 --> 00:14:29,859
+And it turns out to be easy to maintain in log n time.
+而且事实证明，在登录前很容易维护。 
+
+315
+00:14:30,059 --> 00:14:34,204
+So let's prove some stuff.
+因此，让我们来证明一些东西。 
+
+316
+00:14:34,205 --> 00:14:38,870
+
+
+
+317
+00:14:38,870 --> 00:14:43,524
+So first claim is that AVL trees are balanced.
+因此，第一个主张是AVL树是平衡的。 
+
+318
+00:14:43,524 --> 00:14:52,879
+
+
+
+319
+00:14:52,879 --> 00:14:55,000
+Balanced, remember, means that the height of them
+记住，平衡意味着它们的高度
+
+320
+00:14:55,000 --> 00:14:56,820
+is always order log n.
+始终是订单日志n。 
+
+321
+00:14:56,820 --> 00:14:59,099
+So we're just going to assume for now that we can somehow
+所以我们现在只是假设我们可以以某种方式
+
+322
+00:14:59,299 --> 00:15:00,849
+achieve this property.
+实现此属性。 
+
+323
+00:15:00,850 --> 00:15:05,100
+We want to prove that it implies that the height is
+我们要证明它暗示高度为
+
+324
+00:15:05,100 --> 00:15:06,730
+at most some constant times log n.
+最多恒定时间为log n。 
+
+325
+00:15:06,730 --> 00:15:09,740
+We know it's at least log n, but also
+我们知道至少是log n，但是
+
+326
+00:15:09,740 --> 00:15:12,460
+like it to be not much bigger.
+希望它不会太大。 
+
+327
+00:15:12,460 --> 00:15:15,839
+So what do you think is the worst case?
+那么您认为最坏的情况是什么？ 
+
+328
+00:15:16,039 --> 00:15:18,019
+Say I have n nodes.
+说我有n个节点。 
+
+329
+00:15:18,019 --> 00:15:21,370
+How could I make the tree as high as possible?
+我怎样才能使树尽可能高？ 
+
+330
+00:15:21,370 --> 00:15:23,570
+Or conversely, if I have a particular height,
+或者相反，如果我有特定身高， 
+
+331
+00:15:23,570 --> 00:15:26,600
+how could I make it have as few nodes as possible?
+我如何使它具有尽可能少的节点？ 
+
+332
+00:15:26,600 --> 00:15:29,589
+That'd be like the sparsest, the least balanced
+就像最稀疏，最不平衡
+
+333
+00:15:29,789 --> 00:15:30,870
+situation for AVL trees.
+ AVL树的情况。 
+
+334
+00:15:30,870 --> 00:15:34,488
+
+
+
+335
+00:15:34,488 --> 00:15:34,988
+Yeah?
+是啊
+
+336
+00:15:34,988 --> 00:15:36,953
+AUDIENCE: You could have one node on the last level.
+听众：您可以在最后一个级别上有一个节点。 
+
+337
+00:15:37,153 --> 00:15:39,740
+PROFESSOR: One node on the last level, yeah, in particular.
+教授：尤其是最后一层上的一个节点。 
+
+338
+00:15:39,740 --> 00:15:40,690
+Little more.
+再多一点。 
+
+339
+00:15:40,690 --> 00:15:43,960
+What do the other levels look like?
+其他级别是什么样的？ 
+
+340
+00:15:43,960 --> 00:15:46,479
+That is correct, but I want to know the whole tree.
+没错，但是我想知道整棵树。 
+
+341
+00:15:46,679 --> 00:15:50,319
+
+
+
+342
+00:15:50,320 --> 00:15:53,490
+It's hard to explain the tree, but you
+很难解释这棵树，但是你
+
+343
+00:15:53,490 --> 00:15:55,240
+can explain the core property of the tree.
+可以解释树的核心属性。 
+
+344
+00:15:55,240 --> 00:15:55,702
+Yeah?
+是啊
+
+345
+00:15:55,702 --> 00:15:56,619
+AUDIENCE: [INAUDIBLE].
+听众：[听不清]。 
+
+346
+00:15:56,619 --> 00:15:58,769
+
+
+
+347
+00:15:58,769 --> 00:16:00,109
+PROFESSOR: For every node, let's make
+教授：对于每个节点，让我们
+
+348
+00:16:00,309 --> 00:16:03,729
+the right side have a height of one larger than the left side.
+右侧的高度比左侧大1。 
+
+349
+00:16:03,730 --> 00:16:06,269
+I think that's worth a cushion.
+我认为这值得缓冲。 
+
+350
+00:16:06,269 --> 00:16:07,449
+See if I can throw better.
+看看我能不能扔得更好。 
+
+351
+00:16:07,450 --> 00:16:10,402
+
+
+
+352
+00:16:10,402 --> 00:16:12,661
+Good catch.
+接得好。 
+
+353
+00:16:12,861 --> 00:16:14,829
+Better than hitting your eye.
+总比打动你的眼睛好。 
+
+354
+00:16:14,830 --> 00:16:17,589
+
+
+
+355
+00:16:17,789 --> 00:16:22,538
+So I'm going to not prove this formally,
+所以我不会正式证明这一点， 
+
+356
+00:16:22,538 --> 00:16:24,580
+but I think if you stare at this long enough it's
+但我想如果你凝视了足够长的时间
+
+357
+00:16:24,580 --> 00:16:27,000
+pretty obvious.
+很明显。 
+
+358
+00:16:27,000 --> 00:16:32,808
+Worst case is when-- there are multiple worst cases,
+最坏的情况是：有多个最坏的情况， 
+
+359
+00:16:32,808 --> 00:16:34,350
+because right and left are symmetric.
+因为左右是对称的
+
+360
+00:16:34,350 --> 00:16:35,479
+We don't really care.
+我们不在乎。 
+
+361
+00:16:35,679 --> 00:16:40,039
+But let's say that the right subtree
+但是，假设正确的子树
+
+362
+00:16:40,039 --> 00:16:52,349
+has height one more than the left for every node.
+每个节点的高度都比左侧高。 
+
+363
+00:16:52,350 --> 00:16:56,860
+
+
+
+364
+00:16:56,860 --> 00:17:00,779
+OK, this is a little tricky to draw.
+好的，这有点棘手。 
+
+365
+00:17:00,779 --> 00:17:03,086
+Not even sure I want to try to draw it.
+甚至不确定我是否想尝试绘制它。 
+
+366
+00:17:03,086 --> 00:17:04,670
+But you basically draw it recursively.
+但是您基本上是递归绘制的。 
+
+367
+00:17:04,670 --> 00:17:07,349
+So, OK, somehow I've figured out this
+好吧，以某种方式我已经弄清楚了
+
+368
+00:17:07,549 --> 00:17:10,088
+where the height difference here is 1.
+这里的高度差是1。 
+
+369
+00:17:10,088 --> 00:17:12,259
+Then I take two copies of it.
+然后我拿了两份。 
+
+370
+00:17:12,259 --> 00:17:13,220
+It's like a fractal.
+这就像一个分形。 
+
+371
+00:17:13,220 --> 00:17:15,568
+You should know all about fractals by now.
+您现在应该了解分形。 
+
+372
+00:17:15,568 --> 00:17:17,848
+Problem set two.
+习题二。 
+
+373
+00:17:17,848 --> 00:17:20,548
+And then you just-- well, that's not quite right.
+然后您只是-嗯，那是不对的。 
+
+374
+00:17:20,548 --> 00:17:22,588
+In fact, I need to somehow make this one a little
+实际上，我需要以某种方式使它变一点
+
+375
+00:17:22,588 --> 00:17:28,700
+bit taller and then glue these together.
+高一点，然后将它们粘在一起。 
+
+376
+00:17:28,700 --> 00:17:30,129
+Little tricky.
+有点棘手。 
+
+377
+00:17:30,329 --> 00:17:32,009
+Let's not even try to draw the tree.
+让我们甚至不要尝试绘制树。 
+
+378
+00:17:32,009 --> 00:17:33,879
+Let's just imagine this is possible.
+让我们想象一下这是可能的。 
+
+379
+00:17:33,880 --> 00:17:36,740
+It is possible.
+有可能的。 
+
+380
+00:17:36,740 --> 00:17:40,190
+And instead, I'm going to use mathematics
+相反，我将使用数学
+
+381
+00:17:40,190 --> 00:17:43,160
+to understand how high that tree is.
+了解那棵树有多高。 
+
+382
+00:17:43,160 --> 00:17:45,869
+Or actually, it's a little easier
+或者实际上，这要容易一些
+
+383
+00:17:46,069 --> 00:17:48,200
+to think about-- let me get this right.
+想一想-让我说对了。 
+
+384
+00:17:48,200 --> 00:17:50,149
+It's so easy that I have to look at my notes
+如此简单，我必须看一下笔记
+
+385
+00:17:50,349 --> 00:17:53,549
+to remember what to write.
+记住要写些什么。 
+
+386
+00:17:53,549 --> 00:17:56,460
+Really, no problem.
+真的没问题
+
+387
+00:17:56,460 --> 00:18:01,759
+All right, so I'm going to define n sub h
+好吧，所以我要定义n sub h 
+
+388
+00:18:01,759 --> 00:18:08,579
+is the minimum number of nodes that's
+是最小的节点数
+
+389
+00:18:08,579 --> 00:18:15,689
+possible in an AVL tree of height h.
+可能在高度为h的AVL树中。 
+
+390
+00:18:15,690 --> 00:18:20,380
+
+
+
+391
+00:18:20,380 --> 00:18:22,889
+This is sort of the inverse of what we care about,
+这与我们所关心的相反
+
+392
+00:18:23,089 --> 00:18:25,439
+but if we can solve the inverse, we can solve the thing.
+但是如果我们能解决逆问题，我们就能解决问题。 
+
+393
+00:18:25,440 --> 00:18:28,640
+What we really care about is, for n nodes, how large
+我们真正关心的是，对于n个节点，有多大
+
+394
+00:18:28,640 --> 00:18:29,390
+can the height be?
+高度可以吗？ 
+
+395
+00:18:29,390 --> 00:18:31,031
+We want to prove that's order log n.
+我们想证明那是订单日志n。 
+
+396
+00:18:31,231 --> 00:18:33,690
+But it'll be a lot easier to think about the reverse, which
+但是考虑相反的情况会容易得多， 
+
+397
+00:18:33,690 --> 00:18:37,044
+is, if I fix the height to be h, what's the fewest nodes
+是，如果我将高度固定为h，那么最少的节点是多少
+
+398
+00:18:37,244 --> 00:18:38,589
+that I can pack in?
+我可以打包吗？ 
+
+399
+00:18:38,589 --> 00:18:43,059
+Because for the very unbalanced tree, I have a height of n,
+因为对于非常不平衡的树，我的高度为n， 
+
+400
+00:18:43,059 --> 00:18:45,539
+and I only need to put n nodes.
+而且我只需要放置n个节点。 
+
+401
+00:18:45,539 --> 00:18:48,299
+That would be really bad.
+那真的很糟糕。 
+
+402
+00:18:48,299 --> 00:18:54,089
+What I prefer is a situation like this, where with height h,
+我更喜欢这样的情况，高度为h， 
+
+403
+00:18:54,089 --> 00:18:56,359
+I have to put in 2 to the h nodes.
+我必须在h节点中放入2。 
+
+404
+00:18:56,359 --> 00:18:58,099
+That would be perfect balance.
+那将是完美的平衡。 
+
+405
+00:18:58,099 --> 00:18:59,839
+Any constant to the h will do.
+ h的任何常数都可以。 
+
+406
+00:18:59,839 --> 00:19:02,233
+So when you take the inverse, you get a log.
+因此，当您求逆时，您会得到一个日志。 
+
+407
+00:19:02,233 --> 00:19:03,649
+OK, we'll get to that in a moment.
+好的，我们稍后再解决。 
+
+408
+00:19:03,650 --> 00:19:13,950
+
+
+
+409
+00:19:13,950 --> 00:19:15,960
+How should we analyze n sub h?
+我们应该如何分析n sub h？ 
+
+410
+00:19:15,960 --> 00:19:20,163
+
+
+
+411
+00:19:20,163 --> 00:19:21,400
+I hear something.
+我听到了
+
+412
+00:19:21,400 --> 00:19:21,900
+Yeah?
+是啊
+
+413
+00:19:21,900 --> 00:19:26,889
+AUDIENCE: [INAUDIBLE] 2 to the h minus 1 [INAUDIBLE].
+听众：[音频不清晰] 2至h减1 [音频不清晰]。 
+
+414
+00:19:27,089 --> 00:19:35,889
+
+
+
+415
+00:19:35,890 --> 00:19:40,900
+PROFESSOR: Maybe, but I don't think that will quite work out.
+教授：也许吧，但我认为这不会完全解决。 
+
+416
+00:19:40,900 --> 00:19:45,210
+
+
+
+417
+00:19:45,210 --> 00:19:47,239
+Any-- yeah?
+是的-是吗？ 
+
+418
+00:19:47,239 --> 00:19:50,592
+AUDIENCE: So you have only 1 node in the last level,
+听众：所以您在最后一级只有一个节点， 
+
+419
+00:19:50,592 --> 00:19:55,861
+so it would be 1/2 to the h plus 1.
+所以它是h加1的1/2。 
+
+420
+00:19:55,861 --> 00:19:58,500
+PROFESSOR: That turns out to be approximately correct,
+教授：事实证明这是正确的， 
+
+421
+00:19:58,500 --> 00:20:03,049
+but I don't know where you got 1/2 to the h plus 1.
+但我不知道你的h加1等于1/2。 
+
+422
+00:20:03,049 --> 00:20:04,710
+It's not exactly correct.
+这不是完全正确。 
+
+423
+00:20:04,710 --> 00:20:08,490
+I'll tell you that, so that your analysis isn't right.
+我告诉你，这样你的分析是不正确的。 
+
+424
+00:20:08,490 --> 00:20:09,612
+It's a lot easier.
+这要容易得多。 
+
+425
+00:20:09,612 --> 00:20:11,119
+You guys are worried about the last level
+你们担心最后的水平
+
+426
+00:20:11,319 --> 00:20:13,816
+and actually what the tree looks like, but in fact, all you need
+实际上是树的样子，但是实际上，您需要的一切
+
+427
+00:20:13,816 --> 00:20:14,316
+is this.
+这是。 
+
+428
+00:20:14,316 --> 00:20:17,899
+
+
+
+429
+00:20:18,099 --> 00:20:20,023
+All you need is love, yeah.
+是的，您需要的只是爱。 
+
+430
+00:20:20,023 --> 00:20:20,939
+AUDIENCE: [INAUDIBLE].
+听众：[听不清]。 
+
+431
+00:20:20,940 --> 00:20:22,517
+PROFESSOR: No, it's not a half.
+教授：不，不是一半。 
+
+432
+00:20:22,517 --> 00:20:23,399
+It's a different constant.
+这是一个不同的常数。 
+
+433
+00:20:23,599 --> 00:20:23,959
+Yeah?
+是啊
+
+434
+00:20:23,960 --> 00:20:26,569
+AUDIENCE: Start with base cases and write a recursive formula.
+听众：从基本案例开始，然后编写一个递归公式。 
+
+435
+00:20:26,569 --> 00:20:28,269
+PROFESSOR: Ah, recursive formula.
+教授：啊，递归公式。 
+
+436
+00:20:28,269 --> 00:20:29,168
+Good.
+好。 
+
+437
+00:20:29,169 --> 00:20:30,460
+You said start with base cases.
+您说的是从基本案例开始的。 
+
+438
+00:20:30,460 --> 00:20:32,659
+I always forget that part, so it's good that you remember.
+我总是忘记那部分，所以记住你是件好事。 
+
+439
+00:20:32,859 --> 00:20:34,119
+You should start with the base case,
+您应该从基本情况开始， 
+
+440
+00:20:34,119 --> 00:20:36,035
+but I'm not going to worry about the base case
+但我不会担心基本情况
+
+441
+00:20:36,036 --> 00:20:37,210
+because it won't matter.
+因为没关系。 
+
+442
+00:20:37,210 --> 00:20:40,329
+Because I know the base case is always going to be n order 1
+因为我知道基本情况总是n阶1 
+
+443
+00:20:40,329 --> 00:20:41,710
+is order 1.
+是订单1。 
+
+444
+00:20:41,710 --> 00:20:43,549
+So for algorithms, that's usually all
+因此，对于算法，通常就是全部
+
+445
+00:20:43,549 --> 00:20:45,690
+you need for base case, but it's good that you think about it.
+您需要基本情况​​，但考虑一下是很好的。 
+
+446
+00:20:45,690 --> 00:20:47,640
+What I was looking for is recursive formula,
+我一直在寻找递归公式， 
+
+447
+00:20:47,640 --> 00:20:49,740
+aka, recurrence.
+ aka，复发。 
+
+448
+00:20:49,740 --> 00:20:52,839
+So can someone tell me-- maybe even you-- could tell me
+有人可以告诉我-甚至您-可以告诉我
+
+449
+00:20:52,839 --> 00:20:56,689
+a recurrence for n sub h, in terms of n sub smaller h?
+ n sub h的递归，用n sub较小的h表示？ 
+
+450
+00:20:56,690 --> 00:20:59,660
+
+
+
+451
+00:20:59,660 --> 00:21:01,144
+Yeah?
+是啊
+
+452
+00:21:01,144 --> 00:21:02,629
+AUDIENCE: 1 plus [INAUDIBLE].
+听众：1加[听不清]。 
+
+453
+00:21:02,630 --> 00:21:05,399
+
+
+
+454
+00:21:05,599 --> 00:21:09,480
+PROFESSOR: 1 plus n sub h minus 1.
+教授：1加n减去h减1。 
+
+455
+00:21:09,480 --> 00:21:13,569
+
+
+
+456
+00:21:13,569 --> 00:21:14,319
+Not quite.
+不完全的。 
+
+457
+00:21:14,319 --> 00:21:15,195
+Yeah?
+是啊
+
+458
+00:21:15,195 --> 00:21:19,169
+AUDIENCE: N sub h minus 1 plus n sub h minus 2.
+听众：N sub h减去1加n sub h减去2。 
+
+459
+00:21:19,170 --> 00:21:22,365
+PROFESSOR: N plus-- do you want the 1 plus?
+教授：N加-您要加1吗？ 
+
+460
+00:21:22,365 --> 00:21:25,720
+AUDIENCE: I don't think so.
+听众：我不这么认为。 
+
+461
+00:21:25,720 --> 00:21:28,559
+PROFESSOR: You do.
+教授：可以。 
+
+462
+00:21:28,559 --> 00:21:30,039
+It's a collaboration.
+这是一种协作。 
+
+463
+00:21:30,039 --> 00:21:31,470
+To combine your two answers, this
+为了结合您的两个答案，这
+
+464
+00:21:31,470 --> 00:21:32,720
+should be the correct formula.
+应该是正确的公式。 
+
+465
+00:21:32,720 --> 00:21:33,980
+Let me double check.
+让我仔细检查一下。 
+
+466
+00:21:33,980 --> 00:21:35,259
+Yes, whew.
+是的，哇。 
+
+467
+00:21:35,259 --> 00:21:35,759
+Good.
+好。 
+
+468
+00:21:35,759 --> 00:21:37,049
+OK, why?
+好为什么
+
+469
+00:21:37,049 --> 00:21:41,899
+Because the one thing we know is that our tree looks like this.
+因为我们知道的一件事是我们的树看起来像这样。 
+
+470
+00:21:41,900 --> 00:21:45,509
+
+
+
+471
+00:21:45,509 --> 00:21:47,129
+The total height here is h.
+这里的总高度是h。 
+
+472
+00:21:47,130 --> 00:21:49,059
+That's what we're trying to figure out.
+这就是我们试图找出的。 
+
+473
+00:21:49,259 --> 00:21:52,049
+How many nodes are in this tree of height h?
+在这棵高度为h的树中有多少个节点？ 
+
+474
+00:21:52,049 --> 00:21:57,659
+Well, the height is the max of the two directions.
+好吧，高度是两个方向的最大值。 
+
+475
+00:21:57,660 --> 00:22:02,259
+So that means that the larger has height h minus 1,
+因此，这意味着较大者的身高h减去1， 
+
+476
+00:22:02,259 --> 00:22:04,859
+because the longest path to a leaf
+因为通往叶子的最长路径
+
+477
+00:22:04,859 --> 00:22:06,750
+is going to be down this way.
+这样下去。 
+
+478
+00:22:06,750 --> 00:22:08,109
+What's the height of this?
+这个高度是多少？ 
+
+479
+00:22:08,109 --> 00:22:10,139
+Well, it's one less than the height of this.
+好吧，这比这个高度少一。 
+
+480
+00:22:10,140 --> 00:22:13,069
+So it's going to be h minus 2.
+所以它将是h减2。 
+
+481
+00:22:13,269 --> 00:22:17,549
+This is where the n sub h minus 1 plus n sub h minus 2 come in.
+这是n sub h减去1加n sub h减去2的地方。 
+
+482
+00:22:17,549 --> 00:22:19,399
+But there's also this node.
+但是也有这个节点。 
+
+483
+00:22:19,400 --> 00:22:22,379
+It doesn't actually make a big difference in this recurrence.
+实际上，这种复发没有太大的区别。 
+
+484
+00:22:22,579 --> 00:22:23,939
+This is the exponential part.
+这是指数部分。 
+
+485
+00:22:23,940 --> 00:22:26,169
+This is like itty bitty thing.
+这就像小小的可怜的事情。 
+
+486
+00:22:26,369 --> 00:22:29,079
+But it matters for the base case is pretty much
+但这对基本情况很重要
+
+487
+00:22:29,079 --> 00:22:30,849
+where it matters.
+重要的地方。 
+
+488
+00:22:30,849 --> 00:22:31,919
+Back to your base case.
+回到您的基本情况。 
+
+489
+00:22:31,920 --> 00:22:34,500
+There's one guy here, plus all the nodes on the left,
+这里有一个人，加上左边的所有节点， 
+
+490
+00:22:34,500 --> 00:22:36,410
+plus all the nodes on the right.
+加上右边的所有节点。 
+
+491
+00:22:36,410 --> 00:22:37,909
+And for whatever reason, I put the left
+而无论出于什么原因，我把左边的
+
+492
+00:22:38,109 --> 00:22:41,803
+over here and the right over here.
+在这里，就在这里
+
+493
+00:22:41,804 --> 00:22:43,720
+And of course, you could reverse this picture.
+当然，您可以反转此图。 
+
+494
+00:22:43,720 --> 00:22:44,380
+It doesn't really matter.
+没关系。 
+
+495
+00:22:44,380 --> 00:22:45,419
+You get the same formula.
+您得到相同的公式。 
+
+496
+00:22:45,619 --> 00:22:47,199
+That's the point.
+这才是重点。 
+
+497
+00:22:47,200 --> 00:22:49,250
+So this is the recurrence.
+所以这就是复发。 
+
+498
+00:22:49,250 --> 00:22:51,369
+Now we need to solve it.
+现在我们需要解决它。 
+
+499
+00:22:51,369 --> 00:22:54,069
+What we would like is for it to be exponential,
+我们希望它是指数的， 
+
+500
+00:22:54,069 --> 00:22:57,829
+because that means there's a lot of nodes in a height h AVL
+因为那意味着高度为AVL的节点很多
+
+501
+00:22:57,829 --> 00:22:59,779
+tree.
+树。 
+
+502
+00:22:59,779 --> 00:23:02,460
+So any suggestions on how we could figure out
+因此，关于如何找出答案的任何建议
+
+503
+00:23:02,460 --> 00:23:04,289
+this recurrence?
+这种复发？ 
+
+504
+00:23:04,289 --> 00:23:06,274
+Does it look like anything you've seen before?
+它看起来像您以前见过的任何东西吗？ 
+
+505
+00:23:06,275 --> 00:23:07,460
+AUDIENCE: Fibonacci.
+观众：斐波那契。 
+
+506
+00:23:07,460 --> 00:23:08,335
+PROFESSOR: Fibonacci.
+教授：斐波那契。 
+
+507
+00:23:08,335 --> 00:23:09,930
+It's almost Fibonacci.
+差不多是斐波那契。 
+
+508
+00:23:09,930 --> 00:23:13,289
+If I hid this plus 1, which you wanted to do,
+如果我隐藏了您想要做的加号1， 
+
+509
+00:23:13,289 --> 00:23:16,210
+then it would be exactly Fibonacci.
+那就恰好是斐波那契
+
+510
+00:23:16,210 --> 00:23:21,190
+Well, that's actually good, because in particular, n sub h
+嗯，那实际上很好，因为特别是n sub h 
+
+511
+00:23:21,190 --> 00:23:23,419
+is bigger than Fibonacci.
+比斐波那契更大。 
+
+512
+00:23:23,619 --> 00:23:25,219
+If you add one at every single level,
+如果您在每个级别添加一个， 
+
+513
+00:23:25,220 --> 00:23:27,049
+the certainly you get something bigger
+当然可以得到更大的东西
+
+514
+00:23:27,049 --> 00:23:28,559
+than the base Fibonacci sequence.
+比基本斐波那契数列
+
+515
+00:23:28,559 --> 00:23:31,479
+
+
+
+516
+00:23:31,479 --> 00:23:33,519
+Now, hopefully you know Fibonacci is exponential.
+现在，希望您知道斐波那契是指数的。 
+
+517
+00:23:33,519 --> 00:23:39,569
+
+
+
+518
+00:23:39,569 --> 00:23:40,569
+I have an exact formula.
+我有一个确切的公式。 
+
+519
+00:23:40,569 --> 00:23:45,099
+
+
+
+520
+00:23:45,099 --> 00:23:48,990
+If you take the golden ratio to the power h, divide by root 5,
+如果将黄金比例乘以幂h，则除以根5， 
+
+521
+00:23:48,990 --> 00:23:50,599
+and round to the nearest integer,
+并四舍五入到最接近的整数， 
+
+522
+00:23:50,599 --> 00:23:52,319
+you get exactly the Fibonacci number.
+您将确切地得到斐波那契数。 
+
+523
+00:23:52,319 --> 00:23:53,307
+Crazy stuff.
+疯狂的事情。 
+
+524
+00:23:53,307 --> 00:23:54,890
+We don't need to know why that's true.
+我们不需要知道为什么是这样。 
+
+525
+00:23:54,890 --> 00:23:56,599
+Just take it as fact.
+只是把它当作事实。 
+
+526
+00:23:56,799 --> 00:23:59,291
+And conveniently phi is bigger than 1.
+方便地，phi大于1。 
+
+527
+00:23:59,291 --> 00:24:00,750
+You don't need to remember what phi
+您无需记住什么phi 
+
+528
+00:24:00,750 --> 00:24:02,240
+is, except it is bigger than 1.
+是，但大于1。 
+
+529
+00:24:02,240 --> 00:24:04,900
+And so this is an exponential bound.
+因此，这是指数范围。 
+
+530
+00:24:04,900 --> 00:24:07,359
+This is good news.
+这是个好消息。 
+
+531
+00:24:07,559 --> 00:24:13,159
+So I'll tell you it's about 1.618.
+所以我告诉你大约是1.618。 
+
+532
+00:24:13,160 --> 00:24:16,420
+And so we get is that-- if we invert this,
+所以我们得到的是-如果我们将其反转， 
+
+533
+00:24:16,420 --> 00:24:21,410
+this says n sub h is bigger than some phi to the h.
+这表示n sub h大于h的phi。 
+
+534
+00:24:21,410 --> 00:24:23,334
+This is our n, basically.
+基本上这就是我们的n 
+
+535
+00:24:23,334 --> 00:24:24,750
+What we really want to know is how
+我们真正想知道的是
+
+536
+00:24:24,750 --> 00:24:29,420
+h relates to n, which is just inverting this formula.
+ h与n有关，后者只是将这个公式求逆。 
+
+537
+00:24:29,420 --> 00:24:31,889
+So we have, on the other hand, the phi
+因此，另一方面， 
+
+538
+00:24:32,089 --> 00:24:37,259
+to the h divided by root 5 is less than n.
+到h除以根5的值小于n。 
+
+539
+00:24:37,259 --> 00:24:40,960
+
+
+
+540
+00:24:40,960 --> 00:24:45,720
+So I got a log base phi on both sides.
+所以我两边都得到了对数基phi。 
+
+541
+00:24:45,720 --> 00:24:47,640
+Seems like a good thing to do.
+似乎是一件好事。 
+
+542
+00:24:47,640 --> 00:24:50,359
+
+
+
+543
+00:24:50,559 --> 00:24:52,200
+This is actually quite annoying.
+这实际上很烦人。 
+
+544
+00:24:52,200 --> 00:24:55,210
+I've got h minus a tiny little thing.
+我有h减去一件小事。 
+
+545
+00:24:55,210 --> 00:25:01,920
+It's less than log base phi of n.
+它小于n的对数底phi。 
+
+546
+00:25:01,920 --> 00:25:08,900
+And I will tell you that is about 1.440 times log base 2
+我会告诉你，这是对数基数2的1.440倍
+
+547
+00:25:08,900 --> 00:25:11,700
+of n, because after all, log base 2 is what computer
+之所以是n，是因为毕竟日志基数2是什么计算机
+
+548
+00:25:11,700 --> 00:25:13,799
+scientists care about.
+科学家们在乎。 
+
+549
+00:25:13,799 --> 00:25:16,690
+So just to put it into perspective.
+因此，只是将其放在透视图中。 
+
+550
+00:25:16,690 --> 00:25:19,170
+We want it to be theta log base 2 of n.
+我们希望它成为n的theta日志基数2。 
+
+551
+00:25:19,170 --> 00:25:20,169
+And here's the bound.
+这就是界限。 
+
+552
+00:25:20,369 --> 00:25:23,531
+The height is always less than 1.44 times log n.
+高度始终小于log n的1.44倍。 
+
+553
+00:25:23,531 --> 00:25:24,990
+All we care about is some constant,
+我们所关心的只是一个常数， 
+
+554
+00:25:24,990 --> 00:25:27,799
+but this is a pretty good constant.
+但这是一个很好的常数。 
+
+555
+00:25:27,799 --> 00:25:28,899
+We'd like one.
+我们想要一个。 
+
+556
+00:25:28,900 --> 00:25:32,839
+There are binary search tress that achieve 1, plus very,
+有二进制搜索树可以达到1，而且非常好， 
+
+557
+00:25:33,039 --> 00:25:39,359
+very tiny thing, arbitrarily tiny, but this is pretty good.
+非常微小的东西，任意微小，但这很好。 
+
+558
+00:25:39,359 --> 00:25:41,829
+Now, if you don't know Fibonacci numbers,
+现在，如果您不知道斐波那契数， 
+
+559
+00:25:41,829 --> 00:25:45,809
+I pull a rabbit out of a hat and I've got this phi to the h.
+我从帽子中拉出一只兔子，然后把这个phi带到了h。 
+
+560
+00:25:45,809 --> 00:25:48,529
+It's kind of magical.
+有点神奇。 
+
+561
+00:25:48,529 --> 00:25:51,055
+There's a much easier way to analyze this recurrence.
+有一种更简单的方法来分析这种复发。 
+
+562
+00:25:51,055 --> 00:25:53,690
+
+
+
+563
+00:25:53,690 --> 00:25:57,809
+I'll just tell you because it's good to know but not
+我只是告诉你，因为很高兴知道
+
+564
+00:25:57,809 --> 00:25:58,549
+super critical.
+超临界。 
+
+565
+00:25:58,549 --> 00:26:09,879
+
+
+
+566
+00:26:09,880 --> 00:26:11,629
+So we have this recurrence, n sub h.
+因此，我们有n个子h重复出现。 
+
+567
+00:26:11,829 --> 00:26:15,960
+
+
+
+568
+00:26:15,960 --> 00:26:18,909
+This is the computer scientist way to solve the recurrence.
+这是解决重复问题的计算机科学家方法。 
+
+569
+00:26:19,109 --> 00:26:21,189
+We don't care about the constants.
+我们不在乎常量。 
+
+570
+00:26:21,190 --> 00:26:22,940
+This is the theoretical computer scientist
+这是理论计算机科学家
+
+571
+00:26:22,940 --> 00:26:24,450
+way to solve this recurrence.
+解决这种复发的方法。 
+
+572
+00:26:24,450 --> 00:26:25,700
+We don't care about constants.
+我们不在乎常量。 
+
+573
+00:26:25,700 --> 00:26:28,019
+And so we say, aw, this is hard.
+所以我们说，噢，这很难。 
+
+574
+00:26:28,019 --> 00:26:31,609
+I've got n sub h minus 1 and n sub h minus 2.
+我得到n sub h减去1和n sub h减去2。 
+
+575
+00:26:31,609 --> 00:26:33,359
+So asymmetric.
+如此不对称。 
+
+576
+00:26:33,359 --> 00:26:35,899
+Let's symmetrify.
+让我们对称。 
+
+577
+00:26:35,900 --> 00:26:38,829
+Could I make them both n sub h minus 1.
+我可以将它们都设为n sub h减去1。 
+
+578
+00:26:39,029 --> 00:26:41,440
+Or could I make them both n sub h minus 2?
+还是可以让它们都减去n减去2？ 
+
+579
+00:26:41,440 --> 00:26:44,309
+
+
+
+580
+00:26:44,309 --> 00:26:45,919
+Suggestions?
+有什么建议吗？ 
+
+581
+00:26:45,920 --> 00:26:47,399
+AUDIENCE: [INAUDIBLE].
+听众：[听不清]。 
+
+582
+00:26:47,599 --> 00:26:49,219
+PROFESSOR: Minus 2 is the right way
+教授：减法2是正确的方法
+
+583
+00:26:49,220 --> 00:26:52,130
+to go because I want to know n sub h is greater than something
+去，因为我想知道n sub h大于某物
+
+584
+00:26:52,130 --> 00:26:54,400
+in order to get a less than down here.
+为了得到比这里少的东西。 
+
+585
+00:26:54,400 --> 00:26:57,210
+By the way, I use that log is monatomic here,
+顺便说一下，我在这里使用的日志是单原子的， 
+
+586
+00:26:57,210 --> 00:26:58,769
+but it is, so we're good.
+但这是事实，所以我们很好。 
+
+587
+00:26:58,769 --> 00:27:01,079
+So this is going to be greater than 1
+所以这将大于1 
+
+588
+00:27:01,079 --> 00:27:07,879
+plus 2 times n sub h minus 2.
+加2乘以n sub h减去2。 
+
+589
+00:27:07,880 --> 00:27:10,432
+Because if I have a larger height
+因为如果我身高更大
+
+590
+00:27:10,432 --> 00:27:11,640
+I'm going to have more nodes.
+我将有更多的节点。 
+
+591
+00:27:11,640 --> 00:27:15,140
+That's an easy proof by induction.
+通过归纳法，这很容易证明。 
+
+592
+00:27:15,140 --> 00:27:16,919
+So I can combine these into one term.
+所以我可以将它们合并为一个术语。 
+
+593
+00:27:17,119 --> 00:27:17,909
+It's simpler.
+更简单。 
+
+594
+00:27:17,910 --> 00:27:20,839
+I can get rid of this 1 because that only makes things bigger.
+我可以摆脱这个1，因为那只会使事情变大。 
+
+595
+00:27:21,039 --> 00:27:22,960
+So I just have this.
+所以我只有这个。 
+
+596
+00:27:22,960 --> 00:27:24,799
+OK, now I need a base case, but this
+好，现在我需要一个基本情况，但这
+
+597
+00:27:24,799 --> 00:27:27,799
+looks like 2 the something.
+看起来像2的东西。 
+
+598
+00:27:27,799 --> 00:27:29,190
+What's the something?
+什么事
+
+599
+00:27:29,190 --> 00:27:30,190
+H over 2.
+超过2。 
+
+600
+00:27:30,190 --> 00:27:32,779
+
+
+
+601
+00:27:32,779 --> 00:27:35,329
+So I'll just write theta to avoid the base case.
+因此，我只写theta以避免基本情况。 
+
+602
+00:27:35,329 --> 00:27:37,179
+2 to the h over 2.
+ 2到h 2。 
+
+603
+00:27:37,180 --> 00:27:41,779
+Every two steps of h, I get another factor of 2.
+ h每隔两步，我得到另一个因子2。 
+
+604
+00:27:41,779 --> 00:27:43,970
+So when you invert and do the log,
+因此，当您反转并进行记录时， 
+
+605
+00:27:43,970 --> 00:27:50,130
+this means that h is also less than log base 2 of n.
+这意味着h也小于n的对数底数2。 
+
+606
+00:27:50,130 --> 00:27:51,690
+Log base 2 because of that.
+因此，请记录基数2。 
+
+607
+00:27:51,690 --> 00:27:55,059
+Factor 2 out here because of that factor 2
+由于该因子2而将因子2排除在这里
+
+608
+00:27:55,059 --> 00:27:57,000
+when you take the log.
+当您记录日志时。 
+
+609
+00:27:57,000 --> 00:27:59,730
+And so the real answer is 1.44.
+因此，真正的答案是1.44。 
+
+610
+00:27:59,730 --> 00:28:03,190
+This is the correct-- this is the worst case.
+没错-这是最坏的情况。 
+
+611
+00:28:03,190 --> 00:28:05,779
+But it's really easy to prove that it's, at most, 2 log n.
+但是很容易证明它最多为2 log n。 
+
+612
+00:28:05,779 --> 00:28:07,539
+So keep this in mind in case we ask
+所以请记住这一点，以防我们问
+
+613
+00:28:07,539 --> 00:28:10,839
+you to analyze variance of AVL trees,
+您分析AVL树的方差， 
+
+614
+00:28:10,839 --> 00:28:12,899
+like in problem set three.
+像问题三。 
+
+615
+00:28:12,900 --> 00:28:14,960
+This is the easy way to do it and just get
+这是做到这一点的简单方法
+
+616
+00:28:14,960 --> 00:28:18,069
+some constant times log n.
+一些恒定时间记录n。 
+
+617
+00:28:18,069 --> 00:28:19,599
+Clear?
+明确？ 
+
+618
+00:28:19,599 --> 00:28:23,589
+All right, so that's AVL trees, why they're balanced.
+好吧，这就是AVL树，为什么它们很平衡。 
+
+619
+00:28:23,589 --> 00:28:27,069
+And so if we can achieve this property,
+因此，如果我们可以实现此属性， 
+
+620
+00:28:27,069 --> 00:28:30,089
+that the left and right subtrees have about the same height,
+左右子树的高度大约相同， 
+
+621
+00:28:30,089 --> 00:28:31,889
+we'll be done.
+我们会完成的。 
+
+622
+00:28:31,890 --> 00:28:35,169
+So how the heck do we maintain that property?
+那么，我们如何维护该财产呢？ 
+
+623
+00:28:35,369 --> 00:28:42,089
+
+
+
+624
+00:28:42,089 --> 00:28:43,809
+Let's go over here.
+让我们过去吧。 
+
+625
+00:28:43,809 --> 00:28:58,980
+
+
+
+626
+00:28:58,980 --> 00:29:00,579
+Mobius trees are supposed to support
+莫比乌斯树应该支持
+
+627
+00:29:00,579 --> 00:29:03,269
+a whole bunch of operations, but in particular, insert
+一堆操作，但特别是插入
+
+628
+00:29:03,269 --> 00:29:05,129
+and delete.
+并删除。 
+
+629
+00:29:05,130 --> 00:29:08,859
+I'm just going to worry about insert today.
+我只是担心今天插入。 
+
+630
+00:29:09,059 --> 00:29:11,409
+Delete is almost identical.
+删除几乎相同。 
+
+631
+00:29:11,410 --> 00:29:14,139
+And it's in the code that corresponds to this lecture,
+它是在与本讲座相对应的代码中， 
+
+632
+00:29:14,339 --> 00:29:16,419
+so you can take a look at it.
+所以你可以看看它。 
+
+633
+00:29:16,420 --> 00:29:17,380
+Very, very similar.
+非常非常相似。 
+
+634
+00:29:17,380 --> 00:29:24,930
+
+
+
+635
+00:29:24,930 --> 00:29:25,930
+Let's start with insert.
+让我们从插入开始。 
+
+636
+00:29:25,930 --> 00:29:29,789
+
+
+
+637
+00:29:29,789 --> 00:29:33,190
+Well, it's pretty straightforward.
+好吧，这很简单。 
+
+638
+00:29:33,190 --> 00:29:35,390
+Our algorithm is as follows.
+我们的算法如下。 
+
+639
+00:29:35,390 --> 00:29:42,579
+We do the simple BST insertion, which we already saw,
+我们已经完成了简单的BST插入， 
+
+640
+00:29:42,779 --> 00:29:45,279
+which is you walk down the tree to find where that key fits.
+您是在树上走下来找到适合钥匙的地方。 
+
+641
+00:29:45,279 --> 00:29:46,950
+You search for that key.
+您搜索该密钥。 
+
+642
+00:29:46,950 --> 00:29:49,629
+And wherever it isn't, you insert a node there,
+不管它不在哪里，您都可以在其中插入一个节点， 
+
+643
+00:29:49,829 --> 00:29:52,009
+insert a new leaf, and add it in.
+插入新的叶子，并将其添加。 
+
+644
+00:29:52,009 --> 00:29:54,690
+Now, this will not preserve the AVL property.
+现在，这将不会保留AVL属性。 
+
+645
+00:29:54,690 --> 00:29:57,000
+So the second step is fix the AVL property.
+因此，第二步是修复AVL属性。 
+
+646
+00:29:57,000 --> 00:30:03,460
+
+
+
+647
+00:30:03,460 --> 00:30:06,519
+And there's a nice concise description of AVL insertion.
+并且有一个很好的简洁的AVL插入描述。 
+
+648
+00:30:06,519 --> 00:30:10,700
+Of course, how do you do step two is the interesting part.
+当然，您如何做第二步是有趣的部分。 
+
+649
+00:30:10,700 --> 00:30:14,440
+All right, maybe let's start with an example.
+好吧，也许让我们从一个例子开始。 
+
+650
+00:30:14,440 --> 00:30:15,380
+That could be fun.
+那可能很有趣。 
+
+651
+00:30:15,380 --> 00:30:22,296
+
+
+
+652
+00:30:22,296 --> 00:30:24,694
+Hey, look, here's an example.
+嘿，看，这是一个例子。 
+
+653
+00:30:24,694 --> 00:30:26,069
+And to match the notes, I'm going
+为了匹配音符，我要
+
+654
+00:30:26,069 --> 00:30:33,230
+to do insert 23 as a first example.
+做插入23作为第一个示例。 
+
+655
+00:30:33,230 --> 00:30:36,720
+OK, I'm also going to annotate this tree a little bit.
+好的，我还要对这棵树进行一些注释。 
+
+656
+00:30:36,720 --> 00:30:39,160
+So I said we store the heights, but what
+所以我说我们存储高度，但是
+
+657
+00:30:39,160 --> 00:30:44,169
+I care about is which height is larger, the left or the right.
+我关心的是哪个高度更大，向左还是向右。 
+
+658
+00:30:44,369 --> 00:30:46,089
+In fact, you could just store that,
+实际上，您可以将其存储起来， 
+
+659
+00:30:46,089 --> 00:30:47,829
+just store whether it's plus 1, minus 1,
+只需存储是否加1减1 
+
+660
+00:30:47,829 --> 00:30:50,269
+or 0, the difference between left and right sides.
+或0，左右两边之差。 
+
+661
+00:30:50,269 --> 00:30:52,839
+So I'm going to draw that with a little icon, which
+所以我要画一个小图标
+
+662
+00:30:52,839 --> 00:30:56,740
+is a left arrow, a descending left arrow if this
+是左箭头，如果是
+
+663
+00:30:56,740 --> 00:30:59,748
+is the bigger side.
+是更大的一面。 
+
+664
+00:30:59,748 --> 00:31:01,910
+And this is a right arrow.
+这是向右箭头。 
+
+665
+00:31:01,910 --> 00:31:02,730
+This is even.
+这是偶数。 
+
+666
+00:31:02,730 --> 00:31:04,329
+Left and right are the same.
+左右是相同的。 
+
+667
+00:31:04,329 --> 00:31:07,419
+Here, the left is heavier, or higher, I guess.
+我猜这里的左边更重或更重。 
+
+668
+00:31:07,420 --> 00:31:08,240
+Here it's even.
+在这里，甚至。 
+
+669
+00:31:08,240 --> 00:31:11,720
+Here it's left.
+剩下来了
+
+670
+00:31:11,720 --> 00:31:14,579
+This is AVL, because it's only one
+这是AVL，因为它只是一个
+
+671
+00:31:14,579 --> 00:31:17,009
+heavier wherever I have an arrow.
+不管我有箭在哪里
+
+672
+00:31:17,009 --> 00:31:19,220
+OK, now I insert 23.
+好，现在我插入23。 
+
+673
+00:31:19,220 --> 00:31:24,029
+23 belongs-- it's less than 41, greater than 20, less than 29,
+ 23属于-小于41，大于20，小于29， 
+
+674
+00:31:24,029 --> 00:31:25,139
+less than 26.
+少于26。 
+
+675
+00:31:25,140 --> 00:31:27,599
+So it belongs here.
+所以它属于这里。 
+
+676
+00:31:27,799 --> 00:31:31,318
+Here's 23, a brand-new node.
+这是23，一个全新的节点。 
+
+677
+00:31:31,318 --> 00:31:32,609
+OK, now all the heights change.
+好吧，现在所有的高度都在变化。 
+
+678
+00:31:32,609 --> 00:31:36,679
+And it's annoying to draw what the heights are,
+绘制高度是很烦人的， 
+
+679
+00:31:36,680 --> 00:31:39,150
+but I'll do it.
+但我会做。 
+
+680
+00:31:39,150 --> 00:31:41,119
+This one changes to 1.
+这变成1。 
+
+681
+00:31:41,319 --> 00:31:43,369
+This is 0.
+这是0。 
+
+682
+00:31:43,369 --> 00:31:44,849
+This changes to 2.
+更改为2。 
+
+683
+00:31:44,849 --> 00:31:46,449
+This changes to 3.
+更改为3。 
+
+684
+00:31:46,450 --> 00:31:49,160
+This changes to 4.
+更改为4。 
+
+685
+00:31:49,160 --> 00:31:51,890
+Anyway, never mind what the heights are.
+无论如何，不​​要介意身高是多少。 
+
+686
+00:31:51,890 --> 00:31:53,960
+What's bad is, well, this guy's even.
+不好的是，这个家伙甚至。 
+
+687
+00:31:53,960 --> 00:31:55,389
+This guy's left heavy.
+这个家伙很重。 
+
+688
+00:31:55,589 --> 00:31:58,089
+This guy's now doubly left heavy.
+这个家伙现在双倍沉重。 
+
+689
+00:31:58,089 --> 00:32:00,649
+Bad news.
+坏消息。 
+
+690
+00:32:00,650 --> 00:32:02,410
+OK, let's not worry about above that.
+好吧，让我们不必担心以上问题。 
+
+691
+00:32:02,410 --> 00:32:03,509
+Let's just start.
+让我们开始吧。 
+
+692
+00:32:03,509 --> 00:32:05,269
+The algorithm is going to walk up the tree
+算法要走到树上
+
+693
+00:32:05,269 --> 00:32:08,220
+and say, oh, when do I get something bad?
+然后说，哦，什么时候变坏？ 
+
+694
+00:32:08,220 --> 00:32:11,650
+So now I have 23, 26, 29 in a path.
+现在我的路径中有23、26、29。 
+
+695
+00:32:11,650 --> 00:32:14,639
+I'd like to fix it.
+我想修复它。 
+
+696
+00:32:14,839 --> 00:32:18,022
+Hmm, how to fix it?
+嗯，如何解决？ 
+
+697
+00:32:18,022 --> 00:32:21,500
+I don't think we know how to fix it, so I will tell you how.
+我认为我们不知道该如何解决，因此我将告诉您如何解决。 
+
+698
+00:32:21,500 --> 00:32:26,824
+
+
+
+699
+00:32:26,824 --> 00:32:28,240
+Actually, I wasn't here last week.
+其实上周我不在这里。 
+
+700
+00:32:28,240 --> 00:32:29,480
+So did we cover rotations?
+那么我们涵盖了轮换吗？ 
+
+701
+00:32:29,480 --> 00:32:30,159
+AUDIENCE: No.
+听众：不。 
+
+702
+00:32:30,359 --> 00:32:31,479
+PROFESSOR: OK, good.
+教授：好的，很好。 
+
+703
+00:32:31,480 --> 00:32:32,819
+Then you don't know.
+那你不知道。 
+
+704
+00:32:32,819 --> 00:32:35,539
+Let me tell you about rotations.
+让我告诉您有关轮换的内容。 
+
+705
+00:32:35,539 --> 00:32:36,309
+Super cool.
+超酷。 
+
+706
+00:32:36,309 --> 00:32:47,279
+
+
+
+707
+00:32:47,279 --> 00:32:48,180
+It's just a tool.
+这只是一个工具。 
+
+708
+00:32:48,180 --> 00:33:12,597
+
+
+
+709
+00:33:12,597 --> 00:33:14,397
+That's x and y.
+那是x和y。 
+
+710
+00:33:14,397 --> 00:33:21,253
+
+
+
+711
+00:33:21,253 --> 00:33:22,419
+I always get these mixed up.
+我总是把这些混在一起。 
+
+712
+00:33:22,420 --> 00:33:33,255
+So this is called left rotate of x.
+因此，这称为x的左旋转。 
+
+713
+00:33:33,255 --> 00:33:37,342
+
+
+
+714
+00:33:37,342 --> 00:33:39,599
+OK, so here's the thing we can do with binary search trees.
+好的，这就是二进制搜索树可以做的事情。 
+
+715
+00:33:39,799 --> 00:33:41,635
+It's like the only thing you need to know.
+这就像您需要知道的唯一一件事。 
+
+716
+00:33:41,635 --> 00:33:43,680
+Because you've got search in binary search trees
+因为您已经在二叉搜索树中进行搜索
+
+717
+00:33:43,680 --> 00:33:46,210
+and you've got rotations.
+而且你有轮换。 
+
+718
+00:33:46,210 --> 00:33:48,876
+So when I have a tree like this, I've highlighted two nodes,
+因此，当我有一棵这样的树时，我突出显示了两个节点， 
+
+719
+00:33:48,876 --> 00:33:50,960
+and then there's the children hanging off of them.
+然后有孩子挂在他们旁边。 
+
+720
+00:33:50,960 --> 00:33:53,390
+Some of these might be empty, but they're trees,
+其中一些可能是空的，但它们是树， 
+
+721
+00:33:53,390 --> 00:33:56,509
+so we draw them as triangles.
+因此我们将它们绘制为三角形。 
+
+722
+00:33:56,509 --> 00:33:59,809
+If I just do this, which is like changing
+如果我只是这样做，那就像改变
+
+723
+00:33:59,809 --> 00:34:02,980
+which is higher, x or y, and whatever the parent of x was
+ x或y较高，并且x的父级是
+
+724
+00:34:02,980 --> 00:34:05,160
+becomes the parent of y.
+成为y的父代。 
+
+725
+00:34:05,160 --> 00:34:06,650
+And vice versa, in fact.
+反之亦然，实际上。 
+
+726
+00:34:06,650 --> 00:34:10,340
+The parent of y was x, and now the parent of x is y.
+ y的父是x，现在x的父是y。 
+
+727
+00:34:10,340 --> 00:34:14,030
+OK, the parent of a is still x.
+ OK，a的父代仍然是x。 
+
+728
+00:34:14,030 --> 00:34:15,269
+The parent of b changes.
+ b的父代更改。 
+
+729
+00:34:15,269 --> 00:34:16,119
+It used to be y.
+过去是y。 
+
+730
+00:34:16,119 --> 00:34:17,509
+Now it's x.
+现在是x。 
+
+731
+00:34:17,510 --> 00:34:19,230
+The parent of c was y.
+ c的父是y。 
+
+732
+00:34:19,230 --> 00:34:20,369
+It's still y.
+还是y。 
+
+733
+00:34:20,369 --> 00:34:23,000
+So in a constant number of pointer changes,
+因此，在恒定数量的指针更改中， 
+
+734
+00:34:23,000 --> 00:34:24,663
+I can go from this to this.
+我可以从这个转到这个。 
+
+735
+00:34:24,663 --> 00:34:25,869
+This is constant time.
+这是恒定的时间。 
+
+736
+00:34:25,869 --> 00:34:29,599
+
+
+
+737
+00:34:29,599 --> 00:34:32,380
+And more importantly, it satisfies the BST order
+更重要的是，它满足BST顺序
+
+738
+00:34:32,380 --> 00:34:33,070
+property.
+属性。 
+
+739
+00:34:33,070 --> 00:34:35,469
+If you do an in-order traversal of this,
+如果您对此进行有序遍历， 
+
+740
+00:34:35,469 --> 00:34:38,894
+you will get a, x, b, y, c.
+您将得到a，x，b，y，c。 
+
+741
+00:34:39,094 --> 00:34:42,436
+
+
+
+742
+00:34:42,436 --> 00:34:46,777
+If I do an in-order traversal over here, I get a, x, b, y, c.
+如果我在此处进行有序遍历，则得到a，x，b，y，c。 
+
+743
+00:34:46,777 --> 00:34:50,599
+
+
+
+744
+00:34:50,599 --> 00:34:52,110
+So they're the same.
+所以他们是一样的。 
+
+745
+00:34:52,110 --> 00:34:54,139
+So it still has BST ordering.
+因此它仍然具有BST排序。 
+
+746
+00:34:54,139 --> 00:34:55,329
+You can check more formally.
+您可以进行更正式的检查。 
+
+747
+00:34:55,329 --> 00:34:57,569
+b has all the nodes between x and y.
+ b具有x和y之间的所有节点。 
+
+748
+00:34:57,570 --> 00:35:01,400
+Still all the nodes between x and y, and so on.
+仍然是x和y之间的所有节点，依此类推。 
+
+749
+00:35:01,400 --> 00:35:03,840
+You can check it at home, but this works.
+您可以在家检查它，但是可以。 
+
+750
+00:35:03,840 --> 00:35:08,056
+We call it a left rotate because the root moves to the left.
+我们称其为左旋转，因为根部向左移动。 
+
+751
+00:35:08,255 --> 00:35:10,129
+You can go straight back where you came from.
+您可以直接回到原籍。 
+
+752
+00:35:10,130 --> 00:35:12,309
+This would be a right rotate of y.
+这将是y的右旋。 
+
+753
+00:35:12,309 --> 00:35:17,440
+
+
+
+754
+00:35:17,440 --> 00:35:19,579
+OK, it's a reversible operation.
+好，这是可逆的操作。 
+
+755
+00:35:19,579 --> 00:35:21,190
+It lets you manipulate the tree.
+它使您可以操纵树。 
+
+756
+00:35:21,190 --> 00:35:22,769
+So when we have this picture and we're
+所以当我们有了这张照片，我们
+
+757
+00:35:22,969 --> 00:35:26,449
+really sad because this looks like a mess, what
+真的很伤心，因为这看起来像一团糟， 
+
+758
+00:35:26,449 --> 00:35:27,809
+we'd like to do is fix it.
+我们要做的就是修复它。 
+
+759
+00:35:27,809 --> 00:35:31,049
+This is a path of three nodes.
+这是三个节点的路径。 
+
+760
+00:35:31,050 --> 00:35:34,445
+We'd really prefer it to look like this.
+我们真的希望它看起来像这样。 
+
+761
+00:35:34,445 --> 00:35:37,460
+If we could make that transformation, we'd be happy.
+如果我们能够进行这种转变，我们将很高兴。 
+
+762
+00:35:37,659 --> 00:35:38,739
+And we can.
+而且我们可以。 
+
+763
+00:35:38,739 --> 00:35:44,084
+It is a right rotate of 29.
+向右旋转29。 
+
+764
+00:35:44,085 --> 00:35:45,460
+So that's what we're going to do.
+这就是我们要做的。 
+
+765
+00:35:45,460 --> 00:36:01,809
+
+
+
+766
+00:36:01,809 --> 00:36:03,699
+So let me quickly copy.
+因此，让我快速复制。 
+
+767
+00:36:03,699 --> 00:36:14,689
+
+
+
+768
+00:36:14,690 --> 00:36:16,809
+I want to rotate 29 to the right, which
+我想向右旋转29 
+
+769
+00:36:16,809 --> 00:36:18,929
+means 29 and 26-- this is x.
+表示29和26-这是x。 
+
+770
+00:36:18,929 --> 00:36:20,029
+This is y.
+这是y。 
+
+771
+00:36:20,030 --> 00:36:24,250
+I turn them, and so I get 26 here now,
+我打开它们，所以我现在得到26， 
+
+772
+00:36:24,250 --> 00:36:27,099
+and 29 is the new right child.
+ 29是新的合适的孩子。 
+
+773
+00:36:27,099 --> 00:36:28,599
+And then whatever was the left child
+然后剩下的那个孩子
+
+774
+00:36:28,599 --> 00:36:31,569
+of x becomes the left child of x in the picture.
+的x成为图片中x的左孩子。 
+
+775
+00:36:31,570 --> 00:36:32,440
+You can check it.
+您可以检查一下。 
+
+776
+00:36:32,639 --> 00:36:34,789
+So this used to be the triangle a.
+因此，这曾经是三角形a。 
+
+777
+00:36:34,789 --> 00:36:38,829
+And in this case, it's just the node 23.
+在这种情况下，它只是节点23。 
+
+778
+00:36:38,829 --> 00:36:40,384
+And we are happy.
+我们很高兴。 
+
+779
+00:36:40,385 --> 00:36:42,269
+Except I didn't draw the whole tree.
+除了我没有画整棵树。 
+
+780
+00:36:42,469 --> 00:36:46,250
+Now we're happy because we have an AVL tree again.
+现在我们很高兴，因为我们又有了一棵AVL树。 
+
+781
+00:36:46,250 --> 00:36:48,250
+Good news.
+好消息。 
+
+782
+00:36:48,250 --> 00:36:50,309
+So just check.
+因此，请检查。 
+
+783
+00:36:50,309 --> 00:36:50,969
+This is even.
+这是偶数。 
+
+784
+00:36:50,969 --> 00:36:52,000
+This is right heavy.
+这很重。 
+
+785
+00:36:52,000 --> 00:36:52,969
+This is even.
+这是偶数。 
+
+786
+00:36:52,969 --> 00:36:56,359
+This is left heavy still.
+这仍然沉重。 
+
+787
+00:36:56,360 --> 00:37:01,530
+This is left heavy, even, even, even.
+这是沉重的，甚至，甚至，甚至。 
+
+788
+00:37:01,530 --> 00:37:07,125
+OK, so now we have an AVL tree and our beauty is restored.
+好，现在我们有了一棵AVL树，我们的美丽得以恢复。 
+
+789
+00:37:07,324 --> 00:37:08,639
+I'll do one more example.
+我再举一个例子。 
+
+790
+00:37:08,639 --> 00:37:15,829
+
+
+
+791
+00:37:15,829 --> 00:37:16,755
+Insert 55.
+插入55。 
+
+792
+00:37:16,755 --> 00:37:23,090
+
+
+
+793
+00:37:23,090 --> 00:37:24,690
+We want to insert 55 here.
+我们要在此处插入55。 
+
+794
+00:37:24,690 --> 00:37:27,260
+
+
+
+795
+00:37:27,260 --> 00:37:29,650
+And what changes is now this is even.
+而且现在的变化是均匀的。 
+
+796
+00:37:29,849 --> 00:37:32,989
+This is right heavy.
+这很重。 
+
+797
+00:37:32,989 --> 00:37:35,179
+This is doubly left heavy.
+这加倍了。 
+
+798
+00:37:35,179 --> 00:37:36,500
+We're super sad.
+我们很伤心。 
+
+799
+00:37:36,500 --> 00:37:39,320
+And then we don't look above that until later.
+然后，直到稍后，我们才将其放在上面。 
+
+800
+00:37:39,320 --> 00:37:43,690
+
+
+
+801
+00:37:43,889 --> 00:37:48,239
+This is more annoying, because you
+这更令人讨厌，因为您
+
+802
+00:37:48,239 --> 00:37:52,569
+look at this thing, this little path.
+看这东西，这条小路。 
+
+803
+00:37:52,570 --> 00:37:55,360
+It's a zigzag path, if you will.
+如果可以的话，这是曲折的路径。 
+
+804
+00:37:55,360 --> 00:37:58,170
+If I do a right rotation where this is x and this
+如果我在这是x和这个的位置进行右旋转
+
+805
+00:37:58,369 --> 00:38:03,259
+is y, what I'll get is x, y, and then this is b.
+是y，我得到的是x，y，然后是b。 
+
+806
+00:38:03,260 --> 00:38:06,090
+This is what's in between x and y.
+这就是x和y之间的值。 
+
+807
+00:38:06,090 --> 00:38:08,510
+And so it'll go here.
+因此，它将去这里。 
+
+808
+00:38:08,510 --> 00:38:11,510
+And now it's a zag zig path, which is no better.
+现在这是一个曲折的曲折路径，这再好不过了。 
+
+809
+00:38:11,510 --> 00:38:13,190
+The height's the same.
+高度相同。 
+
+810
+00:38:13,389 --> 00:38:14,039
+And we're sad.
+我们很伤心。 
+
+811
+00:38:14,039 --> 00:38:17,909
+
+
+
+812
+00:38:17,909 --> 00:38:19,659
+I told you, though, that somehow rotations
+不过我告诉过你
+
+813
+00:38:19,659 --> 00:38:20,759
+are all we need to do.
+这就是我们要做的。 
+
+814
+00:38:20,760 --> 00:38:23,885
+
+
+
+815
+00:38:24,085 --> 00:38:25,049
+What can I do?
+我能做什么？ 
+
+816
+00:38:25,050 --> 00:38:28,130
+
+
+
+817
+00:38:28,130 --> 00:38:30,940
+How could I fix this little zigzag?
+我该如何修复这个小字形？ 
+
+818
+00:38:31,139 --> 00:38:33,109
+Just need to think about those three nodes,
+只需要考虑这三个节点， 
+
+819
+00:38:33,110 --> 00:38:35,900
+but all I give you are rotations.
+但我给你的只是轮换。 
+
+820
+00:38:35,900 --> 00:38:38,400
+AUDIENCE: Perhaps rotate 50.
+听众：也许旋转50。 
+
+821
+00:38:38,400 --> 00:38:39,619
+PROFESSOR: Maybe rotate 50.
+教授：也许旋转50。 
+
+822
+00:38:39,619 --> 00:38:41,130
+That seems like a good idea.
+这似乎是个好主意。 
+
+823
+00:38:41,130 --> 00:38:41,807
+Let's try it.
+让我们尝试一下。 
+
+824
+00:38:41,807 --> 00:38:44,440
+
+
+
+825
+00:38:44,440 --> 00:38:46,420
+If you don't mind, I'm just going to write 41,
+如果您不介意，我只会写41 
+
+826
+00:38:46,420 --> 00:38:48,789
+and then there's all the stuff on the left.
+然后左边有所有东西。 
+
+827
+00:38:48,789 --> 00:38:49,989
+Now we rotate 50.
+现在我们旋转50。 
+
+828
+00:38:49,989 --> 00:38:53,189
+So 65 remains where it is.
+因此，现在仍然有65个位置。 
+
+829
+00:38:53,190 --> 00:38:55,809
+And we rotate 50 to the left.
+然后我们向左旋转50。 
+
+830
+00:38:55,809 --> 00:38:57,049
+So 50 and its child.
+所以50和它的孩子。 
+
+831
+00:38:57,050 --> 00:38:57,550
+This is x.
+这是x。 
+
+832
+00:38:57,550 --> 00:38:59,320
+This is y.
+这是y。 
+
+833
+00:38:59,320 --> 00:39:04,735
+And so I get 55 and I get 50.
+所以我得到55，而我得到50。 
+
+834
+00:39:04,735 --> 00:39:07,800
+
+
+
+835
+00:39:07,800 --> 00:39:09,710
+Now, this is bad from an AVL perspective.
+现在，从AVL角度来看，这是不好的。 
+
+836
+00:39:09,710 --> 00:39:13,269
+This is still doubly left heavy, this is left heavy,
+这仍然是双重的沉重，这仍然是沉重的， 
+
+837
+00:39:13,469 --> 00:39:15,819
+and this is even.
+这是偶数
+
+838
+00:39:15,820 --> 00:39:18,690
+But it looks like this case.
+但是看起来像这种情况。 
+
+839
+00:39:18,690 --> 00:39:22,460
+And so now I can do a right rotation on 65,
+所以现在我可以对65度进行右旋转
+
+840
+00:39:22,460 --> 00:39:27,090
+and I will get-- so let me order the diagrams here.
+我会得到的-所以让我在这里订购图表。 
+
+841
+00:39:27,090 --> 00:39:31,480
+I do a right rotate on 65, and I will get 41.
+我在65处进行右旋转，我会得到41。 
+
+842
+00:39:31,480 --> 00:39:34,260
+And to the right I get 55.
+右边是55。 
+
+843
+00:39:34,260 --> 00:39:37,012
+And to the right I get 65.
+右边是65。 
+
+844
+00:39:37,012 --> 00:39:38,605
+To the left I get 50.
+左边是50。 
+
+845
+00:39:38,804 --> 00:39:41,929
+
+
+
+846
+00:39:41,929 --> 00:39:44,599
+And then I get the left subtree.
+然后我得到了左子树。 
+
+847
+00:39:44,599 --> 00:39:48,400
+And so now this is even, even, even.
+所以现在这是偶数，偶数，偶数。 
+
+848
+00:39:48,400 --> 00:39:49,750
+Wow.
+哇。 
+
+849
+00:39:49,949 --> 00:39:51,139
+How high was left subtree?
+剩下的子树有多高？ 
+
+850
+00:39:51,139 --> 00:39:54,779
+I think it's still left heavy.
+我认为它仍然很重。 
+
+851
+00:39:54,780 --> 00:39:55,650
+Cool.
+凉。 
+
+852
+00:39:55,849 --> 00:39:58,599
+This is what some people call double rotation,
+这就是某些人所说的双向旋转
+
+853
+00:39:58,599 --> 00:40:01,369
+but I like to call it two rotations.
+但我喜欢称之为两次轮换。 
+
+854
+00:40:01,369 --> 00:40:03,686
+It's whatever you prefer.
+随便你。 
+
+855
+00:40:03,686 --> 00:40:05,019
+It's not really a new operation.
+这不是真正的新操作。 
+
+856
+00:40:05,019 --> 00:40:06,789
+It's just doing two rotations.
+它只是做两个旋转。 
+
+857
+00:40:06,789 --> 00:40:08,009
+So that's an example.
+这就是一个例子。 
+
+858
+00:40:08,010 --> 00:40:09,460
+Let's do the general case.
+让我们来做一个一般的例子。 
+
+859
+00:40:09,460 --> 00:40:11,164
+It's no harder.
+没什么难的。 
+
+860
+00:40:11,164 --> 00:40:13,130
+You might say, oh, gosh, why do you do two examples?
+您可能会说，哦，天哪，为什么要举两个例子？ 
+
+861
+00:40:13,329 --> 00:40:14,750
+Well, because they were different.
+好吧，因为它们是不同的。 
+
+862
+00:40:14,750 --> 00:40:16,541
+And they're are two cases on the algorithm.
+这是算法的两种情况。 
+
+863
+00:40:16,541 --> 00:40:18,190
+You need to know both of them.
+您需要了解他们两个。 
+
+864
+00:40:18,190 --> 00:40:21,161
+OK, so AVL insert.
+ OK，所以插入AVL。 
+
+865
+00:40:21,161 --> 00:40:21,659
+Here we go.
+开始了。 
+
+866
+00:40:21,659 --> 00:40:22,699
+Fix AVL property.
+修复AVL属性。 
+
+867
+00:40:22,699 --> 00:40:33,458
+
+
+
+868
+00:40:33,458 --> 00:40:42,500
+I'm just going to call this from the changed node up.
+我只是从更改后的节点开始调用它。 
+
+869
+00:40:42,500 --> 00:40:44,900
+So the one thing that's missing from these examples
+因此，这些示例中缺少的一件事
+
+870
+00:40:44,900 --> 00:40:47,960
+is that you might have to do more than two rotations.
+是您可能必须做两次以上的旋转。 
+
+871
+00:40:48,159 --> 00:40:51,089
+What we did was look at the lowest violation of the AVL
+我们所做的是查看对AVL的最低违反
+
+872
+00:40:51,090 --> 00:40:52,324
+property and we fixed it.
+财产，我们将其修复。 
+
+873
+00:40:52,523 --> 00:40:53,940
+When we do that, there's still may
+当我们这样做时，仍然可能
+
+874
+00:40:53,940 --> 00:40:58,840
+be violations higher up, because when you add a node,
+是更高级别的违规，因为当您添加节点时， 
+
+875
+00:40:58,840 --> 00:41:00,420
+you change the height of this subtree,
+您更改此子树的高度， 
+
+876
+00:41:00,619 --> 00:41:02,911
+the height of this subtree, the height of this subtree,
+这个子树的高度，这个子树的高度， 
+
+877
+00:41:02,911 --> 00:41:04,840
+and the height of this subtree, potentially.
+以及该子树的高度。 
+
+878
+00:41:04,840 --> 00:41:07,170
+What happened in these cases when I was done,
+在这些情况下，当我做完了之后， 
+
+879
+00:41:07,170 --> 00:41:08,666
+what I did fixed one violation.
+我所做的解决了一个违规问题。 
+
+880
+00:41:08,666 --> 00:41:09,500
+They were all fixed.
+他们都是固定的。 
+
+881
+00:41:09,500 --> 00:41:13,920
+But in general, there might be several violations up the tree.
+但总的来说，树上可能存在一些违规情况。 
+
+882
+00:41:13,920 --> 00:41:16,510
+So that's what we do.
+这就是我们要做的。 
+
+883
+00:41:16,510 --> 00:41:20,440
+
+
+
+884
+00:41:20,440 --> 00:41:22,000
+Yeah, I'll leave it at that.
+是的，我会保留它。 
+
+885
+00:41:22,000 --> 00:41:25,510
+
+
+
+886
+00:41:25,510 --> 00:41:33,585
+So suppose x is the lowest node that is not AVL.
+因此，假设x是不是AVL的最低节点。 
+
+887
+00:41:33,784 --> 00:41:40,878
+
+
+
+888
+00:41:40,878 --> 00:41:42,920
+The way we find that node is we start at the node
+找到该节点的方式是从该节点开始
+
+889
+00:41:42,920 --> 00:41:44,039
+that we changed.
+我们改变了。 
+
+890
+00:41:44,039 --> 00:41:45,800
+We check if that's OK.
+我们检查是否可以。 
+
+891
+00:41:45,800 --> 00:41:50,900
+We update the heights as we go up using our simple rule.
+我们使用简单的规则在上升时更新高度。 
+
+892
+00:41:50,900 --> 00:41:55,119
+And that's actually not our simple rule, but it's erased.
+这实际上不是我们的简单规则，但是已被删除。 
+
+893
+00:41:55,119 --> 00:41:57,625
+We update the height based on the heights of its children.
+我们根据其子代的高度更新高度。 
+
+894
+00:41:57,625 --> 00:41:59,000
+And you keep walking up until you
+然后你一直走直到你
+
+895
+00:41:59,000 --> 00:42:04,010
+see, oh, the left is twice, two times-- or not two times,
+哦，左边是两次，两次-或不是两次， 
+
+896
+00:42:04,010 --> 00:42:07,670
+but plus 2 larger than the left, or vice versa.
+但比左边大2，反之亦然。 
+
+897
+00:42:07,869 --> 00:42:10,230
+Then you say, oh, that's bad.
+然后你说，哦，那很不好。 
+
+898
+00:42:10,230 --> 00:42:12,980
+And so we fix it.
+因此，我们对其进行了修复。 
+
+899
+00:42:12,980 --> 00:42:14,059
+Yeah, question.
+是的，问题。 
+
+900
+00:42:14,059 --> 00:42:16,894
+AUDIENCE: So here we continue to [INAUDIBLE].
+听众：所以在这里我们继续[听不清]。 
+
+901
+00:42:16,894 --> 00:42:17,519
+PROFESSOR: Yes.
+教授：是的。 
+
+902
+00:42:17,519 --> 00:42:18,436
+AUDIENCE: [INAUDIBLE].
+听众：[听不清]。 
+
+903
+00:42:18,436 --> 00:42:22,902
+
+
+
+904
+00:42:23,101 --> 00:42:27,475
+add n to the level [INAUDIBLE] than 1.
+将n加到[音频不清晰]等级上，而不是1。 
+
+905
+00:42:27,476 --> 00:42:30,690
+So add [INAUDIBLE].
+因此，添加[音频不清晰]。 
+
+906
+00:42:30,889 --> 00:42:34,250
+PROFESSOR: AVL property's not about levels.
+教授：AVL属性与级别无关。 
+
+907
+00:42:34,250 --> 00:42:37,000
+It's about left subtrees and right subtrees.
+它是关于左子树和右子树的。 
+
+908
+00:42:37,000 --> 00:42:39,719
+So the trouble is that 65-- you have a left subtree, which
+所以麻烦是65-您有一个左子树， 
+
+909
+00:42:39,719 --> 00:42:44,250
+has height 2-- or sorry, height 1, I guess--
+身高为2-或抱歉，身高为1- 
+
+910
+00:42:44,250 --> 00:42:47,380
+because the longest path from here to a leaf is 1.
+因为从这里到叶子的最长路径是1。 
+
+911
+00:42:47,380 --> 00:42:49,630
+The right subtree has height negative 1
+右子树的高度为负1 
+
+912
+00:42:49,630 --> 00:42:50,750
+because it doesn't exist.
+因为它不存在。 
+
+913
+00:42:50,750 --> 00:42:51,809
+So it's one versus negative 1.
+因此，它是一对负1。 
+
+914
+00:42:51,809 --> 00:42:53,351
+So that's why there's a double arrow.
+这就是为什么有一个双箭头。 
+
+915
+00:42:53,351 --> 00:42:53,940
+Yeah, good to ask.
+是的，很好问。 
+
+916
+00:42:54,139 --> 00:42:56,029
+It's weird with the negative 1s.
+负1怪异。 
+
+917
+00:42:56,030 --> 00:42:58,360
+That's also why I wanted to define those negative 1s to be
+这就是为什么我想将那些负1定义为
+
+918
+00:42:58,559 --> 00:43:02,420
+there, so the AVL property is easier to state.
+在那里，因此AVL属性更易于陈述。 
+
+919
+00:43:02,420 --> 00:43:04,980
+Other questions?
+还有其他问题吗？ 
+
+920
+00:43:05,179 --> 00:43:07,569
+All right.
+好吧。 
+
+921
+00:43:07,570 --> 00:43:08,070
+Good.
+好。 
+
+922
+00:43:08,070 --> 00:43:10,809
+I think I want a symmetry assumption here.
+我想在这里要一个对称的假设。 
+
+923
+00:43:10,809 --> 00:43:21,750
+
+
+
+924
+00:43:21,750 --> 00:43:24,050
+I don't know why I wrote right of x.
+我不知道为什么我写x的权利。 
+
+925
+00:43:24,050 --> 00:43:28,610
+I guess in modern days we write x dot right.
+我猜想在现代，我们会在右边写x点。 
+
+926
+00:43:28,809 --> 00:43:31,019
+Same thing.
+一样。 
+
+927
+00:43:31,019 --> 00:43:34,090
+OK, I'm going to assume that the right child is the heavier
+好吧，我假设合适的孩子较重
+
+928
+00:43:34,090 --> 00:43:37,150
+one like we did before.
+一个像我们以前做的。 
+
+929
+00:43:37,349 --> 00:43:38,119
+Could be the left.
+可能是左边。 
+
+930
+00:43:38,119 --> 00:43:39,431
+It's symmetric.
+它是对称的。 
+
+931
+00:43:39,431 --> 00:43:40,179
+It doesn't matter.
+没关系
+
+932
+00:43:40,179 --> 00:43:56,949
+
+
+
+933
+00:43:56,949 --> 00:43:58,699
+So now there are two cases, like I said.
+所以现在有两种情况，就像我说的那样。 
+
+934
+00:43:58,699 --> 00:44:14,569
+
+
+
+935
+00:44:14,570 --> 00:44:16,039
+I'm going to use this term right heavy
+我要用这个词很重
+
+936
+00:44:16,239 --> 00:44:17,489
+because it's super convenient.
+因为它超级方便。 
+
+937
+00:44:17,489 --> 00:44:22,734
+
+
+
+938
+00:44:22,735 --> 00:44:24,110
+OK, right heavy is what I've been
+好吧，我一直很沉重
+
+939
+00:44:24,110 --> 00:44:26,039
+drawing by a descending right arrow.
+用向下的向右箭头绘制。 
+
+940
+00:44:26,039 --> 00:44:29,279
+Balance is what I've been drawing by a horizontal line.
+平衡是我一直在画的水平线。 
+
+941
+00:44:29,280 --> 00:44:32,440
+OK, so we're just distinguishing between these two cases.
+好的，所以我们只区分这两种情况。 
+
+942
+00:44:32,440 --> 00:44:36,000
+This turns out to be the easy case.
+事实证明这很简单。 
+
+943
+00:44:36,000 --> 00:44:43,226
+So we have x, y, a, b, c.
+因此我们有x，y，a，b，c。 
+
+944
+00:44:43,226 --> 00:44:44,809
+Why are we looking at the right child?
+我们为什么要看合适的孩子？ 
+
+945
+00:44:44,809 --> 00:44:47,730
+Because we assumed that the right one is higher, so that x
+因为我们假设正确的一个较高，所以x 
+
+946
+00:44:47,730 --> 00:44:49,380
+was right heavy.
+是沉重的。 
+
+947
+00:44:49,380 --> 00:44:52,190
+So this subtree as I've drawn it is higher than the left one
+所以我绘制的这棵子树比左边的树高
+
+948
+00:44:52,190 --> 00:44:55,039
+by 2, in fact.
+减2，实际上。 
+
+949
+00:44:55,039 --> 00:44:59,800
+And what we do in this case is right rotate of x.
+在这种情况下，我们要做的是x的右旋转。 
+
+950
+00:44:59,800 --> 00:45:06,961
+And so we get x, y, a, b, c.
+这样我们得到x，y，a，b，c。 
+
+951
+00:45:07,161 --> 00:45:09,369
+I could have drawn this no matter what case we're in,
+不管我们在什么情况下我都可以画这个
+
+952
+00:45:09,369 --> 00:45:12,150
+so we need to check this actually works.
+因此我们需要检查它是否确实有效。 
+
+953
+00:45:12,150 --> 00:45:13,349
+That's the interesting part.
+那是有趣的部分。 
+
+954
+00:45:13,349 --> 00:45:15,170
+And that's over here.
+在那边。 
+
+955
+00:45:15,170 --> 00:45:17,500
+
+
+
+956
+00:45:17,699 --> 00:45:21,449
+OK, so I said x is right heavy, in fact doubly so.
+好的，所以我说x很重，实际上是双重的。 
+
+957
+00:45:21,449 --> 00:45:25,250
+y is either right heavy or balanced.
+ y要么很重，要么平衡。 
+
+958
+00:45:25,250 --> 00:45:28,260
+Let's start with right heavy.
+让我们从权重开始。 
+
+959
+00:45:28,260 --> 00:45:33,710
+So when we do this rotation, what happens to the heights?
+因此，当我们进行旋转时，高度会发生什么？ 
+
+960
+00:45:33,710 --> 00:45:39,431
+Well, it's hard to tell.
+好吧，这很难说。 
+
+961
+00:45:39,431 --> 00:45:41,929
+It's a lot easier to think about what the actual heights are
+考虑实际高度要容易得多
+
+962
+00:45:41,929 --> 00:45:43,440
+than just these arrows.
+不仅仅是这些箭头。 
+
+963
+00:45:43,440 --> 00:45:45,030
+So let's suppose x has height k.
+因此，假设x的高度为k。 
+
+964
+00:45:45,030 --> 00:45:46,070
+That's pretty generic.
+那是很普通的。 
+
+965
+00:45:46,070 --> 00:45:48,440
+
+
+
+966
+00:45:48,639 --> 00:45:50,230
+And it's right heavy, so that means
+而且很重，所以这意味着
+
+967
+00:45:50,230 --> 00:45:54,449
+the y has height k minus 1.
+ y的高度k减去1。 
+
+968
+00:45:54,449 --> 00:45:58,619
+And then this is right heavy, so this has height k minus 2.
+然后这很重，所以它的高度k减去2。 
+
+969
+00:45:58,619 --> 00:46:01,465
+And this is something smaller then k minus 2.
+这比k减去2小一些。 
+
+970
+00:46:01,465 --> 00:46:03,866
+In fact, because this is AVL, we assume
+实际上，因为这是AVL，我们假设
+
+971
+00:46:03,867 --> 00:46:05,250
+that x was the lowest that is not AVL.
+ x是不是AVL的最低值。 
+
+972
+00:46:05,449 --> 00:46:07,500
+So y is AVL.
+ y是AVL。 
+
+973
+00:46:07,500 --> 00:46:10,920
+And so this is going to be k minus 3,
+所以这将是k减3， 
+
+974
+00:46:10,920 --> 00:46:15,155
+and this is going to be k minus 3 because these differ by 2.
+这将是k减去3，因为它们相差2。 
+
+975
+00:46:15,155 --> 00:46:17,030
+You can prove by a simple induction you never
+您可以通过简单的归纳证明您从未
+
+976
+00:46:17,030 --> 00:46:21,110
+get more than 2 out of whack because we're just adding 1,
+从中获得超过2的收益，因为我们只增加1， 
+
+977
+00:46:21,309 --> 00:46:22,469
+off by 1.
+减1。 
+
+978
+00:46:22,469 --> 00:46:23,899
+So we got off by 2.
+所以我们到了2点下车。 
+
+979
+00:46:23,900 --> 00:46:25,280
+So this is the bad situation.
+所以这是糟糕的情况。 
+
+980
+00:46:25,280 --> 00:46:27,710
+Now we can just update the heights over here.
+现在我们可以更新这里的高度。 
+
+981
+00:46:27,710 --> 00:46:32,769
+So k minus 3 for a, k minus 3 for b, k minus 2 for c.
+因此，a的k减3，b的k减3，c的k减2。 
+
+982
+00:46:32,769 --> 00:46:35,420
+Those don't change because we didn't touch those trees,
+那些不会改变，因为我们没有碰到那些树， 
+
+983
+00:46:35,420 --> 00:46:38,050
+and height is about going down, not up.
+高度是下降而不是上升。 
+
+984
+00:46:38,050 --> 00:46:43,190
+And so this becomes k minus 2, and this becomes k minus 1.
+所以这变成k减去2，这变成k减去1。 
+
+985
+00:46:43,190 --> 00:46:45,570
+And so we changed the height of the root,
+因此，我们更改了根的高度， 
+
+986
+00:46:45,570 --> 00:46:47,460
+but now you can see that life is good.
+但现在您可以看到生活是美好的。 
+
+987
+00:46:47,460 --> 00:46:50,280
+This is now balanced between k minus 3 and k minus 3.
+现在，它在k负3和k负3之间平衡。 
+
+988
+00:46:50,280 --> 00:46:53,610
+This is now balanced between k minus 2 and k minus 2.
+现在，它在k负2和k负2之间平衡。 
+
+989
+00:46:53,809 --> 00:46:56,289
+And now the parent of y may be messed up,
+现在y的父母可能被搞砸了， 
+
+990
+00:46:56,289 --> 00:47:00,050
+and that's why after this we go to the parent of y,
+这就是为什么之后我们转到y的父级， 
+
+991
+00:47:00,050 --> 00:47:02,300
+see if it's messed up, but keep working our way up.
+看看是否搞砸了，但请继续努力。 
+
+992
+00:47:02,300 --> 00:47:04,630
+
+
+
+993
+00:47:04,829 --> 00:47:05,519
+But it worked.
+但这行得通。 
+
+994
+00:47:05,519 --> 00:47:08,219
+
+
+
+995
+00:47:08,219 --> 00:47:10,099
+And in the interest of time, I will not
+为了节省时间，我不会
+
+996
+00:47:10,099 --> 00:47:12,789
+check the case where y is balanced,
+检查y是否平衡的情况， 
+
+997
+00:47:12,789 --> 00:47:14,400
+but it works out, too.
+但是也可以。 
+
+998
+00:47:14,400 --> 00:47:16,164
+And see the notes.
+并查看注释。 
+
+999
+00:47:16,164 --> 00:47:18,670
+
+
+
+1000
+00:47:18,670 --> 00:47:53,159
+So the other case is where we do two rotations.
+因此，另一种情况是我们进行两次旋转。 
+
+1001
+00:47:53,159 --> 00:47:58,670
+And in general, so here x was doubly right heavy.
+总的来说，这里的x非常重。 
+
+1002
+00:47:58,670 --> 00:48:03,010
+And the else case is when the right child
+否则的情况是合适的孩子
+
+1003
+00:48:03,010 --> 00:48:06,650
+of x, which I'm going to call z here, is left heavy.
+ x的值（这里我将其称为z）很重。 
+
+1004
+00:48:06,849 --> 00:48:09,589
+That's the one remaining situation.
+那是剩下的一种情况。 
+
+1005
+00:48:09,590 --> 00:48:11,420
+You do the same thing, and you check
+您做同样的事情，然后检查
+
+1006
+00:48:11,619 --> 00:48:13,559
+that right rotating and left rotating, which
+右旋转和左旋转， 
+
+1007
+00:48:13,559 --> 00:48:18,210
+makes the nice picture, which is x, y, z,
+制作漂亮的图片，它是x，y，z， 
+
+1008
+00:48:18,210 --> 00:48:22,530
+actually balances everything and you restore the AVL property.
+实际上平衡了所有内容，并且您恢复了AVL属性。 
+
+1009
+00:48:22,530 --> 00:48:26,670
+So again, check the notes on that.
+因此，再次检查该注释。 
+
+1010
+00:48:26,670 --> 00:48:29,375
+I have a couple minutes left, and instead I'd
+我还剩几分钟，相反，我会
+
+1011
+00:48:29,375 --> 00:48:31,000
+like to tell you a little bit about how
+想告诉您一些有关
+
+1012
+00:48:31,000 --> 00:48:32,679
+this fits into big-picture land.
+这适合大片土地。 
+
+1013
+00:48:32,679 --> 00:48:38,106
+
+
+
+1014
+00:48:38,106 --> 00:48:39,440
+Two things I want to talk about.
+我想谈两件事。 
+
+1015
+00:48:39,440 --> 00:48:43,179
+One is you could use this, of course,
+一个是您当然可以使用
+
+1016
+00:48:43,179 --> 00:48:48,669
+to sort, which is, if you want to sort n numbers,
+进行排序，也就是说，如果您要对n个数字进行排序， 
+
+1017
+00:48:48,670 --> 00:48:54,900
+you insert them and you do in-order traversal.
+您插入它们并进行有序遍历。 
+
+1018
+00:48:54,900 --> 00:48:58,539
+
+
+
+1019
+00:48:58,739 --> 00:49:01,059
+How long does this take?
+这需要多长时间？ 
+
+1020
+00:49:01,059 --> 00:49:05,369
+In-order traversal takes linear time.
+有序遍历需要线性时间。 
+
+1021
+00:49:05,369 --> 00:49:08,369
+That's the sense in which we're storing things in sorted order.
+这就是我们按排序顺序存储事物的意义。 
+
+1022
+00:49:08,369 --> 00:49:12,900
+Inserting n items-- well, each insert takes h time,
+插入n项-嗯，每次插入需要h时间， 
+
+1023
+00:49:12,900 --> 00:49:15,139
+but now we're guaranteed that h is order log n.
+但是现在我们保证h是订单日志n。 
+
+1024
+00:49:15,139 --> 00:49:20,460
+So all the insertions take log n time each, n log n total.
+因此，所有插入操作每次花费log n次，总共花费n log n次。 
+
+1025
+00:49:20,460 --> 00:49:23,389
+So this is yet another way to sort n items in n log n time,
+所以这是另一种在n log n时间内对n个项目进行排序的方法， 
+
+1026
+00:49:23,389 --> 00:49:26,799
+in some ways the most powerful way.
+在某些方面是最强大的方式。 
+
+1027
+00:49:26,800 --> 00:49:29,400
+We've seen heaps, and we've seen merge sort.
+我们已经看到了堆，也看到了合并排序。 
+
+1028
+00:49:29,400 --> 00:49:31,079
+They all sort.
+他们都排序。 
+
+1029
+00:49:31,079 --> 00:49:35,710
+Heaps let you do two operations, insert and delete min, which
+堆让您执行两项操作，即插入和删除最小值，其中
+
+1030
+00:49:35,710 --> 00:49:39,750
+a lot of times is all you care about, like in p set two.
+很多时候就是您所关心的，例如在第二组中。 
+
+1031
+00:49:39,750 --> 00:49:42,920
+But these guys, AVL trees, let you
+但是这些家伙，AVL树，让您
+
+1032
+00:49:42,920 --> 00:49:47,130
+do insert, delete, and delete min.
+插入，删除和删除最小值。 
+
+1033
+00:49:47,130 --> 00:49:49,360
+So they're the same in those senses,
+所以它们在这些意义上是相同的， 
+
+1034
+00:49:49,360 --> 00:49:51,420
+but we have the new operation, which
+但是我们有新的操作
+
+1035
+00:49:51,420 --> 00:49:56,570
+is that we can do find next larger and next smaller, aka
+是我们可以找到下一个更大和另一个较小的
+
+1036
+00:49:56,570 --> 00:49:58,880
+successor and predecessor.
+后继者和前任者。 
+
+1037
+00:49:59,079 --> 00:50:06,119
+So you can think about what we call an abstract data type.
+因此，您可以考虑一下我们所谓的抽象数据类型。 
+
+1038
+00:50:06,119 --> 00:50:08,869
+These are the operations that you support,
+这些是您支持的操作， 
+
+1039
+00:50:08,869 --> 00:50:11,259
+or that you're supposed to support.
+还是您应该支持的。 
+
+1040
+00:50:11,260 --> 00:50:14,344
+If you're into Java, you call this an interface.
+如果您喜欢Java，可以将其称为接口。 
+
+1041
+00:50:14,344 --> 00:50:16,010
+But this is an algorithmic specification
+但这是一个算法规范
+
+1042
+00:50:16,010 --> 00:50:18,630
+of what your data structure is supposed to do.
+您的数据结构应该做什么。 
+
+1043
+00:50:18,630 --> 00:50:24,079
+So we have operations like insert and delete.
+因此，我们有插入和删除之类的操作。 
+
+1044
+00:50:24,079 --> 00:50:26,632
+We have operations like find the min
+我们有诸如查找最低
+
+1045
+00:50:26,632 --> 00:50:30,840
+and things like successor and predecessor,
+以及诸如继任者和前任者之类的东西， 
+
+1046
+00:50:30,840 --> 00:50:34,309
+or next larger, next smaller.
+或下一个更大，下一个更小。 
+
+1047
+00:50:34,309 --> 00:50:38,000
+You can take any subset of these and it's an abstract data type.
+您可以采用这些的任何子集，它是一种抽象的数据类型。 
+
+1048
+00:50:38,000 --> 00:50:41,492
+Insert, delete, and min is called a priority queue.
+插入，删除和最小称为优先级队列。 
+
+1049
+00:50:41,492 --> 00:50:43,440
+So if you just take these first two,
+因此，如果您只拿前两个， 
+
+1050
+00:50:43,440 --> 00:50:46,500
+it's called a priority queue.
+它称为优先级队列。 
+
+1051
+00:50:46,500 --> 00:50:49,139
+And there are many priority queues.
+并且有许多优先级队列。 
+
+1052
+00:50:49,139 --> 00:50:52,309
+This is a generic thing that you might want to do.
+这是您可能想做的一般事情。 
+
+1053
+00:50:52,309 --> 00:50:55,070
+And then the data structure on the other side
+然后另一边的数据结构
+
+1054
+00:50:55,070 --> 00:50:57,019
+is how you actually do it.
+是您实际的操作方式。 
+
+1055
+00:50:57,019 --> 00:51:00,039
+This is the analog of the algorithm.
+这是该算法的类似物。 
+
+1056
+00:51:00,039 --> 00:51:01,369
+OK, this is the specification.
+好，这是规格。 
+
+1057
+00:51:01,369 --> 00:51:02,579
+You want a priority queue.
+您需要一个优先级队列。 
+
+1058
+00:51:02,579 --> 00:51:04,699
+One way to do it is a heap.
+一种方法是堆。 
+
+1059
+00:51:04,699 --> 00:51:08,219
+Another way to do it is an AVL tree.
+另一种方法是AVL树。 
+
+1060
+00:51:08,219 --> 00:51:09,719
+You could do it with a sorted array.
+您可以使用排序数组来完成。 
+
+1061
+00:51:09,719 --> 00:51:12,230
+You could do lots of sub-optimal things, too,
+您也可以做很多次优的事情， 
+
+1062
+00:51:12,230 --> 00:51:14,949
+but in particular, heaps get these two operations.
+但特别是，堆会执行这两个操作。 
+
+1063
+00:51:14,949 --> 00:51:17,769
+If you want all three, you basically
+如果要全部三个，基本上
+
+1064
+00:51:17,769 --> 00:51:20,009
+need a balanced binary search tree.
+需要一个平衡的二叉搜索树。 
+
+1065
+00:51:20,010 --> 00:51:23,530
+
+
+
+1066
+00:51:23,530 --> 00:51:26,010
+There are probably a dozen balanced binary search trees
+可能有一打平衡的二叉搜索树
+
+1067
+00:51:26,010 --> 00:51:28,480
+out there, at least a dozen balanced search trees,
+那里，至少有一打平衡的搜索树， 
+
+1068
+00:51:28,679 --> 00:51:30,369
+not all binary.
+并非全部二进制。 
+
+1069
+00:51:30,369 --> 00:51:31,759
+They all achieve log n.
+它们都达到log n。 
+
+1070
+00:51:31,760 --> 00:51:32,789
+So it doesn't really matter.
+因此，这并不重要。 
+
+1071
+00:51:32,989 --> 00:51:35,629
+There are various practical issues, constant factors,
+存在各种实际问题，恒定因素， 
+
+1072
+00:51:35,630 --> 00:51:36,480
+things like that.
+像这样的东西。 
+
+1073
+00:51:36,679 --> 00:51:39,259
+The main reason you prefer a heap is that it's in place.
+您更喜欢堆的主要原因是它已经就位。 
+
+1074
+00:51:39,260 --> 00:51:40,795
+It doesn't use any extra space.
+它不使用任何多余的空间。 
+
+1075
+00:51:40,795 --> 00:51:42,670
+Here, you've got pointers all over the place.
+在这里，您到处都有指针。 
+
+1076
+00:51:42,670 --> 00:51:46,079
+You lose a constant factor in space.
+您在空间上失去了不变的因素。 
+
+1077
+00:51:46,079 --> 00:51:47,679
+But from a theoretical standpoint,
+但是从理论上讲
+
+1078
+00:51:47,679 --> 00:51:49,387
+if you don't care about constant factors,
+如果您不在乎恒定因素， 
+
+1079
+00:51:49,387 --> 00:51:53,759
+AVL trees are really good because they get everything
+ AVL树真的很好，因为它们可以得到一切
+
+1080
+00:51:53,760 --> 00:51:56,480
+that we've seen so far and log n.
+到目前为止我们已经看到并登录n。 
+
+1081
+00:51:56,679 --> 00:52:01,679
+And I'll stop there.
+我会停在那里。 
+

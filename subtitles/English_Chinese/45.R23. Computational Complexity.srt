@@ -1,0 +1,5020 @@
+﻿1
+00:00:00,000 --> 00:00:00,080
+
+
+
+2
+00:00:00,080 --> 00:00:01,800
+The following content is provided
+提供以下内容
+
+3
+00:00:01,800 --> 00:00:04,040
+under a Creative Commons license.
+根据知识共享许可。 
+
+4
+00:00:04,040 --> 00:00:06,689
+Your support will help MIT OpenCourseWare continue
+您的支持将帮助MIT OpenCourseWare继续
+
+5
+00:00:06,889 --> 00:00:10,740
+to offer high quality educational resources for free.
+免费提供高质量的教育资源。 
+
+6
+00:00:10,740 --> 00:00:13,349
+To make a donation or view additional materials
+捐款或查看其他材料
+
+7
+00:00:13,349 --> 00:00:17,236
+from hundreds of MIT courses, visit MIT OpenCourseWare
+从数百门麻省理工学院的课程中，访问MIT OpenCourseWare 
+
+8
+00:00:17,236 --> 00:00:17,861
+at ocw.mit.edu.
+在ocw.mit.edu。 
+
+9
+00:00:17,861 --> 00:00:22,271
+
+
+
+10
+00:00:22,271 --> 00:00:23,729
+PROFESSOR: Computational complexity
+教授：计算复杂度
+
+11
+00:00:23,730 --> 00:00:27,167
+is basically about how hard is a problem, right?
+基本上是关于问题有多难，对吧？ 
+
+12
+00:00:27,167 --> 00:00:29,000
+There are some problems that are really easy
+有些问题真的很容易
+
+13
+00:00:29,000 --> 00:00:31,309
+and some problems that are really hard.
+还有一些非常困难的问题。 
+
+14
+00:00:31,309 --> 00:00:34,129
+And Eric drew this line on the board
+埃里克在黑板上画了这条线
+
+15
+00:00:34,130 --> 00:00:37,600
+where you have really easy on the left
+左边真的很方便
+
+16
+00:00:37,600 --> 00:00:38,920
+and really hard on the right.
+而且真的很难在右边。 
+
+17
+00:00:38,920 --> 00:00:41,990
+
+
+
+18
+00:00:41,990 --> 00:00:44,630
+What's the hardest problem that we can possibly have?
+我们可能遇到的最困难的问题是什么？ 
+
+19
+00:00:44,630 --> 00:00:47,822
+
+
+
+20
+00:00:47,822 --> 00:00:48,989
+AUDIENCE: It was chess, right?
+听众：是国际象棋吧？ 
+
+21
+00:00:49,189 --> 00:00:50,979
+Or something like that?
+或类似的东西？ 
+
+22
+00:00:50,979 --> 00:00:53,783
+PROFESSOR: No, there's something beyond chess.
+教授：不，国际象棋之外还有其他东西。 
+
+23
+00:00:53,783 --> 00:00:54,949
+AUDIENCE: A halting problem?
+听众：一个停顿的问题？ 
+
+24
+00:00:54,950 --> 00:00:55,256
+PROFESSOR: Halting problem.
+教授：暂停问题。 
+
+25
+00:00:55,256 --> 00:00:55,881
+AUDIENCE: Yeah.
+听众：是的。 
+
+26
+00:00:55,881 --> 00:00:56,600
+PROFESSOR: Yep.
+教授：是的。 
+
+27
+00:00:56,600 --> 00:00:58,530
+Halting problem is somewhere here.
+暂停问题在这里。 
+
+28
+00:00:58,530 --> 00:01:03,829
+
+
+
+29
+00:01:03,829 --> 00:01:08,709
+So what's the best solution for the halting problem?
+那么，解决停顿问题的最佳解决方案是什么？ 
+
+30
+00:01:08,709 --> 00:01:10,006
+Running time.
+运行时间。 
+
+31
+00:01:10,006 --> 00:01:11,754
+AUDIENCE: It is exponential, or something?
+听众：是指数的，还是什么？ 
+
+32
+00:01:11,754 --> 00:01:13,331
+PROFESSOR: You'd wish.
+教授：您希望。 
+
+33
+00:01:13,331 --> 00:01:14,164
+AUDIENCE: Oh really?
+听众：真的吗？ 
+
+34
+00:01:14,165 --> 00:01:15,590
+It's not even exponential?
+它甚至不是指数？ 
+
+35
+00:01:15,590 --> 00:01:17,969
+AUDIENCE: I think there's like no solution.
+听众：我认为没有解决办法。 
+
+36
+00:01:17,969 --> 00:01:20,469
+PROFESSOR: There is no solution for the halting problem.
+教授：没有解决暂停问题的方法。 
+
+37
+00:01:20,469 --> 00:01:23,609
+No matter how much time, computers, and money you have,
+无论您有多少时间，电脑和金钱， 
+
+38
+00:01:23,609 --> 00:01:25,420
+you cannot solve the halting problem.
+您无法解决暂停问题。 
+
+39
+00:01:25,420 --> 00:01:27,079
+It's undesignable.
+这是无法设计的。 
+
+40
+00:01:27,079 --> 00:01:30,617
+So this is the worst kind of problem you can come up with.
+因此，这是您可能遇到的最糟糕的问题。 
+
+41
+00:01:30,617 --> 00:01:32,802
+AUDIENCE: What exactly is the halting problem?
+听众：暂停问题到底是什么？ 
+
+42
+00:01:32,802 --> 00:01:35,009
+PROFESSOR: So halting problem is given
+教授：因此提出了中止问题
+
+43
+00:01:35,209 --> 00:01:38,099
+a program in any representation that makes sense to you,
+一个对您有意义的程序， 
+
+44
+00:01:38,099 --> 00:01:41,679
+machine language, CE, assembly, parsing tree, whatever
+机器语言，CE，汇编，解析树等
+
+45
+00:01:41,680 --> 00:01:46,250
+you want, decide if it terminates or not.
+您需要确定它是否终止。 
+
+46
+00:01:46,250 --> 00:01:48,079
+Sounds really simple, right?
+听起来真的很简单，对吧？ 
+
+47
+00:01:48,079 --> 00:01:51,909
+Turns out there's a proof that says it's impossible to solve.
+事实证明，有证据表明无法解决。 
+
+48
+00:01:51,909 --> 00:01:54,899
+So you can't say will terminate or will not terminate.
+因此，您不能说将终止或不会终止。 
+
+49
+00:01:54,900 --> 00:01:58,164
+AUDIENCE: Well, but for some programs, it's like while true,
+听众：是的，但是对于某些程序，这就像是真实的， 
+
+50
+00:01:58,364 --> 00:02:00,289
+but there's no break.
+但没有休息。 
+
+51
+00:02:00,290 --> 00:02:02,251
+PROFESSOR: So Turing Machine.
+教授：图灵机。 
+
+52
+00:02:02,251 --> 00:02:02,750
+Yeah.
+是的
+
+53
+00:02:02,750 --> 00:02:04,957
+If you have a machine where you're not allowed loops,
+如果您有一台不允许循环的机器， 
+
+54
+00:02:04,957 --> 00:02:07,331
+then it's easy to know what's going to happen.
+那么很容易知道会发生什么。 
+
+55
+00:02:07,331 --> 00:02:09,088
+So you need to have a Turing machine, something
+所以你需要有一台图灵机
+
+56
+00:02:09,288 --> 00:02:10,809
+that allows loops.
+允许循环。 
+
+57
+00:02:10,810 --> 00:02:12,960
+So some instances are easy, right?
+所以有些实例很容易，对吧？ 
+
+58
+00:02:12,960 --> 00:02:14,840
+But for the general case of you have
+但是对于一般情况
+
+59
+00:02:14,840 --> 00:02:18,469
+to write a program that gets another program and outputs
+编写获取另一个程序并输出的程序
+
+60
+00:02:18,469 --> 00:02:21,550
+this bit, we don't know how to do that.
+这一点，我们不知道该怎么做。 
+
+61
+00:02:21,550 --> 00:02:24,590
+But we've proven that nobody will know how to do that,
+但是我们已经证明没有人会知道如何做到这一点， 
+
+62
+00:02:24,590 --> 00:02:26,826
+so we're OK with it.
+所以我们可以接受。 
+
+63
+00:02:26,826 --> 00:02:27,909
+So this means undecidable.
+因此，这意味着不确定。 
+
+64
+00:02:27,909 --> 00:02:30,949
+
+
+
+65
+00:02:30,949 --> 00:02:34,038
+We know that nobody will ever be able to solve this.
+我们知道没有人能够解决这个问题。 
+
+66
+00:02:34,038 --> 00:02:36,329
+So if you're given the halting problem on an interview,
+因此，如果在面试中遇到停顿问题， 
+
+67
+00:02:36,330 --> 00:02:38,442
+it's safe to laugh in the guy's face and tell them,
+可以笑着告诉他，这是安全的
+
+68
+00:02:38,641 --> 00:02:40,099
+why don't you show me how to do it?
+你为什么不告诉我怎么做？ 
+
+69
+00:02:40,099 --> 00:02:43,590
+
+
+
+70
+00:02:43,590 --> 00:02:46,000
+So what is better than undecidable?
+那么，什么比不确定还好呢？ 
+
+71
+00:02:46,199 --> 00:02:51,069
+There are these problems here that are outright impossible.
+这些问题在这里是完全不可能的。 
+
+72
+00:02:51,069 --> 00:02:54,055
+What's the next best thing?
+接下来最好的是什么？ 
+
+73
+00:02:54,056 --> 00:02:55,692
+AUDIENCE: Chess?
+听众：下棋？ 
+
+74
+00:02:55,891 --> 00:02:57,729
+I know chess is in there somewhere.
+我知道国际象棋在那儿。 
+
+75
+00:02:57,729 --> 00:02:59,429
+PROFESSOR: Chess is still here.
+教授：国际象棋还在这里。 
+
+76
+00:02:59,430 --> 00:03:02,939
+There's something harder than that.
+有比这更难的事情。 
+
+77
+00:03:03,139 --> 00:03:05,674
+AUDIENCE: Is it R, or something like that?
+听众：是R还是类似的东西？ 
+
+78
+00:03:05,675 --> 00:03:06,300
+PROFESSOR: Yup.
+教授：是的。 
+
+79
+00:03:06,300 --> 00:03:10,180
+
+
+
+80
+00:03:10,379 --> 00:03:13,019
+So this is the boundary for R and this whole thing
+所以这是R和整个事物的边界
+
+81
+00:03:13,020 --> 00:03:16,150
+is R. What R?
+是R。R是什么？ 
+
+82
+00:03:16,349 --> 00:03:19,109
+R is-- so if these are undecidable,
+ R是-因此，如果这些不确定， 
+
+83
+00:03:19,110 --> 00:03:20,430
+R means decidable, right?
+ R代表果断吧？ 
+
+84
+00:03:20,430 --> 00:03:25,849
+So you can write an algorithm that will compute the answer
+因此，您可以编写一种算法来计算答案
+
+85
+00:03:25,849 --> 00:03:29,210
+and do that in a finite amount of time.
+并在有限的时间内做到这一点。 
+
+86
+00:03:29,210 --> 00:03:31,490
+Will the world end before the algorithm ends?
+在算法结束之前世界会终结吗？ 
+
+87
+00:03:31,490 --> 00:03:33,180
+Maybe, who knows.
+也许，谁知道。 
+
+88
+00:03:33,180 --> 00:03:35,210
+But at least there's a finite amount of time,
+但是至少有有限的时间， 
+
+89
+00:03:35,210 --> 00:03:39,189
+so the problem can be solved somehow.
+因此问题可以通过某种方式解决。 
+
+90
+00:03:39,189 --> 00:03:40,050
+That means R.
+那就是R。 
+
+91
+00:03:40,050 --> 00:03:43,770
+AUDIENCE: R is like, real, like it's not.
+听众：R是真实的，而不是真实的。 
+
+92
+00:03:43,770 --> 00:03:44,590
+PROFESSOR: Real, OK.
+教授：好的，好的。 
+
+93
+00:03:44,789 --> 00:03:47,359
+AUDIENCE: So like numbers, like, you know, real numbers--
+听众：就像数字，就像实数一样， 
+
+94
+00:03:47,360 --> 00:03:49,560
+PROFESSOR: So you know it actually comes from recursive,
+教授：所以您知道它实际上来自递归， 
+
+95
+00:03:49,759 --> 00:03:52,319
+because some old people decided that recursive
+因为有些老人认为递归
+
+96
+00:03:52,319 --> 00:03:55,819
+means it terminates at some point.
+表示它在某个时刻终止。 
+
+97
+00:03:55,819 --> 00:03:59,569
+This is really old school stuff, 1940.
+这是1940年真正的老派东西。 
+
+98
+00:03:59,569 --> 00:04:03,349
+So R actually stands for recursive.
+因此，R实际上代表递归。 
+
+99
+00:04:03,349 --> 00:04:06,710
+Just know that R means decidable.
+只需知道R表示可判定。 
+
+100
+00:04:06,710 --> 00:04:09,132
+Weird abbreviation, but oh well.
+奇怪的缩写，但是哦。 
+
+101
+00:04:09,132 --> 00:04:10,780
+AUDIENCE: I'll go with real.
+听众：我会讲真实的。 
+
+102
+00:04:10,780 --> 00:04:12,199
+PROFESSOR: OK.
+教授：好的。 
+
+103
+00:04:12,199 --> 00:04:12,829
+What's next?
+下一步是什么？ 
+
+104
+00:04:12,830 --> 00:04:16,000
+So some problems are in R. All the ones
+因此，R中存在一些问题。 
+
+105
+00:04:16,000 --> 00:04:19,230
+that we care about are in r.
+我们关心的是
+
+106
+00:04:19,230 --> 00:04:20,699
+So what's better than r?
+那么有什么比r好呢？ 
+
+107
+00:04:20,899 --> 00:04:22,929
+R means it's going to terminate at some point,
+ R表示它将在某个时刻终止， 
+
+108
+00:04:22,930 --> 00:04:24,949
+there is a running time for the problem.
+该问题有运行时间。 
+
+109
+00:04:24,949 --> 00:04:26,360
+What's the better than that?
+有什么比这更好的呢？ 
+
+110
+00:04:26,360 --> 00:04:28,180
+Exponential, OK.
+指数，好的。 
+
+111
+00:04:28,180 --> 00:04:30,709
+What does exponential mean?
+指数是什么意思？ 
+
+112
+00:04:30,709 --> 00:04:31,625
+AUDIENCE: Exponential?
+听众：指数？ 
+
+113
+00:04:31,625 --> 00:04:35,850
+
+
+
+114
+00:04:35,850 --> 00:04:36,990
+PROFESSOR: Yup.
+教授：是的。 
+
+115
+00:04:36,990 --> 00:04:40,302
+So the running time looks like what?
+那么运行时间看起来像什么？ 
+
+116
+00:04:40,302 --> 00:04:45,213
+AUDIENCE: 2 to the 10, or something constant to the n?
+听众：2到10，还是常数n？ 
+
+117
+00:04:45,213 --> 00:04:48,480
+2 to the n of the C?
+ 2到C的n？ 
+
+118
+00:04:48,480 --> 00:04:50,829
+PROFESSOR: For some constant C, right?
+教授：对于一些常数C，对吗？ 
+
+119
+00:04:51,029 --> 00:04:53,229
+So it's not just 2 to the n.
+因此，不仅仅是n的2。 
+
+120
+00:04:53,230 --> 00:04:54,930
+The moment you have a 2 to the n,
+当您的n等于2时， 
+
+121
+00:04:54,930 --> 00:04:56,310
+we're like, OK, if you're already
+我们想，好吧，如果您已经
+
+122
+00:04:56,310 --> 00:04:58,480
+in this bad of a situation, I don't
+在这种糟糕的情况下，我不会
+
+123
+00:04:58,480 --> 00:05:00,790
+care if this is a polynomial.
+注意这是否是一个多项式。 
+
+124
+00:05:00,790 --> 00:05:02,982
+I don't care if it's an n or n to the 100,
+我不在乎100是n还是n 
+
+125
+00:05:02,982 --> 00:05:04,240
+you're already pretty much screwed,
+你已经被搞砸了， 
+
+126
+00:05:04,439 --> 00:05:07,689
+you're not going to solve this before the world ends.
+您不会在世界终结之前解决这个问题。 
+
+127
+00:05:07,689 --> 00:05:09,978
+So that's what exponential means.
+这就是指数的意思。 
+
+128
+00:05:09,978 --> 00:05:11,769
+Going to solve it, but not before the world
+要解决它，但不是世界
+
+129
+00:05:11,769 --> 00:05:15,829
+ends for most practical problems.
+结束大多数实际问题。 
+
+130
+00:05:15,829 --> 00:05:18,955
+What's better than exponential?
+有什么比指数更好的？ 
+
+131
+00:05:18,956 --> 00:05:19,713
+AUDIENCE: NP.
+听众：NP。 
+
+132
+00:05:19,913 --> 00:05:25,178
+
+
+
+133
+00:05:25,178 --> 00:05:26,969
+PROFESSOR: OK, and before we talk about NP,
+教授：好的，在我们谈论NP之前， 
+
+134
+00:05:26,970 --> 00:05:28,680
+let's talk about the easy case, the problems
+让我们谈谈简单的情况，问题
+
+135
+00:05:28,879 --> 00:05:31,115
+that we've talked about all the time in the semester.
+这学期我们一直在谈论。 
+
+136
+00:05:31,115 --> 00:05:33,237
+AUDIENCE: May I ask you a stupid question?
+听众：我可以问你一个愚蠢的问题吗？ 
+
+137
+00:05:33,237 --> 00:05:35,867
+What does NP stand for?
+ NP代表什么？ 
+
+138
+00:05:35,867 --> 00:05:37,250
+PROFESSOR: It's not a stupid question.
+教授：这不是一个愚蠢的问题。 
+
+139
+00:05:37,449 --> 00:05:39,449
+It has a really hard to answer.
+这真的很难回答。 
+
+140
+00:05:39,449 --> 00:05:43,829
+So the one-sentence answer is NP stands
+所以一句话的答案是NP立场
+
+141
+00:05:43,829 --> 00:05:45,699
+for non deterministic binomial.
+用于非确定性二项式。 
+
+142
+00:05:45,699 --> 00:05:48,250
+And we're going to go over that at some point
+我们将在某个时候解决
+
+143
+00:05:48,250 --> 00:05:49,250
+in the next few minutes.
+在接下来的几分钟内。 
+
+144
+00:05:49,250 --> 00:06:04,480
+
+
+
+145
+00:06:04,480 --> 00:06:06,759
+OK, so what problems have we talked about?
+好，那么我们在谈论什么问题呢？ 
+
+146
+00:06:06,759 --> 00:06:08,810
+All the terms, except for one problem,
+所有条款，除了一个问题， 
+
+147
+00:06:08,810 --> 00:06:10,841
+for the knapsack problem, the entire term
+对于背包问题，整个学期
+
+148
+00:06:11,041 --> 00:06:12,625
+we talked about some sort of problems.
+我们谈到了一些问题。 
+
+149
+00:06:12,625 --> 00:06:15,769
+
+
+
+150
+00:06:15,769 --> 00:06:16,409
+Polynomial.
+多项式
+
+151
+00:06:16,410 --> 00:06:20,069
+These are the reasonably easy ones.
+这些是相当容易的。 
+
+152
+00:06:20,269 --> 00:06:32,829
+So polynomial problems are those where t of n is n to the C,
+所以多项式问题是那些n的t是C的n， 
+
+153
+00:06:32,829 --> 00:06:34,639
+so it's a binomial.
+所以这是一个二项式
+
+154
+00:06:34,639 --> 00:06:38,419
+The running time is a binomial in terms of the input sites.
+就输入站点而言，运行时间是二项式的。 
+
+155
+00:06:38,420 --> 00:06:40,050
+Why does this matter?
+为什么这么重要？ 
+
+156
+00:06:40,050 --> 00:06:42,930
+If you have a polynomial algorithm,
+如果您有多项式算法， 
+
+157
+00:06:42,930 --> 00:06:48,259
+than if you double the input, then the running time
+而不是如果您将输入加倍，那么运行时间
+
+158
+00:06:48,259 --> 00:06:52,870
+is going to be 2 to the C times n to the C.
+是C的2乘以C的n。 
+
+159
+00:06:52,870 --> 00:06:54,459
+So every time you double the input,
+因此，每次您将输入翻倍时， 
+
+160
+00:06:54,459 --> 00:06:57,509
+the running time will increase by a constant factor.
+运行时间将增加一个常数。 
+
+161
+00:06:57,509 --> 00:07:00,509
+And you know what that is.
+你知道那是什么。 
+
+162
+00:07:00,509 --> 00:07:04,319
+If your problem is exponential, then if you double the input,
+如果您的问题是指数级的，那么如果您将输入倍增， 
+
+163
+00:07:04,319 --> 00:07:08,180
+then the running time increases quadratically.
+然后运行时间将增加两倍。 
+
+164
+00:07:08,180 --> 00:07:09,990
+It's not a linear increase.
+这不是线性增长。 
+
+165
+00:07:09,990 --> 00:07:11,185
+Here it's a linear increase.
+这是线性增加。 
+
+166
+00:07:11,185 --> 00:07:14,889
+
+
+
+167
+00:07:14,889 --> 00:07:17,709
+The factor isn't 2, but it's still a linear increase.
+该因子不是2，但仍是线性增加。 
+
+168
+00:07:17,709 --> 00:07:20,609
+
+
+
+169
+00:07:20,610 --> 00:07:22,230
+Make sense?
+说得通？ 
+
+170
+00:07:22,230 --> 00:07:24,009
+So that's why we like these problems, at least
+这就是为什么我们至少喜欢这些问题的原因
+
+171
+00:07:24,209 --> 00:07:27,899
+we like them more than anything else.
+我们最喜欢它们。 
+
+172
+00:07:27,899 --> 00:07:30,359
+So polynomial problems are the nice and easy ones
+所以多项式问题是很好的和容易的问题
+
+173
+00:07:30,360 --> 00:07:33,740
+that we've talked about so far.
+到目前为止我们已经讨论过。 
+
+174
+00:07:33,740 --> 00:07:35,769
+What does NP stand for?
+ NP代表什么？ 
+
+175
+00:07:35,769 --> 00:07:39,257
+Give me a practical definition.
+给我一个实际的定义。 
+
+176
+00:07:39,257 --> 00:07:40,882
+AUDIENCE: You can check it [INAUDIBLE].
+听众：您可以检查它[听不清]。 
+
+177
+00:07:40,882 --> 00:07:46,350
+
+
+
+178
+00:07:46,350 --> 00:07:48,814
+PROFESSOR: OK, so NP means that we can write the verifier.
+教授：好的，所以NP表示我们可以编写验证程序。 
+
+179
+00:07:49,014 --> 00:07:52,659
+
+
+
+180
+00:07:52,660 --> 00:07:56,540
+I'm going to say exactly what you said with different words.
+我要用不同的话确切地说出你说的话。 
+
+181
+00:07:56,540 --> 00:07:58,439
+That takes a solution to the problem.
+这就解决了这个问题。 
+
+182
+00:07:58,439 --> 00:08:04,420
+
+
+
+183
+00:08:04,420 --> 00:08:08,949
+And of course, it has to think the input to the problem
+当然，它必须考虑问题的输入
+
+184
+00:08:09,149 --> 00:08:13,589
+and tells us is it correct or is it not correct.
+并告诉我们是正确还是不正确。 
+
+185
+00:08:13,589 --> 00:08:16,429
+
+
+
+186
+00:08:16,430 --> 00:08:20,079
+And this very fire is NP.
+而这就是NP。 
+
+187
+00:08:20,279 --> 00:08:22,019
+So the very fire runs in polynomial time.
+因此，非常之火在多项式时间内运行。 
+
+188
+00:08:22,019 --> 00:08:27,159
+
+
+
+189
+00:08:27,160 --> 00:08:27,660
+Yes.
+是。 
+
+190
+00:08:27,660 --> 00:08:30,800
+
+
+
+191
+00:08:30,800 --> 00:08:35,350
+So if the verifier runs in polynomial time,
+因此，如果验证程序以多项式时间运行， 
+
+192
+00:08:35,350 --> 00:08:38,070
+what's the solution size and what's the input size?
+解决方案的大小是多少，输入的大小是多少？ 
+
+193
+00:08:38,070 --> 00:08:42,282
+
+
+
+194
+00:08:42,282 --> 00:08:46,000
+AUDIENCE: I think the-- I mean, the solution said it's like 01,
+听众：我想-我的意思是，解决方案说它像01， 
+
+195
+00:08:46,000 --> 00:08:47,889
+right?
+对？ 
+
+196
+00:08:47,889 --> 00:08:49,354
+PROFESSOR: If we have decision problems.
+教授：如果我们有决策问题。 
+
+197
+00:08:49,554 --> 00:08:52,519
+
+
+
+198
+00:08:52,519 --> 00:08:54,460
+An algorithm that solves an NP problem.
+解决NP问题的算法。 
+
+199
+00:08:54,460 --> 00:08:56,700
+If you run it against the verifier,
+如果您针对验证程序运行它， 
+
+200
+00:08:56,700 --> 00:09:00,859
+also has to convince you that its answer is correct.
+还必须说服您它的答案是正确的。 
+
+201
+00:09:01,059 --> 00:09:04,419
+So the problems that we talked about in class
+所以我们在课堂上讨论的问题
+
+202
+00:09:04,419 --> 00:09:06,750
+were decidability problems where you have to say,
+是不得不说的可决定性问题， 
+
+203
+00:09:06,750 --> 00:09:08,000
+is it possible to do this?
+是否有可能做到这一点？ 
+
+204
+00:09:08,000 --> 00:09:09,413
+Yes or no.
+是还是不是。 
+
+205
+00:09:09,413 --> 00:09:10,830
+When you have a verifier with you,
+当您有验证者时， 
+
+206
+00:09:10,830 --> 00:09:13,750
+then you have to output a string that convinces the verifier
+那么您必须输出一个可以说服验证者的字符串
+
+207
+00:09:13,750 --> 00:09:16,710
+that your answer is correct.
+你的答案是正确的。 
+
+208
+00:09:16,710 --> 00:09:18,449
+So like if you have a problem that
+因此，如果您遇到问题
+
+209
+00:09:18,649 --> 00:09:23,970
+says-- if you have three sets, for example-- that says,
+说-例如，如果您有三套- 
+
+210
+00:09:23,970 --> 00:09:29,379
+given a logical expression, can you assign variable values such
+给定一个逻辑表达式，您可以分配变量值吗
+
+211
+00:09:29,379 --> 00:09:31,090
+that the expression is true?
+这个表达是真的吗？ 
+
+212
+00:09:31,090 --> 00:09:32,950
+If I say yes, what does that mean?
+如果我同意，那是什么意思？ 
+
+213
+00:09:32,950 --> 00:09:33,859
+That means nothing.
+那没什么。 
+
+214
+00:09:34,059 --> 00:09:37,139
+How do I convince you that my answer is correct?
+我如何说服您我的答案是正确的？ 
+
+215
+00:09:37,139 --> 00:09:39,970
+I will have to give you the assignment, right?
+我必须给你任务，对不对？ 
+
+216
+00:09:39,970 --> 00:09:42,960
+And then you can verify in polynomial time
+然后可以验证多项式时间
+
+217
+00:09:42,960 --> 00:09:46,580
+if my answer is right or not.
+如果我的答案正确与否。 
+
+218
+00:09:46,580 --> 00:09:49,240
+So the input to the verifier, this solution,
+因此，验证者的输入，此解决方案， 
+
+219
+00:09:49,240 --> 00:09:51,570
+is not necessarily the decision.
+不一定是决定。 
+
+220
+00:09:51,570 --> 00:09:52,990
+It's not just the bit, yes or no.
+不只是一点点，是或否。 
+
+221
+00:09:52,990 --> 00:09:56,720
+
+
+
+222
+00:09:56,720 --> 00:09:59,399
+So if the verifier runs in polynomial time,
+因此，如果验证程序以多项式时间运行， 
+
+223
+00:09:59,399 --> 00:10:01,600
+what's true about the problem input
+问题输入的真实情况是什么
+
+224
+00:10:01,600 --> 00:10:03,879
+and what's true about the problem output which
+问题输出到底是什么
+
+225
+00:10:03,879 --> 00:10:05,340
+becomes an input to the verifier?
+成为验证者的输入？ 
+
+226
+00:10:05,340 --> 00:10:12,440
+
+
+
+227
+00:10:12,440 --> 00:10:14,069
+They have to be polynomial in size.
+它们的大小必须是多项式。 
+
+228
+00:10:14,269 --> 00:10:15,990
+Otherwise, my algorithm wouldn't be
+否则，我的算法就不会
+
+229
+00:10:15,990 --> 00:10:17,509
+able to consume them fast enough.
+能够足够快地消耗它们。 
+
+230
+00:10:17,509 --> 00:10:21,840
+
+
+
+231
+00:10:21,840 --> 00:10:26,980
+So actually, polynomial means that the running time
+所以实际上，多项式意味着运行时间
+
+232
+00:10:26,980 --> 00:10:28,970
+is polynomial in the input size.
+是输入大小的多项式。 
+
+233
+00:10:28,970 --> 00:10:31,440
+So the input size is automatically all set.
+因此，输入大小会自动全部设置。 
+
+234
+00:10:31,440 --> 00:10:34,449
+But the solution has to be polynomial in the input size
+但是解决方案必须是输入大小的多项式
+
+235
+00:10:34,649 --> 00:10:35,149
+as well.
+也一样
+
+236
+00:10:35,149 --> 00:10:50,221
+
+
+
+237
+00:10:50,221 --> 00:10:51,929
+And if you're thinking decision problems,
+如果您在思考决策问题， 
+
+238
+00:10:51,929 --> 00:10:54,099
+you can be more rigorous and call this a proof.
+您可以更加严格，并将其称为证明。 
+
+239
+00:10:54,100 --> 00:11:04,740
+
+
+
+240
+00:11:04,740 --> 00:11:08,750
+So if this proof is binomial in the input size,
+因此，如果此证明在输入大小上是二项式的， 
+
+241
+00:11:08,750 --> 00:11:12,450
+then if I'm really, really lucky,
+如果我真的很幸运
+
+242
+00:11:12,450 --> 00:11:14,500
+I can take the input to a problem,
+我可以输入一个问题， 
+
+243
+00:11:14,500 --> 00:11:18,950
+and I can flip coins and use the corn results as bits,
+我可以掷硬币并将玉米结果用作碎屑， 
+
+244
+00:11:18,950 --> 00:11:22,219
+and put them together, and create the proof.
+并将它们放在一起，并创建证明。 
+
+245
+00:11:22,419 --> 00:11:27,149
+If I'm really, really lucky, I'll get the right proof.
+如果我真的真的很幸运，我将获得正确的证明。 
+
+246
+00:11:27,149 --> 00:11:29,179
+Chances of that happening almost zero,
+发生这种情况的几率几乎为零， 
+
+247
+00:11:29,179 --> 00:11:33,079
+but if I'm really, really lucky, conceptually I can get a proof.
+但是如果我真的很幸运，从概念上讲我可以得到证明。 
+
+248
+00:11:33,080 --> 00:11:37,750
+This is what a non-deterministic polynomial means.
+这就是非确定性多项式的含义。 
+
+249
+00:11:37,750 --> 00:11:40,169
+It means that if you have a magical machine where
+这意味着如果您有一台神奇的机器， 
+
+250
+00:11:40,169 --> 00:11:44,589
+you can flip a coin, and it will always be lucky,
+您可以掷硬币，这将永远是幸运的， 
+
+251
+00:11:44,590 --> 00:11:47,349
+then you can output the proof in polynomial time.
+然后您可以输出多项式时间的证明。 
+
+252
+00:11:47,549 --> 00:11:53,169
+
+
+
+253
+00:11:53,169 --> 00:11:54,039
+So far so good?
+到现在为止还挺好？ 
+
+254
+00:11:54,039 --> 00:11:57,829
+
+
+
+255
+00:11:57,830 --> 00:12:02,229
+So this definition of a machine that can flip random bits
+因此，对可以翻转随机位的机器的定义
+
+256
+00:12:02,429 --> 00:12:06,629
+is really useful, because we can use it to build a common sense
+真的很有用，因为我们可以用它来建立常识
+
+257
+00:12:06,629 --> 00:12:08,850
+proof that P is not NP.
+证明P不是NP。 
+
+258
+00:12:08,850 --> 00:12:11,870
+There is no real rigorous math proof that P's not NP.
+没有真正严格的数学证明P不是NP。 
+
+259
+00:12:11,870 --> 00:12:13,835
+That's worth a million dollars.
+值一百万美元。 
+
+260
+00:12:14,035 --> 00:12:16,219
+There is no proof that P equals NP.
+没有证据表明P等于NP。 
+
+261
+00:12:16,220 --> 00:12:19,029
+If you have proof that P equals NP, then
+如果您有证明P等于NP，那么
+
+262
+00:12:19,029 --> 00:12:20,610
+that's worth a lot more.
+这值得更多。 
+
+263
+00:12:20,610 --> 00:12:23,009
+And I will use that in the common sense proof
+我将在常识证明中使用它
+
+264
+00:12:23,009 --> 00:12:26,659
+that I'm going to show you now.
+我现在要告诉你。 
+
+265
+00:12:26,659 --> 00:12:33,449
+So we don't know if P is NP-- get it right-- if P is NP
+所以我们不知道P是否为NP-正确-P是否为NP 
+
+266
+00:12:33,450 --> 00:12:37,000
+or if P is not NP.
+或者如果P不是NP。 
+
+267
+00:12:37,000 --> 00:12:41,379
+This is an open problem, and there's at least $1 million
+这是一个悬而未决的问题，至少有100万美元
+
+268
+00:12:41,379 --> 00:12:44,139
+worth of prize money for it.
+值得的奖金。 
+
+269
+00:12:44,139 --> 00:12:47,090
+
+
+
+270
+00:12:47,090 --> 00:12:49,879
+Let's talk about an algorithm where
+让我们谈谈一种算法
+
+271
+00:12:49,879 --> 00:12:51,629
+if you would know-- so if you would
+如果您知道-如果您愿意
+
+272
+00:12:51,629 --> 00:12:55,620
+be able to solve NP problems in polynomial time,
+能够在多项式时间内解决NP问题， 
+
+273
+00:12:55,620 --> 00:12:59,090
+you would be able to make a lot of money.
+您将能够赚很多钱。 
+
+274
+00:12:59,090 --> 00:13:00,960
+A million dollars is nothing compared
+一百万美元可算不上什么
+
+275
+00:13:00,960 --> 00:13:02,903
+to what you could make if you could do that.
+如果可以做到的话
+
+276
+00:13:02,903 --> 00:13:04,570
+So I'm going to use that to convince you
+所以我要用它说服你
+
+277
+00:13:04,570 --> 00:13:07,795
+that nobody knows how to solve NP problems in P time.
+没有人知道如何在P时间内解决NP问题。 
+
+278
+00:13:07,995 --> 00:13:13,620
+
+
+
+279
+00:13:13,620 --> 00:13:15,460
+Suppose you want to do something really bad.
+假设您想做一些非常糟糕的事情。 
+
+280
+00:13:15,460 --> 00:13:18,370
+Suppose you want to impersonate a bank.
+假设您要模拟一个银行。 
+
+281
+00:13:18,370 --> 00:13:21,279
+So you guys probably imagine that banks nowadays
+所以你们可能会想像现在的银行
+
+282
+00:13:21,279 --> 00:13:22,709
+don't transfer money to each other
+不要互相转移钱
+
+283
+00:13:22,710 --> 00:13:26,209
+by sending trucks with gold bars.
+通过发送带有金条的卡车。 
+
+284
+00:13:26,409 --> 00:13:29,199
+They do that every once in awhile, but most of the time
+他们偶尔会这样做，但是大多数时候
+
+285
+00:13:29,200 --> 00:13:31,620
+the transfers happen very quickly over the internet.
+互联网上的转移非常迅速。 
+
+286
+00:13:31,620 --> 00:13:33,179
+So banks have a secure connection,
+因此银行之间建立了安全的连接， 
+
+287
+00:13:33,179 --> 00:13:35,765
+and they say, yo, give me a billion dollars.
+他们说，哟，给我十亿美元。 
+
+288
+00:13:35,765 --> 00:13:37,389
+I'll give it back to you in a few days.
+过几天我会把它还给你。 
+
+289
+00:13:37,389 --> 00:13:37,889
+Sure.
+当然。 
+
+290
+00:13:37,889 --> 00:13:39,320
+Done deal.
+木已成舟。 
+
+291
+00:13:39,320 --> 00:13:40,820
+Now imagine what you could do if you
+现在想象一下，如果您能做些什么
+
+292
+00:13:40,820 --> 00:13:43,490
+could impersonate one of those banks.
+可能冒充其中一家银行。 
+
+293
+00:13:43,490 --> 00:13:47,109
+Sweet happy life in some faraway place, right?
+在遥远的地方过着幸福的生活吧？ 
+
+294
+00:13:47,309 --> 00:13:50,159
+
+
+
+295
+00:13:50,159 --> 00:13:52,789
+What would it take to impersonate another bank?
+冒充另一家银行会怎样？ 
+
+296
+00:13:52,789 --> 00:13:58,679
+It turns out that the encryption algorithm that
+原来，加密算法
+
+297
+00:13:58,679 --> 00:14:02,419
+use to secure this links is an algorithm called RSA.
+用于保护此链接的安全性是一种称为RSA的算法。 
+
+298
+00:14:02,419 --> 00:14:04,069
+Do you guys remember that?
+你们还记得吗？ 
+
+299
+00:14:04,070 --> 00:14:04,719
+Heard about it?
+听说了？ 
+
+300
+00:14:04,919 --> 00:14:10,559
+
+
+
+301
+00:14:10,559 --> 00:14:14,529
+So in RSA, each party-- so each bank
+在RSA中，每一方-每家银行
+
+302
+00:14:14,529 --> 00:14:17,449
+has a secret key that consists of two numbers--
+有一个由两个数字组成的密钥- 
+
+303
+00:14:17,450 --> 00:14:20,339
+P and Q-- big prime numbers.
+ P和Q-大质数。 
+
+304
+00:14:20,539 --> 00:14:23,529
+
+
+
+305
+00:14:23,529 --> 00:14:28,583
+And say each of these are N-bit prime numbers.
+并说每个都是N位素数。 
+
+306
+00:14:28,583 --> 00:14:30,000
+And then they have a probably key.
+然后他们有一个大概的钥匙。 
+
+307
+00:14:30,000 --> 00:14:31,649
+So they have a number that announce
+所以他们有一个数字宣布
+
+308
+00:14:31,649 --> 00:14:37,110
+that is N equals P times Q. So this
+那是N等于P乘以Q。所以这
+
+309
+00:14:37,110 --> 00:14:39,009
+is announced to the entire world.
+已向全世界宣布。 
+
+310
+00:14:39,009 --> 00:14:39,850
+This is public.
+这是公开的。 
+
+311
+00:14:39,850 --> 00:14:42,047
+
+
+
+312
+00:14:42,047 --> 00:14:43,879
+We went through this [INAUDIBLE] set, right?
+我们经历了这个[听不清]，对吗？ 
+
+313
+00:14:43,879 --> 00:14:46,610
+So this rings a bell.
+所以这响了。 
+
+314
+00:14:46,610 --> 00:14:50,070
+They have to announce this so that the other people can
+他们必须宣布这一点，以便其他人可以
+
+315
+00:14:50,070 --> 00:14:52,490
+encrypt messages for them.
+为他们加密消息。 
+
+316
+00:14:52,490 --> 00:14:54,942
+If you want someone else to be able to send you a message,
+如果您希望其他人能够向您发送消息， 
+
+317
+00:14:54,942 --> 00:14:56,149
+you have to tell them your n.
+你必须告诉他们你的n。 
+
+318
+00:14:56,149 --> 00:15:00,509
+
+
+
+319
+00:15:00,509 --> 00:15:03,269
+Now if you know P and Q, you can decrypt messages.
+现在，如果您知道P和Q，就可以解密消息。 
+
+320
+00:15:03,269 --> 00:15:06,649
+So you can pretend you're the bank.
+这样您就可以假装自己是银行。 
+
+321
+00:15:06,649 --> 00:15:09,049
+Now let's set up a problem in this way.
+现在让我们以这种方式设置一个问题。 
+
+322
+00:15:09,049 --> 00:15:11,629
+
+
+
+323
+00:15:11,629 --> 00:15:16,460
+Given a verifier that does long division--
+假设验证者可以进行长期除法- 
+
+324
+00:15:16,460 --> 00:15:22,740
+so we have a verifier that the verifiers input is N,
+因此我们有一个验证者，验证者输入为N， 
+
+325
+00:15:22,740 --> 00:15:28,529
+and some guess P, P guess, right?
+还有一些猜P，P猜对吧？ 
+
+326
+00:15:28,529 --> 00:15:33,259
+So the verifier will compute N modulo P.
+因此，验证者将计算N个模P。 
+
+327
+00:15:33,259 --> 00:15:38,049
+And if N modulo P is 0, then it will say happy.
+如果N模P为0，则表示高兴。 
+
+328
+00:15:38,049 --> 00:15:41,279
+Actually, it will say, you're rich as hell.
+实际上，它会说，你很富有。 
+
+329
+00:15:41,279 --> 00:15:45,039
+If it's not 0, then well, tough luck, try again.
+如果不是0，那么好运，再试一次。 
+
+330
+00:15:45,039 --> 00:15:49,039
+
+
+
+331
+00:15:49,039 --> 00:15:51,539
+So if you could make this verifier happy,
+因此，如果您可以使验证者满意， 
+
+332
+00:15:51,539 --> 00:15:58,819
+you could get P. So given public information,
+您可以获得P。因此，鉴于公开信息， 
+
+333
+00:15:58,820 --> 00:16:00,589
+you could get the private information that
+您可以获得私人信息， 
+
+334
+00:16:00,789 --> 00:16:03,699
+would allow you to impersonate the bank.
+可以让您冒充银行。 
+
+335
+00:16:03,700 --> 00:16:05,620
+This is called a factoring problem by the way.
+顺带一提，这称为保理问题。 
+
+336
+00:16:05,620 --> 00:16:14,519
+
+
+
+337
+00:16:14,519 --> 00:16:20,480
+So P and N are usually 1024 bits.
+因此，P和N通常为1024位。 
+
+338
+00:16:20,480 --> 00:16:23,220
+So the chances of doing that with a coin flip, no.
+因此，通过抛硬币来实现这一目标的机会不行。 
+
+339
+00:16:23,220 --> 00:16:25,609
+
+
+
+340
+00:16:25,809 --> 00:16:34,799
+The chances of guessing it are one in two to the 1024--
+猜出来的几率是1024的二分之一
+
+341
+00:16:34,799 --> 00:16:36,609
+it's basically worse than having to pick
+基本上比必须挑选要差
+
+342
+00:16:36,610 --> 00:16:39,128
+a random atom in the universe and choosing the right one.
+宇宙中的一个随机原子并选择正确的原子。 
+
+343
+00:16:39,128 --> 00:16:41,879
+
+
+
+344
+00:16:41,879 --> 00:16:44,769
+So not going to happen.
+所以不会发生。 
+
+345
+00:16:44,769 --> 00:16:47,639
+But if you had an algorithm that takes a verifier
+但是如果您有采用验证程序的算法
+
+346
+00:16:47,639 --> 00:16:52,480
+and produces an input that makes it happy,
+并产生使它高兴的输入， 
+
+347
+00:16:52,480 --> 00:16:56,570
+then you would solve this problem,
+那么你会解决这个问题， 
+
+348
+00:16:56,570 --> 00:16:58,326
+and you would impersonate the bank,
+你会冒充银行
+
+349
+00:16:58,326 --> 00:16:59,700
+and you would become really rich,
+你会变得很富有
+
+350
+00:16:59,700 --> 00:17:02,459
+and then the whole world's economic system
+然后是整个世界的经济体系
+
+351
+00:17:02,659 --> 00:17:05,058
+would be in a terrible situation.
+情况会很糟糕。 
+
+352
+00:17:05,058 --> 00:17:09,078
+
+
+
+353
+00:17:09,078 --> 00:17:13,587
+AUDIENCE: P and Q are primes, right?
+听众：P和Q是素数，对吗？ 
+
+354
+00:17:13,587 --> 00:17:18,078
+So couldn't you just find all the primes?
+那么，您难道不就找到所有素数吗？ 
+
+355
+00:17:18,078 --> 00:17:22,930
+PROFESSOR: Well, so look at it from this perspective,
+教授：好吧，所以从这个角度来看， 
+
+356
+00:17:22,930 --> 00:17:25,388
+the economic system still functions.
+经济体系仍然运转。 
+
+357
+00:17:25,588 --> 00:17:29,869
+It's not like everyone's money disappeared somewhere.
+并不是每个人的钱都消失在某个地方。 
+
+358
+00:17:29,869 --> 00:17:34,309
+Therefore, nobody was able to pull this off.
+因此，没有人能够做到这一点。 
+
+359
+00:17:34,309 --> 00:17:36,700
+AUDIENCE: Isn't there a quantum algorithm to do it
+听众：没有量子算法可以做到这一点
+
+360
+00:17:36,700 --> 00:17:40,009
+or that's something different?
+还是有些不同？ 
+
+361
+00:17:40,009 --> 00:17:41,799
+PROFESSOR: So this assumes Turing machines.
+教授：所以这里假设使用图灵机。 
+
+362
+00:17:41,799 --> 00:17:43,869
+We're assuming regular Turing machines.
+我们假设使用普通的图灵机。 
+
+363
+00:17:43,869 --> 00:17:47,339
+A quantum computer breaks that abstraction.
+量子计算机打破了这种抽象。 
+
+364
+00:17:47,339 --> 00:17:50,299
+For practical purposes, if you had a quantum computer
+出于实际目的，如果您有一台量子计算机
+
+365
+00:17:50,299 --> 00:17:52,210
+that can manipulate this many bits.
+可以操纵这么多位。 
+
+366
+00:17:52,210 --> 00:17:55,019
+Then you would break RSA, and the world would go to hell.
+然后，您将破坏RSA，世界将走向地狱。 
+
+367
+00:17:55,019 --> 00:17:58,410
+So hopefully by the time quantum computers get this powerful,
+因此，希望在量子计算机变得强大之前， 
+
+368
+00:17:58,410 --> 00:18:02,879
+we'll invent new security algorithms that replace them.
+我们将发明替代它们的新安全算法。 
+
+369
+00:18:03,079 --> 00:18:07,139
+But the fact that eCommerce works now and that banks work
+但是事实是，电子商务现在可以工作，银行也可以工作
+
+370
+00:18:07,140 --> 00:18:10,500
+means that nobody is able to solve
+意味着没有人能够解决
+
+371
+00:18:10,500 --> 00:18:13,859
+NP problems in polynomial time.
+多项式时间内的NP问题。 
+
+372
+00:18:13,859 --> 00:18:18,829
+So by the way, factoring is not the hardest type of NP problem.
+因此，顺便说一下，保理不是NP问题中最难的类型。 
+
+373
+00:18:18,829 --> 00:18:20,230
+Factoring is somewhere here.
+保理在这里。 
+
+374
+00:18:20,230 --> 00:18:34,381
+
+
+
+375
+00:18:34,381 --> 00:18:34,880
+OK.
+好。 
+
+376
+00:18:34,880 --> 00:18:36,130
+Any questions about this part?
+对这部分有任何疑问吗？ 
+
+377
+00:18:36,130 --> 00:18:39,339
+AUDIENCE: So factoring is not an NP problem?
+听众：那么保理不是NP问题？ 
+
+378
+00:18:39,539 --> 00:18:41,399
+PROFESSOR: Factoring is NP, but it's not
+教授：保理是NP，但不是
+
+379
+00:18:41,400 --> 00:18:43,470
+the most difficult type of NP problem.
+ NP问题中最困难的类型。 
+
+380
+00:18:43,470 --> 00:18:44,909
+We'll get to those right now.
+我们现在就解决这些。 
+
+381
+00:18:45,109 --> 00:18:48,209
+
+
+
+382
+00:18:48,210 --> 00:18:50,649
+So this is a common sense proof not the math proof
+所以这是常识证明，不是数学证明
+
+383
+00:18:50,849 --> 00:18:56,339
+that NP is not P-- that at least nobody
+ NP不是P-至少没有人
+
+384
+00:18:56,339 --> 00:19:01,250
+knows how to solve NP problems in polynomial time.
+知道如何在多项式时间内解决NP问题。 
+
+385
+00:19:01,250 --> 00:19:05,940
+So there are these NP problems that if you think about it,
+因此，存在这些NP问题，如果您考虑一下， 
+
+386
+00:19:05,940 --> 00:19:08,180
+the solution is polynomial in size.
+解的大小是多项式。 
+
+387
+00:19:08,180 --> 00:19:10,799
+We can write a verifier in polynomial time.
+我们可以用多项式时间编写一个验证器。 
+
+388
+00:19:10,799 --> 00:19:14,819
+So why can't we write the solver in polynomial time?
+那么为什么我们不能在多项式时间内编写求解器呢？ 
+
+389
+00:19:14,819 --> 00:19:17,929
+If you're a very high picture guy like managerial type,
+如果您是像管理型这样的高素质人士， 
+
+390
+00:19:17,930 --> 00:19:19,970
+then you might think, yeah why, can't you guys
+那你可能会想，是的，为什么不能
+
+391
+00:19:19,970 --> 00:19:21,230
+just figure this out?
+才知道这个吗？ 
+
+392
+00:19:21,230 --> 00:19:23,170
+Like come up with an algorithm.
+喜欢想出一种算法。 
+
+393
+00:19:23,170 --> 00:19:25,132
+Isn't that what you guys do?
+你们不是吗？ 
+
+394
+00:19:25,132 --> 00:19:26,639
+Well, so theory people have been thinking
+好吧，所以理论上人们一直在思考
+
+395
+00:19:26,839 --> 00:19:29,079
+about this for 40 years or more.
+大约40年或更长时间。 
+
+396
+00:19:29,079 --> 00:19:31,079
+So what do you do when you think about something
+所以当你想到某事时你会怎么做
+
+397
+00:19:31,079 --> 00:19:32,663
+and you can't come up with a solution?
+而您无法提出解决方案？ 
+
+398
+00:19:32,663 --> 00:19:35,210
+
+
+
+399
+00:19:35,210 --> 00:19:36,601
+AUDIENCE: Say it's impossible?
+听众：说不可能吗？ 
+
+400
+00:19:36,801 --> 00:19:38,759
+PROFESSOR: You try to say that it's impossible.
+教授：您试图说这是不可能的。 
+
+401
+00:19:38,759 --> 00:19:41,839
+So you try to prove that P is not NP.
+因此，您尝试证明P不是NP。 
+
+402
+00:19:41,839 --> 00:19:46,250
+But if you fail to do that too, what do you do next?
+但是，如果您同样也做不到，那么下一步该怎么做？ 
+
+403
+00:19:46,250 --> 00:19:47,625
+AUDIENCE: Offer a million dollars
+观众：出价一百万美元
+
+404
+00:19:47,625 --> 00:19:48,987
+to someone who can do it.
+给可以做到的人。 
+
+405
+00:19:48,987 --> 00:19:49,619
+PROFESSOR: That too.
+教授：那也是。 
+
+406
+00:19:49,819 --> 00:19:50,485
+That might help.
+这可能会有所帮助。 
+
+407
+00:19:50,486 --> 00:19:52,009
+That might help.
+这可能会有所帮助。 
+
+408
+00:19:52,009 --> 00:19:54,475
+Well, you complain that it's really, really hard, right?
+好吧，你抱怨这真的非常非常难，对吧？ 
+
+409
+00:19:54,476 --> 00:19:55,899
+You want to go back to your boss or you
+您想回去老板还是您
+
+410
+00:19:56,099 --> 00:19:58,781
+want to go back to the world, and say, we thought about this.
+想回到世界，说，我们考虑了这一点。 
+
+411
+00:19:58,781 --> 00:20:00,990
+It is true that with thought about it for four years,
+的确，经过四年的思考， 
+
+412
+00:20:00,990 --> 00:20:04,680
+but it's a really, really hard problem.
+但这是一个非常非常困难的问题。 
+
+413
+00:20:04,680 --> 00:20:06,448
+Well, so for undecidable problems--
+好吧，对于不确定的问题， 
+
+414
+00:20:06,648 --> 00:20:08,189
+so for the whole thing problems, they
+所以对于整个问题，他们
+
+415
+00:20:08,190 --> 00:20:10,809
+are able to convince the world that nobody can solve this,
+能够说服世界，没有人能解决这个问题， 
+
+416
+00:20:10,809 --> 00:20:12,950
+so we're all good.
+所以我们都很好。 
+
+417
+00:20:12,950 --> 00:20:15,880
+So we couldn't come up with a solution, because nobody can.
+因此我们无法提出解决方案，因为没有人可以。 
+
+418
+00:20:15,880 --> 00:20:19,839
+Here, we can't prove that P is not NP yet.
+在这里，我们不能证明P还不是NP。 
+
+419
+00:20:20,039 --> 00:20:22,990
+So instead the next best thing that theory people
+因此，理论上人们的第二件事就是
+
+420
+00:20:22,990 --> 00:20:25,769
+could come up with is-- they saw,
+他们可以想到的是， 
+
+421
+00:20:25,769 --> 00:20:28,971
+what are the hardest kind of NP problems?
+ NP问题最难解决的是什么？ 
+
+422
+00:20:28,971 --> 00:20:31,180
+Let's look at them and let's see if we can solve them
+让我们看一下，看看是否可以解决它们
+
+423
+00:20:31,180 --> 00:20:32,389
+in some way.
+某种程度上来说。 
+
+424
+00:20:32,589 --> 00:20:34,389
+And they found some problems here
+他们在这里发现了一些问题
+
+425
+00:20:34,390 --> 00:20:36,759
+that are the hardest NP problems.
+那是最难的NP问题。 
+
+426
+00:20:36,759 --> 00:20:39,569
+And they called them NP-complete problems.
+他们称它们为NP完全问题。 
+
+427
+00:20:39,569 --> 00:20:41,235
+And we'll see why complete in a bit.
+我们将稍后解释为什么要完成。 
+
+428
+00:20:41,236 --> 00:20:48,329
+
+
+
+429
+00:20:48,529 --> 00:20:50,960
+So these are the hardest NP problems that you can have.
+因此，这些是您可能遇到的最困难的NP问题。 
+
+430
+00:20:50,960 --> 00:20:52,819
+Factoring is not one of them.
+保理不是其中之一。 
+
+431
+00:20:52,819 --> 00:20:54,889
+Factoring is not with the cool kids,
+不适合酷孩子的因素， 
+
+432
+00:20:54,890 --> 00:20:56,329
+even though it would make you rich.
+即使这会让你变得富有。 
+
+433
+00:20:56,529 --> 00:20:59,029
+There are some problems that are harder than that.
+有些问题比这更难。 
+
+434
+00:20:59,029 --> 00:21:01,129
+OK so for these NP-complete problems,
+好的，对于这些NP完全问题， 
+
+435
+00:21:01,130 --> 00:21:03,740
+turns out there are a few hundred of them that
+原来有几百个
+
+436
+00:21:03,740 --> 00:21:06,122
+would have practical implications.
+有实际意义。 
+
+437
+00:21:06,122 --> 00:21:07,879
+So you wouldn't be able to get rich right away,
+因此，您将无法马上致富， 
+
+438
+00:21:08,079 --> 00:21:10,349
+but still you'd be able to solved the important problems
+但您仍然可以解决重要问题
+
+439
+00:21:10,349 --> 00:21:12,057
+that would save companies a lot of money.
+这样可以为公司节省很多钱。 
+
+440
+00:21:12,057 --> 00:21:14,379
+So you think, if there's a solution
+所以你认为，如果有解决方案
+
+441
+00:21:14,380 --> 00:21:16,379
+someone would come up with it.
+有人会想出来的。 
+
+442
+00:21:16,579 --> 00:21:19,699
+It also turns out that they're all interrelated.
+事实证明，它们都是相互关联的。 
+
+443
+00:21:19,700 --> 00:21:22,842
+So if you can solve one problem, you can solve all of them.
+因此，如果您可以解决一个问题，则可以解决所有问题。 
+
+444
+00:21:22,842 --> 00:21:24,099
+And you do that through reductions,
+然后通过减少来实现
+
+445
+00:21:24,299 --> 00:21:26,539
+which we'll go over in a bit.
+我们稍后再讨论。 
+
+446
+00:21:26,539 --> 00:21:30,690
+But the bottom line is there are hundreds
+但最重要的是有数百个
+
+447
+00:21:30,690 --> 00:21:32,640
+of NP-complete problems.
+ NP完全问题。 
+
+448
+00:21:32,640 --> 00:21:38,990
+
+
+
+449
+00:21:38,990 --> 00:21:42,960
+And if you solve one, then you solved everything.
+如果您解决了一个问题，那么您就解决了所有问题。 
+
+450
+00:21:42,960 --> 00:21:50,903
+
+
+
+451
+00:21:50,903 --> 00:21:52,569
+For now theory people are trying to say,
+目前，人们正在试图说理论， 
+
+452
+00:21:52,569 --> 00:21:55,329
+look there are all these problems.
+看起来有所有这些问题。 
+
+453
+00:21:55,329 --> 00:21:57,980
+If anyone would solve any of them, all of them
+如果有人能解决任何一个，所有的
+
+454
+00:21:57,980 --> 00:21:58,700
+would go away.
+会消失。 
+
+455
+00:21:58,700 --> 00:22:00,629
+Nobody was able to solve any of them,
+没有人能够解决任何一个问题， 
+
+456
+00:22:00,829 --> 00:22:03,339
+so they must be really, really hard.
+因此他们必须非常非常努力。 
+
+457
+00:22:03,339 --> 00:22:05,699
+This is the best they could come up with.
+这是他们能想到的最好的方法。 
+
+458
+00:22:05,700 --> 00:22:06,855
+This is NP complete.
+这是NP完成的。 
+
+459
+00:22:06,855 --> 00:22:10,221
+
+
+
+460
+00:22:10,221 --> 00:22:12,720
+AUDIENCE: This is same lecture that you-- any problem that's
+听众：这是您的同一个讲座-任何问题
+
+461
+00:22:12,720 --> 00:22:16,124
+already [INAUDIBLE] transform it into a different problem?
+已经[音频不清晰]将其转换为其他问题？ 
+
+462
+00:22:16,124 --> 00:22:16,789
+PROFESSOR: Yeah.
+教授：是的。 
+
+463
+00:22:16,789 --> 00:22:19,009
+So if you have the solution for one of them,
+因此，如果您有其中一种解决方案， 
+
+464
+00:22:19,009 --> 00:22:22,089
+you could transform all the other ones into that problem
+你可以把其他所有的都变成那个问题
+
+465
+00:22:22,089 --> 00:22:24,589
+just like we do with graph transformations,
+就像我们对图形进行转换一样
+
+466
+00:22:24,589 --> 00:22:29,049
+solve it, use the solution for it to solve all the other ones.
+解决它，使用解决方案解决所有其他问题。 
+
+467
+00:22:29,049 --> 00:22:32,230
+So if anyone could solve any of those hundreds of problems,
+因此，如果任何人都可以解决这数百个问题中的任何一个， 
+
+468
+00:22:32,230 --> 00:22:36,220
+we'd have the solution to all of them in an instant.
+我们会立即解决所有问题。 
+
+469
+00:22:36,220 --> 00:22:38,309
+The fact that we don't have a solution to them
+我们没有解决方案的事实
+
+470
+00:22:38,309 --> 00:22:41,751
+means that nobody was able to solve any of them.
+意味着没有人能够解决其中任何一个。 
+
+471
+00:22:41,751 --> 00:22:45,230
+AUDIENCE: Like there are some problems like the chess problem
+听众：像国际象棋一样，有些问题
+
+472
+00:22:45,230 --> 00:22:47,298
+that can be solved exponential time.
+可以解决指数时间。 
+
+473
+00:22:47,298 --> 00:22:48,589
+PROFESSOR: Those are different.
+教授：那是不同的。 
+
+474
+00:22:48,589 --> 00:22:49,957
+Chess is here.
+国际象棋在这里。 
+
+475
+00:22:49,958 --> 00:22:53,660
+AUDIENCE: So we can solve chess though, right?
+观众：所以我们可以解决国际象棋，对吗？ 
+
+476
+00:22:53,660 --> 00:22:57,029
+It's just exponential time.
+这只是指数时间。 
+
+477
+00:22:57,029 --> 00:22:58,932
+Right?
+对？ 
+
+478
+00:22:58,932 --> 00:23:01,390
+PROFESSOR: As far as I know, because it's exponential time,
+教授：据我所知，因为这是指数时间， 
+
+479
+00:23:01,390 --> 00:23:03,740
+there's no algorithm that can actually
+没有算法可以实际
+
+480
+00:23:03,740 --> 00:23:07,130
+look at the entire configuration space, and tell if you can win
+查看整个配置空间，并告诉您是否可以赢
+
+481
+00:23:07,130 --> 00:23:07,630
+or not.
+或不。 
+
+482
+00:23:07,630 --> 00:23:10,089
+
+
+
+483
+00:23:10,289 --> 00:23:12,579
+So solving chess, what's chess?
+那么解决棋，什么是棋？ 
+
+484
+00:23:12,579 --> 00:23:15,220
+Chess has given a board.
+国际象棋给董事会了。 
+
+485
+00:23:15,220 --> 00:23:18,269
+Can I win or not from this board?
+我可以从这个委员会中赢吗？ 
+
+486
+00:23:18,269 --> 00:23:20,129
+This would be very useful in playing chess,
+这在下棋时非常有用， 
+
+487
+00:23:20,130 --> 00:23:21,637
+because you start with the initial board,
+因为您从最初的董事会开始， 
+
+488
+00:23:21,837 --> 00:23:23,470
+and then for every move you can make,
+然后您可以采取的任何行动， 
+
+489
+00:23:23,470 --> 00:23:25,135
+you look at the resulting board, and you
+你看一下结果板，你
+
+490
+00:23:25,135 --> 00:23:27,779
+say can I win or not from that board.
+说我可以从那个董事会赢还是不能赢。 
+
+491
+00:23:27,779 --> 00:23:29,889
+If you're in a board configuration in which you
+如果您使用的板配置中
+
+492
+00:23:29,890 --> 00:23:31,960
+can win, you don't want to go to a configuration
+可以赢，你不想去配置
+
+493
+00:23:31,960 --> 00:23:34,309
+where you won't be able to win anymore.
+在这里你将不再能赢。 
+
+494
+00:23:34,309 --> 00:23:36,940
+So if you keep doing this you eventually win.
+因此，如果继续这样做，您最终会获胜。 
+
+495
+00:23:36,940 --> 00:23:40,139
+So it would be really nice to have this algorithm.
+因此，拥有此算法真的很好。 
+
+496
+00:23:40,339 --> 00:23:42,359
+Yeah, we don't have it.
+是的，我们没有。 
+
+497
+00:23:42,359 --> 00:23:44,429
+We don't have it and chess is unsolved.
+我们没有它，而象棋尚未解决。 
+
+498
+00:23:44,430 --> 00:23:44,930
+Wait.
+等待。 
+
+499
+00:23:44,930 --> 00:23:47,180
+AUDIENCE: So only things that are below P--
+听众：所以只有P以下的东西- 
+
+500
+00:23:47,180 --> 00:23:49,785
+but there are some algorithms that run in exponential time.
+但是有些算法会以指数形式运行。 
+
+501
+00:23:49,785 --> 00:23:53,009
+They just take longer.
+他们只需要更长的时间。 
+
+502
+00:23:53,009 --> 00:23:55,539
+PROFESSOR: So the problem is what's the input size?
+教授：那么问题是输入大小是多少？ 
+
+503
+00:23:55,539 --> 00:23:57,089
+Exponential in what?
+指数在什么？ 
+
+504
+00:23:57,089 --> 00:23:59,629
+If it's going to be-- if the running time is 2 to the n,
+如果是这样-如果运行时间是2到n， 
+
+505
+00:23:59,630 --> 00:24:02,339
+and it's 10, then that's fine.
+那是10，那很好。 
+
+506
+00:24:02,539 --> 00:24:05,129
+But for chess its exponential in the board configuration.
+但是对于国际象棋来说，它在棋盘配置中是指数的。 
+
+507
+00:24:05,130 --> 00:24:07,409
+And it turns out that there's so many board configurations
+事实证明，电路板配置太多
+
+508
+00:24:07,609 --> 00:24:10,409
+that we don't have computers fast
+我们没有快速的计算机
+
+509
+00:24:10,410 --> 00:24:11,839
+enough to solve the whole thing.
+足以解决整个问题。 
+
+510
+00:24:12,039 --> 00:24:14,750
+So deep blue goes to a level-- to a depth
+所以深蓝色达到一个层次
+
+511
+00:24:14,750 --> 00:24:18,640
+I think of somewhere around 15 and can barely competes
+我认为大约15岁左右，几乎无法竞争
+
+512
+00:24:18,640 --> 00:24:21,230
+with humans, but it's not guaranteed to win all the time.
+与人类合作，但并不能保证始终赢得胜利。 
+
+513
+00:24:21,230 --> 00:24:25,362
+So we don't have something that has completely solved chess.
+因此，我们没有完全解决国际象棋的问题。 
+
+514
+00:24:25,362 --> 00:24:28,359
+AUDIENCE: So we can only solve things below P then.
+听众：那么我们只能解决P以下的问题。 
+
+515
+00:24:28,559 --> 00:24:30,779
+PROFESSOR: We can only solve things below P
+教授：我们只能解决P以下的问题
+
+516
+00:24:30,779 --> 00:24:33,081
+fast, reasonably fast.
+快速，相当快。 
+
+517
+00:24:33,082 --> 00:24:34,339
+So what we care about in this class
+所以我们在这堂课上关心的是
+
+518
+00:24:34,539 --> 00:24:36,139
+is how do our algorithm scale.
+我们的算法如何扩展。 
+
+519
+00:24:36,140 --> 00:24:38,400
+So do we have this or not?
+那我们有没有？ 
+
+520
+00:24:38,400 --> 00:24:41,460
+Does your algorithm scale or not?
+您的算法是否可扩展？ 
+
+521
+00:24:41,460 --> 00:24:44,399
+The reason we don't like algorithms that are after this
+我们不喜欢此后的算法的原因
+
+522
+00:24:44,599 --> 00:24:49,750
+is that for problem sizes that are really small like 8, 10,
+是对于很小的问题，例如8、10 
+
+523
+00:24:49,750 --> 00:24:52,700
+or something small, they're going to work.
+或小东西，他们会工作。 
+
+524
+00:24:52,700 --> 00:24:56,509
+But the moment the problem gets bigger and bigger,
+但是当问题变得越来越严重时， 
+
+525
+00:24:56,509 --> 00:24:58,506
+you're going to run into a dead end.
+您将陷入困境。 
+
+526
+00:24:58,506 --> 00:25:01,612
+AUDIENCE: Well, can you use DP on chess?
+听众：好吧，你可以在国际象棋上使用DP吗？ 
+
+527
+00:25:01,612 --> 00:25:02,869
+PROFESSOR: You can use DP until you
+教授：您可以使用DP，直到您
+
+528
+00:25:03,069 --> 00:25:06,240
+get to an exponential algorithm.
+进入指数算法。 
+
+529
+00:25:06,240 --> 00:25:08,029
+You might get to an exponential algorithm
+您可能会遇到指数算法
+
+530
+00:25:08,029 --> 00:25:10,279
+where the exponent is better.
+指数更好的地方。 
+
+531
+00:25:10,279 --> 00:25:12,480
+So far all the smart algorithms for chess
+到目前为止，所有国际象棋的智能算法
+
+532
+00:25:12,480 --> 00:25:15,380
+have reduced the c here, but they
+在这里减少了c，但是他们
+
+533
+00:25:15,380 --> 00:25:19,630
+haven't been able to get away from 2 to the n part.
+一直未能摆脱2到n部分。 
+
+534
+00:25:19,630 --> 00:25:21,920
+If you make c smaller, sure it's going to run faster,
+如果您减小c的大小，请确保它会运行得更快， 
+
+535
+00:25:21,920 --> 00:25:23,677
+and you can explore a bigger part of the board.
+您可以探索董事会的更大部分。 
+
+536
+00:25:23,877 --> 00:25:26,119
+But you're still not going to be able to run
+但是您仍然无法运行
+
+537
+00:25:26,119 --> 00:25:29,869
+through the whole thing before the world ends.
+在世界终结之前经历整个事情。 
+
+538
+00:25:29,869 --> 00:25:31,689
+That's a good thing to think about.
+这是一件好事。 
+
+539
+00:25:31,690 --> 00:25:33,683
+Will we solve chess before the world
+我们会在世界面前解围棋吗
+
+540
+00:25:33,683 --> 00:25:35,599
+ends with the current algorithms and machines?
+以当前的算法和机器结束？ 
+
+541
+00:25:35,599 --> 00:25:38,419
+No.
+没有。 
+
+542
+00:25:38,420 --> 00:25:39,629
+AUDIENCE: I guess.
+听众：我猜。 
+
+543
+00:25:39,829 --> 00:25:41,919
+Remember the Rubik's cube?
+还记得魔方吗？ 
+
+544
+00:25:41,920 --> 00:25:47,109
+Wasn't that bordering exponential or something?
+那不是指数级的东西吗？ 
+
+545
+00:25:47,309 --> 00:25:51,829
+I think Eric said that there is order one solution where
+我认为Eric说有一种解决方案
+
+546
+00:25:51,829 --> 00:25:53,449
+the constant factor is really high.
+常数因子确实很高。 
+
+547
+00:25:53,450 --> 00:25:55,250
+So that's different.
+所以不一样。 
+
+548
+00:25:55,250 --> 00:26:00,829
+raises I think Tetris is here, but the Rubik's cube--
+提出我认为俄罗斯方块在这里，但是魔方- 
+
+549
+00:26:00,829 --> 00:26:02,289
+AUDIENCE: It's in the P, isn't it?
+听众：在P中，不是吗？ 
+
+550
+00:26:02,289 --> 00:26:02,789
+Yeah.
+是的
+
+551
+00:26:02,789 --> 00:26:04,289
+PROFESSOR: There's a solution that's
+教授：有一个解决方案是
+
+552
+00:26:04,289 --> 00:26:06,670
+order one with a high constant [INAUDIBLE].
+用高常数[音频不清晰]订购一个。 
+
+553
+00:26:06,670 --> 00:26:09,121
+AUDIENCE: But our brains can play chess.
+听众：但是我们的大脑可以下棋。 
+
+554
+00:26:09,321 --> 00:26:10,029
+PROFESSOR: Sorry?
+教授：对不起？ 
+
+555
+00:26:10,029 --> 00:26:10,528
+Our brains--
+我们的大脑
+
+556
+00:26:10,528 --> 00:26:12,029
+AUDIENCE: We can play chess.
+听众：我们可以下棋。 
+
+557
+00:26:12,029 --> 00:26:13,904
+PROFESSOR: Well, we can play reasonably well,
+教授：好吧，我们可以打得很好， 
+
+558
+00:26:13,904 --> 00:26:15,579
+but if someone could play optimally,
+但是如果有人可以发挥出最佳状态， 
+
+559
+00:26:15,579 --> 00:26:17,539
+they'd probably beat you.
+他们可能会打败你。 
+
+560
+00:26:17,539 --> 00:26:20,434
+Yeah.
+是的
+
+561
+00:26:20,434 --> 00:26:23,927
+AUDIENCE: Can someone play optimally?
+听众：有人可以发挥最佳状态吗？ 
+
+562
+00:26:23,928 --> 00:26:26,423
+[INAUDIBLE]
+ [听不清] 
+
+563
+00:26:26,423 --> 00:26:30,230
+AUDIENCE: What about machine learning?
+听众：机器学习怎么样？ 
+
+564
+00:26:30,230 --> 00:26:34,180
+PROFESSOR: Machine learning problems are usually here.
+教授：机器学习问题通常在这里。 
+
+565
+00:26:34,180 --> 00:26:35,880
+That's why they don't scale, and that's
+这就是为什么他们不扩大规模，这就是
+
+566
+00:26:35,880 --> 00:26:38,230
+why we've seen a lot of interesting machine learning,
+为什么我们看到了很多有趣的机器学习， 
+
+567
+00:26:38,230 --> 00:26:43,104
+but so far I can't talk to my computer right.
+但到目前为止，我无法与计算机通话。 
+
+568
+00:26:43,104 --> 00:26:44,519
+They can't make a lot of progress,
+他们无法取得很大进步， 
+
+569
+00:26:44,519 --> 00:26:46,894
+because they have these really hard problems that they're
+因为他们有这些非常棘手的问题
+
+570
+00:26:46,894 --> 00:26:49,470
+working on.
+正在努力。 
+
+571
+00:26:49,470 --> 00:26:50,940
+AUDIENCE: There's Siri, right.
+听众：是Siri，对。 
+
+572
+00:26:50,940 --> 00:26:52,900
+You can talk to Siri.
+您可以与Siri交谈。 
+
+573
+00:26:52,900 --> 00:26:54,420
+PROFESSOR: Yeah OK.
+教授：好的。 
+
+574
+00:26:54,420 --> 00:26:55,279
+Sure.
+当然。 
+
+575
+00:26:55,279 --> 00:26:57,230
+I think I've seen on the Internet
+我想我在互联网上看过
+
+576
+00:26:57,230 --> 00:26:59,400
+that it says some awful things sometimes.
+有时会说一些可怕的事情。 
+
+577
+00:26:59,400 --> 00:27:03,220
+So I wouldn't consider that solved.
+所以我不会认为解决了。 
+
+578
+00:27:03,220 --> 00:27:07,920
+So what does NP mean to us like practical terms?
+那么，NP对我们来说像实际术语意味着什么？ 
+
+579
+00:27:07,920 --> 00:27:12,039
+Here's how I see it, you're on an exam or in an interview,
+我是这样看的，您正在考试或面试中， 
+
+580
+00:27:12,039 --> 00:27:14,099
+you start out with a problem.
+你开始有问题。 
+
+581
+00:27:14,099 --> 00:27:16,329
+Suppose all the possible problems
+假设所有可能的问题
+
+582
+00:27:16,329 --> 00:27:19,029
+are a graph, because we work with graphs.
+是图，因为我们使用图。 
+
+583
+00:27:19,029 --> 00:27:20,324
+You have your starting problem.
+你有开始的问题。 
+
+584
+00:27:20,324 --> 00:27:22,490
+This Is the problem that you're trying to solve now.
+这就是您现在要解决的问题。 
+
+585
+00:27:22,490 --> 00:27:25,289
+
+
+
+586
+00:27:25,289 --> 00:27:28,200
+Then you have a few destination nodes.
+然后，您有几个目标节点。 
+
+587
+00:27:28,200 --> 00:27:30,786
+Say you have merge sort.
+假设您有合并排序。 
+
+588
+00:27:30,786 --> 00:27:31,660
+We know how to solve.
+我们知道如何解决。 
+
+589
+00:27:31,660 --> 00:27:34,950
+If you can reduce your problem to merge sort,
+如果您可以减少合并排序的问题， 
+
+590
+00:27:34,950 --> 00:27:36,612
+then you're in a good position.
+那你的位置就好
+
+591
+00:27:36,612 --> 00:27:37,619
+You're writing your solution.
+您正在编写解决方案。 
+
+592
+00:27:37,819 --> 00:27:39,740
+You're out of the room.
+你不在房间里
+
+593
+00:27:39,740 --> 00:27:42,710
+If you can reduce your problem to a graph search algorithm,
+如果您可以将问题简化为图搜索算法， 
+
+594
+00:27:42,710 --> 00:27:46,269
+so to BFS or DFS, you're done.
+这样就可以完成BFS或DFS。 
+
+595
+00:27:46,269 --> 00:27:50,349
+If you can reduce it to shortest path, you're happy.
+如果您可以将其减少到最短路径，那么您会很高兴。 
+
+596
+00:27:50,349 --> 00:27:51,689
+You're done.
+你完成了。 
+
+597
+00:27:51,690 --> 00:27:53,879
+If you can reduce it to a dynamic programming problem
+如果可以将其简化为动态编程问题
+
+598
+00:27:54,079 --> 00:27:56,649
+that we understand, you're done.
+据我们了解，您已完成。 
+
+599
+00:27:56,650 --> 00:27:59,889
+If you can somehow use hashing or use divide and conquer
+如果可以以某种方式使用哈希或使用分而治之
+
+600
+00:28:00,089 --> 00:28:03,309
+with an algorithm that we studied, you're also happy.
+使用我们研究过的算法，您也很高兴。 
+
+601
+00:28:03,309 --> 00:28:06,256
+So we have all these destination points.
+因此，我们拥有所有这些目的地。 
+
+602
+00:28:06,257 --> 00:28:07,639
+And what you're trying to do is you're
+而你想要做的就是
+
+603
+00:28:07,839 --> 00:28:11,884
+trying to get from here all the way to here via reductions.
+试图通过减少从一路到达这里。 
+
+604
+00:28:11,884 --> 00:28:15,440
+
+
+
+605
+00:28:15,440 --> 00:28:18,430
+So suppose you see three reductions
+所以假设您看到三个减少
+
+606
+00:28:18,430 --> 00:28:19,553
+that you could possibly do.
+你可能会做的。 
+
+607
+00:28:19,753 --> 00:28:22,408
+
+
+
+608
+00:28:22,409 --> 00:28:24,450
+You don't have time to work on all three of them,
+您没有时间去做这三个方面的工作， 
+
+609
+00:28:24,450 --> 00:28:26,309
+so let's say you choose the middle one,
+假设您选择中间一个， 
+
+610
+00:28:26,309 --> 00:28:28,594
+because this one seems like it's the easiest one.
+因为这似乎是最简单的一种。 
+
+611
+00:28:28,594 --> 00:28:30,009
+So I'm going to guess that this is
+所以我猜这是
+
+612
+00:28:30,009 --> 00:28:31,455
+the easiest one I can tackle.
+我可以解决的最简单的方法。 
+
+613
+00:28:31,455 --> 00:28:32,829
+So now I'm going to work on this.
+所以现在我将对此进行研究。 
+
+614
+00:28:32,829 --> 00:28:34,663
+I'm going to put the original problem aside.
+我将原始问题放在一边。 
+
+615
+00:28:34,663 --> 00:28:38,490
+And I'm going to say if I can solve this, then I'm happy.
+我要说的是如果我能解决这个问题，那我会很高兴。 
+
+616
+00:28:38,490 --> 00:28:42,470
+Now say this turns into three more reductions.
+现在说这变成了另外三个减少。 
+
+617
+00:28:42,470 --> 00:28:46,027
+And this one looks promising.
+这个看起来很有希望。 
+
+618
+00:28:46,027 --> 00:28:46,659
+it's a hard problem.
+这是一个很难的问题。 
+
+619
+00:28:46,859 --> 00:28:48,192
+You have to do a few reductions.
+您必须做一些减少。 
+
+620
+00:28:48,192 --> 00:28:49,690
+It doesn't work right away.
+立即无法正常工作。 
+
+621
+00:28:49,690 --> 00:28:51,619
+But say I take this one which looks promising,
+但是我说这是一个很有前途的， 
+
+622
+00:28:51,819 --> 00:28:55,609
+and I'm able to reduce it to a happy problem.
+我可以将其简化为一个快乐的问题。 
+
+623
+00:28:55,609 --> 00:28:57,379
+Reduction, reduction, reduction.
+减少，减少，减少。 
+
+624
+00:28:57,380 --> 00:28:58,349
+I write this up.
+我写下来。 
+
+625
+00:28:58,549 --> 00:29:00,839
+I'm done.
+我受够了。 
+
+626
+00:29:00,839 --> 00:29:04,303
+Exam solved or interview question solved.
+考试解决或面试问题解决。 
+
+627
+00:29:04,304 --> 00:29:05,720
+Now the problem is what if instead
+现在的问题是，如果相反
+
+628
+00:29:05,720 --> 00:29:08,539
+of going on this path which is reasonably happy, what if I
+走在这条相当幸福的道路上，如果我
+
+629
+00:29:08,539 --> 00:29:12,079
+go on a path that looks like this?
+走在看起来像这样的道路上？ 
+
+630
+00:29:12,079 --> 00:29:14,759
+All the reductions that I can see from there
+我从那里可以看到的所有减少
+
+631
+00:29:14,759 --> 00:29:17,279
+go really, really far away from the problems
+真正远离问题
+
+632
+00:29:17,279 --> 00:29:21,190
+that I know how to solve.
+我知道如何解决。 
+
+633
+00:29:21,190 --> 00:29:23,460
+Well you're going to try some reductions,
+好吧，您将尝试一些减少， 
+
+634
+00:29:23,460 --> 00:29:25,789
+and eventually you're going to run out of time.
+最终您会用光时间。 
+
+635
+00:29:25,789 --> 00:29:27,940
+And this other interviewer is going to say, yeah,
+另一个面试官会说，是的， 
+
+636
+00:29:27,940 --> 00:29:30,000
+do you have any questions about us?
+您对我们有任何疑问吗？ 
+
+637
+00:29:30,000 --> 00:29:34,059
+Or the exam people will be like, hey, can we have the exam back?
+否则考试的人会像，嘿，我们可以再参加考试吗？ 
+
+638
+00:29:34,059 --> 00:29:36,039
+We want to go home now.
+我们现在要回家。 
+
+639
+00:29:36,039 --> 00:29:38,420
+So this is a bad outcome.
+因此，这是一个糟糕的结果。 
+
+640
+00:29:38,420 --> 00:29:42,990
+Up until now, all you had was good destination points.
+到目前为止，您所拥有的只是不错的目的地。 
+
+641
+00:29:42,990 --> 00:29:45,329
+So this is where you want to reach.
+因此，这是您想要到达的地方。 
+
+642
+00:29:45,329 --> 00:29:49,230
+Now we have these NP-complete problems that we know are hard.
+现在，我们遇到了这些很难解决的NP问题。 
+
+643
+00:29:49,230 --> 00:29:52,230
+I've convinced you hopefully that their hard.
+我希望您相信他们的辛苦。 
+
+644
+00:29:52,230 --> 00:29:54,250
+So if you know some NP-complete problems,
+因此，如果您知道一些NP完全问题， 
+
+645
+00:29:54,250 --> 00:29:56,420
+you also have some landmines.
+你也有一些地雷。 
+
+646
+00:29:56,420 --> 00:29:58,670
+You have some places where if you got there
+你有一些地方，如果你在那里
+
+647
+00:29:58,670 --> 00:30:03,220
+via reductions, not a good path.
+通过减少，不是一个好方法。 
+
+648
+00:30:03,220 --> 00:30:06,190
+You want to backtrack and think of something else.
+您想回溯并想到其他事情。 
+
+649
+00:30:06,190 --> 00:30:13,299
+So for example if this was an NP-complete problem
+例如，如果这是一个NP完全问题
+
+650
+00:30:13,299 --> 00:30:17,359
+like if this reduction then was, oh yeah,
+好像减少了，是的，哦，是的， 
+
+651
+00:30:17,359 --> 00:30:20,309
+solve [INAUDIBLE] in polynomial time.
+在多项式时间内求解[音频不清晰]。 
+
+652
+00:30:20,309 --> 00:30:21,059
+Let's see.
+让我们来看看。 
+
+653
+00:30:21,059 --> 00:30:22,259
+I don't know how to do that.
+我不知道该怎么做。 
+
+654
+00:30:22,259 --> 00:30:23,599
+The world tried really hard.
+世界真的很努力。 
+
+655
+00:30:23,599 --> 00:30:26,429
+Maybe I shouldn't try this avenue on the exam.
+也许我不应该在考试中尝试这种方法。 
+
+656
+00:30:26,430 --> 00:30:28,255
+So if you know that this is NP-complete.
+因此，如果您知道这是NP完全的。 
+
+657
+00:30:28,255 --> 00:30:29,059
+You stop right there.
+你就停在那里。 
+
+658
+00:30:29,259 --> 00:30:30,480
+You don't waste anymore time.
+您不再浪费时间。 
+
+659
+00:30:30,480 --> 00:30:33,690
+
+
+
+660
+00:30:33,690 --> 00:30:34,970
+So this isn't time wasted.
+因此，这不会浪费时间。 
+
+661
+00:30:34,970 --> 00:30:38,740
+
+
+
+662
+00:30:38,740 --> 00:30:42,519
+If you understand NP-complete, and you read the CLRS chapter
+如果您了解NP-complete，并阅读了CLRS章节
+
+663
+00:30:42,519 --> 00:30:43,759
+on NP-complete problems.
+关于NP完全问题。 
+
+664
+00:30:43,759 --> 00:30:47,230
+Then you also have some sad faces here.
+然后，您在这里也有一些悲伤的面孔。 
+
+665
+00:30:47,230 --> 00:30:51,549
+You have some land mines and you know not to go there.
+您有一些地雷，并且知道不去那里。 
+
+666
+00:30:51,549 --> 00:30:54,250
+So now your space that you're looking through
+现在，您正在浏览的空间
+
+667
+00:30:54,250 --> 00:30:57,336
+is a lot more bonded.
+更加粘合。 
+
+668
+00:30:57,336 --> 00:30:59,710
+Hopefully, you're going to have better chances of finding
+希望您将有更多的机会找到
+
+669
+00:30:59,710 --> 00:31:02,700
+a happy path, because not only you have some destinations,
+一条快乐的道路，因为不仅您有一些目的地， 
+
+670
+00:31:02,700 --> 00:31:06,669
+but you have some places that you know you shouldn't go to.
+但您有一些您不应该去的地方。 
+
+671
+00:31:06,869 --> 00:31:09,509
+So this is the point of NP-complete.
+因此，这就是NP完全的要点。 
+
+672
+00:31:09,509 --> 00:31:11,839
+You're probably really busy at the end of the term
+学期末你可能真的很忙
+
+673
+00:31:11,839 --> 00:31:13,939
+as we all are, so I'm guessing you're not
+就像我们所有人一样，所以我猜你不是
+
+674
+00:31:13,940 --> 00:31:18,190
+going to have time to read CLRS beyond what we really
+我们将有时间阅读CLRS，超出我们真正的理解范围
+
+675
+00:31:18,190 --> 00:31:19,930
+ask you to read now.
+请您现在阅读。 
+
+676
+00:31:19,930 --> 00:31:22,700
+But after you're done, do yourself a favor.
+但是，完成之后，请帮自己一个忙。 
+
+677
+00:31:22,700 --> 00:31:24,910
+For the sake of your future interviews
+为了将来的面试
+
+678
+00:31:24,910 --> 00:31:28,180
+and general happy programming life,
+和一般的快乐编程生活， 
+
+679
+00:31:28,180 --> 00:31:31,169
+read the NP-complete chapter in CLRS.
+阅读CLRS中的NP完整章节。 
+
+680
+00:31:31,369 --> 00:31:34,351
+Read the problem statements and understand them.
+阅读问题陈述并理解它们。 
+
+681
+00:31:34,352 --> 00:31:35,359
+Don't worry about the proofs.
+不用担心证明。 
+
+682
+00:31:35,559 --> 00:31:38,500
+Don't worry about the reductions that say their NP-complete.
+不用担心表示NP完整的减少。 
+
+683
+00:31:38,500 --> 00:31:39,490
+Read the statements.
+阅读声明。 
+
+684
+00:31:39,490 --> 00:31:42,230
+Believe CLRS that it's NP-complete.
+相信CLRS是NP完整的。 
+
+685
+00:31:42,230 --> 00:31:44,630
+And remember that whenever you solve a problem,
+请记住，每当您解决问题时， 
+
+686
+00:31:44,630 --> 00:31:46,880
+you want to stay away from those.
+您想远离那些。 
+
+687
+00:31:46,880 --> 00:31:48,940
+So those will be your landmines.
+因此，这些将成为您的地雷。 
+
+688
+00:31:48,940 --> 00:31:50,710
+Those will be your sad spots.
+那将是您的难过之处。 
+
+689
+00:31:50,710 --> 00:31:52,660
+Guaranteed, after you do that, your interviews
+这样做之后，可以保证您的采访
+
+690
+00:31:52,660 --> 00:31:55,450
+will go a lot better, because you'll
+会好很多，因为你会
+
+691
+00:31:55,450 --> 00:31:56,789
+be faster at solving problems.
+更快地解决问题。 
+
+692
+00:31:56,789 --> 00:31:58,330
+And that's what we really care about.
+这就是我们真正关心的。 
+
+693
+00:31:58,330 --> 00:32:01,619
+
+
+
+694
+00:32:01,619 --> 00:32:05,959
+So that's why NP-complete is relevant in real life.
+这就是为什么NP-complete与现实生活息息相关。 
+
+695
+00:32:05,960 --> 00:32:07,688
+It gives us these data points.
+它给了我们这些数据点。 
+
+696
+00:32:07,688 --> 00:32:11,149
+
+
+
+697
+00:32:11,349 --> 00:32:11,849
+Makes sense?
+说得通？ 
+
+698
+00:32:11,849 --> 00:32:18,429
+
+
+
+699
+00:32:18,430 --> 00:32:21,430
+All right, I want to talk about one NP complete problem that's
+好吧，我想谈一个NP完全问题
+
+700
+00:32:21,430 --> 00:32:22,359
+really important.
+真的很重要
+
+701
+00:32:22,559 --> 00:32:23,549
+And that is SAT.
+那就是SAT。 
+
+702
+00:32:23,549 --> 00:32:27,399
+
+
+
+703
+00:32:27,400 --> 00:32:29,265
+So SAT means satisfiability.
+因此，SAT意味着可满足性。 
+
+704
+00:32:29,465 --> 00:32:36,500
+
+
+
+705
+00:32:36,500 --> 00:32:38,970
+So given the logical expression, find some values
+所以给定逻辑表达式，找到一些值
+
+706
+00:32:38,970 --> 00:32:42,049
+for the variables that make it true.
+对于使它成立的变量。 
+
+707
+00:32:42,049 --> 00:32:45,430
+Let me grab an example from here.
+让我从这里举一个例子。 
+
+708
+00:32:45,430 --> 00:32:47,210
+So in SAT your expressions come out
+因此，在SAT中您的表情会出来
+
+709
+00:32:47,210 --> 00:32:50,910
+in a really nice form, so parsing isn't a big deal.
+以一种非常好的形式，因此解析不是什么大问题。 
+
+710
+00:32:50,910 --> 00:32:52,529
+The way they come out is there a bunch
+他们出来的方式是一堆
+
+711
+00:32:52,529 --> 00:32:54,500
+of terms separated by AND.
+用AND分隔的术语。 
+
+712
+00:32:54,500 --> 00:33:00,859
+So your expressions look like this-- and,
+所以您的表情看起来像这样-并且， 
+
+713
+00:33:00,859 --> 00:33:07,609
+and, and-- say we have four terms.
+还有-说我们有四个术语。 
+
+714
+00:33:07,609 --> 00:33:10,109
+These look good.
+这些看起来不错。 
+
+715
+00:33:10,109 --> 00:33:15,579
+So you have some terms, say n terms,
+所以您有一些条件，例如n个条件， 
+
+716
+00:33:15,579 --> 00:33:17,409
+and they're all separated by ANDs.
+并且它们都被AND隔开。 
+
+717
+00:33:17,410 --> 00:33:19,899
+This is a term.
+这是一个术语。 
+
+718
+00:33:20,099 --> 00:33:23,829
+In a term you have variables separated by ORs.
+在一个术语中，您有用OR分隔的变量。 
+
+719
+00:33:23,829 --> 00:33:24,559
+Nothing else.
+没有其他的。 
+
+720
+00:33:24,559 --> 00:33:27,589
+Just either the variable or a variable
+只是变量或变量
+
+721
+00:33:27,589 --> 00:33:29,750
+with a NOT in front of it.
+前面有一个NOT。 
+
+722
+00:33:29,750 --> 00:33:55,599
+So say x1 OR NOT x2, NOT x1 OR x4, NOT x3 or x4, and X2 OR X4.
+因此说x1或非x2，非x1或x4，非x3或x4以及X2或X4。 
+
+723
+00:33:55,599 --> 00:33:59,049
+So this is called the Conjuntive Normal Form, CNF.
+因此，这称为合取范式CNF。 
+
+724
+00:33:59,049 --> 00:34:01,755
+
+
+
+725
+00:34:01,756 --> 00:34:05,409
+The reason this is really nice to work with is-- OK,
+确实很好用的原因是-好吧， 
+
+726
+00:34:05,609 --> 00:34:08,460
+you just have some variables here.
+您这里只有一些变量。 
+
+727
+00:34:08,460 --> 00:34:10,690
+You know that these are all joined by AND,
+您知道这些都是由AND联接的， 
+
+728
+00:34:10,690 --> 00:34:12,900
+so you're going to have to make all these terms true.
+因此您必须使所有这些术语正确。 
+
+729
+00:34:12,900 --> 00:34:16,420
+
+
+
+730
+00:34:16,420 --> 00:34:17,829
+And then you have ORs inside.
+然后，您在内部具有OR。 
+
+731
+00:34:17,829 --> 00:34:19,940
+So you know that for every term, at least one
+所以你知道每个学期至少有一个
+
+732
+00:34:19,940 --> 00:34:22,699
+of the things inside the term has to be true.
+该术语中的某些事物必须是正确的。 
+
+733
+00:34:22,699 --> 00:34:25,007
+And that's it.
+就是这样。 
+
+734
+00:34:25,007 --> 00:34:25,840
+This is the problem.
+这就是问题。 
+
+735
+00:34:25,840 --> 00:34:27,809
+This is SAT.
+这是SAT。 
+
+736
+00:34:27,809 --> 00:34:29,079
+You have n terms.
+您有n个条件。 
+
+737
+00:34:29,079 --> 00:34:33,789
+And then the number of variables that you have inside is k.
+然后，您内部拥有的变量数为k。 
+
+738
+00:34:33,789 --> 00:34:37,528
+So you have at most k variables in a term.
+因此，一个学期中最多有k个变量。 
+
+739
+00:34:37,528 --> 00:34:42,119
+
+
+
+740
+00:34:42,119 --> 00:34:44,829
+This k looks like a constant factor.
+这个k看起来像一个常数因子。 
+
+741
+00:34:44,829 --> 00:34:46,509
+But it's so important that in fact it
+但这很重要，实际上
+
+742
+00:34:46,510 --> 00:34:47,820
+shows up in the name of the problem.
+以问题的名称出现。 
+
+743
+00:34:48,019 --> 00:34:51,400
+
+
+
+744
+00:34:51,400 --> 00:34:53,449
+The problem is called k-SAT.
+这个问题称为k-SAT。 
+
+745
+00:34:53,449 --> 00:34:57,630
+And there are two values of k for which
+有两个k值
+
+746
+00:34:57,630 --> 00:34:58,710
+the problem is important.
+这个问题很重要。 
+
+747
+00:34:58,909 --> 00:35:06,029
+There's 2-SAT, and there's 3-SAT.
+有2-SAT，有3-SAT。 
+
+748
+00:35:06,030 --> 00:35:08,130
+2-SAT is polynomial.
+ 2-SAT是多项式。 
+
+749
+00:35:08,329 --> 00:35:11,460
+We have a solution that runs in order and time in fact.
+实际上，我们有一个按顺序运行的解决方案。 
+
+750
+00:35:11,460 --> 00:35:12,059
+Really good.
+真的很好
+
+751
+00:35:12,059 --> 00:35:17,867
+
+
+
+752
+00:35:17,867 --> 00:35:20,288
+AUDIENCE: But you're saying that to make--
+听众：但是你是说要- 
+
+753
+00:35:20,288 --> 00:35:23,039
+you're actually rearranging things or you're just--
+您实际上是在重新整理东西，或者只是- 
+
+754
+00:35:23,239 --> 00:35:27,089
+PROFESSOR: So I have to come up with values for x1, x2, x3,
+教授：所以我必须拿出x1，x2，x3， 
+
+755
+00:35:27,090 --> 00:35:30,289
+and four, so that the whole thing is true.
+还有四个，所以整个事情都是对的。 
+
+756
+00:35:30,289 --> 00:35:32,130
+And the expression is already arranged
+表达式已经安排好了
+
+757
+00:35:32,130 --> 00:35:36,000
+in this nice form for you.
+以这种适合您的形式。 
+
+758
+00:35:36,000 --> 00:35:38,048
+AUDIENCE: It's just-- it seems like order
+观众：只是-好像是命令
+
+759
+00:35:38,048 --> 00:35:40,215
+and, because you're just evaluating to block, right?
+而且，因为您只是在评估要阻止，对吗？ 
+
+760
+00:35:40,215 --> 00:35:42,608
+PROFESSOR: Well, no, you have to come up with the values.
+教授：嗯，不，您必须提出价值观。 
+
+761
+00:35:42,608 --> 00:35:43,572
+AUDIENCE: Oh, I know.
+听众：哦，我知道。 
+
+762
+00:35:43,572 --> 00:35:44,072
+I know.
+我知道。 
+
+763
+00:35:44,072 --> 00:35:44,572
+But like--
+但是就像- 
+
+764
+00:35:44,572 --> 00:35:46,610
+PROFESSOR: OK and this seems really easy, right?
+教授：好的，这似乎很容易，对吗？ 
+
+765
+00:35:46,610 --> 00:35:47,440
+Well, wait for it.
+好吧，等一下。 
+
+766
+00:35:47,639 --> 00:35:48,829
+Wait for it.
+等一下
+
+767
+00:35:48,829 --> 00:35:51,269
+2-SAT is polynomial.
+ 2-SAT是多项式。 
+
+768
+00:35:51,269 --> 00:35:53,230
+3-SAT is NP-complete.
+ 3-SAT是NP完全的。 
+
+769
+00:35:53,230 --> 00:35:58,210
+
+
+
+770
+00:35:58,210 --> 00:36:01,730
+So if you solve it, you're in turn for a Turing reward,
+因此，如果您解决了问题，您将获得图灵奖励， 
+
+771
+00:36:01,730 --> 00:36:05,730
+or you can become really, really rich.
+否则你可以变得非常富有。 
+
+772
+00:36:05,730 --> 00:36:08,199
+So n-SAT can be reduced to 3-SAT.
+因此，n-SAT可以简化为3-SAT。 
+
+773
+00:36:08,199 --> 00:36:12,529
+
+
+
+774
+00:36:12,530 --> 00:36:14,250
+So for anything bigger than three,
+所以对于大于三的任何东西， 
+
+775
+00:36:14,449 --> 00:36:18,949
+n-SAT can be reduced to 3-SAT using reasonable reduction.
+可以使用合理的缩减将n-SAT缩减为3-SAT。 
+
+776
+00:36:18,949 --> 00:36:21,929
+So the input size won't explode too much.
+因此，输入大小不会爆炸太多。 
+
+777
+00:36:21,929 --> 00:36:25,279
+
+
+
+778
+00:36:25,280 --> 00:36:27,090
+So why is this important.
+那么为什么这很重要。 
+
+779
+00:36:27,289 --> 00:36:30,699
+This basically shows us that 3-SAT is NP-complete.
+这基本上告诉我们3-SAT是NP完全的。 
+
+780
+00:36:30,699 --> 00:36:34,629
+And I can make a three-minute proof
+我可以证明三分钟
+
+781
+00:36:34,630 --> 00:36:36,260
+that 3-SAT is NP-complete.
+ 3-SAT是NP完全的。 
+
+782
+00:36:36,260 --> 00:36:38,780
+
+
+
+783
+00:36:38,780 --> 00:36:41,840
+Let's take that verifier guy that we have there.
+让我们带一个在那里的验证者。 
+
+784
+00:36:42,039 --> 00:36:44,480
+A verifier wants the input, which already have
+验证者需要输入，该输入已经有
+
+785
+00:36:44,480 --> 00:36:45,949
+and the proof.
+和证明。 
+
+786
+00:36:45,949 --> 00:36:49,109
+Let's write the verifier as a circuit
+让我们将验证器编写为电路
+
+787
+00:36:49,110 --> 00:36:53,550
+that takes the input and the proof as bits.
+将输入和证明作为位。 
+
+788
+00:36:53,550 --> 00:36:54,920
+Those are input to the circuit.
+这些输入到电路。 
+
+789
+00:36:55,119 --> 00:36:58,369
+The circuit is going to evaluate to true or false.
+电路将评估为真或假。 
+
+790
+00:36:58,369 --> 00:37:00,949
+Now that we have a circuit, it's easy to turn that
+现在我们有了电路，现在很容易
+
+791
+00:37:00,949 --> 00:37:02,980
+into a logical expression.
+转换成逻辑表达式
+
+792
+00:37:02,980 --> 00:37:09,420
+Turn AND gate and OR gate into-- and ANDs and ORs,
+将AND门和OR门变成-和AND与OR， 
+
+793
+00:37:09,420 --> 00:37:12,164
+and then reduce N-SAT to 3-SAT and get one of these.
+然后将N-SAT还原为3-SAT并获得其中之一。 
+
+794
+00:37:12,364 --> 00:37:15,239
+
+
+
+795
+00:37:15,239 --> 00:37:18,509
+If you can solve 3-SAT, then you can
+如果您可以解决3-SAT，那么您可以
+
+796
+00:37:18,510 --> 00:37:21,351
+compute values for the proof bits.
+计算证明位的值。 
+
+797
+00:37:21,550 --> 00:37:22,049
+Bam.
+ am 
+
+798
+00:37:22,050 --> 00:37:22,925
+That's it.
+而已。 
+
+799
+00:37:22,925 --> 00:37:26,440
+
+
+
+800
+00:37:26,440 --> 00:37:33,210
+So I take the verifier and I turn it into a circuit.
+因此，我将验证器转换为电路。 
+
+801
+00:37:33,210 --> 00:37:36,710
+
+
+
+802
+00:37:36,710 --> 00:37:38,750
+The circuit is all logic gates.
+该电路是所有逻辑门。 
+
+803
+00:37:38,750 --> 00:37:47,769
+And then it has some inputs, the original problem input
+然后有一些输入，原始问题输入
+
+804
+00:37:47,769 --> 00:37:50,579
+and the proof.
+和证明。 
+
+805
+00:37:50,579 --> 00:37:52,416
+These are represented as a series of bits,
+这些被表示为一系列的位， 
+
+806
+00:37:52,416 --> 00:37:54,000
+and they're all inputs in the circuit.
+它们都是电路中的输入。 
+
+807
+00:37:54,000 --> 00:38:00,300
+
+
+
+808
+00:38:00,300 --> 00:38:03,289
+If the algorithm is polynomial time,
+如果算法是多项式时间， 
+
+809
+00:38:03,289 --> 00:38:08,759
+then the circuit also has to be polynomial in the input size.
+那么电路的输入大小也必须是多项式。 
+
+810
+00:38:08,760 --> 00:38:11,010
+Proof already has to be polynomial in the input size,
+证明必须已经是输入大小的多项式， 
+
+811
+00:38:11,010 --> 00:38:11,760
+so we're all good.
+所以我们都很好。 
+
+812
+00:38:11,760 --> 00:38:14,400
+We're all in polynomial world.
+我们都在多项式世界中。 
+
+813
+00:38:14,599 --> 00:38:17,681
+Now we take this circuit, and we turn it
+现在我们把电路转过来
+
+814
+00:38:17,681 --> 00:38:18,764
+into a logical expression.
+转换成逻辑表达式
+
+815
+00:38:18,764 --> 00:38:23,779
+
+
+
+816
+00:38:23,780 --> 00:38:32,360
+Sorry not logical, logic, also known as a Boolean expression.
+对不起没有逻辑，逻辑又称布尔表达式。 
+
+817
+00:38:32,360 --> 00:38:34,670
+So the input bits become Boolean variables,
+所以输入位变成布尔变量
+
+818
+00:38:34,670 --> 00:38:38,369
+and then we express gates as Boolean functions-- AND, OR,
+然后我们将门表示为布尔函数-AND，OR， 
+
+819
+00:38:38,369 --> 00:38:40,000
+NOT, whatever we want.
+不，无论我们想要什么。 
+
+820
+00:38:40,000 --> 00:38:41,875
+And this is going to give us some expression.
+这将给我们一些表达。 
+
+821
+00:38:41,875 --> 00:38:44,489
+
+
+
+822
+00:38:44,489 --> 00:38:50,209
+That expression is going to map to N-SAT for some value of n.
+该表达式将以n的某个值映射到N-SAT。 
+
+823
+00:38:50,210 --> 00:38:52,280
+So then we're going to take this expression,
+因此，我们将采用此表达式， 
+
+824
+00:38:52,280 --> 00:38:53,960
+and we're going to reduce it to 3-SAT.
+我们将其减少到3-SAT。 
+
+825
+00:38:54,159 --> 00:38:57,839
+
+
+
+826
+00:38:57,840 --> 00:39:00,610
+So actually we're going to reduce the expression to 3-CNF
+所以实际上我们将表达式简化为3-CNF 
+
+827
+00:39:00,610 --> 00:39:02,840
+and then run 3-SAT on it.
+然后在其上运行3-SAT。 
+
+828
+00:39:02,840 --> 00:39:05,900
+The expression will be reduced to 3-CNF.
+该表达式将被简化为3-CNF。 
+
+829
+00:39:05,900 --> 00:39:07,570
+So to something that looks like this,
+所以对于这样的东西， 
+
+830
+00:39:07,570 --> 00:39:11,280
+except you have three variables inside everything.
+除了一切里面都有三个变量。 
+
+831
+00:39:11,280 --> 00:39:14,110
+Once it's in 3-CNF, you can run 3-SAT on it.
+一旦将其放入3-CNF中，就可以在其上运行3-SAT。 
+
+832
+00:39:14,309 --> 00:39:18,110
+
+
+
+833
+00:39:18,110 --> 00:39:20,340
+If it is satisfiable, then 3-SAT has
+如果可以满足，则3-SAT具有
+
+834
+00:39:20,340 --> 00:39:25,440
+to give us some values here for the variables.
+给我们一些变量值
+
+835
+00:39:25,639 --> 00:39:29,369
+Some of the variables are the problem input-- Sorry
+有些变量是问题输入-对不起
+
+836
+00:39:29,369 --> 00:39:31,469
+the problem input gets hard coded in the circuit.
+问题输入在电路中被硬编码。 
+
+837
+00:39:31,469 --> 00:39:31,968
+Sorry.
+抱歉。 
+
+838
+00:39:31,969 --> 00:39:39,579
+Not thinking here-- hard coded in circuit,
+不在这里思考-硬编码在电路中， 
+
+839
+00:39:39,579 --> 00:39:42,559
+because we don't want it to tell us what the input is.
+因为我们不希望它告诉我们输入的是什么。 
+
+840
+00:39:42,559 --> 00:39:44,739
+And then the proof is encoded as a series
+然后将证明编码为系列
+
+841
+00:39:44,739 --> 00:39:48,510
+of bits, which are inputs in the circuit.
+位，是电路中的输入。 
+
+842
+00:39:48,510 --> 00:39:49,009
+OK.
+好。 
+
+843
+00:39:49,010 --> 00:39:53,210
+So problem hard coded, proofs are inputs in the circuit.
+因此问题经过硬编码，证明是电路中的输入。 
+
+844
+00:39:53,210 --> 00:39:56,150
+We've taken the circuits, turned it into an input for 3-SAT.
+我们采用了电路，将其转换为3-SAT的输入。 
+
+845
+00:39:56,150 --> 00:40:02,610
+If 3-SAT says there is a valid variable assignment,
+如果3-SAT表示存在有效的变量分配， 
+
+846
+00:40:02,610 --> 00:40:05,630
+then that assignment tells me what the bits are in the proof.
+然后那个作业告诉我证明中的位。 
+
+847
+00:40:05,630 --> 00:40:08,210
+
+
+
+848
+00:40:08,210 --> 00:40:11,829
+So that means I can take the proof, feed it to the verifier.
+因此，这意味着我可以拿取证明，并将其提供给验证者。 
+
+849
+00:40:11,829 --> 00:40:13,429
+The verifier will say it's happy,
+验证者会说很高兴， 
+
+850
+00:40:13,429 --> 00:40:15,649
+so we solved the problem.
+所以我们解决了这个问题。 
+
+851
+00:40:15,650 --> 00:40:18,599
+And this is true for any NP-complete problem.
+这对于任何NP完全问题都是正确的。 
+
+852
+00:40:18,599 --> 00:40:20,809
+NP-complete means it has to have a verifier that
+ NP完整意味着它必须具有一个验证程序
+
+853
+00:40:20,809 --> 00:40:22,179
+runs in polynomial time.
+在多项式时间内运行。 
+
+854
+00:40:22,179 --> 00:40:25,069
+So I have to be able to follow this process.
+因此，我必须能够遵循此过程。 
+
+855
+00:40:25,070 --> 00:40:26,789
+So for the factoring problem, for example, I
+所以对于保理问题，例如，我
+
+856
+00:40:26,989 --> 00:40:30,079
+would take this modulo algorithm,
+将采用这种取模算法
+
+857
+00:40:30,079 --> 00:40:32,049
+I would express it as a circuit.
+我将其表示为电路。 
+
+858
+00:40:32,050 --> 00:40:34,800
+The bits of P would be the input.
+ P的位将是输入。 
+
+859
+00:40:34,800 --> 00:40:38,760
+I take that circuit and I turn into a 3-CNF formula, run it
+我把电路变成一个3-CNF公式，运行它
+
+860
+00:40:38,760 --> 00:40:40,840
+on 3-SAT.
+在3-SAT。 
+
+861
+00:40:40,840 --> 00:40:45,050
+The variable values for which the circuit happy
+电路满意的变量值
+
+862
+00:40:45,050 --> 00:40:48,150
+are the bits of P that make up.
+是组成P的位。 
+
+863
+00:40:48,150 --> 00:40:51,789
+So they're the bits of P. They make up a factor of n.
+因此，它们是P的位。它们构成n的因数。 
+
+864
+00:40:51,789 --> 00:40:54,690
+So if I can run 3-SAT fast enough to get an answer,
+因此，如果我能够以足够快的速度运行3-SAT以获得答案， 
+
+865
+00:40:54,690 --> 00:40:57,960
+then I have P and I have factor of n.
+那么我有P，因子为n。 
+
+866
+00:40:57,960 --> 00:41:01,119
+And I've become really, really rich, and bye guys, I'm gone.
+而且我已经变得非常非常富有，再见了，我走了。 
+
+867
+00:41:01,119 --> 00:41:05,853
+
+
+
+868
+00:41:05,853 --> 00:41:07,519
+AUDIENCE: For each of those expressions,
+听众：对于每个表达式， 
+
+869
+00:41:07,519 --> 00:41:09,619
+you said you make that circuit n.
+你说你做那个电路。 
+
+870
+00:41:09,619 --> 00:41:11,089
+You've got all these inputs, which
+您已经获得了所有这些输入， 
+
+871
+00:41:11,090 --> 00:41:13,730
+are x1, x2, everything like that.
+是x1，x2之类的东西。 
+
+872
+00:41:13,730 --> 00:41:17,730
+Could you just go through every possible combination?
+您能否进行所有可能的组合？ 
+
+873
+00:41:17,730 --> 00:41:19,789
+PROFESSOR: That's exponential, right?
+教授：那是指数的，对不对？ 
+
+874
+00:41:19,789 --> 00:41:24,550
+That's two to the n, where n is number of variables.
+那是n的2，其中n是变量数。 
+
+875
+00:41:24,550 --> 00:41:26,440
+And the number of variables can be
+并且变量的数量可以是
+
+876
+00:41:26,440 --> 00:41:29,016
+proportional to the number of terms.
+与项数成正比。 
+
+877
+00:41:29,016 --> 00:41:29,961
+AUDIENCE: Yeah.
+听众：是的。 
+
+878
+00:41:29,961 --> 00:41:31,275
+That would be fine with it.
+这样就可以了。 
+
+879
+00:41:31,275 --> 00:41:32,650
+PROFESSOR: So that means you have
+教授：所以这意味着你有
+
+880
+00:41:32,650 --> 00:41:33,900
+an exponential running time.
+指数运行时间。 
+
+881
+00:41:33,900 --> 00:41:36,090
+It's not polynomial, which is reassuring,
+这不是多项式，这让人放心， 
+
+882
+00:41:36,090 --> 00:41:39,880
+because otherwise it would mean that the whole world has been
+因为否则，这意味着整个世界
+
+883
+00:41:39,880 --> 00:41:42,610
+spinning their wheels around nothing all this time, right?
+一直没有动静，对吧？ 
+
+884
+00:41:42,610 --> 00:41:44,030
+So it's reassuring that you can't
+所以可以放心，您不能
+
+885
+00:41:44,030 --> 00:41:45,871
+find the solution in two minutes to this problem.
+在两分钟内找到解决该问题的方法。 
+
+886
+00:41:46,070 --> 00:41:49,579
+
+
+
+887
+00:41:49,579 --> 00:41:51,579
+In fact, so far I've been trying to convince you
+实际上，到目前为止，我一直在努力说服您
+
+888
+00:41:51,579 --> 00:41:53,079
+that you should not attempt to solve
+你不应该试图解决
+
+889
+00:41:53,079 --> 00:41:56,519
+this problem in real time, so not on exam time,
+这个问题是实时的，所以不是考试时间， 
+
+890
+00:41:56,519 --> 00:41:59,347
+not on [INAUDIBLE] time, nor anywhere else where time
+不在[听不清]时间，也没有其他时间
+
+891
+00:41:59,347 --> 00:41:59,855
+actually matters.
+实际上很重要。 
+
+892
+00:42:00,054 --> 00:42:04,129
+
+
+
+893
+00:42:04,130 --> 00:42:05,402
+You guys bored?
+你们无聊吗？ 
+
+894
+00:42:05,601 --> 00:42:06,879
+Maybe.
+也许。 
+
+895
+00:42:06,880 --> 00:42:09,210
+Well, so there's this proof that's
+好吧，所以有这个证明是
+
+896
+00:42:09,409 --> 00:42:12,829
+not too hard to follow that says that if you solve 3-SAT
+不太难的意思是，如果您解决了3-SAT 
+
+897
+00:42:12,829 --> 00:42:15,179
+you have solved any NP-complete problem by turning
+您已经解决了所有NP完全问题
+
+898
+00:42:15,179 --> 00:42:18,379
+the verifier into a logical expression.
+验证程序转换为逻辑表达式。 
+
+899
+00:42:18,380 --> 00:42:20,280
+That's what it comes down to.
+这就是结果。 
+
+900
+00:42:20,280 --> 00:42:21,862
+Now 2-SAT is polynomial.
+现在2-SAT是多项式。 
+
+901
+00:42:22,061 --> 00:42:24,269
+And if you guys want, we can go through the solution.
+如果您愿意，我们可以提供解决方案。 
+
+902
+00:42:24,269 --> 00:42:26,460
+If not, we can skip that.
+如果没有，我们可以跳过。 
+
+903
+00:42:26,460 --> 00:42:29,530
+But this tiny difference here, how many variables
+但是这里的微小差异，有多少个变量
+
+904
+00:42:29,530 --> 00:42:31,090
+you're allowed inside, which looks
+你被允许进入里面，看起来
+
+905
+00:42:31,289 --> 00:42:34,179
+like it might be a constant factor in an algorithm
+就像它可能是算法中的常数
+
+906
+00:42:34,179 --> 00:42:38,299
+actually makes the difference between a very easy problem,
+实际上使一个非常简单的问题有所不同， 
+
+907
+00:42:38,300 --> 00:42:42,570
+a problem that's in P, and the hardest problem in NP.
+ P中的问题，NP中最困难的问题。 
+
+908
+00:42:42,570 --> 00:42:45,400
+So 2-SAT is order n, so it's somewhere here.
+所以2-SAT是n阶，所以在这里。 
+
+909
+00:42:45,400 --> 00:42:51,960
+
+
+
+910
+00:42:51,960 --> 00:42:53,530
+3-SAT is all the way here.
+ 3-SAT一直在这里。 
+
+911
+00:42:53,530 --> 00:43:02,201
+
+
+
+912
+00:43:02,400 --> 00:43:04,149
+Small difference how many variables you're
+小差异，您有多少个变量
+
+913
+00:43:04,150 --> 00:43:06,416
+allowed, two or three.
+允许，两个或三个。 
+
+914
+00:43:06,416 --> 00:43:08,000
+Makes all the difference in the world.
+改变世界。 
+
+915
+00:43:08,000 --> 00:43:14,552
+
+
+
+916
+00:43:14,552 --> 00:43:19,719
+AUDIENCE: There are logic reductions you can make, right?
+听众：您可以进行逻辑简化，对吗？ 
+
+917
+00:43:19,719 --> 00:43:21,510
+PROFESSOR: There are optimizations that you
+教授：您有一些优化
+
+918
+00:43:21,510 --> 00:43:22,130
+can make.
+可以使。 
+
+919
+00:43:22,130 --> 00:43:24,619
+And there are some people who do research
+有些人在做研究
+
+920
+00:43:24,619 --> 00:43:28,819
+on how to solve 3-SAT in a reasonably fast time.
+如何在相当快的时间内解决3-SAT问题。 
+
+921
+00:43:28,820 --> 00:43:30,380
+Because if you solve 3-SAT, any problem
+因为如果您解决3-SAT问题
+
+922
+00:43:30,579 --> 00:43:34,989
+can be reduced to 3-SAT.
+可以减少到3-SAT。 
+
+923
+00:43:34,989 --> 00:43:37,769
+All right, we have a feeling that we're not going to be able
+好吧，我们有种感觉，我们将无法
+
+924
+00:43:37,769 --> 00:43:39,360
+to solve this in polynomial time,
+在多项式时间内解决这个问题
+
+925
+00:43:39,360 --> 00:43:42,559
+because a lot of people tried, but some researchers are hoping
+因为很多人尝试过，但是一些研究人员希望
+
+926
+00:43:42,559 --> 00:43:46,909
+that well maybe you can solve 3-SAT in order of 2 to the n
+好吧，也许您可​​以按2到n的顺序求解3-SAT 
+
+927
+00:43:46,909 --> 00:43:53,329
+to the power of 0.00001, which exponential, right?
+到0.00001的幂，哪个指数对？ 
+
+928
+00:43:53,329 --> 00:43:58,619
+But you can solve many problems with this.
+但是您可以解决许多问题。 
+
+929
+00:43:58,619 --> 00:44:03,114
+Active research, so far I don't think they've come very far.
+积极的研究，到目前为止，我认为它们没有取得很大进展。 
+
+930
+00:44:03,114 --> 00:44:05,030
+Actually, I shouldn't say that, because if you
+其实我不应该这么说，因为如果你
+
+931
+00:44:05,030 --> 00:44:06,371
+apply the brute force algorithm, then
+应用蛮力算法，然后
+
+932
+00:44:06,570 --> 00:44:10,400
+you die at about 20 variables.
+你死于大约20个变量。 
+
+933
+00:44:10,400 --> 00:44:13,789
+State of the art 3-SAT solving algorithms,
+最先进的3-SAT求解算法， 
+
+934
+00:44:13,789 --> 00:44:16,920
+I think it can handle 1,000 to 10,000 variables
+我认为它可以处理1,000到10,000个变量
+
+935
+00:44:16,920 --> 00:44:20,360
+in a reasonable time, like a few hours.
+在合理的时间内，例如几个小时。 
+
+936
+00:44:20,360 --> 00:44:22,260
+There progress.
+有进步。 
+
+937
+00:44:22,260 --> 00:44:24,509
+And that is all by doing the reductions that you said.
+这就是通过减少您所说的事情。 
+
+938
+00:44:24,510 --> 00:44:27,780
+You see some optimizations that you can make in the expression.
+您会看到可以在表达式中进行的一些优化。 
+
+939
+00:44:27,780 --> 00:44:30,210
+You draw some inferences, and you
+你得出一些推论，你
+
+940
+00:44:30,409 --> 00:44:32,349
+explore the possible configurations,
+探索可能的配置， 
+
+941
+00:44:32,349 --> 00:44:34,480
+taking us part way.
+带我们一路走。 
+
+942
+00:44:34,480 --> 00:44:36,730
+So there's a lot of active research going in that area
+因此，在该领域有很多积极的研究
+
+943
+00:44:36,730 --> 00:44:37,639
+too.
+太。 
+
+944
+00:44:37,639 --> 00:44:42,536
+So far, they didn't get here.
+到目前为止，他们还没有到达这里。 
+
+945
+00:44:42,536 --> 00:44:46,349
+AUDIENCE: That's almost solving NP-complete problem then,
+听众：那差不多解决了NP完全问题， 
+
+946
+00:44:46,349 --> 00:44:46,849
+right?
+对？ 
+
+947
+00:44:46,849 --> 00:44:48,690
+PROFESSOR: Well, yeah, the thing is
+教授：是的，这是
+
+948
+00:44:48,690 --> 00:44:52,000
+in the end we care about practical solutions, right?
+最后，我们关心实用的解决方案，对吗？ 
+
+949
+00:44:52,000 --> 00:44:54,260
+So they're hoping to get to a practical solution.
+因此，他们希望找到一个切实可行的解决方案。 
+
+950
+00:44:54,260 --> 00:44:56,259
+AUDIENCE: Well, a few hours is pretty practical.
+听众：好吧，几个小时很实用。 
+
+951
+00:44:56,259 --> 00:44:58,849
+
+
+
+952
+00:44:58,849 --> 00:45:01,489
+So that's for some problems.
+这就是一些问题。 
+
+953
+00:45:01,489 --> 00:45:04,250
+Obviously they didn't solve factoring, right?
+显然他们没有解决因数分解，对吗？ 
+
+954
+00:45:04,250 --> 00:45:07,070
+If they would have solved 1,000-bit factoring in a few
+如果他们能在几个时间内解决1,000位分解
+
+955
+00:45:07,070 --> 00:45:08,920
+hours, then we would have noticed.
+小时，那么我们会注意到的。 
+
+956
+00:45:09,119 --> 00:45:12,000
+
+
+
+957
+00:45:12,000 --> 00:45:13,920
+AUDIENCE: Maybe.
+听众：也许吧。 
+
+958
+00:45:13,920 --> 00:45:14,894
+Seriously, OK.
+说真的，好的。 
+
+959
+00:45:15,094 --> 00:45:16,469
+PROFESSOR: We would have noticed.
+教授：我们会注意到的。 
+
+960
+00:45:16,469 --> 00:45:21,009
+
+
+
+961
+00:45:21,010 --> 00:45:21,460
+So far so good?
+到现在为止还挺好？ 
+
+962
+00:45:21,659 --> 00:45:22,826
+Any questions on this stuff?
+对这个东西有疑问吗？ 
+
+963
+00:45:22,826 --> 00:45:25,329
+
+
+
+964
+00:45:25,329 --> 00:45:29,110
+So I want to reemphasize in two minutes, the reduction
+所以我想在两分钟内重新强调
+
+965
+00:45:29,110 --> 00:45:29,820
+part of this.
+部分。 
+
+966
+00:45:29,820 --> 00:45:32,809
+So the reason why we can solve, once we solve
+所以我们解决的原因
+
+967
+00:45:32,809 --> 00:45:35,269
+one NP-complete problem, we solve all the other ones
+一个NP完全问题，我们解决所有其他问题
+
+968
+00:45:35,269 --> 00:45:36,333
+is reductions.
+是减少。 
+
+969
+00:45:36,333 --> 00:45:39,639
+
+
+
+970
+00:45:39,639 --> 00:45:42,389
+So we've done a lot of graph transformations in this class.
+因此，我们在此类中完成了许多图形转换。 
+
+971
+00:45:42,389 --> 00:45:45,969
+We had three recitations and two or three exam problems on that,
+在这方面，我们有3个背诵和2或3个考试题， 
+
+972
+00:45:45,969 --> 00:45:48,169
+and I think we had some homework problems on it
+我认为我们在作业上有一些问题
+
+973
+00:45:48,170 --> 00:45:50,250
+too-- a lot of graph transformations.
+也是-很多图变换。 
+
+974
+00:45:50,449 --> 00:45:52,259
+Graph transformations are just reductions.
+图转换只是简化。 
+
+975
+00:45:52,260 --> 00:45:56,590
+You take some problem that looks hard, and you do some magic,
+您遇到一些看起来很难的问题，并且做了一些魔术， 
+
+976
+00:45:56,789 --> 00:45:59,289
+and you build a graph that represents that problem,
+然后您建立代表该问题的图表， 
+
+977
+00:45:59,289 --> 00:46:01,519
+and you run shortest path on it.
+并且您在其上运行最短路径。 
+
+978
+00:46:01,519 --> 00:46:04,329
+Then you take the output for the shortest path algorithm,
+然后将输出用于最短路径算法， 
+
+979
+00:46:04,329 --> 00:46:07,487
+and you turn it into a solution to the initial problem.
+然后将其变成最初问题的解决方案。 
+
+980
+00:46:07,487 --> 00:46:09,320
+This means that we've reduced those problems
+这意味着我们已经减少了这些问题
+
+981
+00:46:09,320 --> 00:46:12,440
+to shortest path.
+最短的路径。 
+
+982
+00:46:12,440 --> 00:46:14,440
+Well, you don't have to reduce to shortest path.
+好吧，您不必减少到最短路径。 
+
+983
+00:46:14,440 --> 00:46:16,481
+If you have a problem that you know how to solve,
+如果您有知道如何解决的问题， 
+
+984
+00:46:16,481 --> 00:46:18,789
+you can take any other problem and reduce to it,
+您可以解决任何其他问题并将其减少， 
+
+985
+00:46:18,989 --> 00:46:21,119
+and you've solved that other problem.
+并且您已经解决了其他问题。 
+
+986
+00:46:21,119 --> 00:46:24,960
+So basically, here, if you have your starting problem,
+所以基本上，在这里，如果您遇到开始的问题， 
+
+987
+00:46:24,960 --> 00:46:26,889
+shortest path is just one smiley face.
+最短的路径只是一张笑脸。 
+
+988
+00:46:26,889 --> 00:46:28,679
+As long as you arrive to any smiley face,
+只要你到任何笑脸
+
+989
+00:46:28,679 --> 00:46:32,018
+you're in good shape.
+您身体状况良好。 
+
+990
+00:46:32,018 --> 00:46:33,519
+Of course, you have to be careful
+当然要小心
+
+991
+00:46:33,719 --> 00:46:35,427
+that while you're doing you're reduction,
+当你做的时候你在减少
+
+992
+00:46:35,427 --> 00:46:38,109
+your problem size doesn't explode.
+您的问题规模不会爆炸。 
+
+993
+00:46:38,110 --> 00:46:45,420
+So for example, if you take this problem-- if you take 3-SAT--
+举例来说，如果您遇到这个问题-如果您使用3-SAT， 
+
+994
+00:46:45,420 --> 00:46:49,289
+if you take a 3-CNF expression, and you reduce it
+如果您使用3-CNF表达式并减少它
+
+995
+00:46:49,289 --> 00:46:51,471
+to the graph that has 3 to the n vertices,
+到具有3到n个顶点的图， 
+
+996
+00:46:51,471 --> 00:46:53,219
+and then you try to run [INAUDIBLE] on it,
+然后尝试在其上运行[音频不清晰]， 
+
+997
+00:46:53,219 --> 00:46:55,199
+it was the running time, 3 to the n.
+这是运行时间，是3到n。 
+
+998
+00:46:55,199 --> 00:46:57,143
+Now I've got a new polynomial, right?
+现在我有了一个新的多项式，对吗？ 
+
+999
+00:46:57,143 --> 00:46:58,559
+So when you do the reductions, you
+因此，当您进行减少操作时， 
+
+1000
+00:46:58,559 --> 00:47:03,019
+have to be careful about what happens to your input size.
+必须注意输入大小会发生什么。 
+
+1001
+00:47:03,019 --> 00:47:04,929
+And that's about it.
+就是这样。 
+
+1002
+00:47:04,929 --> 00:47:08,023
+This is complexity theory.
+这就是复杂性理论。 
+
+1003
+00:47:08,023 --> 00:47:10,299
+It's basically one big excuse for why
+这基本上是一个大借口
+
+1004
+00:47:10,300 --> 00:47:15,300
+we can't solve some problems that are hard.
+我们无法解决一些棘手的问题。 
+

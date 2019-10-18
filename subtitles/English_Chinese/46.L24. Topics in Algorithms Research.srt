@@ -1,0 +1,4715 @@
+﻿1
+00:00:00,000 --> 00:00:00,050
+
+
+
+2
+00:00:00,050 --> 00:00:01,770
+The following content is provided
+提供以下内容
+
+3
+00:00:01,770 --> 00:00:04,009
+under a Creative Commons license.
+根据知识共享许可。 
+
+4
+00:00:04,009 --> 00:00:06,859
+Your support will help MIT OpenCourseWare continue
+您的支持将帮助MIT OpenCourseWare继续
+
+5
+00:00:06,860 --> 00:00:10,720
+to offer high quality educational resources for free.
+免费提供高质量的教育资源。 
+
+6
+00:00:10,720 --> 00:00:13,320
+To make a donation or view additional materials
+捐款或查看其他材料
+
+7
+00:00:13,320 --> 00:00:17,207
+from hundreds of MIT courses, visit MIT OpenCourseWare
+从数百门麻省理工学院的课程中，访问MIT OpenCourseWare 
+
+8
+00:00:17,207 --> 00:00:17,832
+at ocw.mit.edu.
+在ocw.mit.edu。 
+
+9
+00:00:17,832 --> 00:00:20,551
+
+
+
+10
+00:00:20,551 --> 00:00:22,009
+PROFESSOR SRINI DEVADAS: Erik and I
+ SRINI DEVADAS教授：我和Erik 
+
+11
+00:00:22,010 --> 00:00:24,699
+have been tag teaming this lecture in this class
+在本节课中一直在标记分组此讲座
+
+12
+00:00:24,899 --> 00:00:28,250
+so we're going to split this lecture.
+所以我们将拆分本讲座。 
+
+13
+00:00:28,250 --> 00:00:33,109
+So I get to do the first 2 minutes.
+所以我开始做前2分钟。 
+
+14
+00:00:33,109 --> 00:00:33,950
+No.
+没有。 
+
+15
+00:00:33,950 --> 00:00:38,520
+I get to do the first 20 minutes, or so,
+我要开始大约20分钟的时间， 
+
+16
+00:00:38,520 --> 00:00:40,670
+talking about some of my research
+谈论我的一些研究
+
+17
+00:00:40,670 --> 00:00:42,489
+in parallel architecture.
+在并行架构中。 
+
+18
+00:00:42,689 --> 00:00:45,039
+And Erik's going to talk about a bunch of things
+埃里克（Erik）将谈论一堆事情
+
+19
+00:00:45,039 --> 00:00:48,769
+that he's been up to over the years in Algorithm Design
+他在算法设计领域工作了多年
+
+20
+00:00:48,770 --> 00:00:50,269
+and Analysis.
+和分析。 
+
+21
+00:00:50,469 --> 00:00:51,990
+So let's get started.
+因此，让我们开始吧。 
+
+22
+00:00:51,990 --> 00:00:56,060
+
+
+
+23
+00:00:56,060 --> 00:00:58,640
+When was the first PC built, anybody?
+第一台PC是何时制造的，有人吗？ 
+
+24
+00:00:58,640 --> 00:01:01,399
+
+
+
+25
+00:01:01,399 --> 00:01:01,899
+Yeah.
+是的
+
+26
+00:01:01,899 --> 00:01:03,179
+AUDIENCE: In the 1950s.
+听众：在1950年代。 
+
+27
+00:01:03,179 --> 00:01:04,346
+PROFESSOR SRINI DEVADAS: No.
+ SRINI DEVADAS教授：不。 
+
+28
+00:01:04,346 --> 00:01:08,399
+The first personal computer was 1981-- not the first computer.
+第一台个人计算机是1981年，而不是第一台计算机。 
+
+29
+00:01:08,599 --> 00:01:14,919
+So all of you know about Intel, and Microsoft, and IBM,
+因此，你们所有人都了解英特尔，微软和IBM， 
+
+30
+00:01:14,920 --> 00:01:15,500
+and so on.
+等等。 
+
+31
+00:01:15,500 --> 00:01:18,060
+
+
+
+32
+00:01:18,060 --> 00:01:23,430
+Intel's gift to humankind is the x86 architecture.
+英特尔给人类的礼物是x86架构。 
+
+33
+00:01:23,430 --> 00:01:26,629
+Though, some people would argue that point.
+虽然，有些人会争论这一点。 
+
+34
+00:01:26,829 --> 00:01:32,109
+And the x86 architecture was invented in 1981,
+ x86架构是1981年发明的， 
+
+35
+00:01:32,109 --> 00:01:38,289
+and was part of the first PC-- that provided the horsepower
+并且是第一台PC的一部分-提供了强大的功能
+
+36
+00:01:38,290 --> 00:01:41,069
+for the first PC-- the IBM PC.
+第一台PC-IBM PC。 
+
+37
+00:01:41,269 --> 00:01:43,015
+And it ran at 5 megahertz.
+它的运行频率为5兆赫。 
+
+38
+00:01:43,015 --> 00:01:48,930
+
+
+
+39
+00:01:48,930 --> 00:01:53,009
+And x86 has been around-- you still can buy x86 computers.
+ x86已经存在-您仍然可以购买x86计算机。 
+
+40
+00:01:53,209 --> 00:02:01,569
+The 80486, in 1989, ran at 25 megahertz.
+ 1989年的80486以25兆赫的频率运行。 
+
+41
+00:02:01,569 --> 00:02:03,769
+So you can see a trend here.
+这样您就可以在这里看到趋势。 
+
+42
+00:02:03,769 --> 00:02:07,060
+And the 80486, as it turns out, ended up
+事实证明，80486最终
+
+43
+00:02:07,060 --> 00:02:10,900
+being called the I486 because there was a court ruling that
+之所以被称为I486，是因为法院裁定
+
+44
+00:02:10,900 --> 00:02:15,300
+said that you couldn't trademark numbers.
+说你不能注册商标。 
+
+45
+00:02:15,300 --> 00:02:17,430
+And so Intel, at that point, decided
+因此，英特尔当时决定
+
+46
+00:02:17,430 --> 00:02:19,189
+to start naming their processors.
+开始命名他们的处理器。 
+
+47
+00:02:19,189 --> 00:02:21,870
+
+
+
+48
+00:02:21,870 --> 00:02:26,969
+So the Pentium, which is one of the more famous Intel
+奔腾（Pentium）是最著名的英特尔之一
+
+49
+00:02:27,169 --> 00:02:31,719
+processors, was built and came out in 1993.
+处理器，于1993年问世。 
+
+50
+00:02:31,719 --> 00:02:35,240
+And the clock speed went up to 66 megahertz,
+时钟速度高达66兆赫， 
+
+51
+00:02:35,240 --> 00:02:37,960
+back in the early '90s.
+早在90年代初期。 
+
+52
+00:02:37,960 --> 00:02:41,810
+And since this is just such a cool name,
+由于这是一个很酷的名字， 
+
+53
+00:02:42,009 --> 00:02:45,169
+Intel continued to call its processors Pentium.
+英特尔继续称其处理器为奔腾。 
+
+54
+00:02:45,169 --> 00:02:52,854
+And the Pentium 4, in 2000, had this incredibly deep pipeline
+而在2000年的Pentium 4拥有如此难以置信的深度
+
+55
+00:02:52,854 --> 00:02:54,649
+where you broke up the computation
+在哪里分手计算
+
+56
+00:02:54,650 --> 00:02:55,650
+into a bunch of stages.
+进入多个阶段
+
+57
+00:02:55,650 --> 00:02:57,560
+In fact, it had a 30 stage pipeline.
+实际上，它有30个阶段的管道。 
+
+58
+00:02:57,759 --> 00:03:02,579
+And so the clock speed went up all the way to 1.5 gigahertz.
+因此，时钟速度一直上升到1.5 GHz。 
+
+59
+00:03:02,580 --> 00:03:05,490
+The Pentium was famous for many things,
+奔腾（Pentium）以许多东西而闻名
+
+60
+00:03:05,689 --> 00:03:10,009
+including a couple of bugs in the floating point
+包括浮点中的几个错误
+
+61
+00:03:10,009 --> 00:03:15,539
+pipeline where division, in particular corner cases,
+分割的管道，特别是在极端情况下， 
+
+62
+00:03:15,539 --> 00:03:17,189
+wasn't done correctly.
+没有正确完成。 
+
+63
+00:03:17,189 --> 00:03:24,169
+And there was also this bug called the F00F bug, which
+还有一个叫做F00F的错误， 
+
+64
+00:03:24,169 --> 00:03:28,959
+allowed a malicious program to crash the entire system,
+允许恶意程序使整个系统崩溃， 
+
+65
+00:03:28,960 --> 00:03:32,599
+regardless of whether it had administrative privileges
+不管它是否具有管理权限
+
+66
+00:03:32,599 --> 00:03:34,280
+or not.
+或不。 
+
+67
+00:03:34,280 --> 00:03:37,116
+But the Pentium was obviously very successful.
+但是奔腾显然很成功。 
+
+68
+00:03:37,116 --> 00:03:40,020
+A lot of machines sold.
+出售了很多机器。 
+
+69
+00:03:40,020 --> 00:03:44,680
+And it felt like it was only going to be a matter of time
+感觉这只是时间问题
+
+70
+00:03:44,680 --> 00:03:47,180
+before we got to 10s of gigahertz,
+在我们达到10兆赫兹之前
+
+71
+00:03:47,180 --> 00:03:48,379
+the way things were going.
+事情的进展。 
+
+72
+00:03:48,379 --> 00:03:51,269
+As you can see, this is a pretty steep growth
+如您所见，这是一个非常陡峭的增长
+
+73
+00:03:51,270 --> 00:03:53,870
+from 5 megahertz to 25 to 1.5 gigahertz
+从5兆赫兹到25到1.5吉赫兹
+
+74
+00:03:54,069 --> 00:03:57,400
+in the space of about 20 years.
+在大约20年的时间里。 
+
+75
+00:03:57,400 --> 00:04:03,560
+As it turns out, after the Pentium D, which came out
+事实证明，在奔腾D之后， 
+
+76
+00:04:03,759 --> 00:04:09,769
+in 2005, where the clock speed peaked at about 3.2 gigahertz,
+在2005年，时钟速度达到了约3.2 GHz的峰值， 
+
+77
+00:04:09,770 --> 00:04:12,530
+clock frequency stopped increasing.
+时钟频率停止增加。 
+
+78
+00:04:12,530 --> 00:04:17,879
+And what you see now are things that
+现在您所看到的是
+
+79
+00:04:17,879 --> 00:04:21,069
+correspond to multiple processors on a chip.
+对应一个芯片上的多个处理器。 
+
+80
+00:04:21,069 --> 00:04:26,110
+So for example, the Quad Core Xeon came out in 2008.
+例如，Quad Core Xeon于2008年问世。 
+
+81
+00:04:26,110 --> 00:04:27,670
+You can still buy it.
+您仍然可以购买。 
+
+82
+00:04:27,670 --> 00:04:31,170
+Only runs at 3 gigahertz, which is basically
+仅以3 GHz的频率运行，这基本上是
+
+83
+00:04:31,170 --> 00:04:34,240
+about the same as the Pentium D ran.
+与奔腾D的运行大致相同。 
+
+84
+00:04:34,240 --> 00:04:37,100
+Each of these has a range of frequencies.
+这些每个都有一个频率范围。 
+
+85
+00:04:37,100 --> 00:04:41,439
+And beyond about 2005, the clock speed
+大约在2005年以后，时钟速度
+
+86
+00:04:41,439 --> 00:04:43,540
+of processors that you can buy is kind of
+您可以购买的处理器种类
+
+87
+00:04:43,540 --> 00:04:46,870
+saturated at about 3 gigahertz.
+在约3 GHz时饱和。 
+
+88
+00:04:46,870 --> 00:04:50,060
+And the way you're getting performance
+以及您获得绩效的方式
+
+89
+00:04:50,060 --> 00:04:54,290
+is by putting multiple processors on the chip.
+是通过在芯片上放置多个处理器来实现的。 
+
+90
+00:04:54,290 --> 00:04:59,569
+And people use the term cores synonymously with processors.
+人们将术语“核心”与处理器同义使用。 
+
+91
+00:04:59,569 --> 00:05:02,170
+So a quad core means that they're, in effect,
+因此，四核意味着它们实际上是
+
+92
+00:05:02,170 --> 00:05:07,199
+four x86 processors on the same silicon integrated circuit.
+同一硅集成电路上的四个x86处理器。 
+
+93
+00:05:07,399 --> 00:05:10,099
+And they're interconnected together.
+它们相互连接在一起。 
+
+94
+00:05:10,100 --> 00:05:11,920
+And they talk to memory.
+他们谈论记忆。 
+
+95
+00:05:11,920 --> 00:05:14,720
+And you have, essentially, a parallel processor
+从本质上讲，您具有并行处理器
+
+96
+00:05:14,720 --> 00:05:16,980
+on a single chip.
+在单个芯片上。 
+
+97
+00:05:16,980 --> 00:05:20,079
+And the single user, potentially running many programs,
+而单个用户（可能正在运行许多程序） 
+
+98
+00:05:20,279 --> 00:05:22,349
+is using this system.
+正在使用此系统。 
+
+99
+00:05:22,350 --> 00:05:25,329
+And you have dual core processors on your laptops.
+而且您的笔记本电脑上有双核处理器。 
+
+100
+00:05:25,529 --> 00:05:29,139
+And so the scale, now, is-- the metric now,
+因此，比例现在是-现在的指标， 
+
+101
+00:05:29,139 --> 00:05:32,829
+I should say-- is how many cores do you have on a chip.
+我应该说-一个芯片上有多少个内核。 
+
+102
+00:05:32,829 --> 00:05:34,329
+And people are predicting that we're
+人们预测我们
+
+103
+00:05:34,329 --> 00:05:38,560
+going to have 1,000 cores by 2020, on a chip.
+到2020年将在芯片上拥有1,000个内核。 
+
+104
+00:05:38,560 --> 00:05:43,449
+So this brings us to the problem of how do we use parallelism.
+因此，这给我们带来了如何使用并行性的问题。 
+
+105
+00:05:43,449 --> 00:05:46,000
+So there's a lot of work in parallel algorithms.
+因此，并行算法有很多工作。 
+
+106
+00:05:46,000 --> 00:05:48,769
+And there's also work in building hardware,
+还有在构建硬件方面的工作， 
+
+107
+00:05:48,769 --> 00:05:51,719
+such that algorithms can sort of automatically
+这样算法可以自动排序
+
+108
+00:05:51,720 --> 00:05:54,009
+be parallelized while they're running in hardware,
+在硬件中运行时进行并行化， 
+
+109
+00:05:54,209 --> 00:05:57,379
+so they can run faster, and so on and so forth.
+这样它们可以运行得更快，依此类推。 
+
+110
+00:05:57,379 --> 00:06:00,240
+So some of my research is in parallel architecture.
+因此，我的一些研究涉及并行体系结构。 
+
+111
+00:06:00,240 --> 00:06:01,889
+Some of it is in parallel algorithms.
+其中一些是并行算法。 
+
+112
+00:06:02,089 --> 00:06:05,979
+I want to give you a sense of what the problems are
+我想给你一个问题所在
+
+113
+00:06:05,980 --> 00:06:08,670
+in building parallel architectures.
+在构建并行体系结构中。 
+
+114
+00:06:08,670 --> 00:06:13,370
+And in particular, I'll start with a canonical system that
+特别是，我将从一个规范的系统开始
+
+115
+00:06:13,370 --> 00:06:16,014
+corresponds to, let's say, this quad core system.
+对应于这个四核系统。 
+
+116
+00:06:16,214 --> 00:06:23,729
+And so you have 4 processors on this single integrated circuit.
+因此，在此单个集成电路上您具有4个处理器。 
+
+117
+00:06:23,730 --> 00:06:25,750
+So that signifies that.
+这表明了这一点。 
+
+118
+00:06:25,949 --> 00:06:32,039
+And typically, you have a lot of fast, static random-access
+通常，您有很多快速，静态的随机访问
+
+119
+00:06:32,040 --> 00:06:35,194
+memory, SRAM, on the same chip.
+内存，SRAM，在同一芯片上。 
+
+120
+00:06:35,394 --> 00:06:38,959
+So typically, megabytes of the memory
+因此通常情况下，兆字节的内存
+
+121
+00:06:38,959 --> 00:06:45,755
+on the chip and gigabytes of memory in DRAM,
+在芯片上以及DRAM中的千兆字节内存中， 
+
+122
+00:06:45,755 --> 00:06:47,629
+which are separate modules that are connected
+是连接的独立模块
+
+123
+00:06:47,629 --> 00:06:49,949
+via high speed bus, off the chip.
+通过高速总线，不在芯片上。 
+
+124
+00:06:49,949 --> 00:06:53,810
+So there are usually many DRAM modules.
+因此，通常有许多DRAM模块。 
+
+125
+00:06:53,810 --> 00:06:58,389
+They're called DIMMS-- if you might have heard the term.
+他们称为DIMMS-如果您可能听说过该术语。 
+
+126
+00:06:58,389 --> 00:07:01,669
+So the connection between the processors and the SRAM
+因此，处理器与SRAM之间的连接
+
+127
+00:07:01,670 --> 00:07:03,910
+is typically very fast.
+通常非常快。 
+
+128
+00:07:03,910 --> 00:07:05,910
+It's on-chip.
+它在芯片上。 
+
+129
+00:07:05,910 --> 00:07:08,540
+Things being clocked at gigahertz.
+事情发生在千兆赫兹。 
+
+130
+00:07:08,540 --> 00:07:10,170
+And when you go off-chip, you're down
+当你离开芯片时，你就倒下了
+
+131
+00:07:10,170 --> 00:07:11,350
+to a few hundred megahertz.
+到几百兆赫兹
+
+132
+00:07:11,350 --> 00:07:15,060
+So typically, an order of magnitude less speed.
+因此通常速度要低一个数量级。 
+
+133
+00:07:15,060 --> 00:07:17,040
+But you're accessing much more memory.
+但是您正在访问更多的内存。 
+
+134
+00:07:17,040 --> 00:07:18,632
+So this is really gigabytes and this
+所以这真的是千兆字节
+
+135
+00:07:18,632 --> 00:07:19,639
+is at the level of megabytes.
+处于兆字节级别。 
+
+136
+00:07:19,839 --> 00:07:22,514
+
+
+
+137
+00:07:22,514 --> 00:07:26,750
+If you see this picture, here-- if you
+如果您看到这张图片，请在这里-如果您
+
+138
+00:07:26,750 --> 00:07:28,720
+think about the number of processors increasing
+考虑处理器数量的增加
+
+139
+00:07:28,720 --> 00:07:32,750
+from four to eight to 16, all the way to,
+从四到八到十六，一直到
+
+140
+00:07:32,750 --> 00:07:36,180
+say, to hundreds of processors, you
+例如，对于数百个处理器，您
+
+141
+00:07:36,180 --> 00:07:38,850
+can see that there's going to be a bottleneck associated
+可以看到会有瓶颈
+
+142
+00:07:38,850 --> 00:07:41,550
+with accessing the memory.
+访问内存。 
+
+143
+00:07:41,550 --> 00:07:44,139
+The big problem is you can't possibly
+最大的问题是你不可能
+
+144
+00:07:44,339 --> 00:07:48,209
+build memory that serves hundreds
+建立服务数百个的内存
+
+145
+00:07:48,209 --> 00:07:49,939
+of requests in parallel.
+并行请求。 
+
+146
+00:07:49,939 --> 00:07:53,779
+If you try and make a large SRAM, which is megabytes long,
+如果您尝试制作一个长兆字节的大型SRAM， 
+
+147
+00:07:53,779 --> 00:07:55,919
+the number of ports in the SRAM--
+ SRAM中的端口数- 
+
+148
+00:07:55,920 --> 00:08:01,759
+read ports-- is roughly of the order of four.
+读取端口-大约是四个数量级。 
+
+149
+00:08:01,759 --> 00:08:04,069
+And after that it's kind of hard to build.
+之后，就很难构建了。 
+
+150
+00:08:04,069 --> 00:08:12,219
+So this architecture isn't going to be sustainable beyond 4, 8,
+因此，这种架构在4、8之后无法持续
+
+151
+00:08:12,220 --> 00:08:13,990
+maybe 16 cores.
+也许16核。 
+
+152
+00:08:13,990 --> 00:08:17,120
+So typically, what people build is--
+因此，通常情况下，人们建造的是- 
+
+153
+00:08:17,120 --> 00:08:19,790
+or people are trying to build in academia--
+或人们正在努力建立学术界- 
+
+154
+00:08:19,790 --> 00:08:23,980
+is something that corresponds to a distributed architecture
+与分布式架构相对应
+
+155
+00:08:23,980 --> 00:08:32,320
+on the chip, where you have processors and memory in tiles.
+在芯片上，您可以在图块中拥有处理器和内存。 
+
+156
+00:08:32,320 --> 00:08:38,858
+So you have, essentially, something
+所以本质上来说， 
+
+157
+00:08:39,058 --> 00:08:43,490
+like this, where you can imagine having literally 100
+这样，您可以想象一下实际上有100个
+
+158
+00:08:43,490 --> 00:08:50,657
+processors on a chip that correspond to an implementation
+芯片上与实现相对应的处理器
+
+159
+00:08:50,657 --> 00:08:52,990
+where you build tiles, where you have a processor that's
+在哪里建造瓷砖，在哪里有一个处理器
+
+160
+00:08:52,990 --> 00:08:56,950
+doing the computation, and you have memory-- sometimes
+进行计算，您就有了记忆-有时
+
+161
+00:08:56,950 --> 00:08:58,199
+called cache memory.
+称为缓存。 
+
+162
+00:08:58,399 --> 00:09:02,689
+But there's multiple levels of caches, typically, that
+但是通常有多个级别的缓存
+
+163
+00:09:02,690 --> 00:09:04,830
+are attached to each of these processors.
+被连接到每个这些处理器。 
+
+164
+00:09:04,830 --> 00:09:11,199
+And the space between the processor tiles
+以及处理器磁贴之间的空间
+
+165
+00:09:11,399 --> 00:09:17,590
+is reserved for interconnect or for wires
+保留用于互连或电线
+
+166
+00:09:17,590 --> 00:09:19,690
+that connect these processors up.
+将这些处理器连接起来。 
+
+167
+00:09:19,690 --> 00:09:23,069
+And so there's research that goes on in routing algorithms.
+因此，在路由算法中正在进行研究。 
+
+168
+00:09:23,269 --> 00:09:25,789
+How you figure out if these processors want
+您如何确定这些处理器是否需要
+
+169
+00:09:25,789 --> 00:09:29,029
+to talk to each other; what the best way of routing
+互相交谈什么是最好的路由方式
+
+170
+00:09:29,029 --> 00:09:31,809
+the messages are; you want to find the shortest path.
+消息是;您想找到最短的路径。 
+
+171
+00:09:31,809 --> 00:09:33,519
+In this case, the weight corresponds
+在这种情况下，权重对应
+
+172
+00:09:33,519 --> 00:09:36,799
+to the congestion that's associated
+与相关的拥堵有关
+
+173
+00:09:36,799 --> 00:09:39,569
+with each of these channels that you have.
+与您拥有的每个渠道。 
+
+174
+00:09:39,570 --> 00:09:41,990
+And people actually use algorithms
+人们实际上使用算法
+
+175
+00:09:41,990 --> 00:09:44,879
+like weighted shortest paths, in hardware,
+例如加权的最短路径，在硬件中， 
+
+176
+00:09:44,879 --> 00:09:47,689
+to determine what the best way of getting from here to there
+确定从这里到达那里的最佳方法
+
+177
+00:09:47,690 --> 00:09:48,190
+is.
+是。 
+
+178
+00:09:48,190 --> 00:09:49,219
+It may not be this way.
+可能不是这样。 
+
+179
+00:09:49,419 --> 00:09:51,799
+It may be going around the chip simply
+它可能只是绕过芯片
+
+180
+00:09:51,799 --> 00:09:55,194
+because that path-- the latter one is less congested.
+因为那条路-后一条路比较不拥挤。 
+
+181
+00:09:55,195 --> 00:09:57,960
+
+
+
+182
+00:09:57,960 --> 00:10:00,620
+The other issue that comes up has
+出现的另一个问题是
+
+183
+00:10:00,620 --> 00:10:05,409
+to do with how long it takes to go across the chip
+与跨芯片需要多长时间有关
+
+184
+00:10:05,409 --> 00:10:06,559
+and come back.
+再回来
+
+185
+00:10:06,559 --> 00:10:09,839
+So if this processor wants to access its local memory--
+因此，如果该处理器要访问其本地内存， 
+
+186
+00:10:09,840 --> 00:10:14,710
+that's typically pretty simple or fast.
+这通常非常简单或快速。 
+
+187
+00:10:14,710 --> 00:10:18,225
+But if it wants to access remote memory--
+但是，如果要访问远程内存， 
+
+188
+00:10:18,225 --> 00:10:19,600
+and it's quite possible that it's
+而且很有可能
+
+189
+00:10:19,600 --> 00:10:22,089
+sharing some data with a different thread running
+与运行中的其他线程共享一些数据
+
+190
+00:10:22,289 --> 00:10:23,844
+on a different processor.
+在不同的处理器上。 
+
+191
+00:10:23,845 --> 00:10:25,470
+So typically, there's a program running
+所以通常情况下，有一个程序正在运行
+
+192
+00:10:25,470 --> 00:10:29,210
+on this processor, sometimes called a thread,
+在此处理器（有时称为线程）上， 
+
+193
+00:10:29,210 --> 00:10:34,480
+and this program may share data with a different program, which
+并且该程序可能与其他程序共享数据， 
+
+194
+00:10:34,480 --> 00:10:36,109
+is running on this processor.
+在此处理器上运行。 
+
+195
+00:10:36,309 --> 00:10:38,939
+Or it may just require a lot more space.
+或者它可能只需要更多空间。 
+
+196
+00:10:38,940 --> 00:10:43,080
+And what this program has to do is make a request
+这个程序要做的就是发出一个请求
+
+197
+00:10:43,080 --> 00:10:47,820
+all the way to this processor and this particular cache
+一直到这个处理器和这个特定的缓存
+
+198
+00:10:47,820 --> 00:10:48,860
+in this processor.
+在此处理器中。 
+
+199
+00:10:48,860 --> 00:10:52,080
+And then it gets the data back.
+然后它将数据取回。 
+
+200
+00:10:52,080 --> 00:10:57,990
+So what you see here is a round trip access
+所以您在这里看到的是往返交通
+
+201
+00:10:57,990 --> 00:11:01,620
+that goes across the chip.
+贯穿芯片。 
+
+202
+00:11:01,620 --> 00:11:05,509
+And this distance, if it's large,
+如果这个距离很大， 
+
+203
+00:11:05,509 --> 00:11:07,549
+could take 10s of cycles.
+可能需要10秒钟的周期。 
+
+204
+00:11:07,549 --> 00:11:09,029
+So typically, it's a single cycle
+所以通常是一个周期
+
+205
+00:11:09,029 --> 00:11:11,990
+to access local memory-- the fastest local memory,
+访问本地内存-最快的本地内存， 
+
+206
+00:11:11,990 --> 00:11:13,379
+called the L1 cache.
+称为L1缓存。 
+
+207
+00:11:13,379 --> 00:11:15,679
+But it could take 10s of cycles to go send a message
+但是发送消息可能需要10个周期
+
+208
+00:11:15,679 --> 00:11:18,969
+across the chip and 10s of cycles to get the data back.
+跨芯片和10s的周期来获取数据。 
+
+209
+00:11:18,970 --> 00:11:23,480
+So the bottleneck, really, in parallel processing
+所以实际上是并行处理的瓶颈
+
+210
+00:11:23,480 --> 00:11:25,570
+from a standpoint of communication
+从沟通的角度
+
+211
+00:11:25,570 --> 00:11:31,028
+is this routing of messages and getting the messages back.
+消息的这种路由并获取消息。 
+
+212
+00:11:31,028 --> 00:11:33,070
+One of the things that my research group is doing
+我的研究小组正在做的一件事
+
+213
+00:11:33,070 --> 00:11:37,460
+is looking at the notion of migrating
+正在研究迁移的概念
+
+214
+00:11:37,460 --> 00:11:40,200
+computation as opposed to data.
+计算而非数据。 
+
+215
+00:11:40,200 --> 00:11:45,620
+We call it execution migration, where
+我们称其为执行迁移
+
+216
+00:11:45,620 --> 00:11:52,960
+you could say-- suppose I have a processor running
+你可以说-假设我有一个处理器在运行
+
+217
+00:11:52,960 --> 00:11:55,460
+a particular program, out here.
+一个特定的程序，在这里。 
+
+218
+00:11:55,460 --> 00:12:00,620
+And if this program wanted to access a remote memory,
+如果该程序想访问远程存储器， 
+
+219
+00:12:00,620 --> 00:12:02,220
+then, rather than doing what I just
+然后，而不是做我刚刚做的
+
+220
+00:12:02,220 --> 00:12:03,649
+showed you there-- send a message,
+向您展示了-发送消息， 
+
+221
+00:12:03,649 --> 00:12:05,679
+get the data back-- you could imagine
+取回数据-您可以想象
+
+222
+00:12:05,679 --> 00:12:10,419
+that you could migrate the program itself.
+您可以迁移程序本身。 
+
+223
+00:12:10,419 --> 00:12:12,069
+And in particular, you think of it
+特别是您想到的
+
+224
+00:12:12,070 --> 00:12:16,830
+as migrating the context of the program
+作为迁移程序的上下文
+
+225
+00:12:16,830 --> 00:12:20,580
+from this processor to this one.
+从这个处理器到这个。 
+
+226
+00:12:20,580 --> 00:12:21,599
+And so what is the context?
+那么背景是什么呢？ 
+
+227
+00:12:21,799 --> 00:12:27,539
+For those of you who have taken 6.004 probably
+对于那些已经采取6.004的人
+
+228
+00:12:27,539 --> 00:12:28,360
+know what this is.
+知道这是什么。 
+
+229
+00:12:28,360 --> 00:12:33,629
+But it's simply where you are in terms
+但这只是您所处的位置
+
+230
+00:12:33,629 --> 00:12:34,825
+of executing your program.
+执行程序
+
+231
+00:12:34,825 --> 00:12:36,200
+And that's typically given to you
+这通常是给你的
+
+232
+00:12:36,200 --> 00:12:41,340
+by our program counter, and your current state of your register
+通过我们的程序计数器，以及您当前的注册状态
+
+233
+00:12:41,340 --> 00:12:46,740
+file, and a few other things, including
+文件以及其他一些内容，包括
+
+234
+00:12:46,740 --> 00:12:48,979
+cache memory and so on and so forth.
+缓存等等。 
+
+235
+00:12:49,179 --> 00:12:52,229
+So the advantage with execution migration
+因此执行迁移的优势
+
+236
+00:12:52,230 --> 00:12:56,159
+is that it's a one way trip, as opposed to a round trip.
+这是单程旅行，而不是往返旅行。 
+
+237
+00:12:56,159 --> 00:13:00,509
+
+
+
+238
+00:13:00,509 --> 00:13:05,620
+You don't have to send a message and get the data back,
+您不必发送消息并取回数据， 
+
+239
+00:13:05,620 --> 00:13:08,706
+which would be two messages, if you will--
+如果您愿意的话，这将是两条消息
+
+240
+00:13:08,706 --> 00:13:10,539
+one in the case of the address and the other
+一个是地址，另一个是
+
+241
+00:13:10,539 --> 00:13:13,779
+for the data-- but you migrate your execution.
+数据-但是您可以迁移执行。 
+
+242
+00:13:13,779 --> 00:13:15,659
+Since you have computation out here,
+既然这里有计算
+
+243
+00:13:15,659 --> 00:13:20,569
+you can run on this remote processor.
+您可以在此远程处理器上运行。 
+
+244
+00:13:20,570 --> 00:13:23,059
+So that's one of the advantages of execution migration
+这就是执行迁移的优势之一
+
+245
+00:13:23,259 --> 00:13:27,860
+One of the downsides of it is that this
+缺点之一是
+
+246
+00:13:27,860 --> 00:13:31,200
+can be multiple kilobytes-- or kilobits.
+可以是数KB或千位。 
+
+247
+00:13:31,200 --> 00:13:35,750
+And it could be significantly more in terms of size,
+就规模而言，可能要大得多， 
+
+248
+00:13:35,750 --> 00:13:39,460
+or in terms of bits, than the data that you want to access.
+或以位数表示，而不是要访问的数据。 
+
+249
+00:13:39,460 --> 00:13:40,979
+So there's a trade-off here.
+因此，这里需要权衡。 
+
+250
+00:13:41,179 --> 00:13:43,579
+And then, when any time you have a trade-off,
+然后，当您需要进行权衡时， 
+
+251
+00:13:43,580 --> 00:13:45,339
+you can think of an algorithm to try and find
+您可以想到一种算法来尝试找到
+
+252
+00:13:45,539 --> 00:13:47,099
+the optimal trade-off.
+最佳权衡。 
+
+253
+00:13:47,100 --> 00:13:54,649
+So this is the context for the particular optimization problem
+这就是特定优化问题的背景
+
+254
+00:13:54,649 --> 00:13:57,279
+that we need to solve, here, that corresponds
+我们需要解决的，在这里，对应
+
+255
+00:13:57,279 --> 00:14:03,230
+to really deciding when you want to do data migration
+真正决定何时进行数据迁移
+
+256
+00:14:03,230 --> 00:14:06,960
+and when you want to do execution migration.
+以及何时要执行执行迁移。 
+
+257
+00:14:06,960 --> 00:14:08,870
+There's a choice.
+有一个选择。 
+
+258
+00:14:08,870 --> 00:14:13,509
+At the top level, it's a round trip to get the data.
+在顶层，这是获取数据的往返行程。 
+
+259
+00:14:13,509 --> 00:14:18,669
+So you're really traveling longer-- twice as long.
+因此，您实际上要旅行更长的时间-是旅行的两倍。 
+
+260
+00:14:18,669 --> 00:14:20,789
+The distance is twice as much.
+距离是原来的两倍。 
+
+261
+00:14:20,789 --> 00:14:23,589
+But it's possible that the amount
+但金额可能
+
+262
+00:14:23,590 --> 00:14:26,580
+of state that you'd have to move,
+处于必须移动的状态， 
+
+263
+00:14:26,580 --> 00:14:29,589
+in terms of taking your context of your thread
+就线程的上下文而言
+
+264
+00:14:29,789 --> 00:14:32,709
+and moving across the chip, could be large enough
+在芯片上移动可能足够大
+
+265
+00:14:32,710 --> 00:14:38,019
+that it offsets the advantage of the shorter distance.
+它抵消了距离较短的优势。 
+
+266
+00:14:38,019 --> 00:14:42,819
+So we set this up as an optimization problem.
+因此，我们将其设置为优化问题。 
+
+267
+00:14:42,820 --> 00:14:46,110
+So now we're in the realm of-- we moved from 6.004 to 6.006,
+所以现在我们处于-我们从6.004移至6.006的领域， 
+
+268
+00:14:46,110 --> 00:14:50,210
+here, in the last couple of seconds.
+在这里，在最后几秒钟。 
+
+269
+00:14:50,210 --> 00:14:57,990
+So assume we know or can predict the access
+因此，假设我们知道或可以预测访问
+
+270
+00:14:57,990 --> 00:15:04,720
+pattern of a program.
+程序的模式。 
+
+271
+00:15:04,720 --> 00:15:06,320
+And you can do this-- people build
+你可以做到-人们建立
+
+272
+00:15:06,320 --> 00:15:08,949
+these things in hardware-- prefetch engines,
+这些东西在硬件中-预取引擎， 
+
+273
+00:15:09,149 --> 00:15:11,100
+branch predictors, and so on.
+分支预测变量，等等。 
+
+274
+00:15:11,100 --> 00:15:13,240
+They're in the x86 machines.
+它们在x86机器中。 
+
+275
+00:15:13,240 --> 00:15:15,740
+And you can tell-- especially if you're going through a loop
+而且您可以说出-特别是如果您正在经历循环
+
+276
+00:15:15,740 --> 00:15:20,057
+over and over-- you can make this prediction.
+一遍又一遍-您可以做出此预测。 
+
+277
+00:15:20,057 --> 00:15:21,639
+So you have some amount of look ahead.
+因此，您有一些展望。 
+
+278
+00:15:21,639 --> 00:15:25,000
+And you know that m1 through mn are
+而且您知道m1到mn是
+
+279
+00:15:25,000 --> 00:15:29,250
+the memory accesses that this program is going to make.
+该程序将要进行的内存访问。 
+
+280
+00:15:29,250 --> 00:15:30,725
+And these other memory addresses.
+还有其他这些内存地址。 
+
+281
+00:15:30,725 --> 00:15:34,729
+
+
+
+282
+00:15:34,929 --> 00:15:42,669
+And I'm going to think about p of m1, p of m2, p of mn,
+我将考虑m1的p，m2的p，mn的p 
+
+283
+00:15:42,669 --> 00:15:52,399
+as the processor caches for each mi.
+因为处理器为每个mi缓存。 
+
+284
+00:15:52,399 --> 00:15:57,329
+So what might be the case, in a simple example,
+在一个简单的例子中，情况可能是这样
+
+285
+00:15:57,330 --> 00:16:02,730
+is you want to access memory in processor one.
+您是否要访问处理器一中的内存？ 
+
+286
+00:16:02,730 --> 00:16:04,105
+You're sitting there and you want
+你坐在那里，你想要
+
+287
+00:16:04,105 --> 00:16:06,269
+to access memory in processor one.
+访问处理器一中的内存。 
+
+288
+00:16:06,269 --> 00:16:08,370
+And then, the next one, you want to access memory
+然后，下一个要访问内存
+
+289
+00:16:08,370 --> 00:16:10,090
+in processor two.
+在处理器二中。 
+
+290
+00:16:10,090 --> 00:16:13,379
+And so on and so forth.
+等等等等。 
+
+291
+00:16:13,379 --> 00:16:14,719
+So you might see something like that.
+因此，您可能会看到类似的内容。 
+
+292
+00:16:14,919 --> 00:16:17,409
+So the sequence of memory addressees--
+因此，内存收件人的顺序- 
+
+293
+00:16:17,409 --> 00:16:20,206
+if you're sitting on processor one-- this first one is local.
+如果您坐在处理器一上，那么这第一个是本地的。 
+
+294
+00:16:20,206 --> 00:16:22,539
+And then, after that, you want to access processor two's
+然后，在那之后，您要访问处理器二的
+
+295
+00:16:22,539 --> 00:16:24,789
+memory because you're sharing data with it.
+内存，因为您正在与它共享数据。 
+
+296
+00:16:24,789 --> 00:16:27,312
+Then you're back home, again, to processor one.
+然后，您再次回到家，去处理一个处理器。 
+
+297
+00:16:27,312 --> 00:16:28,269
+And so on and so forth.
+等等等等。 
+
+298
+00:16:28,269 --> 00:16:31,370
+
+
+
+299
+00:16:31,370 --> 00:16:34,610
+So that's one example of a set up.
+这就是设置的一个例子。 
+
+300
+00:16:34,610 --> 00:16:39,350
+And we can think of about the cost of migration
+我们可以考虑一下迁移成本
+
+301
+00:16:39,350 --> 00:16:41,874
+as-- if you want to go from s to d--
+如果-如果您想从s转到d- 
+
+302
+00:16:41,874 --> 00:16:45,399
+as being a function of the distance,
+作为距离的函数， 
+
+303
+00:16:45,399 --> 00:16:49,590
+s comma d, plus some constant, which
+ s逗号，加上一些常数， 
+
+304
+00:16:49,590 --> 00:16:53,786
+is proportional to the context size.
+与上下文大小成正比。 
+
+305
+00:16:53,986 --> 00:16:55,819
+And that context size, we're going to assume
+和那个上下文的大小，我们将假设
+
+306
+00:16:55,820 --> 00:16:59,070
+is fixed for a particular architecture.
+对于特定的体系结构是固定的。 
+
+307
+00:16:59,070 --> 00:17:00,820
+It may change for different architectures,
+对于不同的架构，它可能会改变， 
+
+308
+00:17:00,820 --> 00:17:04,510
+but if it's a few kilobits, then there's
+但如果只有几千位，那么
+
+309
+00:17:04,510 --> 00:17:06,009
+going to be some overhead associated
+将有一些相关的开销
+
+310
+00:17:06,009 --> 00:17:08,160
+with putting the context onto the network.
+将上下文放到网络上。 
+
+311
+00:17:08,160 --> 00:17:12,000
+And it's a sizable overhead that needs to be taken into account.
+这是需要考虑的相当大的开销。 
+
+312
+00:17:12,000 --> 00:17:13,940
+That's the cost of migration.
+那就是迁移的成本。 
+
+313
+00:17:13,940 --> 00:17:18,210
+The cost of an access, s comma d,
+访问成本，以逗号表示， 
+
+314
+00:17:18,210 --> 00:17:23,049
+is twice the distance between s and d.
+是s和d之间距离的两倍。 
+
+315
+00:17:23,049 --> 00:17:25,799
+And it's typically just a word that you
+通常这只是一个词
+
+316
+00:17:25,799 --> 00:17:29,470
+want to access-- 32 bits, 64 bits--
+想要访问-32位，64位- 
+
+317
+00:17:29,470 --> 00:17:33,470
+and so there's no additional overhead associated with a data
+因此没有与数据相关的额外开销
+
+318
+00:17:33,470 --> 00:17:34,750
+access.
+访问。 
+
+319
+00:17:34,750 --> 00:17:35,890
+So there you go.
+所以你去了。 
+
+320
+00:17:35,890 --> 00:17:39,599
+You have the formulation of the problem.
+您已经提出了问题。 
+
+321
+00:17:39,799 --> 00:17:43,750
+You have the trade-off written, where the cost of migration
+您已编写了权衡，其中迁移成本
+
+322
+00:17:43,750 --> 00:17:46,500
+has just the distance.
+有距离。 
+
+323
+00:17:46,500 --> 00:17:48,119
+But it has a constant factor.
+但是它有一个恒定的因素。 
+
+324
+00:17:48,119 --> 00:17:52,779
+And you've got twice the distance, here, for the access.
+您的访问距离是这里的两倍。 
+
+325
+00:17:52,779 --> 00:17:56,319
+Now if s equals d, and I want to write this down,
+现在，如果s等于d，我想写下来， 
+
+326
+00:17:56,319 --> 00:17:58,139
+you have a local access.
+您具有本地访问权限。 
+
+327
+00:17:58,140 --> 00:18:01,000
+And the cost is assumed to be zero.
+并且假定成本为零。 
+
+328
+00:18:01,000 --> 00:18:02,559
+You could change that.
+您可以更改它。 
+
+329
+00:18:02,559 --> 00:18:05,759
+We are in the realm of the theory and symbols.
+我们处于理论和符号的领域。 
+
+330
+00:18:05,759 --> 00:18:08,279
+So you can do whatever you want.
+这样您就可以做任何您想做的事。 
+
+331
+00:18:08,279 --> 00:18:12,769
+But given those equations, our problem
+但是考虑到这些方程式，我们的问题
+
+332
+00:18:12,769 --> 00:18:26,779
+is decide when to migrate to minimize total memory access
+确定何时迁移以最小化总内存访问
+
+333
+00:18:26,779 --> 00:18:27,279
+cost.
+成本。 
+
+334
+00:18:27,279 --> 00:18:33,940
+
+
+
+335
+00:18:33,940 --> 00:18:35,630
+So in our example there, I suppose
+所以在我们的示例中，我想
+
+336
+00:18:35,630 --> 00:18:41,649
+we had p1, p2, p2, et cetera.
+我们有p1，p2，p2等。 
+
+337
+00:18:41,849 --> 00:18:43,099
+And let's say you start at p1.
+假设您从p1开始。 
+
+338
+00:18:43,099 --> 00:18:46,849
+
+
+
+339
+00:18:46,849 --> 00:18:49,534
+This first one would be a local access.
+第一个将是本地访问。 
+
+340
+00:18:49,535 --> 00:18:50,910
+And then, you may decide that you
+然后，您可以决定
+
+341
+00:18:50,910 --> 00:18:52,779
+want to migrate to p2, over here.
+想要迁移到此处的p2。 
+
+342
+00:18:52,779 --> 00:18:56,119
+
+
+
+343
+00:18:56,119 --> 00:18:58,899
+In this case, you get this as a local access, as well.
+在这种情况下，您也可以将其作为本地访问权限。 
+
+344
+00:18:58,900 --> 00:19:00,519
+So is this one.
+这也是。 
+
+345
+00:19:00,519 --> 00:19:03,932
+Right here, you might want to migrate to p1 back to be p1.
+在这里，您可能想要迁移回p1成为p1。 
+
+346
+00:19:03,932 --> 00:19:06,910
+
+
+
+347
+00:19:06,910 --> 00:19:08,450
+So this becomes a local access.
+因此，这成为本地访问。 
+
+348
+00:19:08,450 --> 00:19:10,019
+That's a local access.
+那是本地访问。 
+
+349
+00:19:10,019 --> 00:19:11,829
+They're all, essentially, free.
+他们基本上都是免费的。 
+
+350
+00:19:11,829 --> 00:19:13,849
+And then, if you just stay at p1,
+然后，如果您只是停留在p1， 
+
+351
+00:19:13,849 --> 00:19:19,139
+over here, you may end up doing remote accesses to p3 and p2,
+在这里，您可能最终要对p3和p2进行远程访问， 
+
+352
+00:19:19,140 --> 00:19:21,500
+respectively.
+分别。 
+
+353
+00:19:21,500 --> 00:19:24,670
+And so you have a cost of migration-- the cost
+因此，您需要承担迁移费用- 
+
+354
+00:19:24,670 --> 00:19:27,130
+of migration and the cost of two remote access.
+迁移和两次远程访问的成本。 
+
+355
+00:19:27,130 --> 00:19:29,609
+
+
+
+356
+00:19:29,809 --> 00:19:31,270
+So that's the set up.
+这就是设置。 
+
+357
+00:19:31,270 --> 00:19:32,894
+How are we going to solve this problem?
+我们将如何解决这个问题？ 
+
+358
+00:19:32,894 --> 00:19:37,693
+
+
+
+359
+00:19:37,693 --> 00:19:38,609
+Are we going Dijkstra?
+我们要去迪克斯特拉吗？ 
+
+360
+00:19:38,609 --> 00:19:39,824
+Are we going to use Bellman-Ford?
+我们要使用贝尔曼福特吗？ 
+
+361
+00:19:39,825 --> 00:19:41,700
+Are we going to use balanced search trees?
+我们将使用平衡搜索树吗？ 
+
+362
+00:19:41,700 --> 00:19:44,159
+Are we going to use hash functions?
+我们要使用哈希函数吗？ 
+
+363
+00:19:44,159 --> 00:19:45,200
+What are we going to use?
+我们要用什么？ 
+
+364
+00:19:45,200 --> 00:19:46,064
+AUDIENCE: Dynamic Programming.
+听众：动态编程。 
+
+365
+00:19:46,064 --> 00:19:47,939
+PROFESSOR SRINI DEVADAS: Dynamic Programming.
+ SRINI DEVADAS教授：动态编程。 
+
+366
+00:19:47,939 --> 00:19:48,513
+All together.
+全部一起。 
+
+367
+00:19:48,713 --> 00:19:50,409
+EVERYONE: Dynamic Programming.
+所有人：动态编程。 
+
+368
+00:19:50,410 --> 00:19:52,160
+PROFESSOR SRINI DEVADAS: Dynamic programming, all right.
+ SRINI DEVADAS教授：好的，动态编程。 
+
+369
+00:19:52,160 --> 00:19:53,519
+We're going to use dynamic programming
+我们将使用动态编程
+
+370
+00:19:53,519 --> 00:19:54,435
+to solve this problem.
+解决这个问题。 
+
+371
+00:19:54,435 --> 00:19:57,180
+
+
+
+372
+00:19:57,181 --> 00:19:57,680
+Good.
+好。 
+
+373
+00:19:57,680 --> 00:20:00,686
+So Erik taught you something.
+所以埃里克教了你一些东西。 
+
+374
+00:20:00,886 --> 00:20:02,220
+AUDIENCE: Where are the erasers?
+听众：橡皮擦在哪里？ 
+
+375
+00:20:02,220 --> 00:20:02,460
+PROFESSOR SRINI DEVADAS: Yeah.
+ SRINI DEVADAS教授：是的。 
+
+376
+00:20:02,460 --> 00:20:03,000
+Where are the erasers?
+橡皮擦在哪里？ 
+
+377
+00:20:03,000 --> 00:20:04,460
+I think they fluttered down here.
+我认为他们在这里扑腾。 
+
+378
+00:20:04,460 --> 00:20:05,880
+All right.
+好吧。 
+
+379
+00:20:05,880 --> 00:20:08,545
+Let me bail out and use this while you find the erasers.
+当您找到橡皮擦时，让我纾困并使用它。 
+
+380
+00:20:08,545 --> 00:20:10,859
+
+
+
+381
+00:20:11,059 --> 00:20:16,149
+So a program at p1, which is the processor, initially.
+因此，最初是处理器p1处的程序。 
+
+382
+00:20:16,150 --> 00:20:18,480
+I'm just going to set up this DP.
+我将要设置此DP。 
+
+383
+00:20:18,480 --> 00:20:29,808
+Let's assume that the number of processors equals Q. Now,
+假设处理器数量等于Q。现在， 
+
+384
+00:20:29,808 --> 00:20:30,849
+what are the subproblems?
+有哪些子问题？ 
+
+385
+00:20:30,849 --> 00:20:35,099
+
+
+
+386
+00:20:35,099 --> 00:20:37,919
+You could do this many different ways.
+您可以用许多不同的方法来做。 
+
+387
+00:20:37,920 --> 00:20:40,899
+Let's go ahead and use prefixes.
+让我们继续使用前缀。 
+
+388
+00:20:41,099 --> 00:20:53,709
+And so DP(k,p1) is the cost of the optimal solution
+因此DP（k，p1）是最优解的成本
+
+389
+00:20:53,710 --> 00:21:07,639
+for the prefix m1 through mk of memory accesses,
+对于内存访问的前缀m1到mk， 
+
+390
+00:21:07,839 --> 00:21:18,110
+when the program starts at p1 and ends at pi.
+当程序从p1开始并在pi结束时。 
+
+391
+00:21:18,111 --> 00:21:19,669
+So that's my subproblem.
+这就是我的子问题。 
+
+392
+00:21:19,869 --> 00:21:22,969
+I want to know, as I build this up,
+我想知道，随着我的成长， 
+
+393
+00:21:22,970 --> 00:21:24,630
+what is the optimal way that I'm going
+我要去的最佳方式是什么
+
+394
+00:21:24,630 --> 00:21:26,670
+to choose between migrations and accesses
+在迁移和访问之间进行选择
+
+395
+00:21:26,670 --> 00:21:34,690
+for the first k memory access, assuming a starting point at p1
+对于第一个k存储器访问，假设起始点为p1 
+
+396
+00:21:34,690 --> 00:21:37,422
+and ending at some pi.
+并在某个圆周率结束。 
+
+397
+00:21:37,422 --> 00:21:39,130
+And I need to build up these subproblems.
+我需要建立这些子问题。 
+
+398
+00:21:39,130 --> 00:21:40,200
+And I want to grow them.
+我想种植它们。 
+
+399
+00:21:40,200 --> 00:21:43,470
+
+
+
+400
+00:21:43,470 --> 00:21:48,460
+Let's go ahead and set this up.
+让我们继续进行设置。 
+
+401
+00:21:48,460 --> 00:21:50,621
+What I want to do now is figure out DP(k plus 1, pj).
+我现在想做的就是找出DP（k加1，pj）。 
+
+402
+00:21:50,821 --> 00:21:56,049
+
+
+
+403
+00:21:56,049 --> 00:22:01,399
+And assuming I have all of the k, pi's computed--
+并假设我拥有所有的k，pi的计算公式为- 
+
+404
+00:22:01,400 --> 00:22:04,670
+and how many subproblems do I have?
+我有几个子问题？ 
+
+405
+00:22:04,670 --> 00:22:07,619
+How many subproblems do I have?
+我有几个子问题？ 
+
+406
+00:22:07,819 --> 00:22:10,429
+Total?
+总？ 
+
+407
+00:22:10,430 --> 00:22:14,880
+Look at this and tell me what the ranges of the possibilities
+看看这个，告诉我可能性的范围是多少
+
+408
+00:22:14,880 --> 00:22:15,380
+are.
+是。 
+
+409
+00:22:15,380 --> 00:22:17,599
+So how many subproblems would I have?
+那么我会有几个子问题？ 
+
+410
+00:22:17,799 --> 00:22:18,299
+Someone?
+有人吗
+
+411
+00:22:18,299 --> 00:22:22,879
+
+
+
+412
+00:22:22,880 --> 00:22:27,950
+N times Q. So you have N times Q subproblems.
+ N乘Q。所以您有N乘Q子问题。 
+
+413
+00:22:27,950 --> 00:22:31,910
+
+
+
+414
+00:22:31,910 --> 00:22:37,259
+So you've set this up for up until k and for all
+因此，您将其设置为最多k个
+
+415
+00:22:37,259 --> 00:22:38,740
+of the pi's.
+的PI。 
+
+416
+00:22:38,740 --> 00:22:43,230
+Now, what you have to do is essentially say, well,
+现在，您要做的基本上是说， 
+
+417
+00:22:43,230 --> 00:22:56,029
+DP of k plus 1, pj is going to be k, pj plus cost of access
+ DP的k加1，pj将为k，pj加上访问成本
+
+418
+00:22:56,029 --> 00:23:07,655
+pj, p of mk plus 1 if pj is not equal to p of mk plus 1.
+ pj，如果pj不等于mk的p加1，则mk的p加1。 
+
+419
+00:23:07,655 --> 00:23:09,029
+So there's going to be two cases.
+因此，将有两种情况。 
+
+420
+00:23:09,029 --> 00:23:13,250
+I'll just write this out and I'll explain it.
+我将其写出来，并对其进行解释。 
+
+421
+00:23:13,250 --> 00:23:16,619
+But the first case corresponds to if the new memory
+但是第一种情况对应于新的内存
+
+422
+00:23:16,619 --> 00:23:21,589
+access is not in the processor cache corresponding to pj,
+访问不在与pj对应的处理器缓存中， 
+
+423
+00:23:21,589 --> 00:23:26,639
+then what you could do is use the optimum value,
+那么您可以做的就是使用最佳值， 
+
+424
+00:23:26,640 --> 00:23:30,910
+where you ended pj, and simply do a remote access that
+您在哪里结束了pj，只需进行远程访问即可
+
+425
+00:23:30,910 --> 00:23:35,019
+corresponds to accessing mk plus 1.
+对应于访问mk加1。 
+
+426
+00:23:35,019 --> 00:23:36,559
+So that's one case.
+这就是一种情况。 
+
+427
+00:23:36,559 --> 00:23:48,409
+The case is to use the minimum solution-- optimum solution
+情况是使用最小的解决方案-最佳解决方案
+
+428
+00:23:48,410 --> 00:23:55,909
+corresponding to ending at pi and do a migration.
+对应于以pi结尾并进行迁移。 
+
+429
+00:23:56,109 --> 00:24:01,459
+You have cost of migration from pi to pj.
+您需要从pi迁移到pj。 
+
+430
+00:24:01,460 --> 00:24:11,329
+And you do this if you want to go do p of mk
+如果您想去做mk的操作，就可以这样做
+
+431
+00:24:11,329 --> 00:24:14,809
+plus 1-- the processor corresponding to p
+加1-对应于p的处理器
+
+432
+00:24:14,809 --> 00:24:16,899
+of mk plus 1.
+的mk加1。 
+
+433
+00:24:16,900 --> 00:24:20,919
+So that's the set up for this dynamic program.
+这就是该动态程序的设置。 
+
+434
+00:24:21,119 --> 00:24:24,589
+What you've done is created a sub problem, its optimum,
+您所做的事情会产生一个子问题，即最佳问题， 
+
+435
+00:24:24,589 --> 00:24:27,279
+and then you look at the two cases.
+然后看看这两种情况。 
+
+436
+00:24:27,279 --> 00:24:30,990
+You want to go migrate and do a local access-- that's
+您想迁移并进行本地访问- 
+
+437
+00:24:30,990 --> 00:24:32,669
+this case over here.
+这个案例在这里。 
+
+438
+00:24:32,869 --> 00:24:35,779
+Migrate to the processor and do a local access there.
+迁移到处理器并在那里进行本地访问。 
+
+439
+00:24:35,779 --> 00:24:36,910
+That will be this case.
+就是这种情况。 
+
+440
+00:24:36,910 --> 00:24:39,984
+And in this case, you stay where you are and do a remote access.
+在这种情况下，您将留在原处并进行远程访问。 
+
+441
+00:24:40,184 --> 00:24:43,480
+
+
+
+442
+00:24:43,480 --> 00:24:52,159
+In the case of migration, you could end up choosing different
+在迁移的情况下，您最终可能会选择其他
+
+443
+00:24:52,359 --> 00:24:55,659
+initial starting points corresponding to the pi's.
+对应于pi的初始起点。 
+
+444
+00:24:55,660 --> 00:24:58,880
+And you have to run through all of those.
+而您必须经历所有这些。 
+
+445
+00:24:58,880 --> 00:25:05,170
+So what's the cost of a subproblem, or the running time
+那么子问题的成本或运行时间是多少
+
+446
+00:25:05,170 --> 00:25:10,630
+of computing one of these things-- it's order?
+计算这些东西之一-是命令？ 
+
+447
+00:25:10,630 --> 00:25:18,849
+Q. And so the total cost is NQ squared.
+问：因此总成本为NQ平方。 
+
+448
+00:25:19,049 --> 00:25:22,809
+
+
+
+449
+00:25:22,809 --> 00:25:27,269
+It's a little review of DP.
+这是对DP的一些评论。 
+
+450
+00:25:27,269 --> 00:25:31,079
+I'm going to stop here and let Erik take over.
+我要在这里停下来，让埃里克接任。 
+
+451
+00:25:31,079 --> 00:25:36,529
+Just, in closing, while this makes some assumptions,
+最后，尽管做出了一些假设， 
+
+452
+00:25:36,529 --> 00:25:39,279
+It's actually fairly close to what
+它实际上与
+
+453
+00:25:39,279 --> 00:25:40,789
+we're building in hardware.
+我们正在硬件中构建。 
+
+454
+00:25:40,789 --> 00:25:42,569
+This type of analysis is something
+这种类型的分析是
+
+455
+00:25:42,569 --> 00:25:44,189
+that we have to do in hardware.
+我们必须在硬件上做的。 
+
+456
+00:25:44,190 --> 00:25:48,200
+My research group is building a 128 processor machine,
+我的研究小组正在建造一台128处理器的机器， 
+
+457
+00:25:48,200 --> 00:25:50,470
+that we call the Execution Migration Machine.
+我们称之为执行迁移机器。 
+
+458
+00:25:50,470 --> 00:25:52,960
+And it does exactly what I've described to you,
+它完全符合我对您的描述， 
+
+459
+00:25:52,960 --> 00:25:54,690
+decide whether to do a remote access
+决定是否进行远程访问
+
+460
+00:25:54,690 --> 00:25:59,650
+or to do a migration based on this kind of analysis.
+或基于这种分析进行迁移。 
+
+461
+00:25:59,650 --> 00:26:02,557
+So hand it over to Erik.
+因此，将其交给Erik。 
+
+462
+00:26:02,557 --> 00:26:04,390
+PROFESSOR ERIK DEMAINE: I have a microphone.
+埃里克·迪迈因教授：我有麦克风。 
+
+463
+00:26:04,390 --> 00:26:04,369
+PROFESSOR SRINI DEVADAS: All right.
+ SRINI DEVADAS教授：好的。 
+
+464
+00:26:04,569 --> 00:26:05,069
+Good.
+好。 
+
+465
+00:26:05,069 --> 00:26:08,803
+
+
+
+466
+00:26:08,804 --> 00:26:10,720
+PROFESSOR ERIK DEMAINE: So I have a few things
+埃里克·迪梅因教授：所以我有几件事
+
+467
+00:26:10,720 --> 00:26:12,589
+to tell you a little bit about.
+告诉你一些有关。 
+
+468
+00:26:12,589 --> 00:26:14,509
+Srini talked about one topic in detail.
+ Srini详细讨论了一个主题。 
+
+469
+00:26:14,509 --> 00:26:17,039
+I'm going to talk about many topics in less detail,
+我将不那么详细地谈论许多主题， 
+
+470
+00:26:17,039 --> 00:26:19,659
+as I said "shallowly."
+就像我说的那样。 
+
+471
+00:26:19,660 --> 00:26:22,169
+And these are my main areas of research.
+这些是我的主要研究领域。 
+
+472
+00:26:22,369 --> 00:26:26,769
+I do geometry, in particular, folding, and data structures,
+我做几何，尤其是折叠和数据结构， 
+
+473
+00:26:26,769 --> 00:26:29,470
+graphs, and recreational algorithms.
+图和休闲算法。 
+
+474
+00:26:29,470 --> 00:26:32,910
+That's the really fun stuff.
+那是真正有趣的东西。 
+
+475
+00:26:32,910 --> 00:26:34,839
+A lot of these have corresponding courses
+其中很多都有相应的课程
+
+476
+00:26:35,039 --> 00:26:36,980
+if you're interested in more about this stuff.
+如果您对这些东西有更多的兴趣。 
+
+477
+00:26:36,980 --> 00:26:39,220
+Computational geometry, in general,
+一般而言，计算几何
+
+478
+00:26:39,220 --> 00:26:43,180
+is-- I'm not going to remember all numbers.
+是-我不会记住所有数字。 
+
+479
+00:26:43,180 --> 00:26:44,390
+840?
+ 840？ 
+
+480
+00:26:44,390 --> 00:26:46,890
+50?
+ 50吗
+
+481
+00:26:46,890 --> 00:26:49,660
+50.
+ 50 
+
+482
+00:26:49,660 --> 00:26:51,160
+6.850.
+ 6.850。 
+
+483
+00:26:51,160 --> 00:26:53,450
+That's a class I don't teach.
+那是我不教的课。 
+
+484
+00:26:53,450 --> 00:26:57,559
+Folding is 6.849.
+折叠为6.849。 
+
+485
+00:26:57,559 --> 00:27:01,609
+Data Structures is 6.851.
+数据结构为6.851。 
+
+486
+00:27:01,609 --> 00:27:06,069
+And Graphs was being taught this semester,
+这个学期正在教Graphs， 
+
+487
+00:27:06,069 --> 00:27:07,349
+in parallel with this class.
+与此类并行。 
+
+488
+00:27:07,349 --> 00:27:08,769
+6.889.
+ 6.889。 
+
+489
+00:27:08,769 --> 00:27:12,259
+And recreational algorithms isn't fully covered
+娱乐算法并未完全涵盖
+
+490
+00:27:12,259 --> 00:27:15,320
+but you could check out SP.268, which
+但是您可以签出SP.268， 
+
+491
+00:27:15,320 --> 00:27:17,009
+was offered last semester.
+是上学期提供的。 
+
+492
+00:27:17,009 --> 00:27:19,029
+And especially for those watching at home
+特别是对于那些在家看的人
+
+493
+00:27:19,029 --> 00:27:22,154
+on MIT OpenCourseWare-- this class,
+在MIT OpenCourseWare上-此类
+
+494
+00:27:22,154 --> 00:27:25,230
+all the video lectures are online for free.
+所有视频讲座都是免费在线。 
+
+495
+00:27:25,230 --> 00:27:26,940
+6.851, we'll do that next semester.
+ 6.851，我们将在下个学期进行。 
+
+496
+00:27:26,940 --> 00:27:30,049
+And 6.889 are all online, right now.
+现在，6.889都在线。 
+
+497
+00:27:30,049 --> 00:27:34,190
+And there's some lecture notes for SP.268 on OpenCourseWare.
+在OpenCourseWare上有一些SP.268的讲义。 
+
+498
+00:27:34,190 --> 00:27:35,799
+There's a lot of material, here.
+这里有很多材料。 
+
+499
+00:27:35,799 --> 00:27:38,930
+And in particular, the obvious next class for you to be taking
+尤其是显而易见的下一堂课
+
+500
+00:27:38,930 --> 00:27:40,619
+is 6.046.
+是6.046。 
+
+501
+00:27:40,819 --> 00:27:42,653
+But why should you be taking 6.046?
+但是为什么要服用6.046？ 
+
+502
+00:27:42,653 --> 00:27:44,819
+Because then you can take all these exciting classes
+因为这样您可以参加所有这些令人兴奋的课程
+
+503
+00:27:44,819 --> 00:27:46,769
+and many others about algorithms.
+还有许多其他关于算法的知识。 
+
+504
+00:27:46,769 --> 00:27:48,670
+There's a complete list of follow-on classes
+有完整的后续课程清单
+
+505
+00:27:48,670 --> 00:27:51,930
+in the lecture notes, which are online.
+在在线的讲义中。 
+
+506
+00:27:51,930 --> 00:27:55,019
+And there's a ton of-- there's so much research in algorithms.
+而且，有大量的算法研究。 
+
+507
+00:27:55,019 --> 00:27:56,509
+It's a really exciting area.
+这是一个非常令人兴奋的领域。 
+
+508
+00:27:56,509 --> 00:27:58,990
+This is just the beginning-- just a taste.
+这仅仅是开始-只是一种味道。 
+
+509
+00:27:58,990 --> 00:28:02,750
+And I want to show you various exciting places it can go.
+我想向您展示它可以去的各种令人兴奋的地方。 
+
+510
+00:28:02,750 --> 00:28:08,670
+
+
+
+511
+00:28:08,670 --> 00:28:10,750
+Let's do some algorithms.
+让我们做一些算法。 
+
+512
+00:28:10,750 --> 00:28:30,680
+
+
+
+513
+00:28:30,680 --> 00:28:33,789
+So the first topic I'll tell you a little bit
+所以我首先告诉你一些话题
+
+514
+00:28:33,789 --> 00:28:38,139
+about-- maybe the most fun-- is geometric folding algorithms.
+关于-也许最有趣的是-几何折叠算法。 
+
+515
+00:28:38,140 --> 00:28:41,920
+
+
+
+516
+00:28:41,920 --> 00:28:45,480
+That's the title of the textbook and the class 6.849.
+那是教科书的标题和6.849的班级。 
+
+517
+00:28:45,480 --> 00:28:49,106
+And in general-- well, there's a lot
+总体而言-嗯，有很多
+
+518
+00:28:49,106 --> 00:28:50,940
+of different kinds of folding, in the world,
+世界上各种各样的折叠
+
+519
+00:28:50,940 --> 00:28:54,289
+but maybe the most accessible and fun is origami.
+但也许最容易接近和有趣的是折纸。 
+
+520
+00:28:54,289 --> 00:28:57,869
+So you have, on the one hand, a piece of paper.
+因此，一方面，您有一张纸。 
+
+521
+00:28:57,869 --> 00:29:01,009
+And you'd like to turn it into some crazy, three dimensional
+而您想将其变成疯狂的三维
+
+522
+00:29:01,009 --> 00:29:03,950
+shape, which I'm not going to try to draw here.
+形状，在这里我不会尝试绘制。 
+
+523
+00:29:03,950 --> 00:29:05,900
+You want to fold a giraffe or you
+您想折叠长颈鹿还是
+
+524
+00:29:05,900 --> 00:29:08,230
+want to make some geometric sculpture.
+想做一些几何雕塑。 
+
+525
+00:29:08,230 --> 00:29:09,380
+How do you do this?
+你怎么做到这一点？ 
+
+526
+00:29:09,380 --> 00:29:13,170
+So, usually, you put some creases into the piece of paper
+因此，通常，您在纸上放置一些折痕
+
+527
+00:29:13,170 --> 00:29:14,680
+in some reasonable way.
+以某种合理的方式。 
+
+528
+00:29:14,680 --> 00:29:17,129
+
+
+
+529
+00:29:17,329 --> 00:29:19,000
+And one of the questions is what are
+问题之一是
+
+530
+00:29:19,000 --> 00:29:21,789
+the rules for putting creases into a piece of paper?
+将折痕放入纸的规则是什么？ 
+
+531
+00:29:21,789 --> 00:29:23,089
+When is that possible?
+什么时候可能？ 
+
+532
+00:29:23,089 --> 00:29:26,689
+And then you'd like to fold it into that shape.
+然后，您想将其折叠成该形状。 
+
+533
+00:29:26,690 --> 00:29:28,379
+So there are really two big problems here.
+因此，这里确实存在两个大问题。 
+
+534
+00:29:28,579 --> 00:29:32,529
+One is I guess you could call it foldability.
+一种是我猜您可以称其为可折叠性。 
+
+535
+00:29:32,529 --> 00:29:35,549
+
+
+
+536
+00:29:35,549 --> 00:29:38,099
+And this is what you do if you practice origami
+这就是练习折纸的方法
+
+537
+00:29:38,099 --> 00:29:39,699
+in the typical way.
+以典型的方式。 
+
+538
+00:29:39,700 --> 00:29:42,180
+You get origami diagrams, and they say, "fold this."
+您会看到折纸图，他们说，“将其折叠”。 
+
+539
+00:29:42,180 --> 00:29:43,529
+And you're like, oh, gosh.
+你就像，天哪。 
+
+540
+00:29:43,529 --> 00:29:45,695
+Takes you hours to figure out how to fold something.
+需要花费几个小时来弄清楚如何折叠东西。 
+
+541
+00:29:45,695 --> 00:29:48,301
+Especially, if they just gave you a crease pattern.
+特别是，如果他们只是给您一个折痕图案。 
+
+542
+00:29:48,301 --> 00:29:50,759
+Can you even tell does it fold into anything, first of all.
+首先，您能否说出它是否折叠成任何东西。 
+
+543
+00:29:50,759 --> 00:29:53,180
+And then, if so, how do I do it?
+然后，如果是这样，我该怎么做？ 
+
+544
+00:29:53,180 --> 00:30:05,440
+That problem-- folding increase pattern and understanding
+这个问题-折叠增加模式和理解
+
+545
+00:30:05,440 --> 00:30:10,130
+what crease patterns are valid-- unfortunately, is NP-complete.
+哪些折痕模式有效-不幸的是，NP完全。 
+
+546
+00:30:10,130 --> 00:30:13,059
+So there's no good way to really understand that.
+因此，没有真正了解这一点的好方法。 
+
+547
+00:30:13,259 --> 00:30:16,213
+So origami is hard.
+所以折纸很难。 
+
+548
+00:30:16,213 --> 00:30:18,129
+In some sense, the more interesting direction,
+从某种意义上说，更有趣的方向
+
+549
+00:30:18,130 --> 00:30:19,579
+though, is the reverse direction,
+虽然是相反的方向
+
+550
+00:30:19,779 --> 00:30:22,359
+which I would call origami design.
+我将其称为折纸设计。 
+
+551
+00:30:22,359 --> 00:30:26,299
+I have an intended 3D shape I want to design.
+我有一个想要设计的预期3D形状。 
+
+552
+00:30:26,299 --> 00:30:30,409
+How can I come up with-- how can I, as an algorithm, convert
+我该怎么想-我如何才能将算法转换为
+
+553
+00:30:30,410 --> 00:30:33,119
+that 3D shape into a crease pattern that does fold,
+ 3D形状变成可以折叠的折痕图案， 
+
+554
+00:30:33,319 --> 00:30:36,259
+that's guaranteed to fold into that 3D shape.
+保证可以折叠成3D形状。 
+
+555
+00:30:36,259 --> 00:30:38,789
+And that's actually solvable.
+这实际上是可以解决的。 
+
+556
+00:30:38,789 --> 00:30:39,789
+So design is easier.
+因此设计更容易。 
+
+557
+00:30:39,789 --> 00:30:42,378
+
+
+
+558
+00:30:42,378 --> 00:30:44,169
+And there's all sorts of different versions
+各种各样的版本
+
+559
+00:30:44,170 --> 00:30:46,099
+of the design problem.
+设计问题。 
+
+560
+00:30:46,299 --> 00:30:48,539
+Some of them, you could solve in polynomial time.
+其中一些，您可以在多项式时间内求解。 
+
+561
+00:30:48,539 --> 00:30:49,569
+Some of them, you can't.
+其中一些，你不能。 
+
+562
+00:30:49,569 --> 00:30:51,279
+If you really want optimal design,
+如果您真的想要最佳设计， 
+
+563
+00:30:51,279 --> 00:30:53,039
+that can be NP-complete again.
+可以再次完成NP。 
+
+564
+00:30:53,039 --> 00:30:59,389
+But in particular, there's a way to fold any 3D shape you want.
+但特别是，有一种方法可以折叠您想要的任何3D形状。 
+
+565
+00:30:59,390 --> 00:31:01,660
+So there's an algorithm-- the coolest one, right now,
+因此，有一种算法-目前最酷的算法
+
+566
+00:31:01,660 --> 00:31:03,009
+is called Origamizer.
+被称为Origamizer。 
+
+567
+00:31:03,009 --> 00:31:06,420
+It's free software online, by Tomohiro Tachi.
+它是Tomohiro Tachi的在线免费软件。 
+
+568
+00:31:06,420 --> 00:31:09,940
+And you give it a 3D model of a polyhedron.
+然后给它一个多面体的3D模型。 
+
+569
+00:31:09,940 --> 00:31:12,869
+And it outputs a giant crease pattern
+并输出巨大的折痕
+
+570
+00:31:13,069 --> 00:31:16,089
+on a square piece of paper that folds into that 3D polyhedron.
+在一张折叠成3D多面体的正方形纸上。 
+
+571
+00:31:16,089 --> 00:31:18,709
+And it's reasonably practical.
+而且这是相当实用的。 
+
+572
+00:31:18,710 --> 00:31:21,210
+And he's folded tons of models in that way.
+他以这种方式折叠了许多模型。 
+
+573
+00:31:21,210 --> 00:31:23,809
+
+
+
+574
+00:31:23,809 --> 00:31:27,021
+Let's see.
+让我们来看看。 
+
+575
+00:31:27,021 --> 00:31:28,980
+I'll show you some other things.
+我会告诉你其他的事情。 
+
+576
+00:31:28,980 --> 00:31:32,940
+Here's a simple example of a geometric origami model.
+这是一个几何折纸模型的简单示例。 
+
+577
+00:31:32,940 --> 00:31:37,420
+So this is folded from a square paper with concentric squares
+所以这是从具有同心正方形的正方形纸上折叠的
+
+578
+00:31:37,420 --> 00:31:38,409
+as creases.
+折痕。 
+
+579
+00:31:38,609 --> 00:31:40,356
+Alternating mountain and valley.
+交替的山脉和山谷。 
+
+580
+00:31:40,356 --> 00:31:42,190
+So you see mountain valley, mountain valley.
+所以你看到山谷，山谷。 
+
+581
+00:31:42,190 --> 00:31:43,470
+Also fold the diagonals.
+还要折叠对角线。 
+
+582
+00:31:43,470 --> 00:31:45,089
+It's very easy to make.
+制作起来很容易。 
+
+583
+00:31:45,089 --> 00:31:46,859
+And what's funny-- what's cool about it
+有趣的是-有趣的是
+
+584
+00:31:46,859 --> 00:31:48,849
+is that when you put all those creases in,
+当你把所有这些折痕放进去时
+
+585
+00:31:48,849 --> 00:31:52,409
+it pops into this 3D shape, which for many years people
+它变成这种3D形状，多年来人们
+
+586
+00:31:52,410 --> 00:31:54,220
+conjectured was a hyperbolic parabola.
+推测是双曲线抛物线。 
+
+587
+00:31:54,220 --> 00:31:56,420
+This design is one of the earliest geometric origami
+这种设计是最早的几何折纸之一
+
+588
+00:31:56,420 --> 00:31:56,920
+designs.
+设计。 
+
+589
+00:31:56,920 --> 00:32:01,920
+It goes back to late '20s in the Bauhaus School of Design.
+它可以追溯到20年代后期的包豪斯设计学院。 
+
+590
+00:32:01,920 --> 00:32:03,240
+And it's very cool.
+而且非常酷。 
+
+591
+00:32:03,240 --> 00:32:04,890
+People fold them a lot.
+人们将它们折叠很多。 
+
+592
+00:32:04,890 --> 00:32:09,399
+I've personally folded thousands of them
+我亲自折叠了数千个
+
+593
+00:32:09,599 --> 00:32:10,740
+for sculpture and things.
+雕塑和事物。 
+
+594
+00:32:10,740 --> 00:32:13,400
+We also do a lot of algorithmic sculpture, which
+我们还做了很多算法雕塑， 
+
+595
+00:32:13,400 --> 00:32:15,389
+I won't talk about in detail here.
+在这里我不会详细讨论。 
+
+596
+00:32:15,589 --> 00:32:20,769
+But we discovered, two years ago, that this does not exist.
+但是两年前我们发现这不存在。 
+
+597
+00:32:20,769 --> 00:32:23,319
+It is impossible to fold a square piece of paper
+不可能折叠一张正方形的纸
+
+598
+00:32:23,319 --> 00:32:25,519
+with this crease pattern.
+这种折痕样式。 
+
+599
+00:32:25,519 --> 00:32:27,160
+That was a bit of a surprise.
+这有点令人惊讶。 
+
+600
+00:32:27,160 --> 00:32:29,650
+And it's kind of fun to make things that don't exist.
+制作不存在的东西是一种乐趣。 
+
+601
+00:32:29,650 --> 00:32:30,532
+AUDIENCE: So what is that?
+听众：那是什么？ 
+
+602
+00:32:30,732 --> 00:32:33,490
+PROFESSOR ERIK DEMAINE: So what is this?
+ ERIK DEMAINE教授：那是什么？ 
+
+603
+00:32:33,490 --> 00:32:39,089
+Well, somehow, physical world is differing from the real world.
+好吧，某种程度上，物理世界与现实世界有所不同。 
+
+604
+00:32:39,089 --> 00:32:42,549
+Now, some ways it might be differing
+现在，在某些方面可能有所不同
+
+605
+00:32:42,549 --> 00:32:45,750
+are that these creases might not be
+这些折痕可能不是
+
+606
+00:32:45,750 --> 00:32:47,140
+creases in the technical sense.
+技术意义上的折痕。 
+
+607
+00:32:47,140 --> 00:32:49,390
+A crease is a place that should be non-differentiable.
+折痕是一个不应有差异的地方。 
+
+608
+00:32:49,390 --> 00:32:50,919
+So maybe they're kind of rounding it out.
+因此，也许他们正在四舍五入。 
+
+609
+00:32:51,119 --> 00:32:52,909
+And then, who knows what's happening.
+然后，谁知道发生了什么事。 
+
+610
+00:32:52,910 --> 00:32:54,099
+Then, kind of all bets are off.
+然后，所有赌注都关闭了。 
+
+611
+00:32:54,299 --> 00:32:56,299
+Another possibility of what I think is happening
+我认为正在发生的另一种可能性
+
+612
+00:32:56,299 --> 00:32:58,858
+is that their are extra creases, in here, that you don't see.
+是它们是多余的折痕，在这里看不到。 
+
+613
+00:32:58,858 --> 00:32:59,649
+They're very small.
+他们很小。 
+
+614
+00:32:59,650 --> 00:33:04,420
+If you look, especially the raw edge, here, and that profile.
+如果您看这里，尤其是原始边缘，以及该轮廓。 
+
+615
+00:33:04,420 --> 00:33:05,379
+It's a little bit wavy.
+有点波浪。 
+
+616
+00:33:05,579 --> 00:33:07,699
+And it's conceivable there's some points here
+可以想象这里有几点
+
+617
+00:33:07,700 --> 00:33:09,680
+that look non-differentiable to me.
+对我来说，这是不可区分的。 
+
+618
+00:33:09,680 --> 00:33:11,919
+And I always thought I wasn't folding it well enough.
+我一直以为我折叠得不够好。 
+
+619
+00:33:12,119 --> 00:33:15,179
+But in fact, something like that has to happen.
+但是实际上，类似的事情必须发生。 
+
+620
+00:33:15,180 --> 00:33:16,970
+And my conjecture is, if you look
+我的推测是，如果你看
+
+621
+00:33:16,970 --> 00:33:19,339
+at this under a microscope, which we haven't done yet,
+在显微镜下，我们还没有做过
+
+622
+00:33:19,339 --> 00:33:21,579
+there are little creases that are so shallow they're
+有些小折痕太浅了
+
+623
+00:33:21,579 --> 00:33:23,899
+hard to see, but are there.
+很难看，但是在那里。 
+
+624
+00:33:23,900 --> 00:33:26,662
+And the theorem says some creases have to be there.
+定理说必须有一些折痕。 
+
+625
+00:33:26,662 --> 00:33:28,419
+It is possible to fold this with extra creases,
+可以用额外的折痕折叠它， 
+
+626
+00:33:28,619 --> 00:33:31,739
+but not with these.
+但是这些却不行。 
+
+627
+00:33:31,740 --> 00:33:34,598
+So get rid of that.
+所以摆脱它。 
+
+628
+00:33:34,598 --> 00:33:36,389
+On the other hand, if you do the same thing
+另一方面，如果您做同样的事情
+
+629
+00:33:36,390 --> 00:33:38,569
+with concentric circular creases-- this a little harder
+同心圆形折痕-这有点难
+
+630
+00:33:38,769 --> 00:33:39,400
+to unfold.
+展开。 
+
+631
+00:33:39,400 --> 00:33:43,150
+It really wants to be in this kind of Pringles shape.
+它真的想成为这种品客薯片形状。 
+
+632
+00:33:43,150 --> 00:33:45,690
+This also is from about Bauhaus.
+这也来自包豪斯。 
+
+633
+00:33:45,690 --> 00:33:47,690
+It's a little harder to fold concentric circles.
+折叠同心圆比较困难。 
+
+634
+00:33:47,690 --> 00:33:50,700
+But this, we think, does exist.
+但是我们认为确实存在。 
+
+635
+00:33:50,700 --> 00:33:52,819
+Can't prove it yet.
+尚无法证明。 
+
+636
+00:33:52,819 --> 00:33:56,929
+So we've done a lot of sculpture based on these guys.
+因此，我们基于这些人做了很多雕塑。 
+
+637
+00:33:56,930 --> 00:33:59,879
+What else do I want to say?
+我还要说什么？ 
+
+638
+00:34:00,079 --> 00:34:01,309
+Another demo.
+另一个演示。 
+
+639
+00:34:01,309 --> 00:34:02,480
+So here's a fun problem.
+所以这是一个有趣的问题。 
+
+640
+00:34:02,480 --> 00:34:03,460
+This is a magic trick.
+这是一个魔术。 
+
+641
+00:34:03,460 --> 00:34:06,980
+Goes back to Houdini and others.
+回到Houdini和其他人。 
+
+642
+00:34:06,980 --> 00:34:13,010
+So imagine I take a rectangle of paper and then I fold it flat
+想象一下，我取一个矩形的纸，然后将其折平
+
+643
+00:34:13,010 --> 00:34:16,150
+and take my scissors-- not strict origami, here--
+拿我的剪刀-这里不是严格的折纸- 
+
+644
+00:34:16,150 --> 00:34:18,119
+and I make one complete straight cut.
+然后我就完成了一个完整的直切
+
+645
+00:34:18,119 --> 00:34:21,940
+
+
+
+646
+00:34:21,940 --> 00:34:24,309
+In this case, I get two pieces.
+在这种情况下，我得到了两块。 
+
+647
+00:34:24,309 --> 00:34:25,559
+And I unfold the pieces.
+然后我展开作品。 
+
+648
+00:34:25,559 --> 00:34:28,630
+And the question is what shapes can I get out of those pieces?
+问题是我可以从这些零件中得到什么形状？ 
+
+649
+00:34:28,630 --> 00:34:31,409
+In this case, I get a swan.
+在这种情况下，我得到了天鹅。 
+
+650
+00:34:31,409 --> 00:34:35,199
+You're not impressed so I'll another one.
+您没有留下深刻的印象，所以我再给一个。 
+
+651
+00:34:35,199 --> 00:34:36,880
+Make one straight cut.
+进行一次直切。 
+
+652
+00:34:36,880 --> 00:34:38,379
+These are on my web page if you want
+如果需要，这些都在我的网页上
+
+653
+00:34:38,380 --> 00:34:39,346
+to impress all your friends.
+打动你所有的朋友。 
+
+654
+00:34:39,545 --> 00:34:42,280
+
+
+
+655
+00:34:42,280 --> 00:34:44,739
+You could take the class if you want to know how it's done.
+如果您想知道如何完成课程，可以上课。 
+
+656
+00:34:44,739 --> 00:34:47,641
+
+
+
+657
+00:34:47,641 --> 00:34:49,099
+This example has a lot of symmetry.
+这个例子有很多对称性。 
+
+658
+00:34:49,099 --> 00:34:52,007
+You get a little angelfish.
+你会得到一个小神仙鱼。 
+
+659
+00:34:52,007 --> 00:34:53,419
+I only have one more example.
+我只有一个例子。 
+
+660
+00:34:53,420 --> 00:34:55,030
+I hope you'll be impressed.
+希望您会印象深刻。 
+
+661
+00:34:55,030 --> 00:34:58,400
+This is very hard to fold.
+这很难折。 
+
+662
+00:34:58,599 --> 00:35:02,389
+It was an MIT spotlight picture, at some point.
+在某些时候，这是麻省理工学院的一大亮点。 
+
+663
+00:35:02,389 --> 00:35:03,569
+And it's even harder to cut.
+而且更难切割。 
+
+664
+00:35:03,570 --> 00:35:06,150
+
+
+
+665
+00:35:06,349 --> 00:35:07,170
+Straight cut.
+直切。 
+
+666
+00:35:07,170 --> 00:35:14,289
+
+
+
+667
+00:35:14,289 --> 00:35:19,875
+This should be the MIT logo.
+这应该是MIT徽标。 
+
+668
+00:35:19,876 --> 00:35:25,000
+[APPLAUSE]
+ [掌声] 
+
+669
+00:35:25,199 --> 00:35:27,469
+So the theorem is there's an algorithm, given
+因此定理有一个算法，给定
+
+670
+00:35:27,469 --> 00:35:29,416
+any set of polygons in the plane,
+平面中的任何一组多边形
+
+671
+00:35:29,416 --> 00:35:31,000
+you could fold, make one straight cut,
+你可以折叠，直切
+
+672
+00:35:31,000 --> 00:35:32,530
+and get exactly those polygons.
+并精确地获得这些多边形。 
+
+673
+00:35:32,530 --> 00:35:33,400
+There's some limits, in practice,
+实际上有一些限制
+
+674
+00:35:33,599 --> 00:35:34,723
+because of paper thickness.
+由于纸张厚度。 
+
+675
+00:35:34,724 --> 00:35:38,039
+But in theory, you can do everything.
+但是从理论上讲，您可以做所有事情。 
+
+676
+00:35:38,239 --> 00:35:39,250
+All right.
+好吧。 
+
+677
+00:35:39,250 --> 00:35:39,820
+Fun stuff.
+好玩的东西。 
+
+678
+00:35:39,820 --> 00:35:44,380
+
+
+
+679
+00:35:44,579 --> 00:35:47,019
+I don't think I have time to talk about self-assembly.
+我认为我没有时间谈论自组装。 
+
+680
+00:35:47,019 --> 00:35:49,311
+Let me talk a little bit about data structures because,
+让我谈谈数据结构，因为， 
+
+681
+00:35:49,311 --> 00:35:52,650
+conveniently, Srini drew this diagram for me.
+斯里尼方便地为我画了这张图。 
+
+682
+00:35:52,650 --> 00:35:56,139
+And I have the exact same diagram-- the left one, though.
+我有完全一样的图-但是左边的图。 
+
+683
+00:35:56,139 --> 00:35:56,889
+I'm old fashioned.
+我是老式的。 
+
+684
+00:35:56,889 --> 00:35:59,559
+
+
+
+685
+00:35:59,559 --> 00:36:03,789
+So the models of computation we've used, in this class,
+因此，我们在此类中使用的计算模型
+
+686
+00:36:03,789 --> 00:36:04,769
+are pretty simple.
+非常简单。 
+
+687
+00:36:04,769 --> 00:36:06,599
+We have, in particular, the Word RAM.
+我们尤其拥有Word RAM。 
+
+688
+00:36:06,599 --> 00:36:07,549
+You can read a word.
+你会读一个字。 
+
+689
+00:36:07,550 --> 00:36:08,887
+You can add two words.
+您可以添加两个单词。 
+
+690
+00:36:08,887 --> 00:36:10,769
+Do whatever you want with a constant number words.
+使用常量数字单词可以做任何您想做的事情。 
+
+691
+00:36:10,969 --> 00:36:12,809
+Send them out to main memory.
+将它们发送到主存储器。 
+
+692
+00:36:12,809 --> 00:36:15,170
+Everything's the same amount of time.
+一切都是一样的时间。 
+
+693
+00:36:15,170 --> 00:36:18,079
+It's all constant, anyway, so who cares?
+无论如何，这都是恒定的，那么谁在乎呢？ 
+
+694
+00:36:18,079 --> 00:36:21,139
+Except there's this issue in real computers,
+除非实际计算机中存在此问题， 
+
+695
+00:36:21,139 --> 00:36:23,139
+and it gets even worse with parallel, but let's
+并行处理会变得更糟，但是让我们
+
+696
+00:36:23,139 --> 00:36:29,789
+stick to sequential old fashioned computers.
+坚持使用顺序的老式计算机。 
+
+697
+00:36:29,789 --> 00:36:33,949
+So you have this slow bottleneck between main memory and cache.
+因此，您在主内存和缓存之间存在缓慢的瓶颈。 
+
+698
+00:36:33,949 --> 00:36:35,029
+Cache is really fast.
+缓存确实非常快。 
+
+699
+00:36:35,030 --> 00:36:37,340
+Think of this as a really fat pipe.
+认为这是一个非常胖的管道。 
+
+700
+00:36:37,340 --> 00:36:40,047
+And this is a very thin pipe.
+这是一个非常细的管道。 
+
+701
+00:36:40,047 --> 00:36:40,630
+What do we do?
+我们做什么？ 
+
+702
+00:36:40,630 --> 00:36:42,610
+We'd like to always work with things in cache,
+我们希望始终使用缓存中的内容， 
+
+703
+00:36:42,610 --> 00:36:44,849
+but that's kind of difficult.
+但这有点困难。 
+
+704
+00:36:44,849 --> 00:36:46,389
+At some point, you run out of space.
+在某些时候，您空间不足。 
+
+705
+00:36:46,389 --> 00:36:47,722
+You've got to go to main memory.
+您必须进入主存储器。 
+
+706
+00:36:47,722 --> 00:36:51,199
+And maybe to disc, other levels of the memory hierarchy.
+也许是光盘，其他层次的内存层次结构。 
+
+707
+00:36:51,199 --> 00:36:54,750
+So what systems do is, when you fetch something from memory,
+所以系统要做的是，当您从内存中获取某些东西时， 
+
+708
+00:36:54,750 --> 00:36:59,260
+you don't just get one word, you get an entire cache line.
+您不仅得到一个单词，还获得了整个缓存行。 
+
+709
+00:36:59,260 --> 00:37:01,570
+And cache lines are getting bigger and bigger.
+缓存行越来越大。 
+
+710
+00:37:01,570 --> 00:37:08,940
+But memory transfers happen in blocks,
+但是内存传输是分块进行的
+
+711
+00:37:09,139 --> 00:37:10,839
+when you're going to a big memory.
+当您要记忆大的时候。 
+
+712
+00:37:10,840 --> 00:37:19,400
+
+
+
+713
+00:37:19,599 --> 00:37:22,460
+So let's say B is the size of a block.
+假设B是一个块的大小。 
+
+714
+00:37:22,460 --> 00:37:24,599
+There is another model of computation
+还有另一种计算模型
+
+715
+00:37:24,599 --> 00:37:26,769
+that's more sophisticated than the Word RAM that
+比Word RAM更复杂
+
+716
+00:37:26,769 --> 00:37:31,489
+says how should my running time depend on B. How many memory
+说我的跑步时间应该如何取决于B。多少内存
+
+717
+00:37:31,489 --> 00:37:35,465
+transfers do I need to do, as a function of B and n?
+我需要做转移，作为B和n的函数吗？ 
+
+718
+00:37:35,465 --> 00:37:40,047
+And so for example, if you want to do search-- normally,
+例如，如果您要进行搜索-通常， 
+
+719
+00:37:40,047 --> 00:37:41,380
+we think of doing binary search.
+我们考虑进行二进制搜索。 
+
+720
+00:37:41,380 --> 00:37:44,519
+That takes log(n) accesses if everything is uniform.
+如果一切都统一，则需要log（n）访问。 
+
+721
+00:37:44,719 --> 00:37:46,339
+But with asymmetry, and if you're
+但是不对称，如果你
+
+722
+00:37:46,340 --> 00:37:49,340
+reading in entire blocks, if you do it right,
+整本阅读，如果做得对， 
+
+723
+00:37:49,340 --> 00:37:56,190
+you can do it in log base B of n, instead of log base 2.
+您可以在n的日志基数B中进行操作，而不是在日志基数2中进行操作。 
+
+724
+00:37:56,190 --> 00:37:58,289
+This is counting memory transfers, not computation.
+这是在计算内存传输，而不是计算。 
+
+725
+00:37:58,489 --> 00:38:01,159
+Computation here is free.
+这里的计算是免费的。 
+
+726
+00:38:01,159 --> 00:38:03,719
+It's a little weird, but you get used to it.
+有点奇怪，但是您已经习惯了。 
+
+727
+00:38:03,719 --> 00:38:05,769
+Sorting.
+排序。 
+
+728
+00:38:05,769 --> 00:38:06,800
+They're classic.
+他们很经典。 
+
+729
+00:38:06,800 --> 00:38:10,230
+Just to give you an idea of how this gets a little complicated.
+只是为了让您了解这如何变得有点复杂。 
+
+730
+00:38:10,230 --> 00:38:15,710
+You get n divided by B times log base C of n divided by B. C
+您得到n除以B乘以n的对数基数C除以B。 
+
+731
+00:38:15,710 --> 00:38:20,610
+is the number of blocks that fit in here.
+是此处适合的块数。 
+
+732
+00:38:20,610 --> 00:38:24,769
+So there's C different blocks that fit in your cache.
+因此，您的缓存中有C个不同的块。 
+
+733
+00:38:24,969 --> 00:38:26,779
+That's the optimal way to sort.
+这是最佳的排序方式。 
+
+734
+00:38:26,780 --> 00:38:29,487
+Just upper and lower bounds in the comparison model.
+比较模型中的上下限。 
+
+735
+00:38:29,686 --> 00:38:30,769
+Just to give you a flavor.
+只是为了给您一种味道。 
+
+736
+00:38:30,769 --> 00:38:33,389
+And there's a whole study of algorithms to do this.
+并且对此进行了完整的算法研究。 
+
+737
+00:38:33,389 --> 00:38:35,849
+What's really cool is you can achieve these bounds
+真正酷的是您可以实现这些界限
+
+738
+00:38:35,849 --> 00:38:37,929
+even if you don't know what B is.
+即使您不知道B是什么。 
+
+739
+00:38:37,929 --> 00:38:39,359
+And if you don't know what C is.
+而且，如果您不知道C是什么。 
+
+740
+00:38:39,360 --> 00:38:41,940
+There's one algorithm, that whatever the architecture is
+有一种算法，无论架构如何
+
+741
+00:38:42,139 --> 00:38:44,606
+underlying it, we'll still achieve the same bounds.
+作为基础，我们仍将达到相同的界限。 
+
+742
+00:38:44,606 --> 00:38:46,440
+Those are called cache-oblivious algorithms,
+这些被称为“缓存不注意”算法， 
+
+743
+00:38:46,440 --> 00:38:48,579
+and they were invented, here, at MIT.
+它们是在麻省理工学院发明的。 
+
+744
+00:38:48,579 --> 00:38:53,065
+
+
+
+745
+00:38:53,065 --> 00:38:58,099
+I think I want to-- this is too much fun to pass up.
+我想我想-这真是太有趣了。 
+
+746
+00:38:58,099 --> 00:39:02,739
+On the Word RAM, there's this problem,
+在Word RAM上，存在此问题， 
+
+747
+00:39:02,739 --> 00:39:04,569
+which we've dealt with several times.
+我们已经处理了好几次了。 
+
+748
+00:39:04,570 --> 00:39:08,920
+What if you want to maintain a dynamic set of elements--
+如果您要维护一组动态元素怎么办- 
+
+749
+00:39:08,920 --> 00:39:09,820
+integers.
+整数。 
+
+750
+00:39:09,820 --> 00:39:13,670
+I want to do insert, delete, predecessor, successor.
+我想做插入，删除，前任，后继。 
+
+751
+00:39:13,869 --> 00:39:16,809
+This is what binary search trees do.
+这就是二进制搜索树的作用。 
+
+752
+00:39:16,809 --> 00:39:19,090
+But you can do better.
+但是你可以做得更好。 
+
+753
+00:39:19,090 --> 00:39:26,420
+If we have integers-- n integers-- in the range
+如果我们有整数-n个整数-在范围内
+
+754
+00:39:26,420 --> 00:39:28,760
+0 to u minus 1.
+ 0至u减1。 
+
+755
+00:39:28,760 --> 00:39:31,630
+So u is the size of the universe.
+所以你就是宇宙的大小。 
+
+756
+00:39:31,829 --> 00:39:37,840
+Then, we already know how to do log(n).
+然后，我们已经知道如何执行log（n）。 
+
+757
+00:39:37,840 --> 00:39:40,530
+But you can do two bounds.
+但是您可以做两个界限。 
+
+758
+00:39:40,530 --> 00:39:41,235
+One is log(log(u)).
+一种是log（log（u））。 
+
+759
+00:39:41,434 --> 00:39:44,806
+
+
+
+760
+00:39:44,806 --> 00:39:46,639
+This is a data structure called [INAUDIBLE].
+这是一个称为[音频]的数据结构。 
+
+761
+00:39:46,639 --> 00:39:50,699
+
+
+
+762
+00:39:50,699 --> 00:39:52,779
+And it's in CLRS, if you're interested.
+如果您有兴趣，它位于CLRS中。 
+
+763
+00:39:52,780 --> 00:40:01,025
+You can also do log(log(n)) divided by log(log(u)).
+您还可以执行log（log（n））除以log（log（u））。 
+
+764
+00:40:01,025 --> 00:40:02,900
+This is a data structure called fusion trees.
+这是一个称为融合树的数据结构。 
+
+765
+00:40:02,900 --> 00:40:04,233
+It's an advanced data structure.
+这是一个高级数据结构。 
+
+766
+00:40:04,233 --> 00:40:08,030
+6.851, if you're interested.
+ 6.851，如果您有兴趣。 
+
+767
+00:40:08,030 --> 00:40:09,650
+And you can take the min of those two.
+您可以选择两者中的最小值。 
+
+768
+00:40:09,849 --> 00:40:12,049
+That's, essentially, the best possible,
+从本质上讲，那是最好的， 
+
+769
+00:40:12,050 --> 00:40:13,800
+the matching lower bound, that that that's
+匹配的下界
+
+770
+00:40:13,800 --> 00:40:14,432
+all you can achieve.
+您所能实现的。 
+
+771
+00:40:14,632 --> 00:40:17,189
+
+
+
+772
+00:40:17,190 --> 00:40:20,327
+And so just to state it in terms that you know,
+因此，仅以您知道的术语来陈述， 
+
+773
+00:40:20,527 --> 00:40:23,389
+which is normal n bounds.
+这是正常的n界。 
+
+774
+00:40:23,389 --> 00:40:25,559
+You take the min of those two things,
+你拿这两件事中的最小值， 
+
+775
+00:40:25,559 --> 00:40:31,954
+there are always at most square root log(n) divided
+总有最多平方根log（n）除
+
+776
+00:40:31,954 --> 00:40:32,579
+by log(log(n)).
+通过log（log（n））。 
+
+777
+00:40:32,579 --> 00:40:37,679
+
+
+
+778
+00:40:37,679 --> 00:40:39,519
+Compare that with log(n).
+将其与log（n）进行比较。 
+
+779
+00:40:39,519 --> 00:40:41,545
+It's way better.
+更好。 
+
+780
+00:40:41,545 --> 00:40:42,669
+A whole square root better.
+整个平方根更好。 
+
+781
+00:40:42,670 --> 00:40:44,043
+And a little tiny savings better.
+还有一点点的节省更好。 
+
+782
+00:40:44,043 --> 00:40:45,219
+And this is optimal.
+这是最佳的。 
+
+783
+00:40:45,219 --> 00:40:46,199
+It is a function of n.
+它是n的函数。 
+
+784
+00:40:46,199 --> 00:40:48,869
+That's the best you can do for the predecessor problem.
+这是您对前任问题所能做的最好的事情。 
+
+785
+00:40:48,869 --> 00:40:50,000
+So pretty crazy stuff.
+太疯狂了。 
+
+786
+00:40:50,000 --> 00:40:51,530
+It's a very complicated structure.
+这是一个非常复杂的结构。 
+
+787
+00:40:51,530 --> 00:40:53,960
+It's probably completely impractical.
+这可能是完全不切实际的。 
+
+788
+00:40:53,960 --> 00:40:55,039
+But, hey.
+但是，嘿。 
+
+789
+00:40:55,239 --> 00:40:57,769
+They're, theoretically, pretty cool.
+从理论上讲，它们非常酷。 
+
+790
+00:40:57,769 --> 00:41:00,110
+I'll tell you a little bit about graph algorithms.
+我会告诉您一些有关图算法的知识。 
+
+791
+00:41:00,110 --> 00:41:21,070
+
+
+
+792
+00:41:21,070 --> 00:41:23,380
+We've seen a lot of graph algorithms in this class.
+在此类中，我们已经看到了很多图算法。 
+
+793
+00:41:23,579 --> 00:41:27,980
+One way to make them new and fun again is to suppose your graph
+让它们重新变得有趣的一种方法是假设您的图表
+
+794
+00:41:27,980 --> 00:41:29,251
+is planar or almost planer.
+是平面的或几乎是平面的。 
+
+795
+00:41:29,251 --> 00:41:30,960
+Meaning you can draw it in two dimensions
+意味着您可以将其绘制为二维
+
+796
+00:41:30,960 --> 00:41:34,280
+without any crossings, as you might get from a graph that's
+没有任何交叉，因为您可能会从
+
+797
+00:41:34,280 --> 00:41:38,130
+drawn on the earth, like a road network
+像路网一样画在地上
+
+798
+00:41:38,329 --> 00:41:41,099
+or something with no or few overpasses.
+或没有或几乎没有立交桥的东西。 
+
+799
+00:41:41,099 --> 00:41:42,599
+Then you can do things a lot better.
+然后，您可以做得更好。 
+
+800
+00:41:42,599 --> 00:41:44,819
+For example, you can do the equivalent
+例如，您可以做等效的
+
+801
+00:41:44,820 --> 00:41:46,360
+of Dijkstra's algorithm.
+ Dijkstra的算法。 
+
+802
+00:41:46,360 --> 00:41:49,860
+So non-negative weight shortest path, in linear time.
+因此，非负权重最短路径是线性时间。 
+
+803
+00:41:49,860 --> 00:41:52,500
+
+
+
+804
+00:41:52,699 --> 00:41:56,626
+That's not so impressive cause Dijkstra is number of edges.
+这并不是那么令人印象深刻，因为Dijkstra的边缘数量很多。 
+
+805
+00:41:56,626 --> 00:41:57,960
+Here, I mean number of vertices.
+在这里，我的意思是顶点数。 
+
+806
+00:41:57,960 --> 00:42:00,530
+It doesn't really matter with planar graphs.
+平面图并不重要。 
+
+807
+00:42:00,530 --> 00:42:02,340
+And we had E log(V).
+我们有E log（V）。 
+
+808
+00:42:02,539 --> 00:42:04,779
+You can write E, here, if you prefer.
+如果愿意，可以在此处写E。 
+
+809
+00:42:04,780 --> 00:42:05,860
+It's only a log savings.
+这只是节省的日志。 
+
+810
+00:42:06,059 --> 00:42:08,654
+More impressive, is you can do with negative weights--
+更令人印象深刻的是，您可以负负重做
+
+811
+00:42:08,655 --> 00:42:14,840
+the equivalent of Bellman-Ford-- in almost linear time.
+在几乎线性的时间内相当于Bellman-Ford。 
+
+812
+00:42:14,840 --> 00:42:18,500
+
+
+
+813
+00:42:18,699 --> 00:42:20,739
+So some log factors.
+因此，一些日志因素。 
+
+814
+00:42:20,739 --> 00:42:22,479
+Log squared n divided by log(log(n)).
+对数平方n除以log（log（n））。 
+
+815
+00:42:22,480 --> 00:42:23,980
+It's the best bound known to date.
+这是迄今为止已知的最佳界限。 
+
+816
+00:42:23,980 --> 00:42:25,360
+That was a result from last year.
+那是去年的结果。 
+
+817
+00:42:25,360 --> 00:42:27,559
+So it's still a work in progress.
+因此，它仍在进行中。 
+
+818
+00:42:27,559 --> 00:42:29,610
+And if you're interested in this kind of stuff,
+如果您对这种东西感兴趣， 
+
+819
+00:42:29,610 --> 00:42:33,329
+you should check out the videos for the class we just taught,
+您应该查看我们刚刚讲授的课程的视频， 
+
+820
+00:42:33,329 --> 00:42:35,610
+6.889.
+ 6.889。 
+
+821
+00:42:35,610 --> 00:42:36,519
+And recreation algorithms.
+和娱乐算法。 
+
+822
+00:42:36,719 --> 00:42:38,469
+I've actually already told you about a lot
+我实际上已经告诉过你很多
+
+823
+00:42:38,469 --> 00:42:42,279
+of these-- like algorithms for solving a Rubik's cube in n
+其中的-像解决n中的魔方的算法
+
+824
+00:42:42,280 --> 00:42:43,440
+squared divided by log(n) steps.
+平方除以log（n）步骤。 
+
+825
+00:42:43,639 --> 00:42:45,409
+That was a paper this year.
+那是今年的一篇论文。 
+
+826
+00:42:45,409 --> 00:42:46,699
+Tetris is NP-complete.
+俄罗斯方块是NP完全的。 
+
+827
+00:42:46,699 --> 00:42:49,439
+A whole bunch of NP-completeness, and x time
+一大堆NP完整性和x时间
+
+828
+00:42:49,440 --> 00:42:51,130
+completeness, and so on.
+完整性等等。 
+
+829
+00:42:51,130 --> 00:42:52,860
+Results for games.
+游戏结果。 
+
+830
+00:42:52,860 --> 00:42:55,800
+Other fun stuff, like balloon twisting-- algorithms
+其他有趣的东西，例如气球扭曲算法
+
+831
+00:42:55,800 --> 00:42:58,860
+for designing how to balloon twist a given polyhedron,
+设计如何对给定的多面体进行气球变形
+
+832
+00:42:59,059 --> 00:43:01,480
+optimally, using the fewest balloons.
+最佳地，使用最少的气球。 
+
+833
+00:43:01,480 --> 00:43:02,780
+Algorithmic magic tricks.
+算法魔术。 
+
+834
+00:43:02,780 --> 00:43:04,190
+There's tons of stuff out there.
+那里有很多东西。 
+
+835
+00:43:04,190 --> 00:43:05,067
+It's really fun.
+真的很好玩。 
+
+836
+00:43:05,067 --> 00:43:07,150
+I should teach a class about some of those things,
+我应该教一些这样的事情， 
+
+837
+00:43:07,150 --> 00:43:07,900
+but I haven't yet.
+但我还没有
+
+838
+00:43:07,900 --> 00:43:10,510
+
+
+
+839
+00:43:10,510 --> 00:43:13,670
+The last thing we wanted to do is together.
+我们要做的最后一件事是在一起。 
+
+840
+00:43:13,670 --> 00:43:16,132
+And it has to do with these
+这与这些有关
+
+841
+00:43:16,132 --> 00:43:18,090
+PROFESSOR SRINI DEVADAS: Getting rid of these--
+ SRINI DEVADAS教授：摆脱这些- 
+
+842
+00:43:18,090 --> 00:43:18,230
+PROFESSOR ERIK DEMAINE: These cushions.
+ ERIK DEMAINE教授：这些垫子。 
+
+843
+00:43:18,429 --> 00:43:20,399
+Getting rid of these damn cushions.
+摆脱这些该死的靠垫。 
+
+844
+00:43:20,400 --> 00:43:22,675
+We have so many of these cushions.
+我们有很多这样的垫子。 
+
+845
+00:43:22,675 --> 00:43:23,900
+Just gotta get rid of them.
+只是要摆脱他们。 
+
+846
+00:43:24,099 --> 00:43:27,349
+
+
+
+847
+00:43:27,349 --> 00:43:28,549
+That's two freebies.
+那是两个免费赠品。 
+
+848
+00:43:28,550 --> 00:43:30,050
+PROFESSOR SRINI DEVADAS: Now, you're
+ SRINI DEVADAS教授：现在，您
+
+849
+00:43:30,050 --> 00:43:31,949
+going to have to pay for these cushions.
+将不得不支付这些垫子。 
+
+850
+00:43:31,949 --> 00:43:33,289
+PROFESSOR ERIK DEMAINE: He's kidding.
+埃里克·迪迈因教授：他在开玩笑。 
+
+851
+00:43:33,489 --> 00:43:33,859
+He's kidding.
+他在开玩笑。 
+
+852
+00:43:33,860 --> 00:43:34,911
+Actually we're having trouble.
+其实我们遇到了麻烦。 
+
+853
+00:43:35,110 --> 00:43:36,650
+We're having trouble giving them away
+我们很难把他们送走
+
+854
+00:43:36,650 --> 00:43:38,399
+because-- I don't know-- some people seem
+因为-我不知道-有些人似乎
+
+855
+00:43:38,400 --> 00:43:39,980
+to not like them very much.
+不太喜欢他们
+
+856
+00:43:39,980 --> 00:43:40,800
+And neither do we.
+我们也没有。 
+
+857
+00:43:40,800 --> 00:43:46,500
+So we wanted to give you some motivation for why you really
+所以我们想给你一些动力，为什么你真的
+
+858
+00:43:46,699 --> 00:43:49,250
+need some of these cushions.
+需要一些垫子。 
+
+859
+00:43:49,250 --> 00:43:51,438
+So we actually prepared a top 10 list.
+因此，我们实际上准备了前十名。 
+
+860
+00:43:51,438 --> 00:43:53,230
+PROFESSOR SRINI DEVADAS: This is the top 10
+ SRINI DEVADAS教授：这是前十名
+
+861
+00:43:53,230 --> 00:43:57,710
+uses of 6.006 cushions.
+使用6.006垫子。 
+
+862
+00:43:57,710 --> 00:43:59,130
+We're going to alternate here.
+我们将在这里替代。 
+
+863
+00:43:59,130 --> 00:44:00,210
+Number 10.
+ 10号
+
+864
+00:44:00,409 --> 00:44:02,239
+PROFESSOR ERIK DEMAINE: You can sit on it
+埃里克·迪迈因教授：您可以坐在上面
+
+865
+00:44:02,239 --> 00:44:06,158
+and get guaranteed inspiration in constant time.
+并在固定时间内获得有保证的灵感。 
+
+866
+00:44:06,159 --> 00:44:07,500
+PROFESSOR SRINI DEVADAS: Don't forget
+ SRINI DEVADAS教授：不要忘记
+
+867
+00:44:07,699 --> 00:44:09,233
+to bring one for the final exam.
+带一个参加期末考试。 
+
+868
+00:44:09,233 --> 00:44:11,150
+PROFESSOR ERIK DEMAINE: Highly recommended it.
+ ERIK DEMAINE教授：强烈推荐。 
+
+869
+00:44:11,150 --> 00:44:12,842
+Number nine.
+第九号。 
+
+870
+00:44:12,842 --> 00:44:15,050
+PROFESSOR SRINI DEVADAS: You can use it as a Frisbee.
+ SRINI DEVADAS教授：您可以将其用作飞盘。 
+
+871
+00:44:15,050 --> 00:44:18,130
+You've seen that before, except you cut it into a circle.
+您之前已经看过，除了将它切成一个圆圈。 
+
+872
+00:44:18,329 --> 00:44:19,639
+You cut it into a circle.
+你把它切成一个圈。 
+
+873
+00:44:19,639 --> 00:44:20,480
+And it works really well.
+而且效果很好。 
+
+874
+00:44:20,679 --> 00:44:23,236
+
+
+
+875
+00:44:23,237 --> 00:44:25,820
+PROFESSOR ERIK DEMAINE: We had fun with a Bandsaw, last night.
+埃里克·迪迈恩教授：昨晚，我们在带锯机上玩得很开心。 
+
+876
+00:44:25,820 --> 00:44:27,295
+PROFESSOR SRINI DEVADAS: Number eight.
+ SRINI DEVADAS教授：第八名。 
+
+877
+00:44:27,494 --> 00:44:29,119
+PROFESSOR ERIK DEMAINE: You can sell it
+ ERIK DEMAINE教授：您可以出售
+
+878
+00:44:29,119 --> 00:44:32,271
+as a limited edition collectible on eBay.
+作为eBay上的限量版收藏品。 
+
+879
+00:44:32,271 --> 00:44:33,730
+PROFESSOR SRINI DEVADAS: It's never
+ SRINI DEVADAS教授：从来没有
+
+880
+00:44:33,730 --> 00:44:36,789
+ever going to be made, again.
+再一次。 
+
+881
+00:44:36,789 --> 00:44:39,610
+You can make money off this in 5 years-- 10 years.
+您可以在5年至10年内从中赚钱。 
+
+882
+00:44:39,610 --> 00:44:40,170
+PROFESSOR ERIK DEMAINE: At least $5.
+ ERIK DEMAINE教授：至少$ 5。 
+
+883
+00:44:40,369 --> 00:44:40,911
+I don't know.
+我不知道。 
+
+884
+00:44:40,911 --> 00:44:43,590
+
+
+
+885
+00:44:43,590 --> 00:44:44,309
+Number seven.
+七号
+
+886
+00:44:44,309 --> 00:44:46,009
+PROFESSOR SRINI DEVADAS: Number seven.
+ SRINI DEVADAS教授：第七名。 
+
+887
+00:44:46,010 --> 00:44:49,539
+If you had two of these, you could stick them like this,
+如果您有两个，可以像这样粘贴
+
+888
+00:44:49,739 --> 00:44:54,921
+and remove the branding, and use it as a regular cushion.
+并删除商标，并将其用作常规垫子。 
+
+889
+00:44:54,922 --> 00:44:56,380
+PROFESSOR ERIK DEMAINE: Now, no one
+埃里克·迪迈因教授：现在，没有人
+
+890
+00:44:56,380 --> 00:44:58,280
+will ever know you took this class.
+永远不会知道你参加了这堂课。 
+
+891
+00:44:58,280 --> 00:44:59,029
+You just need two.
+您只需要两个。 
+
+892
+00:44:59,030 --> 00:45:01,550
+
+
+
+893
+00:45:01,550 --> 00:45:03,050
+PROFESSOR SRINI DEVADAS: Number six.
+ SRINI DEVADAS教授：第六名。 
+
+894
+00:45:03,050 --> 00:45:04,307
+PROFESSOR ERIK DEMAINE: Number six.
+埃里克·迪梅因教授：第六名。 
+
+895
+00:45:04,507 --> 00:45:06,536
+It's a holiday conversation starter.
+这是一个假期谈话的开始。 
+
+896
+00:45:06,536 --> 00:45:08,619
+PROFESSOR SRINI DEVADAS: And conversation stopper.
+ SRINI DEVADAS教授：和谈话的阻止者。 
+
+897
+00:45:08,619 --> 00:45:13,210
+
+
+
+898
+00:45:13,210 --> 00:45:14,710
+PROFESSOR ERIK DEMAINE: Number five.
+埃里克·迪梅因教授：第五名。 
+
+899
+00:45:14,710 --> 00:45:15,550
+PROFESSOR SRINI DEVADAS: Asymptotically
+ SRINI DEVADAS教授：渐近地
+
+900
+00:45:15,550 --> 00:45:17,190
+optimal-- we had to use that term,
+最佳-我们必须使用该术语， 
+
+901
+00:45:17,190 --> 00:45:18,798
+acoustic acoustic paneling.
+隔音板。 
+
+902
+00:45:18,798 --> 00:45:21,340
+PROFESSOR ERIK DEMAINE: That was a suggestion from a student.
+埃里克·迪梅因教授：这是一个学生的建议。 
+
+903
+00:45:21,340 --> 00:45:23,269
+You just need a lot of them.
+您只需要其中的很多。 
+
+904
+00:45:23,269 --> 00:45:26,460
+This would be great for piano, guitar fingering practice.
+这对于钢琴，吉他指法练习非常有用。 
+
+905
+00:45:26,460 --> 00:45:29,188
+You know you're doing your DP.
+您知道您正在执行DP。 
+
+906
+00:45:29,188 --> 00:45:30,730
+PROFESSOR SRINI DEVADAS: Number four.
+ SRINI DEVADAS教授：四号。 
+
+907
+00:45:30,730 --> 00:45:31,309
+PROFESSOR ERIK DEMAINE: Number four.
+ ERIK DEMAINE教授：第四名。 
+
+908
+00:45:31,309 --> 00:45:33,960
+You can use it as target practice for your next larp
+您可以将其用作下一个练习的目标练习
+
+909
+00:45:33,960 --> 00:45:34,460
+session.
+会议。 
+
+910
+00:45:34,460 --> 00:45:38,695
+
+
+
+911
+00:45:38,695 --> 00:45:39,195
+Woah.
+哇。 
+
+912
+00:45:39,195 --> 00:45:39,695
+Misfire.
+失火。 
+
+913
+00:45:39,695 --> 00:45:42,300
+
+
+
+914
+00:45:42,300 --> 00:45:42,920
+I'm missing.
+我迷路了。 
+
+915
+00:45:43,119 --> 00:45:45,119
+PROFESSOR SRINI DEVADAS: You haven't hit me yet.
+ SRINI DEVADAS教授：您还没有打我。 
+
+916
+00:45:45,119 --> 00:45:46,790
+
+
+
+917
+00:45:46,791 --> 00:45:47,289
+All right.
+好吧。 
+
+918
+00:45:47,289 --> 00:45:49,460
+Finally, you got one.
+最后，您得到了一个。 
+
+919
+00:45:49,460 --> 00:45:51,368
+[APPLAUSE]
+ [掌声] 
+
+920
+00:45:51,369 --> 00:45:55,278
+
+
+
+921
+00:45:55,278 --> 00:45:56,820
+PROFESSOR ERIK DEMAINE: Number three.
+ ERIK DEMAINE教授：第三名。 
+
+922
+00:45:56,820 --> 00:45:57,400
+PROFESSOR SRINI DEVADAS: All right.
+ SRINI DEVADAS教授：好的。 
+
+923
+00:45:57,400 --> 00:45:59,440
+10 years from now, it might be all
+从现在开始的十年后
+
+924
+00:45:59,440 --> 00:46:01,592
+you remember about double 0 6.
+您还记得两倍0 6。 
+
+925
+00:46:01,592 --> 00:46:03,568
+
+
+
+926
+00:46:03,768 --> 00:46:05,309
+PROFESSOR ERIK DEMAINE: In truth, you
+埃里克·迪迈因教授：实际上，你
+
+927
+00:46:05,309 --> 00:46:07,351
+might also remember this top 10 list.
+也许还记得这个前10名名单。 
+
+928
+00:46:07,351 --> 00:46:08,809
+PROFESSOR SRINI DEVADAS: All right.
+ SRINI DEVADAS教授：好的。 
+
+929
+00:46:08,809 --> 00:46:09,529
+Number two.
+第二。 
+
+930
+00:46:09,530 --> 00:46:10,788
+PROFESSOR ERIK DEMAINE: Number two.
+ ERIK DEMAINE教授：第二名。 
+
+931
+00:46:10,987 --> 00:46:13,069
+You can use it as your final exam cheat sheet.
+您可以将其用作期末考试备忘单。 
+
+932
+00:46:13,070 --> 00:46:14,824
+This is a new rule.
+这是一条新规则。 
+
+933
+00:46:14,824 --> 00:46:18,079
+Instead of 8 and 1/2 by 11, you could
+而不是8和1/2乘11，您可以
+
+934
+00:46:18,079 --> 00:46:21,429
+bring in the appropriate number of cushions.
+携带适当数量的垫子。 
+
+935
+00:46:21,429 --> 00:46:26,009
+And the number one-- number one use for a double 0 6 cushion.
+第一位-第一位使用双0 6垫子。 
+
+936
+00:46:26,010 --> 00:46:27,650
+PROFESSOR SRINI DEVADAS: Three words.
+ SRINI DEVADAS教授：三个词。 
+
+937
+00:46:27,650 --> 00:46:29,579
+OK Cupid profile picture.
+ OK丘比特头像。 
+
+938
+00:46:29,579 --> 00:46:35,219
+
+
+
+939
+00:46:35,219 --> 00:46:37,099
+Don't use this cheat sheet.
+不要使用该备忘单。 
+
+940
+00:46:37,099 --> 00:46:39,449
+But come to the final exam and good luck.
+但是参加期末考试并祝您好运。 
+
+941
+00:46:39,449 --> 00:46:40,539
+PROFESSOR ERIK DEMAINE: Thanks.
+埃里克·迪迈因教授：谢谢。 
+
+942
+00:46:40,739 --> 00:46:43,789
+[APPLAUSE]
+ [掌声] 
+
+943
+00:46:43,789 --> 00:46:48,789
+
+
+

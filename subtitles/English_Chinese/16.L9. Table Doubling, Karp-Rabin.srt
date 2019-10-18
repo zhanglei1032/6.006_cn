@@ -1,0 +1,5200 @@
+﻿1
+00:00:00,000 --> 00:00:00,080
+
+
+
+2
+00:00:00,080 --> 00:00:01,770
+The following content is provided
+提供以下内容
+
+3
+00:00:01,770 --> 00:00:04,009
+under a Creative Commons license.
+根据知识共享许可。 
+
+4
+00:00:04,009 --> 00:00:06,859
+Your support will help MIT OpenCourseWare continue
+您的支持将帮助MIT OpenCourseWare继续
+
+5
+00:00:06,860 --> 00:00:10,720
+to offer high quality educational resources for free.
+免费提供高质量的教育资源。 
+
+6
+00:00:10,720 --> 00:00:13,330
+To make a donation or view additional materials
+捐款或查看其他材料
+
+7
+00:00:13,330 --> 00:00:17,207
+from hundreds of MIT courses, visit MIT OpenCourseWare
+从数百门麻省理工学院的课程中，访问MIT OpenCourseWare 
+
+8
+00:00:17,207 --> 00:00:17,832
+at ocw.mit.edu.
+在ocw.mit.edu。 
+
+9
+00:00:17,832 --> 00:00:22,120
+
+
+
+10
+00:00:22,120 --> 00:00:26,120
+PROFESSOR: A trilogy, if you will, on hashing.
+教授：如果您愿意的话，这是三部曲。 
+
+11
+00:00:26,120 --> 00:00:28,230
+We did a lot of cool hashing stuff.
+我们做了很多很棒的哈希操作。 
+
+12
+00:00:28,230 --> 00:00:31,320
+In some sense, we already have what we want with hashing.
+从某种意义上说，我们已经有了哈希所需的东西。 
+
+13
+00:00:31,320 --> 00:00:37,219
+Hashing with chaining, we can do constant expected time,
+通过链接进行哈希处理，我们可以执行固定的预期时间， 
+
+14
+00:00:37,219 --> 00:00:43,609
+I should say, constant as long as-- yeah.
+我应该说，只要保持不变，是的。 
+
+15
+00:00:43,609 --> 00:00:47,710
+If we're doing insert, delete, and exact search.
+如果我们要进行插入，删除和精确搜索。 
+
+16
+00:00:47,710 --> 00:00:48,750
+Is this key in there?
+里面有钥匙吗？ 
+
+17
+00:00:48,750 --> 00:00:49,729
+If so, return the item.
+如果是这样，请退还该物品。 
+
+18
+00:00:49,729 --> 00:00:52,169
+Otherwise, say no.
+否则，拒绝。 
+
+19
+00:00:52,170 --> 00:00:54,390
+And we do that with hashing with chaining.
+我们通过链式哈希处理。 
+
+20
+00:00:54,390 --> 00:00:58,759
+Under the analysis we did was with simple uniform hashing.
+根据分析，我们所做的只是简单的统一哈希。 
+
+21
+00:00:58,759 --> 00:01:01,140
+An alternative is to use universal hashing, which
+一种替代方法是使用通用哈希， 
+
+22
+00:01:01,140 --> 00:01:02,359
+is not really in this class.
+不在这个班上。 
+
+23
+00:01:02,359 --> 00:01:07,969
+But if you find this weird, then this is less weird.
+但是，如果您发现这很奇怪，那么它就不会那么奇怪了。 
+
+24
+00:01:07,969 --> 00:01:10,590
+And hashing with chaining, the idea
+并通过链接进行哈希处理
+
+25
+00:01:10,590 --> 00:01:13,950
+was we had this giant universe of all keys, could be actually
+是我们拥有所有按键的巨大宇宙，实际上
+
+26
+00:01:13,950 --> 00:01:14,950
+all integers.
+所有整数。 
+
+27
+00:01:14,950 --> 00:01:17,141
+So it's infinite.
+所以它是无限的。 
+
+28
+00:01:17,141 --> 00:01:19,390
+But then what we actually are storing in our structure
+但是然后我们实际上存储在我们的结构中
+
+29
+00:01:19,390 --> 00:01:21,980
+is some finite set of n keys.
+是n个键的某个有限集合。 
+
+30
+00:01:21,980 --> 00:01:25,000
+Here, I'm labeling them k1 through k4, n is four.
+在这里，我将它们标记为k1到k4，n为4。 
+
+31
+00:01:25,000 --> 00:01:29,489
+But in general, you don't know what they're going to be.
+但是总的来说，您不知道它们将是什么。 
+
+32
+00:01:29,489 --> 00:01:32,969
+We reduce that to a table of size m
+我们将其缩小为大小为m的表
+
+33
+00:01:32,969 --> 00:01:36,260
+by this hash function h-- stuff drawn in red.
+通过此哈希函数h--用红色绘制的东西。 
+
+34
+00:01:36,260 --> 00:01:37,980
+And so here I have a three way collision.
+所以在这里我发生了三向碰撞。 
+
+35
+00:01:37,980 --> 00:01:40,430
+These three keys all map to one, and so I
+这三个键都映射为一个，所以我
+
+36
+00:01:40,430 --> 00:01:44,560
+store a linked list of k1, k4 and k2.
+存储k1，k4和k2的链接列表。 
+
+37
+00:01:44,560 --> 00:01:46,040
+They're in no particular order.
+它们没有特定的顺序。 
+
+38
+00:01:46,040 --> 00:01:47,679
+That's the point of that picture.
+那就是那张照片的重点。 
+
+39
+00:01:47,879 --> 00:01:50,718
+Here k3 happens to map to its own slot.
+这里k3恰好映射到其自己的插槽。 
+
+40
+00:01:50,718 --> 00:01:52,509
+And the other slots are empty, so they just
+其他插槽是空的，所以它们只是
+
+41
+00:01:52,510 --> 00:01:57,250
+have a null saying there's an empty linked list there.
+空值表示那里有一个空的链表。 
+
+42
+00:01:57,250 --> 00:02:01,829
+Total size of this structure is n plus m.
+此结构的总大小为n加m。 
+
+43
+00:02:01,829 --> 00:02:04,519
+There's m to store the table.
+这里有米来存放桌子。 
+
+44
+00:02:04,519 --> 00:02:08,280
+There's n to store the sum of the lengths of all the lists
+有n个存储所有列表的长度之和
+
+45
+00:02:08,280 --> 00:02:10,460
+is going to be n.
+将是n。 
+
+46
+00:02:10,460 --> 00:02:14,969
+And then we said the expected chain length,
+然后我们说预期的链长， 
+
+47
+00:02:15,169 --> 00:02:18,209
+if everything's uniform, then the probability
+如果一切都统一，那么概率
+
+48
+00:02:18,210 --> 00:02:21,939
+of a particular key going to a particular slot is 1/m.
+进入特定插槽的特定密钥的数量为1 / m。 
+
+49
+00:02:22,139 --> 00:02:24,649
+And if everything's nice and independent
+如果一切都很好并且独立
+
+50
+00:02:24,650 --> 00:02:26,569
+or if you use universal hashing, you
+或者，如果您使用通用哈希， 
+
+51
+00:02:26,569 --> 00:02:32,019
+can show that the total expected chain length is n/m.
+可以表明预期的总链长为n / m。 
+
+52
+00:02:32,020 --> 00:02:34,520
+n independent trials, each probability 1/m
+ n次独立试验，每项概率1 / m 
+
+53
+00:02:34,520 --> 00:02:35,969
+of falling here.
+落在这里。 
+
+54
+00:02:35,969 --> 00:02:39,500
+And we call that alpha, the load factor.
+我们称其为负荷系数。 
+
+55
+00:02:39,500 --> 00:02:42,009
+And we concluded that the operation time
+我们得出结论，手术时间
+
+56
+00:02:42,009 --> 00:02:45,724
+to do an insert, delete, or search was order 1 plus alpha.
+要进行插入，删除或搜索的顺序是1加上alpha。 
+
+57
+00:02:45,724 --> 00:02:48,819
+
+
+
+58
+00:02:48,819 --> 00:02:50,939
+So that's n expectation.
+所以这不是期望。 
+
+59
+00:02:50,939 --> 00:02:52,560
+So that was hashing with chaining.
+因此，这是通过链接进行哈希处理。 
+
+60
+00:02:52,560 --> 00:02:53,680
+This is good news.
+这是个好消息。 
+
+61
+00:02:53,680 --> 00:02:57,340
+As long as alpha is a constant, we get constant time.
+只要alpha是常数，我们就可以获得常数时间。 
+
+62
+00:02:57,539 --> 00:03:01,469
+And just for recollection, today we're
+只是为了回忆，今天我们
+
+63
+00:03:01,469 --> 00:03:03,969
+not really going to be thinking too much about what the hash
+真的不会考虑太多的哈希
+
+64
+00:03:03,969 --> 00:03:06,680
+function is, but just remember two of them I talked
+功能是，但只要记住我刚才说的两个
+
+65
+00:03:06,680 --> 00:03:10,689
+about-- this one we actually will use today, where you just
+关于-我们实际上将在今天使用的那个
+
+66
+00:03:10,889 --> 00:03:12,479
+take the key and take it module m.
+拿钥匙，把它拿到模块m中。 
+
+67
+00:03:12,479 --> 00:03:15,479
+That's one easy way of mapping all integers into the space
+这是将所有整数映射到空间的一种简单方法
+
+68
+00:03:15,479 --> 00:03:17,173
+zero through m minus 1.
+零到m减1。 
+
+69
+00:03:17,174 --> 00:03:18,590
+That's called the division method.
+这就是所谓的除法。 
+
+70
+00:03:18,590 --> 00:03:20,849
+Multiplication method is more fancy.
+乘法方法更花哨。 
+
+71
+00:03:20,849 --> 00:03:22,989
+You multiply by a random integer,
+您乘以一个随机整数， 
+
+72
+00:03:22,990 --> 00:03:26,210
+and then you look at the middle of that multiplication.
+然后看一下乘法的中间部分。 
+
+73
+00:03:26,210 --> 00:03:29,689
+And that's where lots of copies of the key k
+那就是密钥k的很多副本
+
+74
+00:03:29,689 --> 00:03:33,979
+get mixed up together and that's sort of the name of hashing.
+混合在一起，这就是哈希的名称。 
+
+75
+00:03:33,979 --> 00:03:39,069
+And that's a better hash function in the real world.
+这是现实世界中更好的哈希函数。 
+
+76
+00:03:39,069 --> 00:03:40,750
+So that's hashing with chaining.
+因此，这就是使用链式哈希。 
+
+77
+00:03:40,750 --> 00:03:41,610
+Cool?
+凉？ 
+
+78
+00:03:41,610 --> 00:03:45,430
+Now, it seemed like a complete picture,
+现在，看起来像是一幅完整的图画， 
+
+79
+00:03:45,430 --> 00:03:48,210
+but there's one crucial thing that we're missing here.
+但是这里缺少一件关键的事情。 
+
+80
+00:03:48,210 --> 00:03:50,409
+Any suggestions?
+有什么建议么？ 
+
+81
+00:03:50,409 --> 00:03:55,490
+If I went to go to implement this data structure,
+如果我去实现这个数据结构， 
+
+82
+00:03:55,490 --> 00:03:56,930
+what don't I know how to do?
+我不知道该怎么办？ 
+
+83
+00:03:56,930 --> 00:04:00,150
+
+
+
+84
+00:04:00,150 --> 00:04:01,930
+And one answer could be the hash function,
+一个答案可能是哈希函数， 
+
+85
+00:04:01,930 --> 00:04:03,754
+but we're going to ignore that.
+但我们将忽略这一点。 
+
+86
+00:04:03,754 --> 00:04:04,879
+I know you know the answer.
+我知道你知道答案。 
+
+87
+00:04:04,879 --> 00:04:06,490
+Does anyone else know the answer?
+还有其他人知道答案吗？ 
+
+88
+00:04:06,490 --> 00:04:07,270
+Yeah.
+是的
+
+89
+00:04:07,270 --> 00:04:08,477
+AUDIENCE: Grow the table.
+听众：长桌。 
+
+90
+00:04:08,477 --> 00:04:09,560
+PROFESSOR: Grow the table.
+教授：摆桌子。 
+
+91
+00:04:09,560 --> 00:04:10,069
+Yeah.
+是的
+
+92
+00:04:10,069 --> 00:04:14,650
+The question is, what should m be?
+问题是，我应该是什么？ 
+
+93
+00:04:14,650 --> 00:04:17,389
+OK, we have to create a table size m,
+好，我们必须创建一个大小为m的表格， 
+
+94
+00:04:17,389 --> 00:04:19,240
+and we put our keys into it.
+然后把钥匙放进去
+
+95
+00:04:19,240 --> 00:04:23,043
+We know we'd like m to be about the same as n.
+我们知道我们希望m与n大致相同。 
+
+96
+00:04:23,043 --> 00:04:24,459
+But the trouble is we don't really
+但是麻烦是我们不是真的
+
+97
+00:04:24,459 --> 00:04:26,961
+know n because insertions come along,
+知道n是因为插入
+
+98
+00:04:26,961 --> 00:04:28,670
+and then we might have to grow the table.
+然后我们可能不得不扩大桌子。 
+
+99
+00:04:28,670 --> 00:04:31,910
+If n gets really big relative to m,
+如果n相对于m变得很大， 
+
+100
+00:04:31,910 --> 00:04:35,100
+we're in trouble because this factor will go up
+我们有麻烦，因为这个因素会上升
+
+101
+00:04:35,100 --> 00:04:37,379
+and it will be no longer constant time.
+它将不再是固定的时间。 
+
+102
+00:04:37,379 --> 00:04:40,600
+The other hand, if we set m to be really big,
+另一方面，如果我们将m设置为很大， 
+
+103
+00:04:40,600 --> 00:04:42,855
+we're also kind of wasteful.
+我们也很浪费。 
+
+104
+00:04:42,855 --> 00:04:44,230
+The whole point of this structure
+这个结构的重点
+
+105
+00:04:44,230 --> 00:04:47,750
+was to avoid having one slot for every possible key
+是为了避免每个可能的钥匙都有一个插槽
+
+106
+00:04:47,949 --> 00:04:50,449
+because that was giant.
+因为那是巨大的。 
+
+107
+00:04:50,449 --> 00:04:52,680
+We want it to save space.
+我们希望它节省空间。 
+
+108
+00:04:52,680 --> 00:04:55,439
+So we want m to be big enough that our structure is fast,
+所以我们希望m足够大以使我们的结构快速， 
+
+109
+00:04:55,439 --> 00:04:58,550
+but small enough that it's not wasteful in space.
+但足够小，不会浪费空间。 
+
+110
+00:04:58,550 --> 00:05:00,345
+And so that's the remaining question.
+这就是剩下的问题。 
+
+111
+00:05:00,345 --> 00:05:12,509
+
+
+
+112
+00:05:12,709 --> 00:05:16,169
+We want m to be theta n.
+我们希望m为theta n。 
+
+113
+00:05:16,170 --> 00:05:19,199
+We want it to be omega n.
+我们希望它是欧米茄n。 
+
+114
+00:05:19,199 --> 00:05:21,620
+So we want it to be at least some constant times n,
+所以我们希望它至少是常数n 
+
+115
+00:05:21,620 --> 00:05:24,100
+in order to make alpha be a constant.
+为了使alpha为常数。 
+
+116
+00:05:24,100 --> 00:05:26,290
+And we want it to be big O of n in order
+我们希望它成为n的大O 
+
+117
+00:05:26,290 --> 00:05:27,490
+to make the space linear.
+使空间线性化。 
+
+118
+00:05:27,490 --> 00:05:36,620
+
+
+
+119
+00:05:36,620 --> 00:05:39,800
+And the way we're going to do this, as we suggested,
+就像我们建议的那样， 
+
+120
+00:05:39,800 --> 00:05:41,160
+is to grow the table.
+是为了长大桌子。 
+
+121
+00:05:41,160 --> 00:05:46,430
+
+
+
+122
+00:05:46,629 --> 00:05:48,969
+We're going to start with m equals some constant.
+我们将从m等于某个常数开始。 
+
+123
+00:05:48,970 --> 00:05:50,136
+Pick your favorite constant.
+选择您喜欢的常数。 
+
+124
+00:05:50,136 --> 00:05:52,370
+
+
+
+125
+00:05:52,370 --> 00:05:54,019
+That's 20.
+那是20 
+
+126
+00:05:54,019 --> 00:05:55,889
+My favorite constant's 7.
+我最喜欢的常数是7。 
+
+127
+00:05:55,889 --> 00:06:00,439
+Probably want it to be a power of two, but what the hell?
+可能希望它是2的幂，但是到底是什么？ 
+
+128
+00:06:00,439 --> 00:06:06,579
+And then we're going to grow and shrink as necessary.
+然后，我们将根据需要进行增长和收缩。 
+
+129
+00:06:06,579 --> 00:06:09,519
+This is a pretty obvious idea.
+这是一个很明显的想法。 
+
+130
+00:06:09,519 --> 00:06:12,449
+The interesting part is to get it to work.
+有趣的部分是使其工作。 
+
+131
+00:06:12,449 --> 00:06:16,370
+And it's going to introduce a whole new concept, which
+它将引入一个全新的概念， 
+
+132
+00:06:16,370 --> 00:06:17,084
+is amortization.
+是摊销。 
+
+133
+00:06:17,084 --> 00:06:20,339
+
+
+
+134
+00:06:20,339 --> 00:06:22,609
+So it's going to be cool.
+所以这将很酷。 
+
+135
+00:06:22,610 --> 00:06:24,449
+Trust me.
+相信我。 
+
+136
+00:06:24,449 --> 00:06:26,629
+Not only are we going to solve this problem of how
+我们不仅要解决这个问题， 
+
+137
+00:06:26,629 --> 00:06:31,219
+to choose m, we're also going to figure out how the Python data
+选择m，我们还将弄清楚Python数据如何
+
+138
+00:06:31,220 --> 00:06:34,639
+structure called list, also known as array, is implemented.
+实现了称为列表的结构，也称为数组。 
+
+139
+00:06:34,839 --> 00:06:37,649
+So it's the exactly the same problem.
+因此，这是完全相同的问题。 
+
+140
+00:06:37,649 --> 00:06:39,729
+I'll get to that in a moment.
+一会儿，我会解决的。 
+
+141
+00:06:39,730 --> 00:06:48,720
+So for example, let's say that we-- I said m
+举例来说，我们说
+
+142
+00:06:48,720 --> 00:06:50,170
+should be theta n.
+应该是theta n。 
+
+143
+00:06:50,170 --> 00:06:55,550
+Let's say we want m to be at least n at all times.
+假设我们一直希望m至少为n。 
+
+144
+00:06:55,550 --> 00:06:58,579
+So what happens, we start with m equals 8.
+那么发生了什么，我们从m等于8开始。 
+
+145
+00:06:58,579 --> 00:07:02,620
+And so, let's say we start with an empty hash
+因此，假设我们从一个空哈希开始
+
+146
+00:07:02,620 --> 00:07:04,319
+table, an empty dictionary.
+表，一个空字典。 
+
+147
+00:07:04,319 --> 00:07:06,709
+And then I insert eight things.
+然后我插入八件事。 
+
+148
+00:07:06,709 --> 00:07:09,279
+And then I go to insert the ninth thing.
+然后我插入第九件事。 
+
+149
+00:07:09,279 --> 00:07:11,169
+And I say, oh, now m is bigger than n.
+我说，哦，现在m比n大。 
+
+150
+00:07:11,170 --> 00:07:12,569
+What should I do?
+我该怎么办？ 
+
+151
+00:07:12,569 --> 00:07:20,029
+
+
+
+152
+00:07:20,029 --> 00:07:25,189
+So this would be like at the end of an insertion algorithm.
+因此，这就像插入算法的末尾一样。 
+
+153
+00:07:25,189 --> 00:07:27,819
+After I insert something and say oh, if m is greater than n,
+我插入一些东西然后说哦，如果m大于n， 
+
+154
+00:07:27,819 --> 00:07:30,610
+then I'm getting worried that m is getting much bigger than n.
+那么我就担心m比n大很多。 
+
+155
+00:07:30,610 --> 00:07:33,370
+So I'd like to grow the table.
+所以我想扩大桌子。 
+
+156
+00:07:33,370 --> 00:07:33,970
+OK?
+好？ 
+
+157
+00:07:33,970 --> 00:07:37,329
+Let's take a little diversion to what does grow a table mean.
+让我们稍微转移一下表的增长。 
+
+158
+00:07:37,529 --> 00:07:44,019
+
+
+
+159
+00:07:44,019 --> 00:07:48,169
+So maybe I have current size m and I'd
+所以也许我现在的尺码是m 
+
+160
+00:07:48,170 --> 00:07:51,706
+like to go to a new size, m prime.
+喜欢去一个新的大小，素数。 
+
+161
+00:07:51,706 --> 00:07:54,040
+This would actually work if you're growing or shrinking,
+如果您正在增长或收缩，这实际上会起作用， 
+
+162
+00:07:54,040 --> 00:07:58,129
+but m could be bigger or smaller than m prime.
+但是m可以大于或小于m素数。 
+
+163
+00:07:58,129 --> 00:07:59,819
+What should I do-- what do I need
+我该怎么办-我需要什么
+
+164
+00:07:59,819 --> 00:08:03,050
+to do in order to build a new table of this size?
+要做一个如此大的新表？ 
+
+165
+00:08:03,050 --> 00:08:07,680
+
+
+
+166
+00:08:07,680 --> 00:08:09,430
+Easy warm up.
+容易热身。 
+
+167
+00:08:09,430 --> 00:08:10,360
+Yeah?
+是啊
+
+168
+00:08:10,360 --> 00:08:13,283
+AUDIENCE: Allocate the memory and then rehash [INAUDIBLE].
+听众：分配内存，然后重新哈希[听不清]。 
+
+169
+00:08:13,283 --> 00:08:13,949
+PROFESSOR: Yeah.
+教授：是的。 
+
+170
+00:08:13,949 --> 00:08:16,060
+Allocate the memory and rehash.
+分配内存并重新哈希。 
+
+171
+00:08:16,060 --> 00:08:17,860
+So we have all these keys.
+因此，我们拥有所有这些键。 
+
+172
+00:08:17,860 --> 00:08:20,660
+They're stored with some hash function in here,
+它们与哈希函数一起存储在这里， 
+
+173
+00:08:20,660 --> 00:08:22,129
+in table size m.
+在桌子上
+
+174
+00:08:22,329 --> 00:08:24,069
+I need to build an entirely new table,
+我需要建立一个全新的表， 
+
+175
+00:08:24,069 --> 00:08:28,204
+size m prime, and then I need to rehash everything.
+大小为质数，然后我需要重新整理所有内容。 
+
+176
+00:08:28,204 --> 00:08:54,659
+
+
+
+177
+00:08:54,659 --> 00:09:02,179
+One way to think of this is for each item in the old table,
+考虑这一点的一种方法是针对旧表中的每个项目， 
+
+178
+00:09:02,179 --> 00:09:11,489
+insert into the new table, T prime.
+插入新表T素数。 
+
+179
+00:09:11,490 --> 00:09:15,820
+I think that's worth a cushion.
+我认为这值得缓冲。 
+
+180
+00:09:15,820 --> 00:09:17,360
+You got one?
+你有一个？ 
+
+181
+00:09:17,360 --> 00:09:18,791
+You don't want to get hit.
+你不想受到打击。 
+
+182
+00:09:18,791 --> 00:09:19,089
+It's fine.
+没关系。 
+
+183
+00:09:19,289 --> 00:09:21,539
+We're not burning through these questions fast enough,
+我们没有足够快地解决这些问题， 
+
+184
+00:09:21,539 --> 00:09:22,740
+so answer more questions.
+因此，请回答更多问题。 
+
+185
+00:09:22,740 --> 00:09:25,321
+
+
+
+186
+00:09:25,321 --> 00:09:25,820
+OK.
+好。 
+
+187
+00:09:25,820 --> 00:09:27,460
+So how much time does this take?
+那么这需要多少时间？ 
+
+188
+00:09:27,660 --> 00:09:29,284
+That's the main point of this exercise.
+这是本练习的重点。 
+
+189
+00:09:29,284 --> 00:09:38,010
+
+
+
+190
+00:09:38,010 --> 00:09:39,500
+Yeah?
+是啊
+
+191
+00:09:39,500 --> 00:09:40,600
+AUDIENCE: Order n.
+观众：订单n。 
+
+192
+00:09:40,600 --> 00:09:42,159
+PROFESSOR: Order n.
+教授：n阶。 
+
+193
+00:09:42,159 --> 00:09:46,059
+Yeah, I think as long as m and m prime are theta n,
+是的，我想只要m和m素数都是theta n， 
+
+194
+00:09:46,059 --> 00:09:47,719
+this is order n.
+这是命令n。 
+
+195
+00:09:47,720 --> 00:09:53,269
+In general, it's going to be n plus m plus m prime,
+通常，它将是n加m加m素数， 
+
+196
+00:09:53,269 --> 00:09:54,005
+but you're right.
+但是你是对的
+
+197
+00:09:54,005 --> 00:09:55,379
+Most of the time that's-- I mean,
+在大多数情况下-我是说， 
+
+198
+00:09:55,379 --> 00:09:57,439
+in the situation we're going to construct,
+在我们要构建的情况下， 
+
+199
+00:09:57,440 --> 00:10:00,109
+this will be theta n.
+这将是theta n。 
+
+200
+00:10:00,309 --> 00:10:03,049
+But in general, there's this issue that, for example,
+但是总的来说，有一个问题，例如
+
+201
+00:10:03,049 --> 00:10:04,959
+to iterate over every item in the table you
+遍历表中的每个项目
+
+202
+00:10:04,960 --> 00:10:06,209
+have to look at every slot.
+必须查看每个插槽。 
+
+203
+00:10:06,409 --> 00:10:08,240
+And so you have to pay order m just
+所以你只需要支付订单
+
+204
+00:10:08,240 --> 00:10:12,289
+to visit every slot, order n to visit all those lists, m
+访问每个广告位，命令n访问所有这些列表，m 
+
+205
+00:10:12,289 --> 00:10:15,849
+prime just to build the new table, size m prime.
+ prime仅用于构建新表，大小为m prime。 
+
+206
+00:10:15,850 --> 00:10:18,110
+Initialize it all to nil.
+全部初始化为零。 
+
+207
+00:10:18,110 --> 00:10:18,610
+Good.
+好。 
+
+208
+00:10:18,610 --> 00:10:22,484
+
+
+
+209
+00:10:22,484 --> 00:10:23,699
+I guess another main point here is
+我想这里的另一个重点是
+
+210
+00:10:23,899 --> 00:10:25,860
+that we have to build a new hash function.
+我们必须构建一个新的哈希函数。 
+
+211
+00:10:25,860 --> 00:10:27,692
+Why do we need to build a new hash function?
+为什么我们需要构建一个新的哈希函数？ 
+
+212
+00:10:27,692 --> 00:10:32,199
+Because the hash function-- why did I call it f prime?
+因为哈希函数-为什么将其称为f素数？ 
+
+213
+00:10:32,200 --> 00:10:33,240
+Calling it h prime.
+称它为素数。 
+
+214
+00:10:33,240 --> 00:10:37,299
+
+
+
+215
+00:10:37,299 --> 00:10:40,209
+The hash function is all about mapping the universe of keys
+哈希函数是关于映射键范围的全部
+
+216
+00:10:40,210 --> 00:10:41,959
+to a table of size m.
+到尺寸为m的表。 
+
+217
+00:10:42,159 --> 00:10:44,555
+So if m changes, we definitely need a new hash function.
+因此，如果m发生变化，我们肯定需要一个新的哈希函数。 
+
+218
+00:10:44,556 --> 00:10:45,729
+If you use the old hash function,
+如果您使用旧的哈希函数， 
+
+219
+00:10:45,929 --> 00:10:48,179
+you would just use the beginning of the table.
+您只需要使用表格的开头即可。 
+
+220
+00:10:48,179 --> 00:10:51,609
+If you add more slots down here, you're not going to use them.
+如果您在此处添加更多插槽，则不会使用它们。 
+
+221
+00:10:51,610 --> 00:10:53,099
+For every key you've got to rehash it,
+对于您必须重新加密的每个密钥， 
+
+222
+00:10:53,299 --> 00:10:54,919
+figure out where it goes.
+弄清楚它的去向。 
+
+223
+00:10:54,919 --> 00:10:57,959
+I think I've drilled that home enough times.
+我想我已经在家里钻了足够的时间了。 
+
+224
+00:10:57,960 --> 00:11:04,346
+So the question becomes when we see that our table is too big,
+所以问题就出在我们看到我们的桌子太大时， 
+
+225
+00:11:04,346 --> 00:11:05,429
+we need to make it bigger.
+我们需要使其更大。 
+
+226
+00:11:05,429 --> 00:11:08,439
+But how much bigger?
+但是要大多少？ 
+
+227
+00:11:08,440 --> 00:11:09,955
+Suggestions?
+有什么建议吗？ 
+
+228
+00:11:10,155 --> 00:11:11,121
+Yeah?
+是啊
+
+229
+00:11:11,121 --> 00:11:12,089
+AUDIENCE: 2x.
+听众：2倍。 
+
+230
+00:11:12,090 --> 00:11:13,359
+PROFESSOR: 2x.
+教授：2倍。 
+
+231
+00:11:13,559 --> 00:11:14,473
+Twice m.
+两次
+
+232
+00:11:14,474 --> 00:11:14,939
+Good suggestion.
+好建议。 
+
+233
+00:11:15,139 --> 00:11:16,056
+Any other suggestions?
+还有其他建议吗？ 
+
+234
+00:11:16,056 --> 00:11:18,331
+
+
+
+235
+00:11:18,331 --> 00:11:18,830
+3x?
+ 3倍？ 
+
+236
+00:11:18,830 --> 00:11:21,340
+
+
+
+237
+00:11:21,340 --> 00:11:24,090
+OK.
+好。 
+
+238
+00:11:24,090 --> 00:11:27,709
+m prime equals 2 m is the correct answer.
+ m素数等于2 m是正确答案。 
+
+239
+00:11:27,909 --> 00:11:31,429
+But for fun, or for pain I guess,
+但是我想是为了娱乐还是为了痛苦， 
+
+240
+00:11:31,429 --> 00:11:33,659
+let's think about the wrong answer, which would be,
+让我们考虑一个错误的答案，那就是， 
+
+241
+00:11:33,659 --> 00:11:35,689
+just make it one bigger.
+只是把它做大一点。 
+
+242
+00:11:35,690 --> 00:11:37,950
+That'll make m equal to n again, so that
+这将使m再次等于n，因此
+
+243
+00:11:37,950 --> 00:11:39,589
+seems-- it's at least safe.
+似乎-至少是安全的。 
+
+244
+00:11:39,789 --> 00:11:43,250
+It will maintain my invariant that m is at least n.
+它将保持我的不变性，即m至少为n。 
+
+245
+00:11:43,250 --> 00:11:48,509
+I get this wrong-- sorry, that's the wrong way.
+我错了-抱歉，那是错误的方式。 
+
+246
+00:11:48,509 --> 00:11:50,470
+n is greater than m.
+ n大于m。 
+
+247
+00:11:50,470 --> 00:11:54,700
+I want m to be greater than or equal to n.
+我希望m大于或等于n。 
+
+248
+00:11:54,700 --> 00:11:57,959
+So if we just incremented our table size,
+因此，如果我们只是增加表的大小， 
+
+249
+00:11:58,159 --> 00:12:02,794
+then the question becomes, what is the cost of n insertions?
+那么问题就变成了，n次插入的成本是多少？ 
+
+250
+00:12:02,794 --> 00:12:05,589
+
+
+
+251
+00:12:05,590 --> 00:12:07,979
+So say we start with an empty table
+所以说我们从一个空表开始
+
+252
+00:12:08,179 --> 00:12:10,120
+and it has size eight or whatever,
+它有八号或其他尺寸， 
+
+253
+00:12:10,120 --> 00:12:15,100
+some constant, and we insert n times.
+一些常数，我们插入n次。 
+
+254
+00:12:15,100 --> 00:12:17,339
+Then after eight insertions when we insert we
+然后在插入八次之后，我们插入
+
+255
+00:12:17,539 --> 00:12:19,219
+have to rebuild our entire table.
+必须重建我们的整个表。 
+
+256
+00:12:19,220 --> 00:12:20,710
+That takes linear time.
+这需要线性时间。 
+
+257
+00:12:20,710 --> 00:12:22,990
+After we insert one more, we have to rebuild.
+再插入一个之后，我们必须重建。 
+
+258
+00:12:22,990 --> 00:12:24,519
+That takes linear time.
+这需要线性时间。 
+
+259
+00:12:24,519 --> 00:12:28,500
+And so the cost is going to be something like,
+因此，成本将约为
+
+260
+00:12:28,500 --> 00:12:32,365
+after you get to 8, it's going to be 1 plus 2 plus 3 plus 4.
+达到8后，它将是1加2加3加4。 
+
+261
+00:12:32,365 --> 00:12:34,539
+So a triangular number.
+所以是一个三角数。 
+
+262
+00:12:34,539 --> 00:12:38,689
+Every time we insert, we have to rebuild everything.
+每次插入时，我们都必须重建所有内容。 
+
+263
+00:12:38,690 --> 00:12:40,834
+So this is quadratic, this is bad.
+所以这是二次的，这很不好。 
+
+264
+00:12:41,034 --> 00:12:45,969
+
+
+
+265
+00:12:45,970 --> 00:12:50,940
+Fortunately, if all we do is double m, we're golden.
+幸运的是，如果我们要做的只是double m，那么我们就很成功。 
+
+266
+00:12:50,940 --> 00:12:53,689
+And this is sort of the point of why
+这就是为什么
+
+267
+00:12:53,889 --> 00:12:56,861
+it's called table-- I call it table resizing there.
+它称为表格-我称它为表格调整大小。 
+
+268
+00:12:56,861 --> 00:12:58,319
+Or to not give it away, but this is
+还是不放弃它，但这是
+
+269
+00:12:58,320 --> 00:12:59,850
+a technique called table doubling.
+一种称为表加倍的技术。 
+
+270
+00:12:59,850 --> 00:13:02,379
+
+
+
+271
+00:13:02,379 --> 00:13:05,960
+And let's just think of the cost of n insertions.
+让我们考虑一下n个插入的代价。 
+
+272
+00:13:05,960 --> 00:13:07,200
+There's also deletions.
+也有删除。 
+
+273
+00:13:07,200 --> 00:13:09,859
+But if we just, again, start with an empty table,
+但是，如果我们再次从一个空表开始， 
+
+274
+00:13:10,059 --> 00:13:12,469
+and we repeatedly insert, then the cost
+然后我们反复插入，然后
+
+275
+00:13:12,470 --> 00:13:19,460
+we get-- if we double each time and we're inserting,
+我们得到-如果我们每次加倍并插入， 
+
+276
+00:13:19,460 --> 00:13:23,349
+after we get to 8, we insert, we double to 16.
+达到8后，我们插入，然后翻倍为16。 
+
+277
+00:13:23,549 --> 00:13:26,539
+Then we insert eight more times, then we double to 32.
+然后再插入八次，然后再翻倍至32。 
+
+278
+00:13:26,539 --> 00:13:30,539
+Then we insert 16 times, then we double to 64.
+然后我们插入16次，然后我们加倍到64。 
+
+279
+00:13:30,539 --> 00:13:32,179
+All these numbers are roughly the same.
+所有这些数字大致相同。 
+
+280
+00:13:32,179 --> 00:13:34,379
+They're within a factor of two of each other.
+它们彼此之间相差两个因子。 
+
+281
+00:13:34,379 --> 00:13:36,669
+Every time we're rebuilding in linear time,
+每次我们在线性时间内重建时， 
+
+282
+00:13:36,669 --> 00:13:40,990
+but we're only doing it like log end times.
+但我们只是像日志结束时间那样做。 
+
+283
+00:13:40,990 --> 00:13:44,359
+If we're going from one to n, their log end growths--
+如果我们从1转到n，则它们的对数结尾增长- 
+
+284
+00:13:44,559 --> 00:13:47,029
+log end doublings that we're able to do.
+记录我们能够做到的倍增。 
+
+285
+00:13:47,029 --> 00:13:49,886
+So you might think, oh, it's n log n.
+因此，您可能会想，哦，这是n log n。 
+
+286
+00:13:49,886 --> 00:13:50,969
+But we don't want n log n.
+但是我们不希望n log n。 
+
+287
+00:13:50,970 --> 00:13:52,185
+That would be binary search trees.
+那将是二进制搜索树。 
+
+288
+00:13:52,385 --> 00:13:54,429
+We want to do better than n log n.
+我们要比n log n做得更好。 
+
+289
+00:13:54,429 --> 00:13:57,039
+If you think about the costs here,
+如果您考虑一下这里的费用， 
+
+290
+00:13:57,039 --> 00:14:01,466
+the cost to rebuild the first time is concepts, like 8.
+第一次重建的成本是概念，例如8。 
+
+291
+00:14:01,466 --> 00:14:03,299
+And then the cost to rebuild the second time
+然后第二次重建的费用
+
+292
+00:14:03,299 --> 00:14:06,309
+is 16, so twice that.
+是16，所以是原来的两倍。 
+
+293
+00:14:06,309 --> 00:14:10,489
+The cost to build the next time is 64.
+下次构建的成本为64。 
+
+294
+00:14:10,490 --> 00:14:14,240
+So these go up geometrically.
+所以这些几何地上升。 
+
+295
+00:14:14,240 --> 00:14:17,200
+You've got to get from 1 to n with log end steps.
+您必须从1到n加上日志结束步骤。 
+
+296
+00:14:17,200 --> 00:14:18,709
+The natural way to do it is by doubling,
+自然的方法是加倍， 
+
+297
+00:14:18,909 --> 00:14:22,230
+and you can prove that indeed this is the case.
+您可以证明确实是这种情况。 
+
+298
+00:14:22,230 --> 00:14:24,490
+So this is a geometric series.
+所以这是一个几何级数。 
+
+299
+00:14:24,490 --> 00:14:26,139
+Didn't mean to cross it out there.
+并不是要把它划掉。 
+
+300
+00:14:26,139 --> 00:14:27,472
+And so this is theta n.
+所以这就是theta n。 
+
+301
+00:14:27,472 --> 00:14:30,378
+
+
+
+302
+00:14:30,379 --> 00:14:32,469
+Now, it's a little strange to be talking about theta n.
+现在，谈论theta n有点奇怪。 
+
+303
+00:14:32,669 --> 00:14:34,044
+This is a data structure supposed
+这是假设的数据结构
+
+304
+00:14:34,044 --> 00:14:36,639
+to be constant time per operation.
+每次操作要保持恒定的时间。 
+
+305
+00:14:36,639 --> 00:14:40,519
+This data structure is not constant time per operation.
+该数据结构的每次操作时间不是恒定的。 
+
+306
+00:14:40,519 --> 00:14:43,610
+Even ignoring all the hashing business,
+即使不理会所有哈希运算， 
+
+307
+00:14:43,610 --> 00:14:45,629
+all you're trying to do is grow a table.
+您要做的就是增加一张桌子。 
+
+308
+00:14:45,629 --> 00:14:48,820
+It takes more than constant time for some operations.
+对于某些操作，它花费的时间超过了固定时间。 
+
+309
+00:14:48,820 --> 00:14:52,559
+Near the end, you have to rebuild the last time,
+快要结束了，您必须重新构建上一次， 
+
+310
+00:14:52,759 --> 00:14:55,330
+you're restructuring the entire table.
+您正在重组整个表。 
+
+311
+00:14:55,330 --> 00:14:59,470
+That take linear time for one operation.
+一个操作花费线性时间。 
+
+312
+00:14:59,470 --> 00:15:01,970
+You might say that's bad.
+您可能会说这很糟糕。 
+
+313
+00:15:01,970 --> 00:15:03,615
+But the comforting thing is that there
+但令人欣慰的是
+
+314
+00:15:03,615 --> 00:15:05,639
+are only a few operations, log end of them,
+只是一些操作，记录它们的结尾， 
+
+315
+00:15:05,639 --> 00:15:06,948
+that are really expensive.
+那真的很贵。 
+
+316
+00:15:06,948 --> 00:15:08,240
+The rest are all constant time.
+其余的都是固定的时间。 
+
+317
+00:15:08,240 --> 00:15:08,955
+You don't do anything.
+你什么都不做。 
+
+318
+00:15:09,155 --> 00:15:11,559
+You just add into the table.
+您只需添加到表中即可。 
+
+319
+00:15:11,559 --> 00:15:14,564
+So this is an idea we call amortization.
+因此，这就是我们称为摊销的想法。 
+
+320
+00:15:14,565 --> 00:15:24,000
+
+
+
+321
+00:15:24,000 --> 00:15:26,865
+Maybe I should write here-- we call this table doubling.
+也许我应该在这里写-我们将此表加倍。 
+
+322
+00:15:26,865 --> 00:15:38,085
+
+
+
+323
+00:15:38,085 --> 00:15:40,585
+So the idea with amortization, let me give you a definition.
+因此，关于摊销的想法，让我给您一个定义。 
+
+324
+00:15:40,585 --> 00:15:58,618
+
+
+
+325
+00:15:58,618 --> 00:16:00,690
+Actually, I'm going to be a little bit vague here
+其实我在这里有点模糊
+
+326
+00:16:00,690 --> 00:16:03,306
+and just say-- T of n.
+只是说-T of n。 
+
+327
+00:16:03,506 --> 00:16:05,005
+Let me see what it says in my notes.
+让我看看笔记中的内容。 
+
+328
+00:16:05,005 --> 00:16:08,909
+
+
+
+329
+00:16:08,909 --> 00:16:09,519
+Yeah.
+是的
+
+330
+00:16:09,519 --> 00:16:10,269
+I say T of n.
+我说T等于n。 
+
+331
+00:16:10,269 --> 00:16:37,590
+
+
+
+332
+00:16:37,590 --> 00:16:40,980
+So we're going to use a concept of-- usually
+因此，我们通常会使用- 
+
+333
+00:16:40,980 --> 00:16:43,889
+we say running time is T of n.
+我们说运行时间是n的T。 
+
+334
+00:16:43,889 --> 00:16:47,309
+And we started saying the expected running time
+我们开始说预期的运行时间
+
+335
+00:16:47,309 --> 00:16:51,789
+is some T of n plus alpha or whatever.
+是n加上T或任何其他字母的T。 
+
+336
+00:16:51,789 --> 00:16:55,049
+Now, we're going to be able to say the amortized running time
+现在，我们可以说摊销的运行时间
+
+337
+00:16:55,049 --> 00:16:59,439
+is T of n, or the running time is T of n amortized.
+是n的T，或者运行时间是n的T摊销。 
+
+338
+00:16:59,440 --> 00:17:01,490
+That's what this is saying.
+这就是这个意思。 
+
+339
+00:17:01,490 --> 00:17:04,568
+And what that means is that it's not
+那意味着不是
+
+340
+00:17:04,568 --> 00:17:06,336
+any statement about the individual running
+关于个人跑步的任何陈述
+
+341
+00:17:06,336 --> 00:17:07,295
+time of the operations.
+手术时间。 
+
+342
+00:17:07,295 --> 00:17:11,039
+It's saying if you do a whole bunch of operations, k of them,
+就是说，如果您进行一整堆操作，其中k个操作， 
+
+343
+00:17:11,039 --> 00:17:15,848
+then the total running time is, at most, k times T of n.
+那么总运行时间最多为n的k倍。 
+
+344
+00:17:15,848 --> 00:17:18,189
+This is a way to amortize, or to-- yeah,
+这是一种摊销方式，或者- 
+
+345
+00:17:18,190 --> 00:17:22,049
+amortize-- this is in the economic sense of amortize,
+摊销-从经济意义上讲是摊销， 
+
+346
+00:17:22,049 --> 00:17:22,809
+I guess.
+我猜。 
+
+347
+00:17:22,809 --> 00:17:27,470
+You spread out the high costs so that's it's cheap on average
+您摊开了高昂的成本，因此平均来说很便宜
+
+348
+00:17:27,470 --> 00:17:28,700
+all the time.
+每时每刻。 
+
+349
+00:17:28,700 --> 00:17:32,640
+It's kind of like-- normally, we pay rent every month.
+有点像-通常，我们每个月支付租金。 
+
+350
+00:17:32,640 --> 00:17:34,579
+But you could think of it instead as you're only
+但是您可能会想到它，因为您只是
+
+351
+00:17:34,779 --> 00:17:39,490
+paying $50 a day or something for your monthly rent.
+每天支付$ 50或您月租的费用。 
+
+352
+00:17:39,490 --> 00:17:43,624
+It's maybe-- if you want to smooth things out,
+也许-如果您想使事情顺利进行， 
+
+353
+00:17:43,624 --> 00:17:45,789
+that would be a nice way to think about paying rent,
+那是考虑支付租金的好方法， 
+
+354
+00:17:45,789 --> 00:17:48,789
+or every second you're paying a penny or something.
+或每秒钟您要支付一分钱或其他费用。 
+
+355
+00:17:48,789 --> 00:17:52,609
+
+
+
+356
+00:17:52,609 --> 00:17:54,829
+It's close, actually.
+实际上，这很接近。 
+
+357
+00:17:54,829 --> 00:17:57,349
+Little bit off, factor or two.
+一点点关闭，因素或两个。 
+
+358
+00:17:57,349 --> 00:17:59,919
+Anyway, so that's the idea.
+无论如何，这就是想法。 
+
+359
+00:17:59,920 --> 00:18:11,943
+So you can think of-- this is kind
+所以您可以想到-这是一种
+
+360
+00:18:11,943 --> 00:18:14,109
+of like saying that the running time of an operation
+就像说一个手术的运行时间
+
+361
+00:18:14,109 --> 00:18:16,529
+is T of n on average.
+平均为n的T。 
+
+362
+00:18:16,529 --> 00:18:17,599
+But put that in quotes.
+但是用引号引起来。 
+
+363
+00:18:17,599 --> 00:18:21,279
+We don't usually use that terminology.
+我们通常不使用该术语。 
+
+364
+00:18:21,279 --> 00:18:22,549
+Maybe put a Tilda here.
+也许在这里放一个蒂尔达。 
+
+365
+00:18:22,549 --> 00:18:25,440
+
+
+
+366
+00:18:25,440 --> 00:18:31,424
+Where the average is taken over all the operations.
+在所有操作中均取平均值。 
+
+367
+00:18:31,424 --> 00:18:36,640
+
+
+
+368
+00:18:36,641 --> 00:18:38,140
+So this is something that only makes
+所以这只能使
+
+369
+00:18:38,140 --> 00:18:39,380
+sense for data structures.
+数据结构的意义。 
+
+370
+00:18:39,380 --> 00:18:42,579
+Data structures are things that have lots of operations on them
+数据结构是对它们进行大量操作的事物
+
+371
+00:18:42,779 --> 00:18:44,230
+over time.
+随着时间的推移。 
+
+372
+00:18:44,230 --> 00:18:47,549
+And if you just-- instead of counting individual operation
+如果您只是-而不是计算单个操作
+
+373
+00:18:47,549 --> 00:18:50,819
+times and then adding them up, if you add them up and then
+时间，然后将它们加起来，如果您将它们加起来，然后
+
+374
+00:18:50,819 --> 00:18:52,841
+divide by the number of operations,
+除以操作次数， 
+
+375
+00:18:52,842 --> 00:18:54,099
+that's your amortized running time.
+那就是您摊销的运行时间。 
+
+376
+00:18:54,299 --> 00:18:58,740
+So the point is, in table doubling,
+因此，在表加倍时，关键是
+
+377
+00:18:58,740 --> 00:19:05,919
+the amortized running time is beta 1.
+摊销的运行时间为beta 1。 
+
+378
+00:19:06,119 --> 00:19:08,864
+Because it's n in total-- at this point
+因为总共是n 
+
+379
+00:19:08,865 --> 00:19:10,460
+we've only analyzed insertions.
+我们仅分析了插入。 
+
+380
+00:19:10,460 --> 00:19:11,880
+We haven't talked about deletions.
+我们还没有谈论删除。 
+
+381
+00:19:11,880 --> 00:19:23,139
+
+
+
+382
+00:19:23,339 --> 00:19:24,569
+So k inserts.
+因此，k个插入。 
+
+383
+00:19:24,569 --> 00:19:28,480
+
+
+
+384
+00:19:28,480 --> 00:19:33,250
+If we're just doing insertions, take beta k time in total.
+如果我们只是在做插入操作，则总共要花费beta k时间。 
+
+385
+00:19:33,250 --> 00:19:44,414
+So this means constant amortized per insert.
+因此，这意味着每次插入将摊销常数。 
+
+386
+00:19:44,414 --> 00:19:46,819
+OK, it's a simple idea, but a useful one
+好，这是一个简单的主意，但有用的一个主意
+
+387
+00:19:46,819 --> 00:19:50,759
+because typically-- unless you're in like a real time
+因为通常-除非您实时
+
+388
+00:19:50,759 --> 00:19:54,683
+system-- you typically only care about the overall running
+系统-您通常只关心整体运行情况
+
+389
+00:19:54,683 --> 00:19:56,599
+time of your algorithm, which might use a data
+算法的时间（可能使用数据） 
+
+390
+00:19:56,599 --> 00:19:58,538
+structure as a sub routine.
+结构作为子例程。 
+
+391
+00:19:58,538 --> 00:20:00,329
+You don't care if individual operations are
+您不在乎单个操作是否
+
+392
+00:20:00,329 --> 00:20:04,619
+expensive as long as all the operations together are cheap.
+只要所有操作加在一起都是便宜的就可以了。 
+
+393
+00:20:04,619 --> 00:20:06,789
+You're using hashing to solve some other problem,
+您正在使用哈希来解决其他一些问题， 
+
+394
+00:20:06,789 --> 00:20:10,713
+like counting duplicate words in doc dist.
+就像在doc dist中计算重复的单词一样。 
+
+395
+00:20:10,713 --> 00:20:13,129
+You just care about the running time of counting duplicate
+您只需要担心重复计数的运行时间
+
+396
+00:20:13,130 --> 00:20:13,630
+words.
+话。 
+
+397
+00:20:13,630 --> 00:20:16,839
+You don't care about how long each step of the for loop
+您不必担心for循环的每个步骤要花多长时间
+
+398
+00:20:17,039 --> 00:20:20,420
+takes, just the aggregate.
+需要，只是合计。 
+
+399
+00:20:20,420 --> 00:20:22,019
+So this is good most of the time.
+因此，这在大多数情况下都是很好的。 
+
+400
+00:20:22,019 --> 00:20:24,549
+And we've proved it for insertions.
+我们已经证明了它可以插入。 
+
+401
+00:20:24,549 --> 00:20:30,430
+It's also true when you have deletions.
+当您删除内容时也是如此。 
+
+402
+00:20:30,430 --> 00:20:31,669
+You have k inserts and deletes.
+您有k个插入和删除。 
+
+403
+00:20:31,869 --> 00:20:38,529
+
+
+
+404
+00:20:38,529 --> 00:20:42,365
+They certainly take order k time.
+他们当然需要k时间。 
+
+405
+00:20:42,365 --> 00:20:44,240
+Actually, this is easy to prove at this point
+实际上，这点很容易证明
+
+406
+00:20:44,240 --> 00:20:45,808
+because we haven't changed delete.
+因为我们没有更改删除。 
+
+407
+00:20:45,808 --> 00:20:47,849
+So, what delete does is it just deletes something
+因此，删除功能只是删除一些内容
+
+408
+00:20:47,849 --> 00:20:49,964
+from the table, leaves the table the same size.
+从桌子上离开时，桌子的大小相同。 
+
+409
+00:20:49,964 --> 00:20:54,019
+
+
+
+410
+00:20:54,019 --> 00:20:56,750
+And so it actually makes life better for us
+因此，这实际上使我们的生活更美好
+
+411
+00:20:56,750 --> 00:21:01,210
+because if it decreases m, in order to make m big again,
+因为如果减小m为了再次增大m 
+
+412
+00:21:01,210 --> 00:21:03,819
+you have to do more insertions than you had to before.
+您必须比以前做更多的插入。 
+
+413
+00:21:03,819 --> 00:21:06,119
+And the only extra cost we're thinking about here
+而我们正在考虑的唯一额外费用
+
+414
+00:21:06,119 --> 00:21:10,889
+is the growing, the rebuild cost from inserting too big.
+随着增长，插入的重建成本太大。 
+
+415
+00:21:10,890 --> 00:21:12,220
+And so this is still true.
+因此，这仍然是正确的。 
+
+416
+00:21:12,220 --> 00:21:14,740
+Deletions only help us.
+删除仅对我们有帮助。 
+
+417
+00:21:14,740 --> 00:21:19,021
+If you have k total inserts and deletes, then still be order k.
+如果您总共有k个插入和删除，则仍为k。 
+
+418
+00:21:19,021 --> 00:21:20,355
+So still get constant amortized.
+因此仍要不断摊销。 
+
+419
+00:21:20,355 --> 00:21:23,755
+
+
+
+420
+00:21:23,955 --> 00:21:26,979
+But this is not totally satisfying
+但这并不完全令人满意
+
+421
+00:21:26,980 --> 00:21:30,329
+because of table might get big again.
+因为桌子可能会再次变大。 
+
+422
+00:21:30,329 --> 00:21:32,799
+m might become much larger than n.
+ m可能变得比n大得多。 
+
+423
+00:21:32,799 --> 00:21:35,710
+For example, suppose I do n inserts
+例如，假设我不插入
+
+424
+00:21:35,710 --> 00:21:37,819
+and then I do n deletes.
+然后我不删除。 
+
+425
+00:21:37,819 --> 00:21:41,069
+So now I have an empty table, n equals 0,
+所以现在我有一个空表，n等于0， 
+
+426
+00:21:41,069 --> 00:21:44,990
+but m is going to be around the original value of n,
+但是m会在n的原始值附近， 
+
+427
+00:21:44,990 --> 00:21:47,279
+or the maximum value of n over time.
+或n随时间的最大值。 
+
+428
+00:21:47,279 --> 00:21:50,049
+
+
+
+429
+00:21:50,049 --> 00:21:54,710
+So we can fix that.
+因此，我们可以解决该问题。 
+
+430
+00:21:54,710 --> 00:21:56,160
+Suggestions on how to fix that?
+有关如何解决该问题的建议？ 
+
+431
+00:21:56,160 --> 00:22:00,659
+
+
+
+432
+00:22:00,859 --> 00:22:03,039
+This is a little more subtle.
+这有点微妙。 
+
+433
+00:22:03,039 --> 00:22:04,549
+There's two obvious answers.
+有两个明显的答案。 
+
+434
+00:22:04,549 --> 00:22:08,460
+One is correct and the other is incorrect.
+一个是正​​确的，另一个是不正确的。 
+
+435
+00:22:08,460 --> 00:22:09,025
+Yeah?
+是啊
+
+436
+00:22:09,025 --> 00:22:09,900
+AUDIENCE: [INAUDIBLE]
+观众：[听不清] 
+
+437
+00:22:09,900 --> 00:22:14,220
+
+
+
+438
+00:22:14,220 --> 00:22:15,660
+PROFESSOR: Good.
+教授：很好。 
+
+439
+00:22:15,660 --> 00:22:23,440
+So option one is if the table becomes half the size,
+所以选择之一是如果桌子的大小变成一半， 
+
+440
+00:22:23,440 --> 00:22:30,980
+then shrink-- to half the size?
+然后缩小-缩小一半？ 
+
+441
+00:22:30,980 --> 00:22:31,480
+Sure.
+当然。 
+
+442
+00:22:31,480 --> 00:22:37,390
+
+
+
+443
+00:22:37,390 --> 00:22:38,507
+OK.
+好。 
+
+444
+00:22:38,507 --> 00:22:39,389
+That's on the right track.
+那是正确的。 
+
+445
+00:22:39,589 --> 00:22:42,288
+Anyone see a problem with that?
+有人看到这个问题吗？ 
+
+446
+00:22:42,288 --> 00:22:43,240
+Yeah?
+是啊
+
+447
+00:22:43,240 --> 00:22:45,789
+AUDIENCE: [INAUDIBLE] when you're going from like 8 to 9,
+观众：[听不清]当您从8点到9点时
+
+448
+00:22:45,789 --> 00:22:47,623
+you can go from 8 to 9, 9 to 8, [INAUDIBLE].
+您可以从8到9、9到8 [听不清]。 
+
+449
+00:22:47,623 --> 00:22:48,710
+PROFESSOR: Good.
+教授：很好。 
+
+450
+00:22:48,710 --> 00:22:57,150
+So if you're sizing and say you have eight items in your table,
+因此，如果您要调整大小并说表中有八个项目， 
+
+451
+00:22:57,150 --> 00:23:01,390
+you add a ninth item and so you double to 16.
+您添加了第九项，因此加倍至16。 
+
+452
+00:23:01,390 --> 00:23:03,619
+Then you delete that ninth item, you're back to eight.
+然后删除第九项，回到八。 
+
+453
+00:23:03,819 --> 00:23:06,439
+And then you say oh, now m equals n/2,
+然后你说哦，现在m等于n / 2， 
+
+454
+00:23:06,440 --> 00:23:08,419
+so I'm going to shrink to half the size.
+所以我要缩小到一半的尺寸。 
+
+455
+00:23:08,619 --> 00:23:10,959
+And if I insert again-- delete, insert, delete,
+如果我再次插入-删除，插入，删除， 
+
+456
+00:23:10,960 --> 00:23:14,813
+insert-- I spend linear time for every operation.
+插入-我为每个操作花费线性时间。 
+
+457
+00:23:15,013 --> 00:23:15,929
+So that's the problem.
+这就是问题所在。 
+
+458
+00:23:15,930 --> 00:23:18,609
+
+
+
+459
+00:23:18,809 --> 00:23:20,133
+This is slow.
+太慢了
+
+460
+00:23:20,133 --> 00:23:22,690
+
+
+
+461
+00:23:22,690 --> 00:23:27,629
+If we go from 2 to the k to 2 to the k plus 1,
+如果我们从2到k到2到k加1， 
+
+462
+00:23:27,829 --> 00:23:31,949
+we go this way via-- oh sorry, 2 to the k plus 1.
+我们通过-抱歉，2等于k加1。 
+
+463
+00:23:31,950 --> 00:23:36,009
+Then, I said it right, insert to go to the right,
+然后，我说对了，插入到右边， 
+
+464
+00:23:36,009 --> 00:23:37,559
+delete to go to the left.
+删除以转到左侧。 
+
+465
+00:23:37,559 --> 00:23:39,629
+Then we'll get linear time for operation.
+然后，我们将获得线性运行时间。 
+
+466
+00:23:39,630 --> 00:23:44,349
+
+
+
+467
+00:23:44,549 --> 00:23:46,819
+That is that.
+就这样。 
+
+468
+00:23:46,819 --> 00:23:48,947
+So, how do we fix this?
+那么，我们该如何解决呢？ 
+
+469
+00:23:48,948 --> 00:23:50,109
+Yeah.
+是的
+
+470
+00:23:50,309 --> 00:23:52,579
+AUDIENCE: Maybe m equal m/3 or something?
+听众：也许m等于m / 3或其他？ 
+
+471
+00:23:52,579 --> 00:23:53,909
+PROFESSOR: M equals n over 3.
+教授：M等于n大于3。 
+
+472
+00:23:53,910 --> 00:23:54,582
+Yep.
+是的
+
+473
+00:23:54,782 --> 00:23:56,698
+AUDIENCE: And then still leave it [INAUDIBLE].
+听众：然后仍然将其[听不清]。 
+
+474
+00:23:56,699 --> 00:24:04,725
+
+
+
+475
+00:24:04,925 --> 00:24:05,818
+PROFESSOR: Good.
+教授：很好。 
+
+476
+00:24:05,818 --> 00:24:07,359
+I'm going to do 4, if you don't mind.
+如果您不介意，我将做4。 
+
+477
+00:24:07,359 --> 00:24:08,679
+I'll keep it powers of 2.
+我将保持2的幂。 
+
+478
+00:24:08,680 --> 00:24:10,240
+Any number bigger than 3 will work--
+任何大于3的数字都可以工作- 
+
+479
+00:24:10,240 --> 00:24:13,970
+or any number bigger than 2 will work here.
+或任何大于2的数字都可以在这里使用。 
+
+480
+00:24:13,970 --> 00:24:17,700
+But it's kind of nice to stick to powers of two.
+但是坚持两个的幂是一种很好的选择。 
+
+481
+00:24:17,700 --> 00:24:18,380
+Just for fun.
+纯娱乐。 
+
+482
+00:24:18,380 --> 00:24:20,262
+I mean, doesn't really matter because, as you say,
+我的意思是，这并不重要，因为正如您所说， 
+
+483
+00:24:20,462 --> 00:24:22,909
+we're still going to shrink to half the size,
+我们仍然会缩小到一半， 
+
+484
+00:24:22,910 --> 00:24:27,149
+but we're only going to trigger it when we are 3/4 empty.
+但是我们只有在3/4空时才会触发它。 
+
+485
+00:24:27,349 --> 00:24:29,289
+We're only using a quarter of the space.
+我们只使用了四分之一的空间。 
+
+486
+00:24:29,289 --> 00:24:31,129
+Then, it turns out you can afford
+然后，事实证明你买得起
+
+487
+00:24:31,130 --> 00:24:33,879
+to shrink to half the size because in order
+缩小到一半的尺寸，因为
+
+488
+00:24:34,079 --> 00:24:36,339
+to explode again, in order to need to grow again,
+再次爆炸，为了再次成长， 
+
+489
+00:24:36,339 --> 00:24:42,899
+you have to still insert n over m-- m over 2 items.
+您仍必须在m到m之间插入n到2个项目。 
+
+490
+00:24:42,900 --> 00:24:43,859
+Because it's half empty.
+因为一半是空的。 
+
+491
+00:24:44,059 --> 00:24:46,359
+So when you're only a quarter full,
+所以当你只有四分之一的时间
+
+492
+00:24:46,359 --> 00:24:49,740
+you shrink to become a half full because then to grow again
+你收缩到半饱，因为然后又长大
+
+493
+00:24:49,740 --> 00:24:50,950
+requires a lot of insertions.
+需要很多插入。 
+
+494
+00:24:50,950 --> 00:24:53,269
+I haven't proved anything here, but it turns out
+我在这里还没有证明任何东西，但是事实证明
+
+495
+00:24:53,269 --> 00:25:02,430
+if you do this, the amortized time becomes constant.
+如果执行此操作，则摊销时间将保持不变。 
+
+496
+00:25:02,430 --> 00:25:05,049
+
+
+
+497
+00:25:05,049 --> 00:25:09,359
+For k insertions and deletions, arbitrary combination,
+对于k个插入和删除，任意组合， 
+
+498
+00:25:09,359 --> 00:25:12,129
+you'll maintain linear size because of these two--
+由于这两个原因，您将保持线性尺寸- 
+
+499
+00:25:12,130 --> 00:25:13,639
+because you're maintaining the invariant
+因为你要保持不变
+
+500
+00:25:13,839 --> 00:25:21,829
+that m is between n and 4n.
+ m在n和4n之间。 
+
+501
+00:25:21,829 --> 00:25:24,723
+
+
+
+502
+00:25:24,723 --> 00:25:25,889
+You maintain that invariant.
+您保持不变。 
+
+503
+00:25:25,890 --> 00:25:26,569
+That's easy to check.
+很容易检查。 
+
+504
+00:25:26,769 --> 00:25:28,849
+So you always have linear size.
+因此，您始终具有线性大小。 
+
+505
+00:25:28,849 --> 00:25:31,841
+And the amortized running time becomes constant.
+并且摊销的运行时间变得恒定。 
+
+506
+00:25:31,842 --> 00:25:33,849
+We don't really have time to prove that in the class.
+我们真的没有时间在课堂上证明这一点。 
+
+507
+00:25:34,049 --> 00:25:35,829
+It's a little bit tricky.
+这有点棘手。 
+
+508
+00:25:35,829 --> 00:25:38,029
+Read the textbook if you want to know it.
+如果您想知道，请阅读教科书。 
+
+509
+00:25:38,029 --> 00:25:41,639
+
+
+
+510
+00:25:41,640 --> 00:25:42,575
+That's table doubling.
+那是桌子的两倍。 
+
+511
+00:25:42,575 --> 00:25:43,075
+Questions?
+有什么问题吗
+
+512
+00:25:43,075 --> 00:25:45,910
+
+
+
+513
+00:25:45,910 --> 00:25:47,589
+All right.
+好吧。 
+
+514
+00:25:47,789 --> 00:25:48,480
+Boring.
+无聊
+
+515
+00:25:48,480 --> 00:25:48,980
+No.
+没有。 
+
+516
+00:25:48,980 --> 00:25:51,759
+It's cool because not only can we
+很酷，因为我们不仅可以
+
+517
+00:25:51,759 --> 00:25:55,000
+solve the hashing problem of how do we set m in order
+解决我们如何按顺序设置m的哈希问题
+
+518
+00:25:55,000 --> 00:25:58,700
+to keep alpha a constant, we can also solve Python lists.
+为了保持alpha不变，我们还可以解析Python列表。 
+
+519
+00:25:58,700 --> 00:26:02,920
+Python lists are also known as resizable arrays.
+ Python列表也称为可调整大小的数组。 
+
+520
+00:26:02,920 --> 00:26:05,980
+
+
+
+521
+00:26:05,980 --> 00:26:07,480
+You may have wondered how they work.
+您可能想知道它们如何工作。 
+
+522
+00:26:07,480 --> 00:26:08,919
+Because they offer random access,
+由于它们提供随机访问权限， 
+
+523
+00:26:09,119 --> 00:26:12,479
+we can go to the ith item in constant time
+我们可以在固定时间内去第ith个项目
+
+524
+00:26:12,480 --> 00:26:14,930
+and modify it or get the value.
+并对其进行修改或获取值。 
+
+525
+00:26:14,930 --> 00:26:17,990
+We can add a new item at the end in constant time.
+我们可以在固定时间结束时添加一个新项目。 
+
+526
+00:26:17,990 --> 00:26:19,640
+That's append.
+附上。 
+
+527
+00:26:19,640 --> 00:26:20,140
+list.append.
+ list.append。 
+
+528
+00:26:20,140 --> 00:26:24,990
+
+
+
+529
+00:26:24,990 --> 00:26:28,829
+And we can delete the last item in constant time.
+我们可以在固定时间内删除最后一个项目。 
+
+530
+00:26:28,829 --> 00:26:30,375
+One version is list.pop.
+一种版本是list.pop。 
+
+531
+00:26:30,375 --> 00:26:35,299
+It's also delete list, square bracket minus 1.
+它也是删除列表，方括号减1。 
+
+532
+00:26:35,299 --> 00:26:37,190
+You should know that deleting the first item
+您应该知道删除第一项
+
+533
+00:26:37,190 --> 00:26:37,869
+is not constant time.
+不是固定的时间。 
+
+534
+00:26:38,069 --> 00:26:39,528
+That takes linear time because what
+这需要线性时间，因为
+
+535
+00:26:39,528 --> 00:26:42,659
+it does is it copies all the values over.
+它确实将所有值复制过来。 
+
+536
+00:26:42,859 --> 00:26:45,279
+Python lists are implemented by arrays.
+ Python列表由数组实现。 
+
+537
+00:26:45,279 --> 00:26:47,053
+But how do you support this dynamicness
+但是你如何支持这种动力
+
+538
+00:26:47,054 --> 00:26:49,470
+where you can increase the length and decrease the length,
+您可以在其中增加长度并减少长度， 
+
+539
+00:26:49,470 --> 00:26:51,630
+and still keep linear space?
+并仍然保持线性空间？ 
+
+540
+00:26:51,630 --> 00:26:53,659
+Well, you do table doubling.
+好吧，你做表加倍。 
+
+541
+00:26:53,859 --> 00:26:55,359
+And I don't know whether Python uses
+而且我不知道Python是否使用
+
+542
+00:26:55,359 --> 00:26:58,549
+two or some other constant, but any constant
+两个或其他常数，但任何常数
+
+543
+00:26:58,549 --> 00:27:00,710
+will do, as long as the deletion constant is
+只要删除常数是
+
+544
+00:27:00,710 --> 00:27:05,149
+smaller than the insertion constant.
+小于插入常数。 
+
+545
+00:27:05,349 --> 00:27:06,689
+And that's how they work.
+这就是他们的工作方式。 
+
+546
+00:27:06,690 --> 00:27:09,009
+So in fact, list.append and list.pop
+所以实际上，list.append和list.pop 
+
+547
+00:27:09,009 --> 00:27:12,240
+are constant amortized.
+固定摊销。 
+
+548
+00:27:12,240 --> 00:27:14,920
+Before, we just said for simplicity,
+之前，我们只是为了简单起见， 
+
+549
+00:27:14,920 --> 00:27:16,711
+they're constant time and for the most part
+他们是恒定的时间，在大多数情况下
+
+550
+00:27:16,711 --> 00:27:18,544
+you can just think of them as constant time.
+您可以将它们视为恒定时间。 
+
+551
+00:27:18,544 --> 00:27:20,720
+But in reality, they are constant amortized.
+但实际上，它们会不断摊销。 
+
+552
+00:27:20,720 --> 00:27:22,909
+Now for fun, just in case you're curious,
+现在好玩，以防万一您好奇
+
+553
+00:27:23,109 --> 00:27:26,189
+you can do all of this stuff in constant worst case
+您可以在最坏的情况下完成所有这些工作
+
+554
+00:27:26,190 --> 00:27:27,669
+time per operation.
+每次操作的时间。 
+
+555
+00:27:27,869 --> 00:27:30,869
+May be a fun exercise.
+可能是一个有趣的练习。 
+
+556
+00:27:30,869 --> 00:27:33,089
+Do you want to know how?
+你想知道吗？ 
+
+557
+00:27:33,089 --> 00:27:34,349
+Yeah?
+是啊
+
+558
+00:27:34,349 --> 00:27:39,679
+Rough idea is when you realize that you're
+粗略的想法是当你意识到自己是
+
+559
+00:27:39,680 --> 00:27:43,240
+getting kind of full, you start building on the side
+变得有点饱，你开始在侧面建造
+
+560
+00:27:43,240 --> 00:27:45,740
+a new table of twice the size.
+一个两倍大的新表。 
+
+561
+00:27:45,740 --> 00:27:48,940
+And every time you insert into the actual table,
+每次您插入实际表格时， 
+
+562
+00:27:48,940 --> 00:27:52,279
+you move like five of the items over to the new table,
+您将其中五个项目移到新表格中， 
+
+563
+00:27:52,279 --> 00:27:54,899
+or some constant-- it needs to be a big enough constant.
+或某个常数-它必须足够大。 
+
+564
+00:27:54,900 --> 00:27:56,630
+So that by the time you're full, you just
+这样，当您吃饱的时候， 
+
+565
+00:27:56,630 --> 00:27:58,880
+switch over immediately to the other structure.
+立即切换到其他结构。 
+
+566
+00:27:58,880 --> 00:28:00,253
+It's kind of cool.
+挺酷的
+
+567
+00:28:00,453 --> 00:28:02,369
+It's very tricky to actually get that to work.
+实际操作起来非常棘手。 
+
+568
+00:28:02,369 --> 00:28:04,199
+But if you're in a real time system,
+但是如果您使用的是实时系统， 
+
+569
+00:28:04,200 --> 00:28:05,710
+you might care to know that.
+您可能会想知道这一点。 
+
+570
+00:28:05,710 --> 00:28:08,210
+For the most part, people don't implement those things
+在大多数情况下，人们不会执行那些事情
+
+571
+00:28:08,210 --> 00:28:09,789
+because they're complicated, but it
+因为它们很复杂，但是
+
+572
+00:28:09,789 --> 00:28:11,904
+is possible to get rid of all these amortized.
+有可能摆脱所有这些摊销。 
+
+573
+00:28:11,904 --> 00:28:14,589
+
+
+
+574
+00:28:14,589 --> 00:28:17,449
+Cool.
+凉。 
+
+575
+00:28:17,450 --> 00:28:23,533
+Let's move onto the next topic, which is more hashing related.
+让我们进入下一个与散列相关的主题。 
+
+576
+00:28:23,733 --> 00:28:25,399
+This was sort of general data structures
+这是一般的数据结构
+
+577
+00:28:25,400 --> 00:28:27,710
+in order to implement hashing with chaining,
+为了通过链接实现散列， 
+
+578
+00:28:27,710 --> 00:28:32,650
+but didn't really care about hashing per se.
+但并不真正在乎哈希本身。 
+
+579
+00:28:32,650 --> 00:28:34,930
+We assumed here that we can evaluate the hash function
+我们在这里假设我们可以评估哈希函数
+
+580
+00:28:34,930 --> 00:28:37,660
+in constant time, that we can do insertion in constant time,
+在固定时间内，我们可以在固定时间内进行插入， 
+
+581
+00:28:37,660 --> 00:28:39,517
+but that's the name of the game here.
+但这就是这里的游戏名称。 
+
+582
+00:28:39,517 --> 00:28:40,899
+But otherwise, we didn't really care--
+但除此之外，我们并不在乎- 
+
+583
+00:28:41,099 --> 00:28:43,059
+as long as the rebuilding was linear time,
+只要重建是线性时间， 
+
+584
+00:28:43,059 --> 00:28:44,099
+this technique works.
+这种技术有效。 
+
+585
+00:28:44,099 --> 00:28:48,240
+
+
+
+586
+00:28:48,240 --> 00:28:55,279
+Now we're going to look at a new problem that
+现在我们要看一个新的问题
+
+587
+00:28:55,279 --> 00:28:57,156
+has lots of practical applications.
+有很多实际应用。 
+
+588
+00:28:57,156 --> 00:28:58,572
+I mentioned some of these problems
+我提到了其中一些问题
+
+589
+00:28:58,573 --> 00:29:02,750
+in the last class, which is string matching.
+在最后一个类中，它是字符串匹配。 
+
+590
+00:29:02,750 --> 00:29:04,119
+This is essentially the problem.
+这本质上是问题。 
+
+591
+00:29:04,119 --> 00:29:06,799
+How many people have used Grep in their life?
+一生中有多少人使用过Grep？ 
+
+592
+00:29:06,799 --> 00:29:09,509
+OK, most of you.
+好，你们大多数人
+
+593
+00:29:09,509 --> 00:29:13,132
+How many people have used Find in a text editor?
+有多少人在文本编辑器中使用过查找？ 
+
+594
+00:29:13,132 --> 00:29:15,448
+OK, the rest of you.
+好，其余的人
+
+595
+00:29:15,648 --> 00:29:17,439
+And so this are the same sorts of problems.
+因此，这是同样的问题。 
+
+596
+00:29:17,440 --> 00:29:20,670
+You want to search for a pattern, which is just
+您想搜索一个模式，这仅仅是
+
+597
+00:29:20,670 --> 00:29:23,159
+going to be a substring in some giant string which
+将会是一些巨大的弦中的一个子弦
+
+598
+00:29:23,359 --> 00:29:26,849
+is your document, your file, if you will.
+是您的文档，还是文件（如果需要）。 
+
+599
+00:29:26,849 --> 00:29:40,149
+So state this formally-- given two strings, s and t,
+因此，用两个字符串s和t正式表述这一点， 
+
+600
+00:29:40,150 --> 00:29:54,460
+you want to know does s occur as a substring of t?
+您想知道s是否作为t的子串出现？ 
+
+601
+00:29:54,460 --> 00:30:00,730
+So for example, maybe s is a string 6006
+例如，也许s是字符串6006 
+
+602
+00:30:00,730 --> 00:30:06,680
+and t is your entire-- the mail that you've ever
+这是您的全部-您曾经拥有的邮件
+
+603
+00:30:06,680 --> 00:30:10,130
+received in your life or your inbox, or something.
+生活中或收件箱中收到的东西。 
+
+604
+00:30:10,130 --> 00:30:12,920
+So t is big, typically, and s is small.
+因此，t通常很大，而s很小。 
+
+605
+00:30:12,920 --> 00:30:14,409
+It's what you type usually.
+通常是您输入的内容。 
+
+606
+00:30:14,409 --> 00:30:16,450
+Maybe you're searching for all email from Piazza,
+也许您正在搜索来自Piazza的所有电子邮件， 
+
+607
+00:30:16,450 --> 00:30:20,039
+so you put the Piazza from string or whatever.
+因此，您可以从字符串或其他任何东西放置广场。 
+
+608
+00:30:20,039 --> 00:30:22,254
+You're searching for that in this giant thing
+您正在寻找这个巨大的东西
+
+609
+00:30:22,255 --> 00:30:23,750
+and you'd like to do that quickly.
+并且您想快速地做到这一点。 
+
+610
+00:30:23,750 --> 00:30:26,599
+
+
+
+611
+00:30:26,599 --> 00:30:29,990
+Another application, s is what you type in Google.
+另一个应用程序s是您在Google中键入的内容。 
+
+612
+00:30:29,990 --> 00:30:31,419
+t is the entire web.
+ t是整个网络。 
+
+613
+00:30:31,619 --> 00:30:32,619
+That's what Google does.
+这就是Google所做的。 
+
+614
+00:30:32,619 --> 00:30:36,569
+It searches for the string in the entire web.
+它在整个网络中搜索字符串。 
+
+615
+00:30:36,569 --> 00:30:39,230
+I'm not joking.
+我不是在开玩笑。 
+
+616
+00:30:39,230 --> 00:30:40,660
+OK?
+好？ 
+
+617
+00:30:40,660 --> 00:30:43,220
+Fine.
+精细。 
+
+618
+00:30:43,220 --> 00:30:45,140
+So we'd like to do that.
+因此，我们想这样做。 
+
+619
+00:30:45,140 --> 00:30:49,629
+What's the obvious way to search for a substring
+搜索子字符串的明显方法是什么
+
+620
+00:30:49,829 --> 00:30:51,967
+in a giant string?
+大串？ 
+
+621
+00:30:51,968 --> 00:30:53,923
+Yeah?
+是啊
+
+622
+00:30:53,923 --> 00:30:56,045
+AUDIENCE: Check each substring of that length.
+听众：检查该长度的每个子串。 
+
+623
+00:30:56,045 --> 00:30:58,420
+PROFESSOR: Just check each substring of the right length.
+教授：只需检查每个正确长度的子串即可。 
+
+624
+00:30:58,420 --> 00:31:01,259
+So it's got to be the length of s.
+所以必须是s的长度。 
+
+625
+00:31:01,259 --> 00:31:04,799
+And there's only a linear number of them, so check each one.
+而且它们只有一个线性数，因此请检查每个。 
+
+626
+00:31:04,799 --> 00:31:05,639
+Let's analyze that.
+让我们来分析一下。 
+
+627
+00:31:05,640 --> 00:31:25,460
+
+
+
+628
+00:31:25,460 --> 00:31:36,740
+So a simple algorithm-- actually,
+所以一个简单的算法-实际上， 
+
+629
+00:31:36,740 --> 00:31:38,865
+just for fun, I have pseudocode for it.
+只是为了好玩，我有伪代码。 
+
+630
+00:31:38,865 --> 00:31:43,461
+
+
+
+631
+00:31:43,461 --> 00:31:45,450
+I have Python code for it.
+我有Python代码。 
+
+632
+00:31:45,450 --> 00:31:46,943
+Even more cool.
+更酷。 
+
+633
+00:31:46,943 --> 00:32:09,369
+
+
+
+634
+00:32:09,369 --> 00:32:09,939
+OK.
+好。 
+
+635
+00:32:09,940 --> 00:32:11,900
+I don't know if you know all these Python features,
+我不知道您是否了解所有这些Python功能， 
+
+636
+00:32:11,900 --> 00:32:12,323
+but you should.
+但是你应该。 
+
+637
+00:32:12,523 --> 00:32:13,439
+They're super cool.
+他们超酷。 
+
+638
+00:32:13,440 --> 00:32:15,509
+This is string splicing.
+这是字符串拼接。 
+
+639
+00:32:15,509 --> 00:32:19,890
+So we're looking in t-- let me draw the picture.
+因此，我们正在寻找-让我来画画。 
+
+640
+00:32:19,890 --> 00:32:22,660
+Here we have s, here we have t.
+这里有s，这里有t。 
+
+641
+00:32:22,660 --> 00:32:23,879
+Think of it as a big string.
+认为它是一个很大的字符串。 
+
+642
+00:32:24,079 --> 00:32:27,710
+We'd like to compare s like that,
+我们想比较s 
+
+643
+00:32:27,710 --> 00:32:32,190
+and then we'd like to compare s shifted over one to see
+然后我们想比较s移一个
+
+644
+00:32:32,190 --> 00:32:34,410
+whether all of the characters match there.
+是否所有字符都在那里匹配。 
+
+645
+00:32:34,410 --> 00:32:37,589
+And then shifted over one more, and so on.
+然后再移一个，依此类推。 
+
+646
+00:32:37,789 --> 00:32:40,200
+And so we're looking at a substring of t from position
+所以我们从位置看t的子串
+
+647
+00:32:40,200 --> 00:32:42,409
+i the position i plus the length of s,
+我的位置我加上s的长度， 
+
+648
+00:32:42,609 --> 00:32:44,299
+not including the last one.
+不包括最后一个。 
+
+649
+00:32:44,299 --> 00:32:46,980
+So that's of length exactly, length of s.
+这就是长度，即s的长度。 
+
+650
+00:32:46,980 --> 00:32:48,827
+This is s.
+这是s。 
+
+651
+00:32:48,827 --> 00:32:51,039
+This is t.
+这是t。 
+
+652
+00:32:51,039 --> 00:32:53,079
+And so each of these looks like that pattern.
+因此，每个看起来都像那个模式。 
+
+653
+00:32:53,079 --> 00:32:54,746
+We compare s to t.
+我们将s与t进行比较。 
+
+654
+00:32:54,747 --> 00:32:56,004
+What this comparison operation does
+此比较操作的作用
+
+655
+00:32:56,204 --> 00:32:58,038
+in Python is it checks the first characters,
+在Python中，它检查第一个字符， 
+
+656
+00:32:58,038 --> 00:32:59,259
+see if they're equal.
+看看他们是否相等。 
+
+657
+00:32:59,259 --> 00:33:01,799
+If they are, keep going until they find a mismatch.
+如果是这样，请继续进行下去，直到发现不匹配为止。 
+
+658
+00:33:01,799 --> 00:33:04,509
+If there's no mismatch, then you return true.
+如果没有不匹配，则返回true。 
+
+659
+00:33:04,509 --> 00:33:07,170
+Otherwise, you return false.
+否则，您返回false。 
+
+660
+00:33:07,170 --> 00:33:10,769
+And then we do this roughly length of t times
+然后我们大约进行了t次
+
+661
+00:33:10,769 --> 00:33:13,269
+because that's how many shifts there are, except at the end
+因为那是多少班，除了最后
+
+662
+00:33:13,269 --> 00:33:14,150
+we run out of room.
+我们用完了。 
+
+663
+00:33:14,150 --> 00:33:16,369
+We don't care if we shift beyond the right
+我们不在乎是否超越正确的方向
+
+664
+00:33:16,569 --> 00:33:18,519
+because that's clearly not going to match.
+因为那显然不会匹配。 
+
+665
+00:33:18,519 --> 00:33:20,750
+And so it's actually length of t minus like of s.
+因此，它实际上是t减去s之类的长度。 
+
+666
+00:33:20,750 --> 00:33:22,970
+That's the number of iterations.
+那就是迭代次数。 
+
+667
+00:33:22,970 --> 00:33:25,835
+Hopefully I got all the index arithmetic right.
+希望我所有的索引算术都正确。 
+
+668
+00:33:25,835 --> 00:33:27,460
+And there's no plus ones or minus ones.
+而且没有加号或减号。 
+
+669
+00:33:27,460 --> 00:33:30,220
+I think this is correct.
+我认为这是正确的。 
+
+670
+00:33:30,220 --> 00:33:32,380
+We want to know whether any of these match.
+我们想知道是否这些匹配。 
+
+671
+00:33:32,380 --> 00:33:38,839
+If so, the answer is yes, s occurs as a substring of t.
+如果是，则答案为是，s作为t的子字符串出现。 
+
+672
+00:33:39,039 --> 00:33:42,009
+Of course, in reality you want to know not just do any match,
+当然，实际上，您不仅想知道做任何比赛， 
+
+673
+00:33:42,009 --> 00:33:44,170
+but show them to me, things like that.
+但是给他们看给我看
+
+674
+00:33:44,170 --> 00:33:47,307
+But you can change that.
+但是你可以改变它。 
+
+675
+00:33:47,307 --> 00:33:48,140
+Same amount of time.
+时间相同。 
+
+676
+00:33:48,140 --> 00:33:50,015
+So what's the running time of this algorithm?
+那么该算法的运行时间是多少？ 
+
+677
+00:33:50,015 --> 00:33:54,715
+
+
+
+678
+00:33:54,915 --> 00:33:57,939
+So my relevant things are the length of s
+所以我相关的是s的长度
+
+679
+00:33:57,940 --> 00:34:01,130
+and the length of t.
+和t的长度
+
+680
+00:34:01,130 --> 00:34:03,044
+What's the running time?
+几点钟了？ 
+
+681
+00:34:03,044 --> 00:34:04,079
+AUDIENCE: [INAUDIBLE]
+观众：[听不清] 
+
+682
+00:34:04,279 --> 00:34:05,270
+PROFESSOR: Sorry?
+教授：对不起？ 
+
+683
+00:34:05,270 --> 00:34:06,144
+AUDIENCE: [INAUDIBLE]
+观众：[听不清] 
+
+684
+00:34:06,144 --> 00:34:08,519
+PROFESSOR: T by-- t multiplied by s, yeah.
+教授：T by-- t乘以s，是的。 
+
+685
+00:34:08,519 --> 00:34:10,380
+Exactly.
+究竟。 
+
+686
+00:34:10,380 --> 00:34:14,739
+Technically, it's length of s times length of t minus s.
+从技术上讲，它是s的长度乘以t的长度减去s的长度。 
+
+687
+00:34:14,739 --> 00:34:18,760
+
+
+
+688
+00:34:18,760 --> 00:34:24,429
+But typically, this is just s times t.
+但是通常，这只是s倍。 
+
+689
+00:34:24,429 --> 00:34:25,900
+And it's always at most s times t,
+而且总是最多s倍， 
+
+690
+00:34:25,900 --> 00:34:28,822
+and it's usually the same thing because s is usually smaller--
+而且通常是同一回事，因为s通常较小- 
+
+691
+00:34:28,822 --> 00:34:30,239
+at least a constant factor than t.
+至少比t恒定。 
+
+692
+00:34:30,239 --> 00:34:32,800
+
+
+
+693
+00:34:32,800 --> 00:34:33,909
+This is kind of slow.
+这有点慢。 
+
+694
+00:34:33,909 --> 00:34:38,840
+If you're searching for a big string, it's not so great.
+如果您要搜索的是大字符串，那不是很好。 
+
+695
+00:34:38,840 --> 00:34:41,670
+I mean, certainly you need s plus t.
+我的意思是，当然您需要s加t。 
+
+696
+00:34:41,869 --> 00:34:43,569
+You've got to look at the strings.
+您必须查看字符串。 
+
+697
+00:34:43,570 --> 00:34:45,934
+But s times t is kind of-- it could be quadratic,
+但是s有时是t的二次方， 
+
+698
+00:34:45,934 --> 00:34:49,199
+if you're searching for a really long string in another string.
+如果要在另一个字符串中搜索很长的字符串。 
+
+699
+00:34:49,199 --> 00:34:50,730
+So what we'd like to do today is use
+所以我们今天要做的就是使用
+
+700
+00:34:50,730 --> 00:34:56,289
+hashing to get this down to linear time.
+哈希以将其降至线性时间。 
+
+701
+00:34:56,289 --> 00:34:58,795
+So, ideas?
+那么，想法？ 
+
+702
+00:34:58,795 --> 00:34:59,670
+How could we do that?
+我们该怎么做？ 
+
+703
+00:34:59,670 --> 00:35:09,349
+
+
+
+704
+00:35:09,349 --> 00:35:10,389
+Using hashing.
+使用哈希。 
+
+705
+00:35:10,389 --> 00:35:11,612
+Subtle hint.
+微妙的提示。 
+
+706
+00:35:11,612 --> 00:35:14,570
+Yeah?
+是啊
+
+707
+00:35:14,570 --> 00:35:17,528
+AUDIENCE: If we take something into account [INAUDIBLE].
+听众：如果我们考虑到某些问题[听不清]。 
+
+708
+00:35:17,528 --> 00:35:24,916
+
+
+
+709
+00:35:24,916 --> 00:35:27,039
+PROFESSOR: OK, so you want to decompose your string
+教授：好的，所以您想分解字符串
+
+710
+00:35:27,039 --> 00:35:28,840
+into words and use the fact that there
+变成文字并使用事实
+
+711
+00:35:28,840 --> 00:35:30,786
+are fewer words than characters.
+单词少于字符。 
+
+712
+00:35:30,786 --> 00:35:32,659
+You could probably get something out of that,
+您可能会从中得到一些好处， 
+
+713
+00:35:32,659 --> 00:35:37,049
+and old search engines used to do that.
+和旧的搜索引擎曾经这样做。 
+
+714
+00:35:37,050 --> 00:35:40,050
+But it's not necessary, turns out.
+事实证明，这不是必须的。 
+
+715
+00:35:40,050 --> 00:35:44,269
+And it will also depend on what your average word length is.
+而且，这还取决于您的平均单词长度。 
+
+716
+00:35:44,469 --> 00:35:47,881
+We are, in the end, today, we're not going to analyze it fully,
+最后，今天，我们将不进行全面分析， 
+
+717
+00:35:47,882 --> 00:35:49,590
+but we are going to get an algorithm that
+但是我们要得到一个算法
+
+718
+00:35:49,590 --> 00:35:52,289
+runs in this time guaranteed.
+在这段时间内运行。 
+
+719
+00:35:52,489 --> 00:35:56,890
+In expectation because of a randomized-- yeah?
+因为随机而期望-是吗？ 
+
+720
+00:35:56,891 --> 00:36:00,867
+AUDIENCE: If we were to hash [INAUDIBLE] size s, that would
+观众：如果我们要对[音频不清晰] size进行哈希处理， 
+
+721
+00:36:00,867 --> 00:36:06,164
+[INAUDIBLE] and then we would check the hash [INAUDIBLE].
+ [音频不清晰]，然后我们将检查哈希值[音频不清晰]。 
+
+722
+00:36:06,164 --> 00:36:06,831
+PROFESSOR: Good.
+教授：很好。 
+
+723
+00:36:06,831 --> 00:36:09,000
+So the idea is to-- what we're looking
+所以想法是-我们正在寻找
+
+724
+00:36:09,000 --> 00:36:12,070
+at is a rolling window of t always of size s.
+ at是总大小为s的t的滚动窗口。 
+
+725
+00:36:12,070 --> 00:36:15,250
+And at each time we want to know, is it the same as s?
+并且每次我们想知道的时候，它与s相同吗？ 
+
+726
+00:36:15,250 --> 00:36:17,666
+Now, if somehow-- it's expensive to check
+现在，如果不知何故-检查起来很昂贵
+
+727
+00:36:17,666 --> 00:36:19,250
+whether a string is equal to a string.
+字符串是否等于字符串。 
+
+728
+00:36:19,250 --> 00:36:21,202
+There's no way getting around that.
+没有办法解决这个问题。 
+
+729
+00:36:21,202 --> 00:36:24,610
+Well, there are ways, but there isn't a way for just
+好吧，有办法，但是没有办法
+
+730
+00:36:24,610 --> 00:36:25,440
+given two strings.
+给出两个字符串。 
+
+731
+00:36:25,639 --> 00:36:28,329
+But if somehow instead of checking the strings we
+但是如果以某种方式而不是检查字符串，我们
+
+732
+00:36:28,329 --> 00:36:30,630
+could check a hash function of the strings,
+可以检查字符串的哈希函数， 
+
+733
+00:36:30,630 --> 00:36:32,340
+because strings are big, potentially.
+因为字符串可能很大。 
+
+734
+00:36:32,340 --> 00:36:34,019
+We don't know how big s is.
+我们不知道s有多大。 
+
+735
+00:36:34,219 --> 00:36:37,789
+And so the universe of strings of length s
+因此，长度为s的弦的宇宙
+
+736
+00:36:37,789 --> 00:36:39,335
+is potentially very big.
+可能很大。 
+
+737
+00:36:39,335 --> 00:36:40,709
+It's expensive to compare things.
+比较事物是昂贵的。 
+
+738
+00:36:40,710 --> 00:36:43,190
+If we could just hash it down to some reasonable size,
+如果我们可以将其哈希到合理的大小， 
+
+739
+00:36:43,190 --> 00:36:44,539
+to something that fits in a word,
+恰如其分地
+
+740
+00:36:44,739 --> 00:36:46,989
+then we can compare whether those two words are equal,
+然后我们可以比较这两个词是否相等， 
+
+741
+00:36:46,989 --> 00:36:48,759
+whether those two hash values are equal,
+那两个哈希值是否相等， 
+
+742
+00:36:48,760 --> 00:36:51,460
+whether there's a collision in the table.
+桌子上是否有碰撞。 
+
+743
+00:36:51,659 --> 00:36:55,500
+That would somehow-- that would make things go faster.
+那将以某种方式使事情进展得更快。 
+
+744
+00:36:55,500 --> 00:36:59,940
+We could do that in constant time per operation.
+我们可以在每次操作的固定时间内执行此操作。 
+
+745
+00:36:59,940 --> 00:37:01,760
+How could we do that?
+我们该怎么做？ 
+
+746
+00:37:01,760 --> 00:37:06,480
+That's the tricky part, but that is exactly the right idea.
+那是棘手的部分，但这是正确的想法。 
+
+747
+00:37:06,480 --> 00:37:12,409
+So-- make some space.
+所以-腾出一些空间。 
+
+748
+00:37:12,409 --> 00:37:28,129
+
+
+
+749
+00:37:28,130 --> 00:37:32,019
+I think I'm going to do things a little out of order
+我想我会做些混乱的事情
+
+750
+00:37:32,219 --> 00:37:34,199
+from what I have in my notes, and tell you
+从我的笔记中告诉你
+
+751
+00:37:34,199 --> 00:37:37,689
+about something called rolling hashes.
+关于所谓的滚动哈希。 
+
+752
+00:37:37,690 --> 00:37:40,869
+And then we'll see how they're used.
+然后，我们将了解它们的用法。 
+
+753
+00:37:40,869 --> 00:37:42,170
+So shelve that idea.
+所以搁置这个想法。 
+
+754
+00:37:42,170 --> 00:37:43,519
+We're going to come back to it.
+我们将回到它。 
+
+755
+00:37:43,719 --> 00:37:48,429
+We need a data structure to help us do this.
+我们需要一个数据结构来帮助我们做到这一点。 
+
+756
+00:37:48,429 --> 00:37:51,379
+Because if we just compute the hash function of this thing,
+因为如果我们仅计算该事物的哈希函数， 
+
+757
+00:37:51,380 --> 00:37:52,480
+compare it to the hash function of this thing,
+比较它与这个东西的哈希函数， 
+
+758
+00:37:52,679 --> 00:37:54,971
+and then compute the hash function of the shifted value
+然后计算移位值的哈希函数
+
+759
+00:37:54,971 --> 00:37:56,650
+of t and compare it, we don't have
+并比较它，我们没有
+
+760
+00:37:56,650 --> 00:37:58,349
+to recompute the hash of s.
+重新计算s的哈希值。 
+
+761
+00:37:58,349 --> 00:38:00,960
+That's going to be free once you do it once.
+一旦执行一次，该操作将是免费的。 
+
+762
+00:38:00,960 --> 00:38:02,650
+But computing the hash function of this
+但是计算这个的哈希函数
+
+763
+00:38:02,650 --> 00:38:03,432
+and then the hash function of this
+然后这个的哈希函数
+
+764
+00:38:03,432 --> 00:38:05,190
+and the hash function of this, usually
+和它的哈希函数，通常
+
+765
+00:38:05,190 --> 00:38:06,773
+to compute each of those hash function
+计算每个哈希函数
+
+766
+00:38:06,773 --> 00:38:08,355
+would take length of s time.
+将花费s的时间。 
+
+767
+00:38:08,355 --> 00:38:10,809
+And so we're not saving any time.
+因此，我们不会节省任何时间。 
+
+768
+00:38:10,809 --> 00:38:13,659
+Somehow, if we have the hash function of this,
+不知何故，如果我们具有此哈希函数， 
+
+769
+00:38:13,659 --> 00:38:15,859
+the first substring of length s, we'd
+长度s的第一个子串， 
+
+770
+00:38:15,860 --> 00:38:18,010
+like to very quickly compute the hash function
+喜欢非常快速地计算哈希函数
+
+771
+00:38:18,010 --> 00:38:21,706
+of the next substring in constant time.
+下一个子字符串在恒定时间内的时间。 
+
+772
+00:38:21,706 --> 00:38:22,206
+Yeah?
+是啊
+
+773
+00:38:22,206 --> 00:38:23,958
+AUDIENCE: You already have, like, s minus 1
+听众：您已经有s减1 
+
+774
+00:38:24,157 --> 00:38:25,443
+of the characters of the--
+ - 
+
+775
+00:38:25,443 --> 00:38:26,110
+PROFESSOR: Yeah.
+教授：是的。 
+
+776
+00:38:26,110 --> 00:38:30,690
+If you look at this portion of s and this portion of s,
+如果您查看的这部分和的这部分， 
+
+777
+00:38:30,690 --> 00:38:33,599
+they share s minus 1 of the characters.
+他们共享s减去-1个字符。 
+
+778
+00:38:33,599 --> 00:38:35,539
+Just one character different.
+只是一个字符不同。 
+
+779
+00:38:35,539 --> 00:38:38,980
+First one gets deleted, last character gets added.
+第一个被删除，最后一个字符被添加。 
+
+780
+00:38:38,980 --> 00:38:39,980
+So here's what we want.
+这就是我们想要的。 
+
+781
+00:38:39,980 --> 00:38:43,230
+
+
+
+782
+00:38:43,230 --> 00:38:47,960
+Given a hash value-- maybe I should call this r.
+给定一个哈希值-也许我应该将其称为r。 
+
+783
+00:38:47,960 --> 00:38:49,280
+It's not the hash function.
+这不是哈希函数。 
+
+784
+00:38:49,280 --> 00:38:51,820
+
+
+
+785
+00:38:51,820 --> 00:38:53,670
+Give it a rolling hash value.
+给它一个滚动哈希值。 
+
+786
+00:38:53,670 --> 00:38:57,289
+You might say, I'd like to be able to append a character.
+您可能会说，我希望能够附加一个字符。 
+
+787
+00:38:57,489 --> 00:39:05,479
+I should say, r maintains a string.
+我应该说，r保持字符串。 
+
+788
+00:39:05,480 --> 00:39:09,099
+
+
+
+789
+00:39:09,099 --> 00:39:13,739
+There's some string, let's call it x.
+有一些字符串，我们称它为x。 
+
+790
+00:39:13,739 --> 00:39:18,729
+And what r.append of c does is add
+ C的r.append所做的是添加
+
+791
+00:39:18,730 --> 00:39:22,715
+character c to the end of x.
+字符c到x的末尾。 
+
+792
+00:39:22,715 --> 00:39:25,420
+
+
+
+793
+00:39:25,619 --> 00:39:27,460
+And then we also want an operation
+然后我们还想要一个手术
+
+794
+00:39:27,460 --> 00:39:30,159
+which is-- you might call it pop left in Python.
+这是-您可能会称其为Python左弹出。 
+
+795
+00:39:30,159 --> 00:39:32,899
+I'm going to call it skip.
+我将其称为“跳过”。 
+
+796
+00:39:32,900 --> 00:39:34,480
+Shorter.
+短一点
+
+797
+00:39:34,480 --> 00:39:40,880
+Delete the first character of x.
+删除x的第一个字符。 
+
+798
+00:39:40,880 --> 00:39:44,369
+
+
+
+799
+00:39:44,369 --> 00:39:52,690
+And assuming it's c.
+并假设它是c。 
+
+800
+00:39:52,690 --> 00:39:55,369
+So we can do this because over here,
+所以我们可以这样做，因为在这里， 
+
+801
+00:39:55,369 --> 00:39:58,609
+what we want to do is add this character, which
+我们想要做的就是添加这个字符， 
+
+802
+00:39:58,610 --> 00:40:01,960
+is like t of length of s.
+就像长度为s的t一样。 
+
+803
+00:40:01,960 --> 00:40:03,730
+And we want to delete this character
+我们要删除这个字符
+
+804
+00:40:03,730 --> 00:40:06,079
+from the front, which is t of 0.
+从前面开始，即t为0。 
+
+805
+00:40:06,079 --> 00:40:10,125
+Then we will get the next strength.
+然后，我们将获得下一个优势。 
+
+806
+00:40:10,125 --> 00:40:15,199
+And at all times, r-- what's the point of this r?
+而且在任何时候，r-这个r的意义是什么？ 
+
+807
+00:40:15,199 --> 00:40:18,369
+You can say r-- let's say open paren, close
+你可以说r-假设打开括号，关闭
+
+808
+00:40:18,369 --> 00:40:22,029
+paren-- this will give you a hash value
+括号-这将为您提供哈希值
+
+809
+00:40:22,030 --> 00:40:25,280
+of the current strength.
+当前强度。 
+
+810
+00:40:25,280 --> 00:40:29,730
+So this is basically h of x for some hash function
+所以对于一些哈希函数，这基本上是x的h 
+
+811
+00:40:29,929 --> 00:40:32,882
+h, some reasonable hash function.
+ h，一些合理的哈希函数。 
+
+812
+00:40:32,882 --> 00:40:34,340
+If we could do this and we could do
+如果我们能做到，我们就能做到
+
+813
+00:40:34,340 --> 00:40:37,190
+each of these operations in constant time,
+这些操作都是在恒定的时间进行的， 
+
+814
+00:40:37,389 --> 00:40:39,069
+then we can do string matching.
+然后我们可以进行字符串匹配。 
+
+815
+00:40:39,070 --> 00:40:42,210
+Let me tell you how.
+让我告诉你如何。 
+
+816
+00:40:42,210 --> 00:40:45,530
+This is called the Karp-Rabin string matching algorithm.
+这称为Karp-Rabin字符串匹配算法。 
+
+817
+00:40:45,530 --> 00:40:56,068
+
+
+
+818
+00:40:56,268 --> 00:40:58,759
+And if it's not clear exactly what's allowed here,
+如果不清楚在这里允许什么， 
+
+819
+00:40:58,760 --> 00:41:00,510
+you'll see it as we use it.
+使用过程中，您会看到它。 
+
+820
+00:41:00,510 --> 00:41:12,539
+
+
+
+821
+00:41:12,739 --> 00:41:15,500
+First thing I'd like to do is compute the hash function of s.
+我想做的第一件事是计算s的哈希函数。 
+
+822
+00:41:15,500 --> 00:41:17,992
+I only need to do that once, so I'll do it.
+我只需要做一次，所以我会做。 
+
+823
+00:41:17,992 --> 00:41:20,250
+In this data structure, the only thing you're allowed to do
+在此数据结构中，您唯一要做的就是
+
+824
+00:41:20,449 --> 00:41:21,309
+is add characters.
+是添加字符。 
+
+825
+00:41:21,309 --> 00:41:23,110
+Initially you have an empty string.
+最初，您有一个空字符串。 
+
+826
+00:41:23,110 --> 00:41:25,769
+And so for each character in s I'll just append it,
+因此，对于s中的每个字符，我都将其追加， 
+
+827
+00:41:25,769 --> 00:41:30,509
+and now rs gives me a hash value of s.
+现在rs给我一个s的哈希值。 
+
+828
+00:41:30,510 --> 00:41:31,880
+OK?
+好？ 
+
+829
+00:41:31,880 --> 00:41:37,340
+Now, I'd like to get started and compute
+现在，我想开始计算
+
+830
+00:41:37,340 --> 00:41:40,480
+the hash function of the first s characters of t.
+ t的前s个字符的哈希函数。 
+
+831
+00:41:40,480 --> 00:41:43,840
+
+
+
+832
+00:41:43,840 --> 00:41:48,250
+So this would be t up to length of s.
+因此，这将达到s的长度。 
+
+833
+00:41:48,250 --> 00:41:51,650
+
+
+
+834
+00:41:51,650 --> 00:41:54,059
+And I'm going to call this thing rt, that's
+我将其称为rt，那就是
+
+835
+00:41:54,059 --> 00:41:55,585
+my rolling hash for t.
+我的滚动哈希值。 
+
+836
+00:41:55,585 --> 00:41:59,693
+
+
+
+837
+00:41:59,693 --> 00:42:00,860
+And append those characters.
+并附加这些字符。 
+
+838
+00:42:00,860 --> 00:42:03,820
+So now rs is a rolling hash of s.
+因此，现在rs是s的滚动哈希。 
+
+839
+00:42:03,820 --> 00:42:07,934
+rt is a rolling hash of the first s characters in t.
+ rt是t中前s个字符的滚动哈希。 
+
+840
+00:42:07,934 --> 00:42:09,400
+So I should check whether they're equal.
+所以我应该检查它们是否相等。 
+
+841
+00:42:09,599 --> 00:42:12,789
+If they're not, shift over by one.
+如果不是，请向前移动一个。 
+
+842
+00:42:12,789 --> 00:42:14,706
+Add one character at the end, delete character
+最后添加一个字符，删除字符
+
+843
+00:42:14,706 --> 00:42:15,980
+from the beginning.
+从一开始就。 
+
+844
+00:42:15,980 --> 00:42:18,969
+I'm going to have to do this many times.
+我将不得不做多次。 
+
+845
+00:42:18,969 --> 00:42:23,359
+So I guess technically, I need to check
+所以我想从技术上来说，我需要检查
+
+846
+00:42:23,360 --> 00:42:24,610
+whether these are equal first.
+这些是否首先相等。 
+
+847
+00:42:24,610 --> 00:42:27,579
+
+
+
+848
+00:42:27,579 --> 00:42:31,052
+If they're equal, then we'll talk about it in a moment.
+如果它们相等，那么我们稍后再讨论。 
+
+849
+00:42:31,052 --> 00:42:32,510
+The main thing I need to do is this
+我要做的主要是
+
+850
+00:42:32,510 --> 00:42:35,780
+for loop, which checks all of the other.
+ for循环，用于检查所有其他循环。 
+
+851
+00:42:35,780 --> 00:42:45,530
+
+
+
+852
+00:42:45,530 --> 00:42:50,250
+And all I need to do is throw away the first letter, which
+我要做的就是丢掉第一个字母
+
+853
+00:42:50,250 --> 00:42:53,425
+I know is t of i minus length of s.
+我知道我的t减去s的长度。 
+
+854
+00:42:53,425 --> 00:42:56,039
+
+
+
+855
+00:42:56,239 --> 00:42:59,969
+And add the next letter, which is going to be t of i.
+并添加下一个字母，即i的t。 
+
+856
+00:42:59,969 --> 00:43:04,659
+
+
+
+857
+00:43:04,659 --> 00:43:07,375
+And then after I do that, I don't change hs
+然后我做完之后，我不会改变hs 
+
+858
+00:43:07,376 --> 00:43:08,250
+because that's fixed.
+因为那是固定的。 
+
+859
+00:43:08,250 --> 00:43:10,400
+That's just-- or, sorry, I switched from h
+就是-抱歉，我从h换了
+
+860
+00:43:10,400 --> 00:43:13,860
+to-- in my notes I have h.
+要-在我的笔记中我有h。 
+
+861
+00:43:13,860 --> 00:43:17,414
+I've been switching to r, so all those h's are r's.
+我一直在切换到r，所以所有的h都是r。 
+
+862
+00:43:17,614 --> 00:43:20,439
+Sorry about that.
+对于那个很抱歉。 
+
+863
+00:43:20,440 --> 00:43:36,409
+So then if rs equals rt, then potentially that substring of t
+因此，如果rs等于rt，则可能是t的子字符串
+
+864
+00:43:36,409 --> 00:43:38,119
+matches s.
+符合s。 
+
+865
+00:43:38,119 --> 00:43:41,409
+But it's potentially because we're hashing.
+但这可能是因为我们正在哈希。 
+
+866
+00:43:41,409 --> 00:43:44,829
+Things are only true in expectation.
+事情只有在期望中是真实的。 
+
+867
+00:43:44,829 --> 00:43:47,019
+There's some probability of failure.
+有失败的可能性。 
+
+868
+00:43:47,019 --> 00:43:50,820
+Just because the hash function of two strings comes out equal
+仅仅因为两个字符串的哈希函数相等
+
+869
+00:43:50,820 --> 00:43:52,730
+doesn't mean the strings themselves are equal,
+并不意味着弦线本身相等， 
+
+870
+00:43:52,929 --> 00:43:54,909
+because there are collisions.
+因为有碰撞
+
+871
+00:43:54,909 --> 00:43:58,519
+Even distinct strings may map to the same slot in the table.
+甚至不同的字符串也可能映射到表中的同一插槽。 
+
+872
+00:43:58,519 --> 00:44:04,809
+So what we do in this situation is check
+所以我们在这种情况下要做的就是检查
+
+873
+00:44:04,809 --> 00:44:13,630
+whether s equals t-- I did it slightly less conveniently
+ s是否等于t--我不太方便
+
+874
+00:44:13,630 --> 00:44:23,099
+than before-- it's like i minus length of s plus 1 to i plus 1.
+比以前少了-就像我减去s的长度加1到i加1。 
+
+875
+00:44:23,099 --> 00:44:23,789
+Oh well.
+那好吧。 
+
+876
+00:44:23,789 --> 00:44:28,789
+It wasn't very beautiful but it works.
+它不是很漂亮，但是可以用。 
+
+877
+00:44:28,789 --> 00:44:31,099
+So in this case, I'm going to check it character
+所以在这种情况下，我将检查字符
+
+878
+00:44:31,099 --> 00:44:32,809
+by character.
+按字符。 
+
+879
+00:44:32,809 --> 00:44:34,840
+OK?
+好？ 
+
+880
+00:44:34,840 --> 00:44:39,329
+If they're equal, then we found a match.
+如果它们相等，那么我们找到了一个匹配项。 
+
+881
+00:44:39,329 --> 00:44:42,536
+So it's kind of OK that I spent all this time to check them.
+所以我花所有的时间检查它们是可以的。 
+
+882
+00:44:42,536 --> 00:44:44,869
+In particular, if I'm just looking for the first match--
+特别是如果我只是在寻找第一场比赛， 
+
+883
+00:44:44,869 --> 00:44:47,409
+like you're searching through a text document,
+就像您在搜索文本文档一样， 
+
+884
+00:44:47,409 --> 00:44:50,659
+you just care about the first match-- then you're done.
+您只需要关心第一个比赛就可以了。 
+
+885
+00:44:50,659 --> 00:44:54,493
+So yeah, I spent order s time to do this,
+是的，我花了很多时间来做这个， 
+
+886
+00:44:54,494 --> 00:44:56,460
+but if they're equal it's sort of worth that effort.
+但是如果它们相等，那值得付出努力。 
+
+887
+00:44:56,659 --> 00:44:58,759
+I found the match.
+我找到了比赛。 
+
+888
+00:44:58,760 --> 00:45:02,750
+If they're not equal, we basically
+如果它们不相等，我们基本上
+
+889
+00:45:02,949 --> 00:45:07,159
+hope or we will engineer it so that this
+希望或我们将其设计成这样
+
+890
+00:45:07,159 --> 00:45:09,769
+happens with probability at most 1/s.
+发生的可能性最高为1 / s。 
+
+891
+00:45:09,769 --> 00:45:20,840
+
+
+
+892
+00:45:20,840 --> 00:45:24,775
+If we can do that, then the expected time here is constant.
+如果我们能够做到这一点，那么这里的预期时间就是恒定的。 
+
+893
+00:45:24,775 --> 00:45:33,710
+
+
+
+894
+00:45:33,909 --> 00:45:40,529
+So that would be good because then, if skip and append
+这样会很好，因为如果跳过并追加
+
+895
+00:45:40,530 --> 00:45:44,889
+take constant time and this sort of double checking
+花费固定的时间，进行这种双重检查
+
+896
+00:45:44,889 --> 00:45:46,980
+only takes constant expected time-- except when we find
+只需要恒定的预期时间-除非我们发现
+
+897
+00:45:47,179 --> 00:45:49,480
+matches and then we're OK with it--
+匹配，然后我们就可以了- 
+
+898
+00:45:49,480 --> 00:45:52,760
+then this overall thing will take linear time.
+那么整个过程将花费线性时间。 
+
+899
+00:45:52,760 --> 00:46:02,570
+In fact, the proper thing would be this is you pay s plus t,
+实际上，正确的做法是您支付s加t， 
+
+900
+00:46:02,570 --> 00:46:07,170
+then you also pay-- for each match that you want to report,
+那么您还需要为要报告的每场比赛付费， 
+
+901
+00:46:07,369 --> 00:46:08,730
+you pay length of s.
+您支付s的长度。 
+
+902
+00:46:08,730 --> 00:46:10,947
+
+
+
+903
+00:46:10,947 --> 00:46:13,030
+I'm not sure whether you can get rid of that term.
+我不确定您是否可以摆脱这个名词。 
+
+904
+00:46:13,030 --> 00:46:14,996
+But in particular, if you just care about one match,
+但特别是如果您只关心一场比赛， 
+
+905
+00:46:15,195 --> 00:46:16,079
+this is linear time.
+这是线性时间。 
+
+906
+00:46:16,079 --> 00:46:19,166
+
+
+
+907
+00:46:19,166 --> 00:46:20,250
+It's pretty cool.
+它太酷了。 
+
+908
+00:46:20,250 --> 00:46:23,670
+
+
+
+909
+00:46:23,670 --> 00:46:25,280
+There's one remaining question, which
+还有一个问题， 
+
+910
+00:46:25,280 --> 00:46:28,400
+is how do you build this data structure?
+您如何建立这种数据结构？ 
+
+911
+00:46:28,400 --> 00:46:30,500
+Is the algorithm clear though?
+虽然算法清楚吗？ 
+
+912
+00:46:30,699 --> 00:46:32,269
+I mean, I wrote it out in gory detail
+我的意思是我详细地写了出来
+
+913
+00:46:32,269 --> 00:46:33,894
+so you can really see what's happening,
+这样您才能真正看到正在发生的事情， 
+
+914
+00:46:33,894 --> 00:46:36,070
+also because you need to do it in your problem set
+也因为您需要在问题集中进行
+
+915
+00:46:36,070 --> 00:46:39,460
+so I give you as much code to work from as possible.
+所以我给你尽可能多的代码来工作。 
+
+916
+00:46:39,659 --> 00:46:40,799
+Question?
+题？ 
+
+917
+00:46:40,800 --> 00:46:42,300
+AUDIENCE: What is rs?
+听众：什么是rs？ 
+
+918
+00:46:42,300 --> 00:46:48,900
+PROFESSOR: rs is going to represent a hash value of s.
+教授：rs将代表s的哈希值。 
+
+919
+00:46:49,099 --> 00:46:50,769
+You could just say h of s.
+您可以说s的h。 
+
+920
+00:46:50,769 --> 00:46:54,090
+But what I like to show is that all you need
+但我想证明的是，您所需要的
+
+921
+00:46:54,090 --> 00:46:55,443
+are these operations.
+这些操作。 
+
+922
+00:46:55,643 --> 00:46:57,059
+And so given a data structure that
+所以给定一个数据结构
+
+923
+00:46:57,059 --> 00:47:01,619
+will compute a hash function, given the append operation,
+给定追加操作，将计算哈希函数， 
+
+924
+00:47:01,619 --> 00:47:06,329
+what I did up here was just append every letter of s
+我在这里所做的只是附加s的每个字母
+
+925
+00:47:06,329 --> 00:47:08,969
+into this thing, and then rs open paren,
+进入这个东西，然后打开paren， 
+
+926
+00:47:08,969 --> 00:47:11,672
+close paren gives me the hash function of s.
+ close paren给了我s的哈希函数。 
+
+927
+00:47:11,672 --> 00:47:13,713
+AUDIENCE: You said you can do r.append over here,
+听众：您说您可以在这里追加。 
+
+928
+00:47:13,713 --> 00:47:15,690
+but then you said rs--
+但后来你说
+
+929
+00:47:15,690 --> 00:47:16,579
+PROFESSOR: Yeah.
+教授：是的。 
+
+930
+00:47:16,579 --> 00:47:18,139
+So there are two rolling hashes.
+因此，有两个滚动哈希。 
+
+931
+00:47:18,139 --> 00:47:22,500
+One's called rs and one's called rt.
+一个人叫rs，一个人叫rt。 
+
+932
+00:47:22,500 --> 00:47:26,039
+This was an ADT and I didn't say it at the beginning-- line
+这是ADT，开始时我没有说过
+
+933
+00:47:26,039 --> 00:47:28,639
+one I say rs equals a new rolling hash. rt equals
+我说rs等于一个新的滚动哈希。 rt等于
+
+934
+00:47:28,639 --> 00:47:29,889
+a new rolling hash.
+一个新的滚动哈希。 
+
+935
+00:47:29,889 --> 00:47:32,574
+Sorry, I should bind my variables.
+抱歉，我应该绑定变量。 
+
+936
+00:47:32,574 --> 00:47:33,789
+So I'm using two of them because I
+所以我用了两个，因为我
+
+937
+00:47:33,989 --> 00:47:36,699
+want to compare their values, like this.
+想要像这样比较他们的价值。 
+
+938
+00:47:36,699 --> 00:47:39,389
+
+
+
+939
+00:47:39,389 --> 00:47:42,089
+Other questions?
+还有其他问题吗？ 
+
+940
+00:47:42,090 --> 00:47:43,250
+It's actually a pretty big idea.
+这实际上是一个很大的主意。 
+
+941
+00:47:43,449 --> 00:47:48,569
+This is an algorithm from the '90s, so it's fairly recent.
+这是90年代的算法，所以它是最近的。 
+
+942
+00:47:48,570 --> 00:47:51,568
+
+
+
+943
+00:47:51,768 --> 00:47:54,289
+And it's one of the first examples
+这是第一个例子
+
+944
+00:47:54,289 --> 00:47:58,119
+of really using randomization in a super cool way, other
+真的以超酷的方式使用随机化
+
+945
+00:47:58,119 --> 00:48:00,069
+than just hashing as a data structure.
+不仅仅是将哈希作为数据结构。 
+
+946
+00:48:00,070 --> 00:48:04,039
+
+
+
+947
+00:48:04,239 --> 00:48:04,789
+All right.
+好吧。 
+
+948
+00:48:04,789 --> 00:48:08,400
+So the remaining thing to do is figure out
+所以剩下要做的就是弄清楚
+
+949
+00:48:08,400 --> 00:48:09,731
+how to build this ADT.
+如何构建此ADT。 
+
+950
+00:48:09,931 --> 00:48:11,639
+What's the data structure that implements
+什么是实现的数据结构
+
+951
+00:48:11,639 --> 00:48:15,014
+this, spending constant time for each of these operations.
+为此，您需要为每个操作花费固定的时间。 
+
+952
+00:48:15,014 --> 00:48:24,369
+
+
+
+953
+00:48:24,369 --> 00:48:25,819
+Now, to tell you the truth, doing
+现在，说实话， 
+
+954
+00:48:25,820 --> 00:48:28,750
+it depends on which hashing method you use, which hash
+这取决于您使用哪种哈希方法，哪种哈希
+
+955
+00:48:28,750 --> 00:48:30,916
+function you want to use.
+您要使用的功能。 
+
+956
+00:48:30,916 --> 00:48:32,539
+I just erased the multiplication method
+我只是删除了乘法方法
+
+957
+00:48:32,539 --> 00:48:34,748
+because it's a pain to use the multiplication method.
+因为使用乘法方法很痛苦。 
+
+958
+00:48:34,748 --> 00:48:40,360
+
+
+
+959
+00:48:40,360 --> 00:48:42,900
+Though I'll bet you could use it, actually.
+尽管我敢打赌，实际上您可以使用它。 
+
+960
+00:48:42,900 --> 00:48:45,251
+That's an exercise for you think about.
+这是您要考虑的练习。 
+
+961
+00:48:45,251 --> 00:48:46,750
+I'm going to use the division method
+我将使用除法
+
+962
+00:48:46,750 --> 00:48:48,659
+because it's the simplest hash function.
+因为它是最简单的哈希函数。 
+
+963
+00:48:48,659 --> 00:48:50,789
+And it turns out, in this setting it does work.
+事实证明，在这种设置下它确实可以工作。 
+
+964
+00:48:50,789 --> 00:48:53,759
+We're not going to prove that this is true.
+我们不会证明这是真的。 
+
+965
+00:48:53,760 --> 00:48:56,860
+This is going to be true in expectation.
+期望这将是正确的。 
+
+966
+00:48:56,860 --> 00:48:57,635
+Expected time.
+预计时间。 
+
+967
+00:48:57,635 --> 00:49:02,110
+
+
+
+968
+00:49:02,110 --> 00:49:06,269
+But Karp and Rabin proved that this running time
+但是Karp和Rabin证明了这段跑步时间
+
+969
+00:49:06,269 --> 00:49:09,039
+holds, even if you just use a simple hash
+成立，即使您只是使用简单的哈希
+
+970
+00:49:09,039 --> 00:49:11,570
+function of the division method where
+除法功能在哪里
+
+971
+00:49:11,570 --> 00:49:13,755
+m is chosen to be a random prime.
+ m被选择为随机素数。 
+
+972
+00:49:13,755 --> 00:49:18,800
+
+
+
+973
+00:49:18,800 --> 00:49:22,170
+Let's say about is big as-- let's say at least as
+比方说大-比方说至少
+
+974
+00:49:22,170 --> 00:49:26,050
+big as length of s.
+与s的长度一样大。 
+
+975
+00:49:26,050 --> 00:49:28,340
+The bigger you make it, the higher probability this
+你做的越大，这的可能性就越大
+
+976
+00:49:28,340 --> 00:49:29,440
+is going to be true.
+将会是真的。 
+
+977
+00:49:29,639 --> 00:49:34,483
+But length of s will give you this on average.
+但是s的长度平均会给你这个。 
+
+978
+00:49:34,483 --> 00:49:36,400
+So we're not going to talk about in this class
+因此，我们将不在本课中讨论
+
+979
+00:49:36,400 --> 00:49:39,619
+how to find a random prime, but the algorithm
+如何找到随机素数，但算法
+
+980
+00:49:39,619 --> 00:49:42,650
+is choose a random number of about the right size
+选择大小合适的随机数
+
+981
+00:49:42,650 --> 00:49:44,030
+and check whether it's prime.
+并检查它是否是素数。 
+
+982
+00:49:44,030 --> 00:49:46,030
+If it's not, do it again.
+如果不是，请再次执行。 
+
+983
+00:49:46,030 --> 00:49:49,900
+And by the prime number theorem, after log end trials
+通过对数结束试验后的素数定理
+
+984
+00:49:50,099 --> 00:49:51,778
+you will find a prime.
+你会发现一个素数。 
+
+985
+00:49:51,778 --> 00:49:53,320
+And we're not going to talk about how
+而且我们不会谈论如何
+
+986
+00:49:53,320 --> 00:49:57,670
+to check whether a number's prime, but it can be done.
+检查数字是否为质数，但是可以做到。 
+
+987
+00:49:57,869 --> 00:49:58,480
+All right.
+好吧。 
+
+988
+00:49:58,480 --> 00:50:02,219
+So we're basically done.
+至此我们基本完成。 
+
+989
+00:50:02,219 --> 00:50:10,629
+The point is to look at-- if you look at an append operation
+关键是要看-如果您查看追加操作
+
+990
+00:50:10,630 --> 00:50:15,380
+and you think about how this hash function changes
+然后考虑一下哈希函数如何变化
+
+991
+00:50:15,380 --> 00:50:17,349
+when you add a single character.
+当您添加单个字符时。 
+
+992
+00:50:17,349 --> 00:50:20,469
+Oh, I should tell you.
+哦，我应该告诉你。 
+
+993
+00:50:20,469 --> 00:50:25,949
+We're going to treat the string x as a multi digit number.
+我们将把字符串x视为多位数。 
+
+994
+00:50:25,949 --> 00:50:29,649
+
+
+
+995
+00:50:29,650 --> 00:50:31,019
+This is the sort of prehash function.
+这是一种预哈希函数。 
+
+996
+00:50:31,219 --> 00:50:36,480
+
+
+
+997
+00:50:36,480 --> 00:50:39,164
+And the base is the size of your alphabet.
+基数是字母的大小。 
+
+998
+00:50:39,364 --> 00:50:42,750
+
+
+
+999
+00:50:42,750 --> 00:50:45,920
+So if you're using Ascii, it's 256.
+因此，如果您使用的是Ascii，则为256。 
+
+1000
+00:50:45,920 --> 00:50:48,860
+If you're using some unique code, it might be larger.
+如果您使用一些独特的代码，则可能更大。 
+
+1001
+00:50:48,860 --> 00:50:52,750
+But whatever the size of your characters in your string,
+但是，不管字符串中字符的大小如何， 
+
+1002
+00:50:52,750 --> 00:50:56,949
+then when I add a character, this is like taking my number,
+那么当我添加一个字符时，就像拿我的号码， 
+
+1003
+00:50:56,949 --> 00:51:00,659
+shifting it over by one, and then adding a new value.
+将其移动一个，然后添加一个新值。 
+
+1004
+00:51:00,659 --> 00:51:02,389
+So how do I shift over by one?
+那我该如何换一个呢？ 
+
+1005
+00:51:02,389 --> 00:51:04,629
+I multiply by a.
+我乘以
+
+1006
+00:51:04,630 --> 00:51:10,329
+So if I have some value, some current hash value u,
+因此，如果我有一些值，一些当前的哈希值u， 
+
+1007
+00:51:10,329 --> 00:51:13,440
+it changes to u times a-- or sorry,
+它变为u倍-或对不起， 
+
+1008
+00:51:13,440 --> 00:51:17,889
+this is the number represented by the string.
+这是由字符串表示的数字。 
+
+1009
+00:51:17,889 --> 00:51:20,460
+I multiply by a and then I add on the character.
+我乘以a，然后加上字符。 
+
+1010
+00:51:20,460 --> 00:51:23,619
+Or, in Python you'd write ord of the character.
+或者，在Python中，您要编写字符的ord。 
+
+1011
+00:51:23,619 --> 00:51:27,859
+That's the number associated with that character.
+这是与该字符关联的数字。 
+
+1012
+00:51:27,860 --> 00:51:28,960
+That gives me the new string.
+这给了我新的字符串。 
+
+1013
+00:51:29,159 --> 00:51:29,769
+Very easy.
+很容易。 
+
+1014
+00:51:29,769 --> 00:51:33,719
+If I want to do is skip, it's slightly more annoying.
+如果我想跳过，那会有点烦。 
+
+1015
+00:51:33,719 --> 00:51:37,289
+But skip means just annihilate this value.
+但是跳过意味着只会消灭这个价值。 
+
+1016
+00:51:37,289 --> 00:51:45,309
+And so it's like u goes to u minus the character times a
+就像你去u减去字符乘以a 
+
+1017
+00:51:45,309 --> 00:51:48,980
+to the power size of u minus 1.
+到u的幂大小减去1。 
+
+1018
+00:51:48,980 --> 00:51:52,079
+I have to shift this character over to that position
+我必须把这个角色移到那个位置
+
+1019
+00:51:52,079 --> 00:51:53,829
+and then annihilated it with a minus sign.
+然后用减号消灭它。 
+
+1020
+00:51:53,829 --> 00:51:56,340
+You could also do x or.
+您也可以执行x或。 
+
+1021
+00:51:56,340 --> 00:51:58,820
+And when I do this, I just think about how
+当我这样做时，我只是在想
+
+1022
+00:51:58,820 --> 00:52:00,250
+the hash function is changing.
+哈希函数正在更改。 
+
+1023
+00:52:00,250 --> 00:52:02,539
+Everything is just modulo m.
+一切都只是模m。 
+
+1024
+00:52:02,539 --> 00:52:05,369
+So if I have some hash value here, r,
+因此，如果我在这里有一些哈希值，r， 
+
+1025
+00:52:05,369 --> 00:52:10,000
+I take r times a plus ord of c and I just
+我取r乘以c的正序，而我只是
+
+1026
+00:52:10,000 --> 00:52:13,210
+do that computation modulo m, and I'll
+进行模m运算，我将
+
+1027
+00:52:13,210 --> 00:52:15,139
+get the new hash value.
+获取新的哈希值。 
+
+1028
+00:52:15,139 --> 00:52:18,629
+Do the same thing down here, I'll get the new hash value.
+在这里做同样的事情，我将获得新的哈希值。 
+
+1029
+00:52:18,630 --> 00:52:22,730
+So what r stores is the current hash value.
+所以r存储的是当前哈希值。 
+
+1030
+00:52:22,730 --> 00:52:27,809
+And it stores a to the power length of u or length
+并存储a到u的幂长度或length 
+
+1031
+00:52:27,809 --> 00:52:30,199
+of x, whatever you want to call it.
+ x，无论您想调用它什么。 
+
+1032
+00:52:30,199 --> 00:52:33,605
+I guess that would be a little better.
+我想那会好一点。 
+
+1033
+00:52:33,606 --> 00:52:35,480
+And then it can do these in constant a number
+然后它可以不断地做这些
+
+1034
+00:52:35,480 --> 00:52:36,280
+of operations.
+操作。 
+
+1035
+00:52:36,280 --> 00:52:37,755
+Just compute everything modulo m,
+只需计算所有模m 
+
+1036
+00:52:37,954 --> 00:52:40,123
+one multiplication, one addition.
+一乘一加。 
+
+1037
+00:52:40,123 --> 00:52:41,789
+You can do append and skip, and then you
+您可以添加和跳过，然后
+
+1038
+00:52:41,789 --> 00:52:43,559
+have the hash value instantly.
+立即具有哈希值。 
+
+1039
+00:52:43,559 --> 00:52:44,820
+It's just stored.
+它刚刚存储。 
+
+1040
+00:52:44,820 --> 00:52:49,820
+And then you can make all this work.
+然后您就可以完成所有这些工作。 
+

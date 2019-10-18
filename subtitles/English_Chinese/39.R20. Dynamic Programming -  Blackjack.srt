@@ -1,0 +1,5685 @@
+﻿1
+00:00:00,000 --> 00:00:00,090
+
+
+
+2
+00:00:00,090 --> 00:00:01,770
+The following content is provided
+提供以下内容
+
+3
+00:00:01,770 --> 00:00:04,000
+under a Creative Commons license.
+根据知识共享许可。 
+
+4
+00:00:04,000 --> 00:00:06,859
+Your support will help MIT OpenCourseWare continue
+您的支持将帮助MIT OpenCourseWare继续
+
+5
+00:00:06,860 --> 00:00:10,720
+to offer high quality educational resources for free.
+免费提供高质量的教育资源。 
+
+6
+00:00:10,720 --> 00:00:13,330
+To make a donation or view additional materials
+捐款或查看其他材料
+
+7
+00:00:13,330 --> 00:00:17,207
+from hundreds of MIT courses, visit MIT OpenCourseWare
+从数百门麻省理工学院的课程中，访问MIT OpenCourseWare 
+
+8
+00:00:17,207 --> 00:00:17,832
+at ocw.mit.edu.
+在ocw.mit.edu。 
+
+9
+00:00:17,832 --> 00:00:21,586
+
+
+
+10
+00:00:21,586 --> 00:00:23,169
+PROFESSOR: OK so any pointed questions
+教授：好的，所以任何有针对性的问题
+
+11
+00:00:23,170 --> 00:00:26,254
+before we go over blackjack?
+在我们经过二十一点之前？ 
+
+12
+00:00:26,454 --> 00:00:27,954
+AUDIENCE: Before you start blackjack
+观众：开始二十一点之前
+
+13
+00:00:27,954 --> 00:00:31,820
+can you go through the rules again?
+您可以再次通过规则吗？ 
+
+14
+00:00:31,820 --> 00:00:33,240
+PROFESSOR: The rules of the game?
+教授：游戏规则？ 
+
+15
+00:00:33,240 --> 00:00:33,823
+AUDIENCE: Yes.
+听众：是的。 
+
+16
+00:00:33,823 --> 00:00:34,679
+PROFESSOR: OK.
+教授：好的。 
+
+17
+00:00:34,679 --> 00:00:36,240
+Well I'm going to do something better
+好吧，我会做得更好
+
+18
+00:00:36,240 --> 00:00:37,448
+than going through the rules.
+而不是遵守规则。 
+
+19
+00:00:37,448 --> 00:00:39,060
+I'm going to abstract the rules away.
+我将把规则抽象化。 
+
+20
+00:00:39,060 --> 00:00:41,810
+
+
+
+21
+00:00:41,810 --> 00:00:47,240
+So I'm going to say that a game of blackjack has,
+所以我要说的是二十一点游戏
+
+22
+00:00:47,240 --> 00:00:48,099
+let's start here.
+让我们从这里开始。 
+
+23
+00:00:48,299 --> 00:00:53,089
+
+
+
+24
+00:00:53,090 --> 00:00:55,520
+So a game of blackjack has a deck.
+因此，二十一点游戏有一个套牌。 
+
+25
+00:00:55,520 --> 00:01:00,590
+And we have x-ray vision or some other illegal way
+我们有X射线视力或其他非法方法
+
+26
+00:01:00,590 --> 00:01:04,640
+in which we know what the deck looks like from the beginning.
+从一开始我们就知道甲板的外观。 
+
+27
+00:01:04,640 --> 00:01:06,102
+How many cards in a deck?
+一副牌中有几张牌？ 
+
+28
+00:01:06,102 --> 00:01:06,949
+AUDIENCE: 52.
+听众：52。 
+
+29
+00:01:06,950 --> 00:01:08,179
+PROFESSOR: OK.
+教授：好的。 
+
+30
+00:01:08,379 --> 00:01:12,454
+So say from 0 to 51 because we like zero-based indexing.
+所以说从0到51，因为我们喜欢从零开始的索引。 
+
+31
+00:01:12,454 --> 00:01:16,509
+
+
+
+32
+00:01:16,510 --> 00:01:18,899
+So the way that the game starts is you get two cards,
+所以游戏开始的方式是得到两张牌， 
+
+33
+00:01:19,099 --> 00:01:20,640
+the dealer gets two cards.
+庄家得到两张牌。 
+
+34
+00:01:20,640 --> 00:01:23,780
+What is the only decision that you make in the game
+您在游戏中做出的唯一决定是什么
+
+35
+00:01:23,780 --> 00:01:25,489
+if you already have perfect information?
+如果您已经拥有完善的信息？ 
+
+36
+00:01:25,489 --> 00:01:28,621
+
+
+
+37
+00:01:28,621 --> 00:01:29,829
+So you know the deck already.
+所以您已经知道套牌了。 
+
+38
+00:01:29,829 --> 00:01:31,329
+You don't need to wait for each card
+您无需等待每张卡
+
+39
+00:01:31,329 --> 00:01:33,730
+to know what it's going to be.
+知道会发生什么。 
+
+40
+00:01:33,730 --> 00:01:37,890
+So as the game starts you have to make one decision.
+因此，在游戏开始时，您必须做出一个决定。 
+
+41
+00:01:37,890 --> 00:01:40,231
+What's that decision?
+那是什么决定？ 
+
+42
+00:01:40,231 --> 00:01:41,189
+AUDIENCE: Hit or stand.
+听众：击中或站立。 
+
+43
+00:01:41,189 --> 00:01:42,969
+PROFESSOR: Well that's assuming you
+教授：那是假设你
+
+44
+00:01:42,969 --> 00:01:45,403
+care what you get each time.
+关心每次得到的东西。 
+
+45
+00:01:45,403 --> 00:01:46,819
+So if you have to look at the card
+因此，如果您必须看一下卡片
+
+46
+00:01:46,819 --> 00:01:49,299
+then you have to decide each time if you hit or stand.
+那么您必须决定每次击打还是站立。 
+
+47
+00:01:49,299 --> 00:01:51,099
+If you know all the cards in advance--
+如果您事先知道所有卡片， 
+
+48
+00:01:51,099 --> 00:01:53,750
+AUDIENCE: How much to bet?
+听众：下注多少？ 
+
+49
+00:01:53,750 --> 00:01:55,966
+PROFESSOR: I think our game has that fixed.
+教授：我认为我们的游戏已经解决了。 
+
+50
+00:01:55,966 --> 00:01:57,049
+AUDIENCE: When to restart?
+听众：什么时候重启？ 
+
+51
+00:01:57,049 --> 00:01:59,299
+PROFESSOR: So it is hit or stand,
+教授：所以它被击中或站立， 
+
+52
+00:01:59,299 --> 00:02:01,119
+but I want to restate that.
+但我想重申一下。 
+
+53
+00:02:01,120 --> 00:02:03,560
+Because you don't actually have to decide after every card
+因为您实际上不必在每张卡之后都做出决定
+
+54
+00:02:03,560 --> 00:02:04,994
+if you want to hit or stand.
+如果您想击打或站立。 
+
+55
+00:02:05,194 --> 00:02:07,319
+You know what the cards are going to be in advance.
+您知道卡会是什么。 
+
+56
+00:02:07,319 --> 00:02:08,983
+AUDIENCE: When to restart?
+听众：什么时候重启？ 
+
+57
+00:02:08,984 --> 00:02:10,150
+Like how many cards to pick?
+喜欢挑几张卡片？ 
+
+58
+00:02:10,150 --> 00:02:12,289
+PROFESSOR: How many cards to pick.
+教授：可以挑几张牌。 
+
+59
+00:02:12,289 --> 00:02:13,953
+Yeah that's pretty much the same thing.
+是的，几乎是同一回事。 
+
+60
+00:02:13,954 --> 00:02:16,120
+So you don't have to decide every time hit or stand,
+因此，您不必每次决定击球或站立时， 
+
+61
+00:02:16,120 --> 00:02:18,161
+you know ahead of time I want to hit three times,
+你知道我想提前打三遍， 
+
+62
+00:02:18,161 --> 00:02:19,254
+or I want to hit once.
+或者我想打一次。 
+
+63
+00:02:19,254 --> 00:02:20,629
+Because you know the entire deck.
+因为你知道整个甲板。 
+
+64
+00:02:20,629 --> 00:02:23,539
+You don't need to actually look at the cards.
+您不需要实际看卡片。 
+
+65
+00:02:23,539 --> 00:02:28,316
+So each game the only decision that I make is--
+因此，每个游戏我唯一要做的决定是- 
+
+66
+00:02:28,317 --> 00:02:30,150
+suppose this is one game-- the only decision
+假设这是一场比赛-唯一的决定
+
+67
+00:02:30,150 --> 00:02:34,879
+that I have is h, how many cards I'm going to hit.
+我有h，我要打几张牌。 
+
+68
+00:02:34,879 --> 00:02:36,060
+Right?
+对？ 
+
+69
+00:02:36,060 --> 00:02:40,659
+And then after I make this decision
+然后我做出这个决定之后
+
+70
+00:02:40,659 --> 00:02:42,359
+the game will eat up some cards.
+游戏会吃掉一些纸牌。 
+
+71
+00:02:42,360 --> 00:02:44,180
+I get two cards, the dealer gets two cards,
+我得到两张卡，发牌者得到两张卡， 
+
+72
+00:02:44,379 --> 00:02:47,319
+then I hit some cards then the dealer gets some cards.
+然后我打了一些卡，然后发牌者得到了一些卡。 
+
+73
+00:02:47,319 --> 00:02:51,949
+And this is the number of cards that have been consumed.
+这是已消耗的卡数。 
+
+74
+00:02:51,949 --> 00:02:58,929
+Some number of cards that were played in this game.
+在此游戏中玩过的一些卡牌。 
+
+75
+00:02:58,930 --> 00:03:00,530
+And the other thing that comes out of it
+还有另一件事
+
+76
+00:03:00,729 --> 00:03:03,090
+is how much money I make.
+我赚多少钱
+
+77
+00:03:03,090 --> 00:03:08,509
+For our simple rules it's either I make $1, or nothing,
+对于我们的简单规则，要么我赚1美元，要么什么都不赚， 
+
+78
+00:03:08,509 --> 00:03:10,025
+or I lose $1.
+否则我损失$ 1。 
+
+79
+00:03:10,026 --> 00:03:13,840
+
+
+
+80
+00:03:13,840 --> 00:03:14,729
+Fair enough?
+很公平？ 
+
+81
+00:03:14,729 --> 00:03:16,429
+Everyone follows?
+每个人都跟着吗？ 
+
+82
+00:03:16,430 --> 00:03:20,800
+So I'm going to abstract all this in a helper method.
+因此，我将在一个辅助方法中抽象所有这些内容。 
+
+83
+00:03:20,800 --> 00:03:24,580
+I'm going to say that I have a method called round outcome.
+我要说的是，我有一种称为舍入结果的方法。 
+
+84
+00:03:24,580 --> 00:03:29,960
+
+
+
+85
+00:03:29,960 --> 00:03:32,469
+Where I say, look out of the entire deck
+我说的是，从整个甲板望出去
+
+86
+00:03:32,469 --> 00:03:37,069
+I'm going to start at card i, so this is where my round starts.
+我将从卡片i开始，所以这是我的回合开始的地方。 
+
+87
+00:03:37,069 --> 00:03:39,430
+So I tell it which cards I start at.
+所以我告诉我从哪张牌开始。 
+
+88
+00:03:39,430 --> 00:03:41,819
+And how many cards I'm going to hit.
+以及我要打多少张牌。 
+
+89
+00:03:41,819 --> 00:03:45,400
+And it gives me back a tuple, where the first item
+它给了我一个元组，第一个项目
+
+90
+00:03:45,400 --> 00:03:48,129
+is how many cards are played.
+是打多少张牌。 
+
+91
+00:03:48,129 --> 00:03:51,079
+So number of cards played.
+所以打的牌数。 
+
+92
+00:03:51,080 --> 00:03:54,530
+And the second item in the tuple is how much money do I make.
+元组中的第二项是我赚多少钱。 
+
+93
+00:03:54,729 --> 00:04:07,079
+
+
+
+94
+00:04:07,080 --> 00:04:08,930
+h is how many cards I'm going to hit.
+ h是我要打多少张牌。 
+
+95
+00:04:09,129 --> 00:04:12,049
+So i says that I already played this many cards
+所以我说我已经打了这么多卡
+
+96
+00:04:12,050 --> 00:04:14,710
+in previous games.
+在以前的游戏中。 
+
+97
+00:04:14,909 --> 00:04:17,659
+So a game starts with a full deck.
+因此，游戏始于完整的套牌。 
+
+98
+00:04:17,660 --> 00:04:20,329
+And then I play some rounds.
+然后我玩一些回合。 
+
+99
+00:04:20,528 --> 00:04:24,319
+Each round I do a whole exchange with the dealer, where
+每回合我都会与经销商进行一次整体交换
+
+100
+00:04:24,319 --> 00:04:26,730
+I hit some cards, and then the dealer hits some cards.
+我打了一些卡，然后发牌者打了一些卡。 
+
+101
+00:04:26,730 --> 00:04:30,930
+And then I win or lose some money.
+然后我赢了或赔了一些钱。 
+
+102
+00:04:30,930 --> 00:04:33,718
+AUDIENCE: I don't understand why h and cp are different.
+听众：我不明白为什么h和cp不同。 
+
+103
+00:04:33,718 --> 00:04:36,009
+PROFESSOR: So cp is how many cards are played in total.
+教授：cp是总共打多少张牌。 
+
+104
+00:04:36,009 --> 00:04:38,879
+And this looks at the initial cards.
+这看了最初的牌。 
+
+105
+00:04:38,879 --> 00:04:42,050
+So first I get two cards, the dealer gets two cards.
+所以首先我得到两张卡，发牌者得到两张卡。 
+
+106
+00:04:42,050 --> 00:04:46,240
+And then after I hit some cards the dealer also has to hit.
+然后，在我打了一些牌之后，发牌者也必须命中。 
+
+107
+00:04:46,240 --> 00:04:49,410
+And the dealer has a pretty find algorithm, right?
+经销商有一个漂亮的查找算法，对吗？ 
+
+108
+00:04:49,410 --> 00:04:51,240
+So the number of cards played includes
+所以打的牌数包括
+
+109
+00:04:51,240 --> 00:04:53,480
+the cards that were dealt initially
+最初发行的卡
+
+110
+00:04:53,480 --> 00:04:56,360
+and the cars that the dealer has to hit.
+以及经销商必须命中的汽车。 
+
+111
+00:04:56,360 --> 00:05:01,879
+So this little thing has all the blackjack rules encoded in it.
+因此，这个小东西已在其中编码了所有的二十一点规则。 
+
+112
+00:05:01,879 --> 00:05:04,649
+Everything is already there.
+一切都已经在那里。 
+
+113
+00:05:04,649 --> 00:05:06,399
+AUDIENCE: So blackjack, that's roughly 2h?
+听众：二十一点，大约是2小时？ 
+
+114
+00:05:06,399 --> 00:05:09,620
+cp is 2h, something like that?
+ cp是2h，诸如此类？ 
+
+115
+00:05:09,620 --> 00:05:12,004
+PROFESSOR: 4 plus 2h maybe.
+教授：也许是4加2小时。 
+
+116
+00:05:12,004 --> 00:05:13,879
+Because you get two cards, he gets two cards,
+因为你得到两张卡，他得到了两张卡， 
+
+117
+00:05:13,879 --> 00:05:18,975
+and if you both deal h on average then--
+如果你们俩平均交易h， 
+
+118
+00:05:18,975 --> 00:05:21,480
+AUDIENCE: So is cp the number of cards this round?
+观众：cp这回合的张数是多少？ 
+
+119
+00:05:21,480 --> 00:05:22,646
+PROFESSOR: This round, yeah.
+教授：这回合，是的。 
+
+120
+00:05:22,646 --> 00:05:33,910
+
+
+
+121
+00:05:33,910 --> 00:05:37,944
+OK so intuitively I already know,
+好吧，直觉上我已经知道了
+
+122
+00:05:37,944 --> 00:05:39,360
+so I already know the entire deck.
+所以我已经知道整个甲板了
+
+123
+00:05:39,360 --> 00:05:43,449
+So the decision that I have to make is,
+所以我要做的决定是
+
+124
+00:05:43,449 --> 00:05:45,589
+would I play optimally every round?
+我会在每个回合中发挥最佳吗？ 
+
+125
+00:05:45,589 --> 00:05:48,579
+Or do I want to maybe lose the first round
+还是我可能会输掉第一轮比赛
+
+126
+00:05:48,579 --> 00:05:51,620
+and leave some good cards for later?
+并留下一些好的卡片供以后使用？ 
+
+127
+00:05:51,620 --> 00:05:53,389
+So I have to figure out how many cards I'm
+所以我必须弄清楚我有多少张牌
+
+128
+00:05:53,389 --> 00:05:56,560
+going to hit each time so that overall I make the most
+每次都会击中，所以总体上我会发挥最大作用
+
+129
+00:05:56,560 --> 00:05:58,329
+amount of money when I leave the table.
+我离开桌子时的钱数。 
+
+130
+00:05:58,529 --> 00:06:01,889
+And when I run out of cards I leave the table.
+当我用完纸牌时，我离开了桌子。 
+
+131
+00:06:01,889 --> 00:06:04,769
+The dealer says shows over, gotta go.
+经销商说结束了，得走了。 
+
+132
+00:06:04,769 --> 00:06:07,889
+
+
+
+133
+00:06:07,889 --> 00:06:11,219
+Do the rules make sense?
+规则有意义吗？ 
+
+134
+00:06:11,220 --> 00:06:14,449
+OK so I propose we approach this in two ways.
+好的，所以我建议我们以两种方式解决这个问题。 
+
+135
+00:06:14,649 --> 00:06:16,426
+First we model it as a graph problem,
+首先，我们将其建模为图问题， 
+
+136
+00:06:16,427 --> 00:06:18,060
+because we've already done this a few times.
+因为我们已经做过几次了。 
+
+137
+00:06:18,259 --> 00:06:20,579
+And then we model it as a dynamic programming problem.
+然后我们将其建模为动态编程问题。 
+
+138
+00:06:20,579 --> 00:06:23,629
+And we see how the two are related.
+我们看到两者之间的关系。 
+
+139
+00:06:23,629 --> 00:06:25,110
+Make sense?
+说得通？ 
+
+140
+00:06:25,110 --> 00:06:26,819
+Is this too simple for everyone?
+这对每个人来说都太简单了吗？ 
+
+141
+00:06:26,819 --> 00:06:29,149
+You guys already get everything?
+你们已经拥有一切了吗？ 
+
+142
+00:06:29,149 --> 00:06:31,289
+So how would I model this is a graph problem?
+那么我将如何建模这是一个图形问题？ 
+
+143
+00:06:31,290 --> 00:06:36,387
+
+
+
+144
+00:06:36,586 --> 00:06:38,211
+AUDIENCE: Do you already know the order
+听众：你已经知道订单了吗
+
+145
+00:06:38,211 --> 00:06:40,116
+that you're going to get all these cards in?
+您将要获得所有这些卡？ 
+
+146
+00:06:40,117 --> 00:06:41,370
+PROFESSOR: Yep.
+教授：是的。 
+
+147
+00:06:41,370 --> 00:06:44,300
+AUDIENCE: So I in lecture we briefly
+听众：所以我在演讲中简要介绍了
+
+148
+00:06:44,300 --> 00:06:47,220
+talked about having your starting node go
+谈到要让您的出发节点走
+
+149
+00:06:47,220 --> 00:06:51,740
+to a bunch of other nodes that would
+到一堆其他节点
+
+150
+00:06:51,939 --> 00:06:55,096
+be your potential next move, and then
+是您潜在的下一步行动，然后
+
+151
+00:06:55,096 --> 00:06:57,012
+you just calculate your shortest path distance
+您只需计算出最短路径距离
+
+152
+00:06:57,012 --> 00:06:58,939
+from there to the x value.
+从那里到x值。 
+
+153
+00:06:58,939 --> 00:07:02,319
+PROFESSOR: So that's the general approach.
+教授：那是一般的方法。 
+
+154
+00:07:02,319 --> 00:07:03,980
+How do we do this for cards?
+我们该如何为卡进行此操作？ 
+
+155
+00:07:03,980 --> 00:07:05,009
+So what would be nodes?
+那么节点是什么？ 
+
+156
+00:07:05,209 --> 00:07:10,579
+What are the most intuitive nodes you could think about?
+您能想到的最直观的节点是什么？ 
+
+157
+00:07:10,579 --> 00:07:13,259
+
+
+
+158
+00:07:13,259 --> 00:07:16,879
+OK maybe intuitive for me.
+好吧，也许对我来说很直观。 
+
+159
+00:07:16,879 --> 00:07:18,639
+So nodes show our state, right?
+节点显示我们的状态，对吗？ 
+
+160
+00:07:18,639 --> 00:07:22,014
+Show the state that the game is currently in.
+显示游戏当前的状态。 
+
+161
+00:07:22,014 --> 00:07:22,514
+Sorry?
+抱歉？ 
+
+162
+00:07:22,514 --> 00:07:23,490
+AUDIENCE: Your hand.
+听众：你的手。 
+
+163
+00:07:23,490 --> 00:07:25,759
+Like your current cards.
+就像您当前使用的卡片一样。 
+
+164
+00:07:25,759 --> 00:07:28,189
+Is that your state?
+那是你的状态吗？ 
+
+165
+00:07:28,189 --> 00:07:30,694
+
+
+
+166
+00:07:30,694 --> 00:07:34,040
+So from I guess 2 to ace.
+所以从我猜2到A。 
+
+167
+00:07:34,040 --> 00:07:35,910
+PROFESSOR: From?
+教授：来自？ 
+
+168
+00:07:35,910 --> 00:07:38,860
+AUDIENCE: From 2 to ace, in terms of the number of choices
+听众：从2到ace，就选择数量而言
+
+169
+00:07:38,860 --> 00:07:39,360
+you have.
+你有。 
+
+170
+00:07:39,360 --> 00:07:41,860
+PROFESSOR: OK so the problem is you
+教授：好的，问题是你
+
+171
+00:07:41,860 --> 00:07:44,122
+have four cards of each type, right?
+每种类型都有四张卡，对吗？ 
+
+172
+00:07:44,122 --> 00:07:46,129
+And you don't know where they show up and everything.
+而且您不知道它们出现在哪里以及所有内容。 
+
+173
+00:07:46,329 --> 00:07:49,379
+So I think this my code more complicated than it
+所以我认为这比我的代码更复杂
+
+174
+00:07:49,379 --> 00:07:50,853
+needs to be.
+需要是。 
+
+175
+00:07:50,853 --> 00:07:52,915
+AUDIENCE: Like the rest of the cards in the deck
+观众：就像卡组中的其他卡片一样
+
+176
+00:07:52,915 --> 00:07:53,310
+that are remaining?
+剩下的？ 
+
+177
+00:07:53,310 --> 00:07:53,954
+PROFESSOR: OK.
+教授：好的。 
+
+178
+00:07:54,154 --> 00:07:55,750
+AUDIENCE: Is that a good [INAUDIBLE]?
+听众：这是一个很好的[听不清]吗？ 
+
+179
+00:07:55,750 --> 00:07:58,629
+PROFESSOR: How many cars I have left in the deck, right?
+教授：我在甲板上还剩下几辆车，对吗？ 
+
+180
+00:07:58,629 --> 00:08:03,459
+So basically I would have one node for each of the cards
+所以基本上我将为每个卡有一个节点
+
+181
+00:08:03,459 --> 00:08:04,319
+here.
+这里。 
+
+182
+00:08:04,319 --> 00:08:07,649
+And that says I start a new game at this card.
+那就是说我用这张卡开始了一个新游戏。 
+
+183
+00:08:07,649 --> 00:08:12,129
+
+
+
+184
+00:08:12,129 --> 00:08:15,959
+OK so I'm going to draw some circles.
+好，所以我要画一些圆圈。 
+
+185
+00:08:15,959 --> 00:08:21,969
+
+
+
+186
+00:08:21,970 --> 00:08:24,250
+Say these are our nodes.
+说这些是我们的节点。 
+
+187
+00:08:24,449 --> 00:08:26,389
+Maybe I draw a bit too many of them.
+也许我画了太多。 
+
+188
+00:08:26,389 --> 00:08:30,290
+Where do we always start?
+我们总是从哪里开始？ 
+
+189
+00:08:30,290 --> 00:08:31,290
+AUDIENCE: The left side.
+听众：左侧。 
+
+190
+00:08:31,290 --> 00:08:32,456
+PROFESSOR: First one, right?
+教授：第一个，对吗？ 
+
+191
+00:08:32,456 --> 00:08:33,940
+We start with 52 cards.
+我们从52张牌开始。 
+
+192
+00:08:33,940 --> 00:08:41,570
+So circle 0 means that we played 0 cards, we have 52 cards left.
+所以圈0表示我们打了0张牌，剩下52张牌。 
+
+193
+00:08:41,570 --> 00:08:44,161
+When do we draw an edge between nodes?
+我们何时在节点之间绘制边缘？ 
+
+194
+00:08:44,361 --> 00:08:45,319
+What does an edge mean?
+边缘是什么意思？ 
+
+195
+00:08:45,320 --> 00:08:48,003
+
+
+
+196
+00:08:48,203 --> 00:08:50,120
+AUDIENCE: That's how many cards you've chosen,
+听众：您选择了多少张卡， 
+
+197
+00:08:50,120 --> 00:08:53,609
+so the number cp.
+所以数字cp。 
+
+198
+00:08:53,809 --> 00:08:55,709
+PROFESSOR: OK so the number cp.
+教授：好的，请输入cp。 
+
+199
+00:08:55,710 --> 00:08:58,580
+It means I played a game, right?
+这意味着我玩了游戏，对吧？ 
+
+200
+00:08:58,580 --> 00:09:00,220
+So one edge is a game.
+因此，优势在于游戏。 
+
+201
+00:09:00,220 --> 00:09:03,610
+And it goes from one state to the next state.
+它从一个状态转到下一个状态。 
+
+202
+00:09:03,610 --> 00:09:06,990
+So if I'm, say I'm at node i.
+因此，如果我在说，我在节点i。 
+
+203
+00:09:06,990 --> 00:09:10,879
+
+
+
+204
+00:09:10,879 --> 00:09:13,360
+How do I draw the edges?
+如何绘制边缘？ 
+
+205
+00:09:13,360 --> 00:09:14,769
+Say I'm somewhere here.
+说我在这里某处。 
+
+206
+00:09:14,769 --> 00:09:17,813
+So I already played i cards.
+所以我已经玩过纸牌了。 
+
+207
+00:09:17,813 --> 00:09:19,480
+AUDIENCE: Iterate through all h's, cp's.
+听众：遍历所有h，cp。 
+
+208
+00:09:19,480 --> 00:09:20,850
+PROFESSOR: OK.
+教授：好的。 
+
+209
+00:09:20,850 --> 00:09:25,081
+So for h in what to what?
+那么对于h在什么方面呢？ 
+
+210
+00:09:25,081 --> 00:09:27,610
+What's the smallest h?
+最小的h是多少？ 
+
+211
+00:09:27,610 --> 00:09:29,991
+AUDIENCE: The smallest h is 1.
+听众：最小的h为1。 
+
+212
+00:09:29,991 --> 00:09:31,429
+PROFESSOR: Really?
+教授：是吗？ 
+
+213
+00:09:31,429 --> 00:09:34,904
+Do I have to hit?
+我必须打吗？ 
+
+214
+00:09:34,904 --> 00:09:36,389
+AUDIENCE: Wait isn't it 4?
+听众：等等，不是4吗？ 
+
+215
+00:09:36,389 --> 00:09:38,144
+Because you're always dealing out 4.
+因为你总是在处理4。 
+
+216
+00:09:38,144 --> 00:09:40,519
+PROFESSOR: Yes, so I might as well not count them, right?
+教授：是的，所以我最好不要数一下，对吗？ 
+
+217
+00:09:40,519 --> 00:09:43,789
+So h is how many cards I hit after the initial ones were
+所以h是我最初打几张牌后
+
+218
+00:09:43,789 --> 00:09:46,049
+dealt.
+处理。 
+
+219
+00:09:46,049 --> 00:09:49,339
+So that I can start at 0, a nice and easy number.
+这样我就可以从0开始，这是一个很好的数字。 
+
+220
+00:09:49,340 --> 00:09:50,542
+And where do I end?
+我在哪里结束？ 
+
+221
+00:09:50,542 --> 00:09:51,375
+Rough approximation.
+粗略近似。 
+
+222
+00:09:51,375 --> 00:09:54,899
+
+
+
+223
+00:09:54,899 --> 00:09:58,059
+AUDIENCE: You could go to infinity and then break.
+听众：你可以去无穷远然后打破。 
+
+224
+00:09:58,059 --> 00:10:02,199
+It's still 11 because 11 at most-- oh no, 11 minus 4, 6.
+它仍然是11，因为最多是11 –哦，不，11减去4、6。 
+
+225
+00:10:02,200 --> 00:10:03,990
+You need to know the rules of the game.
+您需要了解游戏规则。 
+
+226
+00:10:03,990 --> 00:10:05,320
+PROFESSOR: OK if you know the rules of the game it's that.
+教授：好的，如果您知道游戏规则就是这样。 
+
+227
+00:10:05,320 --> 00:10:08,071
+If you don't know the rules of the game it's 52 minus i.
+如果您不知道游戏规则，那就是52减去i。 
+
+228
+00:10:08,071 --> 00:10:12,220
+
+
+
+229
+00:10:12,220 --> 00:10:15,200
+OK so what's first thing I do?
+好，那我第一件事是什么？ 
+
+230
+00:10:15,200 --> 00:10:16,940
+So how do I draw an edge representing
+那我怎么画一个代表
+
+231
+00:10:16,940 --> 00:10:18,570
+a game where I hold h cards?
+我持有h卡的游戏？ 
+
+232
+00:10:18,570 --> 00:10:23,219
+
+
+
+233
+00:10:23,419 --> 00:10:28,549
+AUDIENCE: So you draw an edge from your current place
+听众：因此，您可以从当前位置吸引边缘
+
+234
+00:10:28,549 --> 00:10:32,799
+to the output of round outcome with the 0 element.
+到带有0元素的舍入结果的输出。 
+
+235
+00:10:32,799 --> 00:10:36,471
+
+
+
+236
+00:10:36,471 --> 00:10:38,679
+PROFESSOR: So then let's store this output somewhere.
+教授：那么让我们将输出存储在某个地方。 
+
+237
+00:10:38,679 --> 00:10:45,219
+Let's say o is round outcome.
+假设o是舍入结果。 
+
+238
+00:10:45,220 --> 00:10:49,339
+What do I give round outcome?
+我应该给出什么结果？ 
+
+239
+00:10:49,539 --> 00:10:54,391
+AUDIENCE: i and h.
+听众：我和h。 
+
+240
+00:10:54,392 --> 00:10:55,850
+PROFESSOR: See I picked good names.
+教授：看我选了好名字。 
+
+241
+00:10:55,850 --> 00:10:57,620
+They're exactly what I have there.
+它们正是我在那里的东西。 
+
+242
+00:10:57,620 --> 00:10:59,519
+So I draw an edge from i to what?
+所以我从我到什么都占了优势？ 
+
+243
+00:10:59,519 --> 00:11:02,388
+
+
+
+244
+00:11:02,388 --> 00:11:06,899
+AUDIENCE: To the output of round outcome, which is o.
+听众：对于舍入结果的输出，即o。 
+
+245
+00:11:06,899 --> 00:11:08,396
+So it's 0.
+所以是0 
+
+246
+00:11:08,397 --> 00:11:08,980
+PROFESSOR: OK.
+教授：好的。 
+
+247
+00:11:08,980 --> 00:11:12,604
+
+
+
+248
+00:11:12,604 --> 00:11:14,373
+AUDIENCE: Or that the node at o is 0.
+听众：或o处的节点为0。 
+
+249
+00:11:14,573 --> 00:11:15,240
+PROFESSOR: Yeah.
+教授：是的。 
+
+250
+00:11:15,240 --> 00:11:18,740
+
+
+
+251
+00:11:18,740 --> 00:11:20,889
+So suppose I'm at i and I've already played
+所以，假设我在我身边，我已经玩过
+
+252
+00:11:20,889 --> 00:11:22,519
+five cards, right?
+五张卡，对不对？ 
+
+253
+00:11:22,519 --> 00:11:26,049
+So say i equals 5, for example.
+举例来说，假设我等于5。 
+
+254
+00:11:26,049 --> 00:11:31,339
+And I know that if I hit once the dealer will also
+而且我知道，如果我打了一次，庄家也会
+
+255
+00:11:31,340 --> 00:11:32,100
+have to hit once.
+必须打一次。 
+
+256
+00:11:32,100 --> 00:11:35,250
+So in total I've played 6 cards.
+因此，我总共打了6张牌。 
+
+257
+00:11:35,250 --> 00:11:39,309
+And suppose I won.
+假设我赢了。 
+
+258
+00:11:39,309 --> 00:11:42,279
+Then the output would look like this.
+然后输出看起来像这样。 
+
+259
+00:11:42,279 --> 00:11:44,519
+6 cards were played and I won.
+玩了6张牌，我赢了。 
+
+260
+00:11:44,519 --> 00:11:47,039
+So plus 1.
+所以加1。 
+
+261
+00:11:47,039 --> 00:11:51,799
+So I would draw an edge from 5 to what?
+所以我会从5到什么画一条边缘？ 
+
+262
+00:11:51,799 --> 00:11:53,479
+AUDIENCE: [INAUDIBLE]
+观众：[听不清] 
+
+263
+00:11:53,480 --> 00:11:58,480
+PROFESSOR: OK, from 5 to 11 hopefully.
+教授：好的，希望是5到11。 
+
+264
+00:11:58,480 --> 00:12:00,729
+So what's 11?
+那11是什么？ 
+
+265
+00:12:00,929 --> 00:12:07,489
+11 is 5 plus all of 0.
+ 11是5加上所有0。 
+
+266
+00:12:07,490 --> 00:12:09,950
+OK, what am I missing there?
+好，我在那里想念什么？ 
+
+267
+00:12:09,950 --> 00:12:15,099
+
+
+
+268
+00:12:15,299 --> 00:12:17,924
+AUDIENCE: i to i plus [INAUDIBLE].
+听众：我到我加[听不清]。 
+
+269
+00:12:17,924 --> 00:12:18,549
+PROFESSOR: Yep.
+教授：是的。 
+
+270
+00:12:18,549 --> 00:12:25,870
+
+
+
+271
+00:12:25,870 --> 00:12:31,230
+So this tells me how many cards I played in this game.
+因此，这告诉我在此游戏中玩了多少张牌。 
+
+272
+00:12:31,230 --> 00:12:33,139
+I want to look at each game separately.
+我想分别看每个游戏。 
+
+273
+00:12:33,139 --> 00:12:36,199
+I don't want to have to keep track of previous states.
+我不想跟踪以前的状态。 
+
+274
+00:12:36,200 --> 00:12:38,569
+So this output is localized to this game.
+因此，此输出被本地化为该游戏。 
+
+275
+00:12:38,769 --> 00:12:40,720
+It tells me how many cards have been
+告诉我已经有多少张卡了
+
+276
+00:12:40,720 --> 00:12:42,620
+drawn in this game in total.
+总共在这个游戏中被抽中。 
+
+277
+00:12:42,620 --> 00:12:45,109
+And how much money I made in this game.
+以及我在这个游戏中赚了多少钱。 
+
+278
+00:12:45,309 --> 00:12:50,199
+If I already played i cards before starting the game,
+如果我在开始游戏之前已经玩过纸牌， 
+
+279
+00:12:50,200 --> 00:12:55,349
+after I play all of 0, the total number of cards is i plus 0.
+当我全部打完0后，纸牌总数为i加0。 
+
+280
+00:12:55,549 --> 00:12:57,719
+Tiny detail, but you'd probably lose a point off
+微小的细节，但您可能会损失一点
+
+281
+00:12:57,720 --> 00:13:00,479
+of an exam or something if you forget it.
+考试或忘记的东西。 
+
+282
+00:13:00,679 --> 00:13:02,000
+OK so keep track of your state.
+确定，因此请跟踪您的状态。 
+
+283
+00:13:02,000 --> 00:13:05,169
+It makes sense to write down this is my state,
+写下这是我的状态很有意义， 
+
+284
+00:13:05,169 --> 00:13:07,919
+and then make sure that you're always representing it.
+然后确保您始终代表它。 
+
+285
+00:13:07,919 --> 00:13:09,309
+So what's the cost of the edge?
+那么边缘的成本是多少？ 
+
+286
+00:13:09,309 --> 00:13:20,519
+
+
+
+287
+00:13:20,519 --> 00:13:25,120
+And then our answer would be what path do I want?
+然后我们的答案将是我要走什么路？ 
+
+288
+00:13:25,120 --> 00:13:28,269
+
+
+
+289
+00:13:28,269 --> 00:13:30,399
+I want to make the most amount of money,
+我想赚很多钱
+
+290
+00:13:30,399 --> 00:13:32,600
+so that's the longest path.
+所以这是最长的道路。 
+
+291
+00:13:32,600 --> 00:13:34,730
+How do I convert this to a shortest path problem,
+如何将其转换为最短路径问题， 
+
+292
+00:13:34,730 --> 00:13:37,950
+because this is what you know how to solve?
+因为这是您知道如何解决？ 
+
+293
+00:13:37,950 --> 00:13:39,883
+Where I put it?
+我放在哪里？ 
+
+294
+00:13:40,083 --> 00:13:42,529
+AUDIENCE: There.
+听众：在那里。 
+
+295
+00:13:42,529 --> 00:13:44,059
+PROFESSOR: Good answer, there.
+教授：好的答案。 
+
+296
+00:13:44,059 --> 00:13:46,009
+Right there.
+在那里。 
+
+297
+00:13:46,009 --> 00:13:48,299
+OK so this builds the graph, then
+好，这样就可以建立图表了，然后
+
+298
+00:13:48,299 --> 00:13:50,809
+I run some algorithm on it.
+我在上面运行了一些算法。 
+
+299
+00:13:50,809 --> 00:13:55,209
+What's the best algorithm I can run on it?
+我可以在其上运行的最佳算法是什么？ 
+
+300
+00:13:55,210 --> 00:13:59,090
+AUDIENCE: Dykstra because you can [INAUDIBLE].
+听众：Dykstra是因为您可以[听不清]。 
+
+301
+00:13:59,090 --> 00:14:01,450
+But you can add everything on.
+但是您可以添加所有内容。 
+
+302
+00:14:01,450 --> 00:14:05,518
+The lowest negative edge weight is 1, or negative 1.
+最低负边缘权重为1或负1。 
+
+303
+00:14:05,518 --> 00:14:09,825
+
+
+
+304
+00:14:09,825 --> 00:14:11,734
+PROFESSOR: Are there negative cycles?
+教授：是否存在负周期？ 
+
+305
+00:14:11,734 --> 00:14:13,493
+AUDIENCE: No.
+听众：不。 
+
+306
+00:14:13,693 --> 00:14:15,360
+PROFESSOR: Everything goes right, right?
+教授：一切顺利，对吗？ 
+
+307
+00:14:15,360 --> 00:14:18,129
+So even if I don't get hit any card,
+因此，即使我没有被击中， 
+
+308
+00:14:18,129 --> 00:14:19,620
+at least four cards will be played.
+至少要玩四张牌。 
+
+309
+00:14:19,620 --> 00:14:22,399
+So all these arrows go right.
+因此，所有这些箭头都正确。 
+
+310
+00:14:22,399 --> 00:14:26,549
+
+
+
+311
+00:14:26,549 --> 00:14:29,229
+So then I heard a fancy term that I like.
+因此，我听到了一个我喜欢的花哨的名词。 
+
+312
+00:14:29,230 --> 00:14:32,278
+
+
+
+313
+00:14:32,278 --> 00:14:33,320
+Can someone say it again?
+有人可以再说一次吗？ 
+
+314
+00:14:33,320 --> 00:14:35,250
+What's this graph?
+这是什么图？ 
+
+315
+00:14:35,250 --> 00:14:36,190
+AUDIENCE: DAG.
+听众：DAG。 
+
+316
+00:14:36,190 --> 00:14:36,969
+PROFESSOR: DAG.
+教授：达格。 
+
+317
+00:14:37,169 --> 00:14:38,669
+All the edges go one way.
+所有的边缘都是一种方式。 
+
+318
+00:14:38,669 --> 00:14:41,029
+So this is a DAG.
+这是DAG。 
+
+319
+00:14:41,029 --> 00:14:43,384
+And that means that I can run what algorithm?
+那意味着我可以运行什么算法？ 
+
+320
+00:14:43,384 --> 00:14:47,129
+
+
+
+321
+00:14:47,129 --> 00:14:49,043
+Sorry?
+抱歉？ 
+
+322
+00:14:49,043 --> 00:14:50,879
+AUDIENCE: [INAUDIBLE].
+听众：[听不清]。 
+
+323
+00:14:50,879 --> 00:14:52,570
+PROFESSOR: Topological sort plus DFS,
+教授：拓扑排序加DFS， 
+
+324
+00:14:52,570 --> 00:14:55,080
+the one that we talked about last time when everyone was out
+上次大家都在谈论的那个
+
+325
+00:14:55,080 --> 00:14:56,365
+for Thanksgiving.
+感恩节
+
+326
+00:14:56,365 --> 00:14:57,740
+So you have to believe me that it
+所以你必须相信我
+
+327
+00:14:57,740 --> 00:15:00,850
+exists, or look at lecture notes.
+存在，或查看讲义。 
+
+328
+00:15:00,850 --> 00:15:04,979
+So top sort plus DFS will give me
+所以顶级排序加上DFS将给我
+
+329
+00:15:05,179 --> 00:15:10,000
+the shortest path in order of V plus E.
+ V + E的最短路径。 
+
+330
+00:15:10,000 --> 00:15:16,240
+So this is better than Dykstra, which is E plus V log V. OK?
+因此，这比Dykstra好，后者是E加V logV。好吗？ 
+
+331
+00:15:16,240 --> 00:15:19,729
+
+
+
+332
+00:15:19,929 --> 00:15:21,789
+OK I'm guessing most of you don't
+好吧，我猜你们大多数人都不
+
+333
+00:15:21,789 --> 00:15:23,039
+know how that algorithm works.
+知道该算法如何工作。 
+
+334
+00:15:23,039 --> 00:15:24,414
+Well good news, we're going to do
+好消息，我们要做
+
+335
+00:15:24,414 --> 00:15:25,860
+this using dynamic programming.
+这使用动态编程。 
+
+336
+00:15:25,860 --> 00:15:28,621
+So we're going to represent the graph implicitly.
+因此，我们将隐式表示图。 
+
+337
+00:15:28,621 --> 00:15:30,079
+And we're going to write everything
+而且我们将编写所有内容
+
+338
+00:15:30,080 --> 00:15:33,069
+without needing to know the algorithm.
+无需了解算法。 
+
+339
+00:15:33,269 --> 00:15:35,860
+If you know it, it helps because you can see how they relate.
+如果您知道它，它会有所帮助，因为您可以看到它们之间的关系。 
+
+340
+00:15:35,860 --> 00:15:39,599
+But if you don't we should still be able to solve the problem.
+但是，如果您不这样做，我们仍然应该能够解决问题。 
+
+341
+00:15:39,799 --> 00:15:42,899
+But before we do that, does everyone understand this?
+但是在我们这样做之前，每个人都了解吗？ 
+
+342
+00:15:42,899 --> 00:15:46,549
+
+
+
+343
+00:15:46,549 --> 00:15:50,679
+Some nods would be nice so that I can feel good.
+有些点头会很好，这样我才能感觉良好。 
+
+344
+00:15:50,679 --> 00:15:51,179
+Yes?
+是？ 
+
+345
+00:15:51,179 --> 00:15:51,679
+Almost?
+几乎？ 
+
+346
+00:15:51,679 --> 00:15:54,094
+OK.
+好。 
+
+347
+00:15:54,095 --> 00:15:54,595
+Questions?
+有什么问题吗
+
+348
+00:15:54,595 --> 00:15:58,740
+
+
+
+349
+00:15:58,740 --> 00:16:00,700
+AUDIENCE: Like the number 5 there,
+听众：就像那里的数字5， 
+
+350
+00:16:00,700 --> 00:16:03,070
+that's only if you hit, right?
+只有当你击中时，对吗？ 
+
+351
+00:16:03,070 --> 00:16:06,070
+Or that's the number of cards remaining.
+或那是剩余的卡数。 
+
+352
+00:16:06,070 --> 00:16:08,853
+Is there a particular reason you picked 5?
+您选择5个特殊原因吗？ 
+
+353
+00:16:09,053 --> 00:16:10,970
+PROFESSOR: So I was choosing an example for i.
+教授：所以我正在为我选择一个例子。 
+
+354
+00:16:10,970 --> 00:16:12,959
+So good question, what does i mean?
+好问题，我是什么意思？ 
+
+355
+00:16:13,159 --> 00:16:15,839
+
+
+
+356
+00:16:15,840 --> 00:16:20,129
+So this means I'm-- assume that I'm starting a game.
+因此，这意味着我假设自己正在开始游戏。 
+
+357
+00:16:20,129 --> 00:16:22,778
+So starting-- sorry, a round.
+所以开始-对不起，一回合。 
+
+358
+00:16:22,778 --> 00:16:26,769
+
+
+
+359
+00:16:26,769 --> 00:16:27,379
+A new round.
+新一轮。 
+
+360
+00:16:27,379 --> 00:16:36,399
+And I have already played i cards in the previous round.
+而且我已经在上一轮打过i卡了。 
+
+361
+00:16:36,399 --> 00:16:44,590
+
+
+
+362
+00:16:44,590 --> 00:16:48,120
+So I started a new round and the first 5 cards
+所以我开始了新一轮比赛，前五张牌
+
+363
+00:16:48,120 --> 00:16:49,960
+are out of the deck.
+不在甲板上。 
+
+364
+00:16:49,960 --> 00:16:51,509
+What's the best strategy I can have?
+我能拥有的最佳策略是什么？ 
+
+365
+00:16:51,509 --> 00:16:53,273
+What's the most money I can make?
+我能赚到的最大钱是多少？ 
+
+366
+00:16:53,273 --> 00:16:55,125
+AUDIENCE: But there's some nodes that
+听众：但是有些节点
+
+367
+00:16:55,125 --> 00:16:58,049
+connect to the next card over that won't necessarily
+连接到不需要的下一张卡
+
+368
+00:16:58,049 --> 00:16:59,971
+end the game, so there aren't going
+结束游戏，所以就没有了
+
+369
+00:16:59,971 --> 00:17:01,326
+to be any earnings, right?
+算什么收入吧？ 
+
+370
+00:17:01,326 --> 00:17:04,470
+
+
+
+371
+00:17:04,470 --> 00:17:06,901
+You could have 5 connect to 6, and that wouldn't--
+您可以将5个连接到6个，但这不会- 
+
+372
+00:17:06,901 --> 00:17:09,150
+PROFESSOR: Here I'm just trying to emphasize the point
+教授：在这里，我只是想强调一点
+
+373
+00:17:09,150 --> 00:17:12,700
+that all the edges move, all the edges point forward.
+所有边缘都移动，所有边缘都指向前方。 
+
+374
+00:17:12,700 --> 00:17:17,279
+But yeah, the edges have to go at least across four nodes.
+但是，是的，边缘必须至少跨越四个节点。 
+
+375
+00:17:17,279 --> 00:17:19,609
+So assume there are some more nodes around here.
+因此，假设这里还有更多的节点。 
+
+376
+00:17:19,609 --> 00:17:20,150
+AUDIENCE: OK.
+听众：好的。 
+
+377
+00:17:20,151 --> 00:17:22,898
+
+
+
+378
+00:17:23,098 --> 00:17:23,768
+PROFESSOR: Yes?
+教授：是吗？ 
+
+379
+00:17:23,768 --> 00:17:25,143
+AUDIENCE: You were saying how you
+听众：你说的是你
+
+380
+00:17:25,143 --> 00:17:25,960
+have to be careful with something
+一定要小心点
+
+381
+00:17:25,960 --> 00:17:27,430
+or else you'll lose a point.
+否则你会失去一点。 
+
+382
+00:17:27,430 --> 00:17:28,900
+What was that?
+那是什么？ 
+
+383
+00:17:28,900 --> 00:17:33,622
+
+
+
+384
+00:17:33,622 --> 00:17:34,879
+PROFESSOR: How you draw your edges.
+教授：如何绘制边缘。 
+
+385
+00:17:35,079 --> 00:17:37,183
+Or when we switch to dynamic programming, what
+或者当我们切换到动态编程时， 
+
+386
+00:17:37,183 --> 00:17:38,349
+you write in your recursion.
+您在递归中编写。 
+
+387
+00:17:38,349 --> 00:17:43,619
+
+
+
+388
+00:17:43,619 --> 00:17:45,319
+OK so last chance to ask a question
+好的，所以最后一次提出问题的机会
+
+389
+00:17:45,319 --> 00:17:51,069
+before we do a conceptual jump and use another algorithm.
+在进行概念上的跳转之前，请使用另一种算法。 
+
+390
+00:17:51,069 --> 00:18:01,519
+
+
+
+391
+00:18:01,519 --> 00:18:04,473
+OK how do we do this using the dynamic programming?
+好的，我们如何使用动态编程做到这一点？ 
+
+392
+00:18:04,473 --> 00:18:06,389
+So what are we going to have instead of nodes?
+那么我们将要拥有什么而不​​是节点呢？ 
+
+393
+00:18:06,390 --> 00:18:09,599
+
+
+
+394
+00:18:09,799 --> 00:18:12,099
+Sorry?
+抱歉？ 
+
+395
+00:18:12,099 --> 00:18:14,789
+Well so you still have states in both cases.
+好吧，在这两种情况下，您仍然都有状态。 
+
+396
+00:18:14,789 --> 00:18:18,399
+But here you represent them with nodes in a graph.
+但是在这里，您可以在图中用节点表示它们。 
+
+397
+00:18:18,400 --> 00:18:23,490
+In dynamic programming you represent them using-- yeah,
+在动态编程中，您使用-代表它们， 
+
+398
+00:18:23,490 --> 00:18:25,240
+the states are basically sub-problems.
+状态基本上是子问题。 
+
+399
+00:18:25,240 --> 00:18:29,849
+And what do we, when we compute stuff, what do we use?
+当计算东西时，我们使用什么呢？ 
+
+400
+00:18:29,849 --> 00:18:34,750
+
+
+
+401
+00:18:34,750 --> 00:18:37,029
+Numbers is a vector or in a matrix.
+数字是向量或矩阵。 
+
+402
+00:18:37,029 --> 00:18:38,690
+So there's no graph to work with.
+因此，没有可用的图形。 
+
+403
+00:18:38,690 --> 00:18:40,710
+There are no extra algorithms to call.
+没有额外的算法可调用。 
+
+404
+00:18:40,710 --> 00:18:43,019
+We just straight up compute to the numbers,
+我们只计算数字
+
+405
+00:18:43,019 --> 00:18:45,430
+we trade the answers to the problem.
+我们用问题的答案来交换。 
+
+406
+00:18:45,430 --> 00:18:46,789
+So we're going to have an array.
+因此，我们将有一个数组。 
+
+407
+00:18:46,789 --> 00:18:54,449
+
+
+
+408
+00:18:54,449 --> 00:18:55,740
+How many elements in the array?
+数组中有多少个元素？ 
+
+409
+00:18:55,740 --> 00:18:58,960
+Can anyone guess?
+谁能猜得到？ 
+
+410
+00:18:58,960 --> 00:19:00,380
+All right, I heard 52.
+好吧，我听到了52。 
+
+411
+00:19:00,380 --> 00:19:06,660
+
+
+
+412
+00:19:06,660 --> 00:19:12,650
+If I'm at element i, say i equals 5 because we used that
+如果我在元素i上，则说我等于5，因为我们用过
+
+413
+00:19:12,650 --> 00:19:16,840
+before, what does this represent in the dynamic programming
+以前，这在动态编程中代表什么
+
+414
+00:19:17,040 --> 00:19:17,539
+formulation?
+公式？ 
+
+415
+00:19:17,539 --> 00:19:20,259
+
+
+
+416
+00:19:20,259 --> 00:19:23,940
+It's very similar to node 5 there.
+这与那里的节点5非常相似。 
+
+417
+00:19:23,940 --> 00:19:26,930
+So what does it represent?
+那代表什么呢？ 
+
+418
+00:19:26,930 --> 00:19:29,909
+The fact that we're starting a game after we
+在我们开始游戏后， 
+
+419
+00:19:30,109 --> 00:19:32,251
+played the first five cards.
+打了前五张牌。 
+
+420
+00:19:32,251 --> 00:19:33,960
+Sorry, we're starting a round after we've
+抱歉，我们已经开始一轮比赛了
+
+421
+00:19:33,960 --> 00:19:35,139
+played the first 5 cards.
+玩了前5张牌。 
+
+422
+00:19:35,339 --> 00:19:37,859
+And we want to maximize our earnings from here on.
+我们希望从现在开始使我们的收益最大化。 
+
+423
+00:19:37,859 --> 00:19:40,629
+
+
+
+424
+00:19:40,630 --> 00:19:41,919
+So then the problem is, how do we
+那么问题是，我们如何
+
+425
+00:19:42,119 --> 00:19:45,029
+maximize our earnings starting here?
+从这里开始最大化我们的收入？ 
+
+426
+00:19:45,029 --> 00:19:51,160
+So given that the deck has these cards,
+因此，鉴于甲板上有这些卡片， 
+
+427
+00:19:51,160 --> 00:19:53,420
+so the cards from 5 to 51.
+所以从5到51 
+
+428
+00:19:53,420 --> 00:19:55,009
+What's the maximum amount of money
+最高金额是多少
+
+429
+00:19:55,009 --> 00:19:56,589
+we can make by playing optimally?
+我们可以通过最佳发挥来赚钱吗？ 
+
+430
+00:19:56,589 --> 00:20:02,359
+
+
+
+431
+00:20:02,359 --> 00:20:07,709
+So maximum number of money we can
+所以我们可以最大数量的钱
+
+432
+00:20:07,710 --> 00:20:17,190
+win by playing optimally, starting around at card i.
+从最佳状态开始，从第一张牌开始获胜。 
+
+433
+00:20:17,190 --> 00:20:21,169
+
+
+
+434
+00:20:21,369 --> 00:20:24,514
+Starting at i.
+从我开始。 
+
+435
+00:20:24,515 --> 00:20:28,470
+
+
+
+436
+00:20:28,470 --> 00:20:32,680
+So if I want to compute this-- by the way, speaking
+所以，如果我想计算这个，顺便说一句
+
+437
+00:20:32,680 --> 00:20:36,210
+of bad variable names, we did this before.
+错误的变量名，我们之前已经做到了。 
+
+438
+00:20:36,210 --> 00:20:38,410
+When people don't know how to name this array
+当人们不知道如何命名该数组时
+
+439
+00:20:38,410 --> 00:20:39,349
+they name it dpi.
+他们将其命名为dpi。 
+
+440
+00:20:39,549 --> 00:20:41,669
+I think we did that in our PSet.
+我认为我们在PSet中做到了。 
+
+441
+00:20:41,670 --> 00:20:45,919
+So this is the most useless name you can have for the array.
+因此，这是您可以为数组使用的最无用的名称。 
+
+442
+00:20:45,919 --> 00:20:48,210
+It just tells you that we're using dynamic programming.
+它只是告诉您我们正在使用动态编程。 
+
+443
+00:20:48,210 --> 00:20:49,809
+But it doesn't really tell you what it means.
+但这并不能真正告诉您这是什么意思。 
+
+444
+00:20:49,809 --> 00:20:51,730
+So we're going to go for it, because it's
+所以我们要去做，因为它
+
+445
+00:20:51,730 --> 00:20:53,539
+nice and easy to write.
+很容易写。 
+
+446
+00:20:53,539 --> 00:21:00,180
+So if I want to compute dp of i, how do I do that?
+因此，如果我想计算i的dp，该怎么做？ 
+
+447
+00:21:00,180 --> 00:21:03,269
+
+
+
+448
+00:21:03,269 --> 00:21:05,057
+AUDIENCE: x [INAUDIBLE] problems.
+听众：x [听不清]问题。 
+
+449
+00:21:05,057 --> 00:21:06,890
+PROFESSOR: OK, so what are the sub-problems?
+教授：好的，那么子问题是什么？ 
+
+450
+00:21:06,890 --> 00:21:10,440
+
+
+
+451
+00:21:10,440 --> 00:21:14,440
+AUDIENCE: The function at i's past 5
+听众：我过去5岁时的功能
+
+452
+00:21:14,440 --> 00:21:20,119
+where the i's are [INAUDIBLE] through this manner.
+通过这种方式，我是[听不清]。 
+
+453
+00:21:20,319 --> 00:21:24,009
+PROFESSOR: OK so I'd want to have something very similar
+教授：好的，我想有一些非常相似的东西
+
+454
+00:21:24,009 --> 00:21:26,500
+to this, right?
+对此吧？ 
+
+455
+00:21:26,500 --> 00:21:27,710
+What are my decisions?
+我的决定是什么？ 
+
+456
+00:21:27,710 --> 00:21:28,659
+So what are my choices?
+那我有什么选择呢？ 
+
+457
+00:21:28,859 --> 00:21:31,823
+What do I iterate over?
+我要遍历什么？ 
+
+458
+00:21:31,824 --> 00:21:33,466
+AUDIENCE: How many hits.
+听众：点击几下。 
+
+459
+00:21:33,666 --> 00:21:36,000
+PROFESSOR: Yep, exactly the same thing as before, right?
+教授：是的，和以前完全一样，对吗？ 
+
+460
+00:21:36,000 --> 00:21:37,920
+Starting a node at i.
+在i处启动节点。 
+
+461
+00:21:37,920 --> 00:21:39,899
+I was starting a node at i here.
+我在这里开始一个节点。 
+
+462
+00:21:40,099 --> 00:21:41,669
+So the choices are exactly the same.
+因此，选择是完全相同的。 
+
+463
+00:21:41,670 --> 00:21:44,259
+
+
+
+464
+00:21:44,259 --> 00:21:47,220
+So I'm going to start by looking at this line.
+因此，我将从看这行开始。 
+
+465
+00:21:47,220 --> 00:21:48,500
+Do I need to make any changes?
+我需要进行任何更改吗？ 
+
+466
+00:21:48,500 --> 00:21:49,880
+Or do I copy straight over?
+还是我直接复印？ 
+
+467
+00:21:49,880 --> 00:21:59,890
+
+
+
+468
+00:21:59,890 --> 00:22:02,930
+So this is the algorithm for computing dp of i.
+这就是计算i的dp的算法。 
+
+469
+00:22:02,930 --> 00:22:08,150
+For i in 0 to 52.
+对于0至52中的i。 
+
+470
+00:22:08,150 --> 00:22:11,349
+Sorry h in 52 minus i.
+对不起，h在52减去i。 
+
+471
+00:22:11,549 --> 00:22:12,049
+All right.
+好吧。 
+
+472
+00:22:12,049 --> 00:22:20,889
+
+
+
+473
+00:22:20,890 --> 00:22:24,410
+I hope we can do a bit better than that.
+我希望我们可以做得更好。 
+
+474
+00:22:24,410 --> 00:22:26,941
+AUDIENCE: So we know that it's a max of 6, right?
+观众：所以我们知道最大为6，对​​吗？ 
+
+475
+00:22:26,941 --> 00:22:29,200
+So can we just put that in instead?
+那么我们可以把它放进去吗？ 
+
+476
+00:22:29,200 --> 00:22:30,680
+That's given the rules.
+给出了规则。 
+
+477
+00:22:30,680 --> 00:22:31,890
+PROFESSOR: Sure.
+教授：当然可以。 
+
+478
+00:22:31,890 --> 00:22:33,170
+If you're smart you can.
+如果您很聪明，可以。 
+
+479
+00:22:33,170 --> 00:22:35,910
+I'm not, so I'm just writing this.
+我不是，所以我只是在写这篇。 
+
+480
+00:22:35,910 --> 00:22:39,139
+So this helper function that I have here,
+所以我在这里有这个辅助功能
+
+481
+00:22:39,339 --> 00:22:42,059
+that I call the magic that implements
+我称之为实现的魔法
+
+482
+00:22:42,059 --> 00:22:44,980
+the rules of bag check will save me.
+行李托运的规则可以救我。 
+
+483
+00:22:44,980 --> 00:22:47,269
+So if I say that oh, I want to hit 10 times,
+所以如果我说哦，我想打10次， 
+
+484
+00:22:47,269 --> 00:22:49,970
+and that's impossible, then it'll probably give me
+那是不可能的，那可能会给我
+
+485
+00:22:49,970 --> 00:22:52,659
+an earning of minus infinity, which makes sure
+负无穷大的收益，这可以确保
+
+486
+00:22:52,859 --> 00:22:55,389
+I never choose that path.
+我从不选择那条路。 
+
+487
+00:22:55,390 --> 00:22:57,650
+So all that is hidden in there.
+因此所有隐藏在其中。 
+
+488
+00:22:57,650 --> 00:22:59,880
+You're smart enough in blackjack so you can write 6.
+您在二十一点中足够聪明，因此您可以写6。 
+
+489
+00:22:59,880 --> 00:23:02,169
+I'm not so I can't.
+我不是，所以我不能。 
+
+490
+00:23:02,369 --> 00:23:05,659
+So 52 minus i.
+所以52减去我
+
+491
+00:23:05,660 --> 00:23:08,399
+OK what I do next?
+好，我接下来要做什么？ 
+
+492
+00:23:08,599 --> 00:23:10,769
+Do I copy this next line?
+我要复制下一行吗？ 
+
+493
+00:23:10,769 --> 00:23:11,900
+Or do I change it?
+还是我要改变它？ 
+
+494
+00:23:11,900 --> 00:23:16,519
+
+
+
+495
+00:23:16,519 --> 00:23:17,940
+Yeah let's copy it over.
+是的，让我们将其复制过来。 
+
+496
+00:23:17,940 --> 00:23:18,440
+Sounds good.
+听起来不错。 
+
+497
+00:23:18,440 --> 00:23:28,480
+
+
+
+498
+00:23:28,480 --> 00:23:29,539
+How about this?
+这个怎么样？ 
+
+499
+00:23:29,539 --> 00:23:32,779
+Do I copy this?
+我要复制吗？ 
+
+500
+00:23:32,779 --> 00:23:35,470
+Trick question.
+技巧问题。 
+
+501
+00:23:35,470 --> 00:23:36,210
+Come on guys.
+拜托了伙计们。 
+
+502
+00:23:36,210 --> 00:23:38,829
+
+
+
+503
+00:23:38,829 --> 00:23:41,319
+So do I copy this line or not?
+那我是否复制此行？ 
+
+504
+00:23:41,319 --> 00:23:43,289
+Do I have a graph here?
+我在这里有图吗？ 
+
+505
+00:23:43,289 --> 00:23:45,129
+Can I draw edges?
+我可以画边吗？ 
+
+506
+00:23:45,130 --> 00:23:46,630
+OK so I'm not going to copy it.
+好，所以我不会复制它。 
+
+507
+00:23:46,630 --> 00:23:49,150
+What do I do instead?
+我该怎么办？ 
+
+508
+00:23:49,150 --> 00:23:51,180
+By trick I mean easy.
+通过技巧，我的意思是简单。 
+
+509
+00:23:51,180 --> 00:23:54,606
+So what do I do instead?
+那我该怎么办呢？ 
+
+510
+00:23:54,606 --> 00:23:55,815
+I compute my answer directly.
+我直接计算我的答案。 
+
+511
+00:23:55,815 --> 00:23:58,119
+
+
+
+512
+00:23:58,319 --> 00:24:06,714
+So if I hit h cards, what am I looking at?
+所以，如果我打h牌，我在看什么？ 
+
+513
+00:24:06,714 --> 00:24:09,721
+AUDIENCE: Do you mean like a function?
+听众：您的意思是喜欢一个功能吗？ 
+
+514
+00:24:09,721 --> 00:24:10,930
+PROFESSOR: A function, sorry?
+教授：一个功能，对不起？ 
+
+515
+00:24:10,930 --> 00:24:14,910
+AUDIENCE: You add the dp of o 1 or of o 0.
+听众：您添加了o 1或o 0的dp。 
+
+516
+00:24:14,910 --> 00:24:20,390
+
+
+
+517
+00:24:20,390 --> 00:24:22,950
+PROFESSOR: OK so first let's see if I have i cards,
+教授：好的，让我们先看看我是否有i卡， 
+
+518
+00:24:22,950 --> 00:24:27,009
+and say I hit, I do the same exact thing that I did before.
+并说我打了，我做了和以前一样的事情。 
+
+519
+00:24:27,009 --> 00:24:31,470
+I look at i is 5 and h equals 2.
+我看我是5，h等于2。 
+
+520
+00:24:31,470 --> 00:24:36,759
+So then that function gives me the same answer, 6 1.
+所以那个函数给了我相同的答案6 1。 
+
+521
+00:24:36,759 --> 00:24:39,420
+So then I know that after this I'm going to end up in a state
+所以我知道在那之后我将最终处于一种状态
+
+522
+00:24:39,420 --> 00:24:43,490
+where I played the first 11 cards.
+我打了前11张牌。 
+
+523
+00:24:43,490 --> 00:24:45,444
+So I'm going to end up at 11.
+所以我将以11结尾。 
+
+524
+00:24:45,444 --> 00:24:49,139
+
+
+
+525
+00:24:49,140 --> 00:24:51,750
+How much money did I make overall?
+我总共赚了多少钱？ 
+
+526
+00:24:51,750 --> 00:24:56,869
+
+
+
+527
+00:24:56,869 --> 00:24:58,000
+OK, so 1 in this case.
+好的，所以在这种情况下为1。 
+
+528
+00:24:58,000 --> 00:25:00,750
+
+
+
+529
+00:25:00,750 --> 00:25:12,230
+So how much money I made is o of-- I think it's o of 1.
+所以我赚了多少钱-我认为是1。 
+
+530
+00:25:12,230 --> 00:25:15,250
+
+
+
+531
+00:25:15,250 --> 00:25:21,049
+And after I land here, how much money I'm going to make?
+在我到达这里后，我将赚多少钱？ 
+
+532
+00:25:21,049 --> 00:25:23,313
+Assuming I'm still playing optimally.
+假设我还在发挥最佳状态。 
+
+533
+00:25:23,314 --> 00:25:24,230
+AUDIENCE: [INAUDIBLE].
+听众：[听不清]。 
+
+534
+00:25:24,230 --> 00:25:30,230
+
+
+
+535
+00:25:30,230 --> 00:25:31,579
+PROFESSOR: dp i plus.
+教授：dp我加。 
+
+536
+00:25:31,579 --> 00:25:35,473
+
+
+
+537
+00:25:35,473 --> 00:25:36,389
+AUDIENCE: [INAUDIBLE].
+听众：[听不清]。 
+
+538
+00:25:36,390 --> 00:25:43,419
+
+
+
+539
+00:25:43,619 --> 00:25:45,359
+OK.
+好。 
+
+540
+00:25:45,359 --> 00:25:51,289
+So i plus o of 0 is used to compute--
+所以我加上0的o用于计算- 
+
+541
+00:25:51,289 --> 00:25:54,409
+so dp of i plus o of 0 is used to compute dp of i.
+因此，i的dp加上0的o用于计算i的dp。 
+
+542
+00:25:54,410 --> 00:25:55,990
+This is the same thing as--
+这与- 
+
+543
+00:25:55,990 --> 00:25:58,027
+AUDIENCE: dp is a function here?
+听众：dp是这里的功能吗？ 
+
+544
+00:25:58,027 --> 00:25:58,409
+PROFESSOR: No.
+教授：不。 
+
+545
+00:25:58,609 --> 00:26:03,449
+
+
+
+546
+00:26:03,450 --> 00:26:05,420
+So you're wondering what the hell?
+所以你想知道到底是什么？ 
+
+547
+00:26:05,420 --> 00:26:06,519
+Why will that work, right?
+为什么会起作用，对吗？ 
+
+548
+00:26:06,519 --> 00:26:08,319
+Let's get to that in a minute.
+让我们在一分钟内解决这个问题。 
+
+549
+00:26:08,319 --> 00:26:10,029
+That will work, we have to make it work.
+那将起作用，我们必须使其起作用。 
+
+550
+00:26:10,029 --> 00:26:12,730
+
+
+
+551
+00:26:12,730 --> 00:26:17,450
+So here I'm drawing an edge from i to i plus o of 0.
+所以在这里我画的是从i到i加上0的o的边。 
+
+552
+00:26:17,450 --> 00:26:21,669
+And the cost of the edge is minus o of 1.
+边缘的成本为负o的1。 
+
+553
+00:26:21,869 --> 00:26:23,259
+So here we're looking at edges.
+因此，这里我们要看边缘。 
+
+554
+00:26:23,259 --> 00:26:25,750
+Here I'm assuming that they already
+在这里，我假设他们已经
+
+555
+00:26:25,750 --> 00:26:28,369
+computed the answer here using some black magic.
+使用一些黑魔法计算了答案。 
+
+556
+00:26:28,369 --> 00:26:30,389
+It's already available.
+它已经可用。 
+
+557
+00:26:30,390 --> 00:26:33,089
+And I want to compute the answer here.
+我想在这里计算答案。 
+
+558
+00:26:33,289 --> 00:26:38,369
+So I have the cost of the edge plus whatever I had here.
+因此，我要付出成本的代价，再加上我在这里所拥有的一切。 
+
+559
+00:26:38,369 --> 00:26:41,589
+
+
+
+560
+00:26:41,589 --> 00:26:45,199
+So if, suppose I know that if I start here
+所以，如果我知道如果我从这里开始
+
+561
+00:26:45,200 --> 00:26:50,139
+and I finish the deck, I can make $20.
+然后我完成了套牌，我可以赚20美元。 
+
+562
+00:26:50,339 --> 00:26:52,480
+So suppose I know that this is 20.
+因此，假设我知道这是20。 
+
+563
+00:26:52,480 --> 00:26:53,730
+What will the answer be here?
+答案是什么？ 
+
+564
+00:26:53,730 --> 00:26:58,420
+
+
+
+565
+00:26:58,420 --> 00:26:59,690
+1 plus 20 which is?
+ 1加20是什么？ 
+
+566
+00:26:59,690 --> 00:27:05,549
+
+
+
+567
+00:27:05,549 --> 00:27:10,769
+So if I hit-- how many times did I say there-- if I hit twice
+所以如果我打了-我说了几次-如果我打了两次
+
+568
+00:27:10,769 --> 00:27:12,920
+I guess I'll make 21.
+我想我会21岁。 
+
+569
+00:27:12,920 --> 00:27:15,779
+So this is a possible answer.
+因此，这是一个可能的答案。 
+
+570
+00:27:15,779 --> 00:27:18,569
+And I have to go over all possible answers.
+我必须仔细研究所有可能的答案。 
+
+571
+00:27:18,569 --> 00:27:24,879
+So this is how much I'm making if I hit h cards, right?
+所以，如果我打h牌，这就是我要赚多少钱，对吗？ 
+
+572
+00:27:24,880 --> 00:27:27,670
+
+
+
+573
+00:27:27,670 --> 00:27:30,609
+Now I'm looking at multiple choices here.
+现在，我在这里查看多种选择。 
+
+574
+00:27:30,809 --> 00:27:33,309
+This is the answer for each choice.
+这是每个选择的答案。 
+
+575
+00:27:33,309 --> 00:27:37,450
+Which answer do I want in the end?
+我到底想要哪个答案？ 
+
+576
+00:27:37,450 --> 00:27:38,129
+The largest.
+最大的。 
+
+577
+00:27:38,329 --> 00:27:39,339
+OK.
+好。 
+
+578
+00:27:39,339 --> 00:27:44,859
+So let's say I'm going to start with a choices array that
+因此，假设我将从一个选择数组开始
+
+579
+00:27:44,859 --> 00:27:46,729
+stores all the answers.
+存储所有答案。 
+
+580
+00:27:46,730 --> 00:27:48,970
+So here I'm just going to pend the answer,
+所以在这里我只想提出答案， 
+
+581
+00:27:48,970 --> 00:27:51,200
+the possible answer.
+可能的答案。 
+
+582
+00:27:51,200 --> 00:27:56,470
+Choices append this guy.
+选择附加此人。 
+
+583
+00:27:56,470 --> 00:27:58,200
+And then at the end of the for loop
+然后在for循环的结尾
+
+584
+00:27:58,200 --> 00:28:04,819
+I'm going to take the max of choices,
+我将尽最大的选择， 
+
+585
+00:28:04,819 --> 00:28:06,369
+and I'm going to assign it where?
+我要把它分配到哪里？ 
+
+586
+00:28:06,369 --> 00:28:10,313
+
+
+
+587
+00:28:10,314 --> 00:28:11,230
+AUDIENCE: [INAUDIBLE].
+听众：[听不清]。 
+
+588
+00:28:11,230 --> 00:28:15,500
+
+
+
+589
+00:28:15,500 --> 00:28:17,750
+PROFESSOR: So I promised I'm going to compute dp of i.
+教授：所以我保证我要计算i的dp。 
+
+590
+00:28:17,750 --> 00:28:19,690
+I just finished computing dp of i.
+我刚完成i的dp计算。 
+
+591
+00:28:19,690 --> 00:28:23,769
+
+
+
+592
+00:28:23,769 --> 00:28:25,379
+Now there's a little problem here.
+现在这里有一个小问题。 
+
+593
+00:28:25,380 --> 00:28:28,960
+In order to compute this guy, I need
+为了计算这个家伙，我需要
+
+594
+00:28:28,960 --> 00:28:31,240
+to already have the answer for this guy.
+已经有了这个家伙的答案。 
+
+595
+00:28:31,240 --> 00:28:35,730
+And maybe for some other guys here.
+也许对于这里的其他人。 
+
+596
+00:28:35,730 --> 00:28:39,549
+
+
+
+597
+00:28:39,549 --> 00:28:41,789
+So an answer here depends on future answers.
+因此，这里的答案取决于将来的答案。 
+
+598
+00:28:41,789 --> 00:28:44,920
+
+
+
+599
+00:28:44,920 --> 00:28:47,609
+The arrows here are the same as the arrows here, right?
+这里的箭头与这里的箭头相同，对吗？ 
+
+600
+00:28:47,809 --> 00:28:51,759
+They represent possible moves in the game.
+它们代表游戏中的可能动作。 
+
+601
+00:28:51,759 --> 00:28:55,539
+At the same time the arrows here represent dependencies.
+同时，这里的箭头表示依赖关系。 
+
+602
+00:28:55,539 --> 00:28:57,579
+This answer depends on this answer,
+这个答案取决于这个答案， 
+
+603
+00:28:57,579 --> 00:29:01,233
+this answer depends on this answer, so on and so forth.
+这个答案取决于这个答案，依此类推。 
+
+604
+00:29:01,233 --> 00:29:02,649
+When we hear the word dependencies
+当我们听到依赖性一词时
+
+605
+00:29:02,650 --> 00:29:03,282
+what do we think of?
+我们怎么看？ 
+
+606
+00:29:03,482 --> 00:29:06,919
+
+
+
+607
+00:29:06,920 --> 00:29:09,670
+Topological sort.
+拓扑排序。 
+
+608
+00:29:09,670 --> 00:29:10,730
+PSet, which one?
+ PSet，哪一个？ 
+
+609
+00:29:10,730 --> 00:29:13,180
+PSet 6 still brings painful memories?
+ PSet 6仍然带来痛苦的回忆吗？ 
+
+610
+00:29:13,180 --> 00:29:13,659
+Not anymore.
+不再。 
+
+611
+00:29:13,859 --> 00:29:15,579
+We have a new one.
+我们有一个新的。 
+
+612
+00:29:15,579 --> 00:29:17,659
+So in order to compute this I need
+所以为了计算这个，我需要
+
+613
+00:29:17,660 --> 00:29:21,409
+to compute the answer to a few other sub-problems.
+计算其他一些子问题的答案。 
+
+614
+00:29:21,609 --> 00:29:24,869
+To make sure that I have these answers ready by the time
+为了确保我已经准备好这些答案
+
+615
+00:29:24,869 --> 00:29:25,639
+I compute this.
+我计算一下。 
+
+616
+00:29:25,640 --> 00:29:27,022
+So to make sure that this code doesn't
+因此，请确保该代码不会
+
+617
+00:29:27,222 --> 00:29:31,289
+crash I have to compute all the answers to the sub-problems
+崩溃我必须计算所有子问题的答案
+
+618
+00:29:31,289 --> 00:29:34,480
+in the topological sort order.
+按拓扑排序顺序。 
+
+619
+00:29:34,480 --> 00:29:36,829
+That's where topological sort fits in here.
+这就是拓扑排序适合的地方。 
+
+620
+00:29:36,829 --> 00:29:38,509
+What's an obvious topological sort,
+什么是明显的拓扑排序， 
+
+621
+00:29:38,509 --> 00:29:40,794
+if all the edges are pointing this way?
+如果所有的边缘都指向这种方式？ 
+
+622
+00:29:40,794 --> 00:29:41,710
+AUDIENCE: [INAUDIBLE].
+听众：[听不清]。 
+
+623
+00:29:41,710 --> 00:29:43,150
+PROFESSOR: Yep, thank you guys.
+教授：是的，谢谢。 
+
+624
+00:29:43,150 --> 00:29:46,139
+
+
+
+625
+00:29:46,339 --> 00:29:48,339
+So start at the easiest problem.
+因此，从最简单的问题开始。 
+
+626
+00:29:48,339 --> 00:29:50,029
+What do you do if you have one card?
+如果有一张卡怎么办？ 
+
+627
+00:29:50,029 --> 00:29:53,220
+And then go look at bigger and bigger and bigger problems,
+然后去看越来越大的问题， 
+
+628
+00:29:53,220 --> 00:29:54,680
+until we tackle the hard problems
+直到我们解决难题
+
+629
+00:29:54,680 --> 00:29:57,159
+of what I do with the entire deck.
+我整个甲板的工作
+
+630
+00:29:57,359 --> 00:30:05,019
+So when I compute this problem I'm going to go to iterate how?
+所以当我计算这个问题时，我将去迭代该怎么做？ 
+
+631
+00:30:05,019 --> 00:30:07,364
+From where to where?
+从哪里到哪里？ 
+
+632
+00:30:07,364 --> 00:30:08,591
+AUDIENCE: 52 minus i to the 0.
+受众群体：52减去0。 
+
+633
+00:30:08,791 --> 00:30:10,480
+You're actually--
+你实际上是
+
+634
+00:30:10,480 --> 00:30:11,371
+PROFESSOR: So this is i.
+教授：这就是我。 
+
+635
+00:30:11,571 --> 00:30:12,529
+AUDIENCE: Oh, that's i.
+听众：哦，就是我。 
+
+636
+00:30:12,529 --> 00:30:14,700
+PROFESSOR: So where do i go from here?
+教授：那我从这里去哪里？ 
+
+637
+00:30:14,700 --> 00:30:16,025
+AUDIENCE: 51 to 0.
+观众：51比0。 
+
+638
+00:30:16,025 --> 00:30:16,900
+PROFESSOR: All right.
+教授：好的。 
+
+639
+00:30:16,900 --> 00:30:20,940
+
+
+
+640
+00:30:20,940 --> 00:30:22,930
+So now whenever I access this guy
+所以现在无论何时我访问这个人
+
+641
+00:30:22,930 --> 00:30:24,355
+I know it's already computed.
+我知道它已经计算了。 
+
+642
+00:30:24,355 --> 00:30:25,730
+So the code isn't going to crash.
+因此，代码不会崩溃。 
+
+643
+00:30:25,730 --> 00:30:30,799
+
+
+
+644
+00:30:30,799 --> 00:30:35,369
+OK and this thing is my topological sort.
+好的，这是我的拓扑排序。 
+
+645
+00:30:35,369 --> 00:30:41,919
+
+
+
+646
+00:30:41,920 --> 00:30:43,750
+So the advantage of this is that the code
+所以这样做的好处是代码
+
+647
+00:30:43,750 --> 00:30:45,839
+is a lot smaller, right?
+小很多吧？ 
+
+648
+00:30:45,839 --> 00:30:47,250
+Here I'm building the graph.
+我在这里建立图表。 
+
+649
+00:30:47,250 --> 00:30:48,759
+So I'm calling some graph methods.
+所以我在调用一些图形方法。 
+
+650
+00:30:48,759 --> 00:30:51,829
+And then I would have to have the code for computing
+然后我必须要有用于计算的代码
+
+651
+00:30:51,829 --> 00:30:54,429
+the shortest path in a DAG.
+ DAG中最短的路径。 
+
+652
+00:30:54,430 --> 00:30:57,190
+And then I would have to have some code for extracting
+然后我将需要一些代码来提取
+
+653
+00:30:57,190 --> 00:31:00,490
+the answer using that.
+使用该答案。 
+
+654
+00:31:00,490 --> 00:31:02,230
+Here this is all the code.
+这是所有代码。 
+
+655
+00:31:02,230 --> 00:31:03,009
+It's a few lines.
+几行。 
+
+656
+00:31:03,009 --> 00:31:05,960
+And it's because the graph is represented implicitly.
+这是因为该图是隐式表示的。 
+
+657
+00:31:05,960 --> 00:31:08,549
+The topological sort is represented implicitly.
+拓扑排序是隐式表示的。 
+
+658
+00:31:08,549 --> 00:31:11,769
+The edges are represented implicitly.
+边缘隐式表示。 
+
+659
+00:31:11,769 --> 00:31:13,710
+So this looks like magic.
+因此，这看起来像魔术。 
+
+660
+00:31:13,710 --> 00:31:16,056
+But if you know where to look you'll find the items.
+但是，如果您知道在哪里看，就会找到这些物品。 
+
+661
+00:31:16,056 --> 00:31:18,680
+You'll find the things that tell you what the graph looks like.
+您会发现告诉您图形外观的内容。 
+
+662
+00:31:18,680 --> 00:31:19,958
+Yes?
+是？ 
+
+663
+00:31:19,958 --> 00:31:21,768
+AUDIENCE: So that tells you how much money
+听众：所以这告诉你多少钱
+
+664
+00:31:21,768 --> 00:31:23,544
+you can make, but does it tell you can--
+你可以做，但是它告诉你可以- 
+
+665
+00:31:23,744 --> 00:31:24,869
+PROFESSOR: How you make it?
+教授：您是如何做到的？ 
+
+666
+00:31:24,869 --> 00:31:26,684
+Not yet.
+还没。 
+
+667
+00:31:26,684 --> 00:31:29,379
+Parent pointers.
+父指针。 
+
+668
+00:31:29,380 --> 00:31:32,140
+Yeah that's a good point.
+是的，这很不错。 
+
+669
+00:31:32,140 --> 00:31:33,690
+Let me see how we're doing on time.
+让我看看我们的工作情况如何。 
+
+670
+00:31:33,690 --> 00:31:35,460
+OK.
+好。 
+
+671
+00:31:35,460 --> 00:31:37,649
+I can talk parent pointers.
+我可以谈父母的指针。 
+
+672
+00:31:37,849 --> 00:31:39,149
+Am I missing anything else?
+我还有什么想念的吗？ 
+
+673
+00:31:39,150 --> 00:31:44,009
+
+
+
+674
+00:31:44,009 --> 00:31:46,170
+There's one decision that I'm missing,
+我想念一个决定， 
+
+675
+00:31:46,170 --> 00:31:47,500
+that I missed here too.
+我也想念这里。 
+
+676
+00:31:47,500 --> 00:31:50,200
+
+
+
+677
+00:31:50,200 --> 00:31:52,710
+If things look bad for you, if you
+如果情况对您不利，如果您
+
+678
+00:31:52,710 --> 00:31:54,980
+know you're going to lose money, what can you do?
+知道您将要亏钱，该怎么办？ 
+
+679
+00:31:54,980 --> 00:31:58,240
+
+
+
+680
+00:31:58,240 --> 00:31:58,900
+Walk away.
+走开。 
+
+681
+00:31:58,900 --> 00:32:00,419
+How much do you get?
+你得到多少？ 
+
+682
+00:32:00,619 --> 00:32:02,500
+AUDIENCE: 0.
+听众：0。 
+
+683
+00:32:02,500 --> 00:32:03,420
+PROFESSOR: Yep.
+教授：是的。 
+
+684
+00:32:03,420 --> 00:32:07,509
+So you always have an edge that takes you
+所以你总是拥有带你的优势
+
+685
+00:32:07,509 --> 00:32:11,400
+all the way out with cost 0.
+一直到成本为0。 
+
+686
+00:32:11,400 --> 00:32:14,869
+So the way I represent that here is I start with a choice of 0.
+所以我在这里表示的方式是从0开始选择。 
+
+687
+00:32:15,069 --> 00:32:19,539
+
+
+
+688
+00:32:19,539 --> 00:32:20,970
+OK now let's do parent pointers.
+好，现在让我们做父指针。 
+
+689
+00:32:20,970 --> 00:32:23,039
+What's the easiest way of doing parent pointers?
+做父指针最简单的方法是什么？ 
+
+690
+00:32:23,039 --> 00:32:28,200
+
+
+
+691
+00:32:28,200 --> 00:32:30,625
+AUDIENCE: Keep track of the max of-- [INAUDIBLE].
+听众：跟踪-[听不清]的最大值。 
+
+692
+00:32:30,625 --> 00:32:37,910
+
+
+
+693
+00:32:37,910 --> 00:32:40,359
+PROFESSOR: So I want to keep track-- for every answer here
+教授：所以，我想跟踪一下-这里的每个答案
+
+694
+00:32:40,559 --> 00:32:44,256
+I want to keep back of the h that led me to that answer.
+我想回避导致我给出答案的h。 
+
+695
+00:32:44,257 --> 00:32:46,880
+
+
+
+696
+00:32:46,880 --> 00:32:49,950
+So in the dynamic programming vector,
+所以在动态编程向量中
+
+697
+00:32:49,950 --> 00:32:52,009
+instead of just storing the maximum cost,
+而不是仅仅存储最高成本， 
+
+698
+00:32:52,009 --> 00:32:55,599
+I'm going to store the maximum cost and the number of hits
+我要存储最高费用和点击次数
+
+699
+00:32:55,599 --> 00:32:57,759
+I have to make to get there.
+我必须去那儿。 
+
+700
+00:32:57,759 --> 00:32:59,911
+So instead of having one number here that's 21
+所以这里不是21 
+
+701
+00:32:59,911 --> 00:33:01,160
+I'm going to have two numbers.
+我要有两个数字。 
+
+702
+00:33:01,160 --> 00:33:04,450
+I'm going to have 21 and the 1 that
+我将要拥有21和1 
+
+703
+00:33:04,450 --> 00:33:07,649
+says you have to hit-- sorry, 2-- you have to hit twice.
+说你必须打-对不起，2-你必须打两次。 
+
+704
+00:33:07,849 --> 00:33:12,059
+And then you'll go on this arrow and so on and so forth.
+然后，您将继续按此箭头，依此类推。 
+
+705
+00:33:12,059 --> 00:33:14,629
+And if you know how many hits you
+如果你知道有多少击中
+
+706
+00:33:14,630 --> 00:33:16,809
+have to make you can follow this--
+必须使您可以遵循此- 
+
+707
+00:33:17,009 --> 00:33:18,539
+you can follow these parent pointers
+您可以按照这些父指针
+
+708
+00:33:18,539 --> 00:33:21,240
+and they will tell you how to play the entire game.
+他们会告诉您如何玩整个游戏。 
+
+709
+00:33:21,240 --> 00:33:23,759
+You start at 0 and play the entire game.
+您从0开始，然后玩整个游戏。 
+
+710
+00:33:23,759 --> 00:33:28,009
+Do we want to change the pseudocode to do that?
+我们是否要更改伪代码来做到这一点？ 
+
+711
+00:33:28,009 --> 00:33:30,539
+OK, it's not too hard.
+好吧，这不太难。 
+
+712
+00:33:30,539 --> 00:33:34,190
+How many people want to see the pseudocode changes?
+有多少人希望看到伪代码更改？ 
+
+713
+00:33:34,190 --> 00:33:37,379
+All right, I guess I don't have to write it then.
+好吧，我想我不必再写了。 
+
+714
+00:33:37,579 --> 00:33:40,699
+OK any questions on this?
+对此有任何疑问吗？ 
+
+715
+00:33:40,700 --> 00:33:43,150
+So the change is really simple.
+因此，更改非常简单。 
+
+716
+00:33:43,150 --> 00:33:45,430
+Instead of storing one number you store a tuple.
+而不是存储一个数字，而是存储一个元组。 
+
+717
+00:33:45,430 --> 00:33:48,369
+And then because tuples are sorted
+然后因为元组被排序
+
+718
+00:33:48,569 --> 00:33:50,099
+the right way maximum still works.
+正确的方法仍然可以发挥最大作用。 
+
+719
+00:33:50,099 --> 00:33:51,723
+You don't have to change that, you just
+您不必更改它，您只需
+
+720
+00:33:51,723 --> 00:33:56,152
+have to change what you store down there.
+必须更改您在那里存储的内容。 
+
+721
+00:33:56,152 --> 00:33:59,879
+AUDIENCE: So you just add h in, into your--
+听众：因此，您只需将h加入， 
+
+722
+00:34:00,079 --> 00:34:03,099
+PROFESSOR: Yeah, you add one more parentheses for the tuple.
+教授：是的，您还为元组添加了一个括号。 
+
+723
+00:34:03,099 --> 00:34:05,664
+Wait, I already have two, OK, never mind.
+等等，我已经有两个了，好的，没关系。 
+
+724
+00:34:05,664 --> 00:34:08,164
+AUDIENCE: You have to go through your choices, so you just--
+听众：您必须进行选择，所以您- 
+
+725
+00:34:08,164 --> 00:34:10,447
+
+
+
+726
+00:34:10,447 --> 00:34:12,239
+AUDIENCE: Is there any difference in making
+听众：制作上有什么区别吗
+
+727
+00:34:12,239 --> 00:34:13,989
+a separate dictionary for parent pointers?
+父指针的单独字典？ 
+
+728
+00:34:13,989 --> 00:34:16,420
+Does it make any difference in run time?
+它对运行时间有什么影响吗？ 
+
+729
+00:34:16,420 --> 00:34:18,260
+PROFESSOR: Absolutely no difference running time.
+教授：绝对没有差异。 
+
+730
+00:34:18,460 --> 00:34:20,543
+The code is, it might be more complicated,
+代码可能更复杂， 
+
+731
+00:34:20,543 --> 00:34:21,960
+it might be more simple, depending
+可能更简单，具体取决于
+
+732
+00:34:21,960 --> 00:34:23,829
+on how your brain works.
+关于你的大脑如何运作。 
+
+733
+00:34:23,829 --> 00:34:25,351
+It's easier to patch existing code
+修补现有代码更容易
+
+734
+00:34:25,351 --> 00:34:26,809
+to add in parent pointers this way.
+以这种方式添加父指针。 
+
+735
+00:34:26,809 --> 00:34:28,268
+If you're writing new code it might
+如果您正在编写新代码，则可能
+
+736
+00:34:28,268 --> 00:34:32,550
+be easier for you to have a separate dictionary.
+更容易拥有单独的字典。 
+
+737
+00:34:32,550 --> 00:34:35,550
+This is fewer lines of code though.
+不过，这是更少的代码行。 
+
+738
+00:34:35,550 --> 00:34:36,610
+OK any questions on this?
+对此有任何疑问吗？ 
+
+739
+00:34:36,809 --> 00:34:41,400
+
+
+
+740
+00:34:41,400 --> 00:34:43,849
+Yes?
+是？ 
+
+741
+00:34:43,849 --> 00:34:46,302
+AUDIENCE: Could I generalize and say
+听众：我可以概括地说
+
+742
+00:34:46,302 --> 00:34:47,760
+that if you have a topological sort
+如果您具有拓扑排序
+
+743
+00:34:47,760 --> 00:34:49,730
+you can do everything backwards.
+你可以倒退一切。 
+
+744
+00:34:49,730 --> 00:34:53,416
+Otherwise you should use memoization.
+否则，您应该使用备忘录。 
+
+745
+00:34:53,416 --> 00:34:55,000
+PROFESSOR: So actually you're doing it
+教授：所以实际上您正在这样做
+
+746
+00:34:55,000 --> 00:34:56,719
+in the order of the topological sort.
+按照拓扑排序的顺序。 
+
+747
+00:34:56,719 --> 00:34:59,250
+You're not doing it backwards.
+您不是在向后做。 
+
+748
+00:34:59,449 --> 00:35:00,719
+AUDIENCE: Oh, OK sorry.
+听众：哦，对不起。 
+
+749
+00:35:00,719 --> 00:35:02,444
+If you have a topological sort then
+如果您有拓扑排序，那么
+
+750
+00:35:02,445 --> 00:35:03,536
+you should do it in that order.
+您应该按顺序进行。 
+
+751
+00:35:03,735 --> 00:35:06,299
+But if you don't have a topological sort
+但是，如果您没有拓扑结构
+
+752
+00:35:06,300 --> 00:35:07,947
+then you should do memoization.
+那你应该做个回忆
+
+753
+00:35:08,146 --> 00:35:10,230
+PROFESSOR: If you don't know the topological sort.
+教授：如果您不知道拓扑排序。 
+
+754
+00:35:10,230 --> 00:35:11,521
+But there has to be one, right?
+但是必须有一个，对不对？ 
+
+755
+00:35:11,521 --> 00:35:13,769
+Because otherwise you have infinite loops.
+因为否则，您将陷入无限循环。 
+
+756
+00:35:13,969 --> 00:35:16,273
+If you have an infinite loop in your dependency graph,
+如果您的依存关系图中有无限循环， 
+
+757
+00:35:16,273 --> 00:35:17,940
+then you're not going to have an answer.
+那么您将不会有答案。 
+
+758
+00:35:17,940 --> 00:35:21,634
+So that means you're dp formulation is bad.
+这意味着您的dp配方不好。 
+
+759
+00:35:21,634 --> 00:35:23,300
+Fortunately for all the problems that we
+幸运的是，我们遇到的所有问题
+
+760
+00:35:23,300 --> 00:35:26,250
+have the topological sort is pretty obvious.
+具有拓扑排序是相当明显的。 
+
+761
+00:35:26,449 --> 00:35:30,689
+It either grows from 0 to the problem size or the other way
+它要么从0增长到问题的大小，要么相反
+
+762
+00:35:30,690 --> 00:35:32,889
+around.
+周围。 
+
+763
+00:35:32,889 --> 00:35:35,809
+AUDIENCE: So then memoization is?
+听众：那么回忆是什么？ 
+
+764
+00:35:35,809 --> 00:35:38,799
+PROFESSOR: So memoization is, it's
+教授：所以回忆是
+
+765
+00:35:38,800 --> 00:35:40,210
+more of a proof of concept thing.
+更多的是概念证明。 
+
+766
+00:35:40,409 --> 00:35:43,359
+It shows you that if you have the recursion,
+它表明，如果您有递归， 
+
+767
+00:35:43,360 --> 00:35:45,501
+everything else can be done automatically.
+其他一切都可以自动完成。 
+
+768
+00:35:45,501 --> 00:35:47,750
+So like if you build a graph then you can run top sort
+因此，就像您创建图表一样，您可以运行顶级排序
+
+769
+00:35:47,750 --> 00:35:50,469
+and get the answer, you don't have to think about it.
+并获得答案，您无需考虑。 
+
+770
+00:35:50,469 --> 00:35:53,230
+We think about it because the code is smaller
+我们考虑一下是因为代码较小
+
+771
+00:35:53,230 --> 00:35:55,250
+if we do it this way.
+如果我们这样做的话。 
+
+772
+00:35:55,250 --> 00:35:56,735
+If I'd have to write memoization I
+如果我必须写备忘录， 
+
+773
+00:35:56,735 --> 00:35:58,840
+would add 4 or 5 more lines, right?
+会增加4或5行，对吧？ 
+
+774
+00:35:58,840 --> 00:36:01,920
+But the point of doing it that way is, all you need
+但是这样做的关键是，您需要的一切
+
+775
+00:36:01,920 --> 00:36:02,730
+is that recursion.
+是那个递归。 
+
+776
+00:36:02,730 --> 00:36:06,829
+If you have this-- so this is the magic part.
+如果您有这个-这就是神奇的部分。 
+
+777
+00:36:06,829 --> 00:36:10,460
+If you have this, so this line here of what your choices are
+如果您有此选择，那么此行就是您的选择
+
+778
+00:36:10,460 --> 00:36:13,349
+and max, how you combine them, then everything else
+最大，如何将它们结合起来，然后再进行其他操作
+
+779
+00:36:13,349 --> 00:36:13,943
+is mechanical.
+是机械的。 
+
+780
+00:36:13,943 --> 00:36:15,360
+Once you've solved enough problems
+一旦解决了足够的问题
+
+781
+00:36:15,360 --> 00:36:17,820
+everything else is just follow the process.
+其他一切都只是按照流程进行。 
+
+782
+00:36:17,820 --> 00:36:23,210
+
+
+
+783
+00:36:23,210 --> 00:36:25,409
+So this is the equivalent of in graph problems,
+因此，这等同于图形问题， 
+
+784
+00:36:25,409 --> 00:36:27,409
+the hard part is figuring out what the state is.
+困难的部分是弄清楚状态是什么。 
+
+785
+00:36:27,409 --> 00:36:28,839
+Once you know what the state you know
+一旦知道状态就知道了
+
+786
+00:36:28,840 --> 00:36:30,039
+that these are the vertices, and you
+这些是顶点，而你
+
+787
+00:36:30,039 --> 00:36:31,539
+know how to draw edges between them.
+知道如何在它们之间绘制边缘。 
+
+788
+00:36:31,539 --> 00:36:33,559
+And then you know what algorithm to run.
+然后，您知道要运行哪种算法。 
+
+789
+00:36:33,559 --> 00:36:36,519
+So the hard part is still knowing what the state is.
+因此，最困难的部分仍然是了解状态。 
+
+790
+00:36:36,519 --> 00:36:40,400
+
+
+
+791
+00:36:40,400 --> 00:36:41,050
+Anything else?
+还要别的吗？ 
+
+792
+00:36:41,050 --> 00:36:45,480
+
+
+
+793
+00:36:45,480 --> 00:36:47,559
+So this is dynamic programming.
+所以这是动态编程。 
+
+794
+00:36:47,559 --> 00:36:48,509
+Smaller code.
+较小的代码。 
+
+795
+00:36:48,510 --> 00:36:50,480
+This is the graph approach.
+这是图形方法。 
+
+796
+00:36:50,480 --> 00:36:52,650
+They essentially compute the same thing.
+他们本质上计算的是同一件事。 
+
+797
+00:36:52,650 --> 00:36:55,713
+This is more code, this is less code.
+这是更多代码，这是更少代码。 
+
+798
+00:36:55,713 --> 00:36:57,630
+And if you see the correspondence between them
+如果您看到他们之间的对应关系
+
+799
+00:36:57,630 --> 00:37:02,996
+then you understand the problem a little bit better.
+那么您对问题的理解会更好一些。 
+
+800
+00:37:02,996 --> 00:37:04,869
+The main point is when you have a new problem
+要点是当您遇到新问题时
+
+801
+00:37:04,869 --> 00:37:06,029
+you can approach it either way.
+您可以采用任何一种方式进行处理。 
+
+802
+00:37:06,030 --> 00:37:08,278
+If you see the dynamic programming solution right away
+如果您立即看到动态编程解决方案
+
+803
+00:37:08,278 --> 00:37:09,610
+write it down, you're done.
+写下来，就完成了。 
+
+804
+00:37:09,610 --> 00:37:10,980
+If not, draw the graph.
+如果没有，请绘制图形。 
+
+805
+00:37:10,980 --> 00:37:12,840
+Think of what the state is, draw the edges.
+考虑一下状态是什么，画出边缘。 
+
+806
+00:37:12,840 --> 00:37:14,789
+And then after that you can write the math.
+然后，您可以编写数学公式。 
+
+807
+00:37:14,989 --> 00:37:19,349
+
+
+
+808
+00:37:19,349 --> 00:37:20,889
+OK let's talk about a new problem.
+好，让我们谈一个新问题。 
+
+809
+00:37:20,889 --> 00:37:23,889
+
+
+
+810
+00:37:23,889 --> 00:37:28,079
+Let's talk about the problem that shows up on interviews.
+让我们谈谈面试中出现的问题。 
+
+811
+00:37:28,079 --> 00:37:29,549
+People excited about interviews?
+人们对采访感到兴奋吗？ 
+
+812
+00:37:29,550 --> 00:37:43,780
+
+
+
+813
+00:37:43,780 --> 00:37:46,340
+OK suppose you have a sequence of numbers,
+好吧，假设您有一个数字序列， 
+
+814
+00:37:46,340 --> 00:37:47,760
+I'm going to draw a sequence here.
+我要在这里画一个顺序。 
+
+815
+00:37:47,760 --> 00:37:55,670
+
+
+
+816
+00:37:55,869 --> 00:37:58,559
+And you want to find the shortest
+而您想找到最短的
+
+817
+00:37:58,559 --> 00:38:00,719
+increasing sub-sequence.
+增加子序列。 
+
+818
+00:38:00,719 --> 00:38:04,039
+So you get to choose some numbers out of these numbers.
+因此，您可以从这些数字中选择一些数字。 
+
+819
+00:38:04,039 --> 00:38:07,949
+And they have to form an increasing sequence.
+而且它们必须形成一个递增的序列。 
+
+820
+00:38:07,949 --> 00:38:13,750
+So for example this is a sequence.
+例如，这是一个序列。 
+
+821
+00:38:13,750 --> 00:38:16,309
+It happens to be increasing.
+它恰好正在增加。 
+
+822
+00:38:16,309 --> 00:38:18,789
+This is also a sequence, but it's not increasing.
+这也是一个序列，但没有增加。 
+
+823
+00:38:18,789 --> 00:38:21,170
+So it's not a valid answer.
+因此，这不是一个有效的答案。 
+
+824
+00:38:21,170 --> 00:38:24,980
+And I want the longest sequence, the longest sub-sequence
+我想要最长的序列，最长的子序列
+
+825
+00:38:25,179 --> 00:38:26,049
+that is increasing.
+越来越多。 
+
+826
+00:38:26,050 --> 00:38:31,420
+
+
+
+827
+00:38:31,619 --> 00:38:32,920
+Does the problem make sense?
+这个问题有意义吗？ 
+
+828
+00:38:32,920 --> 00:38:39,369
+
+
+
+829
+00:38:39,369 --> 00:38:41,109
+How do we solve it?
+我们该如何解决？ 
+
+830
+00:38:41,110 --> 00:38:43,000
+Do we want to solve it using dynamic programming
+我们是否想使用动态编程解决它
+
+831
+00:38:43,199 --> 00:38:44,059
+or using graphs?
+或使用图表？ 
+
+832
+00:38:44,059 --> 00:38:48,599
+
+
+
+833
+00:38:48,599 --> 00:38:52,119
+OK so votes for dynamic programming.
+好的，为动态编程投票。 
+
+834
+00:38:52,119 --> 00:38:54,739
+Votes for graph.
+投票给图表。 
+
+835
+00:38:54,739 --> 00:38:56,819
+Well too bad, it looks prettier as a graph.
+太糟糕了，它看起来更漂亮。 
+
+836
+00:38:56,820 --> 00:38:59,460
+So how do we solve it as a dynamic programming problem?
+那么我们如何解决它作为动态编程问题呢？ 
+
+837
+00:38:59,659 --> 00:39:02,406
+
+
+
+838
+00:39:02,407 --> 00:39:03,289
+What are the sub-problems?
+有哪些子问题？ 
+
+839
+00:39:03,489 --> 00:39:09,369
+
+
+
+840
+00:39:09,369 --> 00:39:13,059
+AUDIENCE: The largest sub-sequence
+观众：最大的子序列
+
+841
+00:39:13,059 --> 00:39:14,811
+PROFESSOR: Starting somewhere, right?
+教授：从某处开始吧？ 
+
+842
+00:39:14,811 --> 00:39:20,219
+
+
+
+843
+00:39:20,219 --> 00:39:22,059
+I'm going to go off that answer because I
+我要回答这个问题，因为我
+
+844
+00:39:22,059 --> 00:39:24,989
+know how to go off of it better.
+知道如何更好地解决它。 
+
+845
+00:39:24,989 --> 00:39:27,179
+So say start here.
+所以说从这里开始。 
+
+846
+00:39:27,179 --> 00:39:29,940
+Say start at 4.
+从4开始说。 
+
+847
+00:39:29,940 --> 00:39:32,460
+Or actually say I start at 3.
+或实际上说我从3开始。 
+
+848
+00:39:32,460 --> 00:39:36,050
+
+
+
+849
+00:39:36,050 --> 00:39:37,780
+I have two choices.
+我有两个选择。 
+
+850
+00:39:37,780 --> 00:39:39,519
+5, which is closer to me.
+ 5，离我更近。 
+
+851
+00:39:39,519 --> 00:39:40,449
+And 4.
+和4。 
+
+852
+00:39:40,449 --> 00:39:42,951
+Well I have a few more choices, but they're further away.
+好吧，我还有其他选择，但是距离还很远。 
+
+853
+00:39:42,951 --> 00:39:43,449
+Whatever.
+随你。 
+
+854
+00:39:43,449 --> 00:39:47,719
+
+
+
+855
+00:39:47,719 --> 00:39:51,299
+So these are my choices starting at 3.
+这些是我从3开始的选择。 
+
+856
+00:39:51,300 --> 00:39:53,730
+If I decide that I'm going to go from 3 to 4
+如果我决定我将从3变到4 
+
+857
+00:39:53,929 --> 00:39:57,409
+and the next number I choose is 4,
+我选择的下一个数字是4， 
+
+858
+00:39:57,409 --> 00:39:59,259
+now I want the longest sub-sequence
+现在我想要最长的子序列
+
+859
+00:39:59,260 --> 00:40:00,980
+starting at 4, right?
+从4开始吧？ 
+
+860
+00:40:01,179 --> 00:40:03,059
+It still has to be longest sub-sequence.
+它仍然必须是最长的子序列。 
+
+861
+00:40:03,059 --> 00:40:05,090
+So from here on, no matter what happened before,
+所以从现在开始，无论发生了什么事， 
+
+862
+00:40:05,090 --> 00:40:08,550
+my behavior still has to be optimal.
+我的行为仍然必须是最佳的。 
+
+863
+00:40:08,550 --> 00:40:12,400
+If instead I chose 7, I don't care what happened before.
+如果我选择了7，那么我不在乎之前发生了什么。 
+
+864
+00:40:12,599 --> 00:40:15,630
+The behavior still has to be optimal.
+行为仍然必须是最佳的。 
+
+865
+00:40:15,630 --> 00:40:19,550
+So a sub-problem says start at number i.
+因此，一个子问题说从第i个开始。 
+
+866
+00:40:19,550 --> 00:40:22,269
+
+
+
+867
+00:40:22,269 --> 00:40:27,509
+So starting at number i.
+所以从第一号开始。 
+
+868
+00:40:27,510 --> 00:40:29,880
+By the way we're going to use zero-based indexing again
+顺便说一下，我们将再次使用基于零的索引
+
+869
+00:40:29,880 --> 00:40:31,769
+because we like it.
+因为我们喜欢它。 
+
+870
+00:40:31,769 --> 00:40:36,840
+
+
+
+871
+00:40:36,840 --> 00:40:38,900
+So starting at number i, what's the longest
+所以从数字i开始，最长的是
+
+872
+00:40:39,099 --> 00:40:40,750
+increasing sub-sequence I can get?
+我可以获得越来越多的子序列？ 
+
+873
+00:40:40,750 --> 00:40:45,590
+
+
+
+874
+00:40:45,590 --> 00:40:49,860
+So the length of the blah, blah, blah.
+等等，等等，等等。 
+
+875
+00:40:49,860 --> 00:40:51,570
+The length of, you get the point.
+的长度，你明白了。 
+
+876
+00:40:51,570 --> 00:40:56,570
+
+
+
+877
+00:40:56,570 --> 00:41:00,239
+OK so I'm going to have an array again, right?
+好，所以我将再次拥有一个数组，对吗？ 
+
+878
+00:41:00,438 --> 00:41:01,480
+Which stores the answers.
+哪个存储答案。 
+
+879
+00:41:01,480 --> 00:41:05,570
+The array is going to be named dp.
+该数组将被命名为dp。 
+
+880
+00:41:05,570 --> 00:41:08,400
+
+
+
+881
+00:41:08,400 --> 00:41:11,579
+If I have N numbers I'm going to have N elements, from 0
+如果我有N个数字，我将有N个元素，从0开始
+
+882
+00:41:11,579 --> 00:41:14,009
+to N minus 1.
+到N减1。 
+
+883
+00:41:14,010 --> 00:41:17,269
+Suppose I'm at element i.
+假设我在元素i处。 
+
+884
+00:41:17,469 --> 00:41:21,939
+And suppose this original array is called a.
+并假设此原始数组称为a。 
+
+885
+00:41:21,940 --> 00:41:26,019
+I'm in the mood for good variable names today.
+我今天想要好的变量名。 
+
+886
+00:41:26,219 --> 00:41:27,754
+So how do I compute dp if i?
+那么，如果我怎么计算dp？ 
+
+887
+00:41:27,755 --> 00:41:36,500
+
+
+
+888
+00:41:36,699 --> 00:41:38,250
+Let's write some pseudocode for it.
+让我们为其编写一些伪代码。 
+
+889
+00:41:38,250 --> 00:41:42,250
+
+
+
+890
+00:41:42,250 --> 00:41:43,750
+AUDIENCE: [INAUDIBLE] N minus i--
+观众：[听不清] N减i-- 
+
+891
+00:41:43,750 --> 00:41:47,242
+
+
+
+892
+00:41:47,242 --> 00:41:48,000
+PROFESSOR: So what's h?
+教授：那是什么？ 
+
+893
+00:41:48,199 --> 00:41:51,134
+
+
+
+894
+00:41:51,134 --> 00:41:56,519
+AUDIENCE: The number of steps we want to take--
+听众：我们要采取的步骤数量- 
+
+895
+00:41:56,519 --> 00:42:01,847
+PROFESSOR: So if I'm going from 3 to 4 h would be what?
+教授：那么，如果我从3到4个小时会是什么？ 
+
+896
+00:42:01,847 --> 00:42:02,347
+AUDIENCE: 2.
+听众：2。 
+
+897
+00:42:02,347 --> 00:42:03,893
+3.
+ 3。 
+
+898
+00:42:03,893 --> 00:42:05,309
+PROFESSOR: OK so I'm going to have
+教授：好的，我要
+
+899
+00:42:05,309 --> 00:42:06,739
+to do additions and subtractions,
+做加减法， 
+
+900
+00:42:06,739 --> 00:42:09,299
+and this is going to confuse me.
+这会让我感到困惑。 
+
+901
+00:42:09,300 --> 00:42:11,130
+So how about I propose this.
+那我建议这个。 
+
+902
+00:42:11,329 --> 00:42:14,029
+What you say is perfectly valid, but instead, to make sure
+您所说的完全正确，但要确保
+
+903
+00:42:14,030 --> 00:42:15,867
+I don't make too many mistakes, I'm
+我不会犯太多错误，我是
+
+904
+00:42:15,867 --> 00:42:17,250
+going to look at the number I land at.
+看看我的电话号码。 
+
+905
+00:42:17,449 --> 00:42:19,129
+At the index directly.
+直接在索引处。 
+
+906
+00:42:19,130 --> 00:42:23,000
+So I'm going to say I start at i and end at j.
+因此，我要说的是我从i开始，到j结束。 
+
+907
+00:42:23,000 --> 00:42:25,590
+So the next step is j.
+因此，下一步是j。 
+
+908
+00:42:25,590 --> 00:42:30,579
+And then your h is j minus i.
+然后您的h为j减去i。 
+
+909
+00:42:30,579 --> 00:42:33,440
+So I'm not going to look at the number of numbers I hop over,
+所以我不会看我跳过的数字数量， 
+
+910
+00:42:33,440 --> 00:42:36,389
+all I care about is where do I land.
+我唯一关心的是我在哪里着陆。 
+
+911
+00:42:36,389 --> 00:42:40,170
+So what's the next number in the sub-sequence?
+那么，子序列中的下一个数字是什么？ 
+
+912
+00:42:40,170 --> 00:42:42,195
+If I do it that way, where do I start?
+如果我那样做，我应该从哪里开始？ 
+
+913
+00:42:42,195 --> 00:42:45,728
+
+
+
+914
+00:42:45,927 --> 00:42:47,909
+AUDIENCE: i plus 1.
+听众：我加1。 
+
+915
+00:42:47,909 --> 00:42:49,949
+So I can choose the same number twice, right?
+所以我可以选择两次相同的数字，对吗？ 
+
+916
+00:42:49,949 --> 00:42:52,960
+
+
+
+917
+00:42:52,960 --> 00:42:54,920
+So plus 1 to n.
+所以加1到n。 
+
+918
+00:42:54,920 --> 00:42:59,193
+And then I'm going to have a choices array here that I
+然后我将在这里有一个选择数组
+
+919
+00:42:59,193 --> 00:43:03,029
+start, initialize with nothing.
+开始，什么都不初始化。 
+
+920
+00:43:03,030 --> 00:43:06,269
+And then what's the candidate, if I'm at j?
+如果我在j，那候选人是什么？ 
+
+921
+00:43:06,269 --> 00:43:11,769
+
+
+
+922
+00:43:11,769 --> 00:43:16,875
+So what answer am I looking at?
+那我在看什么答案？ 
+
+923
+00:43:16,875 --> 00:43:19,849
+AUDIENCE: dp of j.
+听众：j的dp。 
+
+924
+00:43:19,849 --> 00:43:21,159
+PROFESSOR: OK.
+教授：好的。 
+
+925
+00:43:21,159 --> 00:43:23,690
+So if I'm at i, and I'm considering choosing j
+因此，如果我在i，并且我正在考虑选择j 
+
+926
+00:43:23,690 --> 00:43:27,389
+as the next element, then my sequence will be-- my sequence
+作为下一个元素，那么我的顺序将是-我的顺序
+
+927
+00:43:27,389 --> 00:43:33,489
+length will be dp of j almost.
+长度几乎是j的dp。 
+
+928
+00:43:33,489 --> 00:43:34,969
+Plus 1.
+加1。 
+
+929
+00:43:34,969 --> 00:43:40,289
+OK, can I choose all the-- can I go through all the j's?
+好的，我可以选择所有的-我可以遍历所有的j吗？ 
+
+930
+00:43:40,289 --> 00:43:45,670
+Can I go from 3 to 2.
+我可以从3转到2。 
+
+931
+00:43:45,670 --> 00:43:47,994
+AUDIENCE: No.
+听众：不。 
+
+932
+00:43:47,994 --> 00:43:52,559
+The number at j is greater than--
+ j处的数字大于- 
+
+933
+00:43:52,559 --> 00:43:58,360
+PROFESSOR: If the number at j is greater than the number at i
+教授：如果j处的数字大于i处的数字
+
+934
+00:43:58,360 --> 00:44:01,730
+then I have this new choice, dp of j plus 1.
+那么我有这个新选择，dp j加1。 
+
+935
+00:44:01,730 --> 00:44:04,443
+What do I do with it?
+我该怎么办？ 
+
+936
+00:44:04,643 --> 00:44:07,538
+AUDIENCE: Stick it in choices.
+听众：坚持选择。 
+
+937
+00:44:07,539 --> 00:44:08,630
+PROFESSOR: Stick it in choices.
+教授：坚持选择。 
+
+938
+00:44:08,829 --> 00:44:13,195
+
+
+
+939
+00:44:13,195 --> 00:44:14,069
+Sorry this is append.
+抱歉，这是附加内容。 
+
+940
+00:44:14,070 --> 00:44:18,300
+
+
+
+941
+00:44:18,300 --> 00:44:20,170
+And afterwards?
+然后呢？ 
+
+942
+00:44:20,369 --> 00:44:22,469
+And by the way, this thing is under the if.
+顺便说一句，这件事在if下。 
+
+943
+00:44:22,469 --> 00:44:25,047
+
+
+
+944
+00:44:25,047 --> 00:44:25,963
+AUDIENCE: [INAUDIBLE].
+听众：[听不清]。 
+
+945
+00:44:25,963 --> 00:44:37,940
+
+
+
+946
+00:44:37,940 --> 00:44:41,650
+PROFESSOR: OK and I'm missing one choice this way.
+教授：好的，我这样就错过了一个选择。 
+
+947
+00:44:41,650 --> 00:44:45,070
+What's my default choice?
+我的默认选择是什么？ 
+
+948
+00:44:45,070 --> 00:44:49,976
+So what's the sequence length if I just stay there?
+那么，如果我呆在那里，序列长度是多少？ 
+
+949
+00:44:50,175 --> 00:44:51,565
+AUDIENCE: [INAUDIBLE].
+听众：[听不清]。 
+
+950
+00:44:51,565 --> 00:44:54,849
+PROFESSOR: So if I decide to not choose anything after 3
+教授：所以，如果我决定3点后不选择任何东西
+
+951
+00:44:54,849 --> 00:44:58,900
+then I have a number, 1.
+然后我有一个数字1。 
+
+952
+00:44:58,900 --> 00:45:00,880
+Small detail, again one of those things
+小细节，再次是这些事情之一
+
+953
+00:45:00,880 --> 00:45:05,510
+that costs you one point if you get it wrong.
+如果您弄错了，那将花费您一分。 
+
+954
+00:45:05,510 --> 00:45:06,840
+OK so I have a default.
+确定，所以我有默认值。 
+
+955
+00:45:06,840 --> 00:45:08,840
+So I know that this is going to be well-defined,
+所以我知道这将是明确的， 
+
+956
+00:45:08,840 --> 00:45:12,269
+and I have all my possible choices.
+我有所有可能的选择。 
+
+957
+00:45:12,469 --> 00:45:13,439
+Yes?
+是？ 
+
+958
+00:45:13,440 --> 00:45:16,519
+AUDIENCE: dp of j representing a [INAUDIBLE].
+听众：j的dp代表[听不清]。 
+
+959
+00:45:16,719 --> 00:45:19,409
+PROFESSOR: So it's saying, if I'm at i,
+教授：这就是说，如果我在我身边， 
+
+960
+00:45:19,409 --> 00:45:21,099
+and the next number in the sequence
+和序列中的下一个数字
+
+961
+00:45:21,099 --> 00:45:24,460
+is j, what's the longest sub-sequence-- the length
+是j，最长的子序列是多少
+
+962
+00:45:24,460 --> 00:45:27,090
+of the longest sub-sequence starting at j?
+开始于j的最长子序列？ 
+
+963
+00:45:27,090 --> 00:45:31,480
+
+
+
+964
+00:45:31,679 --> 00:45:36,259
+So let's run the dp for this example actually.
+因此，让我们实际运行此示例的dp。 
+
+965
+00:45:36,260 --> 00:45:39,150
+Let's get a feel for why it works and how it works.
+让我们来看看它为什么起作用以及如何起作用。 
+
+966
+00:45:39,349 --> 00:45:41,659
+So I'm going to copy it again here.
+所以我要在这里再次复制。 
+
+967
+00:45:41,659 --> 00:45:44,849
+8, 3, 5, 2, 4, 9, 7, 11.
+ 8、3、5、2、4、9、7、11 
+
+968
+00:45:44,849 --> 00:45:47,960
+
+
+
+969
+00:45:47,960 --> 00:45:49,099
+So this is a.
+所以这是一个。 
+
+970
+00:45:49,099 --> 00:45:54,210
+
+
+
+971
+00:45:54,210 --> 00:45:55,440
+And dp is here.
+ dp在这里。 
+
+972
+00:45:55,440 --> 00:45:59,130
+Where do I start by the way?
+我从哪里开始？ 
+
+973
+00:45:59,130 --> 00:46:01,130
+AUDIENCE: [INAUDIBLE].
+听众：[听不清]。 
+
+974
+00:46:01,130 --> 00:46:04,500
+PROFESSOR: So I have the algorithm here,
+教授：所以我这里有算法， 
+
+975
+00:46:04,500 --> 00:46:07,360
+how do I iterate?
+我该如何迭代？ 
+
+976
+00:46:07,360 --> 00:46:11,242
+For i in--
+因为我在- 
+
+977
+00:46:11,242 --> 00:46:15,186
+AUDIENCE: N minus N is 0.
+听众：N减去N为0。 
+
+978
+00:46:15,186 --> 00:46:18,260
+PROFESSOR: N minus 1 all the way to 0.
+教授：N减1一直到0。 
+
+979
+00:46:18,260 --> 00:46:21,164
+So in this case we're going to start at 11, right?
+所以在这种情况下，我们将从11开始，对吗？ 
+
+980
+00:46:21,164 --> 00:46:23,769
+
+
+
+981
+00:46:23,969 --> 00:46:26,809
+The default choice is 1.
+默认选择是1。 
+
+982
+00:46:26,809 --> 00:46:28,179
+Do I have any other choice?
+我还有其他选择吗？ 
+
+983
+00:46:28,179 --> 00:46:29,179
+Can I go forward?
+我可以前进吗？ 
+
+984
+00:46:29,179 --> 00:46:30,629
+Nope.
+不。 
+
+985
+00:46:30,630 --> 00:46:31,539
+So this is going to be 1.
+所以这将是1。 
+
+986
+00:46:31,739 --> 00:46:34,509
+
+
+
+987
+00:46:34,510 --> 00:46:38,840
+Now for 7 my array of choices has a default of 1.
+现在，对于我的选择数组，默认值为1。 
+
+988
+00:46:38,840 --> 00:46:41,400
+
+
+
+989
+00:46:41,599 --> 00:46:46,360
+And then for-- let me write the indices too,
+然后，让我也写索引， 
+
+990
+00:46:46,360 --> 00:46:48,960
+so I don't get confused.
+所以我不会感到困惑。 
+
+991
+00:46:49,159 --> 00:46:53,210
+0, 1, 2, 3, 4, 5, 6, 7.
+ 0、1、2、3、4、5、6、7 
+
+992
+00:46:53,210 --> 00:46:53,960
+And these are i's.
+这些是我的。 
+
+993
+00:46:53,960 --> 00:46:56,800
+
+
+
+994
+00:46:56,800 --> 00:46:58,900
+So we're at 7, i equals 6.
+所以我们现在是7，等于6。 
+
+995
+00:46:58,900 --> 00:47:04,880
+For j equals 7, is a of j greater than a of i?
+对于j等于7，j的a是否大于i的a？ 
+
+996
+00:47:04,880 --> 00:47:05,610
+OK.
+好。 
+
+997
+00:47:05,610 --> 00:47:09,690
+So then 7, 11 is a possible choice, right?
+那么7、11是一个可能的选择，对吗？ 
+
+998
+00:47:09,889 --> 00:47:14,670
+So if I choose 11 as the next point in my sequence,
+因此，如果我选择11作为序列中的下一个点， 
+
+999
+00:47:14,670 --> 00:47:17,389
+what's the total sequence length?
+总序列长度是多少？ 
+
+1000
+00:47:17,389 --> 00:47:18,400
+2.
+ 2。 
+
+1001
+00:47:18,400 --> 00:47:22,130
+And 1 plus dp of 7 equals 2.
+ 1加dp等于7。 
+
+1002
+00:47:22,130 --> 00:47:22,880
+So this is good.
+所以这很好。 
+
+1003
+00:47:22,880 --> 00:47:24,980
+So far the answers add up.
+到目前为止，答案加起来了。 
+
+1004
+00:47:24,980 --> 00:47:28,420
+So I have 1 and 2 as my candidates
+所以我有1和2作为候选人
+
+1005
+00:47:28,420 --> 00:47:30,210
+for the answer 2dp of 6.
+对于6的答案2dp。 
+
+1006
+00:47:30,210 --> 00:47:33,880
+What's the maximum?
+最高是多少？ 
+
+1007
+00:47:33,880 --> 00:47:35,480
+All right.
+好吧。 
+
+1008
+00:47:35,480 --> 00:47:36,800
+Works so far.
+到目前为止工作。 
+
+1009
+00:47:36,800 --> 00:47:37,610
+How about 9?
+ 9呢？ 
+
+1010
+00:47:37,610 --> 00:47:41,980
+
+
+
+1011
+00:47:42,179 --> 00:47:43,960
+What are the possible answers for 9?
+ 9的可能答案是什么？ 
+
+1012
+00:47:43,960 --> 00:47:45,159
+So what's choices?
+那有什么选择呢？ 
+
+1013
+00:47:45,159 --> 00:47:47,519
+First there's 1, there's always 1.
+首先是1，总是1。 
+
+1014
+00:47:47,519 --> 00:47:53,539
+And then for j equals 6, will the if be true?
+然后，对于j等于6的if是否成立？ 
+
+1015
+00:47:53,539 --> 00:47:54,210
+No.
+没有。 
+
+1016
+00:47:54,210 --> 00:47:56,019
+I can't add a 7 after a 9, right?
+我不能在9之后加上7，对吗？ 
+
+1017
+00:47:56,019 --> 00:47:57,699
+So go to the next one.
+因此，转到下一个。 
+
+1018
+00:47:57,699 --> 00:48:02,093
+For j equals 7, will the if be true?
+如果j等于7，则if是否为真？ 
+
+1019
+00:48:02,094 --> 00:48:03,510
+So this append will happen, right?
+所以这个追加将会发生，对吗？ 
+
+1020
+00:48:03,510 --> 00:48:05,230
+What will be appended in the array?
+数组中将追加什么？ 
+
+1021
+00:48:05,429 --> 00:48:10,029
+
+
+
+1022
+00:48:10,030 --> 00:48:13,940
+And this means that if I'm at 9, and then the next element is
+这意味着如果我9岁，那么下一个元素是
+
+1023
+00:48:13,940 --> 00:48:17,929
+11, the longest sequence I can get has length 2.
+ 11，我可以获得的最长序列的长度为2。 
+
+1024
+00:48:17,929 --> 00:48:19,859
+OK, what's the answer for 9?
+ OK，9的答案是什么？ 
+
+1025
+00:48:19,860 --> 00:48:22,539
+
+
+
+1026
+00:48:22,739 --> 00:48:25,339
+So if I start at 9 the longest sequence I can make
+因此，如果我从9开始的最长序列
+
+1027
+00:48:25,340 --> 00:48:27,260
+has length 2.
+长度为2。 
+
+1028
+00:48:27,260 --> 00:48:28,170
+Let's look at 4 now.
+现在让我们看4。 
+
+1029
+00:48:28,170 --> 00:48:35,039
+
+
+
+1030
+00:48:35,239 --> 00:48:37,519
+AUDIENCE: [INAUDIBLE].
+听众：[听不清]。 
+
+1031
+00:48:37,519 --> 00:48:39,929
+PROFESSOR: What is?
+教授：什么？ 
+
+1032
+00:48:39,929 --> 00:48:42,899
+AUDIENCE: Just in general that's-- the problem is defined
+听众：总的来说-问题已经定义
+
+1033
+00:48:42,900 --> 00:48:46,170
+as, OK in this case you go from 9 to 11.
+如，在这种情况下，您可以从9到11。 
+
+1034
+00:48:46,170 --> 00:48:49,943
+Or do you have to go from 9 to the next element?
+还是必须从9转到下一个元素？ 
+
+1035
+00:48:49,943 --> 00:48:51,860
+PROFESSOR: So this is the longest sub-sequence
+教授：所以这是最长的子序列
+
+1036
+00:48:51,860 --> 00:48:55,340
+if I do-- so the longest sub-sequence I get overall.
+如果我愿意的话-我会得到最长的子序列。 
+
+1037
+00:48:55,340 --> 00:48:57,960
+I don't have to go to the next element.
+我不必转到下一个元素。 
+
+1038
+00:48:57,960 --> 00:49:01,809
+So if my problem looks like this, what is the best answer?
+因此，如果我的问题看起来像这样，最好的答案是什么？ 
+
+1039
+00:49:01,809 --> 00:49:03,440
+AUDIENCE: It's almost defined as--
+听众：它几乎被定义为- 
+
+1040
+00:49:03,440 --> 00:49:04,940
+PROFESSOR: So the problem is defined
+教授：这样就定义了问题
+
+1041
+00:49:04,940 --> 00:49:08,730
+as, this is your first element in the sub-sequence.
+因为，这是子序列中的第一个元素。 
+
+1042
+00:49:08,730 --> 00:49:11,153
+What's the best answer you can get?
+您能得到的最佳答案是什么？ 
+
+1043
+00:49:11,153 --> 00:49:13,070
+AUDIENCE: I thought in that case it would be 1
+听众：我当时认为是1 
+
+1044
+00:49:13,070 --> 00:49:15,036
+because there's nothing following it that's greater.
+因为没有什么比这更大的了。 
+
+1045
+00:49:15,235 --> 00:49:17,333
+
+
+
+1046
+00:49:17,333 --> 00:49:18,750
+PROFESSOR: This is greater, right?
+教授：更大，对吗？ 
+
+1047
+00:49:18,750 --> 00:49:19,949
+AUDIENCE: Unless it skips.
+听众：除非跳过。 
+
+1048
+00:49:19,949 --> 00:49:22,599
+PROFESSOR: So it's a sub-sequence, not a sub-string,
+教授：这是一个子序列，而不是子字符串， 
+
+1049
+00:49:22,599 --> 00:49:24,389
+which means it can skip.
+这意味着它可以跳过。 
+
+1050
+00:49:24,389 --> 00:49:27,259
+I hope I got these right.
+我希望我没错。 
+
+1051
+00:49:27,260 --> 00:49:29,019
+So you can skip, otherwise the answer
+所以你可以跳过，否则答案
+
+1052
+00:49:29,219 --> 00:49:33,369
+would be a bit easier to compute.
+计算起来会容易一些。 
+
+1053
+00:49:33,369 --> 00:49:34,380
+OK how about 4?
+好4怎么样？ 
+
+1054
+00:49:34,380 --> 00:49:43,230
+
+
+
+1055
+00:49:43,230 --> 00:49:45,849
+So let's start with 1 because that's the easy one.
+因此，我们从1开始，因为这很简单。 
+
+1056
+00:49:45,849 --> 00:49:48,358
+And then?
+接着？ 
+
+1057
+00:49:48,358 --> 00:49:50,723
+AUDIENCE: 1, 3, 3, 2, right?
+观众：1、3、3、2，对吧？ 
+
+1058
+00:49:50,724 --> 00:49:52,190
+Because it's going to be 3 for that one.
+因为那将是3。 
+
+1059
+00:49:52,389 --> 00:49:53,103
+PROFESSOR: OK.
+教授：好的。 
+
+1060
+00:49:53,103 --> 00:49:54,519
+AUDIENCE: And then 3 for this one.
+观众：然后是3。 
+
+1061
+00:49:54,519 --> 00:49:55,849
+PROFESSOR: 3 for this one.
+教授：这个是3。 
+
+1062
+00:49:55,849 --> 00:49:57,659
+AUDIENCE: And then 2.
+听众：然后2。 
+
+1063
+00:49:57,659 --> 00:50:00,369
+PROFESSOR: So all these are bigger, so all of them
+教授：所有这些都更大，所以所有这些
+
+1064
+00:50:00,369 --> 00:50:01,739
+are possible next candidates.
+可能是下一个候选人。 
+
+1065
+00:50:01,739 --> 00:50:03,559
+And these are the sequence lengths
+这些是序列长度
+
+1066
+00:50:03,559 --> 00:50:05,469
+that I can get if I choose them.
+如果选择它们，我可以得到。 
+
+1067
+00:50:05,469 --> 00:50:06,754
+Final answer?
+最后的答案？ 
+
+1068
+00:50:06,755 --> 00:50:09,030
+AUDIENCE: 3.
+听众：3。 
+
+1069
+00:50:09,030 --> 00:50:10,646
+PROFESSOR: 3 maximum.
+教授：最多3位。 
+
+1070
+00:50:10,646 --> 00:50:13,170
+AUDIENCE: But for setting the parent pointers
+听众：但是要设置父指针
+
+1071
+00:50:13,170 --> 00:50:16,329
+you'd want to take the closest thing, right?
+你想拿最近的东西吧？ 
+
+1072
+00:50:16,329 --> 00:50:18,576
+PROFESSOR: As long as it's a maximum I don't care.
+教授：只要是最高限额，我不在乎。 
+
+1073
+00:50:18,577 --> 00:50:21,000
+
+
+
+1074
+00:50:21,199 --> 00:50:25,139
+So what are possible parent pointers here?
+那么，这里可能有哪些父指针？ 
+
+1075
+00:50:25,139 --> 00:50:26,460
+The 2's, right?
+ 2的吧？ 
+
+1076
+00:50:26,460 --> 00:50:27,909
+So either this or this.
+所以这个或这个。 
+
+1077
+00:50:27,909 --> 00:50:29,931
+Do I care which one I chose?
+我在乎选择哪一个吗？ 
+
+1078
+00:50:29,931 --> 00:50:31,651
+AUDIENCE: No, I guess I don't.
+听众：不，我想不是。 
+
+1079
+00:50:31,652 --> 00:50:33,110
+PROFESSOR: As long as I choose a 2.
+教授：只要我选择2。 
+
+1080
+00:50:33,110 --> 00:50:34,650
+From a 3 I know I have to go to a 2.
+从3开始，我知道我必须进入2。 
+
+1081
+00:50:34,650 --> 00:50:36,280
+I can't go to 1 because otherwise it
+我不能去1，否则
+
+1082
+00:50:36,280 --> 00:50:38,250
+wouldn't be as long as possible.
+不会尽可能长。 
+
+1083
+00:50:38,449 --> 00:50:40,849
+And then from 2's I have to go to 1,
+然后从2开始，我必须转到1 
+
+1084
+00:50:40,849 --> 00:50:43,699
+and I don't care which one.
+我不在乎哪一个。 
+
+1085
+00:50:43,699 --> 00:50:46,799
+OK how about 2, what's dp of 2?
+好吧，2的dp怎么样？ 
+
+1086
+00:50:46,800 --> 00:50:50,110
+
+
+
+1087
+00:50:50,110 --> 00:50:51,250
+Does everyone else see it?
+其他人看到了吗？ 
+
+1088
+00:50:51,250 --> 00:50:54,880
+
+
+
+1089
+00:50:54,880 --> 00:50:57,309
+So these are all possible choices
+这些都是可能的选择
+
+1090
+00:50:57,309 --> 00:50:59,489
+because they're all bigger than 2.
+因为它们都大于2。 
+
+1091
+00:50:59,489 --> 00:51:04,750
+And I get 1 if I don't choose anything, 4, 3, 3, 2.
+如果我什么都没选择，我将得到1、4、3、3、2。 
+
+1092
+00:51:04,750 --> 00:51:07,726
+So 4 is the biggest answer.
+所以4是最大的答案。 
+
+1093
+00:51:07,726 --> 00:51:10,059
+Let's look at this one, this one's a bit interesting, 5.
+让我们来看看这个，这个有点有趣，5。 
+
+1094
+00:51:10,059 --> 00:51:12,360
+So what are the choices here?
+那么，这里有哪些选择？ 
+
+1095
+00:51:12,360 --> 00:51:13,914
+1 if I don't look at anything else.
+ 1，如果我什么也没看。 
+
+1096
+00:51:14,114 --> 00:51:14,614
+Then?
+然后？ 
+
+1097
+00:51:14,614 --> 00:51:20,739
+
+
+
+1098
+00:51:20,739 --> 00:51:24,029
+There's a 3, 4, then 9.
+分别是3、4、9。 
+
+1099
+00:51:24,030 --> 00:51:24,860
+A 3, 4, then 7.
+ A 3、4，然后是7。 
+
+1100
+00:51:24,860 --> 00:51:26,710
+And?
+和？ 
+
+1101
+00:51:26,710 --> 00:51:28,769
+And a 2 for the 11.
+而11则为2。 
+
+1102
+00:51:28,969 --> 00:51:33,239
+So this if is going to skip these two elements, which
+因此，如果要跳过这两个元素， 
+
+1103
+00:51:33,239 --> 00:51:35,769
+I can't use to make an increasing sub-sequence.
+我不能用来增加子序列。 
+
+1104
+00:51:35,769 --> 00:51:37,590
+And then it's going to look at these ones,
+然后要看这些
+
+1105
+00:51:37,590 --> 00:51:41,289
+and it's going to add 1 to the numbers here.
+并将这里的数字加1。 
+
+1106
+00:51:41,289 --> 00:51:41,849
+And I get 3.
+我得到3。 
+
+1107
+00:51:41,849 --> 00:51:44,389
+
+
+
+1108
+00:51:44,389 --> 00:51:45,539
+OK.
+好。 
+
+1109
+00:51:45,539 --> 00:51:48,030
+What is the answer for 3?
+ 3的答案是什么？ 
+
+1110
+00:51:48,030 --> 00:51:50,403
+AUDIENCE: 4.
+听众：4。 
+
+1111
+00:51:50,403 --> 00:51:52,070
+PROFESSOR: And what is the answer for 8?
+教授：那8的答案是什么？ 
+
+1112
+00:51:52,070 --> 00:51:56,038
+
+
+
+1113
+00:51:56,038 --> 00:51:58,519
+AUDIENCE: 3.
+听众：3。 
+
+1114
+00:51:58,519 --> 00:52:01,699
+PROFESSOR: Right, the choices are 9 and 11.
+教授：对，选择是9和11。 
+
+1115
+00:52:01,699 --> 00:52:04,939
+Starting with itself and then 9 and 11.
+从自身开始，然后从9和11开始。 
+
+1116
+00:52:04,940 --> 00:52:08,039
+So now what's the longest-- what's the answer overall
+那么现在最长的是什么-总体答案是什么
+
+1117
+00:52:08,039 --> 00:52:08,840
+for this problem?
+对于这个问题？ 
+
+1118
+00:52:08,840 --> 00:52:12,039
+
+
+
+1119
+00:52:12,039 --> 00:52:14,329
+So it's not dp of 0, right?
+所以不是dp为0，对吧？ 
+
+1120
+00:52:14,329 --> 00:52:15,980
+Before when I had blackjack I knew
+在我有二十一点时，我知道
+
+1121
+00:52:15,980 --> 00:52:18,420
+that I have to start at the first card.
+我必须从第一张牌开始。 
+
+1122
+00:52:18,420 --> 00:52:20,780
+So the answer was dp of 0.
+因此答案是dp为0。 
+
+1123
+00:52:20,780 --> 00:52:23,519
+In this case it's not dp 0, it's the maximum
+在这种情况下，它不是dp 0，而是最大值
+
+1124
+00:52:23,719 --> 00:52:26,289
+of all the dp's here.
+所有dp都在这里。 
+
+1125
+00:52:26,289 --> 00:52:29,110
+Because I can start my sequence anywhere I want.
+因为我可以在任何需要的地方开始序列。 
+
+1126
+00:52:29,110 --> 00:52:30,359
+So I have to take the maximum.
+因此，我必须采取最大的努力。 
+
+1127
+00:52:30,360 --> 00:52:32,800
+And that's the overall answer, which in this case is 4.
+这就是整体答案，在本例中为4。 
+
+1128
+00:52:32,800 --> 00:52:35,880
+
+
+
+1129
+00:52:35,880 --> 00:52:38,019
+OK does it make sense now?
+好，现在有意义吗？ 
+
+1130
+00:52:38,219 --> 00:52:39,909
+Somewhat?
+有些？ 
+
+1131
+00:52:39,909 --> 00:52:41,949
+So if you don't understand please look
+所以如果你不明白，请看
+
+1132
+00:52:41,949 --> 00:52:44,129
+at how you'd represent this as a graph.
+您如何将其表示为图表。 
+
+1133
+00:52:44,130 --> 00:52:46,260
+The idea is that the numbers are nodes
+这个想法是数字是节点
+
+1134
+00:52:46,260 --> 00:52:48,460
+and you draw an edge between numbers,
+然后在数字之间画一条边
+
+1135
+00:52:48,460 --> 00:52:52,110
+where the first number is smaller than the second number.
+其中第一个数字小于第二个数字。 
+
+1136
+00:52:52,110 --> 00:52:55,500
+Write that formulation, write the shortest path for that,
+写那个公式，写最短的路径， 
+
+1137
+00:52:55,500 --> 00:53:00,500
+and see how that matches to this.
+并查看如何与此匹配。 
+

@@ -1,0 +1,4380 @@
+﻿1
+00:00:00,000 --> 00:00:00,060
+
+
+
+2
+00:00:00,060 --> 00:00:01,770
+The following content is provided
+提供以下内容
+
+3
+00:00:01,770 --> 00:00:04,009
+under a Creative Commons license.
+根据知识共享许可。 
+
+4
+00:00:04,009 --> 00:00:06,859
+Your support will help MIT OpenCourseWare continue
+您的支持将帮助MIT OpenCourseWare继续
+
+5
+00:00:06,860 --> 00:00:10,720
+to offer high quality educational resources for free.
+免费提供高质量的教育资源。 
+
+6
+00:00:10,720 --> 00:00:13,320
+To make a donation or view additional materials
+捐款或查看其他材料
+
+7
+00:00:13,320 --> 00:00:17,207
+from hundreds of MIT courses, visit MIT OpenCourseWare
+从数百门麻省理工学院的课程中，访问MIT OpenCourseWare 
+
+8
+00:00:17,207 --> 00:00:17,832
+at ocw.mit.edu.
+在ocw.mit.edu。 
+
+9
+00:00:17,832 --> 00:00:21,896
+
+
+
+10
+00:00:21,896 --> 00:00:24,519
+PROFESSOR: Good morning everyone.
+教授：大家早上好。 
+
+11
+00:00:24,519 --> 00:00:26,469
+Morning.
+早上。 
+
+12
+00:00:26,469 --> 00:00:28,910
+Let's get started.
+让我们开始吧。 
+
+13
+00:00:28,910 --> 00:00:33,420
+So the second of two lectures on numerics.
+因此，这是关于数值的两个讲座中的第二个。 
+
+14
+00:00:33,420 --> 00:00:37,210
+Last time we had this motivating question
+上次我们有这个激励性的问题
+
+15
+00:00:37,210 --> 00:00:41,280
+of finding the millionth digit of the square root of 2,
+找到2的平方根的百万分之一
+
+16
+00:00:41,280 --> 00:00:44,530
+or the square root of quantities that
+或数量的平方根
+
+17
+00:00:44,530 --> 00:00:47,509
+end up becoming irrational.
+最终变得不理性。 
+
+18
+00:00:47,509 --> 00:00:51,059
+And we talked about high-precision arithmetic,
+我们谈到了高精度算术， 
+
+19
+00:00:51,060 --> 00:00:55,960
+and we use Newton's method to compute the square roots.
+我们使用牛顿法计算平方根。 
+
+20
+00:00:55,960 --> 00:00:59,009
+You saw a demo of computing square roots,
+您看到了一个计算平方根的演示， 
+
+21
+00:00:59,009 --> 00:01:02,099
+but there's a few things missing.
+但还有一些遗漏的地方。 
+
+22
+00:01:02,100 --> 00:01:05,840
+We don't quite know how to do division, which
+我们不太清楚如何进行除法
+
+23
+00:01:05,840 --> 00:01:08,040
+is required for the Newton's method,
+是牛顿法所必需的
+
+24
+00:01:08,040 --> 00:01:13,680
+and we didn't really talk at all about algorithmic complexity
+而且我们根本没有谈论算法复杂性
+
+25
+00:01:13,680 --> 00:01:17,319
+beyond talking about the complexity of multiplication.
+除了谈论乘法的复杂性。 
+
+26
+00:01:17,519 --> 00:01:20,369
+So multiplication is a primitive that at this point
+所以乘法是一个原始的东西
+
+27
+00:01:20,370 --> 00:01:24,180
+we know how to do in a couple of different ways,
+我们知道如何通过几种不同的方式
+
+28
+00:01:24,180 --> 00:01:25,849
+including the naive order n squared
+包括天真阶n平方
+
+29
+00:01:26,049 --> 00:01:27,929
+algorithm and the Karatsuba algorithm,
+算法和唐津算法， 
+
+30
+00:01:27,930 --> 00:01:31,370
+which is something like n raised to 1.58.
+就像n升到1.58一样。 
+
+31
+00:01:31,370 --> 00:01:34,040
+But how many times is multiplication
+但是乘法是多少次
+
+32
+00:01:34,040 --> 00:01:37,500
+called when you compute square roots?
+计算平方根时调用？ 
+
+33
+00:01:37,500 --> 00:01:40,310
+In fact, multiplication is called
+实际上，乘法称为
+
+34
+00:01:40,310 --> 00:01:43,141
+when you call the division operator
+当您致电除法运算符
+
+35
+00:01:43,141 --> 00:01:44,390
+when you compute square roots.
+当计算平方根时。 
+
+36
+00:01:44,390 --> 00:01:48,510
+So there's really two levels off a computation going on here
+所以计算实际上有两个层次
+
+37
+00:01:48,510 --> 00:01:51,649
+and we need to open this up, and look at in detail,
+我们需要打开它，并仔细研究， 
+
+38
+00:01:51,849 --> 00:01:55,500
+and figure out what our overall algorithmic complexity is.
+并弄清楚我们整体的算法复杂度是多少。 
+
+39
+00:01:55,500 --> 00:02:00,799
+So that's really the meat of today's lecture.
+所以这确实是今天演讲的内容。 
+
+40
+00:02:00,799 --> 00:02:04,019
+Getting to the point where we know
+到达我们知道的地步
+
+41
+00:02:04,019 --> 00:02:07,579
+what we have with respect to asymptotic complexity
+关于渐进复杂性我们有什么
+
+42
+00:02:07,579 --> 00:02:10,978
+of computing the square root of a number.
+计算一个数字的平方根。 
+
+43
+00:02:10,979 --> 00:02:15,800
+So let me start with a review of what we covered last time.
+因此，让我开始回顾上一次讨论的内容。 
+
+44
+00:02:15,800 --> 00:02:18,460
+
+
+
+45
+00:02:18,460 --> 00:02:24,030
+We decided that we wanted the millionth digit
+我们决定想要百万位数字
+
+46
+00:02:24,229 --> 00:02:26,349
+of square root of 2.
+ 2的平方根
+
+47
+00:02:26,349 --> 00:02:27,870
+And the way we're going to do this
+而我们要做的方式
+
+48
+00:02:27,870 --> 00:02:35,280
+is by working with integers and computing the floor,
+是通过使用整数并计算下限， 
+
+49
+00:02:35,280 --> 00:02:41,810
+since we needed to be an integer, of 2 times 10 raised
+因为我们需要是一个整数，所以要加2乘以10 
+
+50
+00:02:41,810 --> 00:02:46,115
+to 2d, where d is the number of digits of precision.
+到2d，其中d是精度的位数。 
+
+51
+00:02:46,115 --> 00:02:53,939
+
+
+
+52
+00:02:53,939 --> 00:02:56,569
+N over there.
+ N那边。 
+
+53
+00:02:56,569 --> 00:03:01,079
+So we'll take a look at an example or two
+所以我们来看一个或两个例子
+
+54
+00:03:01,080 --> 00:03:04,310
+here as to how this works with integers.
+这里是关于整数如何工作的。 
+
+55
+00:03:04,509 --> 00:03:12,179
+But what we do is compute essentially the floor
+但是我们要做的是本质上计算下限
+
+56
+00:03:12,180 --> 00:03:15,930
+of some quantity a, the square root of some quantity a,
+一定数量a的平方根
+
+57
+00:03:15,930 --> 00:03:17,270
+via Newton's method.
+通过牛顿的方法。 
+
+58
+00:03:17,270 --> 00:03:26,969
+
+
+
+59
+00:03:27,169 --> 00:03:29,219
+And the way Newton's method works
+牛顿方法的工作方式
+
+60
+00:03:29,219 --> 00:03:32,280
+is you go through an iteration.
+您是否经历了迭代。 
+
+61
+00:03:32,280 --> 00:03:39,460
+You start with x0 being one, which is your initial guess,
+您以x0为1开始，这是您最初的猜测， 
+
+62
+00:03:39,460 --> 00:03:50,949
+and compute xi plus 1 equals xi plus a divided by xi over 2.
+并计算xi加1等于xi加除以xi得出2。 
+
+63
+00:03:50,949 --> 00:03:52,740
+And as you can see, this requires division,
+如您所见，这需要划分， 
+
+64
+00:03:52,740 --> 00:03:55,129
+because we're computing a divided by xi.
+因为我们正在计算除以xi。 
+
+65
+00:03:55,129 --> 00:03:58,379
+That's the outer Newton iteration.
+那是外部的牛顿迭代。 
+
+66
+00:03:58,379 --> 00:04:05,870
+And I said a couple of things that's said
+我说了几句话
+
+67
+00:04:05,870 --> 00:04:11,259
+you are going to have a quadratic rate of convergence.
+您将具有二次收敛速度。 
+
+68
+00:04:11,259 --> 00:04:17,000
+The precision with respect to the number of digits
+关于位数的精度
+
+69
+00:04:17,000 --> 00:04:22,680
+is going to increase by a factor of 2 every iteration.
+每次迭代将增加2倍。 
+
+70
+00:04:22,680 --> 00:04:24,959
+And so if you started out with one digit of precision,
+因此，如果您以一位精度开始， 
+
+71
+00:04:24,959 --> 00:04:28,319
+you go to two, then four, eight, et cetera.
+你去两个，然后四个，八个，等等。 
+
+72
+00:04:28,319 --> 00:04:30,290
+And so that's a geometric progression.
+这是一个几何级数。 
+
+73
+00:04:30,290 --> 00:04:35,250
+And that means that we're going to have
+这意味着我们将拥有
+
+74
+00:04:35,250 --> 00:04:39,550
+a logarithmic number of iterations, which is nice.
+对数的迭代次数，这很好。 
+
+75
+00:04:39,550 --> 00:04:45,139
+And we were all happy about that, and you believed me.
+我们对此都很高兴，您相信我。 
+
+76
+00:04:45,339 --> 00:04:47,739
+I gave you an example and it looked pretty good,
+我举了一个例子，看起来不错， 
+
+77
+00:04:47,740 --> 00:04:52,889
+but didn't really prove anything about the rate of convergence.
+但并未真正证明收敛速度。 
+
+78
+00:04:52,889 --> 00:04:59,479
+What I'd like to do now is take a look at this particular
+我现在想做的就是看一下这个特殊的
+
+79
+00:04:59,480 --> 00:05:02,250
+iterative computation, where we're computing xi plus 1 given
+迭代计算，我们计算xi加1 
+
+80
+00:05:02,449 --> 00:05:05,990
+xi , and argue that this, in fact,
+ xi并认为实际上
+
+81
+00:05:05,990 --> 00:05:07,495
+has a quadratic rate of convergence.
+具有二次收敛速度。 
+
+82
+00:05:07,495 --> 00:05:10,060
+
+
+
+83
+00:05:10,060 --> 00:05:13,110
+So you can think of this as doing
+所以你可以认为这是在做
+
+84
+00:05:13,110 --> 00:05:18,790
+an error analysis of Newton's method.
+牛顿法的误差分析。 
+
+85
+00:05:18,790 --> 00:05:26,310
+
+
+
+86
+00:05:26,310 --> 00:05:34,959
+And let's say that xn equals square root of a 1 plus epsilon
+假设xn等于1加epsilon的平方根
+
+87
+00:05:34,959 --> 00:05:42,370
+n, where epsilon may be positive or negative.
+ n，其中ε可以为正或负。 
+
+88
+00:05:42,370 --> 00:05:48,079
+So we have an error associated with xn
+所以我们有一个与xn相关的错误
+
+89
+00:05:48,079 --> 00:05:50,709
+in the n-th iteration with respect to what we want,
+关于我们想要的，在第n次迭代中， 
+
+90
+00:05:50,709 --> 00:05:52,799
+which is the square root of a.
+这是a的平方根。 
+
+91
+00:05:52,800 --> 00:05:54,569
+And it's off by something.
+它因某种原因而关闭。 
+
+92
+00:05:54,569 --> 00:05:56,719
+It may be a large quantity in the beginning.
+一开始可能数量很大。 
+
+93
+00:05:56,720 --> 00:05:58,740
+We want to show convergence, so obviously we
+我们想展示融合，所以显然
+
+94
+00:05:58,740 --> 00:06:04,009
+want epsilon n, as n becomes large, do tend to 0.
+想要εn，随着n变大，确实趋于0。 
+
+95
+00:06:04,209 --> 00:06:06,620
+How fast does this approach 0?
+该方法接近0的速度如何？ 
+
+96
+00:06:06,620 --> 00:06:08,899
+That's the question.
+这就是问题所在。 
+
+97
+00:06:08,899 --> 00:06:14,129
+And so if you take this equation and plug this into that,
+因此，如果您采用这个方程式并将其插入其中， 
+
+98
+00:06:14,129 --> 00:06:17,409
+and say, what is xn plus 1?
+并说xn加1是多少？ 
+
+99
+00:06:17,410 --> 00:06:29,040
+xn plus 1 would be square root of a times 1 plus epsilon n
+ xn加1将乘以1加epsilon n的平方根
+
+100
+00:06:29,040 --> 00:06:33,560
+plus a divided by square root of a 1 plus epsilon
+加上1加epsilon的平方根除
+
+101
+00:06:33,759 --> 00:06:39,990
+n divided by 2.
+ n除以2。 
+
+102
+00:06:39,990 --> 00:06:43,129
+Just plugging it in, the value of xn.
+只需插入xn的值即可。 
+
+103
+00:06:43,129 --> 00:06:47,990
+And then some a couple of steps of algebraic simplification,
+然后进行几步代数简化， 
+
+104
+00:06:47,990 --> 00:06:50,829
+you can pull out the square root of a here,
+您可以在此处拉出a的平方根， 
+
+105
+00:06:50,829 --> 00:06:56,289
+then you have 1 plus epsilon n, 1
+那么你有1加epsilon n，1 
+
+106
+00:06:56,290 --> 00:07:01,170
+divided by 1 plus epsilon n over here.
+在此除以1加epsilon n。 
+
+107
+00:07:01,170 --> 00:07:04,449
+The whole thing divided by 2.
+整个事情除以2。 
+
+108
+00:07:04,649 --> 00:07:12,729
+And if you keep going-- there's one step that I'm skipping here
+如果您继续前进-我在这里跳过了一步
+
+109
+00:07:12,730 --> 00:07:16,750
+in terms of simplification, but let
+在简化方面，但让
+
+110
+00:07:16,750 --> 00:07:19,339
+me write this last result out.
+我把最后的结果写出来。 
+
+111
+00:07:19,339 --> 00:07:24,589
+
+
+
+112
+00:07:24,589 --> 00:07:32,560
+Which is xn plus 1 is square root of a times 1
+ xn加1是乘以1的平方根
+
+113
+00:07:32,560 --> 00:07:39,759
+plus epsilon n squared divided by 2 times 1
+加epsilon n平方除以2 1 
+
+114
+00:07:39,759 --> 00:07:43,370
+plus epsilon n down at the bottom.
+在底部加上epsilon n。 
+
+115
+00:07:43,370 --> 00:07:51,990
+So what do we have here in terms of the overall observation
+那么，我们在整体观察方面有什么
+
+116
+00:07:51,990 --> 00:07:55,980
+for epsilon n plus 1, which is the error in the n
+对于epsilon n加1，这是n中的误差
+
+117
+00:07:55,980 --> 00:07:59,500
+plus 1-th iteration given that you have an epsilon n
+假设您有一个epsilon n，再加上第1次迭代
+
+118
+00:07:59,699 --> 00:08:02,099
+error in the n-th iteration?
+在第n次迭代中出错？ 
+
+119
+00:08:02,100 --> 00:08:09,920
+You have a relationship like so where epsilon n plus 1
+你有这样的关系，其中εn加1 
+
+120
+00:08:09,920 --> 00:08:13,629
+is related to epsilon n whole square.
+与epsilon n整个平方有关。 
+
+121
+00:08:13,629 --> 00:08:17,920
+And this part here, as n becomes large,
+随着n变大， 
+
+122
+00:08:17,920 --> 00:08:21,720
+epsilon n is going to go to 0 assuming
+ epsilon n假设为0 
+
+123
+00:08:21,720 --> 00:08:23,939
+a decent initial guess.
+不错的初步猜测。 
+
+124
+00:08:24,139 --> 00:08:27,019
+And so you can say that this is essentially
+所以你可以说这本质上是
+
+125
+00:08:27,019 --> 00:08:32,788
+1, which means you have this quadratic rate of convergence
+ 1，表示您具有这种二次收敛速度
+
+126
+00:08:32,788 --> 00:08:37,340
+where the error, which is a small quantity,
+误差很小的地方
+
+127
+00:08:37,340 --> 00:08:40,158
+is getting squared at every iteration.
+每次迭代都会平方。 
+
+128
+00:08:40,158 --> 00:08:43,529
+And so if you have something like a 0.01 error
+因此，如果您遇到0.01错误
+
+129
+00:08:43,529 --> 00:08:46,639
+at the beginning for epsilon n, epsilon n squared
+在epsilon n的开头，epsilon n平方
+
+130
+00:08:46,639 --> 00:08:55,039
+is going to be 0.0001.
+将是0.0001。 
+
+131
+00:08:55,039 --> 00:08:58,839
+So that's where you get the quadratic rate of convergence.
+这样便可以得到二次收敛率。 
+
+132
+00:08:58,840 --> 00:09:02,359
+So it really comes from this relationship, the relationship
+所以它真的来自这种关系
+
+133
+00:09:02,559 --> 00:09:06,448
+epsilon n squared to epsilon n plus 1,
+ epsilon n等于epsilon n加1 
+
+134
+00:09:06,448 --> 00:09:07,490
+Any questions about this?
+对此有任何疑问吗？ 
+
+135
+00:09:07,490 --> 00:09:12,009
+
+
+
+136
+00:09:12,009 --> 00:09:12,779
+Great.
+大。 
+
+137
+00:09:12,779 --> 00:09:17,159
+So if you have the quadratic rate of convergence,
+因此，如果您具有二次收敛速度， 
+
+138
+00:09:17,159 --> 00:09:27,610
+if you want to go to d digits of precision like I have here,
+如果您想像我在这里一样达到d位精度， 
+
+139
+00:09:27,610 --> 00:09:31,604
+you can argue that you need to log d iterations.
+您可以辩称您需要记录d次迭代。 
+
+140
+00:09:31,804 --> 00:09:35,611
+
+
+
+141
+00:09:35,611 --> 00:09:37,819
+So that's kind of nice, you have a logarithmic number
+很好，您有一个对数
+
+142
+00:09:37,820 --> 00:09:38,449
+of iterations.
+的迭代。 
+
+143
+00:09:38,649 --> 00:09:40,539
+I'm going to get back to that.
+我将回到这一点。 
+
+144
+00:09:40,539 --> 00:09:45,029
+There's one little subtlety that is associated
+有一点点微妙之处
+
+145
+00:09:45,029 --> 00:09:48,610
+with asymptotic analysis that goes beyond simply
+渐进分析不仅限于此
+
+146
+00:09:48,610 --> 00:09:51,509
+the number of iterations that you have
+您拥有的迭代次数
+
+147
+00:09:51,509 --> 00:09:53,299
+and the digits of precision.
+和精度的数字。 
+
+148
+00:09:53,299 --> 00:09:55,370
+But so far so good.
+但是到目前为止还不错。 
+
+149
+00:09:55,370 --> 00:09:57,730
+We're happy with this logarithmic number
+我们对这个对数感到满意
+
+150
+00:09:57,730 --> 00:09:58,490
+of iterations.
+的迭代。 
+
+151
+00:09:58,490 --> 00:10:08,019
+And if we can now compute the complexity of the division,
+如果现在我们可以计算除法的复杂度， 
+
+152
+00:10:08,019 --> 00:10:10,929
+then obviously we need an algorithm for that.
+那么显然我们需要一种算法。 
+
+153
+00:10:10,929 --> 00:10:13,129
+But if you have an algorithm and we figure out
+但是，如果您有一个算法，我们会找出
+
+154
+00:10:13,129 --> 00:10:15,990
+what the complexity of the division algorithm is,
+除法算法的复杂度是多少， 
+
+155
+00:10:15,990 --> 00:10:20,519
+then we have complexity for the square root of 2
+那么我们有2的平方根的复杂度
+
+156
+00:10:20,519 --> 00:10:22,799
+or square root of a using Newton's method.
+或使用牛顿法的平方根。 
+
+157
+00:10:22,799 --> 00:10:25,539
+
+
+
+158
+00:10:25,539 --> 00:10:30,449
+So just justified what I said last time with respect
+所以有理由说我上次所说的尊重
+
+159
+00:10:30,450 --> 00:10:33,000
+to quadratic rate of convergence.
+到二次收敛速度。 
+
+160
+00:10:33,000 --> 00:10:36,139
+And then we talked about multiplication last time.
+然后我们上次谈到乘法。 
+
+161
+00:10:36,139 --> 00:10:39,460
+I want to revisit that.
+我想重温一下。 
+
+162
+00:10:39,460 --> 00:10:50,090
+You have multiplication algorithms,
+你有乘法算法， 
+
+163
+00:10:50,090 --> 00:10:55,205
+and we want to be able to multiply d digit numbers.
+并且我们希望能够将d位数字相乘。 
+
+164
+00:10:55,205 --> 00:10:59,090
+
+
+
+165
+00:10:59,090 --> 00:11:01,359
+And the naive algorithm.
+和朴素的算法。 
+
+166
+00:11:01,559 --> 00:11:05,869
+And you could imagine doing divide and conquer.
+您可以想象分而治之。 
+
+167
+00:11:05,870 --> 00:11:10,690
+
+
+
+168
+00:11:10,690 --> 00:11:17,870
+So you take x1, x0; y1, y0 where x1
+所以你取x1，x0; y1，y0其中x1 
+
+169
+00:11:17,870 --> 00:11:21,169
+is the most significant half of x.
+是x的最高有效部分。 
+
+170
+00:11:21,169 --> 00:11:23,054
+You're trying to multiply x times y.
+您正在尝试将x乘以y。 
+
+171
+00:11:23,054 --> 00:11:27,879
+
+
+
+172
+00:11:27,879 --> 00:11:30,970
+And same thing for y1 and y0.
+对于y1和y0同样如此。 
+
+173
+00:11:30,970 --> 00:11:36,100
+So each of these will have d by 2, digits of precision.
+因此，每一个的d精度为2位。 
+
+174
+00:11:36,100 --> 00:11:40,870
+And if you implement the naive algorithm that
+如果您实施了朴素的算法， 
+
+175
+00:11:40,870 --> 00:11:48,730
+looks like tn equals 4 tn by 2 plus theta n,
+看起来tn等于4 tn乘2加then n， 
+
+176
+00:11:48,730 --> 00:11:52,940
+you end up with theta n squared complexity out
+你最终得到的是复杂度的平方
+
+177
+00:11:52,940 --> 00:11:55,690
+so you have to do four multiplications corresponding
+所以你必须做四个乘法
+
+178
+00:11:55,690 --> 00:11:59,960
+to x1 times Y1 x1 times y0, et cetera.
+ x1乘以Y1 x1乘以y0，等等。 
+
+179
+00:11:59,960 --> 00:12:02,589
+And at each level in the recursive tree,
+在递归树的每个级别上
+
+180
+00:12:02,789 --> 00:12:06,870
+you're breaking things down by a factor of 2 respect
+你把事情分解成2个方面
+
+181
+00:12:06,870 --> 00:12:08,850
+to the digits of precision that you
+达到您的精确度
+
+182
+00:12:08,850 --> 00:12:12,139
+need to multiply on as you're going down the tree.
+当你要往树下走时，需要乘以。 
+
+183
+00:12:12,139 --> 00:12:14,199
+And this is the four multiplications.
+这是四个乘法。 
+
+184
+00:12:14,200 --> 00:12:16,740
+You get your theta n squared complexity.
+您可以得到复杂度的平方。 
+
+185
+00:12:16,740 --> 00:12:19,759
+This gentleman by the name of Karatsuba
+这位以唐津为名的绅士
+
+186
+00:12:19,759 --> 00:12:25,069
+recognized that you could play a few mathematical tricks, which
+认识到您可以玩一些数学技巧， 
+
+187
+00:12:25,070 --> 00:12:29,730
+I won't go over again, but reduce
+我不会再走了，但要减少
+
+188
+00:12:29,730 --> 00:12:32,340
+to three multiplications.
+到三个乘法。 
+
+189
+00:12:32,340 --> 00:12:37,509
+And you do a few more additions, but given
+然后再添加一些， 
+
+190
+00:12:37,509 --> 00:12:40,819
+that the additions have theta n complexity,
+这些添加物具有复杂性， 
+
+191
+00:12:40,820 --> 00:12:49,610
+the recurrence relationship turns into tn equals 3t of n
+递归关系变成tn等于n的3t 
+
+192
+00:12:49,610 --> 00:12:52,919
+over 2 plus theta n.
+超过2加theta n。 
+
+193
+00:12:52,919 --> 00:13:03,029
+And this ends up having 1.58 dot dot dot complexity.
+这样最终将具有1.58点点点复杂度。 
+
+194
+00:13:03,029 --> 00:13:09,470
+No reason to stop with breaking things up into two parts.
+没有理由停止将事情分解为两个部分。 
+
+195
+00:13:09,470 --> 00:13:12,960
+You could imagine generalizing Karatsuba
+您可以想象一下唐津
+
+196
+00:13:12,960 --> 00:13:14,235
+and people have done this.
+人们已经做到了。 
+
+197
+00:13:14,235 --> 00:13:18,200
+
+
+
+198
+00:13:18,200 --> 00:13:22,860
+Two different researchers, Toom and Cook,
+两位不同的研究人员Toom和Cook 
+
+199
+00:13:22,860 --> 00:13:26,230
+generalized Karatsuba for the case
+案件的广义唐津
+
+200
+00:13:26,230 --> 00:13:29,279
+where k is greater than or equal to 2, where
+其中k大于或等于2，其中
+
+201
+00:13:29,279 --> 00:13:32,019
+you're breaking it into k parts.
+您将其分为k个部分。 
+
+202
+00:13:32,019 --> 00:13:36,799
+So the Toom-Cook 2 algorithm is basically Karatsuba,
+所以Toom-Cook 2算法基本上是Karatsuba， 
+
+203
+00:13:36,799 --> 00:13:39,719
+but you have Toom 3, Toom 4, and so on.
+但您有Toom 3，Toom 4等。 
+
+204
+00:13:39,720 --> 00:13:44,519
+And I'm not going to give you a lot of details on this.
+我不会在此提供很多细节。 
+
+205
+00:13:44,519 --> 00:13:50,189
+We don't expect you to work on this, at least in 6006.
+我们不希望您至少在6006上进行此工作。 
+
+206
+00:13:50,190 --> 00:13:55,500
+But just to give you a sense of what happens,
+但是只是为了让您了解发生了什么， 
+
+207
+00:13:55,500 --> 00:14:00,750
+the Toom 3 method, or the Toom-Cook 3 method,
+ Toom 3方法或Toom-Cook 3方法， 
+
+208
+00:14:00,750 --> 00:14:04,190
+breaks and number up into three parts.
+分为三个部分。 
+
+209
+00:14:04,190 --> 00:14:10,089
+So each of these would have d by 3 digits of precision.
+因此，每个精度将具有3位数的d精度。 
+
+210
+00:14:10,289 --> 00:14:12,230
+So this is what you're starting out with.
+这就是您要开始的。 
+
+211
+00:14:12,230 --> 00:14:13,980
+You're starting out with a d digit number.
+您将从广告数字开始。 
+
+212
+00:14:13,980 --> 00:14:16,070
+But the very first level of recursion, you're
+但是第一级递归
+
+213
+00:14:16,070 --> 00:14:20,609
+going to break things up into three xi numbers that
+要将事情分解成三个xi数
+
+214
+00:14:20,809 --> 00:14:22,369
+are d by 3 digits long.
+ d长3位数。 
+
+215
+00:14:22,370 --> 00:14:23,980
+Same thing for y.
+ y也一样。 
+
+216
+00:14:23,980 --> 00:14:27,820
+And if you did a naive multiplication of this,
+如果您对此进行了幼稚的乘法， 
+
+217
+00:14:27,820 --> 00:14:30,969
+how many multiplications do I need?
+我需要多少个乘法？ 
+
+218
+00:14:31,169 --> 00:14:34,000
+If I just forget about any mathematical tricks,
+如果我忘了任何数学技巧， 
+
+219
+00:14:34,000 --> 00:14:38,740
+if I just tried to multiply these things out,
+如果我只是想把这些东西加倍， 
+
+220
+00:14:38,740 --> 00:14:43,479
+how many d by 3 by d by 3 multiplications do I need?
+我需要几乘三乘三乘？ 
+
+221
+00:14:43,679 --> 00:14:44,739
+AUDIENCE: Nine.
+听众：九。 
+
+222
+00:14:44,740 --> 00:14:46,519
+PROFESSOR: Nine.
+教授：九岁。 
+
+223
+00:14:46,519 --> 00:14:50,389
+So if you can beat nine using mathematical tricks,
+因此，如果您可以使用数学技巧击败九个， 
+
+224
+00:14:50,389 --> 00:14:54,730
+you have a better divide and conquer algorithm.
+您有更好的分而治之算法。 
+
+225
+00:14:54,730 --> 00:15:02,970
+And it turns out that Toom 3 plays some arithmetic games
+事实证明，《毁灭战士3》玩了一些算术游戏
+
+226
+00:15:02,970 --> 00:15:13,779
+and ends up with a recurrence relationship that
+并以递归关系结束
+
+227
+00:15:13,779 --> 00:15:15,789
+looks like this.
+看起来像这样。 
+
+228
+00:15:15,789 --> 00:15:21,019
+Where you reduce the nine multiplications down to five.
+将九个乘法减为五个。 
+
+229
+00:15:21,019 --> 00:15:24,110
+So that's a win.
+所以这是一个胜利。 
+
+230
+00:15:24,110 --> 00:15:33,070
+And that ends up being theta of n raised to what?
+最终将n的theta提升到什么？ 
+
+231
+00:15:33,070 --> 00:15:34,829
+Someone?
+有人吗
+
+232
+00:15:35,029 --> 00:15:37,639
+Someone loudly.
+有人大声。 
+
+233
+00:15:37,639 --> 00:15:38,659
+Log--
+日志- 
+
+234
+00:15:38,659 --> 00:15:40,779
+AUDIENCE: Base 3.
+观众：基础3。 
+
+235
+00:15:40,779 --> 00:15:43,549
+PROFESSOR: Log with a base 3 of 5.
+教授：以5为底的3进行登录。 
+
+236
+00:15:43,549 --> 00:15:46,439
+Another irrational number.
+另一个不合理的数字。 
+
+237
+00:15:46,440 --> 00:15:51,940
+And this ends up being n raised to 1.465.
+最终将n提升到1.465。 
+
+238
+00:15:51,940 --> 00:15:53,199
+So you won.
+所以你赢了。 
+
+239
+00:15:53,399 --> 00:15:56,850
+If you use Toom 3, assuming the constants worked out--
+如果您使用的是Toom 3，请假设常量已经计算出- 
+
+240
+00:15:56,850 --> 00:15:58,990
+and Victor can say a little bit more
+维克多可以多说一点
+
+241
+00:15:58,990 --> 00:16:04,289
+about that, because we're having a little trouble justifying
+关于这一点，因为我们在论证方面有些麻烦
+
+242
+00:16:04,289 --> 00:16:05,809
+this particular problem set question
+这个特定的问题集问题
+
+243
+00:16:05,809 --> 00:16:09,669
+that we want to give you, given the constant factors involved.
+考虑到所涉及的恒定因素，我们希望给您。 
+
+244
+00:16:09,669 --> 00:16:14,399
+So the issue really here is this is correct.
+因此，这里的问题确实是正确的。 
+
+245
+00:16:14,399 --> 00:16:16,549
+It's n raised to 1.46.
+升至1.46。 
+
+246
+00:16:16,549 --> 00:16:18,639
+That's n raised to 1.5.
+那是n提高到1.5。 
+
+247
+00:16:18,639 --> 00:16:20,980
+And then the naive algorithm is n square.
+那么朴素的算法是n平方。 
+
+248
+00:16:20,980 --> 00:16:24,470
+But how big does n have to be in order
+但是n必须有多大才能排列
+
+249
+00:16:24,470 --> 00:16:27,440
+for the n raised to 1.58 algorithm
+用于将n提升至1.58算法
+
+250
+00:16:27,440 --> 00:16:30,850
+to beat the n square algorithm, and for the n raised
+击败n方算法，并提出n 
+
+251
+00:16:30,850 --> 00:16:33,129
+to 1.46 algorithm to beat the n raised
+以1.46算法击败n提出
+
+252
+00:16:33,129 --> 00:16:35,450
+to 1.58 algorithm, et cetera.
+到1.58算法等。 
+
+253
+00:16:35,450 --> 00:16:38,009
+And it turns out n needs to be really, really large
+事实证明，n必须非常大
+
+254
+00:16:38,009 --> 00:16:39,980
+if you implement these in Python.
+如果您在Python中实现这些功能。 
+
+255
+00:16:39,980 --> 00:16:42,960
+So if you're having a little trouble here,
+因此，如果您在这里遇到一些麻烦， 
+
+256
+00:16:42,960 --> 00:16:45,699
+giving you this pristine problem set
+给你这个原始的问题集
+
+257
+00:16:45,899 --> 00:16:50,549
+that you can go off and learn about multiplication,
+您可以开始学习乘法， 
+
+258
+00:16:50,549 --> 00:16:52,784
+and also appreciate asymptotic complexity.
+并且欣赏渐近复杂性。 
+
+259
+00:16:52,784 --> 00:16:55,309
+
+
+
+260
+00:16:55,309 --> 00:16:58,009
+So that's a bit of a catch-22.
+因此，这有点让人难以接受。 
+
+261
+00:16:58,009 --> 00:17:02,600
+Anyway, for the purposes of theory, this is great.
+无论如何，就理论而言，这是伟大的。 
+
+262
+00:17:02,600 --> 00:17:04,980
+It turns people have done even better.
+事实证明，人们做得更好。 
+
+263
+00:17:04,980 --> 00:17:10,358
+Multiplication is just this obviously incredibly important
+乘法显然很重要
+
+264
+00:17:10,358 --> 00:17:14,220
+primitive that you would need for doing
+您需要做的原始
+
+265
+00:17:14,220 --> 00:17:16,240
+any reasonable computation.
+任何合理的计算。 
+
+266
+00:17:16,240 --> 00:17:22,618
+And so people have worked on using things like fast Fourier
+因此人们努力使用快速傅立叶
+
+267
+00:17:22,618 --> 00:17:26,899
+transforms and other techniques improve
+转换和其他技术改进
+
+268
+00:17:26,900 --> 00:17:29,009
+the complexity of multiplication.
+乘法的复杂性。 
+
+269
+00:17:29,009 --> 00:17:37,480
+And best scheme until a few years
+最好的方案，直到几年
+
+270
+00:17:37,480 --> 00:17:42,420
+ago was this scheme called Schonhage-Strassen scheme,
+这个方案以前叫做Schonhage-Strassen方案， 
+
+271
+00:17:42,420 --> 00:17:44,920
+which is almost linear in complexity.
+复杂度几乎是线性的。 
+
+272
+00:17:44,920 --> 00:17:53,480
+It's n log n log log n time.
+这是n log n log log n时间。 
+
+273
+00:17:53,480 --> 00:17:58,940
+And this uses the fast Fourier transform, FFT.
+这使用了快速傅立叶变换FFT。 
+
+274
+00:17:58,940 --> 00:18:00,690
+And you can play with all of these things.
+您可以玩所有这些东西。 
+
+275
+00:18:00,690 --> 00:18:06,210
+You can play with Karatsuba the naive algorithm, Toom 3,
+您可以使用Karatsuba玩天真算法Toom 3， 
+
+276
+00:18:06,210 --> 00:18:13,220
+et cetera in the gmpy package in Python.
+等在Python的gmpy包中。 
+
+277
+00:18:13,220 --> 00:18:17,540
+And you can see as to what the value of n
+你可以看到n的值是多少
+
+278
+00:18:17,540 --> 00:18:19,539
+needs to be in order for one of these algorithms
+需要是为了这些算法之一
+
+279
+00:18:19,539 --> 00:18:21,509
+to beat the other.
+击败对方。 
+
+280
+00:18:21,509 --> 00:18:23,007
+This is not something that you're
+这不是你
+
+281
+00:18:23,007 --> 00:18:24,639
+going to do specifically in the problem set,
+要专门针对问题集
+
+282
+00:18:24,839 --> 00:18:26,839
+but I say that as an aside.
+但我要说的是
+
+283
+00:18:26,839 --> 00:18:28,230
+These algorithms are implemented,
+这些算法已实现， 
+
+284
+00:18:28,230 --> 00:18:30,299
+and they're used in real life.
+它们被用于现实生活中。 
+
+285
+00:18:30,299 --> 00:18:30,799
+Eric?
+埃里克？ 
+
+286
+00:18:30,799 --> 00:18:32,924
+ERIC: It may be worth mentioning that Python itself
+ ERIC：也许值得一提的是Python本身
+
+287
+00:18:32,924 --> 00:18:35,659
+for long integers uses Karatsuba.
+对于长整数，请使用Karatsuba。 
+
+288
+00:18:35,660 --> 00:18:39,869
+PROFESSOR: Yeah, so Python uses-- beyond a certain n,
+教授：是的，所以Python使用了-超过了n 
+
+289
+00:18:40,069 --> 00:18:42,480
+you are going to have decisions that
+你将要做出决定
+
+290
+00:18:42,480 --> 00:18:44,789
+are made within the package.
+在包装内制成。 
+
+291
+00:18:44,789 --> 00:18:50,210
+And Python shifts to Karatsuba after n becomes large.
+ n变大后，Python移至唐津。 
+
+292
+00:18:50,210 --> 00:18:52,169
+But if n is small, then it's going
+但是如果n小，那将会
+
+293
+00:18:52,369 --> 00:18:53,669
+to run the naive algorithm.
+运行天真的算法。 
+
+294
+00:18:53,670 --> 00:18:55,177
+Now if you write your own multiplication,
+现在，如果您编写自己的乘法， 
+
+295
+00:18:55,377 --> 00:18:56,599
+you can do whatever you want.
+你想做什么，就可以做什么。 
+
+296
+00:18:56,599 --> 00:18:58,909
+You can have your own adaptive scheme, assuming you
+您可以拥有自己的自适应方案，前提是您
+
+297
+00:18:58,910 --> 00:19:01,380
+have many of these algorithms implemented,
+实施了许多这样的算法， 
+
+298
+00:19:01,380 --> 00:19:04,065
+or you're calling them using the gmpy package.
+或者您使用gmpy软件包致电给他们。 
+
+299
+00:19:04,065 --> 00:19:06,399
+
+
+
+300
+00:19:06,599 --> 00:19:10,599
+So lastly, this looked pretty good for a while.
+所以最后，这看起来好一阵子了。 
+
+301
+00:19:10,599 --> 00:19:14,659
+And from a theoretical standpoint
+从理论上讲
+
+302
+00:19:14,660 --> 00:19:17,102
+there was a breakthrough.
+有一个突破。 
+
+303
+00:19:17,102 --> 00:19:24,419
+Guy by the name of Furer came up with this algorithm that
+名为Furer的Guy提出了这种算法
+
+304
+00:19:24,619 --> 00:19:32,139
+is n log n-- and let me write this carefully-- 2 raised
+是n log n--让我仔细写下这个-提出2 
+
+305
+00:19:32,140 --> 00:19:41,419
+big O-- that's an upper bound-- of log star n.
+对数星n的大O值（即上限）。 
+
+306
+00:19:41,619 --> 00:19:42,729
+That makes sense?
+那讲得通？ 
+
+307
+00:19:42,730 --> 00:19:43,563
+No.
+没有。 
+
+308
+00:19:43,563 --> 00:19:45,690
+I'll have to explain it.
+我必须解释一下。 
+
+309
+00:19:45,690 --> 00:19:47,309
+OK, so what does this mean?
+好，那是什么意思？ 
+
+310
+00:19:47,309 --> 00:19:48,789
+This part is clear.
+这部分很清楚。 
+
+311
+00:19:48,789 --> 00:19:50,259
+This is like sorting.
+这就像排序。 
+
+312
+00:19:50,259 --> 00:19:53,279
+It doesn't need to really use sorting, but that's n log n.
+它并不需要真正使用排序，但这是n log n。 
+
+313
+00:19:53,279 --> 00:19:56,940
+And then you have this 2 raised to big O log star n.
+然后，您将这2个星提升为大对数星n。 
+
+314
+00:19:56,940 --> 00:19:58,930
+I need to define what log star n is.
+我需要定义什么是对数星n。 
+
+315
+00:19:58,930 --> 00:20:06,460
+And log star n is what's called the iterative algorithm--
+对数星号n是所谓的迭代算法- 
+
+316
+00:20:06,460 --> 00:20:07,230
+logarithm, rather.
+对数，而不是。 
+
+317
+00:20:07,230 --> 00:20:10,079
+
+
+
+318
+00:20:10,079 --> 00:20:11,740
+I guess it's an iterative algorithm,
+我想这是一个迭代算法， 
+
+319
+00:20:11,740 --> 00:20:14,059
+but it computes logs.
+但它会计算日志。 
+
+320
+00:20:14,059 --> 00:20:17,639
+And the iterative logarithm is the number
+迭代对数是数字
+
+321
+00:20:17,640 --> 00:20:37,420
+of times log needs to be applied to get a result that
+次数需要应用日志以获得结果
+
+322
+00:20:37,420 --> 00:20:41,170
+is less than or equal to 1.
+小于或等于1。 
+
+323
+00:20:41,170 --> 00:20:46,789
+So this thing really cuts you down to size really fast.
+因此，这件事确实可以迅速缩小您的尺寸。 
+
+324
+00:20:46,789 --> 00:20:48,109
+So it doesn't matter.
+所以没关系。 
+
+325
+00:20:48,109 --> 00:20:52,519
+You could be a 10 raised to 24, or 2 raised to 50,
+您可以将10提高到24，或将2提高到50， 
+
+326
+00:20:52,519 --> 00:20:56,000
+let's say, if you were doing binary logs.
+假设您正在执行二进制日志。 
+
+327
+00:20:56,000 --> 00:20:59,690
+And in the very first iteration you go down to 50, right?
+在第一次迭代中，您降低到50，对吗？ 
+
+328
+00:20:59,690 --> 00:21:03,644
+And then you take a log of 50 and you go down to about 7
+然后取对数50，然后下降到大约7 
+
+329
+00:21:03,644 --> 00:21:04,990
+or something.
+或者其他的东西。 
+
+330
+00:21:04,990 --> 00:21:07,210
+And then you take the log of 7.
+然后取7的对数。 
+
+331
+00:21:07,210 --> 00:21:11,470
+And if you're talking about base 2, like we were,
+而且，如果您像我们一样在谈论基地2， 
+
+332
+00:21:11,470 --> 00:21:13,909
+you're down to less than 3.
+您不到3岁。 
+
+333
+00:21:14,109 --> 00:21:17,159
+And so four or five iterations, you're
+所以四到五次迭代， 
+
+334
+00:21:17,160 --> 00:21:20,169
+down to less than or equal to 1.
+小于或等于1。 
+
+335
+00:21:20,369 --> 00:21:24,279
+And that's what log star n computes.
+这就是对数星n的计算结果。 
+
+336
+00:21:24,279 --> 00:21:28,720
+It's not the logarithm as much as the number of times
+对数不如次数多
+
+337
+00:21:28,720 --> 00:21:32,289
+so you have to apply log to get the result that's less than
+因此，您必须应用日志才能获得小于
+
+338
+00:21:32,289 --> 00:21:33,690
+or equal to 1.
+或等于1。 
+
+339
+00:21:33,690 --> 00:21:36,710
+So you have these giant numbers, and it's only like five,
+所以你有这些巨大的数字，只有五个， 
+
+340
+00:21:36,710 --> 00:21:41,309
+six, eight times do you apply log and you're down to one.
+六，八次您应用日志，而您将日志减少到一。 
+
+341
+00:21:41,309 --> 00:21:44,059
+So for all practical purposes, you can think of--
+因此，出于所有实际目的，您可以想到- 
+
+342
+00:21:44,059 --> 00:21:46,679
+and this is upper bound-- you can think of this,
+这是上限-您可以想到这一点， 
+
+343
+00:21:46,680 --> 00:21:48,549
+even though this is 2 raised to something,
+即使这个数字是2 
+
+344
+00:21:48,549 --> 00:21:51,319
+it's 2 raised to a pretty small number.
+它的2被提高到很小的数目。 
+
+345
+00:21:51,319 --> 00:21:53,470
+2 raised to 10, that would be 1,000.
+ 2提高到10，即为1,000。 
+
+346
+00:21:53,470 --> 00:21:56,390
+And so from an asymptotic complexity standpoint,
+因此，从渐近复杂度的角度来看， 
+
+347
+00:21:56,390 --> 00:21:58,139
+this is the winner.
+这是赢家。 
+
+348
+00:21:58,339 --> 00:22:02,490
+From a practical standpoint, Schonhage-Strassen
+从实际的角度来看，Schonhage-Strassen 
+
+349
+00:22:02,490 --> 00:22:05,480
+is really what you probably want to use
+确实是您可能想要使用的
+
+350
+00:22:05,480 --> 00:22:08,220
+when n becomes very large, to the billions
+当n变得非常大时，达到数十亿
+
+351
+00:22:08,220 --> 00:22:09,779
+and so on and so forth.
+等等等等。 
+
+352
+00:22:09,779 --> 00:22:13,019
+And as of now, to the best of my knowledge
+到目前为止，据我所知
+
+353
+00:22:13,019 --> 00:22:16,309
+this hasn't been implemented in the gmpy package.
+ gmpy包中尚未实现此功能。 
+
+354
+00:22:16,309 --> 00:22:23,109
+So if you actually want to use gmpy, this is where you stop.
+因此，如果您实际上想使用gmpy，那么这里就是您要停止的地方。 
+
+355
+00:22:23,109 --> 00:22:24,819
+So that's multiplication.
+这就是乘法。 
+
+356
+00:22:24,819 --> 00:22:26,480
+So we have a bunch of different ways
+所以我们有很多不同的方式
+
+357
+00:22:26,480 --> 00:22:29,000
+that you could do multiplication.
+你可以做乘法。 
+
+358
+00:22:29,000 --> 00:22:34,859
+What I'd like to do is give you a sense of assuming a given
+我想做的是给您一种假设的感觉
+
+359
+00:22:34,859 --> 00:22:40,269
+complexity of multiplication, how long would division take?
+乘法的复杂性，除法需要多长时间？ 
+
+360
+00:22:40,269 --> 00:22:47,150
+So we are 1 and 1/2 lectures in, and I haven't really
+所以我们有1和1/2讲课，我还没有
+
+361
+00:22:47,150 --> 00:22:50,019
+told you how we're going to do division, which
+告诉你我们要怎么做除法
+
+362
+00:22:50,019 --> 00:22:55,139
+is what we have to do when we compute a divided by xi, which
+是我们计算除以xi时要做的
+
+363
+00:22:55,140 --> 00:22:58,236
+is the basic integration in the Newton method.
+是牛顿法的基本积分。 
+
+364
+00:22:58,236 --> 00:22:58,909
+So let's get to that.
+因此，让我们开始吧。 
+
+365
+00:22:59,109 --> 00:23:19,429
+
+
+
+366
+00:23:19,430 --> 00:23:25,325
+So finally high-precision division.
+于是终于进行了高精度分割。 
+
+367
+00:23:25,325 --> 00:23:30,630
+
+
+
+368
+00:23:30,630 --> 00:23:42,399
+So we want a high-precision rep off a divided by b.
+因此，我们希望得到由a除以b的高精度rep。 
+
+369
+00:23:42,599 --> 00:23:47,500
+And we're going to compute a high-precision rep
+我们将计算一个高精度的rep 
+
+370
+00:23:47,500 --> 00:23:52,430
+off 1 divided by b first.
+先将1除以b。 
+
+371
+00:23:52,430 --> 00:23:59,440
+And what we mean by that is that we'll
+我们的意思是，我们将
+
+372
+00:23:59,440 --> 00:24:10,640
+compute r divided by b floor where
+计算r除以b楼，其中
+
+373
+00:24:10,640 --> 00:24:14,444
+r is a really large value.
+ r是一个非常大的值。 
+
+374
+00:24:14,644 --> 00:24:18,029
+
+
+
+375
+00:24:18,029 --> 00:24:28,250
+And more importantly, it's easy to divide
+更重要的是，划分很容易
+
+376
+00:24:28,250 --> 00:24:31,309
+by r in a particular base.
+由r在特定基数中得出。 
+
+377
+00:24:31,309 --> 00:24:34,819
+So for example, r equals 2 raised to k,
+因此，例如，r等于2升为k， 
+
+378
+00:24:34,819 --> 00:24:38,649
+when we use base 2, you can easily
+当我们使用基数2时，您可以轻松
+
+379
+00:24:38,650 --> 00:24:41,240
+divide through a shift operator.
+除以移位运算符。 
+
+380
+00:24:41,240 --> 00:24:44,059
+So if I give you r divided by b and I give you
+所以如果我给你r除以b然后我给你
+
+381
+00:24:44,059 --> 00:24:49,230
+this long computer word that's in base 2, which typically
+以2为基数的较长计算机字词，通常
+
+382
+00:24:49,230 --> 00:24:52,909
+could have millions of digits in its representation,
+表示中可能有数百万个数字， 
+
+383
+00:24:53,109 --> 00:24:56,106
+I can shift that by the appropriate amount
+我可以把它调适量
+
+384
+00:24:56,106 --> 00:24:58,899
+to a given r divided by b.
+给定的r除以b。 
+
+385
+00:24:58,900 --> 00:25:02,440
+I can get 1 over b by shifting that quantity.
+通过移动该数量，我可以获得b的1分。 
+
+386
+00:25:02,440 --> 00:25:03,970
+So it feels like, hey wait a minute.
+感觉就像，嘿，等等。 
+
+387
+00:25:03,970 --> 00:25:05,799
+Why are we dividing by r?
+为什么我们要除以r？ 
+
+388
+00:25:05,799 --> 00:25:08,740
+Well remember that you want 1 over b.
+好吧，请记住，您想要1比b。 
+
+389
+00:25:08,740 --> 00:25:11,980
+And if you're computing r divided by b floor,
+如果您要计算r除以b楼， 
+
+390
+00:25:11,980 --> 00:25:15,400
+and you actually want 1 over b, which then you
+而您实际上想要1比b大，那么您
+
+391
+00:25:15,400 --> 00:25:18,740
+could use to multiply by a so you can run your Newton
+可以用来乘以a，这样就可以运行牛顿
+
+392
+00:25:18,740 --> 00:25:22,169
+iteration, then you want to divide by r.
+迭代，那么您想除以r。 
+
+393
+00:25:22,369 --> 00:25:24,750
+And that division is essentially going
+这种分裂本质上正在发展
+
+394
+00:25:24,750 --> 00:25:28,740
+to be something that shifts things to the right.
+成为使事物向右移动的事物。 
+
+395
+00:25:28,740 --> 00:25:31,400
+So the most significant bits move to the right,
+因此，最高有效位向右移动， 
+
+396
+00:25:31,400 --> 00:25:33,950
+and you get a smaller number.
+你得到一个较小的数字。 
+
+397
+00:25:33,950 --> 00:25:35,809
+That make sense?
+有道理？ 
+
+398
+00:25:35,809 --> 00:25:38,679
+So we all know how to divide by using
+所以我们都知道如何使用
+
+399
+00:25:38,680 --> 00:25:41,730
+shifting assuming the bases work out right.
+假设基数正确，则进行移位。 
+
+400
+00:25:41,730 --> 00:25:44,390
+And if you had a representation that was decimal,
+如果您使用的是十进制表示， 
+
+401
+00:25:44,390 --> 00:25:48,629
+suddenly you could certainly divide by 10 raised to k.
+突然之间，您当然可以除以10升至k。 
+
+402
+00:25:48,829 --> 00:25:50,329
+That's easy.
+这很容易。 
+
+403
+00:25:50,329 --> 00:25:51,769
+You've done this many times.
+您已经做了很多次。 
+
+404
+00:25:51,769 --> 00:25:53,660
+But you just changed the decimal point
+但是你改变了小数点
+
+405
+00:25:53,660 --> 00:25:55,292
+when you're working with decimal arithmetic.
+当您使用十进制算术时。 
+
+406
+00:25:55,492 --> 00:25:59,740
+When you divide 72 by 100 and you get 0.72.
+将72除以100得到0.72。 
+
+407
+00:25:59,740 --> 00:26:02,549
+And that's a very similar notion here.
+这是一个非常相似的概念。 
+
+408
+00:26:02,549 --> 00:26:06,309
+It doesn't really matter what base you're talking about.
+您在说什么基础都没有关系。 
+
+409
+00:26:06,309 --> 00:26:08,269
+So that's the setup.
+这就是设置。 
+
+410
+00:26:08,269 --> 00:26:10,289
+That's how are we going to try and tackle
+那就是我们要尝试解决的方式
+
+411
+00:26:10,289 --> 00:26:12,349
+this division problem.
+这个分裂问题。 
+
+412
+00:26:12,349 --> 00:26:18,459
+But we still have this problem of computing r divided by b.
+但是我们仍然存在计算r除以b的问题。 
+
+413
+00:26:18,460 --> 00:26:21,700
+So how are we going to compute r divided by b?
+那么我们如何计算r除以b？ 
+
+414
+00:26:21,700 --> 00:26:25,430
+
+
+
+415
+00:26:25,430 --> 00:26:29,740
+And we want this to be a large number of digits of precision.
+我们希望这是大量的精度数字。 
+
+416
+00:26:29,740 --> 00:26:32,069
+So we're going to use Newton's method again.
+因此，我们将再次使用牛顿方法。 
+
+417
+00:26:32,069 --> 00:26:36,159
+
+
+
+418
+00:26:36,160 --> 00:26:42,649
+You've got some non-linearity here with respect to 1 over x.
+关于x上的1，这里有一些非线性。 
+
+419
+00:26:42,849 --> 00:26:46,379
+And we're gonna use Newton's method again.
+我们将再次使用牛顿方法。 
+
+420
+00:26:46,380 --> 00:26:48,629
+And we'll have to hope that this works out,
+我们必须希望这能解决， 
+
+421
+00:26:48,829 --> 00:26:53,829
+that we can get Newton's method, it'll converge,
+我们可以得到牛顿法，它将收敛， 
+
+422
+00:26:53,829 --> 00:26:59,829
+and it'll require operations that we know how to do.
+并且需要我们知道该怎么做的操作。 
+
+423
+00:26:59,829 --> 00:27:02,419
+And all of this is going to work out really well.
+所有这些都将很好地解决。 
+
+424
+00:27:02,420 --> 00:27:04,460
+I'm going to set up a function, f
+我要设置一个功能，f 
+
+425
+00:27:04,460 --> 00:27:14,549
+of x equals 1 divided by x minus b divided by r.
+ x等于1除以x减去b除以r。 
+
+426
+00:27:14,549 --> 00:27:17,230
+So what this means is that this function has
+所以这意味着这个功能有
+
+427
+00:27:17,230 --> 00:27:23,789
+a 0 at x equals r divided by b.
+ x处的a 0等于r除以b。 
+
+428
+00:27:23,789 --> 00:27:28,470
+So if I try and find the 0 of this function,
+因此，如果我尝试找到此函数的0， 
+
+429
+00:27:28,470 --> 00:27:31,230
+and I start out with a decent initial guess,
+我从一个不错的初步猜测开始
+
+430
+00:27:31,230 --> 00:27:33,099
+I'm going to end up with r divided by b.
+我将最终得到r除以b。 
+
+431
+00:27:33,099 --> 00:27:35,000
+And if I'm working with integers,
+如果我使用整数， 
+
+432
+00:27:35,000 --> 00:27:38,710
+effectively that's the floor that I have for r divided by b.
+实际上，这是我对r的下限除以b。 
+
+433
+00:27:38,710 --> 00:27:43,799
+And then I do my shift and I end up with 1 over b.
+然后我做我的班次，最终得到1分。 
+
+434
+00:27:43,799 --> 00:27:49,811
+So someone who remembers differentiation,
+所以有人记得差异化
+
+435
+00:27:49,811 --> 00:27:52,259
+if you're gonna apply Newton's method,
+如果您要应用牛顿法， 
+
+436
+00:27:52,259 --> 00:27:56,629
+tell me what the derivative of f of x is.
+告诉我x的f的导数是什么。 
+
+437
+00:27:56,630 --> 00:27:59,253
+
+
+
+438
+00:27:59,453 --> 00:28:00,869
+Somebody's stretching at the back,
+有人在后面伸展
+
+439
+00:28:00,869 --> 00:28:03,719
+but I don't think that was an answer.
+但我不认为这是答案。 
+
+440
+00:28:03,720 --> 00:28:06,669
+Someone at the back?
+有人在后面吗？ 
+
+441
+00:28:06,869 --> 00:28:08,579
+Too easy a question?
+问题太简单了吗？ 
+
+442
+00:28:08,579 --> 00:28:10,445
+For the cushion.
+为垫子。 
+
+443
+00:28:10,445 --> 00:28:11,944
+AUDIENCE: 1 over negative x squared.
+观众：负数x平方的1。 
+
+444
+00:28:11,944 --> 00:28:13,485
+PROFESSOR: 1 over negative x squared.
+教授：负1的x平方。 
+
+445
+00:28:13,486 --> 00:28:14,710
+Who's that?
+那是谁？ 
+
+446
+00:28:14,710 --> 00:28:15,169
+All right.
+好吧。 
+
+447
+00:28:15,369 --> 00:28:17,649
+You can come pick this up.
+你可以来接。 
+
+448
+00:28:17,650 --> 00:28:19,063
+Whatever.
+随你。 
+
+449
+00:28:19,263 --> 00:28:20,179
+Cut the monotony here.
+在这里剪切单调。 
+
+450
+00:28:20,180 --> 00:28:22,369
+
+
+
+451
+00:28:22,569 --> 00:28:23,569
+Just veered to the left.
+刚刚转向左侧。 
+
+452
+00:28:23,569 --> 00:28:26,535
+I think next time I'm going to weight them or something.
+我想下一次我要对它们进行加权。 
+
+453
+00:28:26,536 --> 00:28:27,910
+Let's just do frisbees next time.
+下次再玩飞盘吧。 
+
+454
+00:28:27,910 --> 00:28:30,230
+Let's just do frisbees next time.
+下次再玩飞盘吧。 
+
+455
+00:28:30,230 --> 00:28:31,169
+It makes it easy.
+这很容易。 
+
+456
+00:28:31,369 --> 00:28:33,449
+Forget cushions.
+忘了坐垫。 
+
+457
+00:28:33,450 --> 00:28:34,669
+No?
+没有？ 
+
+458
+00:28:34,869 --> 00:28:37,049
+Frisbees or cushions?
+飞盘还是坐垫？ 
+
+459
+00:28:37,049 --> 00:28:39,299
+How many want frisbees?
+有多少想要飞盘？ 
+
+460
+00:28:39,299 --> 00:28:41,529
+How many want cushions?
+有多少人想要坐垫？ 
+
+461
+00:28:41,529 --> 00:28:44,470
+Frisbees win.
+飞盘获胜。 
+
+462
+00:28:44,470 --> 00:28:49,669
+So you got derivative of x is minus 1 divided by x squared.
+因此，您得到x的导数为负1除以x的平方。 
+
+463
+00:28:49,869 --> 00:28:54,479
+And then if you go off and apply Newton's method--
+然后，如果您开始采用牛顿方法- 
+
+464
+00:28:54,480 --> 00:28:58,400
+and I'm not going to go through the symbolic equations here
+而且我不会在这里讨论符号方程式
+
+465
+00:28:58,400 --> 00:28:59,950
+associated with Newton's method--
+与牛顿法有关的- 
+
+466
+00:28:59,950 --> 00:29:02,779
+but that's basically the same as we did before.
+但这基本上与我们之前相同。 
+
+467
+00:29:02,779 --> 00:29:09,379
+You are computing a tangent, and the new value of xi plus 1
+您正在计算切线，并且xi的新值加1 
+
+468
+00:29:09,380 --> 00:29:12,659
+given the value of xi is the x-intercept.
+给定xi的值是x截距。 
+
+469
+00:29:12,859 --> 00:29:16,740
+And we needed the derivative to compute that.
+我们需要导数来计算。 
+
+470
+00:29:16,740 --> 00:29:21,589
+But bottom line, you have xi plus 1 equals
+但底线是xi加1等于
+
+471
+00:29:21,589 --> 00:29:30,829
+xi minus f of xi divided by f prime of xi.
+ xi减去xi的f除以xi的f素数。 
+
+472
+00:29:30,829 --> 00:29:34,000
+So that's the Newton iteration.
+这就是牛顿迭代。 
+
+473
+00:29:34,000 --> 00:29:42,130
+And it's worth plugging in the various values here.
+在这里插入各种值是值得的。 
+
+474
+00:29:42,130 --> 00:29:45,740
+1 divided by xi minus b divided by r.
+ 1除以xi减去b除以r。 
+
+475
+00:29:45,740 --> 00:29:52,809
+That's f of x on top divided by minus 1 divided by xi square.
+就是顶部的x的f除以负1除以xi平方。 
+
+476
+00:29:52,809 --> 00:29:54,609
+So that's the derivative over here.
+这就是这里的派生词。 
+
+477
+00:29:54,609 --> 00:29:56,259
+So all I'm doing is plugging things in.
+所以我要做的就是插上东西。 
+
+478
+00:29:56,259 --> 00:30:00,140
+But you want to visualize this because this is really
+但是您想将其形象化，因为这确实
+
+479
+00:30:00,140 --> 00:30:01,419
+what we need to compute.
+我们需要计算什么。 
+
+480
+00:30:01,619 --> 00:30:10,819
+And we have xi plus 1 equals xi plus xi square times
+我们有xi加1等于xi加xi平方乘
+
+481
+00:30:10,819 --> 00:30:16,049
+1 over xi minus b divided by r.
+ xi减去b乘以r得到1。 
+
+482
+00:30:16,049 --> 00:30:24,799
+And finally I get 2xi minus b xi square divided by r.
+最后我得到2xi减去b xi平方除以r。 
+
+483
+00:30:24,799 --> 00:30:26,799
+That is key.
+那是关键。 
+
+484
+00:30:26,799 --> 00:30:29,690
+This is pretty important.
+这很重要。 
+
+485
+00:30:29,690 --> 00:30:32,380
+So let's us look all the way to the left, which
+因此，让我们一直向左看
+
+486
+00:30:32,380 --> 00:30:37,419
+is xi plus 1, all the way to the right, 2 times xi.
+是xi加1，一直到右边，是xi的2倍。 
+
+487
+00:30:37,619 --> 00:30:40,609
+That doesn't scare us, 2 times something.
+这并不吓我们，两倍。 
+
+488
+00:30:40,609 --> 00:30:43,069
+Especially base 2, pretty easy.
+尤其是基数2，非常容易。 
+
+489
+00:30:43,069 --> 00:30:43,839
+That's a multiply.
+那是一个乘数。 
+
+490
+00:30:43,839 --> 00:30:45,339
+Multiplies don't scare us because we
+乘法不会吓我们，因为我们
+
+491
+00:30:45,339 --> 00:30:47,089
+know how to do multiplies anyway.
+知道如何做乘法。 
+
+492
+00:30:47,089 --> 00:30:49,809
+This is a simple multiply.
+这是一个简单的乘法。 
+
+493
+00:30:49,809 --> 00:30:52,060
+And then I got a square here.
+然后我在这里有了一个正方形。 
+
+494
+00:30:52,060 --> 00:30:52,559
+Square.
+广场。 
+
+495
+00:30:52,559 --> 00:30:54,129
+Not a square root.
+不是平方根。 
+
+496
+00:30:54,130 --> 00:30:57,240
+Squares don't scare us because that's a multiply,
+正方形不会吓到我们，因为那是乘积， 
+
+497
+00:30:57,240 --> 00:30:59,700
+just multiplying the same number to itself.
+只是将相同的数字相乘。 
+
+498
+00:30:59,700 --> 00:31:01,230
+And this doesn't scare us because we
+这并不吓我们，因为我们
+
+499
+00:31:01,230 --> 00:31:06,419
+know that we've chosen r to be an easy division.
+知道我们已经选择r为简单除法。 
+
+500
+00:31:06,619 --> 00:31:12,139
+So all of the operations here are either easy,
+因此，这里的所有操作都很简单， 
+
+501
+00:31:12,140 --> 00:31:15,720
+or they require a multiply.
+或它们需要相乘。 
+
+502
+00:31:15,720 --> 00:31:19,289
+So remember I'm going to put a picture up towards the end here
+所以请记住，我要在这里画一张画
+
+503
+00:31:19,289 --> 00:31:23,279
+that tells you the overall structure for computing
+告诉您计算的整体结构
+
+504
+00:31:23,279 --> 00:31:25,399
+square root of a or square root of 2.
+的平方根或2的平方根
+
+505
+00:31:25,400 --> 00:31:29,009
+But we've just sort of sold out to Newton, if you will.
+但是，如果您愿意的话，我们有点卖完了。 
+
+506
+00:31:29,009 --> 00:31:32,359
+Because we said that we're going to use Newton's method
+因为我们说过要使用牛顿法
+
+507
+00:31:32,359 --> 00:31:39,959
+to compute essentially, iteratively, square root of a.
+基本上迭代地计算a的平方根。 
+
+508
+00:31:39,960 --> 00:31:43,149
+And within the Newton method, the first iteration,
+在牛顿法中，第一次迭代
+
+509
+00:31:43,349 --> 00:31:44,889
+if you will, of the Newton method,
+如果可以的话，用牛顿法
+
+510
+00:31:44,890 --> 00:31:47,750
+we had to compute a reciprocal.
+我们必须计算一个倒数。 
+
+511
+00:31:47,750 --> 00:31:49,730
+We had to compute 1 over xi.
+我们必须在xi上计算1。 
+
+512
+00:31:49,730 --> 00:31:52,069
+And in order to compute 1 over xi,
+为了在xi上计算1 
+
+513
+00:31:52,069 --> 00:31:56,319
+we're going to apply Newton's method again like I showed over
+我将再次展示牛顿方法
+
+514
+00:31:56,319 --> 00:31:58,269
+here and over there.
+在这里和那里。 
+
+515
+00:31:58,269 --> 00:32:03,920
+And so that division is going to require iteration.
+因此，该划分将需要迭代。 
+
+516
+00:32:03,920 --> 00:32:09,150
+But the iteration at the second level is one of multiplication.
+但是第二级的迭代是乘法之一。 
+
+517
+00:32:09,150 --> 00:32:11,180
+You're gonna repeatedly apply multiplication
+您将反复应用乘法
+
+518
+00:32:11,180 --> 00:32:13,480
+because you're going to go xi plus 1
+因为你要去xi加1 
+
+519
+00:32:13,480 --> 00:32:17,890
+based on xi using multiplication and some easy operations.
+基于xi的乘法和一些简单的运算。 
+
+520
+00:32:17,890 --> 00:32:21,869
+And then you go xi plus 2, xi plus 3, and so on and so forth.
+然后转到xi加2，xi加3，依此类推。 
+
+521
+00:32:22,069 --> 00:32:24,061
+That make sense?
+有道理？ 
+
+522
+00:32:24,061 --> 00:32:27,589
+I'll try and put this up to give you the complete picture
+我会尽力把它给你完整的图片
+
+523
+00:32:27,589 --> 00:32:32,250
+once we're done talking about the division
+一旦我们完成了关于部门的讨论
+
+524
+00:32:32,250 --> 00:32:35,736
+algorithm and its complexity.
+算法及其复杂性。 
+
+525
+00:32:35,736 --> 00:32:36,909
+But before I do that, I just want
+但是在我这样做之前，我只想
+
+526
+00:32:37,109 --> 00:32:41,439
+to give you a sense of the convergence of this scheme.
+让您对该方案的融合有所了解。 
+
+527
+00:32:41,440 --> 00:32:43,619
+Again, I want to give you an example first,
+同样，我想先给你一个例子， 
+
+528
+00:32:43,819 --> 00:32:46,000
+and then I'll argue about the convergence.
+然后我将讨论融合问题。 
+
+529
+00:32:46,000 --> 00:32:50,329
+
+
+
+530
+00:32:50,329 --> 00:32:52,230
+You have to run this iteratively.
+您必须迭代地运行它。 
+
+531
+00:32:52,230 --> 00:32:54,819
+You've got to make i to get to the point
+你必须让我明白这一点
+
+532
+00:32:54,819 --> 00:32:59,230
+where it's large enough that you have your digits of precision.
+足够大的地方，您就可以拥有足够的精度。 
+
+533
+00:32:59,230 --> 00:33:01,339
+And just as an example, let's say
+举个例子， 
+
+534
+00:33:01,339 --> 00:33:08,386
+we want r divided by b equals 2 raised to 16 divided by 5.
+我们希望r除以b等于2升为16除以5。 
+
+535
+00:33:08,386 --> 00:33:10,220
+So this is a fairly straightforward example.
+因此，这是一个非常简单的示例。 
+
+536
+00:33:10,220 --> 00:33:14,660
+But when you get up to integers, it turns out it's evocative.
+但是当您使用整数时，事实证明它令人回味。 
+
+537
+00:33:14,660 --> 00:33:21,759
+So r was selected to be 2 raised to k to make for easy division.
+因此，r被选择为2升至k以便于除法。 
+
+538
+00:33:21,759 --> 00:33:26,779
+And what I really want is that.
+我真正想要的是那个。 
+
+539
+00:33:26,779 --> 00:33:31,539
+And I want to see how I get to that using Newton's method.
+我想看看如何使用牛顿方法实现这一目标。 
+
+540
+00:33:31,539 --> 00:33:42,180
+And our initial guess, let's say we
+我们最初的猜测，假设我们
+
+541
+00:33:42,180 --> 00:33:44,909
+try 2 raised to 16 divided by 4, because we
+尝试将2提高到16除以4，因为我们
+
+542
+00:33:45,109 --> 00:33:49,009
+know how to divide by a power of two.
+知道如何除以二的幂。 
+
+543
+00:33:49,009 --> 00:33:50,599
+And so that's 2 raised to 14.
+所以将2提高到14 
+
+544
+00:33:50,599 --> 00:33:51,889
+And that's our initial guess.
+这是我们最初的猜测。 
+
+545
+00:33:51,890 --> 00:33:56,400
+So think of that as being x0.
+因此，将其视为x0。 
+
+546
+00:33:56,400 --> 00:33:58,160
+That is x0.
+那就是x0。 
+
+547
+00:33:58,160 --> 00:34:02,834
+And that 16384.
+然后是16384。 
+
+548
+00:34:02,834 --> 00:34:10,679
+x1 is going to be 2 times 16384, which is exactly that,
+ x1将是16384的2倍，就是这样
+
+549
+00:34:10,679 --> 00:34:16,849
+minus 5 times 16384 whole square.
+负5倍16384全平方。 
+
+550
+00:34:16,849 --> 00:34:19,610
+So now you're starting to square a fairly big number.
+因此，现在您开始对相当大的数字求平方。 
+
+551
+00:34:19,610 --> 00:34:22,159
+And obviously if you'd started with an even bigger r,
+很明显，如果您从更大的r开始， 
+
+552
+00:34:22,159 --> 00:34:23,820
+this would be a large number.
+这将是一个很大的数目。 
+
+553
+00:34:23,820 --> 00:34:26,920
+
+
+
+554
+00:34:26,920 --> 00:34:35,661
+You go 65536 equals-- and this is 12288.
+你去65536等于-这是12288。 
+
+555
+00:34:35,661 --> 00:34:38,989
+So you really have one digit of precision there.
+因此，您在那里确实有一位精度。 
+
+556
+00:34:38,989 --> 00:34:46,440
+But the next time around, you get 2 times 12288 minus 5
+但是下一次，您将获得2倍12288减5 
+
+557
+00:34:46,440 --> 00:34:53,159
+times 12288 square divided by 65536.
+ 12288平方除以65536。 
+
+558
+00:34:53,159 --> 00:34:55,239
+And this division is easy.
+而且这种划分很容易。 
+
+559
+00:34:55,239 --> 00:34:55,780
+It's a shift.
+这是一个转变。 
+
+560
+00:34:55,780 --> 00:34:59,610
+You get to 13056.
+您到达13056。 
+
+561
+00:34:59,809 --> 00:35:01,639
+And I won't write this whole thing out,
+而且我不会把整个事情写出来， 
+
+562
+00:35:01,639 --> 00:35:07,079
+but if you take that, the next thing you'll get is 13107.
+但是如果您采取了这种措施，那么接下来您会得到13107。 
+
+563
+00:35:07,079 --> 00:35:11,710
+So as you can see, there's rapid convergence here.
+如您所见，这里有快速的融合。 
+
+564
+00:35:11,710 --> 00:35:16,659
+And you can actually do a very similar analysis to the epsilon
+实际上，您可以进行与epsilon非常相似的分析
+
+565
+00:35:16,659 --> 00:35:18,619
+analysis-- and I'll put it in the notes,
+分析-我将其放在笔记中， 
+
+566
+00:35:18,619 --> 00:35:22,219
+but I won't do it here-- that I did for the square root
+但我不会在这里做-我是为平方根做的
+
+567
+00:35:22,219 --> 00:35:24,859
+iteration to show that you have a quadratic the rate
+迭代以显示速率为平方
+
+568
+00:35:24,860 --> 00:35:31,800
+of convergence when you apply Newton's method to division as
+将牛顿方法应用于除法时的收敛性
+
+569
+00:35:31,800 --> 00:35:33,500
+well.
+好。 
+
+570
+00:35:33,699 --> 00:35:38,189
+So you can prove that using the symbolic analysis than we
+因此，您可以证明，使用符号分析比我们
+
+571
+00:35:38,190 --> 00:35:41,420
+did very similar to the epsilon n relationship
+与epsilon n关系非常相似
+
+572
+00:35:41,420 --> 00:35:42,949
+to epsilon n plus 1.
+到epsilon n plus 1。 
+
+573
+00:35:42,949 --> 00:35:44,539
+I'd suggest that it's a difference equation
+我建议这是一个差分方程
+
+574
+00:35:44,739 --> 00:35:48,229
+here so that analysis is not exactly the same.
+这里的分析并不完全相同。 
+
+575
+00:35:48,230 --> 00:35:50,329
+But you can run through that, and you
+但是你可以解决这个问题
+
+576
+00:35:50,329 --> 00:35:53,199
+can read that in the notes.
+可以在笔记中阅读。 
+
+577
+00:35:53,199 --> 00:35:54,699
+So we're in business.
+所以我们做生意。 
+
+578
+00:35:54,699 --> 00:35:57,250
+Finally things are looking up with respect
+终于，事情在尊重地抬头
+
+579
+00:35:57,250 --> 00:36:00,849
+to being able to actually implement this in practice.
+以便能够在实践中实际实现这一目标。 
+
+580
+00:36:00,849 --> 00:36:02,849
+I want to talk about complexity.
+我想谈谈复杂性。 
+
+581
+00:36:02,849 --> 00:36:05,719
+And I promise that there was a subtlety associated
+我保证会有一个微妙的关联
+
+582
+00:36:05,719 --> 00:36:11,399
+with the complexity of division in relation to multiplication,
+由于除法与乘法有关的复杂性， 
+
+583
+00:36:11,400 --> 00:36:16,289
+but let me just go over and write down what I just told you
+但让我走过去写下我刚才告诉你的内容
+
+584
+00:36:16,489 --> 00:36:19,219
+with respect to the number of iterations
+关于迭代次数
+
+585
+00:36:19,219 --> 00:36:23,149
+that division requires.
+该师要求。 
+
+586
+00:36:23,150 --> 00:36:30,880
+So division, quadratic convergence.
+如此划分，二次收敛。 
+
+587
+00:36:30,880 --> 00:36:35,019
+
+
+
+588
+00:36:35,019 --> 00:36:43,469
+So number of digits doubles at each step.
+因此，每一步的位数都会翻倍。 
+
+589
+00:36:43,469 --> 00:36:44,730
+Good news.
+好消息。 
+
+590
+00:36:44,730 --> 00:36:56,769
+So d digits of precision, log d iterations.
+因此，精度为d位，记录d次迭代。 
+
+591
+00:36:56,769 --> 00:37:00,130
+
+
+
+592
+00:37:00,130 --> 00:37:05,320
+Now let's say that we have a particular algorithm
+现在说我们有一个特定的算法
+
+593
+00:37:05,320 --> 00:37:08,820
+for multiplication that I'm just going to say,
+我要说的是乘法
+
+594
+00:37:08,820 --> 00:37:13,130
+since we have so many different algorithms,
+由于我们有很多不同的算法， 
+
+595
+00:37:13,329 --> 00:37:18,659
+I'm going to say multiplication in theta n raised
+我要说的是乘法
+
+596
+00:37:18,659 --> 00:37:24,289
+to alpha time, where alpha is greater than or equal to 1.
+到alpha时间，其中alpha大于或等于1。 
+
+597
+00:37:24,289 --> 00:37:26,750
+I just want to be general about it.
+我只是想对此有所概括。 
+
+598
+00:37:26,750 --> 00:37:32,639
+And so assuming that I have a multiplication algorithm, that
+因此，假设我有一个乘法算法， 
+
+599
+00:37:32,639 --> 00:37:35,150
+can run in theta n raised to alpha,
+可以在theta n中升至alpha， 
+
+600
+00:37:35,150 --> 00:37:40,750
+where clearly you know alpha can be 1.46 for Toom 3, et cetera.
+很明显，您知道Toom 3等的alpha可以为1.46。 
+
+601
+00:37:40,949 --> 00:37:45,359
+And it's not quite that for Schonhage-Strassen,
+对于Schonhage-Strassen而言，这还不完全是， 
+
+602
+00:37:45,360 --> 00:37:50,250
+but I just want to be working with one particular complexity.
+但是我只想处理一种特殊的复杂性。 
+
+603
+00:37:50,449 --> 00:37:52,339
+So I'll parameterize it in this fashion.
+因此，我将以这种方式对其进行参数化。 
+
+604
+00:37:52,340 --> 00:37:56,420
+And everything I say is going to be true for Schonhage-Strassen
+我所说的一切对于Schonhage-Strassen都是正确的
+
+605
+00:37:56,619 --> 00:37:58,089
+and Furer as well.
+还有Furer。 
+
+606
+00:37:58,090 --> 00:38:00,690
+But first, easy question.
+但是首先，一个简单的问题。 
+
+607
+00:38:00,889 --> 00:38:03,889
+What is the complexity of division
+分割的复杂性是什么
+
+608
+00:38:03,889 --> 00:38:09,609
+using the analysis that I've put on the board so far?
+使用到目前为止我所做的分析？ 
+
+609
+00:38:09,610 --> 00:38:13,864
+n digit numbers it's going to be?
+ n位数字会是什么？ 
+
+610
+00:38:14,063 --> 00:38:14,980
+I wanna hear from you.
+我想听听你的消息。 
+
+611
+00:38:14,980 --> 00:38:17,630
+
+
+
+612
+00:38:17,630 --> 00:38:21,440
+How many hard multipliers do I have?
+我有几个硬乘法器？ 
+
+613
+00:38:21,639 --> 00:38:24,519
+
+
+
+614
+00:38:24,519 --> 00:38:25,476
+Log of?
+的记录？ 
+
+615
+00:38:25,476 --> 00:38:26,269
+AUDIENCE: n.
+听众： 
+
+616
+00:38:26,269 --> 00:38:27,530
+PROFESSOR: Log of n, right?
+教授：n的对数，对不对？ 
+
+617
+00:38:27,530 --> 00:38:30,400
+It wasn't a hard question.
+这不是一个难题。 
+
+618
+00:38:30,400 --> 00:38:37,039
+So division would be theta log n times n raised to alpha.
+因此除法将是theta log n乘以n升至alpha。 
+
+619
+00:38:37,239 --> 00:38:40,058
+
+
+
+620
+00:38:40,059 --> 00:38:40,650
+Everybody buy that?
+大家都买吗？ 
+
+621
+00:38:40,849 --> 00:38:44,650
+
+
+
+622
+00:38:44,650 --> 00:38:45,149
+No?
+没有？ 
+
+623
+00:38:45,150 --> 00:38:49,943
+
+
+
+624
+00:38:50,143 --> 00:38:51,559
+Ask a question if you're confused.
+问一个问题，如果您感到困惑。 
+
+625
+00:38:51,559 --> 00:38:55,610
+
+
+
+626
+00:38:55,610 --> 00:39:00,420
+Maybe I should say everybody buy that?
+也许我应该说每个人都买那个？ 
+
+627
+00:39:00,619 --> 00:39:04,797
+
+
+
+628
+00:39:04,797 --> 00:39:06,130
+How many people agree with that?
+有多少人同意？ 
+
+629
+00:39:06,130 --> 00:39:07,737
+Big O?
+大O？ 
+
+630
+00:39:07,737 --> 00:39:09,070
+How many people agree with that?
+有多少人同意？ 
+
+631
+00:39:09,070 --> 00:39:12,099
+
+
+
+632
+00:39:12,099 --> 00:39:12,690
+Yeah, that's right.
+是啊，没错。 
+
+633
+00:39:12,889 --> 00:39:16,170
+Big O. I'm hedging my bets here.
+大O。我在这里对冲我的赌注。 
+
+634
+00:39:16,170 --> 00:39:19,480
+I'm just saying big O. I could say big O of n cubed
+我只是说大O。我可以说n的大O 
+
+635
+00:39:19,679 --> 00:39:21,369
+and you should all agree with me.
+你们都应该同意我的看法。 
+
+636
+00:39:21,369 --> 00:39:22,779
+Or big O of whatever.
+还是大O 
+
+637
+00:39:22,780 --> 00:39:23,615
+You had a question?
+你有问题吗
+
+638
+00:39:23,815 --> 00:39:25,481
+AUDIENCE: What's the longest [INAUDIBLE]
+听众：最长的[听不清] 
+
+639
+00:39:25,481 --> 00:39:27,565
+number of [INAUDIBLE] we need to get
+我们需要获得的[音频不清晰]数量
+
+640
+00:39:27,565 --> 00:39:29,309
+a certain level of [INAUDIBLE]?
+一定水平的[听不清]？ 
+
+641
+00:39:29,309 --> 00:39:30,309
+PROFESSOR: That's right.
+教授：是的。 
+
+642
+00:39:30,309 --> 00:39:35,989
+So if you want d digits of precision,
+因此，如果您想要d位精度， 
+
+643
+00:39:35,989 --> 00:39:41,001
+then according to this argument-- and I think you
+然后根据这个论点-我想你
+
+644
+00:39:41,001 --> 00:39:42,710
+guys are a little doubtful here because I
+大家在这里有点怀疑，因为我
+
+645
+00:39:42,710 --> 00:39:44,789
+kept talking about subtleties, and in fact there's
+一直在谈论微妙之处，实际上
+
+646
+00:39:44,989 --> 00:39:48,909
+a subtlety here, which I want to get to-- but this big O
+这是我想讲的一个微妙之处-但是这个大O 
+
+647
+00:39:48,909 --> 00:39:50,259
+thing is perfectly correct.
+事情是完全正确的。 
+
+648
+00:39:50,260 --> 00:39:52,010
+But to answer your question, yes.
+但是要回答你的问题，是的。 
+
+649
+00:39:52,010 --> 00:39:53,980
+Let's assume that it's n digits of precision.
+假设它是n位精度。 
+
+650
+00:39:53,980 --> 00:39:56,530
+That's what we assume whether it's n or d.
+这就是我们假设它是n还是d。 
+
+651
+00:39:56,530 --> 00:39:58,519
+You can plug in the appropriate symbol here.
+您可以在此处插入适当的符号。 
+
+652
+00:39:58,519 --> 00:40:02,130
+And we're saying that, look, every iteration is bounded
+而且，我们说的是，每次迭代都是有界的
+
+653
+00:40:02,130 --> 00:40:07,050
+by n raised to alpha complexity for the multiply.
+乘以n会增加乘法的alpha复杂度。 
+
+654
+00:40:07,050 --> 00:40:08,860
+And I'm going to do a logarithmic number
+我要做一个对数
+
+655
+00:40:08,860 --> 00:40:09,769
+of iterations.
+的迭代。 
+
+656
+00:40:09,769 --> 00:40:13,150
+So I end up getting log n times n raised to alpha.
+因此，我最终得到n乘以n的对数到alpha。 
+
+657
+00:40:13,150 --> 00:40:15,019
+So that is correct, in fact.
+因此，这是正确的。 
+
+658
+00:40:15,219 --> 00:40:16,449
+Big O is correct.
+大O是正确的。 
+
+659
+00:40:16,449 --> 00:40:19,809
+So now it comes to the interesting question,
+所以现在谈到一个有趣的问题， 
+
+660
+00:40:19,809 --> 00:40:23,049
+which is can you do a better analysis?
+您可以对哪个进行更好的分析？ 
+
+661
+00:40:23,050 --> 00:40:26,250
+So this sort of hearkens back to three weeks
+所以这种听觉可以追溯到三个星期
+
+662
+00:40:26,250 --> 00:40:27,750
+ago, maybe you've forgotten.
+以前，也许你已经忘记了。 
+
+663
+00:40:27,750 --> 00:40:29,559
+Maybe you've blanked it out of your memory,
+也许您已经把它清空了， 
+
+664
+00:40:29,559 --> 00:40:34,670
+but I thought I described to you build max-heap.
+但我以为我向您描述了如何建立最大堆。 
+
+665
+00:40:34,670 --> 00:40:36,539
+And we had this straightforward analysis
+我们进行了直接分析
+
+666
+00:40:36,539 --> 00:40:39,378
+of build max-heap that was n log n complexity.
+构建最大堆的复杂度为n log n。 
+
+667
+00:40:39,378 --> 00:40:41,420
+And then we looked at it a little more carefully,
+然后我们更仔细地看了看它， 
+
+668
+00:40:41,420 --> 00:40:44,159
+and we started adding things up much more carefully.
+并且我们开始更加仔细地添加内容。 
+
+669
+00:40:44,159 --> 00:40:45,940
+We turned into bank accountants.
+我们变成了银行会计师。 
+
+670
+00:40:45,940 --> 00:40:49,369
+And then we decided that it was theta n complexity.
+然后我们认为这是复杂性。 
+
+671
+00:40:49,369 --> 00:40:50,589
+People remember that?
+人们还记得吗？ 
+
+672
+00:40:50,590 --> 00:40:51,090
+Right?
+对？ 
+
+673
+00:40:51,090 --> 00:40:52,681
+So I want you to turn into bank accountants
+所以我要你变成银行会计
+
+674
+00:40:52,880 --> 00:40:57,920
+again, and then tell me first, there's a nice observation
+再次，然后先告诉我，有一个很好的观察
+
+675
+00:40:57,920 --> 00:41:02,110
+that you can make here that we haven't made yet
+你可以在这里做我们还没有做的
+
+676
+00:41:02,110 --> 00:41:05,541
+with respect to the size of these numbers.
+关于这些数字的大小。 
+
+677
+00:41:05,541 --> 00:41:07,000
+We know what we want to eventually,
+我们知道我们最终想要的是什么， 
+
+678
+00:41:07,000 --> 00:41:09,416
+but there's a nice observation we can make it with respect
+但有一个很好的观察，我们可以尊重
+
+679
+00:41:09,416 --> 00:41:10,730
+to the size of these numbers.
+这些数字的大小。 
+
+680
+00:41:10,929 --> 00:41:14,289
+And then we want to exploit that observation
+然后我们要利用这一观察
+
+681
+00:41:14,289 --> 00:41:19,829
+to do a better analysis of the theta complexity of division.
+以便更好地分析除法theta的复杂度。 
+
+682
+00:41:19,829 --> 00:41:22,961
+So who wants to tell me what the observation is.
+那么谁想告诉我观察是什么。 
+
+683
+00:41:22,961 --> 00:41:25,259
+This is definitely worth a cushion.
+这绝对值得缓冲。 
+
+684
+00:41:25,260 --> 00:41:26,480
+What's the observation?
+有什么发现？ 
+
+685
+00:41:26,679 --> 00:41:29,269
+I want to end up with d digits of precision.
+我想以d位精度结束。 
+
+686
+00:41:29,269 --> 00:41:32,929
+
+
+
+687
+00:41:32,929 --> 00:41:35,440
+If I give you another hint, I'm gonna give it away.
+如果我再给您一个提示，我就把它给您。 
+
+688
+00:41:35,440 --> 00:41:38,690
+Someone tell me.
+有人告诉我。 
+
+689
+00:41:38,690 --> 00:41:42,630
+This is a dynamic process, OK?
+这是一个动态的过程，好吗？ 
+
+690
+00:41:42,630 --> 00:41:45,960
+So what do I start with?
+那么我从什么开始呢？ 
+
+691
+00:41:46,159 --> 00:41:49,230
+What do I start with?
+我从什么开始？ 
+
+692
+00:41:49,230 --> 00:41:51,153
+If I want to compute something and you
+如果我想计算一些东西，你
+
+693
+00:41:51,153 --> 00:41:53,320
+want to use Newton's method, what do you start with?
+想要使用牛顿法，首先要做什么？ 
+
+694
+00:41:53,320 --> 00:41:54,242
+Yeah?
+是啊
+
+695
+00:41:54,242 --> 00:41:55,548
+AUDIENCE: [INAUDIBLE]
+观众：[听不清] 
+
+696
+00:41:55,748 --> 00:41:57,789
+PROFESSOR: You start with one digit of precision.
+教授：您以一位精度开始。 
+
+697
+00:41:57,789 --> 00:41:59,507
+That's fantastic.
+这太妙了。 
+
+698
+00:41:59,507 --> 00:42:01,590
+I don't know if you already have a cushion or not,
+我不知道你是否已经有了垫子
+
+699
+00:42:01,590 --> 00:42:02,940
+but here's the second one.
+但是这是第二个。 
+
+700
+00:42:03,139 --> 00:42:07,829
+So you start with a small number of digits of precision.
+因此，您从少量的精度开始。 
+
+701
+00:42:07,829 --> 00:42:12,549
+And then you end up with a large million, whatever, number,
+然后您最终得到了不计其数的一百万， 
+
+702
+00:42:12,550 --> 00:42:14,900
+which is your d.
+这是你的d。 
+
+703
+00:42:15,099 --> 00:42:17,339
+So what does that mean?
+那是什么意思呢？ 
+
+704
+00:42:17,340 --> 00:42:19,780
+So now somebody take that and run with it.
+所以现在有人接受它并运行它。 
+
+705
+00:42:19,780 --> 00:42:22,769
+Somebody take that and run with it.
+有人接受它并运行它。 
+
+706
+00:42:22,769 --> 00:42:24,380
+You already have a cushion.
+您已经有了坐垫。 
+
+707
+00:42:24,380 --> 00:42:25,050
+Like many?
+喜欢很多？ 
+
+708
+00:42:25,050 --> 00:42:28,510
+
+
+
+709
+00:42:28,510 --> 00:42:31,519
+You guys, usual suspects.
+你们，通常是嫌疑犯。 
+
+710
+00:42:31,719 --> 00:42:33,619
+So someone take that and run with it.
+所以有人接受它并运行它。 
+
+711
+00:42:33,619 --> 00:42:34,614
+What can I do now?
+我现在能做什么？ 
+
+712
+00:42:34,614 --> 00:42:37,030
+What does it mean if I start with a small number of digits
+如果我以少量数字开头是什么意思
+
+713
+00:42:37,030 --> 00:42:38,519
+of precision?
+精度？ 
+
+714
+00:42:38,519 --> 00:42:40,230
+My initial guess was one, right?
+我最初的猜测是，对吧？ 
+
+715
+00:42:40,230 --> 00:42:42,269
+I mean, that had one digit of precision.
+我的意思是，它的精度为一位数。 
+
+716
+00:42:42,269 --> 00:42:46,329
+And then the number of digits doubles with each step.
+然后，位数每增加一倍。 
+
+717
+00:42:46,329 --> 00:42:50,269
+So is there any reason why I'm doing,
+那我为什么要这么做
+
+718
+00:42:50,269 --> 00:42:52,449
+if I had d digits of precision, eventually
+如果我有d位数的精度，最终
+
+719
+00:42:52,449 --> 00:43:00,549
+that I'll have to do d digit multiplies in each iteration?
+我必须在每次迭代中做d位数乘法？ 
+
+720
+00:43:00,550 --> 00:43:01,539
+Any reason why?
+有什么原因吗？ 
+
+721
+00:43:01,739 --> 00:43:02,525
+Yeah.
+是的
+
+722
+00:43:02,525 --> 00:43:04,983
+AUDIENCE: You don't have to, because [INAUDIBLE] multiplies
+听众：您不必这样做，因为[听不清]会成倍增加
+
+723
+00:43:04,983 --> 00:43:05,467
+are going to be trivial.
+将变得微不足道。 
+
+724
+00:43:05,467 --> 00:43:07,524
+And [INAUDIBLE] then you're going to eventually approach
+然后[听不清]，您将最终走近
+
+725
+00:43:07,525 --> 00:43:08,856
+the d to the alpha iteration.
+ d到alpha迭代。 
+
+726
+00:43:08,856 --> 00:43:09,710
+PROFESSOR: That's exactly right.
+教授：完全正确。 
+
+727
+00:43:09,909 --> 00:43:10,619
+Exactly right.
+非常正确。 
+
+728
+00:43:10,619 --> 00:43:12,400
+That's worth a cushion.
+值得缓冲。 
+
+729
+00:43:12,400 --> 00:43:15,289
+But now I want you or someone else,
+但是现在我要你或其他人， 
+
+730
+00:43:15,489 --> 00:43:19,539
+tell me what the iteration looks like.
+告诉我迭代的样子。 
+
+731
+00:43:19,539 --> 00:43:21,250
+So this is the key observation.
+因此，这是关键观察。 
+
+732
+00:43:21,250 --> 00:43:40,389
+The key observation is that if I want d digits of precision,
+关键的观察结果是，如果我想要d位精度， 
+
+733
+00:43:40,389 --> 00:43:42,960
+I'm going to start with maybe one digit of precision.
+我将从一位数的精度开始。 
+
+734
+00:43:42,960 --> 00:43:49,119
+So this is d of p, or dig of p, not to be confused.
+因此，不要混淆这是p的d或p的挖掘。 
+
+735
+00:43:49,119 --> 00:43:52,809
+I start with 1, 2, 4, and I end up with d.
+我从1、2、4开始，最后到d。 
+
+736
+00:43:52,809 --> 00:43:57,460
+And our claim was that this was log d iterations, right?
+我们声称这是对数d迭代，对吗？ 
+
+737
+00:43:57,460 --> 00:44:05,460
+So the initial multiplies are easy.
+因此，初始乘法很容易。 
+
+738
+00:44:05,460 --> 00:44:07,579
+Initially you're doing constant work
+最初，您正在不断地工作
+
+739
+00:44:07,579 --> 00:44:10,529
+if you have really small numbers associated
+如果您的数字很小
+
+740
+00:44:10,530 --> 00:44:11,840
+with these multiplies.
+与这些相乘。 
+
+741
+00:44:11,840 --> 00:44:13,940
+It's only towards the end that you end up
+直到最后，你最终
+
+742
+00:44:13,940 --> 00:44:16,519
+doing a lot more work, right?
+做更多的工作，对吗？ 
+
+743
+00:44:16,719 --> 00:44:24,509
+So someone tell me if I have n raised to alpha,
+所以有人告诉我，如果我没有升到Alpha， 
+
+744
+00:44:24,510 --> 00:44:30,440
+and if I say I want to write an equation.
+如果我说我想写一个方程式。 
+
+745
+00:44:30,440 --> 00:44:32,840
+And I don't want to use theta here.
+我不想在这里使用theta。 
+
+746
+00:44:32,840 --> 00:44:34,339
+I'm going to use constants because I
+我将使用常量，因为我
+
+747
+00:44:34,340 --> 00:44:38,000
+want to add up constants, and it's a little iffy then
+想加常数，这有点不确定
+
+748
+00:44:38,199 --> 00:44:40,399
+you add up thetas.
+您将thetas加起来。 
+
+749
+00:44:40,400 --> 00:44:43,630
+You need to be looking at constants.
+您需要查看常量。 
+
+750
+00:44:43,630 --> 00:44:52,329
+Now I can imagine that for this iteration, the very first one,
+现在我可以想象到，对于这个迭代，第一个迭代， 
+
+751
+00:44:52,329 --> 00:44:55,849
+that I have something like c times 1 raised to alpha,
+我有c乘以1等于alpha的东西， 
+
+752
+00:44:55,849 --> 00:44:58,069
+because it's just a single digit of precision.
+因为这只是个位数的精度。 
+
+753
+00:44:58,070 --> 00:45:02,210
+OK And the next one, I'm using the same algorithm.
+好，下一个，我使用的是相同的算法。 
+
+754
+00:45:02,210 --> 00:45:05,646
+This is c times 2 raised to alpha, c times 4
+这是c乘2升至alpha的原因，c乘4 
+
+755
+00:45:05,646 --> 00:45:06,130
+raised to alpha.
+提高到Alpha。 
+
+756
+00:45:06,329 --> 00:45:09,909
+
+
+
+757
+00:45:09,909 --> 00:45:12,889
+And then out here I'm going to have
+然后在这里我要
+
+758
+00:45:12,889 --> 00:45:19,000
+c times d by 4 raised to alpha plus c times d by 2
+将c倍d乘以4升至alpha加c倍d乘2 
+
+759
+00:45:19,000 --> 00:45:24,119
+raised to alpha plus finally c times d raised to alpha.
+加至alpha，最后加c倍d加至alpha。 
+
+760
+00:45:24,119 --> 00:45:29,021
+And someone give me a bound.
+有人给我束缚。 
+
+761
+00:45:29,021 --> 00:45:30,755
+Who wants to give me a bound on this?
+谁想在这方面给我一个约束？ 
+
+762
+00:45:30,755 --> 00:45:33,882
+
+
+
+763
+00:45:33,882 --> 00:45:37,369
+Who wants to give me a bound on this?
+谁想在这方面给我一个约束？ 
+
+764
+00:45:37,369 --> 00:45:40,319
+Less than or equal to.
+小于或等于。 
+
+765
+00:45:40,320 --> 00:45:42,130
+Let's just make it less than.
+让我们使其小于。 
+
+766
+00:45:42,130 --> 00:45:43,030
+What?
+什么？ 
+
+767
+00:45:43,030 --> 00:45:43,530
+Someone?
+有人吗
+
+768
+00:45:43,530 --> 00:45:47,500
+
+
+
+769
+00:45:47,500 --> 00:45:49,650
+Just plug in a value of alpha.
+只需插入一个alpha值即可。 
+
+770
+00:45:49,650 --> 00:45:54,019
+And remember your convergent geometric series and things
+并记住您收敛的几何级数和事物
+
+771
+00:45:54,019 --> 00:45:55,083
+like that.
+像那样。 
+
+772
+00:45:55,083 --> 00:45:55,625
+What is that?
+那是什么？ 
+
+773
+00:45:55,625 --> 00:45:58,300
+
+
+
+774
+00:45:58,300 --> 00:45:59,690
+Someone?
+有人吗
+
+775
+00:45:59,889 --> 00:46:00,549
+Yeah.
+是的
+
+776
+00:46:00,550 --> 00:46:03,005
+AUDIENCE: Just some constant times d to the alpha?
+听众：只是相对于alpha的恒定时间d？ 
+
+777
+00:46:03,005 --> 00:46:04,338
+PROFESSOR: That's exactly right.
+教授：完全正确。 
+
+778
+00:46:04,338 --> 00:46:07,710
+Just some constant times d to the alpha.
+只是一些恒定时间d到alpha。 
+
+779
+00:46:07,710 --> 00:46:12,320
+And in fact, you can say, it's 2c d to the alpha.
+实际上，您可以说，它是alpha的2c d。 
+
+780
+00:46:12,320 --> 00:46:15,900
+
+
+
+781
+00:46:16,099 --> 00:46:17,839
+Keep a question for you aside.
+将问题抛在一边。 
+
+782
+00:46:17,840 --> 00:46:18,500
+So that' sit.
+就是这样了。 
+
+783
+00:46:18,500 --> 00:46:22,280
+That's the little careful analysis that we had to do,
+那是我们要做的一点细心的分析， 
+
+784
+00:46:22,280 --> 00:46:26,610
+which basically without changing your code, really,
+基本上，无需更改代码， 
+
+785
+00:46:26,610 --> 00:46:28,809
+suddenly gave you a better complexity.
+突然给您带来了更好的复杂性。 
+
+786
+00:46:28,809 --> 00:46:30,000
+Isn't that fun?
+那不是很有趣吗？ 
+
+787
+00:46:30,000 --> 00:46:31,269
+That's always fun.
+总是很有趣。 
+
+788
+00:46:31,269 --> 00:46:34,759
+You had this neat algorithm to begin with.
+您首先需要使用这种整洁的算法。 
+
+789
+00:46:34,760 --> 00:46:37,840
+And bottom line is you're just computing things
+最重要的是，您只是在计算事物
+
+790
+00:46:37,840 --> 00:46:41,130
+a little more accurately, than essentially saying
+比本质上说的要准确一点
+
+791
+00:46:41,130 --> 00:46:44,539
+that you had to do all of this work
+你必须做所有这些工作
+
+792
+00:46:44,539 --> 00:46:48,360
+with large number of digits of precision at every iteration.
+每次迭代都具有大量的精度。 
+
+793
+00:46:48,360 --> 00:46:51,250
+The number of digits actually increases.
+位数实际上增加了。 
+
+794
+00:46:51,250 --> 00:46:52,840
+So what does this mean?
+那么这是什么意思？ 
+
+795
+00:46:52,840 --> 00:46:56,000
+I guess ultimately, the complexity of division
+我想最终是分裂的复杂性
+
+796
+00:46:56,000 --> 00:46:57,929
+is now what?
+现在是什么？ 
+
+797
+00:46:57,929 --> 00:47:03,649
+It's the same as the complexity of multiplication, right?
+和乘法的复杂度一样，对吗？ 
+
+798
+00:47:03,650 --> 00:47:08,570
+So regardless of whether we did a Newton iteration or not,
+因此，无论我们是否进行牛顿迭代， 
+
+799
+00:47:08,570 --> 00:47:12,905
+the complexity of division.
+划分的复杂性。 
+
+800
+00:47:12,905 --> 00:47:24,940
+
+
+
+801
+00:47:24,940 --> 00:47:27,269
+You are doing a logarithmic number of iterations,
+您正在做对数迭代， 
+
+802
+00:47:27,269 --> 00:47:29,869
+but since eventually all of the work
+但由于最终所有工作
+
+803
+00:47:29,869 --> 00:47:32,766
+is going to get done at the end here.
+将在这里结束。 
+
+804
+00:47:32,766 --> 00:47:34,764
+Most of the work is getting done at the end when
+大部分工作在最后完成时
+
+805
+00:47:34,764 --> 00:47:36,739
+you have these long numbers.
+你有这么长的数字。 
+
+806
+00:47:36,739 --> 00:47:40,250
+That's basically the essence of the argument.
+这基本上是论点的本质。 
+
+807
+00:47:40,250 --> 00:47:44,429
+So let me finish up and talk about the complexity
+所以让我结束并谈论复杂性
+
+808
+00:47:44,429 --> 00:47:45,784
+of computing square roots.
+计算平方根。 
+
+809
+00:47:45,784 --> 00:47:51,000
+
+
+
+810
+00:47:51,000 --> 00:47:56,030
+And as you can imagine, even though you
+可以想像，即使您
+
+811
+00:47:56,030 --> 00:47:58,630
+have two nested Newton iterations here,
+这里有两个嵌套的牛顿迭代， 
+
+812
+00:47:58,829 --> 00:48:01,849
+you can make basically the same argument.
+您可以提出基本相同的论点。 
+
+813
+00:48:01,849 --> 00:48:04,690
+So let's recall what we're doing in terms
+让我们回想一下我们在做的事情
+
+814
+00:48:04,690 --> 00:48:06,400
+of computing square roots.
+计算平方根。 
+
+815
+00:48:06,400 --> 00:48:09,320
+We want to compute square root of a.
+我们要计算a的平方根。 
+
+816
+00:48:09,320 --> 00:48:12,269
+And we said, well we don't quite know how to do this.
+我们说过，嗯，我们不太了解如何做到这一点。 
+
+817
+00:48:12,269 --> 00:48:18,369
+We're going to end up doing 10 raised to 2d times a,
+我们最终要把10次提高到2d次， 
+
+818
+00:48:18,369 --> 00:48:20,710
+and we're going to run Newton's method on it.
+我们将在其上运行牛顿方法。 
+
+819
+00:48:20,710 --> 00:48:24,000
+So you've got one level of Newton's method.
+因此，您已经有了牛顿方法的一个层次。 
+
+820
+00:48:24,000 --> 00:48:26,590
+
+
+
+821
+00:48:26,590 --> 00:48:29,730
+And the iteration here with respect to Newton's method
+还有关于牛顿法的迭代
+
+822
+00:48:29,730 --> 00:48:40,099
+is something like xi plus 1 equals xi plus a divided by xi.
+是xi加1等于xi加除以xi的东西。 
+
+823
+00:48:40,099 --> 00:48:44,969
+Now every time you do that for a particular xi,
+现在，每次针对特定xi进行此操作时， 
+
+824
+00:48:44,969 --> 00:48:49,319
+you're going to end up having to call a division.
+您最终将不得不致电部门。 
+
+825
+00:48:49,320 --> 00:48:52,940
+So you're going to call a division here,
+所以你要在这里打电话给一个部门， 
+
+826
+00:48:52,940 --> 00:48:56,050
+and then you're going to call a division here.
+然后您将在这里致电部门。 
+
+827
+00:48:56,050 --> 00:48:58,230
+For each iteration you have to call a division.
+对于每次迭代，您都必须调用一个除法。 
+
+828
+00:48:58,429 --> 00:49:00,299
+And what we're saying is, well we're
+我们的意思是， 
+
+829
+00:49:00,300 --> 00:49:03,547
+going to end up having to call for each of these division
+最终不得不呼吁每个部门
+
+830
+00:49:03,746 --> 00:49:05,579
+methods we're going to call Newton's method.
+方法我们将调用牛顿方法。 
+
+831
+00:49:05,579 --> 00:49:09,259
+
+
+
+832
+00:49:09,260 --> 00:49:16,630
+And what that is something like 2xi
+那就像2xi 
+
+833
+00:49:16,829 --> 00:49:22,519
+minus b xi square divided by r.
+减去b xi平方除以r。 
+
+834
+00:49:22,519 --> 00:49:25,974
+And that's going to be a bunch of multiplications.
+这将是一堆乘法。 
+
+835
+00:49:25,974 --> 00:49:28,599
+
+
+
+836
+00:49:28,599 --> 00:49:30,969
+And what we argued up until this point was
+到目前为止，我们争论的是
+
+837
+00:49:30,969 --> 00:49:33,459
+that the complexity of the division,
+划分的复杂性， 
+
+838
+00:49:33,460 --> 00:49:35,639
+even though we had a bunch of iterations here,
+即使我们在这里有很多迭代， 
+
+839
+00:49:35,639 --> 00:49:37,920
+a logarithmic number of iterations, the complexity
+对数迭代，复杂度
+
+840
+00:49:37,920 --> 00:49:40,000
+of the division was the same as the complexity
+的划分与复杂度相同
+
+841
+00:49:40,000 --> 00:49:42,239
+of the multiplication because the numbers
+的乘法，因为数字
+
+842
+00:49:42,239 --> 00:49:44,689
+started out small and grew big.
+从小到大开始。 
+
+843
+00:49:44,690 --> 00:49:45,000
+All right?
+好吧？ 
+
+844
+00:49:45,199 --> 00:49:46,960
+Everybody buy that?
+大家都买吗？ 
+
+845
+00:49:46,960 --> 00:49:49,250
+I'm going to use exactly the same argument
+我将使用完全相同的参数
+
+846
+00:49:49,250 --> 00:49:52,500
+for this level of iteration as well.
+对于此迭代级别也是如此。 
+
+847
+00:49:52,500 --> 00:49:57,010
+And again, when you start out with the digits of precision
+再说一遍，当您以精确度开始
+
+848
+00:49:57,010 --> 00:49:58,980
+corresponding to square root of 2,
+对应于2的平方根
+
+849
+00:49:59,179 --> 00:50:01,629
+you're going to start out guessing 1.5,
+您将开始猜测1.5， 
+
+850
+00:50:01,630 --> 00:50:04,434
+which is your initial guess for the square root of 2,
+这是您对2的平方根的初始猜测
+
+851
+00:50:04,434 --> 00:50:07,269
+and it's going to be a small number of digits of precision.
+它将是少量的精度。 
+
+852
+00:50:07,269 --> 00:50:09,559
+And eventually you'll get to a million digits.
+最终您将获得一百万个数字。 
+
+853
+00:50:09,559 --> 00:50:14,840
+So using essentially the same equation summing,
+因此，使用基本相同的方程求和
+
+854
+00:50:14,840 --> 00:50:17,610
+you can argue that the complexity of computing
+你可以说计算的复杂性
+
+855
+00:50:17,610 --> 00:50:25,059
+square roots is the complexity of division, which of course is
+平方根是分割的复杂性，这当然是
+
+856
+00:50:25,059 --> 00:50:28,199
+the complexity of multiplication.
+乘法的复杂性。 
+
+857
+00:50:28,199 --> 00:50:32,500
+
+
+
+858
+00:50:32,500 --> 00:50:34,880
+And that's the story.
+这就是故事。 
+
+859
+00:50:34,880 --> 00:50:37,789
+So obviously the code would be a little more complicated
+所以很明显，代码会更加复杂
+
+860
+00:50:37,989 --> 00:50:39,889
+than a multiplication code, because you
+而不是乘法代码，因为您
+
+861
+00:50:39,889 --> 00:50:42,359
+have all this control structure outside of it.
+拥有所有这些控制结构。 
+
+862
+00:50:42,360 --> 00:50:44,920
+It's really two nested loops.
+这实际上是两个嵌套循环。 
+
+863
+00:50:44,920 --> 00:50:47,320
+The multiply is getting called a bunch of times
+乘数被称为一堆倍
+
+864
+00:50:47,320 --> 00:50:48,900
+to do the divide, and the divide is
+进行除法，而除法是
+
+865
+00:50:49,099 --> 00:50:51,839
+getting called a bunch of times to compute the square root.
+被多次调用以计算平方根。 
+
+866
+00:50:51,840 --> 00:50:54,440
+But ultimately, because the numbers are growing
+但最终，因为数字在增长
+
+867
+00:50:54,440 --> 00:50:56,690
+and you start out with small numbers, most of the work
+然后您从少量开始，大部分工作
+
+868
+00:50:56,690 --> 00:50:58,820
+is done when you get to the millions of digits
+当您获得数百万个数字时就完成了
+
+869
+00:50:58,820 --> 00:50:59,760
+of precision.
+的精度。 
+
+870
+00:50:59,760 --> 00:51:03,760
+And you basically have theta n raised
+你基本上提出了
+
+871
+00:51:03,760 --> 00:51:06,940
+to alpha complexity for computing square roots.
+到计算平方根的alpha复杂度。 
+
+872
+00:51:06,940 --> 00:51:09,940
+If you have n raised to alpha multiply,
+如果您将n提高到alpha乘， 
+
+873
+00:51:09,940 --> 00:51:13,059
+and you want n digits of precision.
+而您想要n位精度。 
+
+874
+00:51:13,059 --> 00:51:13,989
+All right?
+好吧？ 
+
+875
+00:51:13,989 --> 00:51:14,969
+See you next time.
+下次见。 
+
+876
+00:51:14,969 --> 00:51:19,969
+Stick around for questions.
+坚持问问题。 
+
