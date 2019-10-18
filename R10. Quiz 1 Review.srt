@@ -1,0 +1,5695 @@
+﻿1
+00:00:00,000 --> 00:00:00,050
+
+
+
+2
+00:00:00,050 --> 00:00:01,770
+The following content is provided
+提供以下内容
+
+3
+00:00:01,770 --> 00:00:04,009
+under a Creative Commons license.
+根据知识共享许可。 
+
+4
+00:00:04,009 --> 00:00:06,859
+Your support will help MIT OpenCourseWare continue
+您的支持将帮助MIT OpenCourseWare继续
+
+5
+00:00:06,860 --> 00:00:10,720
+to offer high quality educational resources for free.
+免费提供高质量的教育资源。 
+
+6
+00:00:10,720 --> 00:00:13,339
+To make a donation or view additional materials
+捐款或查看其他材料
+
+7
+00:00:13,339 --> 00:00:17,207
+from hundreds of MIT courses, visit MIT OpenCourseWare
+从数百门麻省理工学院的课程中，访问MIT OpenCourseWare 
+
+8
+00:00:17,207 --> 00:00:17,832
+at ocw.mit.edu.
+在ocw.mit.edu。 
+
+9
+00:00:17,832 --> 00:00:21,155
+
+
+
+10
+00:00:21,155 --> 00:00:22,030
+PROFESSOR: All right.
+教授：好的。 
+
+11
+00:00:22,030 --> 00:00:23,019
+So I brought a few problems.
+所以我带来了一些问题。 
+
+12
+00:00:23,219 --> 00:00:26,949
+They're obviously not the quiz problems, though some of them
+他们显然不是测验问题，尽管其中一些
+
+13
+00:00:26,949 --> 00:00:29,280
+are supposed to be similar.
+应该是相似的。 
+
+14
+00:00:29,280 --> 00:00:30,679
+What I have here might not be what
+我在这里可能不是
+
+15
+00:00:30,879 --> 00:00:33,259
+you have on the quiz because we might drop quiz problems
+您参加测验，因为我们可能会放弃测验问题
+
+16
+00:00:33,259 --> 00:00:35,280
+or because some of them are just meant to make
+或者因为其中一些只是为了
+
+17
+00:00:35,280 --> 00:00:39,310
+you think and not to give away the solutions to the quiz.
+您会思考而不是放弃测验的解决方案。 
+
+18
+00:00:39,310 --> 00:00:41,490
+Now, before we get started on this,
+现在，在我们开始之前， 
+
+19
+00:00:41,490 --> 00:00:43,814
+do you guys have any burning questions or any concepts
+你们有什么迫切的问题或概念吗
+
+20
+00:00:43,814 --> 00:00:44,729
+that you want covered?
+你想要覆盖？ 
+
+21
+00:00:44,729 --> 00:00:46,799
+Based on that, I'll select which problems we do.
+基于此，我将选择我们要解决的问题。 
+
+22
+00:00:46,799 --> 00:00:47,726
+Yes?
+是？ 
+
+23
+00:00:47,726 --> 00:00:50,287
+AUDIENCE: This actually relates not too much to the Pset.
+听众：这实际上与Pset没有太大关系。 
+
+24
+00:00:50,287 --> 00:00:53,039
+
+
+
+25
+00:00:53,039 --> 00:00:55,725
+If you're looking at the time complexity
+如果您正在查看时间复杂性
+
+26
+00:00:55,725 --> 00:01:02,359
+to maybe transfer something from one table to another,
+可能将某物从一张桌子转移到另一张桌子， 
+
+27
+00:01:02,359 --> 00:01:04,164
+it takes a lot more time, I would
+我要花很多时间
+
+28
+00:01:04,164 --> 00:01:06,980
+assume, to move the actual item to the new table
+假设将实际项目移动到新表
+
+29
+00:01:06,980 --> 00:01:09,250
+than it does just to look at your point and be like,
+不只是看你的观点而变得像
+
+30
+00:01:09,250 --> 00:01:10,680
+oh, there's nothing there.
+哦，那里什么都没有。 
+
+31
+00:01:10,680 --> 00:01:11,986
+So if you were just going to look
+所以，如果你只是想看看
+
+32
+00:01:12,186 --> 00:01:14,329
+through an empty table of size m,
+通过一个大小为m的空表， 
+
+33
+00:01:14,329 --> 00:01:17,325
+the time to look through that empty table, I'm assuming,
+我假设是时候浏览那个空表了， 
+
+34
+00:01:17,325 --> 00:01:21,009
+is much less than the time to actually move an item.
+比实际移动项目的时间少得多。 
+
+35
+00:01:21,209 --> 00:01:28,649
+PROFESSOR: So you're saying we have m things here.
+教授：所以您是说我们这里有m东西。 
+
+36
+00:01:28,650 --> 00:01:29,149
+AUDIENCE: Yes.
+听众：是的。 
+
+37
+00:01:29,349 --> 00:01:33,049
+PROFESSOR: Some might be nil, and some
+教授：有些可能为零，有些则为
+
+38
+00:01:33,049 --> 00:01:36,259
+might have stuff in them, and you're
+里面可能有东西，而你
+
+39
+00:01:36,260 --> 00:01:40,965
+going to resize that to presumably 2 times m,
+要将其大小调整为大约2倍， 
+
+40
+00:01:41,165 --> 00:01:42,539
+and the way you do that is you're
+而你这样做的方式就是
+
+41
+00:01:42,540 --> 00:01:45,730
+going to move the elements, presumably by rehashing them,
+要移动这些元素，大概是通过重新哈希它们， 
+
+42
+00:01:45,730 --> 00:01:46,411
+right?
+对？ 
+
+43
+00:01:46,411 --> 00:01:46,993
+AUDIENCE: Yes.
+听众：是的。 
+
+44
+00:01:46,993 --> 00:01:50,170
+
+
+
+45
+00:01:50,170 --> 00:01:53,560
+PROFESSOR: So these elements, at least when we use Python,
+教授：所以这些要素，至少在我们使用Python时， 
+
+46
+00:01:53,560 --> 00:01:57,060
+we don't really store big elements anywhere.
+我们并没有在任何地方存储大型元素。 
+
+47
+00:01:57,060 --> 00:01:59,000
+If you have a big object, we always
+如果您有大物件，我们总是
+
+48
+00:01:59,000 --> 00:02:01,269
+work with references to that object.
+使用对该对象的引用。 
+
+49
+00:02:01,269 --> 00:02:03,280
+So you remember the address where
+所以你记得地址
+
+50
+00:02:03,280 --> 00:02:06,510
+that object lies in memory, and since the memory is
+该对象位于内存中，并且由于内存是
+
+51
+00:02:06,510 --> 00:02:10,110
+finite and small, addresses are all from 0 to a small number,
+有限和较小，地址都从0到一个小数， 
+
+52
+00:02:10,110 --> 00:02:12,650
+so they're constant.
+所以他们是不变的。 
+
+53
+00:02:12,650 --> 00:02:15,990
+So what you have here is not a big object.
+因此，您在这里拥有的并不是一个大对象。 
+
+54
+00:02:15,990 --> 00:02:17,800
+It's the address of the big object,
+这是大物件的地址， 
+
+55
+00:02:17,800 --> 00:02:21,469
+so moving is always constant time.
+因此移动始终是恒定的时间。 
+
+56
+00:02:21,469 --> 00:02:23,750
+AUDIENCE: What I'm saying is let's
+听众：我的意思是让我们
+
+57
+00:02:23,750 --> 00:02:26,229
+say that the table is completely full
+说桌子已经满了
+
+58
+00:02:26,229 --> 00:02:28,280
+versus completely empty table.
+与完全空表。 
+
+59
+00:02:28,280 --> 00:02:32,039
+It would take more time to move everything out
+将所有内容移出将花费更多时间
+
+60
+00:02:32,039 --> 00:02:34,509
+of the full table than it does just
+整个表的大小
+
+61
+00:02:34,509 --> 00:02:36,514
+to look the empty table, right?
+看空桌吧？ 
+
+62
+00:02:36,514 --> 00:02:37,389
+PROFESSOR: Let's see.
+教授：让我们看看。 
+
+63
+00:02:37,389 --> 00:02:42,299
+So writing something here is order 1 time, right?
+所以在这里写东西是命令1次，对吗？ 
+
+64
+00:02:42,300 --> 00:02:44,150
+So moving is order 1 time.
+因此，移动是订购1次。 
+
+65
+00:02:44,349 --> 00:02:47,129
+Moving one element is order 1 time.
+移动一个元素是命令的1倍。 
+
+66
+00:02:47,129 --> 00:02:50,241
+What's accessing an element in a table in a list?
+什么正在访问列表中表中的元素？ 
+
+67
+00:02:50,241 --> 00:02:51,199
+You have a Python list.
+您有一个Python列表。 
+
+68
+00:02:51,199 --> 00:02:53,281
+What's the cost of doing an index access?
+进行索引访问的成本是多少？ 
+
+69
+00:02:53,282 --> 00:02:54,740
+AUDIENCE: It's also order 1, right?
+听众：这也是命令1，对吗？ 
+
+70
+00:02:54,740 --> 00:02:55,590
+PROFESSOR: OK.
+教授：好的。 
+
+71
+00:02:55,789 --> 00:02:59,889
+So order 1, index.
+因此，顺序1，索引。 
+
+72
+00:02:59,889 --> 00:03:02,726
+Order 1, move.
+顺序1，移动。 
+
+73
+00:03:02,727 --> 00:03:04,060
+Suppose you have an empty table.
+假设您有一个空表。 
+
+74
+00:03:04,060 --> 00:03:05,680
+How many indices do you do?
+您做多少指数？ 
+
+75
+00:03:05,680 --> 00:03:07,715
+How many times the index?
+索引多少次？ 
+
+76
+00:03:07,914 --> 00:03:09,539
+AUDIENCE: You look at each one, so it's
+听众：你看着每一个，所以
+
+77
+00:03:09,539 --> 00:03:12,424
+order 1 times the length of the table.
+订购表长度的1倍。 
+
+78
+00:03:12,425 --> 00:03:14,689
+PROFESSOR: m.
+教授： 
+
+79
+00:03:14,889 --> 00:03:17,619
+So if the table is empty, you have order m indices
+因此，如果表为空，则您有m个索引
+
+80
+00:03:17,620 --> 00:03:19,740
+and 0 moves.
+和0移动。 
+
+81
+00:03:19,740 --> 00:03:22,969
+Total running time, order m.
+总运行时间，订购m。 
+
+82
+00:03:22,969 --> 00:03:26,069
+If you have a full table, how many times
+如果您有一张完整的桌子，多少次
+
+83
+00:03:26,069 --> 00:03:27,412
+do you index in the table?
+你在表中索引吗？ 
+
+84
+00:03:27,412 --> 00:03:28,437
+AUDIENCE: Still order m.
+听众：还订购m。 
+
+85
+00:03:28,437 --> 00:03:29,020
+PROFESSOR: OK.
+教授：好的。 
+
+86
+00:03:29,020 --> 00:03:31,330
+How many times do you move stuff?
+您将东西移动多少次？ 
+
+87
+00:03:31,330 --> 00:03:34,365
+AUDIENCE: Order m.
+听众：订单m。 
+
+88
+00:03:34,365 --> 00:03:35,615
+PROFESSOR: Total running time?
+教授：总运行时间？ 
+
+89
+00:03:35,615 --> 00:03:38,835
+AUDIENCE: It's order 2m, which is order m.
+听众：2m订单，m订单。 
+
+90
+00:03:38,835 --> 00:03:40,960
+PROFESSOR: So it doesn't matter whether the table's
+教授：所以桌子的
+
+91
+00:03:40,960 --> 00:03:42,198
+full or empty.
+满或空。 
+
+92
+00:03:42,198 --> 00:03:42,739
+AUDIENCE: OK.
+听众：好的。 
+
+93
+00:03:42,739 --> 00:03:44,159
+Just wanted to confirm that.
+只是想确认一下。 
+
+94
+00:03:44,159 --> 00:03:45,783
+PROFESSOR: And this is how you do that.
+教授：这就是您的做法。 
+
+95
+00:03:45,783 --> 00:03:47,939
+
+
+
+96
+00:03:47,939 --> 00:03:48,460
+Cool.
+凉。 
+
+97
+00:03:48,460 --> 00:03:48,822
+Thanks.
+谢谢。 
+
+98
+00:03:49,021 --> 00:03:49,854
+Any other questions?
+还有其他问题吗？ 
+
+99
+00:03:49,854 --> 00:04:00,409
+
+
+
+100
+00:04:00,409 --> 00:04:04,479
+Then we will go over problems in the order in which I like them,
+然后，我们将按照我喜欢它们的顺序来解决问题， 
+
+101
+00:04:04,479 --> 00:04:06,109
+which is easiest to hardest so that I
+最容易到最难的是
+
+102
+00:04:06,110 --> 00:04:07,490
+don't have to explain the hard ones.
+不必解释那些困难的事情。 
+
+103
+00:04:07,689 --> 00:04:14,710
+
+
+
+104
+00:04:14,710 --> 00:04:16,569
+Warm up problem one.
+热身问题一。 
+
+105
+00:04:16,569 --> 00:04:24,800
+
+
+
+106
+00:04:24,800 --> 00:04:27,720
+So you have this recursion and you have to solve it,
+因此，您需要进行递归处理，并且必须解决它， 
+
+107
+00:04:27,720 --> 00:04:40,350
+and you get a hint that n to the power of 1 over log n
+并且您得到一个提示，即n大于n的n为1的幂
+
+108
+00:04:40,350 --> 00:04:45,540
+is 2, which is theta 1.
+是2，即theta 1。 
+
+109
+00:04:45,540 --> 00:04:47,129
+So based on the hint, you can see
+因此，根据提示，您可以看到
+
+110
+00:04:47,129 --> 00:04:50,826
+that it's going to involve some math.
+这将涉及一些数学。 
+
+111
+00:04:50,826 --> 00:04:53,500
+It's going to get a bit ugly.
+这将变得有点丑陋。 
+
+112
+00:04:53,699 --> 00:04:55,259
+So how do we solve recursions?
+那么我们如何解决递归呢？ 
+
+113
+00:04:55,259 --> 00:04:56,110
+Two methods.
+两种方法。 
+
+114
+00:04:56,110 --> 00:04:57,514
+What are they?
+这些是什么？ 
+
+115
+00:04:57,514 --> 00:04:59,927
+AUDIENCE: Expand.
+听众：扩大。 
+
+116
+00:04:59,927 --> 00:05:00,310
+PROFESSOR: OK.
+教授：好的。 
+
+117
+00:05:00,509 --> 00:05:02,950
+Substitution formally, but basically, we
+正式替代，但基本上，我们
+
+118
+00:05:02,951 --> 00:05:04,250
+expand this guy over and over again.
+一遍又一遍地扩大这个家伙。 
+
+119
+00:05:04,449 --> 00:05:06,084
+And?
+和？ 
+
+120
+00:05:06,084 --> 00:05:07,339
+AUDIENCE: Trees.
+听众：树木。 
+
+121
+00:05:07,339 --> 00:05:09,969
+PROFESSOR: Recursion trees.
+教授：递归树。 
+
+122
+00:05:09,970 --> 00:05:11,610
+Which one do guys want to do first?
+伙计们想先做哪一个？ 
+
+123
+00:05:11,610 --> 00:05:14,879
+
+
+
+124
+00:05:15,079 --> 00:05:17,779
+If you only have one t here, anything
+如果这里只有一吨
+
+125
+00:05:17,779 --> 00:05:22,339
+works because you can keep expanding it and that works,
+之所以有效，是因为您可以不断扩展它，而且有效
+
+126
+00:05:22,339 --> 00:05:24,316
+so we can do either method.
+所以我们可以做任何一种方法。 
+
+127
+00:05:24,317 --> 00:05:25,699
+Which one do you guys want to go over?
+你们想跳过哪一个？ 
+
+128
+00:05:25,899 --> 00:05:28,579
+
+
+
+129
+00:05:28,579 --> 00:05:29,740
+Trees.
+树木。 
+
+130
+00:05:29,740 --> 00:05:31,100
+OK.
+好。 
+
+131
+00:05:31,100 --> 00:05:35,819
+So we start with the first node.
+因此，我们从第一个节点开始。 
+
+132
+00:05:36,019 --> 00:05:39,291
+The size of the problem is n.
+问题的大小是n。 
+
+133
+00:05:39,291 --> 00:05:41,731
+What's the cost inside here?
+这里的费用是多少？ 
+
+134
+00:05:41,732 --> 00:05:45,148
+
+
+
+135
+00:05:45,148 --> 00:05:45,930
+AUDIENCE: 1.
+听众：1。 
+
+136
+00:05:46,129 --> 00:05:47,550
+PROFESSOR: OK.
+教授：好的。 
+
+137
+00:05:47,550 --> 00:05:50,620
+So this creates one sub-problem.
+因此，这产生了一个子问题。 
+
+138
+00:05:50,620 --> 00:05:51,483
+What's the size?
+什么大小
+
+139
+00:05:51,483 --> 00:05:54,197
+
+
+
+140
+00:05:54,197 --> 00:05:56,169
+AUDIENCE: n to the 1/2.
+听众：n到1/2。 
+
+141
+00:05:56,170 --> 00:05:58,129
+PROFESSOR: OK.
+教授：好的。 
+
+142
+00:05:58,129 --> 00:06:00,529
+Square root of n equals n to the 1/2.
+ n的平方根等于n的1/2。 
+
+143
+00:06:00,529 --> 00:06:01,774
+You solved it already.
+您已经解决了。 
+
+144
+00:06:01,774 --> 00:06:02,439
+What's the cost?
+费用是多少？ 
+
+145
+00:06:02,439 --> 00:06:05,278
+
+
+
+146
+00:06:05,278 --> 00:06:05,778
+AUDIENCE: 1.
+听众：1。 
+
+147
+00:06:05,778 --> 00:06:08,641
+
+
+
+148
+00:06:08,641 --> 00:06:10,660
+PROFESSOR: Do people remember this?
+教授：人们还记得吗？ 
+
+149
+00:06:10,660 --> 00:06:14,980
+Is anyone confused about what's going on here?
+有人对这里发生的事情感到困惑吗？ 
+
+150
+00:06:14,980 --> 00:06:15,759
+OK.
+好。 
+
+151
+00:06:15,759 --> 00:06:19,709
+So two terms, something involving t and something
+所以两个词，涉及t和某些
+
+152
+00:06:19,709 --> 00:06:21,250
+not involving t.
+不涉及t 
+
+153
+00:06:21,250 --> 00:06:24,110
+The thing involving t is what we want to get rid of.
+涉及t的东西是我们要摆脱的东西。 
+
+154
+00:06:24,110 --> 00:06:29,870
+When we do our recursion tree, whatever is in here
+当我们做递归树时，这里有什么
+
+155
+00:06:29,870 --> 00:06:33,829
+goes inside here, and this tells me
+走进这里，这告诉我
+
+156
+00:06:34,029 --> 00:06:37,919
+how this number relates to this number.
+该数字与该数字的关系。 
+
+157
+00:06:37,920 --> 00:06:41,250
+So when I go from one level to the next level,
+所以当我从一个级别转到另一个级别时， 
+
+158
+00:06:41,250 --> 00:06:42,550
+this is the transformation.
+这就是转变。 
+
+159
+00:06:42,550 --> 00:06:48,406
+n and becomes square root of n, so the transformation here
+ n并成为n的平方根，所以这里的变换
+
+160
+00:06:48,406 --> 00:06:49,829
+is the same as the transformation here.
+与此处的转换相同。 
+
+161
+00:06:50,029 --> 00:06:57,879
+
+
+
+162
+00:06:57,879 --> 00:07:00,132
+What's next?
+下一步是什么？ 
+
+163
+00:07:00,132 --> 00:07:02,151
+AUDIENCE: n to the 1/4.
+听众：n为1/4。 
+
+164
+00:07:02,151 --> 00:07:02,735
+PROFESSOR: OK.
+教授：好的。 
+
+165
+00:07:02,735 --> 00:07:05,500
+
+
+
+166
+00:07:05,500 --> 00:07:07,827
+Cost?
+成本？ 
+
+167
+00:07:07,827 --> 00:07:09,319
+AUDIENCE: 1.
+听众：1。 
+
+168
+00:07:09,319 --> 00:07:10,000
+PROFESSOR: OK.
+教授：好的。 
+
+169
+00:07:10,000 --> 00:07:12,350
+Do we need to do one more or do people see the pattern?
+我们是否需要再做一遍，还是人们看到了这种模式？ 
+
+170
+00:07:12,350 --> 00:07:15,889
+
+
+
+171
+00:07:16,089 --> 00:07:17,339
+Silence means one more.
+沉默意味着更多。 
+
+172
+00:07:17,339 --> 00:07:21,239
+If you guys don't speak, we're going to go slow.
+如果你们不说话，我们会变慢的。 
+
+173
+00:07:21,240 --> 00:07:21,790
+What's here?
+这是什么
+
+174
+00:07:21,790 --> 00:07:25,213
+
+
+
+175
+00:07:25,213 --> 00:07:29,125
+AUDIENCE: n to the 1/8.
+听众：n到1/8。 
+
+176
+00:07:29,125 --> 00:07:31,559
+PROFESSOR: What's here?
+教授：这是什么？ 
+
+177
+00:07:31,559 --> 00:07:32,059
+AUDIENCE: 1.
+听众：1。 
+
+178
+00:07:32,059 --> 00:07:35,000
+
+
+
+179
+00:07:35,199 --> 00:07:37,170
+PROFESSOR: Let's hope everyone saw the pattern,
+教授：希望大家看到了这种模式， 
+
+180
+00:07:37,170 --> 00:07:40,389
+and suppose we've done this for l levels,
+并假设我们已经完成了l个级别， 
+
+181
+00:07:40,589 --> 00:07:43,329
+so we're at the bottom.
+所以我们在最底层。 
+
+182
+00:07:43,329 --> 00:07:44,949
+What should the cost be at the bottom?
+最低成本应该是多少？ 
+
+183
+00:07:44,949 --> 00:07:47,435
+
+
+
+184
+00:07:47,435 --> 00:07:48,351
+AUDIENCE: [INAUDIBLE].
+听众：[听不清]。 
+
+185
+00:07:48,351 --> 00:07:51,411
+
+
+
+186
+00:07:51,411 --> 00:07:52,120
+PROFESSOR: Sorry.
+教授：对不起。 
+
+187
+00:07:52,120 --> 00:07:53,230
+We don't start with the cost.
+我们不是从成本开始的。 
+
+188
+00:07:53,230 --> 00:07:55,237
+What should the size of the problem be at the bottom?
+问题的大小应该在底部？ 
+
+189
+00:07:55,437 --> 00:08:00,978
+
+
+
+190
+00:08:00,978 --> 00:08:03,247
+AUDIENCE: n to the 1 over 2 to the i.
+受众：n比1多2。 
+
+191
+00:08:03,447 --> 00:08:11,014
+
+
+
+192
+00:08:11,014 --> 00:08:12,389
+PROFESSOR: Let's say that this is
+教授：可以说这是
+
+193
+00:08:12,389 --> 00:08:15,079
+level h, where h is the height of the tree.
+级别h，其中h是树的高度。 
+
+194
+00:08:15,079 --> 00:08:17,870
+
+
+
+195
+00:08:17,870 --> 00:08:20,204
+AUDIENCE: Don't you want to do something like n to the 1
+听众：您是否不想对1做n 
+
+196
+00:08:20,204 --> 00:08:20,735
+over n?
+超过n？ 
+
+197
+00:08:20,935 --> 00:08:25,120
+
+
+
+198
+00:08:25,120 --> 00:08:26,420
+PROFESSOR: Yeah.
+教授：是的。 
+
+199
+00:08:26,420 --> 00:08:30,675
+OK, so we want something that looks like that?
+好吧，所以我们想要看起来像这样的东西？ 
+
+200
+00:08:30,875 --> 00:08:33,299
+AUDIENCE: If the recursion tree is height i,
+听众：如果递归树是高度i， 
+
+201
+00:08:33,299 --> 00:08:35,298
+it is n to the 1 over 2 to the i, but 2 to the i
+ n等于1等于2的i，但2等于i 
+
+202
+00:08:35,298 --> 00:08:37,266
+should equal n, or approximately n.
+应该等于n或大约n。 
+
+203
+00:08:37,267 --> 00:08:40,835
+
+
+
+204
+00:08:40,835 --> 00:08:41,258
+PROFESSOR: Why?
+教授：为什么？ 
+
+205
+00:08:41,458 --> 00:08:46,959
+
+
+
+206
+00:08:46,960 --> 00:08:48,519
+I like that, but why?
+我喜欢，但是为什么呢？ 
+
+207
+00:08:48,519 --> 00:08:54,549
+AUDIENCE: Because you need to go down
+听众：因为你需要下去
+
+208
+00:08:54,549 --> 00:08:57,689
+until you're only looking at one element,
+直到您只看一个元素， 
+
+209
+00:08:57,690 --> 00:09:02,067
+and that would be one nth of the problem.
+那将是问题的十分之一。 
+
+210
+00:09:02,067 --> 00:09:02,649
+PROFESSOR: OK.
+教授：好的。 
+
+211
+00:09:02,649 --> 00:09:05,967
+So we want this guy to look like what?
+所以我们希望这个家伙看起来像什么？ 
+
+212
+00:09:05,967 --> 00:09:15,449
+
+
+
+213
+00:09:15,450 --> 00:09:17,990
+In fact, it doesn't exactly have to look like 1, but what's
+实际上，它不一定非要像1，而是
+
+214
+00:09:17,990 --> 00:09:22,417
+the advantage if we manage to get this guy to look like 1?
+如果我们设法让这个家伙看起来像1的优势？ 
+
+215
+00:09:22,417 --> 00:09:23,250
+We have a recursion.
+我们有一个递归。 
+
+216
+00:09:23,250 --> 00:09:25,940
+We don't have a base case here, right?
+我们这里没有基本情况，对吗？ 
+
+217
+00:09:25,940 --> 00:09:34,579
+A reasonable base case is T of 1 is theta 1.
+一个合理的基本情况是T等于1等于theta 1。 
+
+218
+00:09:34,779 --> 00:09:37,799
+Whatever function that is, if you evaluate it at 1,
+不管是什么函数，如果将其评估为1， 
+
+219
+00:09:37,799 --> 00:09:41,639
+you're going to get a constant, so you can say that.
+您将获得一个常数，所以可以这样说。 
+
+220
+00:09:41,639 --> 00:09:45,375
+Now, at the same time I can say that for any constant,
+现在，我可以同时说对于任何常数， 
+
+221
+00:09:45,375 --> 00:09:50,659
+c, T of c is theta 1.
+ c，c的T为theta 1。 
+
+222
+00:09:50,659 --> 00:09:53,179
+
+
+
+223
+00:09:53,179 --> 00:09:59,409
+So if I take this constant here, which happens to be 2,
+所以如果我在这里取这个常数，恰好是2 
+
+224
+00:09:59,409 --> 00:10:01,100
+but that's not to worry about that.
+但这不用担心。 
+
+225
+00:10:01,100 --> 00:10:04,320
+If I take this guy here, I can put it in here.
+如果我把这个人带到这里，我可以把它放在这里。 
+
+226
+00:10:04,320 --> 00:10:08,350
+
+
+
+227
+00:10:08,350 --> 00:10:12,359
+And I know that this guy here equals this guy here.
+我知道这里的人等于这里的人。 
+
+228
+00:10:12,559 --> 00:10:17,209
+So if I can make this guy here look like this guy here,
+所以，如果我可以让这个人看起来像这个人， 
+
+229
+00:10:17,210 --> 00:10:20,500
+then I'm done.
+那我就完成了
+
+230
+00:10:20,500 --> 00:10:21,014
+Make sense?
+说得通？ 
+
+231
+00:10:21,014 --> 00:10:23,779
+
+
+
+232
+00:10:23,779 --> 00:10:25,740
+If it makes sense, everyone should nod so
+如果有道理，每个人都应该点头
+
+233
+00:10:25,740 --> 00:10:30,720
+that I know and I can go forward, or smile or something.
+我知道，我可以前进，或者微笑或其他。 
+
+234
+00:10:30,720 --> 00:10:32,250
+So this should look like 1.
+所以这看起来应该像1。 
+
+235
+00:10:32,250 --> 00:10:35,240
+This is order 1 if not 1.
+如果不是1，则为订单1。 
+
+236
+00:10:35,240 --> 00:10:39,250
+Let's make it order 1, because it's 2 in this case.
+让我们将其设为1，因为在这种情况下为2。 
+
+237
+00:10:39,250 --> 00:10:42,495
+What's the cost here?
+这要花多少钱？ 
+
+238
+00:10:42,495 --> 00:10:43,409
+AUDIENCE: 1.
+听众：1。 
+
+239
+00:10:43,409 --> 00:10:44,230
+PROFESSOR: 1.
+教授：1。 
+
+240
+00:10:44,230 --> 00:10:47,129
+Everything inside the bubbles is order of already,
+气泡内的所有东西已经是顺序， 
+
+241
+00:10:47,129 --> 00:10:48,913
+so I don't need to write an order of.
+所以我不需要写命令。 
+
+242
+00:10:48,913 --> 00:10:52,379
+
+
+
+243
+00:10:52,379 --> 00:10:55,120
+What do we do next?
+接下来我们要做什么？ 
+
+244
+00:10:55,120 --> 00:10:58,029
+AUDIENCE: Solve the [INAUDIBLE] equation.
+听众：求解[听不清]方程。 
+
+245
+00:10:58,029 --> 00:10:59,485
+2 to the [INAUDIBLE].
+ 2转到[音频不清晰]。 
+
+246
+00:10:59,485 --> 00:11:04,330
+
+
+
+247
+00:11:04,330 --> 00:11:06,825
+PROFESSOR: You're skipping one step.
+教授：您跳过了一步。 
+
+248
+00:11:06,825 --> 00:11:09,200
+That's exactly what you do when you have the substitution
+这就是替换后的工作
+
+249
+00:11:09,200 --> 00:11:09,580
+method.
+方法。 
+
+250
+00:11:09,580 --> 00:11:10,710
+You're going to get to something and you
+你要去做某事，你
+
+251
+00:11:10,710 --> 00:11:11,633
+need to solve the equation.
+需要解方程。 
+
+252
+00:11:11,833 --> 00:11:14,159
+But for the tree, there are two steps.
+但是对于树，有两个步骤。 
+
+253
+00:11:14,159 --> 00:11:15,990
+So we need to add up all the costs here
+所以我们需要在这里加总所有费用
+
+254
+00:11:15,990 --> 00:11:18,220
+and that's the total cost here.
+这就是这里的总费用。 
+
+255
+00:11:18,220 --> 00:11:24,681
+In order to do that, first, we sum up over each level.
+为了做到这一点，首先，我们对每个级别进行总结。 
+
+256
+00:11:24,681 --> 00:11:25,979
+And in this case, it's really simple
+在这种情况下，这非常简单
+
+257
+00:11:26,179 --> 00:11:27,846
+because there's only one node per level,
+因为每个级别只有一个节点， 
+
+258
+00:11:27,846 --> 00:11:29,690
+but if you have multiple nodes per level,
+但是如果每个级别有多个节点， 
+
+259
+00:11:29,690 --> 00:11:31,600
+you have to sum up for each level,
+您必须总结每个级别， 
+
+260
+00:11:31,600 --> 00:11:33,570
+and then you have to do a big sum.
+然后你必须做一个大数目。 
+
+261
+00:11:33,570 --> 00:11:37,441
+What's the sum for this level?
+这个级别的总和是多少？ 
+
+262
+00:11:37,441 --> 00:11:37,940
+1.
+ 1。 
+
+263
+00:11:37,940 --> 00:11:40,719
+
+
+
+264
+00:11:40,919 --> 00:11:41,610
+Come on, guys.
+拜托了伙计们。 
+
+265
+00:11:41,610 --> 00:11:43,633
+You're scaring me.
+你吓到我了。 
+
+266
+00:11:43,833 --> 00:11:45,324
+AUDIENCE: 1.
+听众：1。 
+
+267
+00:11:45,325 --> 00:11:46,118
+AUDIENCE: 1.
+听众：1。 
+
+268
+00:11:46,318 --> 00:11:47,319
+AUDIENCE: It's all 1.
+听众：全都是1。 
+
+269
+00:11:47,320 --> 00:11:48,363
+PROFESSOR: Excellent.
+教授：非常好。 
+
+270
+00:11:48,563 --> 00:11:49,980
+So the only thing that I'm missing
+所以我唯一想念的是
+
+271
+00:11:49,980 --> 00:11:53,070
+is to know how many levels I have, because the sum is going
+知道我有多少个水平，因为总和
+
+272
+00:11:53,070 --> 00:11:57,849
+to be order h, whatever h is.
+不论h是多少，都可以成为h的阶。 
+
+273
+00:11:58,049 --> 00:11:59,479
+How do we do that?
+我们该怎么做？ 
+
+274
+00:11:59,480 --> 00:12:02,990
+n to the 1 over 2 to the power of h
+ n等于2的1的幂
+
+275
+00:12:02,990 --> 00:12:07,029
+has to equal this guy, right?
+必须等于这个家伙，对吗？ 
+
+276
+00:12:07,029 --> 00:12:08,851
+AUDIENCE: Why would it equal that guy?
+听众：为什么这等于那个家伙？ 
+
+277
+00:12:08,851 --> 00:12:11,121
+We know it's less than that guy, but we
+我们知道这比那个家伙少，但是我们
+
+278
+00:12:11,121 --> 00:12:13,149
+don't know it's equal to that guy.
+不知道那等于那个家伙。 
+
+279
+00:12:13,149 --> 00:12:15,600
+PROFESSOR: We have to make it equal because we can only
+教授：我们必须使其平等，因为我们只能
+
+280
+00:12:15,600 --> 00:12:18,099
+stop when we get to the base case.
+当我们到达基本情况时停止。 
+
+281
+00:12:18,299 --> 00:12:20,209
+So we have to expand the recursion tree
+所以我们必须扩展递归树
+
+282
+00:12:20,210 --> 00:12:22,570
+until we get to a base case, and then we stop,
+直到我们找到一个基本案例，然后我们停止， 
+
+283
+00:12:22,570 --> 00:12:25,069
+and this is our base case because this
+这是我们的基本情况，因为
+
+284
+00:12:25,269 --> 00:12:27,669
+is what the problem says should be our base case.
+问题是我们的基本情况。 
+
+285
+00:12:27,669 --> 00:12:29,774
+AUDIENCE: Right, but n to the 1 over 2 to the h
+听众：是的，但是n等于1等于2等于h 
+
+286
+00:12:29,774 --> 00:12:39,172
+is not equal to n to the 1 over log n.
+不等于n等于对数n的1。 
+
+287
+00:12:39,172 --> 00:12:41,379
+PROFESSOR: Well, we can set h to be whatever we want.
+教授：好吧，我们可以将h设置为我们想要的任何值。 
+
+288
+00:12:41,379 --> 00:12:44,539
+h is the height of the tree, so we don't know what it is.
+ h是树的高度，所以我们不知道它是什么。 
+
+289
+00:12:44,539 --> 00:12:46,165
+We have to find out what it is.
+我们必须找出它是什么。 
+
+290
+00:12:46,166 --> 00:12:47,339
+AUDIENCE: So let's say 2 to the h
+听众：让我们对小时说2 
+
+291
+00:12:47,539 --> 00:12:52,991
+is equal to log n if you want to make it look like that.
+如果要使它看起来像log n，则等于。 
+
+292
+00:12:52,991 --> 00:12:54,699
+PROFESSOR: Let me write down the equation
+教授：让我写下等式
+
+293
+00:12:54,700 --> 00:12:56,829
+to make sure you're right.
+确保你是对的。 
+
+294
+00:12:57,029 --> 00:13:00,009
+You're probably right because you're thinking faster than me,
+您可能是对的，因为您的思考速度比我快， 
+
+295
+00:13:00,009 --> 00:13:04,135
+but let me not embarrass myself and do this the right way.
+但是让我不要让自己感到尴尬，并以正确的方式做这件事。 
+
+296
+00:13:04,135 --> 00:13:09,969
+
+
+
+297
+00:13:09,970 --> 00:13:14,889
+So you said 2 to the h is log n, right?
+所以你对h说2是log n，对吗？ 
+
+298
+00:13:14,889 --> 00:13:15,639
+Looks about right.
+看起来不错。 
+
+299
+00:13:15,639 --> 00:13:19,215
+So what's h?
+那是什么？ 
+
+300
+00:13:19,215 --> 00:13:21,500
+AUDIENCE: Log base 2.
+受众：日志基数2。 
+
+301
+00:13:21,500 --> 00:13:23,769
+PROFESSOR: All right.
+教授：好的。 
+
+302
+00:13:23,769 --> 00:13:25,409
+Log log n.
+日志日志n。 
+
+303
+00:13:25,409 --> 00:13:28,110
+
+
+
+304
+00:13:28,110 --> 00:13:30,600
+So T of n is order h.
+因此，n的T为h阶。 
+
+305
+00:13:30,600 --> 00:13:33,950
+We got this from here.
+我们从这里得到的。 
+
+306
+00:13:33,950 --> 00:13:43,509
+T of n is order h is order of log log n.
+ n的T是阶h，是log log n的阶。 
+
+307
+00:13:43,509 --> 00:13:44,819
+Math people drowning, right?
+数学人淹死了，对吗？ 
+
+308
+00:13:44,820 --> 00:13:48,090
+
+
+
+309
+00:13:48,090 --> 00:13:49,205
+Any questions about this?
+对此有任何疑问吗？ 
+
+310
+00:13:49,205 --> 00:13:52,259
+
+
+
+311
+00:13:52,259 --> 00:13:53,492
+Yes?
+是？ 
+
+312
+00:13:53,493 --> 00:13:55,710
+AUDIENCE: The first line on the right--
+听众：右边的第一行- 
+
+313
+00:13:55,710 --> 00:13:56,565
+PROFESSOR: This?
+教授：这吗？ 
+
+314
+00:13:56,565 --> 00:13:57,190
+AUDIENCE: Yeah.
+听众：是的。 
+
+315
+00:13:57,190 --> 00:13:58,148
+Is that your base case?
+那是你的基本情况吗？ 
+
+316
+00:13:58,148 --> 00:13:59,214
+What is that?
+那是什么？ 
+
+317
+00:13:59,214 --> 00:14:01,179
+PROFESSOR: We got a hint with the problem that said,
+教授：这个问题我们得到了提示， 
+
+318
+00:14:01,379 --> 00:14:06,659
+n to the power of 1 over log n is 2, which is order 1.
+ n在log n上的1的幂是2，即1阶。 
+
+319
+00:14:06,659 --> 00:14:09,639
+
+
+
+320
+00:14:09,639 --> 00:14:12,506
+So for the base case, we always want them to look like this.
+因此，对于基本情况，我们始终希望它们看起来像这样。 
+
+321
+00:14:12,506 --> 00:14:14,839
+If we don't get a base case, we write our own base case,
+如果没有基本案例，我们将编写自己的基本案例， 
+
+322
+00:14:14,840 --> 00:14:16,700
+which is if you plug in a constant,
+如果您插入一个常数， 
+
+323
+00:14:16,700 --> 00:14:18,950
+you're going to get a constant.
+您将获得一个常数。 
+
+324
+00:14:18,950 --> 00:14:21,580
+And since we're told that this guy is a constant,
+由于我们被告知这个家伙是一个常数， 
+
+325
+00:14:21,580 --> 00:14:24,204
+that's a pretty good hint that we want to get to it.
+这是我们想要实现的一个很好的暗示。 
+
+326
+00:14:24,404 --> 00:14:29,994
+
+
+
+327
+00:14:29,994 --> 00:14:31,209
+Let's see how we're doing on time.
+让我们看看我们的准时情况。 
+
+328
+00:14:31,409 --> 00:14:34,079
+Good.
+好。 
+
+329
+00:14:34,080 --> 00:14:37,740
+Ready to move on to the next problem?
+准备继续下一个问题了吗？ 
+
+330
+00:14:37,740 --> 00:14:38,831
+Let's do a fun one.
+让我们做一个有趣的。 
+
+331
+00:14:38,831 --> 00:14:41,039
+Some people might remember it from elementary school,
+有些人可能记得上小学时
+
+332
+00:14:41,039 --> 00:14:44,449
+but this time, we're going to look at it with our 6.006 eyes.
+但是这次，我们将以6.006的眼睛进行观察。 
+
+333
+00:14:44,450 --> 00:14:50,850
+So suppose you have m coins, gold coins.
+因此，假设您有m个硬币，金币。 
+
+334
+00:14:50,850 --> 00:14:51,840
+One of them is face.
+其中之一是脸。 
+
+335
+00:14:51,840 --> 00:14:54,340
+The fake one is super light because it's not real gold.
+假货是超轻的，因为它不是真金。 
+
+336
+00:14:54,340 --> 00:14:57,379
+It's something that looks like gold.
+它看起来像金子。 
+
+337
+00:14:57,379 --> 00:15:03,210
+And we have a scale, and the scale is super accurate.
+而且我们有一个秤，并且秤超级准确。 
+
+338
+00:15:03,210 --> 00:15:05,950
+It can weigh any coins on either side
+它可以在任一侧称重任何硬币
+
+339
+00:15:05,950 --> 00:15:08,439
+and tell us which side is heavier.
+告诉我们哪一边更重
+
+340
+00:15:08,639 --> 00:15:10,830
+Perfect accuracy, no need to worry about errors.
+完美的准确性，无需担心错误。 
+
+341
+00:15:10,830 --> 00:15:13,690
+
+
+
+342
+00:15:13,690 --> 00:15:16,349
+I want to find out which coin is the bad coin.
+我想找出哪个硬币是坏硬币。 
+
+343
+00:15:16,549 --> 00:15:19,409
+What is the minimum number of experiments I have to do?
+我最少必须进行多少次实验？ 
+
+344
+00:15:19,409 --> 00:15:22,439
+
+
+
+345
+00:15:22,440 --> 00:15:24,679
+So there is a strategy, and we can worry about that later,
+因此，有一个策略，我们稍后可以担心， 
+
+346
+00:15:24,879 --> 00:15:28,789
+but using 6.006, what is the minimum number of experiments
+但是使用6.006，最少需要进行多少次实验
+
+347
+00:15:28,789 --> 00:15:30,283
+I have to do?
+我要做？ 
+
+348
+00:15:30,283 --> 00:15:31,279
+AUDIENCE: Log N times.
+听众：登录N次。 
+
+349
+00:15:31,279 --> 00:15:35,769
+
+
+
+350
+00:15:35,769 --> 00:15:36,710
+PROFESSOR: Not quite.
+教授：不完全是。 
+
+351
+00:15:36,710 --> 00:15:38,079
+So this is what you think is, and you
+所以这就是你的想法，而你
+
+352
+00:15:38,279 --> 00:15:41,620
+can do log n with binary search, right?
+可以用二进制搜索登录n，对吗？ 
+
+353
+00:15:41,620 --> 00:15:45,269
+The problem with binary search is if I put half of my coins
+二进制搜索的问题是，如果我将一半硬币投入
+
+354
+00:15:45,269 --> 00:15:47,549
+on the left, half of my coins on the right,
+在左边，我一半的硬币在右边， 
+
+355
+00:15:47,549 --> 00:15:49,959
+one side is going to be heavier, right?
+一侧会更重吧？ 
+
+356
+00:15:49,960 --> 00:15:53,229
+So the answers are going to be this or this,
+所以答案将是这个或这个， 
+
+357
+00:15:53,429 --> 00:15:55,609
+but I never get this.
+但我从来没有得到这个。 
+
+358
+00:15:55,610 --> 00:15:58,750
+I only get one bit of information
+我只得到一点信息
+
+359
+00:15:58,750 --> 00:16:00,759
+instead of getting one trit.
+而不是一无所获。 
+
+360
+00:16:00,759 --> 00:16:03,250
+A trit is a base three digit.
+ Trit是基数的三位数。 
+
+361
+00:16:03,250 --> 00:16:07,951
+How many bits of information in a trit?
+ Trit中有多少位信息？ 
+
+362
+00:16:07,951 --> 00:16:10,361
+AUDIENCE: One and a half.
+听众：一年半。 
+
+363
+00:16:10,361 --> 00:16:12,289
+PROFESSOR: Roughly.
+教授：大概吧。 
+
+364
+00:16:12,289 --> 00:16:13,711
+AUDIENCE: Log 3.
+听众：登录3。 
+
+365
+00:16:13,711 --> 00:16:14,419
+PROFESSOR: Log 3.
+教授：日志3。 
+
+366
+00:16:14,419 --> 00:16:16,211
+And we know that it's base 2 because that's
+而且我们知道这是基数2，因为那是
+
+367
+00:16:16,211 --> 00:16:17,720
+what we use in CS.
+我们在CS中使用的内容。 
+
+368
+00:16:17,720 --> 00:16:21,589
+So we're discarding a fractional bit of information
+因此，我们正在丢弃一小部分信息
+
+369
+00:16:21,789 --> 00:16:25,045
+if we're not allowing for this to happen.
+如果我们不允许这种情况发生。 
+
+370
+00:16:25,046 --> 00:16:31,349
+
+
+
+371
+00:16:31,549 --> 00:16:33,253
+Anyone want to try something else?
+有人要尝试其他吗？ 
+
+372
+00:16:33,254 --> 00:16:34,469
+We have to prove this, by the way.
+顺便说一下，我们必须证明这一点。 
+
+373
+00:16:34,669 --> 00:16:36,752
+We have to prove the minimum that we come up with.
+我们必须证明我们提出的最低要求。 
+
+374
+00:16:36,753 --> 00:16:40,176
+
+
+
+375
+00:16:40,176 --> 00:16:41,863
+AUDIENCE: You could just do it coin by coin,
+听众：您可以逐个硬币地做， 
+
+376
+00:16:42,063 --> 00:16:43,490
+but that would take forever.
+但这将永远。 
+
+377
+00:16:43,490 --> 00:16:45,009
+PROFESSOR: That's N. That's worse.
+教授：那是N。更糟。 
+
+378
+00:16:45,009 --> 00:16:50,620
+AUDIENCE: How about log base 4 N or something like that?
+听众：以4 N为底的对数怎么样？ 
+
+379
+00:16:50,620 --> 00:16:53,019
+AUDIENCE: Can you explain to me why we can't just
+听众：你能告诉我为什么我们不能只是
+
+380
+00:16:53,019 --> 00:16:54,189
+do binary search?
+进行二进制搜索？ 
+
+381
+00:16:54,190 --> 00:16:54,939
+PROFESSOR: We can.
+教授：我们可以。 
+
+382
+00:16:55,139 --> 00:16:58,029
+It's definitely going to give us the correct answer,
+肯定会给我们正确的答案， 
+
+383
+00:16:58,029 --> 00:17:00,189
+but it's not the minimum number of weighings
+但这不是最小称量数
+
+384
+00:17:00,190 --> 00:17:03,570
+because we're discarding a possible answer.
+因为我们正在放弃可能的答案。 
+
+385
+00:17:03,570 --> 00:17:05,318
+So if you do binary search, you will never
+因此，如果您执行二进制搜索，您将永远不会
+
+386
+00:17:05,318 --> 00:17:07,470
+get that the two sides are equal.
+得到双方平等。 
+
+387
+00:17:07,470 --> 00:17:08,700
+AUDIENCE: Log base 3.
+听众：日志基数3。 
+
+388
+00:17:08,700 --> 00:17:10,559
+PROFESSOR: Log base 3 would be better
+教授：以3为底的日志会更好
+
+389
+00:17:10,559 --> 00:17:12,828
+because we have three choices all the time.
+因为我们一直都有三个选择。 
+
+390
+00:17:12,828 --> 00:17:13,980
+Let's prove that.
+让我们证明这一点。 
+
+391
+00:17:13,980 --> 00:17:17,190
+So the right answer happens to be log base 3 of N. Let's see
+因此正确的答案恰好是N的对数底数3。 
+
+392
+00:17:17,190 --> 00:17:19,880
+how we would get it aside from guessing.
+我们如何从猜测中除掉它。 
+
+393
+00:17:19,880 --> 00:17:22,649
+AUDIENCE: So you divide it into thirds
+听众：所以你把它分成三份
+
+394
+00:17:22,849 --> 00:17:26,809
+and compare one third and one third, and if they're equal,
+并比较三分之一和三分之一，如果相等， 
+
+395
+00:17:26,809 --> 00:17:29,284
+then the light one is in the other third.
+那么光一个在另一个三分之一。 
+
+396
+00:17:29,285 --> 00:17:31,265
+And if they're not, [INAUDIBLE] light one.
+如果不是，请[听不清]。 
+
+397
+00:17:31,265 --> 00:17:34,736
+Then you just keep dividing by 3.
+然后，您只需除以3。 
+
+398
+00:17:34,936 --> 00:17:35,519
+PROFESSOR: OK.
+教授：好的。 
+
+399
+00:17:35,519 --> 00:17:36,759
+So that's the strategy.
+这就是策略。 
+
+400
+00:17:36,759 --> 00:17:38,250
+What if I don't know the strategy?
+如果我不知道该怎么办？ 
+
+401
+00:17:38,250 --> 00:17:40,165
+How do I do this without knowing the strategy?
+在不知道策略的情况下该如何做？ 
+
+402
+00:17:40,165 --> 00:17:42,667
+
+
+
+403
+00:17:42,667 --> 00:17:46,013
+AUDIENCE: What if the number of coins isn't divisible by 3?
+观众：如果硬币的数量不能被3整除怎么办？ 
+
+404
+00:17:46,013 --> 00:17:49,359
+
+
+
+405
+00:17:49,359 --> 00:17:52,185
+PROFESSOR: Math people.
+教授：数学人。 
+
+406
+00:17:52,185 --> 00:17:56,519
+AUDIENCE: Yeah, but then how do you-- OK, never mind.
+听众：是的，但是那你怎么样了-好吧，没关系。 
+
+407
+00:17:56,519 --> 00:17:59,134
+AUDIENCE: Just take the two extra coins and toss them out.
+听众：只需多拿两个硬币，然后扔掉。 
+
+408
+00:17:59,134 --> 00:18:02,220
+
+
+
+409
+00:18:02,220 --> 00:18:03,809
+PROFESSOR: If it's not divisible by 3,
+教授：如果不能被3整除， 
+
+410
+00:18:03,809 --> 00:18:07,539
+you add fake coins that are good.
+您添加好硬币。 
+
+411
+00:18:07,539 --> 00:18:11,049
+I mean, you use good coins.
+我的意思是，您使用优质的硬币。 
+
+412
+00:18:11,049 --> 00:18:13,500
+But we're not worried about the strategy.
+但是我们并不担心该策略。 
+
+413
+00:18:13,500 --> 00:18:15,240
+I want us to think of a lower bound.
+我希望我们想到一个下限。 
+
+414
+00:18:15,240 --> 00:18:17,470
+This is a lower bound for an algorithm, right?
+这是算法的下限，对吗？ 
+
+415
+00:18:17,470 --> 00:18:23,279
+You cannot do better than log 3 N experiments.
+您不能做得比记录3 N实验更好。 
+
+416
+00:18:23,279 --> 00:18:27,247
+Does the word "lower bound" ring any bells?
+ “下界”一词响起吗？ 
+
+417
+00:18:27,247 --> 00:18:29,379
+Is there any lecture where we talked about lower bounds?
+有没有关于下界的讲座？ 
+
+418
+00:18:29,579 --> 00:18:37,069
+
+
+
+419
+00:18:37,069 --> 00:18:39,829
+So if you sort and you're using a comparison model,
+因此，如果您进行排序并使用比较模型， 
+
+420
+00:18:39,829 --> 00:18:40,970
+what's the best you can do?
+你能做的最好的是什么？ 
+
+421
+00:18:40,970 --> 00:18:44,259
+
+
+
+422
+00:18:44,259 --> 00:18:46,140
+AUDIENCE: N log N.
+听众：N logN。 
+
+423
+00:18:46,140 --> 00:18:48,700
+PROFESSOR: N log N. Good.
+教授：N logN。 
+
+424
+00:18:48,700 --> 00:18:58,009
+So sorting using CMP, the comparison model, is N log N.
+因此，使用比较模型CMP的排序为N logN。 
+
+425
+00:18:58,009 --> 00:18:59,109
+How did we prove that?
+我们如何证明这一点？ 
+
+426
+00:18:59,109 --> 00:19:06,359
+
+
+
+427
+00:19:06,359 --> 00:19:07,299
+One word.
+一个词。 
+
+428
+00:19:07,299 --> 00:19:08,079
+Well, two words.
+好吧，两个字。 
+
+429
+00:19:08,079 --> 00:19:12,159
+
+
+
+430
+00:19:12,160 --> 00:19:13,279
+Decision trees.
+决策树。 
+
+431
+00:19:13,279 --> 00:19:16,139
+Does anyone remember what decision trees are?
+有谁记得决策树是什么？ 
+
+432
+00:19:16,140 --> 00:19:17,086
+One person.
+一个人。 
+
+433
+00:19:17,086 --> 00:19:19,106
+AUDIENCE: It's just a comparison thing, right?
+听众：这只是比较，对吗？ 
+
+434
+00:19:19,106 --> 00:19:20,940
+You're like, is it greater, is it less than,
+您就像是，它大于，还是小于， 
+
+435
+00:19:20,940 --> 00:19:22,315
+or is there some sort of question
+还是有什么问题
+
+436
+00:19:22,315 --> 00:19:24,384
+you're asking about each key.
+您正在询问每个键。 
+
+437
+00:19:24,384 --> 00:19:25,049
+PROFESSOR: Cool.
+教授：太好了。 
+
+438
+00:19:25,049 --> 00:19:27,589
+Let's go over that a little bit.
+让我们再谈一点。 
+
+439
+00:19:27,589 --> 00:19:31,789
+No matter what your algorithm is,
+不管您的算法是什么
+
+440
+00:19:31,789 --> 00:19:34,000
+it's going to weigh some coins and it's
+它会重一些硬币， 
+
+441
+00:19:34,000 --> 00:19:36,309
+going to get an answer from the scale.
+从天平上得到答案。 
+
+442
+00:19:36,309 --> 00:19:39,349
+And then based on that, it's going to weigh some other coins
+然后基于此，它将权衡其他一些硬币
+
+443
+00:19:39,349 --> 00:19:42,119
+and get some answer from the scale.
+并从规模中得到一些答案。 
+
+444
+00:19:42,119 --> 00:19:44,509
+And it will do some experiments and then
+它会做一些实验，然后
+
+445
+00:19:44,509 --> 00:19:46,539
+it will give you an answer.
+它会给你答案。 
+
+446
+00:19:46,539 --> 00:19:50,299
+So if you draw a decision tree, it would look like this.
+因此，如果您绘制决策树，它将看起来像这样。 
+
+447
+00:19:50,299 --> 00:19:52,669
+First, we start with 0 information.
+首先，我们从0信息开始。 
+
+448
+00:19:52,670 --> 00:19:54,389
+We weigh some coins.
+我们称重一些硬币。 
+
+449
+00:19:54,589 --> 00:19:59,419
+Based on that, we have three possible answers--
+基于此，我们有三个可能的答案- 
+
+450
+00:19:59,420 --> 00:20:03,910
+smaller, equal, greater.
+较小，相等，较大。 
+
+451
+00:20:03,910 --> 00:20:07,259
+Now, if we're here, we're going to do another experiment.
+现在，如果我们在这里，我们将做另一个实验。 
+
+452
+00:20:07,259 --> 00:20:10,910
+Three possible answers.
+三个可能的答案。 
+
+453
+00:20:10,910 --> 00:20:13,149
+If we're here, another experiment, three possible
+如果我们在这里，另一个实验，三个可能的
+
+454
+00:20:13,349 --> 00:20:13,849
+answers.
+答案。 
+
+455
+00:20:13,849 --> 00:20:16,769
+If we're here, another experiment, three possible
+如果我们在这里，另一个实验，三个可能的
+
+456
+00:20:16,769 --> 00:20:19,420
+answers.
+答案。 
+
+457
+00:20:19,420 --> 00:20:21,629
+Say we do a third experiment.
+假设我们做了第三个实验。 
+
+458
+00:20:21,829 --> 00:20:24,640
+One, two, three, one, two, three, one, two, three, one,
+一，二，三，一，二，三，一，二，三，一， 
+
+459
+00:20:24,641 --> 00:20:27,863
+two, three, one, two, three, one, two, three, one, two,
+二，三，一，二，三，一，二，三，一，二， 
+
+460
+00:20:27,863 --> 00:20:30,759
+three, one, two, three, one, two, three.
+三，一，二，三，一，二，三。 
+
+461
+00:20:30,759 --> 00:20:33,160
+And then suppose we stop.
+然后假设我们停止。 
+
+462
+00:20:33,160 --> 00:20:35,419
+If we stop, we have to give an answer.
+如果我们停下来，我们必须给出答案。 
+
+463
+00:20:35,619 --> 00:20:37,529
+So this is an answer, this is an answer,
+所以这是一个答案，这是一个答案， 
+
+464
+00:20:37,529 --> 00:20:44,879
+this is an answer, answer, answer, answer, answer, answer.
+这是一个答案，答案，答案，答案，答案，答案。 
+
+465
+00:20:44,880 --> 00:20:46,899
+So how many answers do I have at the bottom
+所以我在底部有多少个答案
+
+466
+00:20:47,099 --> 00:20:50,683
+if I have three levels?
+如果我有三个级别？ 
+
+467
+00:20:50,683 --> 00:20:52,599
+Here I have three experiments, so three levels
+这里我有三个实验，所以三个层次
+
+468
+00:20:52,599 --> 00:20:53,473
+in the decision tree.
+在决策树中。 
+
+469
+00:20:53,473 --> 00:20:56,159
+How many answers?
+有多少个答案？ 
+
+470
+00:20:56,160 --> 00:20:57,879
+AUDIENCE: [INAUDIBLE].
+听众：[听不清]。 
+
+471
+00:20:58,079 --> 00:21:00,259
+PROFESSOR: 3 to the third because I start three
+教授：从三到三，因为我从三开始
+
+472
+00:21:00,259 --> 00:21:03,579
+at the first level, nine at the second, 27 at the third.
+在第一级，第二级为九，第三级为27。 
+
+473
+00:21:03,579 --> 00:21:05,049
+Each time, I multiply by 3.
+每次，我乘以3。 
+
+474
+00:21:05,049 --> 00:21:08,490
+
+
+
+475
+00:21:08,490 --> 00:21:15,029
+So if I do three weighings, I can give at most 27 answers.
+因此，如果我进行三次称重，则最多可以给出27个答案。 
+
+476
+00:21:15,029 --> 00:21:18,789
+If I have more than 27 coins, I can't possibly
+如果我有27个以上的硬币，我就不可能
+
+477
+00:21:18,789 --> 00:21:24,409
+decide which one is bad because say if I have 30 coins,
+确定哪一个不好，因为如果我有30个硬币， 
+
+478
+00:21:24,410 --> 00:21:27,400
+then I need to be able to give out 30 answers.
+那么我需要给出30个答案。 
+
+479
+00:21:27,400 --> 00:21:29,609
+My algorithm has to have a place where
+我的算法必须有一个地方
+
+480
+00:21:29,809 --> 00:21:33,019
+it says the bad coin is coin one, coin two, coin three, all
+它说坏硬币是硬币一，硬币二，硬币三
+
+481
+00:21:33,019 --> 00:21:34,460
+the way to coin 30.
+硬币投币方式30。 
+
+482
+00:21:34,460 --> 00:21:36,960
+Here I only have 27 possible answers,
+在这里，我只有27个可能的答案， 
+
+483
+00:21:36,960 --> 00:21:39,297
+so this isn't going to cut it for 30 coins.
+所以这不会减少30个硬币。 
+
+484
+00:21:39,297 --> 00:21:41,880
+I need to do one more comparison so that I have a deeper tree.
+我需要再进行一次比较，以便获得一棵更深的树。 
+
+485
+00:21:41,880 --> 00:21:44,359
+
+
+
+486
+00:21:44,559 --> 00:21:49,230
+So suppose I have h comparisons instead.
+因此，假设我有h比较。 
+
+487
+00:21:49,230 --> 00:21:51,500
+How many leaves?
+几片叶子？ 
+
+488
+00:21:51,500 --> 00:21:53,463
+How many possible answers?
+有多少可能的答案？ 
+
+489
+00:21:53,463 --> 00:21:55,899
+AUDIENCE: h to the third.
+听众：h至第三。 
+
+490
+00:21:55,900 --> 00:21:56,663
+PROFESSOR: Almost.
+教授：差不多了。 
+
+491
+00:21:56,663 --> 00:21:57,538
+AUDIENCE: 3 to the h.
+听众：3至h。 
+
+492
+00:21:57,538 --> 00:22:00,380
+PROFESSOR: 3 to the h.
+教授：3至h。 
+
+493
+00:22:00,380 --> 00:22:07,169
+So 3 multiplied by 3 multiplied by 3 multiplied by 3 h times,
+所以3乘3乘3乘3小时， 
+
+494
+00:22:07,369 --> 00:22:09,209
+so 3 to the h.
+所以3到h。 
+
+495
+00:22:09,210 --> 00:22:12,210
+It's no longer equal to 27.
+它不再等于27。 
+
+496
+00:22:12,210 --> 00:22:14,424
+3 to the h is the number of possible answers.
+ h的3表示可能的答案。 
+
+497
+00:22:14,424 --> 00:22:17,700
+This has to be bigger or equal to N. Otherwise,
+该值必须大于或等于N。否则， 
+
+498
+00:22:17,700 --> 00:22:18,884
+the algorithm is incorrect.
+该算法不正确。 
+
+499
+00:22:18,884 --> 00:22:21,829
+
+
+
+500
+00:22:21,829 --> 00:22:23,210
+So what can we say about h?
+那么关于h我们能说什么呢？ 
+
+501
+00:22:23,210 --> 00:22:28,260
+
+
+
+502
+00:22:28,260 --> 00:22:29,176
+AUDIENCE: [INAUDIBLE].
+听众：[听不清]。 
+
+503
+00:22:29,176 --> 00:22:43,369
+
+
+
+504
+00:22:43,369 --> 00:22:45,739
+PROFESSOR: We did all this without even thinking
+教授：我们做这一切都没有想到
+
+505
+00:22:45,740 --> 00:22:47,940
+of what an algorithm would look like.
+算法的外观。 
+
+506
+00:22:47,940 --> 00:22:49,129
+This works for any algorithm.
+这适用于任何算法。 
+
+507
+00:22:49,329 --> 00:22:52,819
+No matter how smart you are, no matter how much math you know,
+不管你有多聪明，无论你知道多少数学， 
+
+508
+00:22:52,819 --> 00:22:55,939
+your algorithm is going to be bound by this.
+您的算法将受到此约束。 
+
+509
+00:22:55,940 --> 00:22:58,870
+So the fact that the answer looks like this
+所以答案看起来像这样
+
+510
+00:22:59,070 --> 00:23:01,319
+gives you some intuition for how to solve the problem.
+给您一些解决问题的直觉。 
+
+511
+00:23:01,319 --> 00:23:03,444
+If you want to solve the problem now and figure out
+如果您现在想解决问题并找出答案
+
+512
+00:23:03,444 --> 00:23:06,599
+the strategy, you know that you have a 3 here.
+策略，您知道这里有3。 
+
+513
+00:23:06,599 --> 00:23:08,429
+So if you divide into 2 every time,
+因此，如果您每次均分为2， 
+
+514
+00:23:08,430 --> 00:23:11,619
+you're not going to get to the right limit.
+您将无法达到正确的极限。 
+
+515
+00:23:11,819 --> 00:23:14,659
+So first you do this, you get a lower bound,
+所以首先您要执行此操作，您将获得一个下限， 
+
+516
+00:23:14,660 --> 00:23:18,190
+and then you use your intuition to figure out
+然后你凭直觉找出
+
+517
+00:23:18,190 --> 00:23:19,909
+what the lower bound means.
+下界是什么意思。 
+
+518
+00:23:20,109 --> 00:23:24,169
+In this case, it would mean the strategy that we heard earlier.
+在这种情况下，这将意味着我们之前听到的策略。 
+
+519
+00:23:24,170 --> 00:23:25,750
+You have to divide into 3 every time
+每次都要分成三份
+
+520
+00:23:25,750 --> 00:23:28,809
+and then figure out what you do based on the comparison.
+然后根据比较找出您要做什么。 
+
+521
+00:23:28,809 --> 00:23:32,789
+So your answer works perfectly once we have this.
+因此，一旦我们有了这个，您的答案就会非常有效。 
+
+522
+00:23:32,789 --> 00:23:34,388
+And also, once we have this, you know
+而且，一旦我们有了这个，您就会知道
+
+523
+00:23:34,388 --> 00:23:36,429
+that your answer is correct because it's optimal.
+您的答案是正确的，因为它是最佳的。 
+
+524
+00:23:36,430 --> 00:23:37,680
+You can't do better than that.
+你不能做得更好。 
+
+525
+00:23:37,680 --> 00:23:40,007
+
+
+
+526
+00:23:40,007 --> 00:23:41,139
+Any questions on decision trees?
+对决策树有任何疑问吗？ 
+
+527
+00:23:41,339 --> 00:23:44,589
+
+
+
+528
+00:23:44,589 --> 00:23:47,419
+So lower bounds are a boring topic in general.
+因此，下限通常是一个无聊的话题。 
+
+529
+00:23:47,420 --> 00:23:48,769
+They tell you what you can't do.
+他们告诉你你不能做什么。 
+
+530
+00:23:48,769 --> 00:23:51,599
+They don't tell you anything useful about what you can do.
+他们没有告诉您有关您可以做什么的任何有用信息。 
+
+531
+00:23:51,599 --> 00:23:53,899
+In some cases, being able to reason about a lower bound
+在某些情况下，能够推理出下限
+
+532
+00:23:53,900 --> 00:23:55,073
+gives you a hint of the solution.
+给您提示解决方案。 
+
+533
+00:23:55,273 --> 00:24:01,729
+
+
+
+534
+00:24:01,730 --> 00:24:02,230
+New problem.
+新问题。 
+
+535
+00:24:02,230 --> 00:24:23,339
+
+
+
+536
+00:24:23,339 --> 00:24:26,379
+Suppose we have a 2D map.
+假设我们有一个2D地图。 
+
+537
+00:24:26,380 --> 00:24:28,879
+There's a hill, and you take a satellite picture of it
+有一座小山，你为它拍了卫星照
+
+538
+00:24:29,079 --> 00:24:33,929
+at night, and you get a picture with bright pixels and not
+到了晚上，您得到的图像像素明亮而不是
+
+539
+00:24:33,930 --> 00:24:34,869
+bright pixels.
+明亮的像素。 
+
+540
+00:24:35,069 --> 00:24:39,539
+There are numbers showing how bright your pixels are.
+有数字显示像素的亮度。 
+
+541
+00:24:39,539 --> 00:24:46,529
+1, 2, 1, 2, 3, 0, 0.
+ 1、2、1、2、3、0、0。 
+
+542
+00:24:46,529 --> 00:24:51,644
+I'm going to draw out an example so we can use our intuition.
+我将举一个例子，以便我们可以运用直觉。 
+
+543
+00:24:51,644 --> 00:24:55,337
+0, 0, 1.
+ 0、0、1。 
+
+544
+00:24:55,337 --> 00:25:13,089
+
+
+
+545
+00:25:13,089 --> 00:25:14,679
+So suppose this is our map.
+因此，假设这是我们的地图。 
+
+546
+00:25:14,680 --> 00:25:21,660
+It's W times H-- W of what these are,
+这是W乘以H–W， 
+
+547
+00:25:21,660 --> 00:25:25,659
+I think they're columns, and H of the other ones.
+我认为它们是列，而其他列是H。 
+
+548
+00:25:25,859 --> 00:25:28,079
+And you want to find a certain picture inside it.
+您想在其中找到特定的图片。 
+
+549
+00:25:28,079 --> 00:25:31,210
+You want to see how many times does a certain pattern show up.
+您想查看某个模式显示多少次。 
+
+550
+00:25:31,210 --> 00:25:35,470
+Say the pattern is small w times small h,
+假设模式是小w乘小h， 
+
+551
+00:25:35,470 --> 00:25:37,740
+and it looks like this.
+看起来像这样
+
+552
+00:25:37,740 --> 00:25:40,980
+
+
+
+553
+00:25:40,980 --> 00:25:43,374
+But this will be the input to your problem,
+但这将是您的问题的输入， 
+
+554
+00:25:43,374 --> 00:25:44,789
+so the pattern might be different.
+因此模式可能会有所不同。 
+
+555
+00:25:44,789 --> 00:25:46,659
+You can't hard code this in.
+您不能对此进行硬编码。 
+
+556
+00:25:46,660 --> 00:25:48,089
+And this is useful.
+这很有用。 
+
+557
+00:25:48,289 --> 00:25:50,250
+This problem is called a bunker hill problem.
+这个问题称为邦克山问题。 
+
+558
+00:25:50,250 --> 00:25:53,429
+This is a hill, and this is a bunker.
+这是一座小山，这是一个掩体。 
+
+559
+00:25:53,429 --> 00:25:54,720
+You take a picture of the hill.
+你给山拍张照片。 
+
+560
+00:25:54,720 --> 00:25:55,960
+You want to know where the bunkers are
+你想知道掩体在哪里
+
+561
+00:25:55,960 --> 00:25:58,670
+so you can bomb them at night so then you can attack the place.
+所以你可以在晚上炸弹，然后再攻击该地方。 
+
+562
+00:25:58,670 --> 00:25:59,660
+AUDIENCE: That's awful.
+听众：太可怕了。 
+
+563
+00:25:59,660 --> 00:26:00,644
+PROFESSOR: Thank you.
+教授：谢谢。 
+
+564
+00:26:00,644 --> 00:26:05,670
+I'll take that as a compliment So a nice way of solving this?
+我会称赞一下，那么解决这个问题的好方法吗？ 
+
+565
+00:26:05,670 --> 00:26:09,962
+
+
+
+566
+00:26:09,962 --> 00:26:13,089
+AUDIENCE: You could just go through each row,
+听众：您可以逐行浏览， 
+
+567
+00:26:13,089 --> 00:26:15,949
+and then look for a match for the first row, and then--
+然后寻找第一行的匹配项，然后- 
+
+568
+00:26:15,950 --> 00:26:17,211
+PROFESSOR: Yep.
+教授：是的。 
+
+569
+00:26:17,211 --> 00:26:18,558
+Is this a match?
+这是火柴吗？ 
+
+570
+00:26:18,558 --> 00:26:19,642
+That's what you're saying.
+那就是你的意思
+
+571
+00:26:19,642 --> 00:26:19,927
+AUDIENCE: Yeah.
+听众：是的。 
+
+572
+00:26:20,127 --> 00:26:21,024
+We can see that's a match.
+我们可以看到这是一场比赛。 
+
+573
+00:26:21,025 --> 00:26:21,119
+PROFESSOR: Is this a match?
+教授：这是比赛吗？ 
+
+574
+00:26:21,319 --> 00:26:22,359
+Is this a match?
+这是火柴吗？ 
+
+575
+00:26:22,359 --> 00:26:24,919
+By the way, this is a match.
+顺便说一句，这是一场比赛。 
+
+576
+00:26:24,920 --> 00:26:29,960
+This is not a match, this is not a match, this is not a match,
+这不是比赛，这不是比赛，这不是比赛， 
+
+577
+00:26:29,960 --> 00:26:30,970
+this is not a match.
+这不是比赛。 
+
+578
+00:26:30,970 --> 00:26:32,200
+Now we go down here.
+现在我们去这里。 
+
+579
+00:26:32,200 --> 00:26:34,559
+This is not a match, this is not a match,
+这不是比赛，这不是比赛， 
+
+580
+00:26:34,559 --> 00:26:37,241
+this is not a match, so on and so forth.
+这不是匹配项，依此类推。 
+
+581
+00:26:37,241 --> 00:26:39,075
+AUDIENCE: That wasn't what I was suggesting,
+听众：这不是我的建议， 
+
+582
+00:26:39,075 --> 00:26:41,422
+but that's a good idea.
+但这是个好主意。 
+
+583
+00:26:41,422 --> 00:26:43,630
+PROFESSOR: Maybe you're suggesting something smarter,
+教授：也许您是在建议一些更聪明的东西， 
+
+584
+00:26:43,630 --> 00:26:45,296
+and I don't want to let you do something
+我不想让你做某事
+
+585
+00:26:45,296 --> 00:26:47,932
+smarter so that we look at the brute force approach first.
+更聪明，因此我们首先来看一下蛮力方法。 
+
+586
+00:26:47,932 --> 00:26:49,390
+AUDIENCE: I mean, I was just saying
+听众：我的意思是，我只是说
+
+587
+00:26:49,390 --> 00:26:51,200
+take the first row of your bunker,
+进入沙坑的第一排， 
+
+588
+00:26:51,200 --> 00:26:53,150
+and then compare it to other rows,
+然后将其与其他行进行比较
+
+589
+00:26:53,150 --> 00:26:56,787
+and once you hit that, then check and see if the rest of--
+然后当您击中该点后，再检查一下是否
+
+590
+00:26:56,787 --> 00:26:58,169
+PROFESSOR: Yeah, that's a bit smarter,
+教授：是的，这有点聪明， 
+
+591
+00:26:58,369 --> 00:27:00,299
+so that's harder to reason about.
+所以这很难推理。 
+
+592
+00:27:00,299 --> 00:27:04,623
+Let's take this one and figure out the running time of it.
+让我们来看看它的运行时间。 
+
+593
+00:27:04,623 --> 00:27:07,653
+AUDIENCE: Does that mean even if you know it's not a match,
+听众：这是否意味着即使您知道这不是比赛， 
+
+594
+00:27:07,653 --> 00:27:10,114
+you keep checking all nine of them?
+您一直检查所有九个？ 
+
+595
+00:27:10,114 --> 00:27:10,779
+PROFESSOR: Yeah.
+教授：是的。 
+
+596
+00:27:10,779 --> 00:27:12,500
+Say at the worst case, you only find out
+说最坏的情况，您只会发现
+
+597
+00:27:12,500 --> 00:27:14,231
+it's not a match all the way at the end.
+并不是一路走到尽头。 
+
+598
+00:27:14,231 --> 00:27:16,894
+
+
+
+599
+00:27:16,894 --> 00:27:19,435
+AUDIENCE: Are you trying to look for all matches or just one?
+观众：您是要寻找所有匹配项还是只寻找其中一项？ 
+
+600
+00:27:19,435 --> 00:27:22,559
+PROFESSOR: All matches.
+教授：所有比赛。 
+
+601
+00:27:22,559 --> 00:27:25,154
+AUDIENCE: You're limited to n squared time almost no matter
+听众：几乎无论如何，您都限于n平方时间
+
+602
+00:27:25,154 --> 00:27:26,754
+what, right?
+什么，对不对？ 
+
+603
+00:27:26,755 --> 00:27:29,069
+If you have a small bunker in a large field,
+如果您在大片土地上有一个小型掩体， 
+
+604
+00:27:29,269 --> 00:27:32,210
+you have to hit the small bunker every time.
+你每次都要打小沙坑。 
+
+605
+00:27:32,210 --> 00:27:34,720
+PROFESSOR: Are you going to solve the problem for me?
+教授：您要为我解决问题吗？ 
+
+606
+00:27:34,720 --> 00:27:37,336
+AUDIENCE: Are we trying to find the [INAUDIBLE]?
+听众：我们是否在寻找[听不清]？ 
+
+607
+00:27:37,336 --> 00:27:37,920
+PROFESSOR: No.
+教授：不。 
+
+608
+00:27:37,920 --> 00:27:39,496
+We're trying to find out the running
+我们正在尝试找出运行情况
+
+609
+00:27:39,696 --> 00:27:42,419
+time for the dumb algorithm first.
+首先是愚蠢算法的时间。 
+
+610
+00:27:42,420 --> 00:27:44,150
+Humor me and let's solve this first,
+幽默我，让我们先解决这个问题， 
+
+611
+00:27:44,150 --> 00:27:46,669
+and then let's get to the efficient algorithm, OK?
+然后我们来看看高效的算法，好吗？ 
+
+612
+00:27:46,869 --> 00:27:50,579
+AUDIENCE: Big W minus small w plus 1 times big H
+受众群体：大W减去小w加上大H的1倍
+
+613
+00:27:50,579 --> 00:27:52,079
+minus small h plus 1.
+减去小h加1。 
+
+614
+00:27:52,079 --> 00:27:55,079
+
+
+
+615
+00:27:55,079 --> 00:27:57,079
+AUDIENCE: Where'd you get plus 1 from?
+听众：您从哪里获得加号1？ 
+
+616
+00:27:57,079 --> 00:27:59,581
+
+
+
+617
+00:27:59,582 --> 00:28:01,064
+AUDIENCE: So it's WH?
+听众：是吗？ 
+
+618
+00:28:01,064 --> 00:28:02,101
+AUDIENCE: Yeah.
+听众：是的。 
+
+619
+00:28:02,101 --> 00:28:03,899
+PROFESSOR: Well, there's something missing here.
+教授：好吧，这里缺少一些东西。 
+
+620
+00:28:04,099 --> 00:28:08,250
+This is how many positions I have that I have to look at.
+这是我要看的几个职位。 
+
+621
+00:28:08,250 --> 00:28:11,013
+How much time does it take to compare the small images?
+比较小图像需要多少时间？ 
+
+622
+00:28:11,013 --> 00:28:11,929
+AUDIENCE: [INAUDIBLE].
+听众：[听不清]。 
+
+623
+00:28:11,930 --> 00:28:15,659
+
+
+
+624
+00:28:15,859 --> 00:28:18,799
+PROFESSOR: This is smaller than wh, which is the input size,
+教授：这比输入大小wh小， 
+
+625
+00:28:18,799 --> 00:28:21,119
+so it's scary if you have an algorithm that runs faster
+因此，如果您有一种运行速度更快的算法，那将很可怕
+
+626
+00:28:21,119 --> 00:28:24,009
+than the input size because it means
+比输入大小大，因为这意味着
+
+627
+00:28:24,009 --> 00:28:25,925
+you're not looking at all the input.
+您并没有查看所有输入。 
+
+628
+00:28:25,925 --> 00:28:34,640
+
+
+
+629
+00:28:34,641 --> 00:28:36,640
+So this is definitely bigger than the input size
+所以这绝对大于输入大小
+
+630
+00:28:36,640 --> 00:28:38,329
+once we add the w times h here.
+一旦我们在这里加上w乘以h 
+
+631
+00:28:38,529 --> 00:28:39,555
+Don't forget this guy.
+别忘了这个家伙。 
+
+632
+00:28:39,555 --> 00:28:42,389
+
+
+
+633
+00:28:42,589 --> 00:28:48,699
+This is the naive algorithm, and if we discard the small order
+这是幼稚的算法，如果我们抛弃小阶
+
+634
+00:28:48,700 --> 00:28:51,011
+factors, we get that this is order of WHwh.
+因素，我们得到这是WHwh的顺序。 
+
+635
+00:28:51,011 --> 00:28:53,950
+
+
+
+636
+00:28:53,950 --> 00:28:56,420
+How can you do better?
+你如何做得更好？ 
+
+637
+00:28:56,420 --> 00:28:59,240
+You have the answer, right?
+你有答案吧？ 
+
+638
+00:28:59,240 --> 00:29:01,849
+Let's let everyone else think for a minute,
+让其他人思考一下， 
+
+639
+00:29:01,849 --> 00:29:04,299
+and then you can give me the answer if you want,
+然后，如果需要，您可以给我答案， 
+
+640
+00:29:04,299 --> 00:29:06,619
+or someone else can give me the answer.
+否则其他人可以给我答案。 
+
+641
+00:29:06,619 --> 00:29:08,954
+
+
+
+642
+00:29:08,954 --> 00:29:11,078
+I guess you should because you thought of it first.
+我想您应该因为首先想到它。 
+
+643
+00:29:11,078 --> 00:29:17,069
+
+
+
+644
+00:29:17,069 --> 00:29:17,779
+Any ideas?
+有任何想法吗？ 
+
+645
+00:29:17,779 --> 00:29:23,619
+
+
+
+646
+00:29:23,619 --> 00:29:28,009
+So you're thinking about the input size, right?
+所以您正在考虑输入大小，对吗？ 
+
+647
+00:29:28,009 --> 00:29:32,160
+Someone was thinking about the input size.
+有人在考虑输入大小。 
+
+648
+00:29:32,160 --> 00:29:34,680
+So the input size is W times H, right?
+所以输入大小是W乘以H，对不对？ 
+
+649
+00:29:34,680 --> 00:29:36,519
+So if I have an algorithm that's W times H,
+因此，如果我的算法是W乘以H， 
+
+650
+00:29:36,519 --> 00:29:38,809
+that's optimal because it has to look at all the input.
+这是最佳选择，因为它必须查看所有输入。 
+
+651
+00:29:38,809 --> 00:29:42,015
+
+
+
+652
+00:29:42,016 --> 00:29:43,890
+Well, we're going to have an algorithm that's
+好吧，我们将要有一个算法
+
+653
+00:29:43,890 --> 00:29:47,990
+W times H, so with that out of the way,
+ W乘以H，因此， 
+
+654
+00:29:47,990 --> 00:29:51,000
+does that inspire anyone as to what the solution is?
+这是否会激励任何人解决方案？ 
+
+655
+00:29:51,000 --> 00:29:58,484
+
+
+
+656
+00:29:58,484 --> 00:30:00,509
+AUDIENCE: Do that thing that I was saying,
+听众：照我说的做， 
+
+657
+00:30:00,509 --> 00:30:03,703
+just take the first row, but then you still have a W term.
+仅取第一行，但您仍有W项。 
+
+658
+00:30:03,703 --> 00:30:04,369
+PROFESSOR: Yeah.
+教授：是的。 
+
+659
+00:30:04,369 --> 00:30:07,469
+So let's make it better.
+因此，让我们做得更好。 
+
+660
+00:30:07,470 --> 00:30:09,250
+It is the correct intuition.
+这是正确的直觉。 
+
+661
+00:30:09,250 --> 00:30:11,920
+Now try to use a trick we learned in lecture to make that
+现在尝试使用我们在讲座中学到的技巧来使
+
+662
+00:30:11,920 --> 00:30:12,420
+faster.
+快点。 
+
+663
+00:30:12,420 --> 00:30:17,032
+
+
+
+664
+00:30:17,232 --> 00:30:18,816
+AUDIENCE: Just use the top left corner
+听众：只需使用左上角
+
+665
+00:30:18,816 --> 00:30:21,527
+instead of the whole row.
+而不是整行。 
+
+666
+00:30:21,527 --> 00:30:21,909
+PROFESSOR: OK.
+教授：好的。 
+
+667
+00:30:22,109 --> 00:30:24,109
+So we could use the top left corner,
+所以我们可以使用左上角
+
+668
+00:30:24,109 --> 00:30:26,589
+and if the top left corner doesn't match,
+如果左上角不匹配， 
+
+669
+00:30:26,589 --> 00:30:30,629
+then we don't have to check for matches.
+那么我们就不必检查匹配项。 
+
+670
+00:30:30,630 --> 00:30:33,099
+So this works for reasonably random data.
+因此，这适用于合理的随机数据。 
+
+671
+00:30:33,299 --> 00:30:35,629
+As long as we don't have a lot of false positives,
+只要我们没有很多误报， 
+
+672
+00:30:35,630 --> 00:30:37,839
+we're going to run fast.
+我们将快速运行。 
+
+673
+00:30:38,039 --> 00:30:43,450
+Now, the top corner of this one, if the map
+现在，这个地图的顶角
+
+674
+00:30:43,450 --> 00:30:47,819
+has a lot of 1's and then some 2's sprinkled all over it,
+有很多1，然后在上面撒了2， 
+
+675
+00:30:47,819 --> 00:30:51,369
+most of the time, we'll have to go through the whole image
+大多数时候，我们必须仔细检查整个图像
+
+676
+00:30:51,369 --> 00:30:54,189
+so we're going to have a lot of false positives.
+所以我们会有很多误报。 
+
+677
+00:30:54,190 --> 00:30:59,180
+How do we make our false positive rate go down?
+我们如何使误报率下降？ 
+
+678
+00:30:59,180 --> 00:31:01,680
+AUDIENCE: Looks kind of like a rolling hash problem.
+听众：看起来有点像滚动哈希问题。 
+
+679
+00:31:01,680 --> 00:31:04,379
+PROFESSOR: Looks like a rolling hash problem, exactly.
+教授：确实看起来像一个滚动的哈希问题。 
+
+680
+00:31:04,579 --> 00:31:07,146
+Let's see if we can use rolling hashes.
+让我们看看是否可以使用滚动哈希。 
+
+681
+00:31:07,146 --> 00:31:09,230
+AUDIENCE: But then you still have that lowercase w
+听众：但是那时候你仍然有那个小写字母w 
+
+682
+00:31:09,230 --> 00:31:11,021
+term, though.
+学期。 
+
+683
+00:31:11,021 --> 00:31:12,480
+PROFESSOR: How do we get rid of it?
+教授：我们如何摆脱它？ 
+
+684
+00:31:12,480 --> 00:31:15,203
+
+
+
+685
+00:31:15,203 --> 00:31:16,182
+AUDIENCE: [INAUDIBLE].
+听众：[听不清]。 
+
+686
+00:31:16,182 --> 00:31:16,890
+PROFESSOR: Sorry?
+教授：对不起？ 
+
+687
+00:31:16,890 --> 00:31:21,633
+
+
+
+688
+00:31:21,633 --> 00:31:22,758
+AUDIENCE: Wouldn't it be w?
+听众：不是吗？ 
+
+689
+00:31:22,758 --> 00:31:25,735
+I mean the running time if we were just going through one row
+我的意思是说如果我们只经过一排的话
+
+690
+00:31:25,935 --> 00:31:29,115
+would be big W minus little w, times--
+ W大减去小w 
+
+691
+00:31:29,115 --> 00:31:31,534
+
+
+
+692
+00:31:31,534 --> 00:31:33,200
+PROFESSOR: So where's your rolling hash?
+教授：那您的滚动哈希值在哪里？ 
+
+693
+00:31:33,200 --> 00:31:37,768
+
+
+
+694
+00:31:37,768 --> 00:31:40,143
+AUDIENCE: I guess you can use the entire thing as a hash,
+听众：我想您可以将整个内容用作哈希， 
+
+695
+00:31:40,143 --> 00:31:40,643
+too.
+太。 
+
+696
+00:31:40,643 --> 00:31:42,970
+That would kind of work.
+那样的工作。 
+
+697
+00:31:42,970 --> 00:31:45,329
+PROFESSOR: So we want a hash for the whole thing.
+教授：因此，我们希望对整个过程进行哈希处理。 
+
+698
+00:31:45,329 --> 00:31:50,927
+Instead of using this as the hash, we want a smarter hash.
+与其使用它作为哈希，我们不希望使用更智能的哈希。 
+
+699
+00:31:50,928 --> 00:31:53,880
+AUDIENCE: It's the entire thing, and then
+听众：这是整个过程，然后
+
+700
+00:31:53,880 --> 00:31:58,107
+as you move to the right, you can add those and subtract,
+向右移动时，您可以将其相加并减去， 
+
+701
+00:31:58,307 --> 00:32:01,487
+and compare that with the hash.
+并与哈希进行比较。 
+
+702
+00:32:01,487 --> 00:32:01,869
+PROFESSOR: OK.
+教授：好的。 
+
+703
+00:32:02,069 --> 00:32:05,509
+So we'd have a rolling hash that has everything in here,
+因此，我们将拥有一个滚动式哈希，其中包含所有内容， 
+
+704
+00:32:05,509 --> 00:32:08,640
+and then as I move to the right, I add these guys
+然后当我向右移动时，我添加了这些人
+
+705
+00:32:08,640 --> 00:32:09,710
+and I remove these guys.
+我将这些人撤职。 
+
+706
+00:32:09,710 --> 00:32:12,730
+
+
+
+707
+00:32:12,730 --> 00:32:19,400
+This is big W times big H, roughly, times small h
+这是大W乘以H，大约是小h 
+
+708
+00:32:19,400 --> 00:32:21,470
+because every time I move to the right,
+因为每次我向右移动时
+
+709
+00:32:21,470 --> 00:32:25,089
+I have to do order h work.
+我必须命令工作。 
+
+710
+00:32:25,089 --> 00:32:32,259
+So I'm down from this thing to order of WHh,
+所以我从这件事降到了WHh的等级， 
+
+711
+00:32:32,259 --> 00:32:33,589
+So it's better.
+这样更好。 
+
+712
+00:32:33,589 --> 00:32:34,589
+It's one step forward.
+这是前进的一步。 
+
+713
+00:32:34,589 --> 00:32:35,990
+Now, let's make this even faster.
+现在，让我们更快。 
+
+714
+00:32:35,990 --> 00:32:47,420
+
+
+
+715
+00:32:47,420 --> 00:32:53,609
+What if I could do this in order 1 instead of order h?
+如果我可以按顺序1而不是顺序h怎么办？ 
+
+716
+00:32:53,809 --> 00:32:57,789
+
+
+
+717
+00:32:57,789 --> 00:33:00,114
+How would I do this in order 1?
+我将如何在订单1中进行此操作？ 
+
+718
+00:33:00,114 --> 00:33:03,450
+AUDIENCE: You'd have to compress all the rows,
+听众：您必须压缩所有行， 
+
+719
+00:33:03,450 --> 00:33:05,690
+and then take the hash of each column.
+然后获取每一列的哈希值。 
+
+720
+00:33:05,690 --> 00:33:08,662
+PROFESSOR: How would we compress them?
+教授：我们将如何压缩它们？ 
+
+721
+00:33:08,662 --> 00:33:12,049
+AUDIENCE: Take the hash of the column.
+受众：取列的哈希值。 
+
+722
+00:33:12,049 --> 00:33:13,829
+PROFESSOR: You want to compress the rows?
+教授：您要压缩行吗？ 
+
+723
+00:33:13,829 --> 00:33:14,413
+AUDIENCE: Yes.
+听众：是的。 
+
+724
+00:33:14,413 --> 00:33:16,704
+You divide it--
+你把它分开
+
+725
+00:33:16,704 --> 00:33:18,329
+PROFESSOR: Let's not compress the rows.
+教授：我们不要压缩行。 
+
+726
+00:33:18,329 --> 00:33:23,970
+
+
+
+727
+00:33:23,970 --> 00:33:26,049
+AUDIENCE: You could take just your bunker,
+听众：你可以只带掩体， 
+
+728
+00:33:26,049 --> 00:33:29,980
+and then figure out the hashes of the three columns,
+然后找出三列的哈希值
+
+729
+00:33:29,980 --> 00:33:33,289
+and just run through like that.
+然后就这样跑
+
+730
+00:33:33,289 --> 00:33:36,145
+You'd still have to access each of those items.
+您仍然必须访问所有这些项目。 
+
+731
+00:33:36,145 --> 00:33:39,799
+I don't really see how it's faster.
+我真的不知道它有多快。 
+
+732
+00:33:39,799 --> 00:33:41,379
+I guess it's less, though.
+我想这要少一些。 
+
+733
+00:33:41,380 --> 00:33:42,139
+It's less.
+少一些
+
+734
+00:33:42,339 --> 00:33:43,299
+Maybe it's only 1.
+也许只有1。 
+
+735
+00:33:43,299 --> 00:33:47,629
+
+
+
+736
+00:33:47,630 --> 00:33:53,970
+AUDIENCE: So do you want to hash each little column [INAUDIBLE]?
+听众：那么您是否想对每个小列进行散列[听不清]？ 
+
+737
+00:33:53,970 --> 00:34:01,200
+
+
+
+738
+00:34:01,200 --> 00:34:03,950
+PROFESSOR: So we're going to hash all these guys,
+教授：因此，我们将对所有这些人进行散列， 
+
+739
+00:34:03,950 --> 00:34:06,139
+and then we're going to have hashes for them,
+然后我们要为它们散列
+
+740
+00:34:06,339 --> 00:34:10,590
+and we're going to do the regular Rabin-Karp
+我们将定期进行Rabin-Karp 
+
+741
+00:34:10,590 --> 00:34:13,420
+for the hashes.
+散列。 
+
+742
+00:34:13,420 --> 00:34:16,478
+Now, what happens when I go down?
+现在，当我下去时会发生什么？ 
+
+743
+00:34:16,478 --> 00:34:18,840
+PROFESSOR: You have to recompute everything.
+教授：您必须重新计算所有内容。 
+
+744
+00:34:18,840 --> 00:34:19,824
+PROFESSOR: Let's do better than recompute everything.
+教授：让我们做得比重新计算一切还要好。 
+
+745
+00:34:20,023 --> 00:34:21,240
+AUDIENCE: Do you want to [INAUDIBLE] downward
+听众：您想向下[听不清] 
+
+746
+00:34:21,240 --> 00:34:21,539
+on each column?
+在每列上？ 
+
+747
+00:34:21,539 --> 00:34:22,164
+PROFESSOR: Yep.
+教授：是的。 
+
+748
+00:34:22,164 --> 00:34:23,489
+Rolling hash.
+滚动哈希。 
+
+749
+00:34:23,489 --> 00:34:28,199
+I want to make this faster, so I have big W hashes.
+我想使其更快，所以我有很大的W哈希值。 
+
+750
+00:34:28,199 --> 00:34:30,610
+They're all little h inside.
+他们都在里面。 
+
+751
+00:34:30,610 --> 00:34:32,360
+Here, I have to compute them brute force.
+在这里，我必须计算它们的蛮力。 
+
+752
+00:34:32,360 --> 00:34:33,485
+I can't do anything better.
+我再好不过了。 
+
+753
+00:34:33,485 --> 00:34:36,250
+But when I go from here to here, there's
+但是当我从这里到这里时， 
+
+754
+00:34:36,250 --> 00:34:39,393
+only one element going out and one element going in.
+只有一个元素进入而一个元素进入。 
+
+755
+00:34:39,393 --> 00:34:42,069
+
+
+
+756
+00:34:42,070 --> 00:34:43,309
+Same for all these guys.
+所有这些家伙都一样。 
+
+757
+00:34:43,309 --> 00:34:46,079
+Let's not make the picture uglier than it needs to be.
+让我们不要使图片更丑陋。 
+
+758
+00:34:46,079 --> 00:34:48,960
+So I have big W rolling hashes.
+所以我有很大的W滚动哈希。 
+
+759
+00:34:48,960 --> 00:34:51,340
+They're vertical rolling hashes.
+它们是垂直滚动的哈希值。 
+
+760
+00:34:51,340 --> 00:34:59,309
+And then the rolling hashes hash columns, so my the sliding
+然后滚动散列哈希列，所以我滑动
+
+761
+00:34:59,309 --> 00:35:03,230
+window that I have is little w rolling hashes.
+我拥有的窗口很少滚动哈希值。 
+
+762
+00:35:03,230 --> 00:35:10,320
+Each rolling hash is little h in size, so it's a hash of hashes.
+每个滚动哈希的大小都为h，因此它是哈希的哈希。 
+
+763
+00:35:10,320 --> 00:35:12,000
+It's nested hashes.
+它是嵌套的哈希。 
+
+764
+00:35:12,000 --> 00:35:14,409
+And then when I go down, I only have
+然后当我下去时，我只有
+
+765
+00:35:14,409 --> 00:35:17,949
+to roll down each of the rolling hashes by 1,
+将每个滚动哈希值滚动1， 
+
+766
+00:35:17,949 --> 00:35:19,299
+so that's constant time.
+所以那是恒定的时间。 
+
+767
+00:35:19,300 --> 00:35:24,630
+So to go from here to here, to the slide the window one down,
+因此，要从此处移至此处，将窗口向下滑动一次， 
+
+768
+00:35:24,630 --> 00:35:27,329
+I have to roll this hash down, roll this one,
+我必须把这个哈希值滚下来，把这个哈希值滚下来， 
+
+769
+00:35:27,329 --> 00:35:29,639
+this one, this one, this one, this one, and all of them
+这个，这个，这个，这个和所有这些
+
+770
+00:35:29,639 --> 00:35:31,639
+roll down in constant time.
+在恒定的时间内滚下来。 
+
+771
+00:35:31,639 --> 00:35:36,639
+So when I'm adding a column to the hash, say I'm here
+因此，当我在哈希中添加一列时，说我在这里
+
+772
+00:35:36,639 --> 00:35:40,379
+and I want to go here, I roll down this hash
+我想去这里，我把这个哈希值滚下来
+
+773
+00:35:40,380 --> 00:35:42,559
+and I have the answer.
+我有答案。 
+
+774
+00:35:42,559 --> 00:35:43,210
+It's order 1.
+订单1。 
+
+775
+00:35:43,210 --> 00:35:45,360
+I'm adding it in order 1.
+我将其按顺序添加1。 
+
+776
+00:35:45,360 --> 00:35:47,726
+
+
+
+777
+00:35:47,726 --> 00:35:48,599
+Does this make sense?
+这有意义吗？ 
+
+778
+00:35:48,599 --> 00:35:55,086
+
+
+
+779
+00:35:55,086 --> 00:35:58,572
+AUDIENCE: It's tricky.
+听众：这很棘手。 
+
+780
+00:35:58,572 --> 00:36:00,195
+PROFESSOR: But it's not too bad, right?
+教授：但这还不错，对吗？ 
+
+781
+00:36:00,195 --> 00:36:02,769
+AUDIENCE: You just need to do the vertical roll first, right?
+听众：您只需要先进行垂直滚动，对吗？ 
+
+782
+00:36:02,769 --> 00:36:03,394
+PROFESSOR: Yep.
+教授：是的。 
+
+783
+00:36:03,394 --> 00:36:05,880
+
+
+
+784
+00:36:05,880 --> 00:36:07,690
+To have the simplest possible code,
+要获得最简单的代码， 
+
+785
+00:36:07,889 --> 00:36:12,519
+you start with big W rolling hashes, do 1D Rabin-Karp,
+从大的W滚动哈希开始，进行一维Rabin-Karp， 
+
+786
+00:36:12,519 --> 00:36:17,266
+you roll everything down, 1D Rabin-Karp,
+你放下一切，一维Rabin-Karp， 
+
+787
+00:36:17,266 --> 00:36:18,099
+and keep doing that.
+并继续这样做。 
+
+788
+00:36:18,099 --> 00:36:20,809
+
+
+
+789
+00:36:20,809 --> 00:36:23,371
+OK What's the running time for this?
+好的，这是什么时间？ 
+
+790
+00:36:23,371 --> 00:36:24,409
+AUDIENCE: WH.
+听众：WH。 
+
+791
+00:36:24,409 --> 00:36:25,011
+PROFESSOR: WH.
+教授：WH。 
+
+792
+00:36:25,012 --> 00:36:27,394
+AUDIENCE: Does this one have a space complexity about W, then,
+听众：这是否具有关于W的空间复杂度，然后， 
+
+793
+00:36:27,594 --> 00:36:28,779
+because [INAUDIBLE]?
+因为[听不清]？ 
+
+794
+00:36:28,780 --> 00:36:29,840
+PROFESSOR: Yeah.
+教授：是的。 
+
+795
+00:36:29,840 --> 00:36:32,500
+So my memory requirement went up to 4W.
+所以我的内存需求上升到4W。 
+
+796
+00:36:32,500 --> 00:36:39,849
+
+
+
+797
+00:36:39,849 --> 00:36:41,670
+Is everyone happy with this?
+每个人都满意吗？ 
+
+798
+00:36:41,670 --> 00:36:46,340
+It's one of the few cases where an approach for solving a 1D
+这是少数解决一维问题的方法之一
+
+799
+00:36:46,340 --> 00:36:48,670
+problem generalizes to 2D.
+问题普遍适用于2D。 
+
+800
+00:36:48,670 --> 00:36:51,630
+In most problems, you have to rethink the whole situation.
+在大多数问题中，您必须重新考虑整个情况。 
+
+801
+00:36:51,630 --> 00:37:02,980
+
+
+
+802
+00:37:02,980 --> 00:37:04,496
+Let's do a hard problem.
+让我们做一个困难的问题。 
+
+803
+00:37:04,496 --> 00:37:05,579
+Enough with the easy ones.
+够简单的了。 
+
+804
+00:37:05,579 --> 00:37:10,579
+
+
+
+805
+00:37:10,579 --> 00:37:19,239
+Two lists, roughly size N, and they're both sorted.
+两个列表，大小大致为N，并且都已排序。 
+
+806
+00:37:19,239 --> 00:37:21,089
+Let me fill them out with random numbers.
+让我用随机数填写它们。 
+
+807
+00:37:21,090 --> 00:37:25,010
+
+
+
+808
+00:37:25,010 --> 00:37:50,710
+5, 13, 22, 43, 56, 62, 81, 86, 87, 2, 3, 7, 9, 15, 19,
+ 5、13、22、43、56、62、81、86、87、2、3、7、9、15、19， 
+
+809
+00:37:50,710 --> 00:37:53,965
+24, 28, 32.
+ 24、28、32。 
+
+810
+00:37:53,965 --> 00:37:56,780
+
+
+
+811
+00:37:56,780 --> 00:37:58,500
+So I have these lists.
+所以我有这些清单。 
+
+812
+00:37:58,699 --> 00:38:01,809
+Let's be generous and say that all the numbers are different.
+慷慨地说，所有数字都不一样。 
+
+813
+00:38:01,809 --> 00:38:03,110
+They're sorted.
+他们已排序。 
+
+814
+00:38:03,110 --> 00:38:09,110
+I want to find the nth number, so the number with rank n,
+我想找到第n个数字，所以排名为n的数字， 
+
+815
+00:38:09,110 --> 00:38:19,074
+out of both lists as fast as possible.
+尽快从两个列表中删除。 
+
+816
+00:38:19,273 --> 00:38:22,679
+AUDIENCE: Wouldn't it just be index?
+听众：不仅仅是索引吗？ 
+
+817
+00:38:22,679 --> 00:38:26,469
+PROFESSOR: So the thing is if, for example, n is 1,
+教授：那么，例如，如果n为1， 
+
+818
+00:38:26,469 --> 00:38:27,989
+then it's this.
+就是这个
+
+819
+00:38:27,989 --> 00:38:29,139
+This is the second number.
+这是第二个数字。 
+
+820
+00:38:29,139 --> 00:38:31,884
+This is the third.
+这是第三。 
+
+821
+00:38:31,884 --> 00:38:33,800
+So if you take the lists and you combine them,
+因此，如果您将列表合并在一起， 
+
+822
+00:38:33,800 --> 00:38:36,519
+then I want the result out of that.
+那么我想要结果。 
+
+823
+00:38:36,719 --> 00:38:39,119
+AUDIENCE: Let's do merge sort and the combined
+听众：让我们进行合并排序和合并
+
+824
+00:38:39,119 --> 00:38:41,949
+[INAUDIBLE] index, right?
+ [音频不清晰]索引，对不对？ 
+
+825
+00:38:41,949 --> 00:38:44,980
+PROFESSOR: Full merge sort, N log N?
+教授：完全合并排序，N对数N？ 
+
+826
+00:38:44,980 --> 00:38:45,480
+No.
+没有。 
+
+827
+00:38:45,480 --> 00:38:46,869
+AUDIENCE: It's already sorted, though.
+听众：虽然已经排序了。 
+
+828
+00:38:46,869 --> 00:38:47,159
+PROFESSOR: OK.
+教授：好的。 
+
+829
+00:38:47,159 --> 00:38:47,609
+So what do we do?
+那么我们该怎么办？ 
+
+830
+00:38:47,610 --> 00:38:48,260
+AUDIENCE: We just do merge.
+听众：我们只是合并。 
+
+831
+00:38:48,260 --> 00:38:49,360
+That's just order N.
+那只是命令N。 
+
+832
+00:38:49,559 --> 00:38:51,181
+PROFESSOR: So merge.
+教授：所以合并。 
+
+833
+00:38:51,181 --> 00:38:53,049
+AUDIENCE: Merge [INAUDIBLE].
+听众：合并[听不清]。 
+
+834
+00:38:53,050 --> 00:38:54,760
+PROFESSOR: OK.
+教授：好的。 
+
+835
+00:38:54,760 --> 00:38:58,230
+So merge and then index is the first approach,
+因此，合并然后索引是第一种方法， 
+
+836
+00:38:58,230 --> 00:39:01,840
+which is order N. Then you said run the merge algorithm,
+这是N阶。然后您说运行合并算法， 
+
+837
+00:39:01,840 --> 00:39:07,052
+but stop when you get to the little nth element,
+但是当您到达第n个小元素时就停下来， 
+
+838
+00:39:07,052 --> 00:39:09,010
+so that's a little bit better and we don't have
+所以好一点了，我们没有
+
+839
+00:39:09,010 --> 00:39:12,289
+to produce an array so the space complexity is down to order 1,
+产生一个数组，使空间复杂度降至1阶
+
+840
+00:39:12,489 --> 00:39:14,599
+right?
+对？ 
+
+841
+00:39:14,599 --> 00:39:15,614
+Now let's do--
+现在开始
+
+842
+00:39:15,614 --> 00:39:17,169
+AUDIENCE: Logarighmic times n.
+听众：对数乘以n。 
+
+843
+00:39:17,170 --> 00:39:18,375
+PROFESSOR: Yeah, exactly.
+教授：好的。 
+
+844
+00:39:18,574 --> 00:39:19,199
+This is linear.
+这是线性的。 
+
+845
+00:39:19,199 --> 00:39:20,809
+We have to get to logarithms.
+我们必须对数。 
+
+846
+00:39:20,809 --> 00:39:23,228
+How do we get to logarithms?
+我们如何获得对数？ 
+
+847
+00:39:23,228 --> 00:39:24,860
+AUDIENCE: Do a modified binary search.
+听众：进行修改后的二进制搜索。 
+
+848
+00:39:24,860 --> 00:39:32,070
+
+
+
+849
+00:39:32,070 --> 00:39:38,190
+AUDIENCE: What if you first looked at-- actually,
+观众：如果您初次看过-实际上， 
+
+850
+00:39:38,190 --> 00:39:39,829
+I don't know what I'm going to say.
+我不知道我要说什么。 
+
+851
+00:39:39,829 --> 00:39:42,132
+
+
+
+852
+00:39:42,132 --> 00:39:43,090
+PROFESSOR: Anyone else?
+教授：还有其他人吗？ 
+
+853
+00:39:43,090 --> 00:39:45,836
+
+
+
+854
+00:39:46,036 --> 00:39:47,119
+So modified binary search.
+因此修改了二进制搜索。 
+
+855
+00:39:47,119 --> 00:39:49,380
+Do you know the full answer, or do you
+您知道完整的答案吗？ 
+
+856
+00:39:49,380 --> 00:39:51,349
+want to start looking at the solution?
+想开始寻找解决方案？ 
+
+857
+00:39:51,349 --> 00:39:53,664
+AUDIENCE: I have an idea [INAUDIBLE].
+听众：我有一个主意[听不清]。 
+
+858
+00:39:53,664 --> 00:39:55,289
+PROFESSOR: Let's see how it would work.
+教授：让我们看看它是如何工作的。 
+
+859
+00:39:55,289 --> 00:39:58,529
+
+
+
+860
+00:39:58,530 --> 00:40:11,530
+AUDIENCE: So if we take the n over second element
+观众：所以如果我们把n放在第二个元素上
+
+861
+00:40:11,530 --> 00:40:19,628
+on each row, the one that is lower,
+在每一行中，较低的那一行
+
+862
+00:40:19,628 --> 00:40:22,400
+that's at least the n over second element,
+至少是第二个元素的n 
+
+863
+00:40:22,599 --> 00:40:23,724
+and the one that's higher--
+还有更高的那个
+
+864
+00:40:23,724 --> 00:40:35,230
+
+
+
+865
+00:40:35,230 --> 00:40:38,414
+PROFESSOR: So let's say this is our N1 and N2,
+教授：那么我们说这是我们的N1和N2， 
+
+866
+00:40:38,414 --> 00:40:41,329
+and they're both order N initially.
+他们最初都是N。 
+
+867
+00:40:41,329 --> 00:40:45,009
+So this is N2 over 2 if this is smaller.
+因此，如果N2小于2，则为N2。 
+
+868
+00:40:45,010 --> 00:40:48,128
+
+
+
+869
+00:40:48,327 --> 00:40:49,786
+AUDIENCE: The lower one is at least
+听众：较低的至少是
+
+870
+00:40:49,786 --> 00:40:51,789
+the N over second element since everything
+第二个元素以来的N 
+
+871
+00:40:51,789 --> 00:41:03,844
+before it is less than N. Does that make sense?
+在小于N之前。这有意义吗？ 
+
+872
+00:41:03,844 --> 00:41:04,510
+PROFESSOR: Yeah.
+教授：是的。 
+
+873
+00:41:04,510 --> 00:41:06,940
+So this is N over 2 are greater, right?
+所以N大于2是吧？ 
+
+874
+00:41:07,139 --> 00:41:07,839
+This guy.
+这家伙。 
+
+875
+00:41:07,840 --> 00:41:16,030
+
+
+
+876
+00:41:16,030 --> 00:41:28,659
+AUDIENCE: We also know that the element above it
+观众：我们也知道上面的元素
+
+877
+00:41:28,858 --> 00:41:35,315
+is at most the nth element because it's greater than--
+最多是第n个元素，因为它大于- 
+
+878
+00:41:35,315 --> 00:41:37,619
+PROFESSOR: So it's at most N1 plus N2
+教授：所以最多是N1加N2 
+
+879
+00:41:37,619 --> 00:41:39,369
+because that's how many you have in total,
+因为那就是你总共有多少
+
+880
+00:41:39,369 --> 00:41:44,150
+and the one on the top, you know that these ones are
+和最上面的那个，你知道这些是
+
+881
+00:41:44,150 --> 00:41:45,519
+bigger than h, right?
+比h大吧？ 
+
+882
+00:41:45,519 --> 00:41:47,849
+But you don't know anything about these ones,
+但是你对这些一无所知
+
+883
+00:41:47,849 --> 00:41:52,360
+so it's minus N1 over 2.
+所以是N1减去2 
+
+884
+00:41:52,360 --> 00:41:56,500
+So it's at most N1 over 2 plus N2, the top element.
+所以最多是N1超过2加上N2，即最上面的元素。 
+
+885
+00:41:56,699 --> 00:41:59,589
+
+
+
+886
+00:41:59,590 --> 00:42:06,860
+AUDIENCE: So then we can take the element three quarters
+听众：那么我们可以将元素占四分之三
+
+887
+00:42:06,860 --> 00:42:09,992
+of the way through N2 and one quarter of the way
+通过N2的方式和方法的四分之一
+
+888
+00:42:09,992 --> 00:42:13,934
+through N1 to do more [INAUDIBLE].
+通过N1做更多[听不清]。 
+
+889
+00:42:13,934 --> 00:42:14,650
+AUDIENCE: [INAUDIBLE]?
+听众：[听不清]？ 
+
+890
+00:42:14,849 --> 00:42:17,721
+
+
+
+891
+00:42:17,722 --> 00:42:18,105
+AUDIENCE: Yes.
+听众：是的。 
+
+892
+00:42:18,304 --> 00:42:22,961
+
+
+
+893
+00:42:22,961 --> 00:42:24,920
+PROFESSOR: Let's see what happens in each case.
+教授：让我们看看在每种情况下会发生什么。 
+
+894
+00:42:24,920 --> 00:42:34,269
+So if little n is here, then you divide.
+因此，如果小n在这里，则除法。 
+
+895
+00:42:34,269 --> 00:42:41,489
+So if n is smaller than this, then you chop them up here
+所以如果n小于这个，那么就把它们切成小块
+
+896
+00:42:41,489 --> 00:42:43,859
+and you've divided the problem into half.
+并且您将问题分成了一半。 
+
+897
+00:42:43,860 --> 00:42:45,190
+You're good.
+你很厉害。 
+
+898
+00:42:45,190 --> 00:42:49,679
+If it's bigger than this other number here,
+如果比这里的其他数字大， 
+
+899
+00:42:49,679 --> 00:42:52,609
+you've chopped the problem up and you're here.
+您已经解决了问题，就在这里。 
+
+900
+00:42:52,610 --> 00:42:53,500
+You're good.
+你很厉害。 
+
+901
+00:42:53,500 --> 00:42:56,099
+Now, the hard case seems to be when it's in between.
+现在，最困难的情况似乎是在两者之间。 
+
+902
+00:42:56,099 --> 00:42:57,690
+So what do we do then?
+那我们该怎么办呢？ 
+
+903
+00:42:57,690 --> 00:42:59,653
+AUDIENCE: Aren't those two numbers the same?
+听众：这两个数字不一样吗？ 
+
+904
+00:42:59,853 --> 00:43:01,769
+AUDIENCE: If it's between, take the upper half
+听众：如果介于两者之间，则取上半部分
+
+905
+00:43:01,769 --> 00:43:07,219
+of the bottom one and the lower half of the upper one, right?
+底部的一半和上面的一半的下半部分，对吗？ 
+
+906
+00:43:07,219 --> 00:43:09,694
+If it's between 15 and 43, then you take everything
+如果介于15到43之间，则一切
+
+907
+00:43:09,695 --> 00:43:15,375
+in the upper half of N2 and you take the lower half of N1.
+在N2的上半部分，而您在N1的下半部分。 
+
+908
+00:43:15,375 --> 00:43:16,750
+AUDIENCE: Yeah, you should always
+听众：是的，你应该总是
+
+909
+00:43:16,750 --> 00:43:18,661
+be taking the upper half of one and the lower
+取一个的下半部分和下一个
+
+910
+00:43:18,661 --> 00:43:21,239
+half of the other in this case.
+在这种情况下，另一半。 
+
+911
+00:43:21,239 --> 00:43:21,989
+PROFESSOR: Really?
+教授：是吗？ 
+
+912
+00:43:21,989 --> 00:43:26,269
+
+
+
+913
+00:43:26,269 --> 00:43:35,230
+AUDIENCE: [INAUDIBLE] N2, 15 is at least
+观众：[听不清] N2，至少15 
+
+914
+00:43:35,230 --> 00:43:37,329
+the nth over 2 element.
+ 2个元素中的第n个。 
+
+915
+00:43:37,329 --> 00:43:39,663
+I think we're using three n's at the same time.
+我认为我们同时使用三个n。 
+
+916
+00:43:39,664 --> 00:43:42,110
+AUDIENCE: Are you using the little n or the big N?
+听众：您使用的是小N还是大N？ 
+
+917
+00:43:42,110 --> 00:43:42,576
+AUDIENCE: Sorry.
+听众：对不起。 
+
+918
+00:43:42,775 --> 00:43:45,099
+
+
+
+919
+00:43:45,099 --> 00:43:47,223
+[INAUDIBLE] is element and the lists are called N
+ [INAUDIBLE]是元素，列表称为N 
+
+920
+00:43:47,224 --> 00:43:47,940
+and this is confusing.
+这令人困惑。 
+
+921
+00:43:48,139 --> 00:43:50,375
+Can we rename the nth element to something
+我们可以将第n个元素重命名为某种东西吗
+
+922
+00:43:50,376 --> 00:43:53,130
+like m or some other useful number?
+像m或其他有用的数字？ 
+
+923
+00:43:53,130 --> 00:43:54,000
+The kth element, OK.
+第k个元素，确定。 
+
+924
+00:43:54,199 --> 00:43:57,679
+So the 15 at least the kth over 2 element,
+因此，至少15个元素超过2个元素， 
+
+925
+00:43:57,679 --> 00:44:00,226
+so it can't be anything on the left half of the--
+所以它不能放在左半部分
+
+926
+00:44:00,226 --> 00:44:01,059
+PROFESSOR: k over 2?
+教授：k超过2？ 
+
+927
+00:44:01,059 --> 00:44:02,349
+Why k over 2?
+为什么k超过2？ 
+
+928
+00:44:02,349 --> 00:44:03,569
+This list is size N.
+此列表的大小为N。 
+
+929
+00:44:03,570 --> 00:44:05,019
+AUDIENCE: Sorry.
+听众：对不起。 
+
+930
+00:44:05,219 --> 00:44:07,469
+I didn't pick the elements at N over 2.
+我没有在2以上的N中选择元素。 
+
+931
+00:44:07,469 --> 00:44:11,368
+I picked the elements at k over 2.
+我在2以上的k处选取了元素。 
+
+932
+00:44:11,369 --> 00:44:12,460
+PROFESSOR: Why would I do that?
+教授：我为什么要这样做？ 
+
+933
+00:44:12,659 --> 00:44:18,789
+
+
+
+934
+00:44:18,789 --> 00:44:24,029
+If N1 is greater than k, then I chop off the end of the list,
+如果N1大于k，则我将列表的末尾切掉， 
+
+935
+00:44:24,030 --> 00:44:24,766
+right?
+对？ 
+
+936
+00:44:24,965 --> 00:44:29,324
+If N2 is bigger than k, then I chop off the end of the list
+如果N2大于k，则将其切掉
+
+937
+00:44:29,324 --> 00:44:29,824
+completely.
+完全。 
+
+938
+00:44:29,824 --> 00:44:33,375
+
+
+
+939
+00:44:33,375 --> 00:44:37,099
+If this list is sorted and I want the third element,
+如果此列表已排序并且我想要第三个元素， 
+
+940
+00:44:37,099 --> 00:44:39,199
+I know that these are not the answer.
+我知道这些不是答案。 
+
+941
+00:44:39,199 --> 00:44:42,139
+No matter what's down here, these are not the answer.
+无论这里发生了什么，这些都不是答案。 
+
+942
+00:44:42,139 --> 00:44:49,349
+So I know for sure that k is going to be bigger than N1, N2.
+因此，我确定k将大于N1，N2。 
+
+943
+00:44:49,349 --> 00:44:55,639
+So instead of going there, let's go at k over 2.
+因此，让我们而不是去那里，让我们超过2。 
+
+944
+00:44:55,639 --> 00:45:01,289
+And here, let's go for k over 2.
+在这里，让我们在2上求k。 
+
+945
+00:45:01,289 --> 00:45:03,255
+Now this one looks a bit nastier.
+现在，这个看起来有点不舒服。 
+
+946
+00:45:03,255 --> 00:45:07,519
+N1 plus N2 stays what it was before.
+ N1和N2保持以前的状态。 
+
+947
+00:45:07,719 --> 00:45:14,969
+
+
+
+948
+00:45:14,969 --> 00:45:18,559
+AUDIENCE: On the list where you got the element that was lower,
+观众：在清单上您得到较低的元素， 
+
+949
+00:45:18,559 --> 00:45:24,690
+you know that everything to the left of it is less than k
+你知道它左边的所有东西都小于k 
+
+950
+00:45:24,690 --> 00:45:25,039
+over 2.
+超过2。 
+
+951
+00:45:25,239 --> 00:45:31,469
+
+
+
+952
+00:45:31,469 --> 00:45:34,329
+The element number is lower than k over 2,
+元素数小于k大于2， 
+
+953
+00:45:34,329 --> 00:45:36,650
+so we're not using anything to the left of the 15.
+所以我们在15号左边不使用任何东西。 
+
+954
+00:45:36,650 --> 00:45:38,539
+You can kill that section for us.
+您可以为我们杀死该部分。 
+
+955
+00:45:38,539 --> 00:45:42,007
+PROFESSOR: OK, so we can kill it, but then what's the rank?
+教授：好的，我们可以杀了它，但是等级是多少？ 
+
+956
+00:45:42,007 --> 00:45:43,590
+When I recurse, how am I going to know
+当我递归时，我怎么知道
+
+957
+00:45:43,590 --> 00:45:45,519
+the rank that I'm looking for?
+我要寻找的排名？ 
+
+958
+00:45:45,519 --> 00:45:48,817
+
+
+
+959
+00:45:48,817 --> 00:45:50,701
+AUDIENCE: k minus what you killed.
+听众：k减去您杀死的内容。 
+
+960
+00:45:50,701 --> 00:45:55,699
+
+
+
+961
+00:45:55,699 --> 00:45:57,519
+AUDIENCE: You can save the branches.
+听众：您可以保存分支。 
+
+962
+00:45:57,519 --> 00:45:59,559
+PROFESSOR: So you want to kill this guy, right?
+教授：所以你想杀了这个家伙，对吗？ 
+
+963
+00:45:59,559 --> 00:46:01,969
+So you want to kill these numbers.
+所以您想杀死这些数字。 
+
+964
+00:46:01,969 --> 00:46:04,329
+But here I have k over 2 numbers,
+但是这里我有k个超过2个数字， 
+
+965
+00:46:04,329 --> 00:46:06,130
+and here I have k over 2 numbers.
+这里有2个以上的k 
+
+966
+00:46:06,130 --> 00:46:09,201
+How do I know that it's not somewhere here?
+我怎么知道它不在这里？ 
+
+967
+00:46:09,400 --> 00:46:13,561
+AUDIENCE: How do you know that what's not somewhere there?
+听众：您怎么知道那里没有什么？ 
+
+968
+00:46:13,561 --> 00:46:16,219
+AUDIENCE: You compare 15 and 43, right?
+听众：您比较15和43，对吗？ 
+
+969
+00:46:16,219 --> 00:46:19,659
+And then you see that 43 is bigger,
+然后您看到43更大， 
+
+970
+00:46:19,659 --> 00:46:26,299
+and you see 15 is smaller, so then you would go to, I guess,
+然后您会看到15较小，所以我想
+
+971
+00:46:26,300 --> 00:46:36,195
+k over 4 index in N1, and 3k over 4 in N2.
+ N1中k大于4的索引，N2中4大于3k的索引。 
+
+972
+00:46:36,195 --> 00:46:37,695
+AUDIENCE: When you recurse, you said
+听众：当您递归时，您说
+
+973
+00:46:37,695 --> 00:46:41,230
+that you've killed k over 2 elements.
+您已经杀死了2个元素中的k个。 
+
+974
+00:46:41,429 --> 00:46:46,946
+AUDIENCE: But you can also kill everything to the right of 43.
+听众：但您也可以杀死43岁右边的所有人。 
+
+975
+00:46:46,947 --> 00:46:47,530
+AUDIENCE: Yes.
+听众：是的。 
+
+976
+00:46:47,530 --> 00:46:49,815
+You can kill everything to the right of 43
+您可以杀死43右边的所有东西
+
+977
+00:46:50,014 --> 00:46:51,753
+since it can't be any of those elements,
+由于不可能是任何这些元素， 
+
+978
+00:46:51,753 --> 00:46:53,670
+and you can kill everything to the left of 15.
+然后您可以杀死15号左侧的所有内容。 
+
+979
+00:46:53,670 --> 00:46:57,235
+And then you repeat the algorithm again with the lists
+然后使用列表再次重复该算法
+
+980
+00:46:57,235 --> 00:47:00,210
+you didn't kill, except you also put in a term of we've
+您没有杀人，除了您还输入了
+
+981
+00:47:00,210 --> 00:47:03,949
+already covered k over 2 elements.
+已经覆盖了2个元素中的k个。 
+
+982
+00:47:03,949 --> 00:47:07,569
+PROFESSOR: So we want the element with the rank k over 4
+教授：所以我们希望k大于4的元素
+
+983
+00:47:07,570 --> 00:47:08,715
+over these lists.
+在这些列表上。 
+
+984
+00:47:08,715 --> 00:47:13,646
+
+
+
+985
+00:47:13,646 --> 00:47:16,130
+So I know for sure that what I have is either k over 2
+所以我确定我所拥有的要么是k大于2 
+
+986
+00:47:16,329 --> 00:47:21,239
+or less than k over 2, right?
+或小于2的k，对吧？ 
+
+987
+00:47:21,239 --> 00:47:23,709
+So this is less than k over 2, and then I'm
+所以这是小于2的k，然后我是
+
+988
+00:47:23,710 --> 00:47:25,532
+looking for a rank of k over 4.
+寻找超过4的k。 
+
+989
+00:47:25,532 --> 00:47:28,184
+
+
+
+990
+00:47:28,184 --> 00:47:30,250
+That seems to work.
+这似乎有效。 
+
+991
+00:47:30,250 --> 00:47:33,539
+How does the running time look?
+运行时间如何？ 
+
+992
+00:47:33,539 --> 00:47:38,029
+AUDIENCE: It should be O of log k.
+听众：应该是log k的O。 
+
+993
+00:47:38,030 --> 00:47:40,530
+AUDIENCE: I think it's log [INAUDIBLE].
+观众：我认为这是[音频不清晰]。 
+
+994
+00:47:40,530 --> 00:47:45,030
+
+
+
+995
+00:47:45,030 --> 00:47:52,409
+PROFESSOR: So log k, log N1 plus N2.
+教授：所以记录k，记录N1加N2。 
+
+996
+00:47:52,608 --> 00:47:57,440
+
+
+
+997
+00:47:57,440 --> 00:47:58,619
+Are these different?
+这些不同吗？ 
+
+998
+00:47:58,619 --> 00:48:00,829
+AUDIENCE: Yes.
+听众：是的。 
+
+999
+00:48:00,829 --> 00:48:06,405
+AUDIENCE: If k is 1, the algorithm
+听众：如果k为1，则算法
+
+1000
+00:48:06,405 --> 00:48:10,083
+should only recurse once, even if N is 20 million.
+即使N为2,000万，也只应递归一次。 
+
+1001
+00:48:10,083 --> 00:48:16,219
+
+
+
+1002
+00:48:16,219 --> 00:48:18,363
+PROFESSOR: OK.
+教授：好的。 
+
+1003
+00:48:18,364 --> 00:48:21,902
+AUDIENCE: But if k is 20 million and the list lengths are
+听众：但是如果k为2000万且列表长度为
+
+1004
+00:48:21,902 --> 00:48:24,784
+two million long, it'll take approximately those lengths
+ 200万长，大约需要这些长度
+
+1005
+00:48:24,784 --> 00:48:26,539
+to run.
+跑步。 
+
+1006
+00:48:26,739 --> 00:48:28,689
+PROFESSOR: OK.
+教授：好的。 
+
+1007
+00:48:28,690 --> 00:48:36,420
+So what gets reduced, aside from the list size, k gets reduced.
+因此，除列表大小外，k减少了。 
+
+1008
+00:48:36,420 --> 00:48:39,869
+k seems to define the input size for the next iteration
+ k似乎定义了下一次迭代的输入大小
+
+1009
+00:48:39,869 --> 00:48:42,699
+because I'll have at least k over 2 elements in one
+因为我至少要在一个元素中包含2个以上的k个元素
+
+1010
+00:48:42,699 --> 00:48:45,639
+of these buckets.
+这些水桶中。 
+
+1011
+00:48:45,639 --> 00:48:48,250
+So it sounds like it should be log k.
+因此，听起来应该是log k。 
+
+1012
+00:48:48,250 --> 00:48:56,119
+
+
+
+1013
+00:48:56,119 --> 00:49:00,389
+k is bigger than N1, N2, but it should hopefully be smaller
+ k大于N1，N2，但希望它应小于
+
+1014
+00:49:00,389 --> 00:49:03,739
+than the sum because otherwise, why am I doing the problem?
+比总和要大，因为否则我为什么要这样做？ 
+
+1015
+00:49:03,739 --> 00:49:08,359
+So this is definitely order of N1 plus N2.
+因此，这绝对是N1加N2的顺序。 
+
+1016
+00:49:08,360 --> 00:49:09,190
+So this is a bound.
+所以这是必然的。 
+
+1017
+00:49:09,389 --> 00:49:11,819
+This is a slightly tighter bound.
+这是一个更严格的界限。 
+
+1018
+00:49:11,820 --> 00:49:13,664
+We have a different solution to the problem.
+对于这个问题，我们有不同的解决方案。 
+
+1019
+00:49:13,664 --> 00:49:16,945
+
+
+
+1020
+00:49:16,945 --> 00:49:18,820
+All the possible solutions are hard to argue.
+所有可能的解决方案都很难争论。 
+
+1021
+00:49:18,820 --> 00:49:21,539
+They all come down to something like this.
+他们都归结为这样的事情。 
+
+1022
+00:49:21,539 --> 00:49:26,070
+The one that we have requires you to use-- you
+我们拥有的一个要求您使用-您
+
+1023
+00:49:26,070 --> 00:49:29,873
+have two indices, and you know that the sum of the indices
+有两个索引，您知道这些索引的总和
+
+1024
+00:49:29,873 --> 00:49:33,579
+is k, and you do binary search on the top
+是k，然后在顶部进行二进制搜索
+
+1025
+00:49:33,579 --> 00:49:36,090
+and adjust the index on the bottom
+并调整底部的索引
+
+1026
+00:49:36,090 --> 00:49:40,039
+to keep the constraint that the sum of the two indices in N.
+保持两个索引之和为N的约束。 
+
+1027
+00:49:40,039 --> 00:49:44,619
+And you can look at that in the notes that we're going to post.
+您可以在我们将要发布的注释中进行查看。 
+
+1028
+00:49:44,619 --> 00:49:45,779
+Are you guys tired?
+你们累了吗？ 
+
+1029
+00:49:45,780 --> 00:49:49,509
+Do you want to look at one more thing, or are we done?
+您是否要再看一件事，还是已经完成？ 
+
+1030
+00:49:49,509 --> 00:49:50,425
+AUDIENCE: [INAUDIBLE].
+听众：[听不清]。 
+
+1031
+00:49:50,425 --> 00:49:57,170
+
+
+
+1032
+00:49:57,369 --> 00:50:01,509
+PROFESSOR: Let's look at something reasonably easy.
+教授：让我们看一些比较容易的事情。 
+
+1033
+00:50:01,510 --> 00:50:03,150
+You guys can read this on your own.
+你们可以自己阅读。 
+
+1034
+00:50:03,349 --> 00:50:04,909
+I'm not going to bore you with that.
+我不会为此感到无聊。 
+
+1035
+00:50:04,909 --> 00:50:08,649
+
+
+
+1036
+00:50:08,650 --> 00:50:12,030
+So suppose we have some functions,
+因此，假设我们有一些功能， 
+
+1037
+00:50:12,030 --> 00:50:13,789
+and we want to order them according
+我们想根据他们订购
+
+1038
+00:50:13,989 --> 00:50:16,069
+to their asymptotic growth rate.
+渐近增长率。 
+
+1039
+00:50:16,070 --> 00:50:19,480
+Do people remember how to do this from Pset one?
+人们还记得如何从Pset one中做到这一点吗？ 
+
+1040
+00:50:19,480 --> 00:50:22,400
+So the idea is that you take each function, you simplify it,
+因此，我们的想法是，您可以采用每个功能，对其进行简化， 
+
+1041
+00:50:22,400 --> 00:50:23,769
+and then you sort them.
+然后对它们进行排序。 
+
+1042
+00:50:23,969 --> 00:50:28,233
+So let's have a couple of simple ones and then some hard ones,
+因此，让我们先简单几个，然后再艰难一些， 
+
+1043
+00:50:28,233 --> 00:50:29,900
+and we're going to stop in five minutes.
+我们将在五分钟内停止。 
+
+1044
+00:50:29,900 --> 00:50:39,110
+
+
+
+1045
+00:50:39,110 --> 00:50:39,650
+What's this?
+这是什么？ 
+
+1046
+00:50:39,650 --> 00:50:42,751
+
+
+
+1047
+00:50:42,751 --> 00:50:44,152
+AUDIENCE: n to the fourth.
+听众：n至第四。 
+
+1048
+00:50:44,152 --> 00:50:46,651
+
+
+
+1049
+00:50:46,652 --> 00:50:47,235
+PROFESSOR: OK.
+教授：好的。 
+
+1050
+00:50:47,235 --> 00:50:49,809
+
+
+
+1051
+00:50:49,809 --> 00:50:51,090
+Let's see.
+让我们来看看。 
+
+1052
+00:50:51,090 --> 00:50:51,650
+n choose 3.
+ n选择3。 
+
+1053
+00:50:51,849 --> 00:50:54,443
+What is this?
+这是什么？ 
+
+1054
+00:50:54,443 --> 00:50:55,538
+AUDIENCE: [INAUDIBLE].
+听众：[听不清]。 
+
+1055
+00:50:55,539 --> 00:50:56,380
+PROFESSOR: OK, very good.
+教授：好的，很好。 
+
+1056
+00:50:56,579 --> 00:50:57,795
+Why?
+为什么？ 
+
+1057
+00:50:57,795 --> 00:51:01,176
+AUDIENCE: Something about choose is n times n minus 1 times
+听众：选择的东西是n倍n减1倍
+
+1058
+00:51:01,177 --> 00:51:03,592
+n minus 2.
+ n减2。 
+
+1059
+00:51:03,592 --> 00:51:07,456
+AUDIENCE: It's n factorial over n minus 2 factorial.
+听众：n阶乘n减去2阶乘。 
+
+1060
+00:51:07,456 --> 00:51:11,019
+
+
+
+1061
+00:51:11,219 --> 00:51:13,324
+PROFESSOR: This comes out to be roughly n cubed.
+教授：这大概是n立方的。 
+
+1062
+00:51:13,324 --> 00:51:16,264
+
+
+
+1063
+00:51:16,264 --> 00:51:16,764
+Cool.
+凉。 
+
+1064
+00:51:16,764 --> 00:51:19,569
+
+
+
+1065
+00:51:19,570 --> 00:51:22,807
+How about n plus log to the fourth of n?
+ n加log到n的第四位怎么样？ 
+
+1066
+00:51:22,807 --> 00:51:25,615
+
+
+
+1067
+00:51:25,615 --> 00:51:27,019
+AUDIENCE: N.
+听众：N. 
+
+1068
+00:51:27,019 --> 00:51:28,960
+PROFESSOR: Yep.
+教授：是的。 
+
+1069
+00:51:28,960 --> 00:51:32,289
+So even if I have a polynomial in a logarithm,
+所以即使我有一个对数的多项式
+
+1070
+00:51:32,289 --> 00:51:35,779
+it's still dominated by pure n.
+它仍然以纯n为主。 
+
+1071
+00:51:35,780 --> 00:51:39,000
+Now, suppose we want to order these guys together
+现在，假设我们要一起订购这些家伙
+
+1072
+00:51:39,000 --> 00:51:43,730
+with-- which one doesn't look boring at all?
+与-哪一个看起来一点都不无聊？ 
+
+1073
+00:51:43,730 --> 00:51:46,940
+n to the log n and 2 to the n.
+ n表示对数n，2表示n。 
+
+1074
+00:51:46,940 --> 00:51:49,789
+
+
+
+1075
+00:51:49,789 --> 00:51:50,739
+Let's sort them.
+让我们对它们进行排序。 
+
+1076
+00:51:50,739 --> 00:51:51,780
+Which one's the smallest?
+哪一个最小？ 
+
+1077
+00:51:51,780 --> 00:51:53,193
+Which one's the biggest?
+哪个最大？ 
+
+1078
+00:51:53,393 --> 00:51:59,250
+
+
+
+1079
+00:51:59,250 --> 00:52:02,503
+AUDIENCE: 2 to the n is bigger.
+听众：2到n更大。 
+
+1080
+00:52:02,503 --> 00:52:04,420
+PROFESSOR: Let's start with the smallest ones,
+教授：让我们从最小的开始吧， 
+
+1081
+00:52:04,420 --> 00:52:07,340
+because I think that will be easy.
+因为我认为这很容易。 
+
+1082
+00:52:07,340 --> 00:52:10,480
+So which one's the absolute smallest out of all these guys?
+那么，在所有这些人中，哪个绝对是最小的？ 
+
+1083
+00:52:10,480 --> 00:52:11,340
+AUDIENCE: n.
+听众： 
+
+1084
+00:52:11,340 --> 00:52:12,590
+PROFESSOR: OK.
+教授：好的。 
+
+1085
+00:52:12,590 --> 00:52:13,920
+Then?
+然后？ 
+
+1086
+00:52:14,119 --> 00:52:15,960
+AUDIENCE: n to the third.
+听众：n至第三。 
+
+1087
+00:52:15,960 --> 00:52:17,275
+PROFESSOR: Cubed and fourth.
+教授：立方，第四。 
+
+1088
+00:52:17,275 --> 00:52:18,649
+So we have to compare these guys.
+所以我们必须比较这些家伙。 
+
+1089
+00:52:18,650 --> 00:52:19,608
+How do we compare them?
+我们如何比较它们？ 
+
+1090
+00:52:19,608 --> 00:52:23,010
+
+
+
+1091
+00:52:23,010 --> 00:52:26,900
+n to the power of log n and 2 to the n something.
+ n为对数n的幂，2为n的幂。 
+
+1092
+00:52:26,900 --> 00:52:29,983
+
+
+
+1093
+00:52:29,983 --> 00:52:30,900
+AUDIENCE: [INAUDIBLE].
+听众：[听不清]。 
+
+1094
+00:52:30,900 --> 00:52:34,818
+
+
+
+1095
+00:52:34,818 --> 00:52:35,860
+PROFESSOR: Take the logs.
+教授：记录日志。 
+
+1096
+00:52:35,860 --> 00:52:38,550
+So when we have something confusing with exponentials,
+因此，当我们对指数感到困惑时， 
+
+1097
+00:52:38,550 --> 00:52:40,500
+take the logs and see what we get.
+记录日志，看看我们得到了什么。 
+
+1098
+00:52:40,500 --> 00:52:42,639
+Logs are monotonic, so if you take the logs,
+日志是单调的，因此，如果您使用日志， 
+
+1099
+00:52:42,639 --> 00:52:45,449
+you'll have the same relationship afterwards.
+之后您将拥有相同的关系。 
+
+1100
+00:52:45,449 --> 00:52:53,089
+So log of this is log of n to the power of log n,
+因此，这的对数就是n的对数乘以log n的乘方， 
+
+1101
+00:52:53,090 --> 00:53:05,019
+so it's log n times log n, so it's log 2 n.
+因此它是log n乘以log n，所以它是log 2 n。 
+
+1102
+00:53:05,019 --> 00:53:08,940
+Log of 2 to the n is n.
+ 2到n的对数为n。 
+
+1103
+00:53:08,940 --> 00:53:11,403
+Which one's bigger?
+哪个更大？ 
+
+1104
+00:53:11,403 --> 00:53:12,204
+AUDIENCE: n.
+听众： 
+
+1105
+00:53:12,204 --> 00:53:13,079
+PROFESSOR: All right.
+教授：好的。 
+
+1106
+00:53:13,079 --> 00:53:21,039
+
+
+
+1107
+00:53:21,039 --> 00:53:22,469
+And we're not going to solve this,
+而且我们不会解决这个问题， 
+
+1108
+00:53:22,469 --> 00:53:25,149
+but how would you go about solving this guy?
+但是您将如何解决这个人？ 
+
+1109
+00:53:25,150 --> 00:53:28,840
+
+
+
+1110
+00:53:28,840 --> 00:53:30,059
+What do you do to it?
+你是怎么做的？ 
+
+1111
+00:53:30,059 --> 00:53:30,860
+AUDIENCE: Sterling.
+观众：英镑。 
+
+1112
+00:53:30,860 --> 00:53:33,170
+PROFESSOR: Sterling, yep.
+教授：斯特林，是的。 
+
+1113
+00:53:33,170 --> 00:53:35,269
+You do Sterling, you go through the numbers,
+你做斯特林，你遍历数字， 
+
+1114
+00:53:35,269 --> 00:53:37,210
+and you figure out the answer.
+然后您找出答案。 
+
+1115
+00:53:37,210 --> 00:53:39,135
+And then if you have to do logarithms,
+然后如果您必须做对数， 
+
+1116
+00:53:39,135 --> 00:53:41,190
+you use logarithms to figure out where
+你用对数找出
+
+1117
+00:53:41,389 --> 00:53:43,509
+it belongs among these guys.
+它属于这些人。 
+
+1118
+00:53:43,510 --> 00:53:44,800
+AUDIENCE: What's Sterling?
+听众：什么是英镑？ 
+
+1119
+00:53:44,800 --> 00:53:45,539
+AUDIENCE: Sterling's formula.
+听众：斯特林的公式。 
+
+1120
+00:53:45,539 --> 00:53:47,505
+It's that gross thing that was on the board
+董事会上的事情就是这样
+
+1121
+00:53:47,505 --> 00:53:48,463
+before we came in here.
+在我们来到这里之前。 
+
+1122
+00:53:48,463 --> 00:53:54,389
+PROFESSOR: So Sterling says that n factorial is ugly.
+教授：所以斯特林说n阶乘是丑陋的。 
+
+1123
+00:53:54,389 --> 00:54:03,029
+
+
+
+1124
+00:54:03,030 --> 00:54:09,440
+2 pi n here times n over e to the power of n.
+ 2 pi n在这里，n乘以e等于n的幂。 
+
+1125
+00:54:09,440 --> 00:54:13,670
+
+
+
+1126
+00:54:13,670 --> 00:54:14,827
+So what's this binomial?
+那么这个二项式是什么？ 
+
+1127
+00:54:14,827 --> 00:54:15,710
+What's the formula for it?
+它的公式是什么？ 
+
+1128
+00:54:15,909 --> 00:54:21,670
+
+
+
+1129
+00:54:21,670 --> 00:54:23,210
+OK, formula for n choose k.
+ OK，n的公式选择k。 
+
+1130
+00:54:23,210 --> 00:54:24,512
+Anyone?
+任何人？ 
+
+1131
+00:54:24,512 --> 00:54:28,163
+AUDIENCE: It's n times 1 over 2 factorial times n
+听众：n是2阶乘n中的n倍
+
+1132
+00:54:28,362 --> 00:54:29,610
+minus k factorial.
+减去k阶乘。 
+
+1133
+00:54:29,610 --> 00:54:32,750
+
+
+
+1134
+00:54:32,750 --> 00:54:35,409
+PROFESSOR: In this case, it's n factorial
+教授：在这种情况下，n是阶乘
+
+1135
+00:54:35,409 --> 00:54:40,576
+over n over 2 factorial raised to the power of 2, right?
+超过2的n个阶乘提高到2的幂，对吗？ 
+
+1136
+00:54:40,576 --> 00:54:42,949
+And then we chug through the math and get to some answer.
+然后我们学习数学并得出一些答案。 
+
+1137
+00:54:42,949 --> 00:54:46,389
+
+
+
+1138
+00:54:46,389 --> 00:54:47,955
+All right?
+好吧？ 
+
+1139
+00:54:47,956 --> 00:54:52,956
+
+
+
